@@ -1,4 +1,4 @@
-from enum import Enum
+import enum
 import json
 
 from flask import Flask, request
@@ -7,22 +7,22 @@ app = Flask(__name__)
 data = []
 
 
-class Type(int, Enum):
-    SelfService = 1  # автомойка самообслуживания
+class Type(enum.IntEnum):
+    SelfService = 1   # автомойка самообслуживания
     Contactless = 2  # безконтактная
     Manual = 3  # ручная мойка
     Portal = 4  # портальная
-    Tunnel = 6  # тунельная
-    Dry = 5  # сухая
+    Tunnel = 5  # тунельная
+    Dry = 6  # сухая
 
 
-class BoxStatus(int, Enum):
+class BoxStatus(enum.IntEnum):
     Free = 1  # – свободен
     Busy = 2  # - занят
     Unavailable = 3  # – недоступен(закрыт на ремонте)
 
 
-class CostType(int, Enum):
+class CostType(enum.IntEnum):
     Fix = 1  # – фиксированная
     PerMinute = 2  # – стоимость
 
@@ -74,21 +74,21 @@ def test_collect_objs_in_list():
         1000.0,
         # Boxes
         [
-            ['1', BoxStatus.Free],
-            ['2', BoxStatus.Busy],
-            ['3', BoxStatus.Unavailable],
-            ['4', BoxStatus.Free],
+            ['1', BoxStatus.Free.name],
+            ['2', BoxStatus.Busy.name],
+            ['3', BoxStatus.Unavailable.name],
+            ['4', BoxStatus.Free.name],
         ],
         # Price
         [
-            ['1', 'Description1', 1000.0, CostType.Fix],
-            ['2', 'Description2', 2000.0, CostType.Fix],
-            ['3', 'Description3', 3000.0, CostType.Fix],
-            ['4', 'Description4', 4000.0, CostType.Fix],
+            ['1', 'Description1', 1000.0, CostType.Fix.name],
+            ['2', 'Description2', 2000.0, CostType.Fix.name],
+            ['3', 'Description3', 3000.0, CostType.Fix.name],
+            ['4', 'Description4', 4000.0, CostType.Fix.name],
         ],
     )
     SmartWashCAR = Carwash(
-        1, True, 'Smart Car',
+        '1', True, 'Smart Car',
         'Moscow, Simferopolskiy 19',
         [55.651110, 37.606092],
         Type.SelfService,
@@ -96,17 +96,17 @@ def test_collect_objs_in_list():
         1000.0,
         # Boxes
         [
-            ['1', BoxStatus.Busy],
-            ['2', BoxStatus.Free],
-            ['3', BoxStatus.Free],
-            ['4', BoxStatus.Unavailable],
+            ['1', BoxStatus.Busy.name],
+            ['2', BoxStatus.Free.name],
+            ['3', BoxStatus.Free.name],
+            ['4', BoxStatus.Unavailable.name],
         ],
         # Price
         [
-            ['1', 'Description1', 4000.0, CostType.PerMinute],
-            ['2', 'Description2', 3000.0, CostType.PerMinute],
-            ['3', 'Description3', 2000.0, CostType.PerMinute],
-            ['4', 'Description4', 1000.0, CostType.PerMinute],
+            ['1', 'Description1', 4000.0, CostType.PerMinute.name],
+            ['2', 'Description2', 3000.0, CostType.PerMinute.name],
+            ['3', 'Description3', 2000.0, CostType.PerMinute.name],
+            ['4', 'Description4', 1000.0, CostType.PerMinute.name],
         ],
     )
 
