@@ -47,6 +47,7 @@ class Carwash:
                           sort_keys=True, indent=4)
 """
 
+
 @app.route('/carwash/list')
 def example():
     try_apiKey = request.args.get('apikey')
@@ -58,10 +59,10 @@ def example():
     print(result)  # ????????
     return result
 
+
 ################################
 
 def test_collect_objs_in_list():
-
     # id, enable, name, address, Location, Type, stepCost,
     # limitMinCost, Boxes, Price):
     SmartCarWash = Carwash(
@@ -113,10 +114,11 @@ def test_collect_objs_in_list():
     data.append(SmartWashCAR)
     return json.dumps([obj.__dict__ for obj in data])
 
+
 if __name__ == '__main__':
     # run app in debug mode on port 5000
     API_KEY = '123456'
 
-    app.run(debug=True, port=5000)
+    app.run(port=5000)
 
 ################################################################
