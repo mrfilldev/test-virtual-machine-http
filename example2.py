@@ -145,7 +145,7 @@ def test_collect_objs_in_list():
 if __name__ == '__main__':
     API_KEY = '123456'
 
-    app.run(host='0.0.0.0', port=4999)
+    app.run(host='0.0.0.0')
 
 ################################################################
 # return simplejson.dumps(data)#[obj.__dict__ for obj in data])
