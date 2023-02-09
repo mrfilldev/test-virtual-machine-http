@@ -1,7 +1,6 @@
 import enum
 import json
 
-import simplejson
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -140,13 +139,13 @@ def test_collect_objs_in_list():
     data.append(my_home)
     data.append(crystal_carwash)
 
-    return simplejson.dumps(data, default=lambda x: x.__dict__)
+    return json.dumps(data, default=lambda x: x.__dict__)
 
 
 if __name__ == '__main__':
     API_KEY = '123456'
 
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=4999)
 
 ################################################################
 # return simplejson.dumps(data)#[obj.__dict__ for obj in data])
