@@ -74,7 +74,7 @@ def main(request):
     if try_apiKey in API_KEY:
         result = collect_objs_in_list()
     else:
-        result = 'Error, Something is wrong...', 401
+        result = 'Error, Something is wrong...', 401, {'Content-Type': 'text/html; charset=utf-8'}
     print(result)  # ????????
     return result
 
@@ -87,10 +87,10 @@ def collect_objs_in_list():
     location_my = Point(55.650378, 37.606487)
     location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
 
-    box1 = Boxes('1', BoxStatus.Free)
-    box2 = Boxes('2', BoxStatus.Unavailable)
-    box3 = Boxes('1', BoxStatus.Free)
-    box4 = Boxes('2', BoxStatus.Busy)
+    box1 = Boxes('1', BoxStatus.Free.value)
+    box2 = Boxes('2', BoxStatus.Unavailable.value)
+    box3 = Boxes('1', BoxStatus.Free.value)
+    box4 = Boxes('2', BoxStatus.Busy.value)
 
     group_of_boxes1 = [box1, box2]
     group_of_boxes2 = [box3, box4]
@@ -137,7 +137,7 @@ def collect_objs_in_list():
     data.append(my_home)
     data.append(crystal_carwash)
 
-    return json.dumps(data, default=lambda x: x.__dict__, ensure_ascii=False).encode('utf8')
+    return json.dumps(data, default=lambda x: x.__dict__)  # , ensure_ascii=False).encode('utf8')
 
 ################################################################
 # return simplejson.dumps(data)#[obj.__dict__ for obj in data])
