@@ -1,17 +1,13 @@
 import enum
 import json
 
-from flask import Flask, request
-
-app = Flask(__name__)
-data = []
-
+API_KEY = '123456'
 address_my = 'Симферопольский бульвар, 19к1, Москва, 117452'  # 55.650378, 37.606487
 address_crystal = '1-й Красногвардейский проезд, 19, Москва, 123112'  # 55.750843, 37.536693
 address_carwash_my = 'Ялтинская улица, 1, Москва, 117452'  # 55.650383, 37.611447
 
 
-########################################################################
+################################################################
 
 class Type(enum.IntEnum):
     FullService = 7
@@ -71,21 +67,23 @@ class Carwash:
 
 ################################################################
 
-@app.route('/carwash/list')
-def example():
+
+def main(request):
     try_apiKey = request.args.get('apikey')
     print('try_apiKey: ' + try_apiKey)
     if try_apiKey == API_KEY:
-        result = test_collect_objs_in_list()
+        result = collect_objs_in_list()
     else:
         result = 'Error, Something is wrong...'
     print(result)  # ????????
     return result
 
 
-################################
+################################################################
 
-def test_collect_objs_in_list():
+def collect_objs_in_list():
+    data = []
+
     location_my = Point(55.650378, 37.606487)
     location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
 
@@ -141,11 +139,6 @@ def test_collect_objs_in_list():
 
     return json.dumps(data, default=lambda x: x.__dict__)
 
-
-if __name__ == '__main__':
-    API_KEY = '123456'
-
-    app.run(host='0.0.0.0', port=8080)
 ################################################################
 # return simplejson.dumps(data)#[obj.__dict__ for obj in data])
 # return simplejson.dumps(data, default=default)
