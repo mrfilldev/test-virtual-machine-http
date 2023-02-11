@@ -1,7 +1,6 @@
 import enum
 import json
 
-API_KEY = ['123456', '7tllmnubn49ghu5qrep97']
 address_my = 'Симферопольский бульвар, 19к1, Москва, 117452'  # 55.650378, 37.606487
 address_crystal = '1-й Красногвардейский проезд, 19, Москва, 123112'  # 55.750843, 37.536693
 address_carwash_my = 'Ялтинская улица, 1, Москва, 117452'  # 55.650383, 37.611447
@@ -69,13 +68,8 @@ class Carwash:
 
 
 def main(request):
-    try_apiKey = request.args.get('apikey')
-    print('try_apiKey: ' + try_apiKey)
-    if try_apiKey in API_KEY:
-        result = collect_objs_in_list()
-    else:
-        result = 'Error, Something is wrong...', 401, {'Content-Type': 'text/html; charset=utf-8'}
-    print(result)  # ????????
+    result = collect_objs_in_list()
+
     return result
 
 
