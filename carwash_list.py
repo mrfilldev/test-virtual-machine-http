@@ -137,7 +137,7 @@ def collect_objs_in_list():
     data.append(my_home)
     data.append(crystal_carwash)
 
-    return json.dumps(data, default=lambda x: x.__dict__)
+    return json.dumps(data, default=lambda x: x.__dict__, ensure_ascii=False).encode('utf8')
 
 ################################################################
 # return simplejson.dumps(data)#[obj.__dict__ for obj in data])
