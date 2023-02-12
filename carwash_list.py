@@ -23,6 +23,7 @@ class BoxStatus(enum.IntEnum):
     Unavailable = 3  # – недоступен(закрыт на ремонте)
 
 
+
 class CostType(enum.IntEnum):
     Fix = 1  # – фиксированная
     PerMinute = 2  # – стоимость
