@@ -45,6 +45,7 @@ def main(request):
         print(request)
 
         data_back = json.loads(request.data)
+        print(request.data)
         data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
         #data = json.loads(request.data, object_hook=lambda d: custom_decoder(**d))
 
