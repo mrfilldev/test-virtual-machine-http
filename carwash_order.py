@@ -26,13 +26,14 @@ class Services:
 class Order:
     def __init__(self, id: str, date_create_date_time: str, car_wash_id,
                  box_number: str, status, sum: float, sum_completed: float,
-                 services, contract_id: str, sum_paid_station_completed: float):
+                 #services,
+                 contract_id: str, sum_paid_station_completed: float):
         self.Id = id
         self.DateTime = date_create_date_time
         self.BoxNumber = box_number
         self.CarWashId = car_wash_id
         self.ContractId = contract_id
-        self.Services = Services(services[0].Id, services[0].Description, services[0].Cost)
+        #self.Services = Services(services[0].Id, services[0].Description, services[0].Cost)
 
         self.Status = Status[str(status)]
         self.Sum = sum
@@ -56,7 +57,8 @@ def main(request):
         new_order = Order(
             data.Id, data.DateCreate, data.CarWashId,
             data.BoxNumber, data.Status, data.Sum, data.SumCompleted,
-            data.Services, data.ContractId, data.SumPaidStationCompleted
+            # data.Services,
+            data.ContractId, data.SumPaidStationCompleted
             )
         #new_order = Order(data.I
         # d)
