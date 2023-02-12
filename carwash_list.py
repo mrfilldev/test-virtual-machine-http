@@ -44,8 +44,8 @@ class Prices:
 
 class Point:  # enum.Enum):
     def __init__(self, latitude, longitude):
-        self.latitude = latitude
-        self.longitude = longitude
+        self.lat = latitude
+        self.lon = longitude
 
 
 class Carwash:
@@ -80,10 +80,10 @@ def collect_objs_in_list():
     location_my = Point(55.650378, 37.606487)
     location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
 
-    box1 = Boxes('1', BoxStatus.Free.value)
-    box2 = Boxes('2', BoxStatus.Unavailable.value)
-    box3 = Boxes('1', BoxStatus.Free.value)
-    box4 = Boxes('2', BoxStatus.Busy.value)
+    box1 = Boxes('1', BoxStatus.Free.name)
+    box2 = Boxes('2', BoxStatus.Unavailable.name)
+    box3 = Boxes('1', BoxStatus.Free.name)
+    box4 = Boxes('2', BoxStatus.Busy.name)
 
     group_of_boxes1 = [box1, box2]
     group_of_boxes2 = [box3, box4]
