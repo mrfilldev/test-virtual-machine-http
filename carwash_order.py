@@ -165,7 +165,7 @@ def check_the_status(request):
     return result
 
 
-def main(request):
+async def main(request):
     if check_the_status(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
