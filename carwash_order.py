@@ -72,10 +72,10 @@ def make_order(request):
             data.ContractId, data.SumPaidStationCompleted
         )
         print(new_order.display_info())
-    loop = asyncio.get_event_loop()
-
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     task1 = loop.create_task(send_accept_status(data.Id))
-    task2 = asyncio.create_task(send_completed_status(data.Id, data.Sum))
+    task2 = loop.create_task(send_completed_status(data.Id, data.Sum))
 
 def send_200_OK_status():
     status = 200
