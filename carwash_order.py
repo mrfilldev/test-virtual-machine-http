@@ -1,8 +1,12 @@
 import enum
 import json
+import urllib.request
+import time
+from datetime import datetime as dt
 from types import SimpleNamespace
-from flask import jsonify
-from urls import app
+
+URL_DEV = 'http://app.tst.tanker.yandex.net'
+API_KEY = '7tllmnubn49ghu5qrep97'
 
 
 class Status(enum.IntEnum):
@@ -50,7 +54,6 @@ class Order:
 
 
 def make_order(request):
-
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
     # data = json.loads(request.data, object_hook=lambda d: custom_decoder(**d))
 
@@ -67,17 +70,61 @@ def make_order(request):
         )
         print(new_order.display_info())
 
-    # Вывод данных
-    print("REQUEST: " + str(request))
-    print("REQUEST.DATA: " + str(request.data))
+    send_accept_status(id)
+    time.sleep(10)
+    send_completed_status(id, data.Sum)
+
+
+def send_accept_status(id):
+    url = URL_DEV + "/api/carwash/order/accept?api_key={}&orderId={}".format(API_KEY,
+                                                                             id)  # os.environ.get("TMDB_API_KEY"))
+    print("url:", url)
+
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    dict = json.loads(data)
+    print('data: ', data)
+    print('dict: ', dict)
+
+
+def send_canceled_status(id):
+    reason = 'Тестовая отмена'
+    url = URL_DEV + "/api/carwash/order/canceled" \
+                    "?api_key={}&orderId={}&reason={}".format(API_KEY, id, reason)  # os.environ.get("TMDB_API_KEY"))
+    print("url:", url)
+
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    dict = json.loads(data)
+    print('data: ', data)
+    print('dict: ', dict)
+
+
+def send_completed_status(id, sum_of_carwash):
+    extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
+    print('extended_date: ', extended_date)
+    extended_order_id = 'test_id' + str(extended_date)
+    print('extended_order_id: ', extended_order_id)
+
+    url = URL_DEV + "/api/carwash/order/completed" \
+                    "apikey={}&orderId={}&sum={}&extendedOrderId={}&extendedDate={}".format(
+        API_KEY, id, sum_of_carwash, extended_order_id, extended_date)  # os.environ.get("TMDB_API_KEY"))
+    print("url:", url)
+
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    dict = json.loads(data)
+    print('data: ', data)
+    print('dict: ', dict)
 
 
 def check_the_status(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
-    if data.Status == 'UserCanceled' or 'СarWashCanceled' or 'Expire':
-        result = False
-    else:
+    if data.Status == 'OrderCreated':
         result = True
+    else:
+        result = False
+    print("result:", result)
     print("Status: ", data.Status)
     return result
 
