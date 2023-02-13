@@ -77,7 +77,7 @@ def make_order(request):
 
 
 def send_accept_status(id):
-    url = URL_DEV + "/api/carwash/order/accept"
+    url = URL_DEV + "/api/carwash/order/accept/"
 
     data = {
         "apikey": API_KEY,
