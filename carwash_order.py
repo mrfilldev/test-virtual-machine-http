@@ -56,7 +56,7 @@ class Order:
         )
 
 
-def make_order(request):
+async def make_order(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
     # data = json.loads(request.data, object_hook=lambda d: custom_decoder(**d))
 
@@ -72,10 +72,10 @@ def make_order(request):
             data.ContractId, data.SumPaidStationCompleted
         )
         print(new_order.display_info())
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    task1 = loop.create_task(send_accept_status(data.Id))
-    task2 = loop.create_task(send_completed_status(data.Id, data.Sum))
+    async with asyncio.TaskGroup() as tg:
+        task1 = tg.create_task(send_accept_status(data.Id))
+        task2 = tg.create_task(send_completed_status(data.Id, data.Sum))
+    print('Task done?')
 
 def send_200_OK_status():
     status = 200
