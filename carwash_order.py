@@ -2,7 +2,7 @@ import enum
 import json
 import urllib.request
 import time
-#import asyncio
+import asyncio
 from datetime import datetime as dt
 from types import SimpleNamespace
 from flask import Response
@@ -72,7 +72,7 @@ def make_order(request):
             data.ContractId, data.SumPaidStationCompleted
         )
         print(new_order.display_info())
-
+    return data
     # task1 = asyncio.create_task(send_accept_status(data.Id, data.Sum))
     # print('Task done?')
 
@@ -83,12 +83,12 @@ def send_200_OK_status():
     return response
 
 
-def send_accept_status(id, sum):
+async def send_accept_status(data):
     url = URL_DEV + "/api/carwash/order/accept/"
 
     data = {
         "apikey": API_KEY,
-        "orderId": id,
+        "orderId": data.Id,
     }
 
     headers = {'content-type': 'application/json'}
@@ -96,7 +96,7 @@ def send_accept_status(id, sum):
     print("url:", url)
     print('data: ', data)
 
-    # await asyncio.sleep(10)
+    await asyncio.sleep(5)
     #  response = urllib.request.urlopen(url)
     # data = response.read()
     # dict = json.loads(data)
@@ -126,7 +126,7 @@ def send_canceled_status(id):
     print('dict: ', dict)
 
 
-def send_completed_status(id, sum_of_carwash):
+async def send_completed_status(data):
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
     extended_order_id = 'test_id' + str(extended_date)
@@ -135,8 +135,8 @@ def send_completed_status(id, sum_of_carwash):
     url = URL_DEV + "/api/carwash/order/completed"
     data = {
         "apikey": API_KEY,
-        "orderId": id,
-        "sum": sum_of_carwash,
+        "orderId": data.Id,
+        "sum": data.Sum,
         "extendedOrderId": extended_order_id,
         "extendedDate": extended_date
     }
@@ -145,12 +145,12 @@ def send_completed_status(id, sum_of_carwash):
 
     print("url:", url)
 
+    await asyncio.sleep(8)
     # response = urllib.request.urlopen(url)
     # data = response.read()
     # dict = json.loads(data)
     print('data: ', data)
     # print('dict: ', dict)
-    # await asyncio.sleep(10)
 
 
 def check_the_status(request):
@@ -164,12 +164,13 @@ def check_the_status(request):
     return result
 
 
-def main(request):
+async def main(request):
     if check_the_status(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-        make_order(request)
-
+        data = make_order(request)
+        task1 = asyncio.create_task(send_accept_status(data))
+        task2 = asyncio.create_task(send_completed_status(data))
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
