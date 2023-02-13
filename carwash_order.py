@@ -85,7 +85,7 @@ def send_accept_status(id):
     }
 
     headers = {'content-type': 'application/json'}
-    requests.post(url, data=json.dumps(data, default=lambda x: x.__dict__), headers=headers)
+    requests.post(url, data=data, headers=headers)
     print("url:", url)
 
     response = urllib.request.urlopen(url)
@@ -106,7 +106,7 @@ def send_canceled_status(id):
     }
 
     headers = {'content-type': 'application/json'}
-    requests.post(url, data=json.dumps(data, default=lambda x: x.__dict__), headers=headers)
+    requests.post(url, data=data, headers=headers)
 
     print("url:", url)
 
@@ -132,7 +132,7 @@ def send_completed_status(id, sum_of_carwash):
         "extendedDate": extended_date
     }
     headers = {'content-type': 'application/json'}
-    requests.post(url, data=json.dumps(data, default=lambda x: x.__dict__), headers=headers)
+    requests.post(url, data=data, headers=headers)
 
     print("url:", url)
 
