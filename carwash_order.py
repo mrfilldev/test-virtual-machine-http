@@ -2,8 +2,10 @@ import enum
 import json
 import urllib.request
 import time
+import asyncio
 from datetime import datetime as dt
 from types import SimpleNamespace
+from flask import Response
 import requests
 
 URL_DEV = 'http://app.tst.tanker.yandex.net'
@@ -71,12 +73,16 @@ def make_order(request):
         )
         print(new_order.display_info())
 
-    send_accept_status(id)
-    time.sleep(10)
-    send_completed_status(id, data.Sum)
+    task1 = asyncio.create_task(send_accept_status(data.Id))
+    task2 = asyncio.create_task(send_completed_status(data.Id, data.Sum))
+
+def send_200_OK_status():
+    status = 200
+    response = Response(status=status, mimetype="application/json")
+    return response
 
 
-def send_accept_status(id):
+async def send_accept_status(id):
     url = URL_DEV + "/api/carwash/order/accept/"
 
     data = {
@@ -87,12 +93,13 @@ def send_accept_status(id):
     headers = {'content-type': 'application/json'}
     requests.post(url, data=data, headers=headers)
     print("url:", url)
-
-    response = urllib.request.urlopen(url)
-    data = response.read()
-    dict = json.loads(data)
     print('data: ', data)
-    print('dict: ', dict)
+
+    await asyncio.sleep(10)
+    #  response = urllib.request.urlopen(url)
+    # data = response.read()
+    # dict = json.loads(data)
+    # print('dict: ', dict)
 
 
 def send_canceled_status(id):
@@ -105,6 +112,7 @@ def send_canceled_status(id):
 
     }
 
+
     headers = {'content-type': 'application/json'}
     requests.post(url, data=data, headers=headers)
 
@@ -117,7 +125,7 @@ def send_canceled_status(id):
     print('dict: ', dict)
 
 
-def send_completed_status(id, sum_of_carwash):
+async def send_completed_status(id, sum_of_carwash):
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
     extended_order_id = 'test_id' + str(extended_date)
@@ -136,11 +144,13 @@ def send_completed_status(id, sum_of_carwash):
 
     print("url:", url)
 
-    response = urllib.request.urlopen(url)
-    data = response.read()
-    dict = json.loads(data)
+    #response = urllib.request.urlopen(url)
+    #data = response.read()
+    #dict = json.loads(data)
     print('data: ', data)
-    print('dict: ', dict)
+    #print('dict: ', dict)
+    await asyncio.sleep(10)
+
 
 
 def check_the_status(request):

@@ -44,7 +44,10 @@ def return_carwash_list():
 @app.route('/carwash/order', methods=['POST'])
 def make_carwash_order():
     result = carwash_order.main(request)
-    return result
+    status = 200
+    response = Response(result, status=status, mimetype="application/json")
+
+    return response
 
 
 if __name__ == '__main__':
