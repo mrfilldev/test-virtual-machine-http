@@ -4,6 +4,7 @@ import urllib.request
 import time
 from datetime import datetime as dt
 from types import SimpleNamespace
+import requests
 
 URL_DEV = 'http://app.tst.tanker.yandex.net'
 API_KEY = '7tllmnubn49ghu5qrep97'
@@ -76,8 +77,16 @@ def make_order(request):
 
 
 def send_accept_status(id):
-    url = URL_DEV + "/api/carwash/order/accept?api_key={}&orderId={}".format(API_KEY,
-                                                                             id)  # os.environ.get("TMDB_API_KEY"))
+    url = URL_DEV + "/api/carwash/order/accept"
+
+    data = {
+        "apikey": API_KEY,
+        "orderId": id,
+
+    }
+
+    headers = {'content-type': 'application/json'}
+    requests.post(url, data=json.dumps(data), headers=headers)
     print("url:", url)
 
     response = urllib.request.urlopen(url)
@@ -89,8 +98,17 @@ def send_accept_status(id):
 
 def send_canceled_status(id):
     reason = 'Тестовая отмена'
-    url = URL_DEV + "/api/carwash/order/canceled" \
-                    "?api_key={}&orderId={}&reason={}".format(API_KEY, id, reason)  # os.environ.get("TMDB_API_KEY"))
+    url = URL_DEV + "/api/carwash/order/canceled"
+    data = {
+        "apikey": API_KEY,
+        "orderId": id,
+        "reason": reason,
+
+    }
+
+    headers = {'content-type': 'application/json'}
+    requests.post(url, data=json.dumps(data), headers=headers)
+
     print("url:", url)
 
     response = urllib.request.urlopen(url)
@@ -106,9 +124,17 @@ def send_completed_status(id, sum_of_carwash):
     extended_order_id = 'test_id' + str(extended_date)
     print('extended_order_id: ', extended_order_id)
 
-    url = URL_DEV + "/api/carwash/order/completed" \
-                    "apikey={}&orderId={}&sum={}&extendedOrderId={}&extendedDate={}".format(
-        API_KEY, id, sum_of_carwash, extended_order_id, extended_date)  # os.environ.get("TMDB_API_KEY"))
+    url = URL_DEV + "/api/carwash/order/completed"
+    data = {
+        "apikey": API_KEY,
+        "orderId": id,
+        "sum": sum_of_carwash,
+        "extendedOrderId": extended_order_id,
+        "extendedDate": extended_date
+    }
+    headers = {'content-type': 'application/json'}
+    requests.post(url, data=json.dumps(data), headers=headers)
+
     print("url:", url)
 
     response = urllib.request.urlopen(url)
