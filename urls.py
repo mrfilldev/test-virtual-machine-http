@@ -1,3 +1,5 @@
+import asyncio
+
 from flask import Flask, request, Response, abort
 
 import carwash_list
@@ -42,8 +44,8 @@ def return_carwash_list():
 
 
 @app.route('/carwash/order', methods=['POST'])
-def make_carwash_order():
-    result = carwash_order.main(request)
+async def make_carwash_order():
+    result = asyncio.run(carwash_order.main(request))
     status = 200
     response = Response(result, status=status, mimetype="application/json")
 
