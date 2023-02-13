@@ -2,7 +2,7 @@ import enum
 import json
 import urllib.request
 import time
-import asyncio
+#import asyncio
 from datetime import datetime as dt
 from types import SimpleNamespace
 from flask import Response
@@ -56,7 +56,7 @@ class Order:
         )
 
 
-async def make_order(request):
+def make_order(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
     # data = json.loads(request.data, object_hook=lambda d: custom_decoder(**d))
 
