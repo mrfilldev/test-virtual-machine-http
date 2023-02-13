@@ -72,9 +72,8 @@ async def make_order(request):
             data.ContractId, data.SumPaidStationCompleted
         )
         print(new_order.display_info())
-    async with asyncio.TaskGroup() as tg:
-        task1 = tg.create_task(send_accept_status(data.Id))
-        task2 = tg.create_task(send_completed_status(data.Id, data.Sum))
+
+        task1 = asyncio.create_task(send_accept_status(data.Id))
     print('Task done?')
 
 def send_200_OK_status():
@@ -101,6 +100,7 @@ async def send_accept_status(id):
     # data = response.read()
     # dict = json.loads(data)
     # print('dict: ', dict)
+    task2 = asyncio.create_task(send_completed_status(data.Id, data.Sum))
 
 
 def send_canceled_status(id):
