@@ -169,7 +169,7 @@ def main(request):
     if check_the_status(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-        make_order(request)
+        await make_order(request)
 
     else:
         print("REQUEST: ", request)
