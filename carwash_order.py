@@ -73,8 +73,9 @@ async def make_order(request):
         )
         print(new_order.display_info())
 
-        task1 = asyncio.create_task(send_accept_status(data.Id, data.Sum))
-    print('Task done?')
+    # task1 = asyncio.create_task(send_accept_status(data.Id, data.Sum))
+    # print('Task done?')
+
 
 def send_200_OK_status():
     status = 200
@@ -82,7 +83,7 @@ def send_200_OK_status():
     return response
 
 
-async def send_accept_status(id, sum):
+def send_accept_status(id, sum):
     url = URL_DEV + "/api/carwash/order/accept/"
 
     data = {
@@ -95,12 +96,12 @@ async def send_accept_status(id, sum):
     print("url:", url)
     print('data: ', data)
 
-    await asyncio.sleep(10)
+    # await asyncio.sleep(10)
     #  response = urllib.request.urlopen(url)
     # data = response.read()
     # dict = json.loads(data)
     # print('dict: ', dict)
-    task2 = asyncio.create_task(send_completed_status(id, sum))
+    # task2 = asyncio.create_task(send_completed_status(id, sum))
 
 
 def send_canceled_status(id):
@@ -112,7 +113,6 @@ def send_canceled_status(id):
         "reason": reason,
 
     }
-
 
     headers = {'content-type': 'application/json'}
     requests.post(url, data=data, headers=headers)
@@ -126,7 +126,7 @@ def send_canceled_status(id):
     print('dict: ', dict)
 
 
-async def send_completed_status(id, sum_of_carwash):
+def send_completed_status(id, sum_of_carwash):
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
     extended_order_id = 'test_id' + str(extended_date)
@@ -145,13 +145,12 @@ async def send_completed_status(id, sum_of_carwash):
 
     print("url:", url)
 
-    #response = urllib.request.urlopen(url)
-    #data = response.read()
-    #dict = json.loads(data)
+    # response = urllib.request.urlopen(url)
+    # data = response.read()
+    # dict = json.loads(data)
     print('data: ', data)
-    #print('dict: ', dict)
-    await asyncio.sleep(10)
-
+    # print('dict: ', dict)
+    # await asyncio.sleep(10)
 
 
 def check_the_status(request):
@@ -165,11 +164,11 @@ def check_the_status(request):
     return result
 
 
-async def main(request):
+def main(request):
     if check_the_status(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-        await make_order(request)
+        make_order(request)
 
     else:
         print("REQUEST: ", request)
