@@ -73,7 +73,7 @@ async def make_order(request):
         )
         print(new_order.display_info())
 
-        task1 = asyncio.create_task(send_accept_status(data.Id))
+        task1 = asyncio.create_task(send_accept_status(data.Id, data.Sum))
     print('Task done?')
 
 def send_200_OK_status():
@@ -82,7 +82,7 @@ def send_200_OK_status():
     return response
 
 
-async def send_accept_status(id):
+async def send_accept_status(id, sum):
     url = URL_DEV + "/api/carwash/order/accept/"
 
     data = {
@@ -100,7 +100,7 @@ async def send_accept_status(id):
     # data = response.read()
     # dict = json.loads(data)
     # print('dict: ', dict)
-    task2 = asyncio.create_task(send_completed_status(data.Id, data.Sum))
+    task2 = asyncio.create_task(send_completed_status(id, sum))
 
 
 def send_canceled_status(id):
