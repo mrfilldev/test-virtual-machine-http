@@ -114,7 +114,7 @@ def collect_objs_in_list():
 
     )
     crystal_carwash = Carwash(
-        '1', True, 'Crystal city',
+        '2', True, 'Crystal city',
         address_crystal,
 
         location_my,
