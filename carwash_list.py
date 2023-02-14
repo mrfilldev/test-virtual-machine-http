@@ -9,7 +9,7 @@ address_carwash_my = 'Ялтинская улица, 1, Москва, 117452'  #
 ################################################################
 
 class Type(enum.IntEnum):
-    SelfService = 1  # автомойка самообслуживания
+    SelfServiceFixPrice = 1  # автомойка самообслуживания
     Contactless = 2  # безконтактная
     Manual = 3  # ручная мойка
     Portal = 4  # портальная
@@ -118,7 +118,7 @@ def collect_objs_in_list():
         address_crystal,
 
         location_my,
-        Type.SelfService.name,
+        Type.SelfServiceFixPrice.name,
         200.0,
         1000.0,
         # Boxes
