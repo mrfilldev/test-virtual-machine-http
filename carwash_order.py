@@ -139,7 +139,7 @@ async def send_completed_status(data):
     extended_order_id = 'test_id' + str(extended_date)
     print('extended_order_id: ', extended_order_id)
 
-    url = URL_DEV + "/api/carwash/order/accept/"
+    url = URL_DEV + "/api/carwash/order/completed/"
     params = {
         'apikey': API_KEY,
         'orderId': data.Id,
