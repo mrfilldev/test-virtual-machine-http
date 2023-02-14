@@ -84,7 +84,7 @@ def send_200_OK_status():
 
 
 async def send_accept_status(data):
-    url = URL_DEV + "/api/carwash/order/accept/"
+    url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
         'orderId': data.Id
@@ -103,7 +103,6 @@ async def send_accept_status(data):
     # print('data: ', data)
 
     await asyncio.sleep(5)
-    task2 = asyncio.create_task(send_completed_status(data))
     #  response = urllib.request.urlopen(url)
     # data = response.read()
     # dict = json.loads(data)
@@ -139,7 +138,7 @@ async def send_completed_status(data):
     extended_order_id = 'test_id' + str(extended_date)
     print('extended_order_id: ', extended_order_id)
 
-    url = URL_DEV + "/api/carwash/order/completed/"
+    url = URL_DEV + "/api/carwash/order/completed"
     params = {
         'apikey': API_KEY,
         'orderId': data.Id,
@@ -187,6 +186,7 @@ async def main(request):
         print("REQUEST.DATA: ", request.data)
         data = make_order(request)
         task1 = asyncio.create_task(send_accept_status(data))
+        task2 = asyncio.create_task(send_completed_status(data))
 
     else:
         print("REQUEST: ", request)
