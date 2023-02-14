@@ -14,7 +14,7 @@ API_KEY = '7tllmnubn49ghu5qrep97'
 
 class Status(enum.IntEnum):
     nNone = 0
-    OrderCreated = 1  # "OrderCreated"
+    OrderCreated = 1
     Expire = 2
     Completed = 3
     CarWashCanceled = 4
@@ -39,7 +39,6 @@ class Order:
         self.BoxNumber = box_number
         self.CarWashId = car_wash_id
         self.ContractId = contract_id
-        # self.Services = Services(services[0].Id, services[0].Description, services[0].Cost)
 
         self.Status = Status[str(status)]
         self.Sum = sum
@@ -58,7 +57,6 @@ class Order:
 
 def make_order(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
-    # data = json.loads(request.data, object_hook=lambda d: custom_decoder(**d))
 
     if data.Status != 'UserCanceled' or 'СarWashCanceled':
         #  Создание объекта класса Order
@@ -73,8 +71,6 @@ def make_order(request):
         )
         print(new_order.display_info())
     return data
-    # task1 = asyncio.create_task(send_accept_status(data.Id, data.Sum))
-    # print('Task done?')
 
 
 def send_200_OK_status():
@@ -89,48 +85,24 @@ async def send_accept_status(data):
         'apikey': API_KEY,
         'orderId': data.Id
     }
+    await asyncio.sleep(0.5)
     requests.get(url, params=params)
-
-    # data = {
-    #     "apikey": API_KEY,
-    #     "orderId": data.Id,
-    # }
-    #
-    # headers = {'content-type': 'application/json'}
-    # requests.post(url, data=data, headers=headers)
     print("url:", url)
     print("params:", params)
-    # print('data: ', data)
-
-    #  response = urllib.request.urlopen(url)
-    # data = response.read()
-    # dict = json.loads(data)
-    # print('dict: ', dict)
-    # task2 = asyncio.create_task(send_completed_status(id, sum))
-
     await send_completed_status(data)
 
 
-def send_canceled_status(id):
+def send_canceled_status(data):
     reason = 'Тестовая отмена'
     url = URL_DEV + "/api/carwash/order/canceled"
-    data = {
-        "apikey": API_KEY,
-        "orderId": id,
-        "reason": reason,
-
+    params = {
+        'apikey': API_KEY,
+        'orderId': data.Id,
+        'reason': reason
     }
-
-    headers = {'content-type': 'application/json'}
-    requests.post(url, data=data, headers=headers)
-
+    requests.get(url, params=params)
     print("url:", url)
-
-    response = urllib.request.urlopen(url)
-    data = response.read()
-    dict = json.loads(data)
-    print('data: ', data)
-    print('dict: ', dict)
+    print("params:", params)
 
 
 async def send_completed_status(data):
@@ -150,23 +122,8 @@ async def send_completed_status(data):
     }
     requests.get(url, params=params)
 
-    # url = URL_DEV + "/api/carwash/order/completed"
-    # data = {
-    #     "apikey": API_KEY,
-    #     "orderId": data.Id,
-    #     "sum": data.Sum,
-    #     "extendedOrderId": extended_order_id,
-    #     "extendedDate": extended_date
-    # }
-    # headers = {'content-type': 'application/json'}
-    # requests.post(url, data=data, headers=headers)
     print("url:", url)
     print('params: ', params)
-    # print('data: ', data)
-    # response = urllib.request.urlopen(url)
-    # data = response.read()
-    # dict = json.loads(data)
-    # print('dict: ', dict)
 
 
 def check_the_status(request):
@@ -186,8 +143,6 @@ async def main(request):
         print("REQUEST.DATA: ", request.data)
         data = make_order(request)
         task1 = asyncio.create_task(send_accept_status(data))
-
-
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
@@ -204,3 +159,43 @@ async def main(request):
 # print(new_order.Status.name)
 # print(type(new_order.Status.value))
 # print(data)
+
+
+# url = URL_DEV + "/api/carwash/order/completed"
+# data = {
+#     "apikey": API_KEY,
+#     "orderId": data.Id,
+#     "sum": data.Sum,
+#     "extendedOrderId": extended_order_id,
+#     "extendedDate": extended_date
+# }
+# headers = {'content-type': 'application/json'}
+# requests.post(url, data=data, headers=headers)
+
+# print('data: ', data)
+# response = urllib.request.urlopen(url)
+# data = response.read()
+# dict = json.loads(data)
+# print('dict: ', dict)
+
+#  response = urllib.request.urlopen(url)
+# data = response.read()
+# dict = json.loads(data)
+# print('dict: ', dict)
+# task2 = asyncio.create_task(send_completed_status(id, sum))
+
+# print('data: ', data)
+
+# task1 = asyncio.create_task(send_accept_status(data.Id, data.Sum))
+# print('Task done?')
+
+# self.Services = Services(services[0].Id, services[0].Description, services[0].Cost)
+# data = json.loads(request.data, object_hook=lambda d: custom_decoder(**d))
+
+# data = {
+#     "apikey": API_KEY,
+#     "orderId": data.Id,
+# }
+#
+# headers = {'content-type': 'application/json'}
+# requests.post(url, data=data, headers=headers)
