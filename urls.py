@@ -49,7 +49,7 @@ async def make_carwash_order():
     status = 400 if order is None else 200
     response = Response(status=status)
 
-    #task = asyncio.Task(carwash_order.send_accept_status(order))
+    task = asyncio.Task(carwash_order.send_accept_status(order))
 
     return response
 
