@@ -103,6 +103,7 @@ async def send_accept_status(data):
     # print('data: ', data)
 
     await asyncio.sleep(5)
+    task2 = asyncio.create_task(send_completed_status(data))
     #  response = urllib.request.urlopen(url)
     # data = response.read()
     # dict = json.loads(data)
@@ -186,7 +187,7 @@ async def main(request):
         print("REQUEST.DATA: ", request.data)
         data = make_order(request)
         task1 = asyncio.create_task(send_accept_status(data))
-        task2 = asyncio.create_task(send_completed_status(data))
+
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
