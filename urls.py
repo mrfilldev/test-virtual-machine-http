@@ -45,9 +45,11 @@ def return_carwash_list():
 
 @app.route('/carwash/order', methods=['POST'])
 def make_carwash_order():
-    result = asyncio.run(carwash_order.main(request))
-    status = 200
-    response = Response(result, status=status, mimetype="application/json")
+    order = carwash_order.main(request)
+    status = 400 if order is None else 200
+    response = Response(status=status)
+
+    asyncio.create_task(carwash_order.send_accept_status(order))
 
     return response
 

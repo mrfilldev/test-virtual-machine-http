@@ -79,14 +79,14 @@ def send_200_OK_status():
     return response
 
 
-async def send_accept_status(data):
+async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
     await asyncio.sleep(5)
     print("Start SEND ACCEPT STATUS")
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
-        'orderId': data.Id
+        'orderId': order.Id
     }
 
     x = requests.get(url, params=params)
@@ -94,7 +94,7 @@ async def send_accept_status(data):
     print("url:", url)
     print("params:", params)
     await asyncio.sleep(1)
-    await send_completed_status(data)
+    await send_completed_status(order)
 
 
 def send_canceled_status(data):
@@ -110,7 +110,7 @@ def send_canceled_status(data):
     print("params:", params)
 
 
-async def send_completed_status(data):
+async def send_completed_status(order):
     print("Start SEND COMPLETED STATUS")
 
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
@@ -121,8 +121,8 @@ async def send_completed_status(data):
     url = URL_DEV + "/api/carwash/order/completed"
     params = {
         'apikey': API_KEY,
-        'orderId': data.Id,
-        'sum': data.Sum,
+        'orderId': order.Id,
+        'sum': order.Sum,
         'extendedOrderId': extended_order_id,
         'extended_date': extended_date
 
@@ -144,18 +144,19 @@ def check_the_status(request):
     return result
 
 
-async def main(request):
+def main(request):
     if check_the_status(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-        data = make_order(request)
-        task1 = asyncio.create_task(send_accept_status(data))
+        return make_order(request)
+        # task1 = asyncio.create_task(send_accept_status(data))
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
 
-    data_back = json.loads(request.data)
-    return data_back
+    # data_back = json.loads(request.data)
+    # raise Exception
+    return None
 
 ################################################################
 # print(json.loads(request.data, default=lambda x: x.__dict__))
