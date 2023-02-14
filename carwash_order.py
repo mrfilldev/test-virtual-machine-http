@@ -97,7 +97,7 @@ async def send_accept_status(order):
     await send_completed_status(order)
 
 
-def send_canceled_status(data):
+async def send_canceled_status(data):
     reason = 'Тестовая отмена'
     url = URL_DEV + "/api/carwash/order/canceled"
     params = {
