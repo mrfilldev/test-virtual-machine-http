@@ -44,7 +44,7 @@ def return_carwash_list():
 
 
 @app.route('/carwash/order', methods=['POST'])
-async def make_carwash_order():
+def make_carwash_order():
     result = asyncio.run(carwash_order.main(request))
     status = 200
     response = Response(result, status=status, mimetype="application/json")
