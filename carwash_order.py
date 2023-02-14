@@ -168,7 +168,7 @@ async def main(request):
     if check_the_status(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-        data = await make_order(request)
+        data = make_order(request)
         task1 = asyncio.create_task(send_accept_status(data))
         task2 = asyncio.create_task(send_completed_status(data))
     else:
