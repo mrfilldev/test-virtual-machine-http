@@ -80,6 +80,7 @@ def send_200_OK_status():
 
 
 async def send_accept_status(data):
+    print("Start SEND ACCEPT STATUS")
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
@@ -87,10 +88,10 @@ async def send_accept_status(data):
     }
 
     x = requests.get(url, params=params)
-    await asyncio.sleep(1)
     print('STATUS_CODE: ', x.status_code)
     print("url:", url)
     print("params:", params)
+    await asyncio.sleep(1)
     await send_completed_status(data)
 
 
@@ -108,6 +109,8 @@ def send_canceled_status(data):
 
 
 async def send_completed_status(data):
+    print("Start SEND COMPLETED STATUS")
+
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
     extended_order_id = 'test_id' + str(extended_date)
