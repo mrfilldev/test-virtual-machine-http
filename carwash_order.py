@@ -81,6 +81,8 @@ def send_200_OK_status():
 
 async def send_accept_status(data):
     print("Start SEND ACCEPT STATUS")
+    await asyncio.sleep(5)
+    print("Start SEND ACCEPT STATUS")
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
