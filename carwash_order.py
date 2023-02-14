@@ -85,8 +85,9 @@ async def send_accept_status(data):
         'apikey': API_KEY,
         'orderId': data.Id
     }
-    await asyncio.sleep(0.5)
-    requests.get(url, params=params)
+    await asyncio.sleep(1)
+    x = requests.get(url, params=params)
+    print('STATUS_CODE: ', x.status_code)
     print("url:", url)
     print("params:", params)
     await send_completed_status(data)
