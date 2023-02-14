@@ -85,7 +85,10 @@ def send_200_OK_status():
 
 async def send_accept_status(data):
     url = URL_DEV + "/api/carwash/order/accept/"
-    params = dict(key=API_KEY, orderId=data.Id)
+    params = {
+        'apikey': API_KEY,
+        'orderId': data.Id
+    }
     requests.get(url, params=params)
 
     # data = {
@@ -129,14 +132,21 @@ def send_canceled_status(id):
     print('dict: ', dict)
 
 
-async def send_completed_status():
+async def send_completed_status(data):
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
     extended_order_id = 'test_id' + str(extended_date)
     print('extended_order_id: ', extended_order_id)
 
     url = URL_DEV + "/api/carwash/order/accept/"
-    params = dict(key=API_KEY, extendedDate=extended_date, extendedOrderId=extended_order_id)
+    params = {
+        'apikey': API_KEY,
+        'orderId': data.Id,
+        'sum': data.Sum,
+        'extendedOrderId': extended_order_id,
+        'extended_date': extended_date
+
+    }
     requests.get(url, params=params)
 
     # url = URL_DEV + "/api/carwash/order/completed"
@@ -176,7 +186,7 @@ async def main(request):
         print("REQUEST.DATA: ", request.data)
         data = make_order(request)
         task1 = asyncio.create_task(send_accept_status(data))
-        task2 = asyncio.create_task(send_completed_status())
+        task2 = asyncio.create_task(send_completed_status(data))
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
