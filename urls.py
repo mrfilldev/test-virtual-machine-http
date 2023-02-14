@@ -50,7 +50,7 @@ async def make_carwash_order():
     response = Response(status=status)
 
     task = asyncio.create_task(carwash_order.send_accept_status(order))
-    asyncio.run(task)
+
     return response
 
 
