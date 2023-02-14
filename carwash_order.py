@@ -102,12 +102,13 @@ async def send_accept_status(data):
     print("params:", params)
     # print('data: ', data)
 
-    await asyncio.sleep(5)
     #  response = urllib.request.urlopen(url)
     # data = response.read()
     # dict = json.loads(data)
     # print('dict: ', dict)
     # task2 = asyncio.create_task(send_completed_status(id, sum))
+
+    await send_completed_status(data)
 
 
 def send_canceled_status(id):
@@ -162,7 +163,6 @@ async def send_completed_status(data):
     print("url:", url)
     print('params: ', params)
     # print('data: ', data)
-    await asyncio.sleep(8)
     # response = urllib.request.urlopen(url)
     # data = response.read()
     # dict = json.loads(data)
@@ -186,7 +186,7 @@ async def main(request):
         print("REQUEST.DATA: ", request.data)
         data = make_order(request)
         task1 = asyncio.create_task(send_accept_status(data))
-        task2 = asyncio.create_task(send_completed_status(data))
+
 
     else:
         print("REQUEST: ", request)
