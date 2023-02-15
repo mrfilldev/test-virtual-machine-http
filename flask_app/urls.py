@@ -64,7 +64,7 @@ async def make_carwash_order():
 
     # SQS запись
     if order is not None:
-        if (status == 200) & (order.Status == Status.OrderCreated.name):
+        if (status == 200) and (order.Status == Status.OrderCreated.name):
 
             carwash_order.send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
 
