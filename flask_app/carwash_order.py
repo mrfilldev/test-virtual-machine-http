@@ -101,7 +101,7 @@ def send_order_sqs(order):
 
 def check_the_status(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
-    result = Status.OrderCreated.name
+    result = data.Status
     print("result:", result)
     print("Status: ", data.Status)
     return result
