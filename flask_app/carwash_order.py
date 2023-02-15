@@ -73,7 +73,7 @@ class Order:
 def make_order(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
 
-    if data.Status != 'UserCanceled' or 'СarWashCanceled':
+    if data.Status != Status.UserCanceled.name or Status.CarWashCanceled.name:
         #  Создание объекта класса Order
         new_order = Order(
             data.Id, data.DateCreate, data.CarWashId,
@@ -117,7 +117,7 @@ def main(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
-        return make_order(request)
+        return (request)
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
