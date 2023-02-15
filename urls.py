@@ -1,14 +1,27 @@
-import asyncio
+import json
+import os
+import time
 
-from flask import Flask, request, Response, abort
+import boto3
+from flask import Flask, request, Response
 
-import carwash_list
-import carwash_order
+from flask_app import carwash_list, carwash_order
 import ping_carwash_box
+from flask_app.carwash_order import Status
 
 app = Flask(__name__)
 
 API_KEY = ['123456', '7tllmnubn49ghu5qrep97']
+queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker-carwsh-orders'
+client = boto3.client(
+    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+    service_name='sqs',
+    endpoint_url='https://message-queue.api.cloud.yandex.net',
+    region_name='ru-central1'
+)
+queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
+
 
 ########################################################################
 
@@ -29,6 +42,7 @@ def return_carwash_ping():
     print(response)
     return response
 
+
 @app.route('/carwash/list')
 def return_carwash_list():
     try_apiKey = request.args.get('apikey')
@@ -48,14 +62,14 @@ async def make_carwash_order():
     order = carwash_order.main(request)
     status = 400 if order is None else 200
     response = Response(status=status)
-    # бд запись
+
     # SQS запись
-    #task = asyncio.create_task(carwash_order.send_accept_status(order))
+    if (status == 200) & (order.Status == Status.OrderCreated.name):
+
+        carwash_order.send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
 
     return response
 
 
 if __name__ == '__main__':
-
     app.run(host='127.0.0.1', port=8080)
-

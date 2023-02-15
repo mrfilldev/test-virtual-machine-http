@@ -19,3 +19,9 @@ six==1.16.0
 urllib3==1.26.14
 Werkzeug==2.2.2
 zipp==3.12.1
+
+pip~=23.0
+wheel~=0.38.4
+setuptools~=65.5.1
+docutils~=0.16
+boto3~=1.26.70

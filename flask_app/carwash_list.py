@@ -9,19 +9,19 @@ address_carwash_my = 'Ялтинская улица, 1, Москва, 117452'  #
 ################################################################
 
 class Type(enum.IntEnum):
-    SelfServiceFixPrice = 1  # автомойка самообслуживания
-    Contactless = 2  # безконтактная
-    Manual = 3  # ручная мойка
-    Portal = 4  # портальная
-    Tunnel = 5  # тунельная
-    Dry = 6  # сухая
+    SelfServiceFixPrice = 1  # автомойка самообслуживания Fix Price
+    SelfService = 2  # автомойка самообслуживания
+    Contactless = 3  # безконтактная
+    Manual = 4  # ручная мойка
+    Portal = 5  # портальная
+    Tunnel = 6  # тунельная
+    Dry = 7  # сухая
 
 
 class BoxStatus(enum.IntEnum):
     Free = 1  # – свободен
     Busy = 2  # - занят
     Unavailable = 3  # – недоступен(закрыт на ремонте)
-
 
 
 class CostType(enum.IntEnum):
