@@ -3,9 +3,10 @@ import os
 
 import boto3
 from flask import Flask, request, Response
-from flask_app import carwash_list, carwash_order
+import carwash_list
+import carwash_order
 import ping_carwash_box
-from flask_app.carwash_order import Status
+from carwash_order import Status
 
 app = Flask(__name__)
 
