@@ -101,20 +101,23 @@ def send_order_sqs(order):
 
 def check_the_status(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
-    if data.Status == 'OrderCreated':
-        result = True
-    else:
-        result = False
+    result = Status.OrderCreated.name
     print("result:", result)
     print("Status: ", data.Status)
     return result
 
 
 def main(request):
-    if check_the_status(request):
+    status = check_the_status(request)
+    if status == Status.OrderCreated:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         return make_order(request)
+    elif status == Status.UserCanceled:
+        print("REQUEST: ", request)
+        print("REQUEST.DATA: ", request.data)
+        print("Order canceled...")
+        return None
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
