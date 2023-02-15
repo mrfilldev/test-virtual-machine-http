@@ -69,6 +69,7 @@ async def make_carwash_order():
         if (status == 200) and (order.Status == Status.OrderCreated.name):
             carwash_order.send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
 
+    print(response)
     return response
 
 
