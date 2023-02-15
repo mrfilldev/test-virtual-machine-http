@@ -59,6 +59,7 @@ def return_carwash_list():
 @app.route('/carwash/order', methods=['POST'])
 async def make_carwash_order():
     order = carwash_order.main(request)
+    print('order: ', type(order), order)
     status = 400 if order is None else 200
     response = Response(status=status)
 
