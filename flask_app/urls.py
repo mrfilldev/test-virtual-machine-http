@@ -7,6 +7,7 @@ import carwash_list
 import carwash_order
 import ping_carwash_box
 from carwash_order import Status
+from types import SimpleNamespace
 
 app = Flask(__name__)
 
@@ -64,9 +65,8 @@ async def make_carwash_order():
     response = Response(status=status)
 
     # SQS запись
-    if isinstance(order, carwash_order.Order):
+    if order is not None:
         if (status == 200) and (order.Status == Status.OrderCreated.name):
-
             carwash_order.send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
 
     return response

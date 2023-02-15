@@ -76,13 +76,16 @@ def make_order(request):
     if data.Status != Status.UserCanceled.name or Status.CarWashCanceled.name:
         #  Создание объекта класса Order
         new_order = Order(
-            data.Id, data.DateCreate, data.CarWashId,
-            data.BoxNumber, data.Status, data.Sum, data.SumCompleted,
-
-            # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix - отсутствует
-            # data.Services,
-
-            data.ContractId, data.SumPaidStationCompleted
+            data.Id,
+            data.DateCreate,
+            data.CarWashId,
+            data.BoxNumber,
+            data.Status,
+            data.Sum,
+            data.SumCompleted,
+            # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix - отсутствует
+            data.ContractId,
+            data.SumPaidStationCompleted
         )
         new_order.display_info()
 
@@ -117,7 +120,7 @@ def main(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
-        return (request)
+        return None
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
