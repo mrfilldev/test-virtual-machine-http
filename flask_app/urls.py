@@ -1,6 +1,5 @@
 import json
 import os
-import time
 
 import boto3
 from flask import Flask, request, Response
