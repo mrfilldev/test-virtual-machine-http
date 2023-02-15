@@ -117,7 +117,7 @@ def main(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
-        return None
+        return make_order(request)
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
