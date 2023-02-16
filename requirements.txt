@@ -25,3 +25,4 @@ wheel~=0.38.4
 setuptools~=65.5.1
 docutils~=0.16
 boto3~=1.26.70
+python-dotenv~=0.21.1

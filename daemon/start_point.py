@@ -1,4 +1,6 @@
+from dotenv import load_dotenv
 import daemon
+load_dotenv()
 
 
 def main():

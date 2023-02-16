@@ -2,20 +2,22 @@ import json
 import os
 
 import boto3
+from dotenv import load_dotenv
 from flask import Flask, request, Response
 import carwash_list
 import carwash_order
 import ping_carwash_box
-from carwash_order import Status
-from types import SimpleNamespace
 
 app = Flask(__name__)
+load_dotenv()
 
+URL_DEV = 'http://app.tst.tanker.yandex.net'
 API_KEY = ['123456', '7tllmnubn49ghu5qrep97']
-queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker-carwsh-orders'
+queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker' \
+               '-carwsh-orders'
 client = boto3.client(
-    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
-    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
     service_name='sqs',
     endpoint_url='https://message-queue.api.cloud.yandex.net',
     region_name='ru-central1'
@@ -66,7 +68,7 @@ async def make_carwash_order():
 
     # SQS запись
     if order is not None:
-        if (status == 200) and (order.Status == Status.OrderCreated.name):
+        if (status == 200) and (order.Status == carwash_order.Status.OrderCreated.name):
             carwash_order.send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
 
     print(response)

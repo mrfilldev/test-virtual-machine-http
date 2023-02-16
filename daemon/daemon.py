@@ -9,8 +9,8 @@ from datetime import datetime as dt
 ################################################################
 # from aws_requests_auth.aws_auth import AWSRequestsAuth
 client = boto3.client(
-    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
-    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
     service_name='sqs',
     endpoint_url='https://message-queue.api.cloud.yandex.net',
     region_name='ru-central1'
