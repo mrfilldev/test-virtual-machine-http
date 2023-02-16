@@ -1,6 +1,8 @@
 import asyncio
 import os
 import time
+from dotenv import load_dotenv
+load_dotenv()
 
 import boto3
 import requests
