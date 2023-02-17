@@ -165,4 +165,4 @@ def write_into_db(order: str):
         print('ORDER_ID:', order.inserted_id)
 
         print("Объекты в БД МОНГО:", dbs.list_collection_names(), '\n')
-        print('Объекты в коллекции', dbs.tst_items.find())
+        print('Объекты в коллекции', dbs.tst_items.mycol.find())
