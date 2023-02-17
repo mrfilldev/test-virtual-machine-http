@@ -87,7 +87,7 @@ def make_order(request):
             # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
             # отсутствует
             data.ContractId,
-            data.SumPaidStationCompleted
+            0.0  # data.SumPaidStationCompleted
         )
         new_order.display_info()
     return data
