@@ -13,6 +13,8 @@ from urllib.parse import quote_plus as quote
 import pymongo
 from dotenv import load_dotenv
 
+from flask_app.carwash_order import Status
+
 load_dotenv()
 
 ################################################################
@@ -127,7 +129,7 @@ async def get_order_messege_queue():
 
 def write_into_db(order: str):
     order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
-    order = eval(order)
+    #order = eval(order)
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
         pw=quote('mrfilldev040202'),
@@ -146,12 +148,26 @@ def write_into_db(order: str):
     # dbs - название бд
     # test_items - название чего?
     # mycol - название коллекции
-    order = dbs.tst_items.mycol.insert_one(order)
-    print('WRITED ORDER: ', order)
-    print('ORDER_ID:', order.inserted_id)
+    if order.Status == Status.OrderCreated:
+        order = dbs.tst_items.mycol.insert_one({
+            "_id": order.Id,
+            "DateTime": order.DateTime,
+            "BoxNumber": order.BoxNumber,
+            "CarWashId": order.CarWashId,
+            "ContractId": order.ContractId,
+            "Status": order.Status,
+            "Sum": order.Sum,
+            "SumCompleted": order.SumCompleted,
+            "SumPaidStationCompleted": order.SumPaidStationCompleted,
+            # :order.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
+            # отсутствует
 
-    print("Объекты в БД МОНГО:", dbs.list_collection_names(), '\n')
-    print('Объекты в коллекции', dbs.tst_items.find())
+        })
+        print('WRITED ORDER: ', order)
+        print('ORDER_ID:', order.inserted_id)
+
+        print("Объекты в БД МОНГО:", dbs.list_collection_names(), '\n')
+        print('Объекты в коллекции', dbs.tst_items.find())
 
 
 
