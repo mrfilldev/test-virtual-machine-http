@@ -123,6 +123,7 @@ async def get_order_messege_queue():
             print('Received message: ', msg.get('Body'))
             print('TYPE: ', type(msg.get('Body')))
             order = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
+            print('TYPE: ', type(order))
             write_into_db(order)
             # get the message
 
