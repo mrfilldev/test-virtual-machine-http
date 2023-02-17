@@ -14,7 +14,7 @@ from urllib.parse import quote_plus as quote
 import pymongo
 from dotenv import load_dotenv
 
-from flask_app.carwash_order import Order
+#from flask_app.carwash_order import Order
 
 load_dotenv()
 url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
@@ -138,7 +138,7 @@ async def get_order_messege_queue():
         # break  # ЗАЧЕМ BREAK?!
 
 
-def write_into_db(order: Order):
+def write_into_db(order):
     # order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
     # order = eval(order)
 
