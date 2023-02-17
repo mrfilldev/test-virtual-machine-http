@@ -133,10 +133,10 @@ def write_into_db(order: str):
             'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
         ]),
         rs='rs01',
-        auth_src='test_16_02')
+        auth_src='db1')
     dbs = pymongo.MongoClient(
         url,
-        tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['test_16_02']
+        tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
     print('Writing into DB')
     order = dbs.tst_items.mycol.insert_one(order)
