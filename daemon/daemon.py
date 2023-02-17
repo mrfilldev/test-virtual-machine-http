@@ -15,8 +15,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-
 ################################################################
 # from aws_requests_auth.aws_auth import AWSRequestsAuth
 client = boto3.client(
@@ -125,9 +123,9 @@ async def get_order_messege_queue():
         break
 
 
-def write_into_db(order):
-    #order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
-
+def write_into_db(order: str):
+    # order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
+    order = eval(order)
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
         pw=quote('mrfilldev040202'),
