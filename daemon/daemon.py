@@ -117,7 +117,7 @@ async def get_order_messege_queue():
             )
             # Delete processed messages
             print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
-            #  order = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
+            order = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
             await send_accept_status(order)
 
 
