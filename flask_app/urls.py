@@ -64,8 +64,9 @@ async def make_carwash_order():
     try:
         carwash_order.main(request)
         return Response(status=200)
-    except:
-        # wrute to log
+    except Exception as e:
+        # write to log
+        print(f'caught {type(e)}: e')  # добавить логгер
         return Response(status=400)
 
 
