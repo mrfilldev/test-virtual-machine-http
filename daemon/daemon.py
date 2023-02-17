@@ -117,10 +117,12 @@ async def get_order_messege_queue():
             )
             # Delete processed messages
             print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
-            order = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
+            #  order = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
             await send_accept_status(order)
 
-        break
+
+
+        break  # ЗАЧЕМ BREAK?!
 
 
 def write_into_db(order: str):
@@ -141,4 +143,10 @@ def write_into_db(order: str):
     print('Writing into DB')
     order = dbs.tst_items.mycol.insert_one(order)
     print('WRITED ORDER: ', order)
-    pass
+    print('ORDER_ID:', order.inserted_id)
+
+    print("Объекты в БД МОНГО:", dbs.list_collection_names(), '\n')
+    print('Объекты в коллекции', dbs.tst_items.find())
+
+
+
