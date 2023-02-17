@@ -123,7 +123,7 @@ async def get_order_messege_queue():
                 QueueUrl=queue_url,
                 ReceiptHandle=msg.get('ReceiptHandle')
             )
-        break  # ЗАЧЕМ BREAK?!
+        #break  # ЗАЧЕМ BREAK?!
 
 
 def write_into_db(order: str):
