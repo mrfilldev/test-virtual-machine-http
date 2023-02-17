@@ -1,12 +1,21 @@
 import asyncio
+import json
 import os
 import time
-from dotenv import load_dotenv
-load_dotenv()
+from types import SimpleNamespace
 
 import boto3
 import requests
 from datetime import datetime as dt
+
+from urllib.parse import quote_plus as quote
+
+import pymongo
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 
 ################################################################
 # from aws_requests_auth.aws_auth import AWSRequestsAuth
@@ -100,6 +109,7 @@ def get_order_messege_queue():
 
         for msg in messages:
             print('Received message: ', msg.get('Body'))
+            print('TYPE: ', type(msg.get('Body')))
             # get the message
             client.delete_message(
                 QueueUrl=queue_url,
@@ -112,5 +122,21 @@ def get_order_messege_queue():
 
 
 def write_into_db(order):
+    order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
+
+    url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
+        user=quote('user1'),
+        pw=quote('mrfilldev040202'),
+        hosts=','.join([
+            'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
+        ]),
+        rs='rs01',
+        auth_src='test_16_02')
+    dbs = pymongo.MongoClient(
+        url,
+        tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['test_16_02']
+
     print('Writing into DB')
+    order = dbs.tst_items.mycol.insert_one()
+    print('WRITED ORDER: ', order)
     pass

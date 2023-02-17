@@ -5,7 +5,7 @@ load_dotenv()
 
 def main():
     order = daemon.get_order_messege_queue()
-    daemon.write_into_db(order)
+    #daemon.write_into_db(order)
 
     print("FINISHED")
 
