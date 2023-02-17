@@ -58,7 +58,7 @@ class Order:
 def make_order(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
 
-    if data.Status != Status.UserCanceled.name or Status.CarWashCanceled.name:
+    if data.Status != Status.UserCanceled.name or Status.CarWashCanceled.name or Status.StationCanceled:
         #  Создание объекта класса Order
         new_order = Order(
             data.Id,
