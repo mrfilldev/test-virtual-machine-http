@@ -67,7 +67,8 @@ def make_order(request):
             data.Status,
             data.Sum,
             data.SumCompleted,
-            # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix - отсутствует
+            # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
+            # отсутствует
             data.ContractId,
             data.SumPaidStationCompleted
         )

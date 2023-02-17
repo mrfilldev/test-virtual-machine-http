@@ -108,8 +108,10 @@ async def get_order_messege_queue():
             continue
 
         for msg in messages:
+            order = msg.get('Body')
             print('Received message: ', msg.get('Body'))
             print('TYPE: ', type(msg.get('Body')))
+            write_into_db(order)
             # get the message
             client.delete_message(
                 QueueUrl=queue_url,
@@ -124,7 +126,7 @@ async def get_order_messege_queue():
 
 
 def write_into_db(order):
-    order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
+    #order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
 
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
@@ -139,6 +141,6 @@ def write_into_db(order):
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['test_16_02']
 
     print('Writing into DB')
-    order = dbs.tst_items.mycol.insert_one()
+    order = dbs.tst_items.mycol.insert_one(order)
     print('WRITED ORDER: ', order)
     pass
