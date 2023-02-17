@@ -112,15 +112,17 @@ async def get_order_messege_queue():
             print('TYPE: ', type(msg.get('Body')))
             write_into_db(order)
             # get the message
-            client.delete_message(
-                QueueUrl=queue_url,
-                ReceiptHandle=msg.get('ReceiptHandle')
-            )
+
             # Delete processed messages
             print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
             order = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
             await send_accept_status(order)
 
+
+            client.delete_message(
+                QueueUrl=queue_url,
+                ReceiptHandle=msg.get('ReceiptHandle')
+            )
         break  # ЗАЧЕМ BREAK?!
 
 
@@ -147,7 +149,7 @@ def write_into_db(order: str):
     if order.Status == 'OrderCreated':
         order = dbs.tst_items.mycol.insert_one({
             "_id": order.Id,
-            "DateTime": order.DateTime,
+            "DateTime": order.DateCreate,
             "BoxNumber": order.BoxNumber,
             "CarWashId": order.CarWashId,
             "ContractId": order.ContractId,

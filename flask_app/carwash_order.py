@@ -29,7 +29,7 @@ class Order:
                  # services,
                  contract_id: str, sum_paid_station_completed: float):
         self.Id = id
-        self.DateTime = date_create_date_time
+        self.DateCreate = date_create_date_time
         self.BoxNumber = box_number
         self.CarWashId = car_wash_id
         self.ContractId = contract_id
@@ -43,7 +43,7 @@ class Order:
         details = f"""
 # Новый Заказ: #
             Id: {self.Id} 
-            DateTime: {self.DateTime}  
+            DateTime: {self.DateCreate}  
             BoxNumber: {self.BoxNumber}
             CarWashId: {self.CarWashId} 
             ContractId: {self.ContractId} 
@@ -58,7 +58,7 @@ class Order:
 def make_order(request):
     data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
 
-    if data.Status != Status.UserCanceled.name or Status.CarWashCanceled.name or Status.StationCanceled:
+    if data.Status != Status.UserCanceled.name or Status.CarWashCanceled.name:
         #  Создание объекта класса Order
         new_order = Order(
             data.Id,
@@ -75,6 +75,22 @@ def make_order(request):
         )
         new_order.display_info()
 
+
+    elif data.Status == Status.StationCanceled.name:
+        new_order = Order(
+            data.Id,
+            data.DateCreate,
+            data.CarWashId,
+            data.BoxNumber,
+            data.Status,
+            data.Sum,
+            0.0,  # data.SumCompleted,
+            # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
+            # отсутствует
+            data.ContractId,
+            data.SumPaidStationCompleted
+        )
+        new_order.display_info()
     return data
 
 
