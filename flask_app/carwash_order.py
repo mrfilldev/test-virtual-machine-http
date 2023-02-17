@@ -12,7 +12,7 @@ class Status(enum.IntEnum):
     Completed = 3
     CarWashCanceled = 4
     UserCanceled = 5
-    Station_Canceled = 6
+    StationCanceled = 6
 
 
 class Services:
@@ -107,7 +107,7 @@ def main(request):
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
         return None
-    elif status == Status.Station_Canceled.name:
+    elif status == Status.StationCanceled.name:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
