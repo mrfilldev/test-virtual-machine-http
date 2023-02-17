@@ -61,18 +61,12 @@ def return_carwash_list():
 
 @app.route('/carwash/order', methods=['POST'])
 async def make_carwash_order():
-    order = carwash_order.main(request)
-    print('order: ', type(order), order)
-    status = 400 if order is None else 200
-    response = Response(status=status)
-
-    # SQS запись
-    if order is not None:
-        if (status == 200) and (order.Status == carwash_order.Status.OrderCreated.name):
-            carwash_order.send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
-
-    print(response)
-    return response
+    try:
+        carwash_order.main(request)
+        return Response(status=200)
+    except:
+        # wrute to log
+        return Response(status=400)
 
 
 if __name__ == '__main__':

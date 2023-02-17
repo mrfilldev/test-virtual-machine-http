@@ -2,6 +2,8 @@ import enum
 import json
 import os
 from types import SimpleNamespace
+
+
 from urls import client, queue_url
 
 
@@ -28,7 +30,10 @@ class Order:
                  box_number: str, status, sum: float, sum_completed: float,
                  # services,
                  contract_id: str, sum_paid_station_completed: float):
+
+        #[BsonId]
         self.Id = id
+        self._id = self.Id
         self.DateCreate = date_create_date_time
         self.BoxNumber = box_number
         self.CarWashId = car_wash_id
@@ -112,17 +117,26 @@ def check_the_status(request):
 
 
 def main(request):
-    status = check_the_status(request)
-    if status == Status.OrderCreated.name or Status.StationCanceled.name:
+
+    order = make_order(request)
+
+    if order.Status == Status.OrderCreated.name:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-        return make_order(request)
-    elif status == Status.UserCanceled.name:
+
+        send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
+
+    elif order.Status == Status.UserCanceled.name:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
-        return None
+
+    elif order.Status == Status.StationCanceled.name:
+        print("REQUEST: ", request)
+        print("REQUEST.DATA: ", request.data)
+        print("Order canceled...")
+
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-        return None
+
