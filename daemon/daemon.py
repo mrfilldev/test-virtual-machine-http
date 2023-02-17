@@ -1,4 +1,5 @@
 import asyncio
+import enum
 import json
 import os
 import time
@@ -12,8 +13,6 @@ from urllib.parse import quote_plus as quote
 
 import pymongo
 from dotenv import load_dotenv
-
-from flask_app.carwash_order import Status
 
 load_dotenv()
 
@@ -122,14 +121,12 @@ async def get_order_messege_queue():
             order = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
             await send_accept_status(order)
 
-
-
         break  # ЗАЧЕМ BREAK?!
 
 
 def write_into_db(order: str):
     order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
-    #order = eval(order)
+    # order = eval(order)
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
         pw=quote('mrfilldev040202'),
@@ -144,11 +141,10 @@ def write_into_db(order: str):
 
     print('Writing into DB')
 
-
     # dbs - название бд
     # test_items - название чего?
     # mycol - название коллекции
-    if order.Status == Status.OrderCreated:
+    if order.Status == 'OrderCreated':
         order = dbs.tst_items.mycol.insert_one({
             "_id": order.Id,
             "DateTime": order.DateTime,
@@ -168,6 +164,3 @@ def write_into_db(order: str):
 
         print("Объекты в БД МОНГО:", dbs.list_collection_names(), '\n')
         print('Объекты в коллекции', dbs.tst_items.find())
-
-
-
