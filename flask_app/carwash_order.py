@@ -98,7 +98,7 @@ def check_the_status(request):
 
 def main(request):
     status = check_the_status(request)
-    if status == Status.OrderCreated.name:
+    if status == Status.OrderCreated.name or Status.StationCanceled.name:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         return make_order(request)
@@ -107,11 +107,6 @@ def main(request):
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
         return None
-    elif status == Status.StationCanceled.name:
-        print("REQUEST: ", request)
-        print("REQUEST.DATA: ", request.data)
-        print("Order canceled...")
-        return request
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)

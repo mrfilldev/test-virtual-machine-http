@@ -126,7 +126,7 @@ async def get_order_messege_queue():
 
 
 def write_into_db(order: str):
-    # order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
+    order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
     order = eval(order)
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
@@ -141,6 +141,11 @@ def write_into_db(order: str):
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
     print('Writing into DB')
+
+
+    # dbs - название бд
+    # test_items - название чего?
+    # mycol - название коллекции
     order = dbs.tst_items.mycol.insert_one(order)
     print('WRITED ORDER: ', order)
     print('ORDER_ID:', order.inserted_id)
