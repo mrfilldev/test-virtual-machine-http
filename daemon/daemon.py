@@ -3,13 +3,12 @@ import os
 import time
 from datetime import datetime as dt
 from start_point import dbs
-
 import boto3
 import requests
 # import pymongo
 from dotenv import load_dotenv
 
-#from flask_app.carwash_order import Order
+# from flask_app.carwash_order import Order
 load_dotenv()
 
 ################################################################
@@ -112,15 +111,19 @@ async def get_order_messege_queue():
             # get the message
 
             # Delete processed messages
-            print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
+            try:
+                await send_accept_status(order)
 
-            await send_accept_status(order)
-
-            client.delete_message(
-                QueueUrl=queue_url,
-                ReceiptHandle=msg.get('ReceiptHandle')
-            )
-        # break  # ЗАЧЕМ BREAK?!
+                print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
+                client.delete_message(
+                    QueueUrl=queue_url,
+                    ReceiptHandle=msg.get('ReceiptHandle')
+                )
+            except Exception as error:
+                # write to log
+                #  message = f'Сбой в работе программы: {error}'
+                # logger.exception(message)
+                await send_canceled_status(order)
 
 
 def write_into_db(order):

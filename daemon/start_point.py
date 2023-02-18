@@ -1,7 +1,7 @@
 import asyncio
 from urllib.parse import quote_plus as quote
 import pymongo
-
+from daemon import send_canceled_status
 from dotenv import load_dotenv
 import daemon
 
@@ -18,11 +18,10 @@ url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.for
 dbs = pymongo.MongoClient(
     url,
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
+
+
 async def main():
     order = await daemon.get_order_messege_queue()
-    #daemon.write_into_db(order)
-
-    print("FINISHED")
 
 
 if __name__ == '__main__':
