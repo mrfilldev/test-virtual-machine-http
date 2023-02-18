@@ -107,13 +107,13 @@ async def get_order_messege_queue():
             print('TYPE: ', type(msg.get('Body')))
             order = eval(msg.get('Body'))
             print('TYPE: ', type(order))
-            write_into_db(order)
-            # get the message
-
-            # Delete processed messages
             try:
+                write_into_db(order)
+                # get the message
+
                 await send_accept_status(order)
 
+                # Delete processed messages
                 print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
                 client.delete_message(
                     QueueUrl=queue_url,
