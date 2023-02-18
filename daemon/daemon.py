@@ -125,7 +125,6 @@ async def get_order_messege_queue():
 
 def write_into_db(order):
     # order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
-    order = eval(order)
 
     print('Writing into DB')
 
