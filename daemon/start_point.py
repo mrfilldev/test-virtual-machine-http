@@ -1,7 +1,7 @@
 import asyncio
 from urllib.parse import quote_plus as quote
 import pymongo
-from daemon.daemon import get_order_messege_queue
+
 from dotenv import load_dotenv
 import daemon
 
