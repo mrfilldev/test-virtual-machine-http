@@ -1,7 +1,10 @@
 import asyncio
+import json
 import os
 import time
 from datetime import datetime as dt
+from types import SimpleNamespace
+
 from start_point import dbs
 import boto3
 import requests
@@ -45,12 +48,12 @@ async def send_accept_status(order):
     await send_completed_status(order)
 
 
-async def send_canceled_status(data):
+async def send_canceled_status(order):
     reason = 'Тестовая отмена'
     url = URL_DEV + "/api/carwash/order/canceled"
     params = {
         'apikey': API_KEY,
-        'orderId': data.Id,
+        'orderId': order.Id,
         'reason': reason
     }
     requests.get(url, params=params)
@@ -105,13 +108,14 @@ async def get_order_messege_queue():
             # order = msg.get('Body')
             print('Received message: ', msg.get('Body'))
             print('TYPE: ', type(msg.get('Body')))
+            order_json = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
             order = eval(msg.get('Body'))
             print('TYPE: ', type(order))
             try:
                 write_into_db(order)
                 # get the message
 
-                await send_accept_status(order)
+                await send_accept_status(order_json)
 
                 # Delete processed messages
                 print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
@@ -123,7 +127,7 @@ async def get_order_messege_queue():
                 # write to log
                 #  message = f'Сбой в работе программы: {error}'
                 # logger.exception(message)
-                await send_canceled_status(order)
+                await send_canceled_status(order_json)
 
 
 def write_into_db(order):
