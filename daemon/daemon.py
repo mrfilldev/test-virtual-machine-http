@@ -1,33 +1,17 @@
 import asyncio
-import enum
-import json
 import os
 import time
-from types import SimpleNamespace
+from datetime import datetime as dt
+from start_point import dbs
 
 import boto3
 import requests
-from datetime import datetime as dt
-
-from urllib.parse import quote_plus as quote
-
-import pymongo
+# import pymongo
 from dotenv import load_dotenv
 
 #from flask_app.carwash_order import Order
-
 load_dotenv()
-url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
-    user=quote('user1'),
-    pw=quote('mrfilldev040202'),
-    hosts=','.join([
-        'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
-    ]),
-    rs='rs01',
-    auth_src='db1')
-dbs = pymongo.MongoClient(
-    url,
-    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
+
 ################################################################
 # from aws_requests_auth.aws_auth import AWSRequestsAuth
 client = boto3.client(
@@ -122,7 +106,7 @@ async def get_order_messege_queue():
             # order = msg.get('Body')
             print('Received message: ', msg.get('Body'))
             print('TYPE: ', type(msg.get('Body')))
-            order = eval(order)
+            order = eval(msg.get('Body'))
             print('TYPE: ', type(order))
             write_into_db(order)
             # get the message
@@ -141,7 +125,7 @@ async def get_order_messege_queue():
 
 def write_into_db(order):
     # order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
-    # order = eval(order)
+    order = eval(order)
 
     print('Writing into DB')
 
