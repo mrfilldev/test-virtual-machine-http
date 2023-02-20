@@ -79,23 +79,27 @@ def collect_objs_in_list():
     data = []
 
     location_my = Point(55.650378, 37.606487)
-    location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
+    # location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
 
     box1 = Boxes('1', BoxStatus.Free.name)
     box2 = Boxes('2', BoxStatus.Unavailable.name)
     box3 = Boxes('1', BoxStatus.Free.name)
     box4 = Boxes('2', BoxStatus.Busy.name)
+    box5 = Boxes('3', BoxStatus.Busy.name)
+    box6 = Boxes('3', BoxStatus.Busy.name)
 
-    group_of_boxes1 = [box1, box2]
-    group_of_boxes2 = [box3, box4]
+    group_of_boxes1 = [box1, box3, box5]
+    group_of_boxes2 = [box2, box4, box6]
 
-    price1 = Prices('1', 'Description1', 1000.0, CostType.Fix.name)
-    price2 = Prices('2', 'Description2', 2000.0, CostType.Fix.name)
-    price3 = Prices('3', 'Description3', 3000.0, CostType.Fix.name)
-    price4 = Prices('4', 'Description4', 4000.0, CostType.Fix.name)
+    price1 = Prices('1', 'Кузов', 1000.0, CostType.Fix.name)
+    price2 = Prices('2', 'Кузов + коврики', 1700.0, CostType.Fix.name)
+    price3 = Prices('3', 'Комплекс', 2200.0, CostType.Fix.name)
+    price4 = Prices('4', 'Комплекс + антидождь', 2500.0, CostType.Fix.name)
+    price5 = Prices('5', 'Комплекс + чернение', 2500.0, CostType.Fix.name)
+    price6 = Prices('6', 'Комплекс ALL IN', 3500.0, CostType.Fix.name)
 
-    price_group1 = [price1, price2]
-    price_group2 = [price3, price4]
+    price_group1 = [price1, price3, price5]
+    price_group2 = [price2, price4, price6]
 
     print(location_my)
 
