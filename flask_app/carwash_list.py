@@ -82,8 +82,8 @@ def collect_objs_in_list():
     # location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
 
     box1 = Boxes('1', BoxStatus.Free.name)
-    box2 = Boxes('2', BoxStatus.Unavailable.name)
-    box3 = Boxes('1', BoxStatus.Free.name)
+    box2 = Boxes('1', BoxStatus.Unavailable.name)
+    box3 = Boxes('2', BoxStatus.Free.name)
     box4 = Boxes('2', BoxStatus.Busy.name)
     box5 = Boxes('3', BoxStatus.Busy.name)
     box6 = Boxes('3', BoxStatus.Busy.name)
