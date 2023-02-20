@@ -3,6 +3,7 @@ import json
 import os
 import time
 from datetime import datetime as dt
+from random import randint
 from types import SimpleNamespace
 
 from start_point import dbs
@@ -32,8 +33,9 @@ API_KEY = '7tllmnubn49ghu5qrep97'
 
 async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
-    await asyncio.sleep(5)
-    print("Start SEND ACCEPT STATUS")
+    rand_time = randint(1, 20)
+    await asyncio.sleep(rand_time)
+    print("SEND ACCEPT in ", rand_time)
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,

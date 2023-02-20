@@ -4,10 +4,10 @@ def main(request):
     print('carwash_id: ', carwash_id)
     print('box_number: ', box_number)
 
-    return carwash_id(box_number)
+    return carwash_check(box_number)
 
 
-def carwash_id(box_number):
+def carwash_check(box_number):
     if box_number == '1':
         status = 200
         print('status_reply', status)
