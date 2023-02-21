@@ -33,7 +33,7 @@ API_KEY = '7tllmnubn49ghu5qrep97'
 dict_reason = {
     'CarWashCanceled': 'Отмена заказа Мойкой',
     'UserCanceled': 'Отмена заказа пользователем',
-    'StationCanceled': 'Отмена заказа ',
+    'StationCanceled': 'Отмена заказа Станцией Мойки',
 }
 
 
