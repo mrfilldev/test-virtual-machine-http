@@ -15,7 +15,7 @@ WEBHOOK_PATH = ''
 WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 
 WEBAPP_HOST = '158.160.59.187'
-WEBAPP_PORT = 8081
+WEBAPP_PORT = 8000
 
 bot = Bot(token=os.getenv('BOT_TOKEN'))
 dp = Dispatcher(bot)
