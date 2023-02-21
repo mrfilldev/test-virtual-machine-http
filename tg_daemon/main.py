@@ -28,7 +28,7 @@ dbs = pymongo.MongoClient(
 async def get_amount_orders():
     message = 'Всего заказов: \n'
     for post in dbs.tst_items.mycol.find():
-        message += str(post)   # _documents()
+        message += str(post)  # _documents()
     result = message
     return result
 
@@ -47,11 +47,14 @@ async def get_one_order():
     return result
 
 
-async def main():
-    # await bot.send_message(CHANNEL_ID, await get_amount_orders())
+async def all_deffs():
     await bot.send_message(CHANNEL_ID, await get_amount_collections())
     await bot.send_message(CHANNEL_ID, await get_one_order())
+    await bot.send_message(CHANNEL_ID, await get_amount_orders())
 
+
+async def main():
+    await all_deffs()
     s = await bot.get_session()
     await s.close()
 
