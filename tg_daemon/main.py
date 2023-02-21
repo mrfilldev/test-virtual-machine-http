@@ -41,7 +41,7 @@ async def get_amount_collections():
 
 async def get_one_order():
     message = 'Всего заказов: '
-    order = dbs.tst_items.mycol.count()
+    order = dbs.tst_items.mycol.find_one()
     result = message + order
     return result
 
