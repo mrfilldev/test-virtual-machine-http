@@ -32,6 +32,13 @@ async def get_amount_orders():
     return result
 
 
+async def get_one_order():
+    message = 'Всего заказов: '
+    order = dbs.tst_items.count()  # _documents()
+    result = message + order
+    return result
+
+
 async def get_amount_collections():
     message = 'Всего коллекций в бд: '
     amount_collections = dbs.list_collection_names()  # _documents()
@@ -40,8 +47,10 @@ async def get_amount_collections():
 
 
 async def main():
-    #await bot.send_message(CHANNEL_ID, await get_amount_orders())
+    # await bot.send_message(CHANNEL_ID, await get_amount_orders())
     await bot.send_message(CHANNEL_ID, await get_amount_collections())
+    await bot.send_message(CHANNEL_ID, await get_one_order())
+
     s = await bot.get_session()
     await s.close()
 
