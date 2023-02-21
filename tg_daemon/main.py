@@ -1,37 +1,34 @@
+import asyncio
 from aiogram import Bot, types
-from aiogram.dispatcher import Dispatcher
-from aiogram.utils import executor
-from aiogram.utils.executor import start_webhook
-
 from dotenv import load_dotenv
-
 import os
 
 load_dotenv()
 
-# webhook settings
-WEBHOOK_HOST = 'https://test-tanker-carwash.ru/'
-WEBHOOK_PATH = ''
-WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 
-WEBAPP_HOST = '127.0.0.1'
-WEBAPP_PORT = 8081
 
+CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
 bot = Bot(token=os.getenv('BOT_TOKEN'))
-dp = Dispatcher(bot)
 
 
-@dp.message_handler()
-async def echo_send(message: types.Message):
-    print(message)
-    await message.answer('Здравствуй')
-    await message.reply(message.text)
-    await bot.send_message(message.from_user.id, message.text)
+async def main():
+    await bot.send_message(CHANNEL_ID, 'Теперь я буду учиться отправлять сюда сообщения со статистикой о тестовых заказах!')
+    s = await bot.get_session()
+    await s.close()
 
 
-#executor.start_webhook(dp, skip_updates=True)
+if __name__ == '__main__':
+    print("RUNNING")
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
 
-executor.start_polling(dp, skip_updates=True)
+    loop.close()
+    print("FINISHED")
+
+# async def send_message(channel_id: int, text: str):
+#     await bot.send_message(channel_id, text)
+# executor.start_webhook(dp, skip_updates=True)
+# executor.start_polling(dp, skip_updates=True)
 """
 async def on_startup(dp):
     await bot.set_webhook(WEBHOOK_URL)
@@ -64,3 +61,10 @@ if __name__ == '__main__':
         port=WEBAPP_PORT,
     )
 """
+# # webhook settings
+# WEBHOOK_HOST = 'https://test-tanker-carwash.ru/'
+# WEBHOOK_PATH = ''
+# WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
+#
+# WEBAPP_HOST = '127.0.0.1'
+# WEBAPP_PORT = 8081
