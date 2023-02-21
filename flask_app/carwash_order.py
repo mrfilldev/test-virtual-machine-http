@@ -148,6 +148,7 @@ def update_order(data):
 
 
 def main(request):
+    print(request.data)
     order = make_order(request)
 
     if order.Status == Status.OrderCreated.name:
