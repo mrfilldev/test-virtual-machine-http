@@ -10,7 +10,7 @@ import os
 load_dotenv()
 
 # webhook settings
-WEBHOOK_HOST = 'http://test-tanker-carwash.ru/'
+WEBHOOK_HOST = 'https://test-tanker-carwash.ru/'
 WEBHOOK_PATH = ''
 WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 
