@@ -42,7 +42,7 @@ async def get_one_order():
 async def get_amount_orders():
     message = 'Всего заказов: \n'
     for post in dbs.tst_items.mycol.find():
-        message += str(post)  # _documents()
+        message += str(post) + '\n'  # _documents()
 
     if len(message) > 4096:
         for x in range(0, len(message), 4096):
