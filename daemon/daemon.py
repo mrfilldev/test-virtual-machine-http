@@ -121,7 +121,7 @@ async def get_order_messege_queue():
             try:
                 write_into_db(order)
                 # get the message
-                if (order_json.BoxNumber == 2) and (
+                if (order_json.BoxNumber == '2') and (
                         order_json.status == 'CarWashCanceled' or 'UserCanceled' or 'StationCanceled'):
                     await send_canceled_status(order_json, dict_reason[order_json.status])
                 else:
