@@ -73,7 +73,7 @@ class Order:
 
 
 def make_order(request):
-    data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
+    data = json.loads(request.data.lower, object_hook=lambda d: SimpleNamespace(**d))
 
     if data.Status == Status.OrderCreated:
         #  Создание объекта класса Order
