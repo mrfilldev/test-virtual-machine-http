@@ -17,6 +17,10 @@ def carwash_check(box_number):
         print('status_reply', status)
         return status
     elif box_number == '3':
+        status = 200
+        print('status_reply', status)
+        return status
+    else:
         status = 404
         print('status_reply', status)
         return status

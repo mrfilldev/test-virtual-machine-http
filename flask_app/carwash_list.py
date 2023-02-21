@@ -82,14 +82,16 @@ def collect_objs_in_list():
     # location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
 
     box1 = Boxes('1', BoxStatus.Free.name)
-    box2 = Boxes('1', BoxStatus.Unavailable.name)
+    box2 = Boxes('1', BoxStatus.Free.name)
     box3 = Boxes('2', BoxStatus.Free.name)
-    box4 = Boxes('2', BoxStatus.Busy.name)
-    box5 = Boxes('3', BoxStatus.Busy.name)
-    box6 = Boxes('3', BoxStatus.Busy.name)
+    box4 = Boxes('2', BoxStatus.Free.name)
+    box5 = Boxes('3', BoxStatus.Free.name)
+    box6 = Boxes('3', BoxStatus.Free.name)
+    box7 = Boxes('4', BoxStatus.Busy.name)
+    box8 = Boxes('4', BoxStatus.Busy.name)
 
-    group_of_boxes1 = [box1, box3, box5]
-    group_of_boxes2 = [box2, box4, box6]
+    group_of_boxes1 = [box1, box3, box5, box7]
+    group_of_boxes2 = [box2, box4, box6, box8]
 
     price1 = Prices('1', 'Кузов', 1000.0, CostType.Fix.name)
     price2 = Prices('2', 'Кузов + коврики', 1700.0, CostType.Fix.name)

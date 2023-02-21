@@ -38,10 +38,12 @@ dict_reason = {
 
 
 async def send_accept_status(order):
-    print("Start SEND ACCEPT STATUS")
-    rand_time = randint(1, 20)
-    print("SEND ACCEPT in ", rand_time)
-    await asyncio.sleep(rand_time)
+    if order.BoxNumber != '3':
+        print("Start SEND ACCEPT STATUS")
+        rand_time = randint(1, 20)
+        print("SEND ACCEPT in ", rand_time)
+        await asyncio.sleep(rand_time)
+
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
@@ -60,6 +62,7 @@ async def send_canceled_status(order, reason):
     print('REASON: ', reason)
     print("START SEND CANCEL STATUS")
     rand_time = randint(1, 20)
+
     print("SEND CANCEL in ", rand_time)
     await asyncio.sleep(rand_time)
 
@@ -99,6 +102,19 @@ async def send_completed_status(order):
 
 # task = asyncio.create_task(carwash_order.send_accept_status(order))
 
+async def user_canceled(order_json):
+    after_minute = time.time() + 60
+    while time.time() <= after_minute:
+        #  проверку в бд
+        status_in_db = dbs.tst_items.mycol.find({'_id': order_json.Id})
+        if status_in_db == 'UserCanceled':
+            return True
+        await asyncio.sleep(0.1)
+
+    await send_accept_status(order_json)
+    pass
+
+
 async def get_order_messege_queue():
     while True:
 
@@ -126,9 +142,12 @@ async def get_order_messege_queue():
             print('TYPE: ', type(order))
             try:
                 write_into_db(order)
+
                 # get the message
                 if order_json.BoxNumber == '2':
                     await send_canceled_status(order_json, dict_reason['StationCanceled'])
+                elif order_json.BoxNumber == '3':
+                    await user_canceled(order_json)
                 else:
                     await send_accept_status(order_json)
 
