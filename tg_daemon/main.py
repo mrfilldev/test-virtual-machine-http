@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 import os
 from urllib.parse import quote_plus as quote
 import pymongo
-#from daemon.start_point import dbs
+
+# from daemon.start_point import dbs
 
 load_dotenv()
 
@@ -26,7 +27,7 @@ dbs = pymongo.MongoClient(
 
 async def get_amount_orders():
     message = 'Всего заказов:'
-    amount_orders = dbs.collection.count_documents()
+    amount_orders = dbs.collection.count()  # _documents()
     result = message + amount_orders
     return result
 
