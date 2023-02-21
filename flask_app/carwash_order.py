@@ -79,7 +79,7 @@ class Order:
 
 def make_order(request):
     data = json.loads(request.data.lower(), object_hook=lambda d: SimpleNamespace(**d))
-    print(data)
+    print('DATA:       ', data)
     try:
         if data.Status == Status.OrderCreated:
             #  Создание объекта класса Order
@@ -149,7 +149,7 @@ def update_order(data):
 
 
 def main(request):
-    print(request.data)
+    print('REQUEST.DATA:      ', request.data)
     order = make_order(request)
 
     if order.Status == Status.OrderCreated.name:
