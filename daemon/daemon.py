@@ -112,7 +112,7 @@ async def user_canceled(order_json):
         await asyncio.sleep(0.1)
 
     await send_accept_status(order_json)
-    pass
+
 
 
 async def get_order_messege_queue():

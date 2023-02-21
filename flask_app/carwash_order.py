@@ -2,9 +2,24 @@ import enum
 import json
 import os
 from types import SimpleNamespace
+from urllib.parse import quote_plus as quote
+import pymongo
 
 
 from urls import client, queue_url
+
+
+url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
+    user=quote('user1'),
+    pw=quote('mrfilldev040202'),
+    hosts=','.join([
+        'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
+    ]),
+    rs='rs01',
+    auth_src='db1')
+dbs = pymongo.MongoClient(
+    url,
+    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
 
 class Status(enum.IntEnum):
@@ -116,6 +131,13 @@ def check_the_status(request):
     return result
 
 
+def update_order(order):
+    old_order = {'_id': order.Id}
+    set_command = {"$set": {"Status": "UserCanceled"}}
+    new_order = dbs.tst_items.mycol.update_one(old_order, set_command)
+    print('UPDATE DATA: ', new_order)
+
+
 def main(request):
 
     order = make_order(request)
@@ -130,6 +152,7 @@ def main(request):
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
         print("Order canceled...")
+        update_order(order)
 
     elif order.Status == Status.StationCanceled.name:
         print("REQUEST: ", request)
