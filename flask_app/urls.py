@@ -1,6 +1,6 @@
 import json
 import os
-
+import traceback
 import boto3
 from dotenv import load_dotenv
 from flask import Flask, request, Response
@@ -67,6 +67,7 @@ async def make_carwash_order():
         return Response(status=200)
     except Exception as e:
         # write to log
+        traceback.print_exc()
         print(f'caught {type(e)}: e', e)  # добавить логгер
         return Response(status=400)
 
