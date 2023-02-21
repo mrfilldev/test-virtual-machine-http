@@ -14,7 +14,7 @@ def to_camel_case(request):
     result = {k.title(): v for k, v in data.items()}
     print(result)
     result = json.dumps(data, default=lambda x: x.__dict__)
-    data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
+    data = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
     return data
 
 
