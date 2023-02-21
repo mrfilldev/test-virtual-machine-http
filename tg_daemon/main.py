@@ -32,17 +32,17 @@ async def get_amount_orders():
     return result
 
 
-async def get_one_order():
-    message = 'Всего заказов: '
-    order = dbs.tst_items.count()  # _documents()
-    result = message + order
-    return result
-
-
 async def get_amount_collections():
     message = 'Всего коллекций в бд: '
     amount_collections = dbs.list_collection_names()  # _documents()
     result = message + str(amount_collections)
+    return result
+
+
+async def get_one_order():
+    message = 'Всего заказов: '
+    order = dbs.tst_items.mycol.count()
+    result = message + order
     return result
 
 
