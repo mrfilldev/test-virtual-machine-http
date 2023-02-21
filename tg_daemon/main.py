@@ -40,10 +40,8 @@ async def get_amount_collections():
 
 
 async def main():
-    await bot.send_message(
-        CHANNEL_ID,
-        await get_amount_orders()
-    )
+    #await bot.send_message(CHANNEL_ID, await get_amount_orders())
+    await bot.send_message(CHANNEL_ID, await get_amount_collections())
     s = await bot.get_session()
     await s.close()
 
