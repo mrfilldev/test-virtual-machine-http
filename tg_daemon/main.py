@@ -31,7 +31,8 @@ async def echo_send(message: types.Message):
 
 #executor.start_webhook(dp, skip_updates=True)
 
-
+executor.start_polling(dp, skip_updates=True)
+"""
 async def on_startup(dp):
     await bot.set_webhook(WEBHOOK_URL)
     # insert code here to run it after start
@@ -62,3 +63,4 @@ if __name__ == '__main__':
         host=WEBAPP_HOST,
         port=WEBAPP_PORT,
     )
+"""
