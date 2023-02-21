@@ -30,6 +30,12 @@ queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('Queu
 URL_DEV = 'http://app.tst.tanker.yandex.net'
 API_KEY = '7tllmnubn49ghu5qrep97'
 
+dict_reason = {
+    'CarWashCanceled': 'Отмена заказа Мойкой',
+    'UserCanceled': 'Отмена заказа пользователем',
+    'StationCanceled': 'Отмена заказа ',
+}
+
 
 async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
@@ -50,8 +56,7 @@ async def send_accept_status(order):
     await send_completed_status(order)
 
 
-async def send_canceled_status(order):
-    reason = 'Тестовая отмена'
+async def send_canceled_status(order, reason='Тестовая отмена'):
     url = URL_DEV + "/api/carwash/order/canceled"
     params = {
         'apikey': API_KEY,
@@ -116,8 +121,11 @@ async def get_order_messege_queue():
             try:
                 write_into_db(order)
                 # get the message
-
-                await send_accept_status(order_json)
+                if (order_json.BoxNumber == 2) and (
+                        order_json.status == 'CarWashCanceled' or 'UserCanceled' or 'StationCanceled'):
+                    await send_canceled_status(order_json, dict_reason[order_json.status])
+                else:
+                    await send_accept_status(order_json)
 
                 # Delete processed messages
                 print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))

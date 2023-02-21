@@ -12,7 +12,7 @@ class Status(enum.IntEnum):
     OrderCreated = 1
     Expire = 2
     Completed = 3
-    CarWashCanceled = 4
+    CarWashCanceled = 4 # ?!
     UserCanceled = 5
     StationCanceled = 6
 
