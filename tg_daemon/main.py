@@ -23,10 +23,9 @@ dp = Dispatcher(bot)
 
 @dp.message_handler()
 async def echo_send(message: types.Message):
-    if message.text == 'Привет':
-        await message.answer('Здравствуй')
-        await message.reply(message.text)
-        await bot.send_message(message.from_user.id, message.text)
+    await message.answer('Здравствуй')
+    await message.reply(message.text)
+    await bot.send_message(message.from_user.id, message.text)
 
 
 #executor.start_webhook(dp, skip_updates=True)
