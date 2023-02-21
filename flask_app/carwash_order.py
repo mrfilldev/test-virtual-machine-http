@@ -8,8 +8,12 @@ import pymongo
 from urls import client, queue_url
 
 
-def camelCase(string):
-    pass
+def to_camel_case(request):
+    print('request.data: ', type(request.data), request.data)
+    data = json.loads(request.data.title(), object_hook=lambda d: SimpleNamespace(**d))
+    result = {k.title(): v for k, v in data.items()}
+    print(result)
+    return result
 
 
 url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
@@ -77,8 +81,7 @@ class Order:
         print(details)
 
 
-def make_order(request):
-    data = json.loads(request.data.title(), object_hook=lambda d: SimpleNamespace(**d))
+def make_order(data):
     print('DATA:       ', data)
     try:
         if data.Status == Status.OrderCreated:
@@ -149,8 +152,8 @@ def update_order(data):
 
 
 def main(request):
-    print('REQUEST.DATA:    ', request.data)
-    order = make_order(request)
+    data = to_camel_case(request)
+    order = make_order(data)
 
     if order.Status == Status.OrderCreated.name:
         print("REQUEST: ", request)
