@@ -23,6 +23,7 @@ dp = Dispatcher(bot)
 
 @dp.message_handler()
 async def echo_send(message: types.Message):
+    print(message)
     await message.answer('Здравствуй')
     await message.reply(message.text)
     await bot.send_message(message.from_user.id, message.text)
