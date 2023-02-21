@@ -38,8 +38,8 @@ dict_reason = {
 
 
 async def send_accept_status(order):
+    print("Start SEND ACCEPT STATUS")
     if order.BoxNumber != '3':
-        print("Start SEND ACCEPT STATUS")
         rand_time = randint(1, 20)
         print("SEND ACCEPT in ", rand_time)
         await asyncio.sleep(rand_time)
@@ -107,12 +107,12 @@ async def user_canceled(order_json):
     while time.time() <= after_minute:
         #  проверку в бд
         status_in_db = dbs.tst_items.mycol.find({'_id': order_json.Id})
+        print('Status: ', status_in_db)
         if status_in_db == 'UserCanceled':
             return True
         await asyncio.sleep(0.1)
 
     await send_accept_status(order_json)
-
 
 
 async def get_order_messege_queue():
