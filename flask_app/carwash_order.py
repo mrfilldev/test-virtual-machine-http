@@ -78,7 +78,7 @@ class Order:
 
 
 def make_order(request):
-    data = json.loads(request.data.lower(), object_hook=lambda d: SimpleNamespace(**d))
+    data = json.loads(request.data.title(), object_hook=lambda d: SimpleNamespace(**d))
     print('DATA:       ', data)
     try:
         if data.Status == Status.OrderCreated:
@@ -114,7 +114,7 @@ def make_order(request):
             )
             new_order.display_info()
     except AttributeError:
-        if data.status == Status.UserCanceled.name:
+        if data.Status == Status.UserCanceled.name:
             update_order(data)
     return data
 
@@ -142,14 +142,14 @@ def check_enable():
 
 
 def update_order(data):
-    old_order = {'_id': data.id}
+    old_order = {'_id': data.Id}
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = dbs.tst_items.mycol.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
 
 
 def main(request):
-    print('REQUEST.DATA:      ', request.data)
+    print('REQUEST.DATA:    ', request.data)
     order = make_order(request)
 
     if order.Status == Status.OrderCreated.name:
