@@ -5,9 +5,7 @@ from types import SimpleNamespace
 from urllib.parse import quote_plus as quote
 import pymongo
 
-
 from urls import client, queue_url
-
 
 url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
     user=quote('user1'),
@@ -27,7 +25,7 @@ class Status(enum.IntEnum):
     OrderCreated = 1
     Expire = 2
     Completed = 3
-    CarWashCanceled = 4 # ?!
+    CarWashCanceled = 4  # ?!
     UserCanceled = 5
     StationCanceled = 6
 
@@ -45,8 +43,7 @@ class Order:
                  box_number: str, status, sum: float, sum_completed: float,
                  # services,
                  contract_id: str, sum_paid_station_completed: float):
-
-        #[BsonId]
+        # [BsonId]
         self.Id = id
         self._id = id
         self.DateCreate = date_create_date_time
@@ -110,6 +107,8 @@ def make_order(request):
             0.0  # data.SumPaidStationCompleted
         )
         new_order.display_info()
+    elif data.Status == Status.UserCanceled.name:
+        update_order(data)
     return data
 
 
@@ -131,15 +130,18 @@ def check_the_status(request):
     return result
 
 
-def update_order(order):
-    old_order = {'_id': order.Id}
+def check_enable():
+    pass
+
+
+def update_order(data):
+    old_order = {'_id': data.id}
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = dbs.tst_items.mycol.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
 
 
 def main(request):
-
     order = make_order(request)
 
     if order.Status == Status.OrderCreated.name:
@@ -162,4 +164,3 @@ def main(request):
     else:
         print("REQUEST: ", request)
         print("REQUEST.DATA: ", request.data)
-

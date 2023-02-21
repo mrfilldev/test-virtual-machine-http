@@ -60,6 +60,7 @@ def return_carwash_list():
 
 
 @app.route('/carwash/order', methods=['POST'])
+@app.route('/tanker/order', methods=['POST'])
 async def make_carwash_order():
     try:
         carwash_order.main(request)
@@ -68,6 +69,19 @@ async def make_carwash_order():
         # write to log
         print(f'caught {type(e)}: e')  # добавить логгер
         return Response(status=400)
+
+@app.route('/tanker/order', methods=['POST'])
+async def make_carwash_order():
+    try:
+        carwash_order.update_order(request)
+        return Response(status=200)
+    except Exception as e:
+        # write to log
+        print(f'caught {type(e)}: e')  # добавить логгер
+        return Response(status=400)
+
+
+
 
 
 if __name__ == '__main__':
