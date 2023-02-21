@@ -7,6 +7,11 @@ import pymongo
 
 from urls import client, queue_url
 
+
+def camelCase(string):
+    pass
+
+
 url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
     user=quote('user1'),
     pw=quote('mrfilldev040202'),
@@ -74,41 +79,42 @@ class Order:
 
 def make_order(request):
     data = json.loads(request.data.lower(), object_hook=lambda d: SimpleNamespace(**d))
+    try:
+        if data.Status == Status.OrderCreated:
+            #  Создание объекта класса Order
+            new_order = Order(
+                data.Id,
+                data.DateCreate,
+                data.CarWashId,
+                data.BoxNumber,
+                data.Status,
+                data.Sum,
+                data.SumCompleted,
+                # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
+                # отсутствует
+                data.ContractId,
+                data.SumPaidStationCompleted
+            )
+            new_order.display_info()
 
-    if data.Status == Status.OrderCreated:
-        #  Создание объекта класса Order
-        new_order = Order(
-            data.Id,
-            data.DateCreate,
-            data.CarWashId,
-            data.BoxNumber,
-            data.Status,
-            data.Sum,
-            data.SumCompleted,
-            # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
-            # отсутствует
-            data.ContractId,
-            data.SumPaidStationCompleted
-        )
-        new_order.display_info()
-
-    elif data.Status == Status.StationCanceled.name:
-        new_order = Order(
-            data.Id,
-            data.DateCreate,
-            data.CarWashId,
-            data.BoxNumber,
-            data.Status,
-            data.Sum,
-            0.0,  # data.SumCompleted,
-            # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
-            # отсутствует
-            data.ContractId,
-            0.0  # data.SumPaidStationCompleted
-        )
-        new_order.display_info()
-    elif data.Status == Status.UserCanceled.name:
-        update_order(data)
+        elif data.Status == Status.StationCanceled.name:
+            new_order = Order(
+                data.Id,
+                data.DateCreate,
+                data.CarWashId,
+                data.BoxNumber,
+                data.Status,
+                data.Sum,
+                0.0,  # data.SumCompleted,
+                # data.Services, # не удалять: наличие этого параметра зависит от того, какой тип заказа; при fix -
+                # отсутствует
+                data.ContractId,
+                0.0  # data.SumPaidStationCompleted
+            )
+            new_order.display_info()
+    except AttributeError:
+        if data.status == Status.UserCanceled.name:
+            update_order(data)
     return data
 
 
