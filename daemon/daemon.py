@@ -56,7 +56,13 @@ async def send_accept_status(order):
     await send_completed_status(order)
 
 
-async def send_canceled_status(order, reason='Тестовая отмена'):
+async def send_canceled_status(order, reason):
+    print('REASON: ', reason)
+    print("START SEND CANCEL STATUS")
+    rand_time = randint(1, 20)
+    await asyncio.sleep(rand_time)
+    print("SEND CANCEL in ", rand_time)
+
     url = URL_DEV + "/api/carwash/order/canceled"
     params = {
         'apikey': API_KEY,
