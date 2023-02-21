@@ -13,8 +13,9 @@ def to_camel_case(request):
     data = json.loads(request.data.decode('utf-8'))
     result = {k.title(): v for k, v in data.items()}
     print(result)
-    return result
-    #data = json.loads(request.data.title(), object_hook=lambda d: SimpleNamespace(**d))
+    result = json.dumps(data, default=lambda x: x.__dict__)
+    data = json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d))
+    return data
 
 
 url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
