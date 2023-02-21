@@ -40,8 +40,8 @@ dict_reason = {
 async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
     rand_time = randint(1, 20)
-    await asyncio.sleep(rand_time)
     print("SEND ACCEPT in ", rand_time)
+    await asyncio.sleep(rand_time)
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
@@ -60,8 +60,8 @@ async def send_canceled_status(order, reason):
     print('REASON: ', reason)
     print("START SEND CANCEL STATUS")
     rand_time = randint(1, 20)
-    await asyncio.sleep(rand_time)
     print("SEND CANCEL in ", rand_time)
+    await asyncio.sleep(rand_time)
 
     url = URL_DEV + "/api/carwash/order/canceled"
     params = {
