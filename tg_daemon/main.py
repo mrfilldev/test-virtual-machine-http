@@ -25,14 +25,6 @@ dbs = pymongo.MongoClient(
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
 
-async def get_amount_orders():
-    message = 'Всего заказов: \n'
-    for post in dbs.tst_items.mycol.find():
-        message += str(post)  # _documents()
-    result = message
-    return result
-
-
 async def get_amount_collections():
     message = 'Всего коллекций в бд: '
     amount_collections = dbs.list_collection_names()  # _documents()
@@ -41,16 +33,30 @@ async def get_amount_collections():
 
 
 async def get_one_order():
-    message = 'Всего заказов: '
+    message = 'Один заказ: '
     order = dbs.tst_items.mycol.find_one()
     result = message + str(order)
+    return result
+
+
+async def get_amount_orders():
+    message = 'Всего заказов: \n'
+    for post in dbs.tst_items.mycol.find():
+        message += str(post)  # _documents()
+
+    if len(message) > 4096:
+        for x in range(0, len(message), 4096):
+            await bot.send_message(CHANNEL_ID, message[x:x + 4096])
+    else:
+        await bot.send_message(CHANNEL_ID, message)
+    result = message
     return result
 
 
 async def all_deffs():
     await bot.send_message(CHANNEL_ID, await get_amount_collections())
     await bot.send_message(CHANNEL_ID, await get_one_order())
-    await bot.send_message(CHANNEL_ID, await get_amount_orders())
+    await get_amount_orders()
 
 
 async def main():
