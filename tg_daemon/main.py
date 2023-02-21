@@ -26,9 +26,10 @@ dbs = pymongo.MongoClient(
 
 
 async def get_amount_orders():
-    message = 'Всего заказов: '
-    amount_orders = dbs.tst_items.count()  # _documents()
-    result = message + amount_orders
+    message = 'Всего заказов: \n'
+    for post in dbs.tst_items.mycol.find():
+        message += str(post)   # _documents()
+    result = message
     return result
 
 
