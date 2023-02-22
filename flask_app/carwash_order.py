@@ -12,17 +12,17 @@ from urls import client, queue_url
 def to_camel_case(request):
     dictionary1 = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
     dictionary2 = {}
-    #dictionary1 = json.loads(string.decode('utf-8'))  # bytes object -> dict
+    # dictionary1 = json.loads(string.decode('utf-8'))  # bytes object -> dict
     dictionary2 = {}
     for key in dictionary1:
         # dictionary[key[0].upper() + key[1:]] = dictionary.pop(key)
         dictionary2[key[0].upper() + key[1:]] = dictionary1[key]
 
     print(dictionary2.keys())
-    return dictionary2
-
-
-
+    data = json.dumps(dictionary2, default=lambda x: x.__dict__)
+    print('data: ', type(data), data, '\n')
+    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    return data
 
     ########################################################################
     # последняя версия
