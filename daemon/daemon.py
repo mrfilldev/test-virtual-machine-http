@@ -40,7 +40,6 @@ dict_reason = {
 mycol = dbs.tst_items.mycol
 
 
-
 async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
     if order.BoxNumber != '3':
@@ -110,14 +109,13 @@ async def user_canceled(order_json):
     after_minute = time.time() + 60
     while time.time() <= after_minute:
         #  проверку в бд
-        status_in_db = mycol.find_one({'_id': order_json.Id})
+        order_in_db = mycol.find_one({'_id': str(order_json.Id)})
+        order = json.loads(order_in_db, object_hook=lambda d: SimpleNamespace(**d))
 
-        print('Status: ', status_in_db)
+        print('ORDER_IN_DB: ', order_in_db)
+        print('Status: ', order.Status)
 
-        for doc in status_in_db:
-            print(doc)
-
-        if status_in_db == 'UserCanceled':
+        if order.Status == 'UserCanceled':
             return True
         await asyncio.sleep(0.1)
 
