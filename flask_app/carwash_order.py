@@ -1,6 +1,7 @@
 import enum
 import json
 import os
+import re
 from types import SimpleNamespace
 from urllib.parse import quote_plus as quote
 import pymongo
@@ -10,15 +11,17 @@ from urls import client, queue_url
 
 def to_camel_case(request):
     print('request.data: ', type(request.data), request.data)
-    data = json.loads(request.data.decode('utf-8'))
-    result = {}
-    for k, v in data.items():
-        k = k[0].title() + k[1:]
-        result = {k: v}
-        print(result)
-    result = json.dumps(result, default=lambda x: x.__dict__)
-    data = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
-    return data
+    data = str(request.data)#json.loads(request.data.decode('utf-8'))
+    return re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
+    #
+    # for k, v in data.items():
+    #     k = k[0].title() + k[1:]
+    #     result = {k: v}
+    #     print(result)
+    #
+    # result = json.dumps(result, default=lambda x: x.__dict__)
+    # data = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
+    # return data
 
 
 url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
