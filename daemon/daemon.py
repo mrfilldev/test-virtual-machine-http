@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 import time
+import traceback
 from datetime import datetime as dt
 from random import randint
 from types import SimpleNamespace
@@ -161,7 +162,10 @@ async def get_order_messege_queue():
                 # write to log
                 #  message = f'Сбой в работе программы: {error}'
                 # logger.exception(message)
+
                 await send_canceled_status(order_json, reason='Ошибка на стороне сервера')
+                traceback.print_exc()
+                print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
 
 
 def write_into_db(order):
