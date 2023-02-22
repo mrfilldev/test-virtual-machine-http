@@ -1,4 +1,29 @@
 import json
+from types import SimpleNamespace
+
+string = 'b'
+var = {"CarWashId": "2", "BoxNumber": "3", "Id": "85d86388ad97434b866acd400d647250", "ContractId": "individual", ' \
+         b'"Sum": 3500.0, "Status": "OrderCreated", "DateCreate": "2023-02-22T12:21:15.763Z", "SumCompleted": 3500.0, ' \
+         b'"SumPaidStationCompleted": 3416.42, "Services": [{"Id": "6", ' \
+         b'"Description": "\xd0\x9a\xd0\xbe\xd0\xbc\xd0\xbf\xd0\xbb\xd0\xb5\xd0\xba\xd1\x81 ALL IN", "Cost": 3500.0}]}
+
+
+def to_camel_case(data):
+    # print('request.data: ', type(request.data), request.data)
+    # data = json.loads(data.decode('utf-8'))
+    result = {}
+    for k, v in data.items():
+        k = k[0].title() + k[1:]
+        result = {k: v}
+        print(result)
+    result = json.dumps(result, default=lambda x: x.__dict__)
+    data = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
+    return data
+
+
+print(to_camel_case(var))
+
+"""import json
 
 import boto3
 import os
@@ -71,3 +96,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+"""
