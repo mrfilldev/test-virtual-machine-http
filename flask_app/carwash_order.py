@@ -10,9 +10,9 @@ from urls import client, queue_url
 
 
 def to_camel_case(request):
-    # print('request.data: ', type(request.data), request.data)
-    # data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
-    data = json.loads(request.decode('utf-8'))  # bytes object -> dict
+    print('request.data: ', type(request.data), request.data)
+    data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
+    #data = json.loads(request.decode('utf-8'))  # bytes object -> dict
     print('data: ', type(data), data, '\n')
     # data = str(data)
     print('data: ', type(data), data, '\n')
