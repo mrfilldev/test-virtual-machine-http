@@ -11,7 +11,7 @@ from urls import client, queue_url
 
 def to_camel_case(request):
     print('request.data: ', type(request.data), request.data)
-    data = str(request.data)#json.loads(request.data.decode('utf-8'))
+    data = json.loads(request.data.decode('utf-8'))
     data = re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
     data = json.dumps(data, default=lambda x: x.__dict__)
     data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))

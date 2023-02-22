@@ -1,56 +1,28 @@
 import json
 from types import SimpleNamespace
 import re
+
 string = b'{"CarWashId":"2","BoxNumber":"3","Id":"8a0672687d0646ae866885521025375f","ContractId":"individual","Sum":3500.0,"Status":"OrderCreated","DateCreate":"2023-02-22T12:41:03.026Z","SumCompleted":3500.0,"SumPaidStationCompleted":3416.42,"Services":[{"Id":"6","Description":"\xd0\x9a\xd0\xbe\xd0\xbc\xd0\xbf\xd0\xbb\xd0\xb5\xd0\xba\xd1\x81 ALL IN","Cost":3500.0}]}'
 
-var ={
-    "CarWashId": "2",
-    "BoxNumber": "3",
-    "Id": "85d86388ad97434b866acd400d647250",
-    "ContractId": "individual",
-    "Sum": 3500.0,
-    "Status": "OrderCreated",
-    "DateCreate": "2023-02-22T12:21:15.763Z",
-    "SumCompleted": 3500.0,
-    "SumPaidStationCompleted": 3416.42,
-    "Services": [{
-        "Id": "6",
-        "Description": "\xd0\x9a\xd0\xbe\xd0\xbc\xd0\xbf\xd0\xbb\xd0\xb5\xd0\xba\xd1\x81 ALL IN",
-        "Cost": 3500.0}
-    ]}
+def to_camel_case(request):
+    print('request.data: ', type(request.data), request.data)
+    data = json.loads(request.data.decode('utf-8'))
+    data = re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print('data', type(data))
+    result = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print('result', type(result))
+    return result
 
 
+order = to_camel_case(string)
+print(
+    type(order),
+    order,
 
-def to_camel_case(data):
-    # print('request.data: ', type(request.data), request.data)
-    # data = json.loads(data.decode('utf-8'))
-    result = {}
-    for k, v in data.items():
-        k = k[0].title() + k[1:]
-        result = {k: v}
-        print(result)
-    result = json.dumps(result, default=lambda x: x.__dict__)
-    print(result)
-    data = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
-    return data
-
-def to_camel_case_re(data):
-    # print('request.data: ', type(request.data), request.data)
-    # data = json.loads(data.decode('utf-8'))
-
-    return re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
-    # for k, v in data.items():
-    #     k = k[0].title() + k[1:]
-    #     result = {k: v}
-    #     print(result)
-    # result = json.dumps(result, default=lambda x: x.__dict__)
-    # print(result)
-    # data = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
-    # return data
-
-
-# print(to_camel_case(var))
-print(to_camel_case_re(str(string)))
+)
+print(order.Status)
 
 """import json
 
