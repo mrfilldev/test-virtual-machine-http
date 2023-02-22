@@ -110,7 +110,7 @@ async def user_canceled(order_json):
     after_minute = time.time() + 60
     while time.time() <= after_minute:
         #  проверку в бд
-        status_in_db = mycol.find_one()#{'_id': order_json.Id})
+        status_in_db = mycol.find_one({'_id': order_json.Id})
 
         print('Status: ', status_in_db)
 
