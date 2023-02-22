@@ -40,7 +40,7 @@ dict_reason = {
 
 async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
-    if order.Box_number != '3':
+    if order.BoxNumber != '3':
         rand_time = randint(1, 20)
         print("SEND ACCEPT in ", rand_time)
         await asyncio.sleep(rand_time)
@@ -146,9 +146,9 @@ async def get_order_messege_queue():
 
                 # get the message
                 print('order_json: ', order_json)
-                if order_json.Box_number == '2':
+                if order_json.BoxNumber == '2':
                     await send_canceled_status(order_json, dict_reason['StationCanceled'])
-                elif order_json.Box_number == '3':
+                elif order_json.BoxNumber == '3':
                     await user_canceled(order_json)
                 else:
                     await send_accept_status(order_json)
