@@ -108,7 +108,12 @@ async def user_canceled(order_json):
     while time.time() <= after_minute:
         #  проверку в бд
         status_in_db = dbs.tst_items.mycol.find({'_id': order_json.Id})
+
         print('Status: ', status_in_db)
+
+        for doc in status_in_db:
+            print(doc)
+
         if status_in_db == 'UserCanceled':
             return True
         await asyncio.sleep(0.1)
