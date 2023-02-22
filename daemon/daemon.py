@@ -161,7 +161,7 @@ async def get_order_messege_queue():
                 # write to log
                 #  message = f'Сбой в работе программы: {error}'
                 # logger.exception(message)
-                await send_canceled_status(order_json)
+                await send_canceled_status(order_json, reason='Ошибка на стороне сервера')
 
 
 def write_into_db(order):
