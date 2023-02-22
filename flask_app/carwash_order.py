@@ -11,11 +11,13 @@ from urls import client, queue_url
 
 def to_camel_case(request):
     print('request.data: ', type(request.data), request.data)
-    data = json.loads(request.data.decode('utf-8'))
+    data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
     print('data: ', type(data), data, '\n')
     data = str(data)
     print('data: ', type(data), data, '\n')
     data = re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
+    print('data: ', type(data), data, '\n')
+    data = eval(data)
     print('data: ', type(data), data, '\n')
     data = json.dumps(data, default=lambda x: x.__dict__)
     print('data: ', type(data), data, '\n')
