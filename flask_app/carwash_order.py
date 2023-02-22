@@ -10,7 +10,26 @@ from urls import client, queue_url
 
 
 def to_camel_case(request):
-    print('request.data: ', type(request.data), request.data)
+    # print('request.data: ', type(request.data), request.data)
+    # data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
+    data = json.loads(request.decode('utf-8'))  # bytes object -> dict
+    print('data: ', type(data), data, '\n')
+    # data = str(data)
+    print('data: ', type(data), data, '\n')
+    print('Magic?')
+    # data = re.sub(r'_(\w)', lambda x: x.group(1).title(), data)
+    data = {k.title(): v for k, v in data.items()}
+
+    print('data: ', type(data), data, '\n')
+    # data = eval(data)
+    print('data: ', type(data), data, '\n')
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    print('data: ', type(data), data, '\n')
+    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print('data: ', type(data), data, '\n')
+    return data
+
+    """print('request.data: ', type(request.data), request.data)
     data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
     print('data: ', type(data), data, '\n')
     data = str(data)
@@ -23,7 +42,7 @@ def to_camel_case(request):
     print('data: ', type(data), data, '\n')
     data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     print('data: ', type(data), data, '\n')
-    return data
+    return data"""
     #
     # for k, v in data.items():
     #     k = k[0].title() + k[1:]

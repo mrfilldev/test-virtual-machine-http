@@ -3,20 +3,31 @@ from types import SimpleNamespace
 import re
 
 string = b'{"CarWashId":"2","BoxNumber":"3","Id":"8a0672687d0646ae866885521025375f","ContractId":"individual","Sum":3500.0,"Status":"OrderCreated","DateCreate":"2023-02-22T12:41:03.026Z","SumCompleted":3500.0,"SumPaidStationCompleted":3416.42,"Services":[{"Id":"6","Description":"\xd0\x9a\xd0\xbe\xd0\xbc\xd0\xbf\xd0\xbb\xd0\xb5\xd0\xba\xd1\x81 ALL IN","Cost":3500.0}]}'
+string2 = b'{"id":"295852f47c6440d0ac5461045bb9b47f","status":"UserCanceled"}'
+
 
 def to_camel_case(request):
-    print('request.data: ', type(request.data), request.data)
-    data = json.loads(request.data.decode('utf-8'))
-    data = re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
+    # print('request.data: ', type(request.data), request.data)
+    # data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
+    data = json.loads(request.decode('utf-8'))  # bytes object -> dict
+    print('data: ', type(data), data, '\n')
+    #data = str(data)
+    print('data: ', type(data), data, '\n')
+    print('Magic?')
+    #data = re.sub(r'_(\w)', lambda x: x.group(1).title(), data)
+    data = {k.title(): v for k, v in data.items()}
+
+    print('data: ', type(data), data, '\n')
+    # data = eval(data)
+    print('data: ', type(data), data, '\n')
     data = json.dumps(data, default=lambda x: x.__dict__)
+    print('data: ', type(data), data, '\n')
     data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-    print('data', type(data))
-    result = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-    print('result', type(result))
-    return result
+    print('data: ', type(data), data, '\n')
+    return data
 
 
-order = to_camel_case(string)
+order = to_camel_case(string2)
 print(
     type(order),
     order,
