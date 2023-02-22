@@ -10,39 +10,56 @@ from urls import client, queue_url
 
 
 def to_camel_case(request):
-    print('request.data: ', type(request.data), request.data)
-    data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
-    #data = json.loads(request.decode('utf-8'))  # bytes object -> dict
-    print('data: ', type(data), data, '\n')
+    dictionary1 = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
+    dictionary2 = {}
+    #dictionary1 = json.loads(string.decode('utf-8'))  # bytes object -> dict
+    dictionary2 = {}
+    for key in dictionary1:
+        # dictionary[key[0].upper() + key[1:]] = dictionary.pop(key)
+        dictionary2[key[0].upper() + key[1:]] = dictionary1[key]
+
+    print(dictionary2.keys())
+    return dictionary2
+
+
+
+
+    ########################################################################
+    # последняя версия
+    # print('request.data: ', type(request.data), request.data)
+    # data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
+    # #data = json.loads(request.decode('utf-8'))  # bytes object -> dict
+    # print('data: ', type(data), data, '\n')
+    # # data = str(data)
+    # print('data: ', type(data), data, '\n')
+    # print('Magic?')
+    # # data = re.sub(r'_(\w)', lambda x: x.group(1).title(), data)
+    # data = {k.title(): v for k, v in data.items()}
+    #
+    # print('data: ', type(data), data, '\n')
+    # # data = eval(data)
+    # print('data: ', type(data), data, '\n')
+    # data = json.dumps(data, default=lambda x: x.__dict__)
+    # print('data: ', type(data), data, '\n')
+    # data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    # print('data: ', type(data), data, '\n')
+    # return data
+    ########################################################################
+
+    # """print('request.data: ', type(request.data), request.data)
+    # data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
+    # print('data: ', type(data), data, '\n')
     # data = str(data)
-    print('data: ', type(data), data, '\n')
-    print('Magic?')
-    # data = re.sub(r'_(\w)', lambda x: x.group(1).title(), data)
-    data = {k.title(): v for k, v in data.items()}
-
-    print('data: ', type(data), data, '\n')
+    # print('data: ', type(data), data, '\n')
+    # data = re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
+    # print('data: ', type(data), data, '\n')
     # data = eval(data)
-    print('data: ', type(data), data, '\n')
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    print('data: ', type(data), data, '\n')
-    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-    print('data: ', type(data), data, '\n')
-    return data
-
-    """print('request.data: ', type(request.data), request.data)
-    data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
-    print('data: ', type(data), data, '\n')
-    data = str(data)
-    print('data: ', type(data), data, '\n')
-    data = re.sub(r'_(\w)', lambda x: x.group(1).upper(), data)
-    print('data: ', type(data), data, '\n')
-    data = eval(data)
-    print('data: ', type(data), data, '\n')
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    print('data: ', type(data), data, '\n')
-    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-    print('data: ', type(data), data, '\n')
-    return data"""
+    # print('data: ', type(data), data, '\n')
+    # data = json.dumps(data, default=lambda x: x.__dict__)
+    # print('data: ', type(data), data, '\n')
+    # data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    # print('data: ', type(data), data, '\n')
+    # return data"""
     #
     # for k, v in data.items():
     #     k = k[0].title() + k[1:]

@@ -11,10 +11,10 @@ def to_camel_case(request):
     # data = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
     data = json.loads(request.decode('utf-8'))  # bytes object -> dict
     print('data: ', type(data), data, '\n')
-    #data = str(data)
+    # data = str(data)
     print('data: ', type(data), data, '\n')
     print('Magic?')
-    #data = re.sub(r'_(\w)', lambda x: x.group(1).title(), data)
+    # data = re.sub(r'_(\w)', lambda x: x.group(1).title(), data)
     data = {k.title(): v for k, v in data.items()}
 
     print('data: ', type(data), data, '\n')
@@ -27,13 +27,30 @@ def to_camel_case(request):
     return data
 
 
-order = to_camel_case(string2)
-print(
-    type(order),
-    order,
+def custom_camel_case(string):
+    dictionary1 = json.loads(string.decode('utf-8'))  # bytes object -> dict
+    dictionary2 = {}
+    for key in dictionary1:
+        #dictionary[key[0].upper() + key[1:]] = dictionary.pop(key)
+        dictionary2[key[0].upper() + key[1:]] = dictionary1[key]
 
-)
-print(order.Status)
+    print(dictionary2.keys())
+    return dictionary2
+
+
+# order = to_camel_case(string2)
+# print(type(order), order, )
+# print(order.Status)
+# print('________________________________________________________________')
+# order = to_camel_case(string)
+# print(type(order), order, )
+# print(order.BoxNumber)
+
+order_cancel = custom_camel_case(string2)
+order_create = custom_camel_case(string)
+
+print(type(order_cancel), order_cancel)
+print(type(order_create), order_create)
 
 """import json
 
