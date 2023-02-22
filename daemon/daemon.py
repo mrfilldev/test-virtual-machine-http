@@ -37,6 +37,9 @@ dict_reason = {
     'StationCanceled': 'Отмена заказа Станцией Мойки',
 }
 
+mycol = dbs.tst_items.mycol
+
+
 
 async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
@@ -107,7 +110,7 @@ async def user_canceled(order_json):
     after_minute = time.time() + 60
     while time.time() <= after_minute:
         #  проверку в бд
-        status_in_db = dbs.tst_items.mycol.find_one({'_id': order_json.Id})
+        status_in_db = mycol.find_one()#{'_id': order_json.Id})
 
         print('Status: ', status_in_db)
 
