@@ -112,6 +112,7 @@ async def user_canceled(order_json):
         order_in_db = mycol.find({'Id': str(order_json.Id)})
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order = json.dumps(order_in_db, object_hook=lambda d: SimpleNamespace(**d))
+        order = eval(order)
         order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
 
         print('Status: ', order.Status)
