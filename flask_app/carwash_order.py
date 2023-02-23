@@ -200,7 +200,7 @@ def check_enable():
 
 
 def update_order(data):
-    old_order = {'_id': data.Id}
+    old_order = {'Id': data.Id}
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = dbs.tst_items.mycol.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
