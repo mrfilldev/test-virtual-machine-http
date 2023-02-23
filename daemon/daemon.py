@@ -111,14 +111,10 @@ async def user_canceled(order_json):
         #  проверку в бд
         order_in_db = mycol.find_one({'Id': str(order_json.Id)})
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
-        #order_in_db = json.dumps(order_in_db)
-        order_in_db = str(order_in_db)
+        order_status = order_in_db['Status']
+        print('Status: ', order_status)
 
-        print('data: ', type(order_in_db), order_in_db, '\n')
-        order = json.loads(order_in_db, object_hook=lambda d: SimpleNamespace(**d))
-        print('Status: ', order.Status)
-
-        if order.Status == 'UserCanceled':
+        if order_status == 'UserCanceled':
             return True
         await asyncio.sleep(0.1)
 
