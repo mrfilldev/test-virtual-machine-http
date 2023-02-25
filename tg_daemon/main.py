@@ -24,6 +24,18 @@ dbs = pymongo.MongoClient(
     url,
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
+mycol = dbs.tst_items.mycol
+
+
+async def get_today_collections():
+    message = 'Всего коллекций в бд: '
+    filter_date = {"DateCreate": {"$gt": "2020-01-21 ", "$lt": "2020-01-24"}}
+    result = ''
+    for order in mycol.find(filter=filter_date):
+        result += str(order)
+    result = message + result
+    return result
+
 
 async def get_amount_collections():
     message = 'Всего коллекций в бд: '
