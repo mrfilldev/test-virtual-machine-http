@@ -29,7 +29,7 @@ mycol = dbs.tst_items.mycol
 
 async def get_today_collections():
     message = 'Всего коллекций в бд: '
-    filter_date = {"DateCreate": {"$gt": "2020-01-21 ", "$lt": "2020-01-24"}}
+    filter_date = {"DateCreate": {"$gt": "2023-02-24 ", "$lt": "2023-02-25"}}
     result = ''
     for order in mycol.find(filter=filter_date):
         result += str(order)
@@ -68,7 +68,8 @@ async def get_amount_orders():
 async def all_deffs():
     await bot.send_message(CHANNEL_ID, await get_amount_collections())
     await bot.send_message(CHANNEL_ID, await get_one_order())
-    await get_amount_orders()
+    #await get_amount_orders()
+    await get_today_collections()
 
 
 async def main():
