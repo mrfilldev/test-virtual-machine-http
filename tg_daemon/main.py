@@ -29,7 +29,7 @@ mycol = dbs.tst_items.mycol
 
 async def get_today_collections():
     message = 'Всего коллекций в бд: '
-    filter_date = {"DateCreate": {"$gt": 'ISODate(" 2023-02-24 ")', "$lt": 'ISODate(" 2023-02-25 ")'}}
+    filter_date = {"DateCreate": {"$gt": "2023-02-24T00:00:00.00Z", "$lt": "2023-02-25T00:00:00.00Z"}}
     result = ''
     for order in mycol.find(filter=filter_date):
         result += str(order)
