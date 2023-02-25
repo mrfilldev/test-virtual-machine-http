@@ -44,9 +44,9 @@ async def get_amount_orders():
     for post in dbs.tst_items.mycol.find():
         message += str(post) + '\n'  # _documents()
 
-    if len(message) > 4096:
-        for x in range(0, len(message), 4096):
-            await bot.send_message(CHANNEL_ID, message[x:x + 4096])
+    if len(message) > 4000:
+        for x in range(0, len(message), 4000):
+            await bot.send_message(CHANNEL_ID, message[x:x + 4000])
     else:
         await bot.send_message(CHANNEL_ID, message)
     result = message
