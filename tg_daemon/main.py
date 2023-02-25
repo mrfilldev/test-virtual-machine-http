@@ -46,7 +46,7 @@ async def get_amount_collections():
 
 async def get_one_order():
     message = 'Один заказ: '
-    order = dbs.tst_items.mycol.find().sort({'_id': -1}).limit(1)
+    order = dbs.tst_items.mycol.find().sort({'_id': '-1'}).limit(1)
     result = message + str(order)
     return result
 
