@@ -29,14 +29,14 @@ mycol = dbs.tst_items.mycol
 
 
 async def get_today_collections():
-    message = 'Всего коллекций в бд: \n'
+    message = 'Заказы за сутки \n'
     today_now = datetime.datetime.now()
     delta = datetime.timedelta(days=1)
     day_ago = (today_now - delta).isoformat()
 
     filter_date = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
-    result = ''
-    result += str(mycol.find(filter=filter_date))
+    result = str(mycol.find(filter=filter_date))
+    print(result)
     result = message + result
     return result
 
@@ -73,7 +73,7 @@ async def all_deffs():
     # await bot.send_message(CHANNEL_ID, await get_amount_collections())
     # await bot.send_message(CHANNEL_ID, await get_one_order())
     # await get_amount_orders()
-    await get_today_collections()
+    await bot.send_message(CHANNEL_ID, await get_today_collections())
 
 
 async def main():
