@@ -19,7 +19,7 @@ dbs = pymongo.MongoClient(
 
 # print(c)
 
-x = dbs.tst_items.mycol.insert_one({"_id": 43, "value": 23, "sum": 9000.7, "name": 'vasya'});
+x = dbs.tst_items.mycol.insert_one({"_id": 43, "value": 23, "sum": 9000.7, "name": 'vasya'})
 
 print(x.inserted_id)
 
