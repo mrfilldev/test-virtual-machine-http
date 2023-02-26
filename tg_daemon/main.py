@@ -36,7 +36,7 @@ async def get_today_collections():
 
     filter_date = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
     result = ''
-    result += mycol.find(filter=filter_date)
+    result += str(mycol.find(filter=filter_date))
     result = message + result
     return result
 
