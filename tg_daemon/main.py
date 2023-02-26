@@ -38,7 +38,7 @@ async def get_today_collections():
     await bot.send_message(CHANNEL_ID, message)
     amount = mycol.find(filter=filter_day).count_documents({})
     await bot.send_message(CHANNEL_ID, f'amount of docs in mycol {amount}')
-    for order in mycol.find(filter=filter_day):
+    for order in mycol.find(filter_day):
         print('ORDER_IN_DB: ', type(order), order)
         await bot.send_message(CHANNEL_ID, order)
 
