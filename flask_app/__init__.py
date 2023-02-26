@@ -1,4 +1,2 @@
-import carwash_list
-import carwash_order
-import ping_carwash_box
-import urls
+from flask_app import urls, carwash_list, carwash_order, ping_carwash_box
+

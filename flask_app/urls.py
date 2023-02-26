@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 import traceback
@@ -70,6 +71,12 @@ async def make_carwash_order():
         traceback.print_exc()
         print(f'caught {type(e)}: e', e)  # добавить логгер
         return Response(status=400)
+
+
+@app.route('/')
+@app.route('/index')
+def index():
+    return "Привет, Мир!"
 
 
 if __name__ == '__main__':
