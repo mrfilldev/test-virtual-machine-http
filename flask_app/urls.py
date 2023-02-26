@@ -8,17 +8,18 @@ from flask import Flask, request, Response, render_template
 import carwash_list
 import carwash_order
 import ping_carwash_box
+from config import Config
 
 app = Flask(__name__)
-load_dotenv()
+# load_dotenv()
 
-URL_DEV = 'http://app.tst.tanker.yandex.net'
-API_KEY = ['123456', '7tllmnubn49ghu5qrep97']
+URL_DEV = Config.URL_DEV
+API_KEY = Config.API_KEY  # ['123456', '7tllmnubn49ghu5qrep97']
 queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker' \
                '-carwsh-orders'
 client = boto3.client(
-    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+    aws_access_key_id=Config.AWS_ACCESS_KEY_ID,  # os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY,  # os.getenv('AWS_SECRET_ACCESS_KEY'),
     service_name='sqs',
     endpoint_url='https://message-queue.api.cloud.yandex.net',
     region_name='ru-central1'
