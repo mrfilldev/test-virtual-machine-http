@@ -29,18 +29,20 @@ mycol = dbs.tst_items.mycol
 
 
 async def get_today_collections():
-    message = 'Заказы за сутки \n'
+    message = 'Заказы за сутки: \n'
     today_now = datetime.datetime.now()
     delta = datetime.timedelta(days=1)
     day_ago = (today_now - delta).isoformat()
     filter_day = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
 
-    await bot.send_message(CHANNEL_ID, message)
+    #await bot.send_message(CHANNEL_ID, message)
     #amount = mycol.find(filter=filter_day).count_documents({})
     #await bot.send_message(CHANNEL_ID, f'amount of docs in mycol {amount}')
+    print(message)
+    print(mycol.find(filter_day))
     for order in mycol.find(filter_day):
         print('ORDER_IN_DB: ', type(order), order)
-        await bot.send_message(CHANNEL_ID, order)
+        #await bot.send_message(CHANNEL_ID, order)
 
 
 
