@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from urllib.parse import quote_plus as quote
 import pymongo
 
-from urls import client, queue_url
+from flask_app.urls import client, queue_url
 
 
 def to_camel_case(request):
