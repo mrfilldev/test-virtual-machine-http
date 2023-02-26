@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import sys
+
 import traceback
 import boto3
 from dotenv import load_dotenv
@@ -10,6 +12,7 @@ import carwash_order
 import ping_carwash_box
 from config import Config
 
+sys.path.append('../../')
 app = Flask(__name__)
 # load_dotenv()
 
