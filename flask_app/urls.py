@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import traceback
 import boto3
-from flask import Flask, request, Response, render_template, redirect, flash
+from flask import Flask, request, Response, render_template
 import carwash_list
 import carwash_order
 import ping_carwash_box
