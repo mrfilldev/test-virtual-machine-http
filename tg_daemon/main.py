@@ -40,10 +40,9 @@ async def try_to_understand_mongo_db():
 
     print('mydb: ', mydb)
     print("mycol: ", mycol)
-    print('smthn: ', smthn)
 
     myquery = {'DateCreated': filter_day}
-    for order in mycol.find(myquery):
+    for order in mycol.find(filter_day):
         print(order)
 
 
