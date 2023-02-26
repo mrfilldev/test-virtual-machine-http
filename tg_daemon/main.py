@@ -35,10 +35,11 @@ async def get_today_collections():
     day_ago = (today_now - delta).isoformat()
 
     filter_date = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
-    result = str(mycol.find(filter=filter_date))
-    print(result)
-    result = message + result
-    return result
+    orders_per_day = mycol.find(filter=filter_date)
+    await bot.send_message(CHANNEL_ID, message)
+
+    for order in orders_per_day:
+        await bot.send_message(CHANNEL_ID, order)
 
 
 async def get_amount_collections():
