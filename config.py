@@ -6,7 +6,7 @@ load_dotenv()
 
 class Config(object):
     URL_DEV = os.environ.get('URL_DEV')
-    API_KEY = ['123456', '7tllmnubn49ghu5qrep97']
+    API_KEY = os.environ.get('API_KEY')
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
