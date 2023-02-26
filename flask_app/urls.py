@@ -8,7 +8,7 @@ from flask import Flask, request, Response, render_template
 import carwash_list
 import carwash_order
 import ping_carwash_box
-from config import Config
+from ..config import Config
 
 app = Flask(__name__)
 # load_dotenv()
