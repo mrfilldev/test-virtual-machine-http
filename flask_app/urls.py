@@ -76,7 +76,7 @@ async def make_carwash_order():
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Эльдар Рязанов'}
+    user = {'username': 'Владимир Корги!'}
     posts = [
         {
             'author': {'username': 'John'},
