@@ -37,9 +37,9 @@ async def get_today_collections():
     filter_date = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
     orders_per_day = mycol.find(filter=filter_date)
     await bot.send_message(CHANNEL_ID, message)
-
+    print('ORDER_IN_DB: ', type(orders_per_day), orders_per_day)
     for order in orders_per_day:
-        print(order)
+        print('ORDER_IN_DB: ', type(order), order)
         await bot.send_message(CHANNEL_ID, order)
 
 
@@ -72,15 +72,8 @@ async def get_amount_orders():
     return result
 
 
-async def all_deffs():
-    # await bot.send_message(CHANNEL_ID, await get_amount_collections())
-    # await bot.send_message(CHANNEL_ID, await get_one_order())
-    # await get_amount_orders()
-    await get_today_collections()
-
-
 async def main():
-    await all_deffs()
+    await get_today_collections()
     s = await bot.get_session()
     await s.close()
 
