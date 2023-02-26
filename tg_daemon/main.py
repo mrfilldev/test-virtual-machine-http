@@ -72,15 +72,8 @@ async def get_amount_orders():
     return result
 
 
-async def all_deffs():
-    # await bot.send_message(CHANNEL_ID, await get_amount_collections())
-    # await bot.send_message(CHANNEL_ID, await get_one_order())
-    # await get_amount_orders()
-    await get_today_collections()
-
-
 async def main():
-    await all_deffs()
+    await get_today_collections()
     s = await bot.get_session()
     await s.close()
 
