@@ -1,3 +1,4 @@
+import datetime
 import asyncio
 from aiogram import Bot, types
 from dotenv import load_dotenv
@@ -29,7 +30,11 @@ mycol = dbs.tst_items.mycol
 
 async def get_today_collections():
     message = 'Всего коллекций в бд: \n'
-    filter_date = {"DateCreate": {"$gt": "2023-02-24T00:00:00.00Z", "$lt": "2023-02-25T00:00:00.00Z"}}
+    today_now = datetime.datetime.now()
+    delta = datetime.timedelta(days=1)
+    day_ago = (today_now - delta).isoformat()
+
+    filter_date = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
     result = ''
     result += mycol.find(filter=filter_date)
     result = message + result
@@ -65,8 +70,8 @@ async def get_amount_orders():
 
 
 async def all_deffs():
-    await bot.send_message(CHANNEL_ID, await get_amount_collections())
-    await bot.send_message(CHANNEL_ID, await get_one_order())
+    # await bot.send_message(CHANNEL_ID, await get_amount_collections())
+    # await bot.send_message(CHANNEL_ID, await get_one_order())
     # await get_amount_orders()
     await get_today_collections()
 
