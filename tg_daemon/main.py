@@ -25,58 +25,14 @@ dbs = pymongo.MongoClient(
     url,
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
-mycol = dbs.tst_items.mycol
 
 
-async def get_today_collections():
-    message = 'Заказы за сутки: \n'
-    today_now = datetime.datetime.now()
-    delta = datetime.timedelta(days=1)
-    day_ago = (today_now - delta).isoformat()
-    filter_day = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
-
-    #await bot.send_message(CHANNEL_ID, message)
-    #amount = mycol.find(filter=filter_day).count_documents({})
-    #await bot.send_message(CHANNEL_ID, f'amount of docs in mycol {amount}')
-    print(message)
-    print(mycol.find(filter_day))
-    my_docs = mycol.find(filter_day)
-    for order in my_docs:
-        print('ORDER_IN_DB: ', type(order), order)
-        #await bot.send_message(CHANNEL_ID, order)
-
-
-
-async def get_amount_collections():
-    message = 'Всего коллекций в бд: '
-    amount_collections = dbs.list_collection_names()  # _documents()
-    result = message + str(amount_collections)
-    return result
-
-
-async def get_one_order():
-    message = 'Один заказ: '
-    order = dbs.tst_items.mycol.find().limit(1).sort({'$natural': '-1'})
-    result = message + str(order)
-    return result
-
-
-async def get_amount_orders():
-    message = 'Всего заказов: \n'
-    for post in dbs.tst_items.mycol.find():
-        message += str(post) + '\n'  # _documents()
-
-    if len(message) > 4000:
-        for x in range(0, len(message), 4000):
-            await bot.send_message(CHANNEL_ID, message[x:x + 4000])
-    else:
-        await bot.send_message(CHANNEL_ID, message)
-    result = message
-    return result
+async def try_to_understand_mongo_db():
+    print(dbs.list_database_names())
 
 
 async def main():
-    await get_today_collections()
+    await try_to_understand_mongo_db()
     s = await bot.get_session()
     await s.close()
 
@@ -88,3 +44,39 @@ if __name__ == '__main__':
 
     loop.close()
     print("FINISHED")
+
+##################################################
+# #
+#  message = 'Заказы за сутки: \n'
+#     today_now = datetime.datetime.now()
+#     delta = datetime.timedelta(days=1)
+#     day_ago = (today_now - delta).isoformat()
+#     filter_day = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
+#
+#
+# async def get_amount_collections():
+#     message = 'Всего коллекций в бд: '
+#     amount_collections = dbs.list_collection_names()  # _documents()
+#     result = message + str(amount_collections)
+#     return result
+#
+#
+# async def get_one_order():
+#     message = 'Один заказ: '
+#     order = dbs.tst_items.mycol.find().limit(1).sort({'$natural': '-1'})
+#     result = message + str(order)
+#     return result
+#
+#
+# async def get_amount_orders():
+#     message = 'Всего заказов: \n'
+#     for post in dbs.tst_items.mycol.find():
+#         message += str(post) + '\n'  # _documents()
+#
+#     if len(message) > 4000:
+#         for x in range(0, len(message), 4000):
+#             await bot.send_message(CHANNEL_ID, message[x:x + 4000])
+#     else:
+#         await bot.send_message(CHANNEL_ID, message)
+#     result = message
+#     return result
