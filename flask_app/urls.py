@@ -99,7 +99,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         # ...
+        return redirect(url_for('login'))
+    else:
         return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080)
