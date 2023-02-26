@@ -1,2 +1,2 @@
-import config.config
+from . import config
 
