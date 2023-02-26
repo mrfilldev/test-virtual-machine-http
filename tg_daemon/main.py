@@ -39,7 +39,9 @@ async def get_today_collections():
     await bot.send_message(CHANNEL_ID, message)
 
     for order in orders_per_day:
+        print(order)
         await bot.send_message(CHANNEL_ID, order)
+
 
 
 async def get_amount_collections():
