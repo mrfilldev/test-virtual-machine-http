@@ -21,14 +21,14 @@ url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.for
     ]),
     rs='rs01',
     auth_src='db1')
-dbs = pymongo.MongoClient(
+db = pymongo.MongoClient(
     url,
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
 
 async def try_to_understand_mongo_db():
     # print(dbs.list_database_names())
-    my_collection = dbs.test_collection.mycol
+    my_collection = db.test_collection.mycol
     print(my_collection)  # info about collections
     for order in my_collection.find({}):
         print(order)
