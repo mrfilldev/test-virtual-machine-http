@@ -30,7 +30,7 @@ async def try_to_understand_mongo_db():
     # print(dbs.list_database_names())
     my_collection = dbs.test_collection.mycol
     print(my_collection)  # info about collections
-    for order in my_collection:
+    for order in my_collection.find({}):
         print(order)
 
 
