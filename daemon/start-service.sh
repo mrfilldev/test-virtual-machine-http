@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/home/mrfilldev/test-virtual-machine-http/venv/bin/python3 /home/mrfilldev/test-virtual-machine-http/daemon/start_point.py
+/home/mrfilldev/test-server/test-virtual-machine-http/venv/bin/python3 /home/mrfilldev/test-virtual-machine-http/daemon/start_point.py
