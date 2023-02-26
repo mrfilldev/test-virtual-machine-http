@@ -77,7 +77,7 @@ async def make_carwash_order():
 @app.route('/index')
 def index():
     user = {'username': 'mr Fill'}
-    return render_template('index.html', title='Home', user=user)
+    return render_template('index.html', user=user)
 
 
 if __name__ == '__main__':
