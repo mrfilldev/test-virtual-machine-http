@@ -26,11 +26,13 @@ dbs = pymongo.MongoClient(
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
 
-
 async def try_to_understand_mongo_db():
-    #print(dbs.list_database_names())
+    # print(dbs.list_database_names())
     my_collection = dbs.test_collection.mycol
-    print(my_collection)
+    print(my_collection)  # info about collections
+    for order in my_collection:
+        print(order)
+
 
 
 async def main():
