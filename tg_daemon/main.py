@@ -28,7 +28,8 @@ dbs = pymongo.MongoClient(
 
 
 async def try_to_understand_mongo_db():
-    print(dbs.list_database_names())
+    #print(dbs.list_database_names())
+    print(dbs.list_collection_names())
 
 
 async def main():
