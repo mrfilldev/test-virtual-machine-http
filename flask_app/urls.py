@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-import json
-import os
-import sys
 import traceback
 import boto3
-from dotenv import load_dotenv
 from flask import Flask, request, Response, render_template
 import carwash_list
 import carwash_order
 import ping_carwash_box
-from config import Config
+from ..config.config import Config
 
 app = Flask(__name__)
 # load_dotenv()
