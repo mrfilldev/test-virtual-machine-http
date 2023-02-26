@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import traceback
 import boto3
-from flask import Flask, request, Response, render_template
+from flask import Flask, request, Response, render_template, redirect, url_for
 import carwash_list
 import carwash_order
 import ping_carwash_box
@@ -94,11 +94,12 @@ def index():
     return render_template('index.html', title='Home', user=user, posts=posts)
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    return render_template('login.html', title='Sign In', form=form)
-
+    if form.validate_on_submit():
+        # ...
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080)
