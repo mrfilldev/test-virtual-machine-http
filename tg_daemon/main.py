@@ -37,9 +37,9 @@ async def try_to_understand_mongo_db():
     delta = datetime.timedelta(days=1)
     day_ago = (today_now - delta).isoformat()
     filter_day = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
-    print(smthn)
-    print(mydb)
-    print(mycol)
+    print('smthn', smthn)
+    print('mydb', mydb)
+    print("mycol: ", mycol)
     myquery = {'DateCreated': filter_day}
     for order in mycol.find(myquery):
         print(order)
