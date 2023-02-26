@@ -74,7 +74,7 @@ async def all_deffs():
     # await bot.send_message(CHANNEL_ID, await get_amount_collections())
     # await bot.send_message(CHANNEL_ID, await get_one_order())
     # await get_amount_orders()
-    await bot.send_message(CHANNEL_ID, await get_today_collections())
+    await get_today_collections()
 
 
 async def main():
