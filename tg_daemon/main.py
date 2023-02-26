@@ -26,12 +26,13 @@ myclient = pymongo.MongoClient(
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
 mydb = myclient['db1']
 mycol = mydb['test_collection.mycol']
-
+smthn = mycol.test_collection.mycol
 
 async def try_to_understand_mongo_db():
     # print(dbs.list_database_names())
     # my_collection = db.test_collection.mycol
     # print(my_collection)  # info about collections
+    print(smthn)
     print(mydb)
     print(mycol)
     for order in mycol.find():
