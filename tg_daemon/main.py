@@ -28,14 +28,20 @@ mydb = myclient['db1']
 mycol = mydb['test_collection.mycol']
 smthn = mycol.test_collection.mycol
 
+
 async def try_to_understand_mongo_db():
     # print(dbs.list_database_names())
     # my_collection = db.test_collection.mycol
     # print(my_collection)  # info about collections
+    today_now = datetime.datetime.now()
+    delta = datetime.timedelta(days=1)
+    day_ago = (today_now - delta).isoformat()
+    filter_day = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
     print(smthn)
     print(mydb)
     print(mycol)
-    for order in mycol.find():
+    myquery = {'DateCreated': filter_day}
+    for order in mycol.find(myquery):
         print(order)
 
 
