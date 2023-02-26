@@ -99,9 +99,9 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         # ...
-        return redirect(url_for('login'))
+        return redirect(url_for('/login'))
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('/index'))
 
 
 if __name__ == '__main__':
