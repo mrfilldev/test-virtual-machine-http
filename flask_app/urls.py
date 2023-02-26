@@ -4,7 +4,7 @@ import os
 import traceback
 import boto3
 from dotenv import load_dotenv
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 import carwash_list
 import carwash_order
 import ping_carwash_box
@@ -76,7 +76,8 @@ async def make_carwash_order():
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Привет, Мир!"
+    user = {'username': 'Miguel'}
+    return render_template('index.html', title='Home', user=user)
 
 
 if __name__ == '__main__':
