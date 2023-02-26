@@ -9,6 +9,7 @@ from config.config import Config
 from flask_app.forms import LoginForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = Config.SECRET_KEY
 # load_dotenv()
 
 URL_DEV = Config.URL_DEV
