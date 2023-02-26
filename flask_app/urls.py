@@ -2,8 +2,6 @@
 import json
 import os
 import sys
-sys.path.append('../../')
-
 import traceback
 import boto3
 from dotenv import load_dotenv
