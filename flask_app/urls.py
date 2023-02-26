@@ -6,6 +6,7 @@ import carwash_list
 import carwash_order
 import ping_carwash_box
 from config.config import Config
+from flask_app.forms import LoginForm
 
 app = Flask(__name__)
 # load_dotenv()
@@ -90,6 +91,12 @@ def index():
         }
     ]
     return render_template('index.html', title='Home', user=user, posts=posts)
+
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
 
 
 if __name__ == '__main__':
