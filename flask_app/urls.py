@@ -5,6 +5,7 @@ from flask import Flask, request, Response, render_template
 import carwash_list
 import carwash_order
 import ping_carwash_box
+# from config.config import Config
 from config.config import Config
 from flask_app.forms import LoginForm
 
