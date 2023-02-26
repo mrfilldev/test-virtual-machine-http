@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+sys.path.append('../../')
 
 import traceback
 import boto3
@@ -12,7 +13,7 @@ import carwash_order
 import ping_carwash_box
 from config import Config
 
-sys.path.append('../../')
+
 app = Flask(__name__)
 # load_dotenv()
 
