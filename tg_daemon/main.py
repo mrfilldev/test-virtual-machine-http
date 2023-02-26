@@ -33,10 +33,12 @@ async def get_today_collections():
     today_now = datetime.datetime.now()
     delta = datetime.timedelta(days=1)
     day_ago = (today_now - delta).isoformat()
+    filter_day = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
 
-    filter_date = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
     await bot.send_message(CHANNEL_ID, message)
-    for order in mycol.find(filter=filter_date):
+    amount = mycol.find(filter=filter_day).count_documents({})
+    await bot.send_message(CHANNEL_ID, f'amount of docs in mycol {amount}')
+    for order in mycol.find(filter=filter_day):
         print('ORDER_IN_DB: ', type(order), order)
         await bot.send_message(CHANNEL_ID, order)
 
