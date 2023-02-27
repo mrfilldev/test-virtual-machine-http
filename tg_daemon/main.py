@@ -15,7 +15,7 @@ date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
 
 async def try_to_understand_mongo_db():
     # поиск документов в коллекции, соответствующих фильтру по дате
-    docs = col.find({'DateCreate': {'$gte': date_filter}})
+    docs = col.find({'DateCreate': {'$gt': date_filter}})
     print('docs: ', type(docs), docs)
     for doc in docs:
         print(doc.items())
