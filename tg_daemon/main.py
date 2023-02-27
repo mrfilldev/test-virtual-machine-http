@@ -36,7 +36,7 @@ async def count_status_15_minutes():
     result = col.aggregate(pipeline)
 
     # Выводим результаты
-    message = "Сводка статусов:"
+    message = "Сводка статусов заказов за все время:"
     for doc in result:
         print(doc)
         message += f"""\n{doc['_id']} -> {doc['count']} штук = {doc['total']} руб.\n"""
