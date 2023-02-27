@@ -115,7 +115,7 @@ async def user_canceled(order_json):
 
         if order_status == 'UserCanceled':
             # await send_canceled_status(order_json, 'Отмена пользователем')
-            await send_accept_status(order_json)
+            # await send_accept_status(order_json)
             return True
         await asyncio.sleep(0.1)
 
