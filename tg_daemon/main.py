@@ -21,7 +21,7 @@ async def try_to_understand_mongo_db():
     docs = col.aggregate(pipeline)
     print('docs: ', type(docs), docs)
     for doc in docs:
-        print(doc.items())
+        print(doc)
 
 
 async def main():
