@@ -58,6 +58,8 @@ async def send_accept_status(order, user_cancel):
     await asyncio.sleep(1)
     if not user_cancel:
         await send_completed_status(order)
+    else:
+        await send_canceled_status(order, reason=dict_reason['UserCanceled'])
 
 
 async def send_canceled_status(order, reason):
@@ -116,8 +118,8 @@ async def user_canceled(order_json):
 
         if order_status == 'UserCanceled':
             # await send_canceled_status(order_json, 'Отмена пользователем')
-            user_cancel = True
-            await send_accept_status(order_json, user_cancel)
+            #user_cancel = True
+            #await send_accept_status(order_json, user_cancel)
             return True
 
         await asyncio.sleep(0.1)
