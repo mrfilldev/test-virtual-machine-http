@@ -21,29 +21,32 @@ url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.for
     ]),
     rs='rs01',
     auth_src='db1')
-myclient = pymongo.MongoClient(
+client = pymongo.MongoClient(
     url,
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
-mydb = myclient['db1']
-mycol = mydb['test_collection.mycol']
-smthn = mycol.test_collection.mycol
+
+db = client["study_use"]
+
+col = db["mycollection"]
+
 
 
 async def try_to_understand_mongo_db():
-    # print(dbs.list_database_names())
-    # my_collection = db.test_collection.mycol
-    # print(my_collection)  # info about collections
-    today_now = datetime.datetime.now()
-    delta = datetime.timedelta(days=1)
-    day_ago = (today_now - delta).isoformat()
-    filter_day = {"DateCreate": {"$gt": day_ago, "$lt": today_now}}
+    # Вставка документа
+    doc = {"name": "John", "age": 30}
+    col.insert_one(doc)
 
-    print('mydb: ', mydb)
-    print("mycol: ", mycol)
-
-    myquery = {'DateCreated': filter_day}
-    for order in mycol.find(filter_day):
-        print(order)
+    # Поиск документа
+    doc = col.find_one({"name": "John"})
+    print(doc)
+    # Обновление документа
+    col.update_one({"name": "John"}, {"$set": {"age": 31}})
+    doc = col.find_one({"name": "John"})
+    print(doc)
+    # Удаление документа
+    col.delete_one({"name": "John"})
+    doc = col.find_one({"name": "John"})
+    print(doc)
 
 
 async def main():
