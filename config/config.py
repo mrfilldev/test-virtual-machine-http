@@ -18,7 +18,6 @@ class Config(object):
     CHANNEL_ID = os.environ.get('CHANNEL_ID')
     BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
-
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
         pw=quote('mrfilldev040202'),
@@ -26,7 +25,7 @@ class Config(object):
             'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
         ]),
         rs='rs01',
-        auth_src='db1')
+        auth_src='orders')
     client = pymongo.MongoClient(
         url,
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
