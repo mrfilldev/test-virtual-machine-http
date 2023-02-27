@@ -7,7 +7,7 @@ from datetime import datetime as dt
 from random import randint
 from types import SimpleNamespace
 
-from start_point import dbs
+from start_point import col
 import boto3
 import requests
 # import pymongo
@@ -184,10 +184,9 @@ def write_into_db(order):
     # test_items - название чего?
     # mycol - название коллекции
 
-    res = dbs.tst_items.mycol.insert_one(order)
+    res = col.insert_one(order)
     print('WRITED ORDER: ', res)
 
     print('ORDER_ID:', res.inserted_id)
 
-    print("Объекты в БД МОНГО:", dbs.list_collection_names(), '\n')
-    print('Объекты в коллекции', dbs.tst_items.mycol.find())
+    print('Объекты в коллекции', col.find())

@@ -30,7 +30,6 @@ db = client["study_use"]
 col = db["mycollection"]
 
 
-
 async def try_to_understand_mongo_db():
     # Вставка документа
     doc = {"name": "John", "age": 30}

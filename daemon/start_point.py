@@ -15,9 +15,13 @@ url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.for
     ]),
     rs='rs01',
     auth_src='db1')
-dbs = pymongo.MongoClient(
+client = pymongo.MongoClient(
     url,
-    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
+    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
+
+db = client['orders']
+col = db["test_orders"]
+
 
 
 async def main():
