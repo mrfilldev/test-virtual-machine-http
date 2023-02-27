@@ -38,7 +38,6 @@ dict_reason = {
 }
 
 
-
 async def send_accept_status(order):
     print("Start SEND ACCEPT STATUS")
     if order.BoxNumber != '3':
@@ -114,8 +113,9 @@ async def user_canceled(order_json):
         print('Status: ', order_status)
 
         if order_status == 'UserCanceled':
-            #await send_canceled_status(order_json, 'Отмена пользователем')
-            return True
+            # await send_canceled_status(order_json, 'Отмена пользователем')
+
+            break
         await asyncio.sleep(0.1)
 
     await send_accept_status(order_json)
