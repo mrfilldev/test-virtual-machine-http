@@ -14,6 +14,8 @@ app.config['SECRET_KEY'] = Config.SECRET_KEY
 
 URL_DEV = Config.URL_DEV
 API_KEY = Config.API_KEY  # ['123456', '7tllmnubn49ghu5qrep97']
+
+##################################################################
 queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker' \
                '-carwsh-orders'
 client = boto3.client(
