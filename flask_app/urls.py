@@ -66,8 +66,7 @@ def return_carwash_list():
 @app.route('/tanker/order', methods=['POST'])
 async def make_carwash_order():
     try:
-        carwash_order.main(request)
-        return Response(status=200)
+        return carwash_order.main(request)
     except Exception as e:
         # write to log
         traceback.print_exc()

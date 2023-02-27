@@ -1,6 +1,9 @@
 import enum
 import json
 from types import SimpleNamespace
+
+from flask import Response
+
 from config.config import Config
 
 from flask_app.urls import client, queue_url
@@ -169,6 +172,7 @@ def send_order_sqs(order):
             MessageBody=order
         )
     )
+    return Response(status=200)
 
 
 def check_the_status(request):
@@ -188,6 +192,7 @@ def update_order(data):
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = Config.col.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
+    Response(status=200)
 
 
 def main(request):
