@@ -170,7 +170,7 @@ async def get_order_messege_queue():
                 elif order_json.BoxNumber == '3':
                     await user_canceled(order_json)
                 else:
-                    await send_accept_status(order_json)
+                    await send_accept_status(order_json, user_cancel=False)
 
                 # Delete processed messages
                 print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
