@@ -12,22 +12,36 @@ tz = pytz.timezone('Europe/Moscow')
 # создание даты, которая будет использоваться в качестве фильтра
 date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
 
-pipeline = [
-    {"$match": {"BoxNumber": '1'}}
-]
-
 
 async def try_to_understand_mongo_db():
-    # поиск документов в коллекции, соответствующих фильтру по дате
-    #docs = col.aggregate(pipeline)
-    #print('docs: ', type(docs), docs)
+    print("################################")
+
+    pipeline = [
+        {"$match": {"BoxNumber": '1'}}
+    ]
     print(date_filter)
     for doc in col.aggregate(pipeline):
         print(doc)
+    print("################################")
+
+
+async def count_status_15_minutes():
+    print("################################")
+
+    pipeline = [
+        {"$group": {"_id": "$Status", "count": {"$sum": 1}}}
+    ]
+    result = col.aggregate(pipeline)
+
+    # Выводим результаты
+    for doc in result:
+        print(doc)
+    print("################################")
 
 
 async def main():
     await try_to_understand_mongo_db()
+
 
 
 if __name__ == '__main__':
