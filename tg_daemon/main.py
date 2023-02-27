@@ -18,6 +18,7 @@ col = Config.col
 async def count_status_15_minutes():
     print("################################")
     start_time = datetime.now() - timedelta(minutes=15)
+    print('start_time', start_time)
     pipeline = [
         {"$match": {"Time": {"$gte": start_time}}},
         {"$group": {"_id": "$Status",
