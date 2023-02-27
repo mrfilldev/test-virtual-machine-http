@@ -121,6 +121,14 @@ async def user_canceled(order_json):
     await send_accept_status(order_json)
 
 
+def make_some_noize(order):
+    time_zone_string = order['DateCreate']
+    print('time_zone_string', type(time_zone_string), time_zone_string)
+    # order['TimeStamp'] = time.time()
+
+    write_into_db(order)
+
+
 async def get_order_messege_queue():
     while True:
 
@@ -147,8 +155,8 @@ async def get_order_messege_queue():
             order = eval(msg.get('Body'))
             print('TYPE: ', type(order))
             try:
-                write_into_db(order)
 
+                make_some_noize(order)
                 # get the message
                 print('order_json: ', order_json)
                 if order_json.BoxNumber == '2':
