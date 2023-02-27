@@ -38,7 +38,7 @@ dict_reason = {
 }
 
 
-async def send_accept_status(order):
+async def send_accept_status(order, user_cancel):
     print("Start SEND ACCEPT STATUS")
     if order.BoxNumber != '3':
         rand_time = randint(1, 20)
@@ -56,7 +56,8 @@ async def send_accept_status(order):
     print("url:", url)
     print("params:", params)
     await asyncio.sleep(1)
-    await send_completed_status(order)
+    if user_cancel:
+        await send_completed_status(order)
 
 
 async def send_canceled_status(order, reason):
@@ -106,20 +107,22 @@ async def send_completed_status(order):
 
 async def user_canceled(order_json):
     after_minute = time.time() + 60
+    user_cancel = True
     while time.time() <= after_minute:
         #  проверку в бд
         order_in_db = Config.col.find_one({'Id': str(order_json.Id)})
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order_status = order_in_db['Status']
         print('Status: ', order_status)
-
+        user_cancel = False
         if order_status == 'UserCanceled':
             # await send_canceled_status(order_json, 'Отмена пользователем')
-            # await send_accept_status(order_json)
+
+            await send_accept_status(order_json, user_cancel)
             return True
         await asyncio.sleep(0.1)
 
-    await send_accept_status(order_json)
+    await send_accept_status(order_json, user_cancel)
 
 
 async def make_some_noize(order):
