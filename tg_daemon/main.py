@@ -20,8 +20,7 @@ async def count_status_15_minutes():
     current_day = date.today()
     start_time = (datetime.now() - timedelta(minutes=15)).time()
     pipeline = [
-        {"$match": {"Time": {"$gte": start_time},
-                    "Date": current_day}},
+        {"$match": {"Time": {"$gte": start_time}}},
         {"$group": {"_id": "$Status",
                     "total": {"$sum": "$Sum"},
                     "count": {"$sum": 1}}}
