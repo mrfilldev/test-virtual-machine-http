@@ -16,18 +16,17 @@ pipeline = [
     {"$match": {"DateCreate": date_filter}}
 ]
 
+
 async def try_to_understand_mongo_db():
     # поиск документов в коллекции, соответствующих фильтру по дате
     docs = col.aggregate(pipeline)
     print('docs: ', type(docs), docs)
-    for doc in docs:
+    for doc in list(docs):
         print(doc)
 
 
 async def main():
     await try_to_understand_mongo_db()
-    # s = await bot.get_session()
-    # await s.close()
 
 
 if __name__ == '__main__':
@@ -39,6 +38,8 @@ if __name__ == '__main__':
     print("FINISHED")
 
 ##################################################
+# s = await bot.get_session()
+# await s.close()
 # #
 #  message = 'Заказы за сутки: \n'
 #     today_now = datetime.datetime.now()
