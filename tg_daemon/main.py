@@ -48,6 +48,9 @@ async def main():
     await try_to_understand_mongo_db()
     await count_status_15_minutes()
 
+    s = await bot.get_session()
+    await s.close()
+
 
 if __name__ == '__main__':
     print("RUNNING")
