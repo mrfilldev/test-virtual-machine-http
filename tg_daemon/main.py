@@ -13,7 +13,7 @@ tz = pytz.timezone('Europe/Moscow')
 date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
 
 pipeline = [
-    {"$match": {"DateCreate": date_filter}}
+    {"$match": {"BoxNumber": '1'}}
 ]
 
 
