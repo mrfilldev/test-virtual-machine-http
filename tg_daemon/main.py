@@ -13,7 +13,7 @@ date = datetime.datetime(2023, 2, 26, 15, 30, tzinfo=mos_tz)
 
 
 async def try_to_understand_mongo_db():
-    result = col.find({"date": {"$gte": date}})
+    result = col.find({"DateCreate": {"$gte": date}})
     print(result)
 
 
