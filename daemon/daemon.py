@@ -124,7 +124,7 @@ async def user_canceled(order_json):
 
 async def make_some_noize(order):
     date, day_time = (order['DateCreate']).split('T')
-    day_time = day_time.split('.')[0]
+    day_time = day_time.replace('Z', '')
     print('Date: ', date)
     print('Time: ', day_time)
     order['Date'] = date

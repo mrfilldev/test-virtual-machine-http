@@ -3,32 +3,25 @@ import asyncio
 from aiogram import Bot, types
 import pytz
 from config.config import Config
+from datetime import datetime, timedelta, date
 
 CHANNEL_ID = int(Config.CHANNEL_ID)
 bot = Bot(token=Config.BOT_TOKEN)
 col = Config.col
 
-tz = pytz.timezone('Europe/Moscow')
+
+# tz = pytz.timezone('Europe/Moscow')
 # создание даты, которая будет использоваться в качестве фильтра
-date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
-
-
-async def try_to_understand_mongo_db():
-    print("################################")
-
-    pipeline = [
-        {"$match": {"BoxNumber": '1'}}
-    ]
-    print(date_filter)
-    for doc in col.aggregate(pipeline):
-        print(doc)
-    print("################################")
+# date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
 
 
 async def count_status_15_minutes():
     print("################################")
-
+    current_day = date.today()
+    start_time = datetime.now() - timedelta(minutes=15)
     pipeline = [
+        {"$match": {"Time": {"$gte": start_time},
+                    "Date": current_day}},
         {"$group": {"_id": "$Status",
                     "total": {"$sum": "$Sum"},
                     "count": {"$sum": 1}}}
@@ -39,13 +32,12 @@ async def count_status_15_minutes():
     message = "Сводка статусов заказов за все время:"
     for doc in result:
         print(doc)
-        message += f"""\n{doc['_id']} -> {doc['count']} штук = {doc['total']} руб.\n"""
+        message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
 
 
 async def main():
-    await try_to_understand_mongo_db()
     await count_status_15_minutes()
 
     s = await bot.get_session()
