@@ -122,7 +122,7 @@ async def user_canceled(order_json):
     await send_accept_status(order_json)
 
 
-def make_some_noize(order):
+async def make_some_noize(order):
     date, day_time = (order['DateCreate']).split('T')
     day_time = day_time.split('.')[0]
     print('Date: ', date)
@@ -130,7 +130,7 @@ def make_some_noize(order):
     order['Date'] = date
     order['Time'] = day_time
 
-    write_into_db(order)
+    await write_into_db(order)
 
 
 async def get_order_messege_queue():
@@ -160,7 +160,7 @@ async def get_order_messege_queue():
             print('TYPE: ', type(order))
             try:
 
-                make_some_noize(order)
+                await make_some_noize(order)
                 # get the message
                 print('order_json: ', order_json)
                 if order_json.BoxNumber == '2':
@@ -187,7 +187,7 @@ async def get_order_messege_queue():
                 print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
 
 
-def write_into_db(order):
+async def write_into_db(order):
     # order = json.loads(order, object_hook=lambda d: SimpleNamespace(**d))
 
     print('Writing into DB')
@@ -204,7 +204,7 @@ def write_into_db(order):
     print('Объекты в коллекции', Config.col.find())
 
 
-def update_order(order_json):
+async def update_order(order_json):
     old_order = {'Id': order_json.Id}
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = Config.col.update_one(old_order, set_command)
