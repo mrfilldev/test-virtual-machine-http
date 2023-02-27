@@ -17,7 +17,7 @@ col = Config.col
 
 async def count_status_15_minutes():
     print("################################")
-    start_time = datetime.now() - timedelta(minutes=15)
+    start_time = str(datetime.now() - timedelta(minutes=15))
 
     print('start_time', type(start_time), start_time)
     pipeline = [
