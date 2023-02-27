@@ -172,7 +172,7 @@ def send_order_sqs(order):
             MessageBody=order
         )
     )
-    return Response(status=200)
+    #return Response(status=200)
 
 
 def check_the_status(request):
@@ -192,7 +192,7 @@ def update_order(data):
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = Config.col.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
-    Response(status=200)
+    #Response(status=200)
 
 
 def main(request):
