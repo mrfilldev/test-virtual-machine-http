@@ -29,7 +29,9 @@ async def count_status_15_minutes():
     print("################################")
 
     pipeline = [
-        {"$group": {"_id": "$Status", "count": {"$sum": 1}}}
+        {"$group": {"_id": "$Status",
+                    "total": {"$sum": "$Sum"},
+                    "count": {"$sum": 1}}}
     ]
     result = col.aggregate(pipeline)
 
@@ -37,7 +39,7 @@ async def count_status_15_minutes():
     message = "Сводка статусов:"
     for doc in result:
         print(doc)
-        message += f"""\n{doc['_id']} - {doc['count']} штук\n"""
+        message += f"""\n{doc['_id']} - {doc['count']} штук = {doc['total']}руб.\n"""
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
 
