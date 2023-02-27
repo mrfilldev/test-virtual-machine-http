@@ -9,12 +9,13 @@ bot = Bot(token=Config.BOT_TOKEN)
 col = Config.col
 
 mos_tz = pytz.timezone('Europe/Moscow')
-date = datetime.datetime(2023, 2, 26, 15, 30, tzinfo=mos_tz)
+date = datetime.datetime(2023, 2, 26, 10, 30, tzinfo=mos_tz)
 
 
 async def try_to_understand_mongo_db():
-    for order in col.find({"DateCreate": {"$gte": date}}):
-        print(order)
+    docs = col.find({"DateCreate": {"$gte": date}})
+    for doc in docs:
+        print(doc)
 
 
 async def main():
