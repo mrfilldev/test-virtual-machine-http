@@ -117,7 +117,7 @@ async def user_canceled(order_json):
         print('Status: ', order_status)
 
         if order_status == 'UserCanceled':
-            # await send_canceled_status(order_json, 'Отмена пользователем')
+            await send_canceled_status(order_json, 'Отмена пользователем')
             #user_cancel = True
             #await send_accept_status(order_json, user_cancel)
             return True
