@@ -12,10 +12,13 @@ tz = pytz.timezone('Europe/Moscow')
 # создание даты, которая будет использоваться в качестве фильтра
 date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
 
+pipeline = [
+    {"$match": {"DateCreate": date_filter}}
+]
 
 async def try_to_understand_mongo_db():
     # поиск документов в коллекции, соответствующих фильтру по дате
-    docs = col.find({'DateCreate': {'$gt': date_filter}})
+    docs = col.aggregate(pipeline)
     print('docs: ', type(docs), docs)
     for doc in docs:
         print(doc.items())
