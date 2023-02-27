@@ -21,6 +21,7 @@ async def try_to_understand_mongo_db():
     # поиск документов в коллекции, соответствующих фильтру по дате
     #docs = col.aggregate(pipeline)
     #print('docs: ', type(docs), docs)
+    print(date_filter)
     for doc in col.aggregate(pipeline):
         print(doc)
 
