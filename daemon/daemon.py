@@ -60,6 +60,7 @@ async def send_accept_status(order):
 
 
 async def send_canceled_status(order, reason):
+
     print('REASON: ', reason)
     print("START SEND CANCEL STATUS")
     rand_time = randint(1, 20)
@@ -163,6 +164,7 @@ async def get_order_messege_queue():
                 # get the message
                 print('order_json: ', order_json)
                 if order_json.BoxNumber == '2':
+                    await update_order(order_json)
                     await send_canceled_status(order_json, dict_reason['StationCanceled'])
                 elif order_json.BoxNumber == '3':
                     await user_canceled(order_json)
@@ -200,3 +202,11 @@ def write_into_db(order):
     print('ORDER_ID:', res.inserted_id)
 
     print('Объекты в коллекции', Config.col.find())
+
+
+def update_order(order_json):
+    old_order = {'Id': order_json.Id}
+    set_command = {"$set": {"Status": "UserCanceled"}}
+    new_order = Config.col.update_one(old_order, set_command)
+    print('UPDATE DATA: ', new_order)
+    #Response(status=200)
