@@ -41,6 +41,7 @@ async def count_status_15_minutes():
 
 async def main():
     await try_to_understand_mongo_db()
+    await count_status_15_minutes()
 
 
 
