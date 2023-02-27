@@ -34,9 +34,10 @@ async def count_status_15_minutes():
     result = col.aggregate(pipeline)
 
     # Выводим результаты
+    message = "Сводка статусов:"
     for doc in result:
         print(doc)
-        message = f"""Сводка статусов:\n{doc['_id']} - {doc['count']} штук\n"""
+        message += f"""\n{doc['_id']} - {doc['count']} штук\n"""
         await bot.send_message(CHANNEL_ID, message)
     print("################################")
 
