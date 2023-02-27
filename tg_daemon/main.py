@@ -8,12 +8,14 @@ CHANNEL_ID = int(Config.CHANNEL_ID)
 bot = Bot(token=Config.BOT_TOKEN)
 col = Config.col
 
-mos_tz = pytz.timezone('Europe/Moscow')
-date = datetime.datetime(2023, 2, 26, 10, 30, tzinfo=mos_tz)
+tz = pytz.timezone('Europe/Moscow')
+# создание даты, которая будет использоваться в качестве фильтра
+date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
 
 
 async def try_to_understand_mongo_db():
-    docs = col.find({"DateCreate": {"$gte": date}})
+    # поиск документов в коллекции, соответствующих фильтру по дате
+    docs = col.find({'DateCreate': {'$gte': date_filter}})
     for doc in docs:
         print(doc)
 
