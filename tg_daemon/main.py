@@ -1,52 +1,20 @@
 import datetime
 import asyncio
 from aiogram import Bot, types
-from dotenv import load_dotenv
-import os
-from urllib.parse import quote_plus as quote
-import pymongo
+import pytz
+from config.config import Config
 
-# from daemon.start_point import dbs
+CHANNEL_ID = int(Config.CHANNEL_ID)
+bot = Bot(token=Config.BOT_TOKEN)
+col = Config.col
 
-load_dotenv()
-
-CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
-bot = Bot(token=os.getenv('BOT_TOKEN'))
-
-url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
-    user=quote('user1'),
-    pw=quote('mrfilldev040202'),
-    hosts=','.join([
-        'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
-    ]),
-    rs='rs01',
-    auth_src='db1')
-client = pymongo.MongoClient(
-    url,
-    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
-
-db = client["study_use"]
-
-col = db["mycollection"]
-
+mos_tz = pytz.timezone('Europe/Moscow')
+date = datetime.datetime(2023, 2, 26, 15, 30, tzinfo=mos_tz)
 
 
 async def try_to_understand_mongo_db():
-    # Вставка документа
-    doc = {"name": "John", "age": 30}
-    col.insert_one(doc)
-
-    # Поиск документа
-    doc = col.find_one({"name": "John"})
-    print(doc)
-    # Обновление документа
-    col.update_one({"name": "John"}, {"$set": {"age": 31}})
-    doc = col.find_one({"name": "John"})
-    print(doc)
-    # Удаление документа
-    col.delete_one({"name": "John"})
-    doc = col.find_one({"name": "John"})
-    print(doc)
+    result = col.find({"date": {"$gte": date}})
+    print(result)
 
 
 async def main():

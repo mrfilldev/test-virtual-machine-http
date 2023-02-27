@@ -6,8 +6,8 @@ import traceback
 from datetime import datetime as dt
 from random import randint
 from types import SimpleNamespace
+from config.config import Config
 
-from start_point import dbs
 import boto3
 import requests
 # import pymongo
@@ -37,7 +37,6 @@ dict_reason = {
     'StationCanceled': 'Отмена заказа Станцией Мойки',
 }
 
-mycol = dbs.tst_items.mycol
 
 
 async def send_accept_status(order):
@@ -109,7 +108,7 @@ async def user_canceled(order_json):
     after_minute = time.time() + 60
     while time.time() <= after_minute:
         #  проверку в бд
-        order_in_db = mycol.find_one({'Id': str(order_json.Id)})
+        order_in_db = Config.col.find_one({'Id': str(order_json.Id)})
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order_status = order_in_db['Status']
         print('Status: ', order_status)
@@ -184,10 +183,9 @@ def write_into_db(order):
     # test_items - название чего?
     # mycol - название коллекции
 
-    res = dbs.tst_items.mycol.insert_one(order)
+    res = Config.col.insert_one(order)
     print('WRITED ORDER: ', res)
 
     print('ORDER_ID:', res.inserted_id)
 
-    print("Объекты в БД МОНГО:", dbs.list_collection_names(), '\n')
-    print('Объекты в коллекции', dbs.tst_items.mycol.find())
+    print('Объекты в коллекции', Config.col.find())

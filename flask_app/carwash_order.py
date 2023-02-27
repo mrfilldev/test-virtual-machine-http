@@ -1,8 +1,7 @@
 import enum
 import json
 from types import SimpleNamespace
-from urllib.parse import quote_plus as quote
-import pymongo
+from config.config import Config
 
 from flask_app.urls import client, queue_url
 
@@ -67,19 +66,6 @@ def to_camel_case(request):
     # result = json.dumps(result, default=lambda x: x.__dict__)
     # data = json.loads(result, object_hook=lambda d: SimpleNamespace(**d))
     # return data
-
-
-url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
-    user=quote('user1'),
-    pw=quote('mrfilldev040202'),
-    hosts=','.join([
-        'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
-    ]),
-    rs='rs01',
-    auth_src='db1')
-dbs = pymongo.MongoClient(
-    url,
-    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
 
 class Status(enum.IntEnum):
@@ -200,7 +186,7 @@ def check_enable():
 def update_order(data):
     old_order = {'Id': data.Id}
     set_command = {"$set": {"Status": "UserCanceled"}}
-    new_order = dbs.tst_items.mycol.update_one(old_order, set_command)
+    new_order = Config.col.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
 
 

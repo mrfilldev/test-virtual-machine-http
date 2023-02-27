@@ -1,23 +1,8 @@
 import asyncio
-from urllib.parse import quote_plus as quote
-import pymongo
-
 from dotenv import load_dotenv
 import daemon
 
 load_dotenv()
-
-url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
-    user=quote('user1'),
-    pw=quote('mrfilldev040202'),
-    hosts=','.join([
-        'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
-    ]),
-    rs='rs01',
-    auth_src='db1')
-dbs = pymongo.MongoClient(
-    url,
-    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')['db1']
 
 
 async def main():
@@ -31,3 +16,19 @@ if __name__ == '__main__':
 
     loop.close()
     print("FINISHED")
+
+# url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
+#     user=quote('user1'),
+#     pw=quote('mrfilldev040202'),
+#     hosts=','.join([
+#         'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
+#     ]),
+#     rs='rs01',
+#     auth_src='db1')
+# client = pymongo.MongoClient(
+#     url,
+#     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
+#
+# db = client['orders']
+# col = db["test_orders"]
+#
