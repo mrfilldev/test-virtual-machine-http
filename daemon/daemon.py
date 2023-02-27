@@ -56,12 +56,11 @@ async def send_accept_status(order, user_cancel):
     print("url:", url)
     print("params:", params)
     await asyncio.sleep(1)
-    if user_cancel:
+    if not user_cancel:
         await send_completed_status(order)
 
 
 async def send_canceled_status(order, reason):
-
     print('REASON: ', reason)
     print("START SEND CANCEL STATUS")
     rand_time = randint(1, 20)
@@ -210,4 +209,4 @@ async def update_order_status(order_json, status):
     set_command = {"$set": {"Status": status}}
     new_order = Config.col.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
-    #Response(status=200)
+    # Response(status=200)
