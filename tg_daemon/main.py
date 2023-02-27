@@ -39,7 +39,7 @@ async def count_status_15_minutes():
     message = "Сводка статусов:"
     for doc in result:
         print(doc)
-        message += f"""\n{doc['_id']} - {doc['count']} штук = {doc['total']}руб.\n"""
+        message += f"""\n{doc['_id']} -> {doc['count']} штук = {doc['total']} руб.\n"""
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
 
