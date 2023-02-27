@@ -18,7 +18,7 @@ async def try_to_understand_mongo_db():
     docs = col.find({'DateCreate': {'$gte': date_filter}})
     print('docs: ', type(docs), docs)
     for doc in docs:
-        print(doc)
+        print(doc.items())
 
 
 async def main():
