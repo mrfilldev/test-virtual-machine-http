@@ -26,8 +26,8 @@ async def try_to_understand_mongo_db():
 
 async def main():
     await try_to_understand_mongo_db()
-    s = await bot.get_session()
-    await s.close()
+    # s = await bot.get_session()
+    # await s.close()
 
 
 if __name__ == '__main__':
