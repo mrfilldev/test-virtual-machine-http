@@ -20,7 +20,7 @@ async def count_status_15_minutes():
     start_time = datetime.now() - timedelta(minutes=15)
     print('start_time', start_time)
     pipeline = [
-        {"$match": {"Time": {"$gte": start_time}}},
+        {"$match": {"DateCreateMy": {"$gte": start_time}}},
         {"$group": {"_id": "$Status",
                     "total": {"$sum": "$Sum"},
                     "count": {"$sum": 1}}}
