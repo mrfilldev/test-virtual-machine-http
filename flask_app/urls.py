@@ -84,7 +84,7 @@ def login():
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Владимир Корги!'}
+    user = {'username': 'No Name!'}
     posts = [
         {
             'author': {'username': 'John'},
