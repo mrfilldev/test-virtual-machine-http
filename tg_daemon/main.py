@@ -39,7 +39,7 @@ async def count_status_15_minutes():
     message = "Сводка статусов:"
     for doc in result:
         print(doc)
-        message += f"""\n{doc['_id']} - {doc['count']} штук = {doc['total']}руб.\n"""
+        message += f"""\n{doc['_id']} -> {doc['count']} штук = {doc['total']} руб.\n"""
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
 
@@ -47,6 +47,9 @@ async def count_status_15_minutes():
 async def main():
     await try_to_understand_mongo_db()
     await count_status_15_minutes()
+
+    s = await bot.get_session()
+    await s.close()
 
 
 if __name__ == '__main__':
