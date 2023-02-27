@@ -122,12 +122,12 @@ async def user_canceled(order_json):
 
 
 def make_some_noize(order):
-    date, time = (order['DateCreate']).split('T')
-    time = time.split('.')[0]
+    date, day_time = (order['DateCreate']).split('T')
+    day_time = day_time.split('.')[0]
     print('Date: ', date)
-    print('Time: ', time)
-    #print('time_zone_string', type(time_zone_string), time_zone_string)
-    # order['TimeStamp'] = time.time()
+    print('Time: ', day_time)
+    order['Date'] = date
+    order['Time'] = day_time
 
     write_into_db(order)
 
