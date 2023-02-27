@@ -106,7 +106,7 @@ async def send_completed_status(order):
 
 async def user_canceled(order_json):
     after_minute = time.time() + 60
-    user_cancel = True
+
     while time.time() <= after_minute:
         #  проверку в бд
         order_in_db = Config.col.find_one({'Id': str(order_json.Id)})
@@ -116,11 +116,12 @@ async def user_canceled(order_json):
 
         if order_status == 'UserCanceled':
             # await send_canceled_status(order_json, 'Отмена пользователем')
-            user_cancel = False
+            user_cancel = True
             await send_accept_status(order_json, user_cancel)
             return True
-        await asyncio.sleep(0.1)
 
+        await asyncio.sleep(0.1)
+    user_cancel = False
     await send_accept_status(order_json, user_cancel)
 
 
