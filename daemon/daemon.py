@@ -164,7 +164,7 @@ async def get_order_messege_queue():
                 # get the message
                 print('order_json: ', order_json)
                 if order_json.BoxNumber == '2':
-                    await update_order(order_json)
+                    await update_order_status(order_json, 'StationCanceled')
                     await send_canceled_status(order_json, dict_reason['StationCanceled'])
                 elif order_json.BoxNumber == '3':
                     await user_canceled(order_json)
@@ -204,9 +204,9 @@ async def write_into_db(order):
     print('Объекты в коллекции', Config.col.find())
 
 
-async def update_order(order_json):
+async def update_order_status(order_json, status):
     old_order = {'Id': order_json.Id}
-    set_command = {"$set": {"Status": "UserCanceled"}}
+    set_command = {"$set": {"Status": status}}
     new_order = Config.col.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
     #Response(status=200)
