@@ -33,7 +33,6 @@ class Boxes:
     def __init__(self, numbers, boxStatus):
         self.number = numbers
         self.status = boxStatus
-        #self.description =
 
 
 class Prices:
