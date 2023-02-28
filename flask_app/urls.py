@@ -111,7 +111,7 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-    users = Config.db.users
+    users = Config.col_users
     login_user = users.find_one({'name': request.form['username']})
 
     if login_user:
