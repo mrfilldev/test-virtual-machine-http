@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
 import traceback
 import boto3
-from flask import Flask, request, Response, render_template
+from flask import Flask, render_template, url_for, request, session, redirect, Response
 import carwash_list
 import carwash_order
 import ping_carwash_box
 from config.config import Config
 from flask_app.forms import LoginForm
+from flask.ext.pymongo import PyMongo
+import bcrypt
+
+
+
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = Config.SECRET_KEY
+mongo = PyMongo(app)
+
 # load_dotenv()
 
 URL_DEV = Config.URL_DEV
@@ -74,26 +80,71 @@ async def make_carwash_order():
         print(f'caught {type(e)}: e', e)  # добавить логгер
         return Response(status=400)
 
-
-@app.route('/login')
-def login():
-    form = LoginForm()
-    return render_template('login.html', title='Sign In', form=form)
+#
+# @app.route('/login')
+# def login():
+#     form = LoginForm()
+#     return render_template('login.html', title='Sign In', form=form)
+#
+#
+# @app.route('/')
+# @app.route('/index')
+# def index():
+#     user = {'username': 'No Name))!'}
+#     posts = [
+#         {
+#             'author': {'username': user['username']},
+#             'body': 'Lets make some noize!'
+#         },
+#
+#     ]
+#     return render_template('index.html', title='Home', user=user, posts=posts)
 
 
 @app.route('/')
-@app.route('/index')
 def index():
-    user = {'username': 'No Name))!'}
-    posts = [
-        {
-            'author': {'username': user['username']},
-            'body': 'Lets make some noize!'
-        },
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
 
-    ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
+    return render_template('index.html')
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    users = mongo.db.users
+    login_user = users.find_one({'name': request.form['username']})
+
+    if login_user:
+        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user[
+            'password'].encode('utf-8'):
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+
+    return 'Invalid username/password combination'
+
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name': request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name': request.form['username'], 'password': hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+
+        return 'That username already exists!'
+
+    return render_template('register.html')
+
+
+
+
 
 
 if __name__ == '__main__':
+    app.secret_key = 'mysecret'
+    app.config['SECRET_KEY'] = Config.SECRET_KEY
     app.run(host='127.0.0.1', port=8080)
