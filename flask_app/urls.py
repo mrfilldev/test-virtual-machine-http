@@ -7,10 +7,14 @@ import carwash_order
 import ping_carwash_box
 from config.config import Config
 from flask_app.forms import LoginForm
+from flask_bootstrap import Bootstrap
+
 # from flask_pymongo import PyMongo
 import bcrypt
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
+
 
 # app.config["MONGO_URI"] = Config.url
 # mongo = PyMongo(app)
