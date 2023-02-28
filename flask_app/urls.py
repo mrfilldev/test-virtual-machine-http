@@ -15,7 +15,6 @@ import bcrypt
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
-
 # app.config["MONGO_URI"] = Config.url
 # mongo = PyMongo(app)
 
@@ -106,10 +105,17 @@ async def make_carwash_order():
 
 
 @app.route('/')
+@app.route('/index')
 def index():
     if 'username' in session:
-        return 'You are logged in as ' + session['username']
-
+        user = {'username': 'No Name))!'}
+        posts = [
+            {
+                'author': {'username': user['username']},
+                'body': 'Lets make some noize!'
+            },
+        ]
+        return render_template('index.html', title='Home', user=user, posts=posts)
     return render_template('index.html')
 
 
