@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, date
 
 CHANNEL_ID = int(Config.CHANNEL_ID)
 bot = Bot(token=Config.BOT_TOKEN)
-col = Config.col
+col = Config.col_orders
 
 
 # tz = pytz.timezone('Europe/Moscow')

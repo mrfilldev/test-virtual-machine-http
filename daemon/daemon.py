@@ -111,7 +111,7 @@ async def user_canceled(order_json):
 
     while time.time() <= after_minute:
         #  проверку в бд
-        order_in_db = Config.col.find_one({'Id': str(order_json.Id)})
+        order_in_db = Config.col_orders.find_one({'Id': str(order_json.Id)})
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order_status = order_in_db['Status']
         print('Status: ', order_status)
@@ -199,17 +199,17 @@ async def write_into_db(order):
     # test_items - название чего?
     # mycol - название коллекции
 
-    res = Config.col.insert_one(order)
+    res = Config.col_orders.insert_one(order)
     print('WRITED ORDER: ', res)
 
     print('ORDER_ID:', res.inserted_id)
 
-    print('Объекты в коллекции', Config.col.find())
+    print('Объекты в коллекции', Config.col_orders.find())
 
 
 async def update_order_status(order_json, status):
     old_order = {'Id': order_json.Id}
     set_command = {"$set": {"Status": status}}
-    new_order = Config.col.update_one(old_order, set_command)
+    new_order = Config.col_orders.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
     # Response(status=200)

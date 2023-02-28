@@ -29,5 +29,8 @@ class Config(object):
     client = pymongo.MongoClient(
         url,
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
-    db = client['orders']
-    col = db["test_orders"]
+    db_orders = client['orders']
+    col_orders = db_orders["test_orders"]
+
+    db_users = client['users']
+    col_users = db_users["users"]
