@@ -111,7 +111,7 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-    users = Config.col_users
+    users = Config.db_users
     login_user = users.find_one({'name': request.form['username']})
 
     if login_user:
@@ -126,7 +126,7 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        users = Config.col_users
+        users = Config.db_users
         existing_user = users.find_one({'name': request.form['username']})
 
         if existing_user is None:
