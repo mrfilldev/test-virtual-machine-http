@@ -23,15 +23,17 @@ async def count_status_15_minutes():
     pipeline = [
         #{"$match": {"DateCreateMy": {"$gte": start_time}}},
         {"$group": {"_id": "$Status",
+                    "CarWashId": "CarWashId",
                     "total": {"$sum": "$Sum"},
                     "count": {"$sum": 1}}}
     ]
     result = col.aggregate(pipeline)
 
     # Выводим результаты
-    message = "Сводка статусов заказов за все время:"
+    message = "Сводка статусов заказов за все время:\n"
     for doc in result:
         print(doc)
+        message += f"{doc['CarWashId']}:\n"
         message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
