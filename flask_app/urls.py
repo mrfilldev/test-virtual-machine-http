@@ -7,14 +7,11 @@ import carwash_order
 import ping_carwash_box
 from config.config import Config
 from flask_app.forms import LoginForm
-from flask import PyMongo
+from flask import ext
 import bcrypt
 
-
-
-
 app = Flask(__name__)
-mongo = PyMongo(app)
+mongo = ext.PyMongo(app)
 
 # load_dotenv()
 
@@ -80,6 +77,7 @@ async def make_carwash_order():
         print(f'caught {type(e)}: e', e)  # добавить логгер
         return Response(status=400)
 
+
 #
 # @app.route('/login')
 # def login():
@@ -138,10 +136,6 @@ def register():
         return 'That username already exists!'
 
     return render_template('register.html')
-
-
-
-
 
 
 if __name__ == '__main__':
