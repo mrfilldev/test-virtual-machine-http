@@ -7,13 +7,13 @@ import carwash_order
 import ping_carwash_box
 from config.config import Config
 from flask_app.forms import LoginForm
-from flask_pymongo import PyMongo
+# from flask_pymongo import PyMongo
 import bcrypt
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = Config.url
-mongo = PyMongo(app)
+# app.config["MONGO_URI"] = Config.url
+# mongo = PyMongo(app)
 
 # load_dotenv()
 
@@ -111,7 +111,7 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-    users = mongo.db.users
+    users = Config.db.users
     login_user = users.find_one({'name': request.form['username']})
 
     if login_user:
