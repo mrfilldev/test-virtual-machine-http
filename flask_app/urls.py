@@ -11,6 +11,8 @@ from flask_pymongo import PyMongo
 import bcrypt
 
 app = Flask(__name__)
+
+app.config["MONGO_URI"] = Config.url
 mongo = PyMongo(app)
 
 # load_dotenv()
