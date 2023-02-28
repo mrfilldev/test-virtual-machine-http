@@ -7,11 +7,11 @@ import carwash_order
 import ping_carwash_box
 from config.config import Config
 from flask_app.forms import LoginForm
-import flask
+from flask_pymongo import PyMongo
 import bcrypt
 
 app = Flask(__name__)
-mongo = flask.ext.PyMongo(app)
+mongo = PyMongo(app)
 
 # load_dotenv()
 
