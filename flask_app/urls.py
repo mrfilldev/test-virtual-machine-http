@@ -7,7 +7,7 @@ import carwash_order
 import ping_carwash_box
 from config.config import Config
 from flask_app.forms import LoginForm
-from flask.ext.pymongo import PyMongo
+from flask import PyMongo
 import bcrypt
 
 
