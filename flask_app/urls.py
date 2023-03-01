@@ -105,7 +105,7 @@ async def make_carwash_order():
 
 
 @app.route('/')
-def free_index():
+def main_page():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
 
