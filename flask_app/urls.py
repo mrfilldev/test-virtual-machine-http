@@ -130,6 +130,7 @@ def login():
 
 @app.route('/admin', methods=['POST', 'GET'])
 async def admin():
+
     return render_template('admin.html')
 
 
