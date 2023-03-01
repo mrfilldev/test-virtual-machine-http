@@ -2,6 +2,9 @@
 
 {% block body %}
 <h1>Hi, {{user.nickname}}!</h1>
+
+<h1>Список заказов находящихся в бд</h1>
+
 {% for post in posts %}
 <div><p>{{ post }}</b></p></div>
 <br/>

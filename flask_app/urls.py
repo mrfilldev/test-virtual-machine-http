@@ -131,7 +131,8 @@ def login():
 
 @app.route('/admin', methods=['POST', 'GET'])
 async def admin():
-    user = {'nickname': 'no name'}  # выдуманный пользователь
+    user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
+
     posts = orders.find()
     return render_template(
         'admin.html',
