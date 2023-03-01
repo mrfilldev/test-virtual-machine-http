@@ -128,7 +128,7 @@ def login():
     return 'Invalid username/password combination'
 
 
-@app.route('/admin')
+@app.route('/admin', methods=['POST', 'GET'])
 async def admin():
     return render_template('admin.html')
 
