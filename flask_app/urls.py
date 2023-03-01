@@ -136,7 +136,7 @@ async def admin():
 
     posts = []
     for i in orders.find():
-        posts.append(json.loads(i, object_hook=lambda d: SimpleNamespace(**d)))
+        posts.append(str(json.loads(i, object_hook=lambda d: SimpleNamespace(**d))))
 
     return render_template(
         'admin.html',
