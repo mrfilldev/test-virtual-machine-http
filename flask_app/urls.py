@@ -83,24 +83,11 @@ async def make_carwash_order():
         return Response(status=400)
 
 
-@app.route('/login')
-def login():
-    form = LoginForm()
-    return render_template('login.html', title='Sign In', form=form)
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-    user = {'username': 'No Name))!'}
-    posts = [
-        {
-            'author': {'username': user['username']},
-            'body': 'Lets make some noize!'
-        },
-
-    ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
+# @app.route('/login')
+# def login():
+#     form = LoginForm()
+#     return render_template('login.html', title='Sign In', form=form)
+#
 
 
 @app.route('/')
