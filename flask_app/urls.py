@@ -164,8 +164,8 @@ def login():
             raise InvalidPassword
 
 
-@app.route('/admin', methods=['GET', 'POST'])
-def admin_main():
+@app.route('/admin')
+def admin():
     return render_template('admin.html')
 
 
