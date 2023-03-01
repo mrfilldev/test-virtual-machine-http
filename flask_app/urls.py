@@ -130,8 +130,15 @@ def login():
 
 @app.route('/admin', methods=['POST', 'GET'])
 async def admin():
+    user = {'nickname': 'no name'}  # выдуманный пользователь
+    posts = []  # список выдуманных постов
 
-    return render_template('admin.html')
+    return render_template(
+        'admin.html',
+        title='Home',
+        user=user,
+        posts=posts
+    )
 
 
 if __name__ == '__main__':
