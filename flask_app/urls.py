@@ -39,7 +39,7 @@ users = Config.col_orders
 
 
 @app.route('/carwash/ping')
-def return_carwash_ping():
+async def return_carwash_ping():
     apiKey = request.args.get('apikey')
     print('try_apiKey: ' + apiKey)
 
@@ -57,7 +57,7 @@ def return_carwash_ping():
 
 
 @app.route('/carwash/list')
-def return_carwash_list():
+async def return_carwash_list():
     try_apiKey = request.args.get('apikey')
     print('try_apiKey: ' + try_apiKey)
     if try_apiKey in API_KEY:
@@ -85,13 +85,13 @@ async def make_carwash_order():
 
 # Главная страница
 @app.route('/')
-def index():
+async def index():
     return render_template('index.html')
 
 
 # Страница регистрации
 @app.route('/register', methods=['GET', 'POST'])
-def register():
+async def register():
     if request.method == 'POST':
         # Получаем данные из формы
         username = request.form['username']
@@ -142,7 +142,7 @@ class InvalidPassword:
 #
 #     return 'Invalid username/password combination'
 @app.route('/login', methods=['GET', 'POST'])
-def login():
+async def login():
     if request.method == 'POST':
         # Получаем данные из формы
         username = request.form['username']
@@ -165,7 +165,7 @@ def login():
 
 
 @app.route('/admin')
-def admin():
+async def admin():
     return render_template('admin.html')
 
 
