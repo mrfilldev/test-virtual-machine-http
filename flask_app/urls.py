@@ -35,7 +35,8 @@ client = boto3.client(
 )
 queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
 ########################################################################
-users = Config.col_orders
+users = Config.col_users
+orders = Config.col_orders
 
 
 @app.route('/carwash/ping')
@@ -131,8 +132,7 @@ def login():
 @app.route('/admin', methods=['POST', 'GET'])
 async def admin():
     user = {'nickname': 'no name'}  # выдуманный пользователь
-    posts = []  # список выдуманных постов
-
+    posts = orders.find()
     return render_template(
         'admin.html',
         title='Home',
