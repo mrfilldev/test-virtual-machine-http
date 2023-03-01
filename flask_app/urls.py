@@ -109,7 +109,8 @@ def index():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
 
-    return render_template('main_page.html')
+    return render_template('index.html')
+
 
 
 @app.route('/login', methods=['POST', 'GET'])
