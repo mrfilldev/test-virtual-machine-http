@@ -104,12 +104,12 @@ async def make_carwash_order():
 #     return render_template('index.html', title='Home', user=user, posts=posts)
 
 
-@app.route('/')
-def index():
-    if 'username' in session:
-        return 'You are logged in as ' + session['username']
-
-    return render_template('index.html')
+# @app.route('/')
+# def index():
+#     if 'username' in session:
+#         return 'You are logged in as ' + session['username']
+#
+#     return render_template('index.html')
 
 
 @app.route('/index')
