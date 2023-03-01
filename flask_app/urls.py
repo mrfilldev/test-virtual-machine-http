@@ -136,7 +136,7 @@ async def admin():
 
     posts = []
     for i in orders.find():
-        data = json.dumps(i, default=lambda x: x.__dict__)
+        data = json.dumps(i)
         print('data: ', type(data), data, '\n')
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         posts.append(order)
