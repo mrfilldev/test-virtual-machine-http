@@ -127,7 +127,7 @@ def index():
         return redirect(url_for('/'))
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     users = Config.col_orders
     login_user = users.find_one({'name': request.form['username']})
