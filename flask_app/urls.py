@@ -83,8 +83,6 @@ async def make_carwash_order():
         return Response(status=400)
 
 
-
-
 # Главная страница
 @app.route('/')
 def index():
@@ -131,6 +129,18 @@ class InvalidPassword:
     pass
 
 
+# @app.route('/login', methods=['POST', 'GET'])
+# def login():
+#     users = Config.col_orders
+#     login_user = users.find_one({'name': request.form['username']})
+#
+#     if login_user:
+#         if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user[
+#             'password'].encode('utf-8'):
+#             session['username'] = request.form['username']
+#             return redirect(url_for('index'))
+#
+#     return 'Invalid username/password combination'
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -152,6 +162,11 @@ def login():
         # Если пароль не совпадает, выводим сообщение об ошибке
         else:
             raise InvalidPassword
+
+
+@app.route('/admin', methods=['GET', 'POST'])
+def admin_main():
+    return render_template('admin.html')
 
 
 if __name__ == '__main__':
