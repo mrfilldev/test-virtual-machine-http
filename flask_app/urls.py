@@ -83,85 +83,62 @@ async def make_carwash_order():
         return Response(status=400)
 
 
-# Главная страница
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
+
+
 @app.route('/')
-async def index():
+@app.route('/index')
+def index():
+    user = {'username': 'No Name))!'}
+    posts = [
+        {
+            'author': {'username': user['username']},
+            'body': 'Lets make some noize!'
+        },
+
+    ]
+    return render_template('index.html', title='Home', user=user, posts=posts)
+
+
+@app.route('/')
+def index():
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
+
     return render_template('index.html')
 
 
-# Страница регистрации
-@app.route('/register', methods=['GET', 'POST'])
-async def register():
+@app.route('/register', methods=['POST', 'GET'])
+def register():
     if request.method == 'POST':
-        # Получаем данные из формы
-        username = request.form['username']
-        password = request.form['password'].encode('utf-8')
+        existing_user = users.find_one({'name': request.form['username']})
 
-        # Хэшируем пароль
-        hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert_one({'name': request.form['username'], 'password': hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
 
-        # Проверяем, есть ли уже пользователь с таким именем
-        if users.find_one({'username': username}) is None:
-            # Добавляем нового пользователя в базу данных
-            users.insert_one({
-                'username': username,
-                'password': hashed_password
-            })
+        return 'That username already exists!'
 
-            # Сохраняем имя пользователя в сессии
-            session['username'] = username
-            print('try redirrect admin')
-            # Перенаправляем пользователя на страницу администратора
-            return render_template(url_for('admin'))
-
-        # Если пользователь с таким именем уже существует, выводим сообщение об ошибке
-        else:
-            error = 'Пользователь с таким именем уже существует'
-            return render_template('register.html', error=error)
-
-    # Если метод GET, отображаем страницу регистрации
-    else:
-        return render_template('register.html')
+    return render_template('register.html')
 
 
-# Страница входа
-class InvalidPassword:
-    pass
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    username = request.form['username']
+    password = request.form['password'].encode('utf-8')
+    user = users.find_one({'name': username})
+    # Получаем данные из формы
 
+    if user and bcrypt.checkpw(password, user['password']):
+        session['username'] = username
+        return redirect(url_for('admin'))
 
-# @app.route('/login', methods=['POST', 'GET'])
-# def login():
-#     users = Config.col_orders
-#     login_user = users.find_one({'name': request.form['username']})
-#
-#     if login_user:
-#         if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user[
-#             'password'].encode('utf-8'):
-#             session['username'] = request.form['username']
-#             return redirect(url_for('index'))
-#
-#     return 'Invalid username/password combination'
-@app.route('/login', methods=['GET', 'POST'])
-async def login():
-    if request.method == 'POST':
-        # Получаем данные из формы
-        username = request.form['username']
-        password = request.form['password'].encode('utf-8')
-
-        # Ищем пользователя в базе данных
-        user = users.find_one({'username': username})
-
-        # Проверяем, совпадают ли хэшированные пароли
-        if user and bcrypt.checkpw(password, user['password']):
-            # Сохраняем имя пользователя в сессии
-            session['username'] = username
-
-            # Перенаправляем пользователя на страницу администратора
-            return redirect(url_for('admin'))
-
-        # Если пароль не совпадает, выводим сообщение об ошибке
-        else:
-            raise InvalidPassword
+    return 'Invalid username/password combination'
 
 
 @app.route('/admin')
@@ -174,63 +151,4 @@ if __name__ == '__main__':
     app.config['SECRET_KEY'] = Config.SECRET_KEY
     app.run(host='127.0.0.1', port=8080)
 
-#
-# @app.route('/login')
-# def login():
-#     form = LoginForm()
-#     return render_template('login.html', title='Sign In', form=form)
-#
-#
-# @app.route('/')
-# @app.route('/index')
-# def index():
-#     user = {'username': 'No Name))!'}
-#     posts = [
-#         {
-#             'author': {'username': user['username']},
-#             'body': 'Lets make some noize!'
-#         },
-#
-#     ]
-#     return render_template('index.html', title='Home', user=user, posts=posts)
-
-
-# @app.route('/')
-# def index():
-#     if 'username' in session:
-#         return 'You are logged in as ' + session['username']
-#
-#     return render_template('index.html')
-#
-#
-#
-# @app.route('/login', methods=['POST', 'GET'])
-# def login():
-#     users = Config.col_orders
-#     login_user = users.find_one({'name': request.form['username']})
-#
-#     if login_user:
-#         if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user[
-#             'password'].encode('utf-8'):
-#             session['username'] = request.form['username']
-#             return redirect(url_for('index'))
-#
-#     return 'Invalid username/password combination'
-#
-#
-# @app.route('/register', methods=['POST', 'GET'])
-# def register():
-#     if request.method == 'POST':
-#         users = Config.col_orders
-#         existing_user = users.find_one({'name': request.form['username']})
-#
-#         if existing_user is None:
-#             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-#             users.insert_one({'name': request.form['username'], 'password': hashpass})
-#             session['username'] = request.form['username']
-#             return redirect(url_for('index'))
-#
-#         return 'That username already exists!'
-#
-#     return render_template('register.html')
 #
