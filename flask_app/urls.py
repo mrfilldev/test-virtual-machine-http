@@ -105,26 +105,11 @@ async def make_carwash_order():
 
 
 @app.route('/')
-def main_page():
+def index():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
 
     return render_template('main_page.html')
-
-
-@app.route('/index')
-def index():
-    if 'username' in session:
-        user = {'username': request.form['username']}
-        posts = [
-            {
-                'author': {'username': user['username']},
-                'body': 'Lets make some noize!'
-            },
-        ]
-        return render_template('index.html', title='Home', user=user, posts=posts)
-    else:
-        return redirect(url_for('/'))
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -133,8 +118,7 @@ def login():
     login_user = users.find_one({'name': request.form['username']})
 
     if login_user:
-        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user[
-            'password'].encode('utf-8'):
+        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
             session['username'] = request.form['username']
             return redirect(url_for('index'))
 
