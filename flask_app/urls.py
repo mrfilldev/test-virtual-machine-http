@@ -8,7 +8,8 @@ import ping_carwash_box
 from config.config import Config
 from flask_app.forms import LoginForm
 from flask_bootstrap import Bootstrap
-
+import json
+from types import SimpleNamespace
 # from flask_pymongo import PyMongo
 import bcrypt
 
@@ -133,7 +134,10 @@ def login():
 async def admin():
     user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
 
-    posts = orders.find()
+    posts = []
+    for i in orders.find():
+        posts.append(json.loads(request.data, object_hook=lambda d: SimpleNamespace(**d)))
+
     return render_template(
         'admin.html',
         title='Home',
