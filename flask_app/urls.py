@@ -109,7 +109,7 @@ def main_page():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
 
-    return render_template('index.html')
+    return render_template('main_page.html')
 
 
 @app.route('/index')
