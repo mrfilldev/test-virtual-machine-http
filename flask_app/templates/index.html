@@ -1,22 +1,8 @@
-{% extends "layout.html" %}
-{% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <br>
-            <div>
-                Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>.
-            </div>
-            <head>
-                <title>{{ title }} - Microblog</title>
-            </head>
-            <body>
-                <h1>Hello, {{ user.username }}!</h1>
+{% extends "base.html" %}
 
-
-            </body>
-
-        </div>
-    </div>
-</div>
+{% block content %}
+    <h1>Hi, {{ user.username }}!</h1>
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
 {% endblock %}

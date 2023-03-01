@@ -108,7 +108,7 @@ async def make_carwash_order():
 @app.route('/index')
 def index():
     if 'username' in session:
-        user = {'username': 'No Name))!'}
+        user = {'username': request.form['username']}
         posts = [
             {
                 'author': {'username': user['username']},
@@ -147,7 +147,7 @@ def register():
 
         return 'That username already exists!'
 
-    return render_template('register.html')
+    return render_template('login.html')
 
 
 if __name__ == '__main__':
