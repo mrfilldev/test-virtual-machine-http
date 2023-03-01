@@ -110,9 +110,9 @@ async def register():
 
             # Сохраняем имя пользователя в сессии
             session['username'] = username
-
+            print('try redirrect admin')
             # Перенаправляем пользователя на страницу администратора
-            return redirect(url_for('admin'))
+            return redirect(url_for('admin'))# render_template
 
         # Если пользователь с таким именем уже существует, выводим сообщение об ошибке
         else:
