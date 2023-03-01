@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import traceback
 import boto3
+from bson import json_util
 from flask import Flask, render_template, url_for, request, session, redirect, Response
 import carwash_list
 import carwash_order
@@ -137,7 +138,7 @@ async def admin():
     posts = []
     for i in orders.find():
         print('order: ', i)
-        data = json.dumps(i)
+        data = json.loads(json_util.dumps(i))
         print('data: ', type(data), data, '\n')
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         posts.append(order)
