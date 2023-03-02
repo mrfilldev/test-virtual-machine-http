@@ -1,3 +1,4 @@
+{% extends 'bootstrap/base.html' %}
 !DOCTYPE html> <!-- Используется html 5 версии -->
 <html lang="ru" xmlns="http://www.w3.org/1999/html"> <!-- Язык сайта - русский -->
 {% load static %}
@@ -5,10 +6,6 @@
     <meta charset="utf-8"> <!-- Кодировка сайта -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!--<meta name="viewport" content="width=device-width, initial-scale=0">-->
-    <link rel="icon" href="{% static 'img/fav/fav.ico' %}" type="image">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/fav/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/fav/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/fav/favicon-16x16.png' %}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!-- CSS only -->
@@ -17,11 +14,8 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script type="text/javascript" src="{% static 'js/accom_ad.js' %}"></script>
-
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/datepicker.css' %}">
     <title>
         {% block title %}
         {% endblock %}
