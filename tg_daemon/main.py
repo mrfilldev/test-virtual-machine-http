@@ -23,7 +23,7 @@ async def count_status_15_minutes():
     pipeline = [
         #{"$match": {"DateCreateMy": {"$gte": start_time}}},
         {"$group": {"_id": "$Status",
-                    "CarWashId": "CarWashId",
+                    "CarWashId": "$CarWashId",
                     "total": {"$sum": "$Sum"},
                     "count": {"$sum": 1}}}
     ]
