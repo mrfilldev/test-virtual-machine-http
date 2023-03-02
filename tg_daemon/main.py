@@ -15,15 +15,15 @@ col = Config.col_orders
 # date_filter = datetime.datetime(2023, 2, 28, 12, 0, 0, tzinfo=tz)
 
 
-async def count_status_15_minutes():
+async def for_all_time():
     print("################################")
-    start_time = str(datetime.now() - timedelta(minutes=15))
+    start_time = str(datetime.now())
 
     print('start_time', type(start_time), start_time)
     pipeline = [
-        #{"$match": {"DateCreateMy": {"$gte": start_time}}},
+        # {"$match": {"DateCreateMy": {"$gte": start_time}}},
         {"$group": {"_id": "$Status",
-                    #"CarWashId": "$CarWashId",
+                    # "CarWashId": "$CarWashId",
                     "total": {"$sum": "$Sum"},
                     "count": {"$sum": 1}}}
     ]
@@ -33,15 +33,48 @@ async def count_status_15_minutes():
     message = "Сводка статусов заказов за все время:\n"
     for doc in result:
         print(doc)
-        #message += f"{doc['CarWashId']}:\n"
+        # message += f"{doc['CarWashId']}:\n"
         message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
         message += '\n'
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
 
 
+async def fifteen_minutes():
+    start_time = str(datetime.now())
+    print(start_time)
+    message = "За последние 15 минут: "
+    pipeline = [
+        {
+            "$project": {
+                "timestamp": {
+                    "$dateTrunc": {
+                        "DateCreate": "$timestamp",
+                        "unit": "minute",
+                        "binSize": 15
+                    }
+                },
+                "value": 1
+            }
+        },
+        {
+            "$group": {
+                "_id": "$timestamp",
+                "sum": {"$sum": "$Cost"}
+            }
+        }
+    ]
+    for doc in col.aggregate(pipeline):
+        print(doc)
+        message += str(doc)
+        message += '\n'
+    await bot.send_message(CHANNEL_ID, message)
+    print("################################")
+
+
 async def main():
-    await count_status_15_minutes()
+    await for_all_time()
+    await fifteen_minutes()
 
     s = await bot.get_session()
     await s.close()

@@ -1,14 +1,29 @@
 from datetime import datetime, timedelta, date
 string = '2023-02-27T14:24:49.215Z'
 
-result = string.replace('T', ' ')
-print(result)
-result = result.replace('Z', '')
-print(result)
 
+
+# определение временного диапазона
 start_time = datetime.now() - timedelta(minutes=15)
+end_time = datetime.now()
+print(start_time.strftime('%H:%M:%S'))
+print(end_time.strftime('%H:%M:%S'))
 
-print(start_time)
+start_time = datetime.strftime(start_time, "%Y-%m-%dd %H:%M:%S")
+
+
+
+
+
+
+# result = string.replace('T', ' ')
+# print(result)
+# result = result.replace('Z', '')
+# print(result)
+#
+# start_time = datetime.now() - timedelta(minutes=15)
+#
+# print(start_time)
 
 #
 #
