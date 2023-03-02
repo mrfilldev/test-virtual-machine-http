@@ -39,8 +39,6 @@ async def for_all_time():
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
 
-
-async def fifteen_minutes():
     start_time = str(datetime.now())
     print(start_time)
     message = "За последние 15 минут: "
@@ -74,7 +72,6 @@ async def fifteen_minutes():
 
 async def main():
     await for_all_time()
-    await fifteen_minutes()
 
     s = await bot.get_session()
     await s.close()
