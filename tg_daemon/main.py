@@ -40,14 +40,13 @@ async def for_all_time():
     print("################################")
     message += "################################"
     start_time = str(datetime.now())
-    time_threshold = datetime.utcnow() - timedelta(minutes=15)  # момент времени 15 минутной давности
     print(start_time)
     message += "\n За последние 15 минут: \n"
     now = datetime.now()
     interval = now - timedelta(minutes=15)
     print(interval)
     # агрегация заказов за последние 15 минут
-    start_time = datetime.utcnow() - datetime.timedelta(minutes=15)
+    start_time = datetime.utcnow() - timedelta(minutes=15)
     print(start_time)
     # выполнить агрегацию
     pipeline = [
