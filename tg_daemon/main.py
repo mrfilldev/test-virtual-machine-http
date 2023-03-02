@@ -40,25 +40,20 @@ async def for_all_time():
     print("################################")
 
     start_time = str(datetime.now())
+    time_threshold = datetime.utcnow() - timedelta(minutes=15)  # момент времени 15 минутной давности
     print(start_time)
     message = "За последние 15 минут: "
     pipeline = [
         {
-            "$project": {
-                "timestamp": {
-                    "$dateTrunc": {
-                        "date": "$timestamp",
-                        "unit": "minute",
-                        "binSize": 15
-                    }
-                },
-                "value": 1
+            '$match': {
+                'timestamp': {'$gte': time_threshold}
             }
         },
         {
-            "$group": {
-                "_id": "$timestamp",
-                "sum": {"$sum": "$Cost"}
+            '$group': {
+                '_id': '$CarWashId',
+                "total": {"$sum": "$Sum"},
+                'count': {'$sum': 1}
             }
         }
     ]
