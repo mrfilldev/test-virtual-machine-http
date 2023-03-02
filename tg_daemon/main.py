@@ -38,7 +38,7 @@ async def for_all_time():
         message += '\n'
     await bot.send_message(CHANNEL_ID, message)
     print("################################")
-
+    message += "################################"
     start_time = str(datetime.now())
     time_threshold = datetime.utcnow() - timedelta(minutes=15)  # момент времени 15 минутной давности
     print(start_time)
