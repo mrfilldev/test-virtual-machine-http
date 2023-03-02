@@ -49,9 +49,9 @@ async def for_all_time():
     start_time = datetime.utcnow() - timedelta(minutes=15)
     print(start_time)
     # выполнить агрегацию
-    query = {'$match': {
+    query = {
                 'DateCreate': {'$gt': start_time.isoformat()}
-            }}
+            }
     pipeline = [
         {
             '$match': {
