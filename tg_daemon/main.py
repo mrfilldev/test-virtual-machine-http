@@ -46,7 +46,7 @@ async def for_all_time():
     message += "\n За последние 15 минут: \n"
     now = datetime.now()
     interval = now - timedelta(minutes=15)
-
+    print(interval)
     # агрегация заказов за последние 15 минут
     pipeline = [
         {
