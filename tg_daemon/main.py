@@ -43,18 +43,11 @@ async def for_all_time():
     print(start_time)
     message += "\n За последние 15 минут: \n"
     pipeline = [
-        {
-            '$match': {
-                'timestamp': {'$gte': time_threshold}
-            }
-        },
-        {
-            '$group': {
-                '_id': '$CarWashId',
-                "total": {"$sum": "$Sum"},
-                'count': {'$sum': 1}
-            }
-        }
+        {"$match": {"DateCreateMy": {"$gte": time_threshold}}},
+        {"$group": {"_id": "$Status",
+                    # "CarWashId": "$CarWashId",
+                    "total": {"$sum": "$Sum"},
+                    "count": {"$sum": 1}}}
     ]
     for doc in col.aggregate(pipeline):
         print(doc)
