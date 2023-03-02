@@ -51,7 +51,7 @@ async def for_all_time():
     pipeline = [
         {
             "$match": {
-                "created_at": {"$gte": interval, "$lt": now}
+                "DateCreate": {"$gte": interval, "$lt": now}
             }
         },
         {
@@ -65,8 +65,10 @@ async def for_all_time():
         print(doc)
         message += str(doc)
         message += '\n'
-    await bot.send_message(CHANNEL_ID, message)
+
+    message += "################################"
     print("################################")
+    await bot.send_message(CHANNEL_ID, message)
 
 
 async def main():
