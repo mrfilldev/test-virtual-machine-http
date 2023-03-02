@@ -130,7 +130,8 @@ def login():
 
     if user and bcrypt.checkpw(password, user['password']):
         session['username'] = username
-        return redirect(url_for('admin'))
+        return Response(status=200)
+        # //return redirect(url_for('admin'))
 
     return 'Invalid username/password combination'
 
