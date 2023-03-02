@@ -1,4 +1,6 @@
-!DOCTYPE html> <!-- Используется html 5 версии -->
+{% extends 'bootstrap/base.html' %}
+
+
 <html lang="ru" xmlns="http://www.w3.org/1999/html"> <!-- Язык сайта - русский -->
 <head>
     <meta charset="utf-8"> <!-- Кодировка сайта -->
@@ -12,10 +14,9 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>
         {% block title %}
+            {% if title %}{{ title }} - Microblog{% else %}Welcome to Microblog{% endif %}
         {% endblock %}
     </title>
 </head>
