@@ -15,9 +15,9 @@
 <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
 <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
 <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
-<div><p>Services:  {{ post.Services.Id }}</p></div>
-<div><p>Services:  {{ post.Services.Description }}</p></div>
-<div><p>Services:  {{ post.Services.Cost }}</p></div>
+<div><p>Services:  {{ post.Services['Id'] }}</p></div>
+<div><p>Services:  {{ post.Services['Description'] }}</p></div>
+<div><p>Services:  {{ post.Services['Cost'] }}</p></div>
 <br/>
 {% endfor %}
 {% endblock %}
