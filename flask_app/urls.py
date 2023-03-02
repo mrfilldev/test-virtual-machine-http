@@ -107,18 +107,23 @@ def index():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    if request.method == 'POST':
-        existing_user = users.find_one({'name': request.form['username']})
+    try:
+        if request.method == 'POST':
+            existing_user = users.find_one({'name': request.form['username']})
 
-        if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert_one({'name': request.form['username'], 'password': hashpass})
-            session['username'] = request.form['username']
-            return redirect(url_for('index'))
+            if existing_user is None:
+                hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+                users.insert_one({'name': request.form['username'], 'password': hashpass})
+                session['username'] = request.form['username']
+                return redirect(url_for('index'))
 
-        return 'That username already exists!'
+            return 'That username already exists!'
 
-    return render_template('register.html')
+        return render_template('register.html')
+    except Exception as e:
+        traceback.print_exc()
+        print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
+        return 'Invalid username/password combination'
 
 
 @app.route('/login', methods=['POST', 'GET'])
