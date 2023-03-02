@@ -48,7 +48,7 @@ async def for_all_time():
     interval = now - timedelta(minutes=15)
 
     # агрегация заказов за последние 15 минут
-    pipeline = col.aggregate([
+    pipeline = [
         {
             "$match": {
                 "created_at": {"$gte": interval, "$lt": now}
@@ -60,7 +60,7 @@ async def for_all_time():
                 "total": {"$sum": "$amount"}
             }
         }
-    ])
+    ]
     for doc in col.aggregate(pipeline):
         print(doc)
         message += str(doc)
