@@ -60,8 +60,9 @@ async def for_all_time():
         },
         {
             '$group': {
-                '_id': '$field',
-                'count': {'$sum': 1}
+                '_id': '$Status',
+                'count': {'$sum': 1},
+                "total": {"$sum": "$Sum"},
             }
         }
     ]
