@@ -47,7 +47,7 @@ async def for_all_time():
     interval = now - timedelta(minutes=15)
     print(interval)
     # агрегация заказов за последние 15 минут
-    start_time = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
+    start_time = datetime.utcnow() - datetime.timedelta(minutes=15)
     print(start_time)
     # выполнить агрегацию
     pipeline = [
