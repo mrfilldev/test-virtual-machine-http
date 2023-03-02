@@ -52,7 +52,7 @@ async def for_all_time():
     pipeline = [
         {
             '$match': {
-                'DateCreate': {'$gte': start_time.isoformat()}
+                'DateCreate': {'$gt': start_time.isoformat()}
             }
         },
         {

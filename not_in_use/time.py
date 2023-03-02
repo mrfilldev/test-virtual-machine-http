@@ -15,7 +15,6 @@ start_time = datetime.strftime(start_time, "%Y-%m-%dd %H:%M:%S")
 
 
 
-
 # result = string.replace('T', ' ')
 # print(result)
 # result = result.replace('Z', '')
