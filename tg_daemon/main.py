@@ -3,7 +3,7 @@ import asyncio
 from aiogram import Bot, types
 import pytz
 from config.config import Config
-from datetime import datetime, timedelta, date
+from datetime import timedelta, date
 
 CHANNEL_ID = int(Config.CHANNEL_ID)
 bot = Bot(token=Config.BOT_TOKEN)
