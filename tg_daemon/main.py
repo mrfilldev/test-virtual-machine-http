@@ -17,6 +17,8 @@ col = Config.col_orders
 
 async def for_all_time():
     print("################################")
+    message = "################################"
+
     start_time = str(datetime.now())
 
     print('start_time', type(start_time), start_time)
@@ -30,7 +32,7 @@ async def for_all_time():
     result = col.aggregate(pipeline)
 
     # Выводим результаты
-    message = "Сводка статусов заказов за все время:\n"
+    message += "Сводка статусов заказов за все время:\n"
     for doc in result:
         print(doc)
         # message += f"{doc['CarWashId']}:\n"
@@ -44,10 +46,10 @@ async def for_all_time():
     message += "\n За последние 15 минут: \n"
     pipeline = [
         {"$match": {"DateCreateMy": {"$gte": time_threshold}}},
-        {"$group": {"_id": "$Status",
-                    # "CarWashId": "$CarWashId",
-                    "total": {"$sum": "$Sum"},
-                    "count": {"$sum": 1}}}
+        # {"$group": {"_id": "$Status",
+        #             # "CarWashId": "$CarWashId",
+        #             "total": {"$sum": "$Sum"},
+        #             "count": {"$sum": 1}}}
     ]
     for doc in col.aggregate(pipeline):
         print(doc)
