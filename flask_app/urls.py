@@ -123,20 +123,25 @@ def register():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    username = request.form['username']
-    password = request.form['password'].encode('utf-8')
-    user = users.find_one({'name': username})
-    # Получаем данные из формы
-    print('user', user)
-    print('pass', user['password'])
+    try:
+        username = request.form['username']
+        password = request.form['password'].encode('utf-8')
+        user = users.find_one({'name': username})
+        # Получаем данные из формы
+        print('user', user)
+        print('pass', user['password'])
+    except Exception as e:
+        traceback.print_exc()
+        print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
 
-    return Response(status=200)
-    if user and bcrypt.checkpw(password, user['password']):
-        session['username'] = username
-        return Response(status=200)
-        # //return redirect(url_for('admin'))
 
-    return 'Invalid username/password combination'
+    # return Response(status=200)
+    # if user and bcrypt.checkpw(password, user['password']):
+    #     session['username'] = username
+    #     return Response(status=200)
+    #     # //return redirect(url_for('admin'))
+    #
+    # return 'Invalid username/password combination'
 
 
 @app.route('/admin', methods=['POST', 'GET'])
