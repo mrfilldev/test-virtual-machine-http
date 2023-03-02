@@ -47,7 +47,7 @@ async def for_all_time():
             "$project": {
                 "timestamp": {
                     "$dateTrunc": {
-                        "DateCreate": "$timestamp",
+                        "date": "$timestamp",
                         "unit": "minute",
                         "binSize": 15
                     }
