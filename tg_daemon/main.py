@@ -44,13 +44,23 @@ async def for_all_time():
     time_threshold = datetime.utcnow() - timedelta(minutes=15)  # момент времени 15 минутной давности
     print(start_time)
     message += "\n За последние 15 минут: \n"
-    pipeline = [
-        {"$match": {"DateCreateMy": {"$gte": time_threshold}}},
-        # {"$group": {"_id": "$Status",
-        #             # "CarWashId": "$CarWashId",
-        #             "total": {"$sum": "$Sum"},
-        #             "count": {"$sum": 1}}}
-    ]
+    now = datetime.now()
+    interval = now - timedelta(minutes=15)
+
+    # агрегация заказов за последние 15 минут
+    pipeline = col.aggregate([
+        {
+            "$match": {
+                "created_at": {"$gte": interval, "$lt": now}
+            }
+        },
+        {
+            "$group": {
+                "_id": "$customer_id",
+                "total": {"$sum": "$amount"}
+            }
+        }
+    ])
     for doc in col.aggregate(pipeline):
         print(doc)
         message += str(doc)
