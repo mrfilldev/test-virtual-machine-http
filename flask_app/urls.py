@@ -123,12 +123,14 @@ def register():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    return Response(status=200)
     username = request.form['username']
     password = request.form['password'].encode('utf-8')
     user = users.find_one({'name': username})
     # Получаем данные из формы
+    print('user', user)
+    print('pass', user['password'])
 
+    return Response(status=200)
     if user and bcrypt.checkpw(password, user['password']):
         session['username'] = username
         return Response(status=200)
