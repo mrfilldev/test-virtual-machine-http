@@ -65,7 +65,7 @@ async def for_all_time():
             }
         }
     ]
-    for doc in col.find(query):
+    for doc in col.aggregate(pipeline):
         print(doc)
         message += str(doc)
         message += '\n'
