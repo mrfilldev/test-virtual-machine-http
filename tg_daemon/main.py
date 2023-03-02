@@ -68,7 +68,9 @@ async def for_all_time():
     ]
     for doc in col.aggregate(pipeline):
         print(doc)
+        message += '\n ПОЛУЧАЕМЫЙ ОБЪЕКТ АГГРЕГАЦИИ: \n'
         message += str(doc)
+        message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
         message += '\n'
 
     message += "################################"
