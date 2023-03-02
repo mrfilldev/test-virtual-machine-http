@@ -17,7 +17,7 @@ col = Config.col_orders
 
 async def for_all_time():
     print("################################")
-    message = "################################"
+    message = "################################ \n"
 
     start_time = str(datetime.now())
 
