@@ -49,6 +49,9 @@ async def for_all_time():
     start_time = datetime.utcnow() - timedelta(minutes=15)
     print(start_time)
     # выполнить агрегацию
+    query = {'$match': {
+                'DateCreate': {'$gt': start_time.isoformat()}
+            }}
     pipeline = [
         {
             '$match': {
@@ -62,7 +65,7 @@ async def for_all_time():
             }
         }
     ]
-    for doc in col.aggregate(pipeline):
+    for doc in col.find(query):
         print(doc)
         message += str(doc)
         message += '\n'
