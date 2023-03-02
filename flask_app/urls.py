@@ -149,7 +149,7 @@ async def admin():
         posts.append(order)
 
     return render_template(
-        'admin.html',
+        'templates/admin.html',
         title='Home',
         #   user=user,
         posts=posts
