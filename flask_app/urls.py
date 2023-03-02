@@ -125,7 +125,7 @@ def register():
 def login():
     try:
         username = request.form['username']
-        password = request.form['password'].encode('utf-8')
+        password = request.form['pass'].encode('utf-8')
         user = users.find_one({'name': username})
         # Получаем данные из формы
         print('user', user)
