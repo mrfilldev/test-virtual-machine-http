@@ -41,7 +41,7 @@ async def for_all_time():
     start_time = str(datetime.now())
     time_threshold = datetime.utcnow() - timedelta(minutes=15)  # момент времени 15 минутной давности
     print(start_time)
-    message = "За последние 15 минут: "
+    message += "\n За последние 15 минут: \n"
     pipeline = [
         {
             '$match': {
