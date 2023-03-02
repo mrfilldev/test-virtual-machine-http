@@ -1,11 +1,7 @@
-{% load static %}
+
 <header class="p-3 bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a class="navbar-brand" href="{% url 'navi_page:navi_page' %}">
-                <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-                <span style="color:#284C7E">auto</span><span style="color:#FFFFFF">ad</span>
-            </a>
             {% comment %}
                 Меню - список пунктов со стандартными классами Bootsrap.
                 Класс nav-pills нужен для выделения активных пунктов
@@ -13,68 +9,10 @@
             <ul class="nav nav-pills ">
 
 
-                {% if user.is_authenticated %}
-
                     <li class="nav-item">
-                        <a class="nav-link
-                                {% if request.resolver_match.view_name  == 'accom_ad:show_time' %}active{% endif %}"
-
-                           href="{% url 'accom_ad:show_time' username=user.username %}">Размещение
-                            рекламы</a>
+                        <a class="nav-link"
+                           href="{{ url_for('admin') }}">Записи Заказов</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link
-                                {% if request.resolver_match.view_name  == 'about:author' %}active{% endif %}"
-                           href="{% url 'about:author' %}">Об авторе</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link
-                                {% if request.resolver_match.view_name  == 'about:tech' %}active{% endif %}"
-                           href="{% url 'about:tech' %}">Технологии</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link
-                                {% if request.resolver_match.view_name  == 'other:profile' %}active{% endif %}"
-                           href="{% url 'other:profile' username=user.username %}">Личный кабинет</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link link-light" href="{% url 'users:logout' %}">Выйти из {{ user.username }}</a>
-                    </li>
-
-                    <li class="nav-item">
-                        online
-                    </li>
-
-                {% else %}
-
-                    <li class="nav-item">
-                        <a class="nav-link
-                                {% if request.resolver_match.view_name  == 'about:author' %}active{% endif %}"
-                           href="{% url 'about:author' %}">Об авторе</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link
-                                {% if request.resolver_match.view_name  == 'about:tech' %}active{% endif %}"
-                           href="{% url 'about:tech' %}">Технологии</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link link-light" href="{% url 'users:login' %}">Войти</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link link-light" href="{% url 'users:signup' %}">Регистрация</a>
-                    </li>
-
-                    <li class="nav-item">
-                        offline {{ user.username }}
-                    </li>
-                {% endif %}
 
             </ul>
             {# Конец добавленого в спринте #}
