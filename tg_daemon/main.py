@@ -1,7 +1,7 @@
 import datetime
 import asyncio
 from aiogram import Bot
-from config.config import Config
+from tg_config import Config
 from datetime import datetime, timedelta
 
 CHANNEL_ID = int(Config.CHANNEL_ID)
