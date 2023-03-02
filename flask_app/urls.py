@@ -17,7 +17,7 @@ import bcrypt
 app = Flask(__name__,
             static_url_path='',
             static_folder='/static',
-            #template_folder='/templates'
+            # template_folder='/templates'
             )
 bootstrap = Bootstrap(app)
 
@@ -127,21 +127,22 @@ def login():
         username = request.form['username']
         password = request.form['pass'].encode('utf-8')
         user = users.find_one({'name': username})
-        # Получаем данные из формы
+
+        if user is None:
+            return redirect(url_for('index'), ecode='101')
+            # Получаем данные из формы
         print('user', user)
         print('pass', user['password'])
+
+        if user and bcrypt.checkpw(password, user['password']):
+            session['username'] = username
+            return redirect(url_for('admin'))
+        return redirect(url_for('index'), ecode='102')
+
     except Exception as e:
         traceback.print_exc()
-        print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
-
-
-    # return Response(status=200)
-    # if user and bcrypt.checkpw(password, user['password']):
-    #     session['username'] = username
-    #     return Response(status=200)
-    #     # //return redirect(url_for('admin'))
-    #
-    # return 'Invalid username/password combination'
+        print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
+        return 'Invalid username/password combination'
 
 
 @app.route('/admin', methods=['POST', 'GET'])
