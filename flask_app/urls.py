@@ -14,7 +14,11 @@ from types import SimpleNamespace
 # from flask_pymongo import PyMongo
 import bcrypt
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='/static',
+            template_folder='/templates'
+            )
 bootstrap = Bootstrap(app)
 
 # app.config["MONGO_URI"] = Config.url
@@ -133,7 +137,7 @@ def login():
 
 @app.route('/admin', methods=['POST', 'GET'])
 async def admin():
-    user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
+    # user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
 
     posts = []
     for i in orders.find():
@@ -147,7 +151,7 @@ async def admin():
     return render_template(
         'admin.html',
         title='Home',
-        user=user,
+        #   user=user,
         posts=posts
     )
 
