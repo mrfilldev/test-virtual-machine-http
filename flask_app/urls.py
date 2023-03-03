@@ -134,7 +134,7 @@ def login():
         user = users.find_one({'name': username})
 
         if user is None:
-            return redirect(url_for('index'))#, #ecode='101')
+            return redirect(url_for('index'))  # , #ecode='101')
             # Получаем данные из формы
         print('user', user)
         print('pass', user['password'])
@@ -142,7 +142,21 @@ def login():
         if user and bcrypt.checkpw(password, user['password']):
             session['username'] = username
             return redirect(url_for('admin'))
-        #return redirect(url_for('index'), ecode='102')
+        # return redirect(url_for('index'), ecode='102')
+
+    except Exception as e:
+        traceback.print_exc()
+        print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
+        return 'Invalid username/password combination'
+
+
+@app.route('/logout', methods=['POST', 'GET'])
+def logout():
+    try:
+        if 'username' in session:
+            session['username'].pop()
+
+        return redirect(url_for('index'))
 
     except Exception as e:
         traceback.print_exc()
