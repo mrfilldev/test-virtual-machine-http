@@ -62,7 +62,8 @@
                 {{ post.SumCompleted }}
             </td>
             <td class="text-end">
-                {{ post.SumPaidStationCompleted.format(%.2f) }}
+                {{ "$%.2f"|format(post.SumPaidStationCompleted) }}
+                {{ post.SumPaidStationCompleted }}
             </td>
 
         </tr>
