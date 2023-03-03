@@ -15,9 +15,9 @@
     </title>
 </head>
 <body>
-
+{% if context is None %}
 {% include 'includes/header.html' %}
-
+{% endif %}
 <br>
 <br>
 {% block body %}
