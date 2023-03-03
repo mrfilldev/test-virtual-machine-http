@@ -13,7 +13,7 @@
                 </li>
                 {% if session['username'] %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout" aria-disabled="true">Выйти</a>
+                    <a class="nav-link" href="{{ url_for('login') }}" aria-disabled="true">Выйти</a>
                 </li>
                 {% endif %}
             </ul>
