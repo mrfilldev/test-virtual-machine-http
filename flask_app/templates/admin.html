@@ -15,33 +15,30 @@
                     <th>Великобритания</th>
                     <th>Европа</th>
                     <th>Длина ступни, см</th>
+                    <td>CarWashId</td>
+                    <td>BoxNumber</td>
+                    <td>order Id</td>
+                    <td>ContractId</td>
                 </tr>
-                <table>
-                    <tr>
-                        <td>CarWashId</td>
-                        <td>BoxNumber</td>
-                        <td>order Id</td>
-                        <td>ContractId</td>
-                    </tr>
-                </table>
-                {% for post in posts %}
-                <div><p>CarWashId: {{ post.CarWashId }}</p></div>
-                <div><p>BoxNumber: {{ post.BoxNumber }}</p></div>
-                <div><p>order Id: {{ post.Id }}</p></div>
-                <div><p>ContractId: {{ post.ContractId }}</p></div>
-                <div><p>Sum: {{ post.Sum }}</p></div>
-                <div><p>Status: {{ post.Status }}</p></div>
-                <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
-                <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
-                <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
-                {% for service in post.Services %}
-                <div><p>Services: {{ service.Id }}</p></div>
-                <div><p>Services: {{ service.Description }}</p></div>
-                <div><p>Services: {{ service.Cost }}</p></div>
-                {% endfor %}
-                <h1>____________________________________________</h1>
-                <br/>
-                {% endfor %}
+            </table>
+            {% for post in posts %}
+            <div><p>CarWashId: {{ post.CarWashId }}</p></div>
+            <div><p>BoxNumber: {{ post.BoxNumber }}</p></div>
+            <div><p>order Id: {{ post.Id }}</p></div>
+            <div><p>ContractId: {{ post.ContractId }}</p></div>
+            <div><p>Sum: {{ post.Sum }}</p></div>
+            <div><p>Status: {{ post.Status }}</p></div>
+            <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
+            <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
+            <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
+            {% for service in post.Services %}
+            <div><p>Services: {{ service.Id }}</p></div>
+            <div><p>Services: {{ service.Description }}</p></div>
+            <div><p>Services: {{ service.Cost }}</p></div>
+            {% endfor %}
+            <h1>____________________________________________</h1>
+            <br/>
+            {% endfor %}
         </div>
     </div>
 </div>
