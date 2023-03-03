@@ -3,7 +3,7 @@
 
 {% if locker %}
 {% block body %}
-
+{{ index = context['count_orders'] }}
 
 <caption>Список заказов находящихся в бд:</caption>
 
@@ -26,7 +26,7 @@
         <tr>
 
             <th scope="row">
-                <div><p>{{ index }}</p></div>
+                <div><p>{{ context['count_orders'] - current }}</p></div>
             </th>
             <td>
                 <div><p>{{ post.Id }}</p></div>
