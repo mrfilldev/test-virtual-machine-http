@@ -23,38 +23,38 @@
         {% for post in posts %}
         <tr>
             <td>
-                <div><p>CarWashId: <br>{{ post.CarWashId }}</p></div>
+                <div><p>{{ post.CarWashId }}</p></div>
             </td>
 
             <td>
-                <div><p>BoxNumber: <br>{{ post.BoxNumber }}</p></div>
+                <div><p>{{ post.BoxNumber }}</p></div>
             </td>
             <td>
-                <div><p>order Id: <br>{{ post.Id }}</p></div>
+                <div><p>{{ post.Id }}</p></div>
             </td>
             <td>
-                <div><p>ContractId: <br>{{ post.ContractId }}</p></div>
+                <div><p>{{ post.ContractId }}</p></div>
             </td>
             <td>
-                <div><p>Sum: <br>{{ post.Sum }}</p></div>
+                <div><p>{{ post.Sum }}</p></div>
             </td>
             <td>
-                <div><p>Status: <br>{{ post.Status }}</p></div>
+                <div><p>{{ post.Status }}</p></div>
             </td>
             <td>
-                <div><p>DateCreateMy: <br>{{ post.DateCreateMy }}</p></div>
+                <div><p>{{ post.DateCreateMy }}</p></div>
             </td>
             <td>
-                <div><p>SumCompleted: <br>{{ post.SumCompleted }}</p></div>
+                <div><p>{{ post.SumCompleted }}</p></div>
             </td>
             <td>
-                <div><p>SumPaidStationCompleted: <br>{{ post.SumPaidStationCompleted }}</p></div>
+                <div><p>{{ post.SumPaidStationCompleted }}</p></div>
             </td>
             <td>
                 {% for service in post.Services %}
-                <div>id услуги: <br>{{ service.Id }}</div>
-                <div>Описание: <br>{{ service.Description }}</div>
-                <div>Стоимость: <br>{{ service.Cost }}</div>
+                <div>id: <br>{{ service.Id }}</div>
+                <div>Имя: <br>{{ service.Description }}</div>
+                <div>Цена: <br>{{ service.Cost }}</div>
                 {% endfor %}
             </td>
         </tr>
