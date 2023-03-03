@@ -154,8 +154,7 @@ def login():
 def logout():
     try:
         if 'username' in session:
-            session['username'].pop()
-
+            session.pop('username', None)
         return redirect(url_for('index'))
 
     except Exception as e:
