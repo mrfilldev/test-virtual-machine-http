@@ -36,9 +36,9 @@
         <caption>Список заказов находящихся в бд:</caption>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">CarWashId</th>
-            <th scope="col">BoxNumber</th>
-            <th scope="col">order Id</th>
+            <th scope="col">Id Мойки</th>
+            <th scope="col">№ Бокса</th>
+            <th scope="col">№ Заказа</th>
             <th scope="col">ContractId</th>
             <th scope="col">Sum</th>
             <th scope="col">Status</th>
@@ -50,6 +50,17 @@
 
         {% for post in posts %}
         <tr>
+
+            <th scope="row">
+                <div><p>{{ count1 }}</p></div>
+            </th>
+            <th scope="row">
+                <div><p>{{ count2 }}</p></div>
+            </th>
+            <td>
+                <div><p>{{ post.CarWashId }}</p></div>
+            </td>
+
             <td>
                 <div><p>{{ post.CarWashId }}</p></div>
             </td>

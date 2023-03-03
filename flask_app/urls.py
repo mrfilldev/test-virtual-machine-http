@@ -168,7 +168,10 @@ async def admin():
     # user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
 
     posts = []
-    for i in orders.find():
+    all_orders = orders.find()
+    count1 = all_orders
+    count2 = len(orders.find())
+    for i in all_orders:
         print('order: ', i)
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
@@ -176,17 +179,22 @@ async def admin():
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         posts.append(order)
 
+    context = {
+        'posts': posts,
+        'locker': True,
+        'count1': count1,
+        'count2': count2
+
+    }
+
     return render_template(
         'admin.html',
-        locker=True,
-        #   user=user,
-        posts=posts
+        context=context
     )
 
 
 @app.route('/test', methods=['POST', 'GET'])
 async def test():
-
     return render_template(
         'test.html',
     )
