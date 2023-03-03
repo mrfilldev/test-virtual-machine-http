@@ -4,65 +4,62 @@
 {% if locker %}
 {% block body %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <table>
-                <caption>Список заказов находящихся в бд:</caption>
-                <tr>
-                    <th>CarWashId</th>
-                    <th>BoxNumber</th>
-                    <th>order Id</th>
-                    <th>ContractId</th>
-                    <th>Sum</th>
-                    <th>Status</th>
-                    <th>DateCreateMy</th>
-                    <th>SumCompleted</th>
-                    <th>SumPaidStationCompleted</th>
-                    <th>Services</th>
-                </tr>
 
-                {% for post in posts %}
-                <tr>
-                    <td>
-                        <div><p>CarWashId: {{ post.CarWashId }}</p></div>
-                    </td>
+    <table>
+        <caption>Список заказов находящихся в бд:</caption>
+        <tr>
+            <th>CarWashId</th>
+            <th>BoxNumber</th>
+            <th>order Id</th>
+            <th>ContractId</th>
+            <th>Sum</th>
+            <th>Status</th>
+            <th>DateCreateMy</th>
+            <th>SumCompleted</th>
+            <th>SumPaidStationCompleted</th>
+            <th>Services</th>
+        </tr>
 
-                    <td>
-                        <div><p>BoxNumber: {{ post.BoxNumber }}</p></div>
-                    </td>
-                    <td>
-                        <div><p>order Id: {{ post.Id }}</p></div>
-                    </td>
-                    <td>
-                        <div><p>ContractId: {{ post.ContractId }}</p></div>
-                    </td>
-                    <td>
-                        <div><p>Sum: {{ post.Sum }}</p></div>
-                    </td>
-                    <td>
-                        <div><p>Status: {{ post.Status }}</p></div>
-                    </td>
-                    <td>
-                        <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
-                    </td>
-                    <td>
-                        <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
-                    </td>
-                    <td>
-                        <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
-                    </td>
-                    <td>{% for service in post.Services %}
-                        <div><p>Services: {{ service.Id }}</p></div>
-                        <div><p>Services: {{ service.Description }}</p></div>
-                        <div><p>Services: {{ service.Cost }}</p></div>
-                        {% endfor %}
-                    </td>
-                </tr>
+        {% for post in posts %}
+        <tr>
+            <td>
+                <div><p>CarWashId: {{ post.CarWashId }}</p></div>
+            </td>
 
+            <td>
+                <div><p>BoxNumber: {{ post.BoxNumber }}</p></div>
+            </td>
+            <td>
+                <div><p>order Id: {{ post.Id }}</p></div>
+            </td>
+            <td>
+                <div><p>ContractId: {{ post.ContractId }}</p></div>
+            </td>
+            <td>
+                <div><p>Sum: {{ post.Sum }}</p></div>
+            </td>
+            <td>
+                <div><p>Status: {{ post.Status }}</p></div>
+            </td>
+            <td>
+                <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
+            </td>
+            <td>
+                <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
+            </td>
+            <td>
+                <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
+            </td>
+            <td>{% for service in post.Services %}
+                <div><p>Services: {{ service.Id }}</p></div>
+                <div><p>Services: {{ service.Description }}</p></div>
+                <div><p>Services: {{ service.Cost }}</p></div>
                 {% endfor %}
-            </table>
-        </div>
-    </div>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}
 
