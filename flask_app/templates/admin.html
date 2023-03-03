@@ -23,37 +23,37 @@
         {% for post in posts %}
         <tr>
             <td>
-                <div><p>CarWashId: {{ post.CarWashId }}</p></div>
+                <div><p>CarWashId: <br>{{ post.CarWashId }}</p></div>
             </td>
 
             <td>
-                <div><p>BoxNumber: {{ post.BoxNumber }}</p></div>
+                <div><p>BoxNumber: <br>{{ post.BoxNumber }}</p></div>
             </td>
             <td>
-                <div><p>order Id: {{ post.Id }}</p></div>
+                <div><p>order Id: <br>{{ post.Id }}</p></div>
             </td>
             <td>
-                <div><p>ContractId: {{ post.ContractId }}</p></div>
+                <div><p>ContractId: <br>{{ post.ContractId }}</p></div>
             </td>
             <td>
-                <div><p>Sum: {{ post.Sum }}</p></div>
+                <div><p>Sum: <br>{{ post.Sum }}</p></div>
             </td>
             <td>
-                <div><p>Status: {{ post.Status }}</p></div>
+                <div><p>Status: <br>{{ post.Status }}</p></div>
             </td>
             <td>
-                <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
+                <div><p>DateCreateMy: <br>{{ post.DateCreateMy }}</p></div>
             </td>
             <td>
-                <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
+                <div><p>SumCompleted: <br>{{ post.SumCompleted }}</p></div>
             </td>
             <td>
-                <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
+                <div><p>SumPaidStationCompleted: <br>{{ post.SumPaidStationCompleted }}</p></div>
             </td>
             <td>{% for service in post.Services %}
-                <div><p>Services: {{ service.Id }}</p></div>
-                <div><p>Services: {{ service.Description }}</p></div>
-                <div><p>Services: {{ service.Cost }}</p></div>
+                <div><p>Services: <br>{{ service.Id }}</p></div>
+                <div><p>Services: <br>{{ service.Description }}</p></div>
+                <div><p>Services: <br>{{ service.Cost }}</p></div>
                 {% endfor %}
             </td>
         </tr>
