@@ -182,8 +182,7 @@ async def admin():
     context = {
         'posts': posts,
         'locker': True,
-        'count1': count1,
-        'count2': count2
+        'count1': count_orders,
 
     }
 
