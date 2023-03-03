@@ -22,13 +22,6 @@
                     <th>SumPaidStationCompleted</th>
                     <th>Services</th>
                 </tr>
-                <tr>
-                    <td>CarWashId</td>
-                    <td>BoxNumber</td>
-                    <td>order Id</td>
-                    <td>ContractId</td>
-                </tr>
-
                 {% for post in posts %}
                 <td>
                     <div><p>CarWashId: {{ post.CarWashId }}</p></div>
@@ -63,9 +56,6 @@
                     <div><p>Services: {{ service.Cost }}</p></div>
                     {% endfor %}
                 </td>
-
-            <h1>____________________________________________</h1>
-            <br/>
             {% endfor %}
             </table>
         </div>
