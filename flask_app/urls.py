@@ -184,6 +184,14 @@ async def admin():
     )
 
 
+@app.route('/test', methods=['POST', 'GET'])
+async def test():
+
+    return render_template(
+        'test.html',
+    )
+
+
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.config['SECRET_KEY'] = Config.SECRET_KEY
