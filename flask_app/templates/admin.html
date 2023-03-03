@@ -45,6 +45,13 @@
                 <div><p>{{ post.BoxNumber }}</p></div>
             </td>
             <td>
+                {% for service in post.Services %}
+                <div>id: <br>{{ service.Id }}</div>
+                <div>Имя: <br>{{ service.Description }}</div>
+                <div>Цена: <br>{{ service.Cost }}</div>
+                {% endfor %}
+            </td>
+            <td>
                 <div><p>{{ post.Sum }}</p></div>
             </td>
             <td>
@@ -59,13 +66,7 @@
             <td>
                 <div><p>{{ post.SumPaidStationCompleted }}</p></div>
             </td>
-            <td>
-                {% for service in post.Services %}
-                <div>id: <br>{{ service.Id }}</div>
-                <div>Имя: <br>{{ service.Description }}</div>
-                <div>Цена: <br>{{ service.Cost }}</div>
-                {% endfor %}
-            </td>
+
         </tr>
 
         {% endfor %}
