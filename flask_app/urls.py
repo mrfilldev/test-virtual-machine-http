@@ -155,7 +155,7 @@ def logout():
     try:
         if 'username' in session:
             session.pop('username', None)
-        return redirect(url_for('login'))
+        return redirect(url_for('/'))
 
     except Exception as e:
         traceback.print_exc()
