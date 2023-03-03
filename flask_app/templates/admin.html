@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-
+{% if logged_in %}
 {% block body %}
 
 <h1>Список заказов находящихся в бд:</h1>
@@ -25,3 +25,6 @@
 <br/>
 {% endfor %}
 {% endblock %}
+
+{% else %}
+
