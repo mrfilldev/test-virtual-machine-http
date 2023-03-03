@@ -8,15 +8,15 @@
     <table border=1 style="border: #4f5050">
         <caption>Список заказов находящихся в бд:</caption>
         <tr>
-            <th>CarWashId </th>
-            <th>BoxNumber </th>
-            <th>order Id </th>
-            <th>ContractId </th>
-            <th>Sum </th>
-            <th>Status </th>
-            <th>DateCreateMy </th>
-            <th>SumCompleted </th>
-            <th>SumPaidStationCompleted </th>
+            <th>CarWashId</th>
+            <th>BoxNumber</th>
+            <th>order Id</th>
+            <th>ContractId</th>
+            <th>Sum</th>
+            <th>Status</th>
+            <th>DateCreateMy</th>
+            <th>SumCompleted</th>
+            <th>SumPaidStationCompleted</th>
             <th>Services</th>
         </tr>
 
@@ -50,10 +50,11 @@
             <td>
                 <div><p>SumPaidStationCompleted: <br>{{ post.SumPaidStationCompleted }}</p></div>
             </td>
-            <td>{% for service in post.Services %}
-                <div><p>Services: <br>{{ service.Id }}</p></div>
-                <div><p>Services: <br>{{ service.Description }}</p></div>
-                <div><p>Services: <br>{{ service.Cost }}</p></div>
+            <td>
+                {% for service in post.Services %}
+                <div>id услуги: <br>{{ service.Id }}</div>
+                <div>Описание: <br>{{ service.Description }}</div>
+                <div>Стоимость: <br>{{ service.Cost }}</div>
                 {% endfor %}
             </td>
         </tr>
