@@ -100,7 +100,7 @@ async def make_carwash_order():
 @app.route('/')
 def index():
     if 'username' in session:
-        return 'You are logged in as ' + session['username']
+        return redirect(url_for('admin'))
 
     return render_template('index.html')
 
