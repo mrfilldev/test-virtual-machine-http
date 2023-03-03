@@ -26,14 +26,14 @@
         <tr>
 
             <th scope="row">
-                <div><p>{{ context['count_orders'] }}</p></div>
+                <div><p>{% context['count_orders'] -1 %}</p></div>
             </th>
             <td>
                 <div><p>{{ post.Id }}</p></div>
             </td>
 
             <td>
-                <div><p>{{ post.DateCreateMy }}</p></div>
+                <div><p>{{ post.DateCreateMy.format("dd.MM.yyyy") }}</p></div>
             </td>
 
             <td>
@@ -60,7 +60,7 @@
                 {{ post.Sum }}
             </td>
             <td class="text-end">
-                {{ post.SumCompleted }}
+                {{ post.SumCompleted.format("N2") }}
             </td>
             <td class="text-end">
                 {{ post.SumPaidStationCompleted }}
