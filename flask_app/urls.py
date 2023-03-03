@@ -176,10 +176,8 @@ async def admin():
         data = json.dumps(data, default=lambda x: x.__dict__)
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         posts.append(order)
-
     context = {
         'posts': posts,
-        'locker': True,
         'count_orders': count_orders,
 
     }
