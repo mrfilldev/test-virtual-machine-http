@@ -46,9 +46,9 @@
             </td>
             <td>
                 {% for service in post.Services %}
-                <div>id: <br>{{ service.Id }}</div>
-                <div>Имя: <br>{{ service.Description }}</div>
-                <div>Цена: <br>{{ service.Cost }}</div>
+                <div>id: {{ service.Id }}</div>
+                <div>Имя: {{ service.Description }}</div>
+                <div>Цена: {{ service.Cost }}</div>
                 {% endfor %}
             </td>
             <td>
