@@ -119,7 +119,7 @@ def register():
 
             return 'That username already exists!'
 
-        return render_template('register.html')
+        return render_template('users/register.html')
     except Exception as e:
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
