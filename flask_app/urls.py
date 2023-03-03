@@ -178,7 +178,7 @@ async def admin():
 
     return render_template(
         'admin.html',
-        title='Home',
+        locker=True,
         #   user=user,
         posts=posts
     )
