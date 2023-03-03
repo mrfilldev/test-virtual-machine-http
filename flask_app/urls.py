@@ -155,7 +155,7 @@ def logout():
     try:
         if 'username' in session:
             session.pop('username', None)
-        return render_template('users/logged_out.html')
+        return render_template('users/login.html')
 
     except Exception as e:
         traceback.print_exc()
