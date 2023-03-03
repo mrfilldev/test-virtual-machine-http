@@ -22,8 +22,9 @@
                     <th>SumPaidStationCompleted</th>
                     <th>Services</th>
                 </tr>
+
+                {% for post in posts %}
                 <tr>
-                    {% for post in posts %}
                     <td>
                         <div><p>CarWashId: {{ post.CarWashId }}</p></div>
                     </td>
@@ -58,8 +59,9 @@
                         <div><p>Services: {{ service.Cost }}</p></div>
                         {% endfor %}
                     </td>
-                    {% endfor %}
                 </tr>
+
+                {% endfor %}
             </table>
         </div>
     </div>
