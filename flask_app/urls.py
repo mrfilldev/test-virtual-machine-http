@@ -172,10 +172,8 @@ async def admin():
     count_orders = 0
     for i in all_orders:
         count_orders +=1
-        print('order: ', i)
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
-        print('data: ', type(data), data, '\n')
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         posts.append(order)
 
