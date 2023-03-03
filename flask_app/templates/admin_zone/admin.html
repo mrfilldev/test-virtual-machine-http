@@ -6,6 +6,7 @@
 
 
 <caption>Список заказов находящихся в бд:</caption>
+
 <table class="table table-striped table-bordered">
         <tr>
             <th scope="col">#</th>
@@ -55,14 +56,14 @@
                 <div><p>{{ post.Status }}</p></div>
             </td>
 
-            <td>
-                <div><p class="text-right">{{ post.Sum }}</p></div>
+            <td class="text-right">
+                {{ post.Sum }}
             </td>
-            <td>
-                <div><p>{{ post.SumCompleted }}</p></div>
+            <td class="text-right">
+                {{ post.SumCompleted }}
             </td>
-            <td>
-                <div><p>{{ post.SumPaidStationCompleted }}</p></div>
+            <td class="text-right">
+                {{ post.SumPaidStationCompleted }}
             </td>
 
         </tr>
