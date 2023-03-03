@@ -15,6 +15,12 @@
                     <th>BoxNumber</th>
                     <th>order Id</th>
                     <th>ContractId</th>
+                    <th>Sum</th>
+                    <th>Status</th>
+                    <th>DateCreateMy</th>
+                    <th>SumCompleted</th>
+                    <th>SumPaidStationCompleted</th>
+                    <th>Services</th>
                 </tr>
                 <tr>
                     <td>CarWashId</td>
@@ -22,41 +28,42 @@
                     <td>order Id</td>
                     <td>ContractId</td>
                 </tr>
+
+                {% for post in posts %}
+                <td>
+                    <div><p>CarWashId: {{ post.CarWashId }}</p></div>
+                </td>
+                <td>
+                    <div><p>BoxNumber: {{ post.BoxNumber }}</p></div>
+                </td>
+                <td>
+                    <div><p>order Id: {{ post.Id }}</p></div>
+                </td>
+                <td>
+                    <div><p>ContractId: {{ post.ContractId }}</p></div>
+                </td>
+                <td>
+                    <div><p>Sum: {{ post.Sum }}</p></div>
+                </td>
+                <td>
+                    <div><p>Status: {{ post.Status }}</p></div>
+                </td>
+                <td>
+                    <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
+                </td>
+                <td>
+                    <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
+                </td>
+                <td>
+                    <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
+                </td>
+                <td>{% for service in post.Services %}
+                    <div><p>Services: {{ service.Id }}</p></div>
+                    <div><p>Services: {{ service.Description }}</p></div>
+                    <div><p>Services: {{ service.Cost }}</p></div>
+                    {% endfor %}
+                </td>
             </table>
-            {% for post in posts %}
-            <td>
-                <div><p>CarWashId: {{ post.CarWashId }}</p></div>
-            </td>
-            <td>
-                <div><p>BoxNumber: {{ post.BoxNumber }}</p></div>
-            </td>
-            <td>
-                <div><p>order Id: {{ post.Id }}</p></div>
-            </td>
-            <td>
-                <div><p>ContractId: {{ post.ContractId }}</p></div>
-            </td>
-            <td>
-                <div><p>Sum: {{ post.Sum }}</p></div>
-            </td>
-            <td>
-                <div><p>Status: {{ post.Status }}</p></div>
-            </td>
-            <td>
-                <div><p>DateCreateMy: {{ post.DateCreateMy }}</p></div>
-            </td>
-            <td>
-                <div><p>SumCompleted: {{ post.SumCompleted }}</p></div>
-            </td>
-            <td>
-                <div><p>SumPaidStationCompleted: {{ post.SumPaidStationCompleted }}</p></div>
-            </td>
-            <td>{% for service in post.Services %}
-                <div><p>Services: {{ service.Id }}</p></div>
-                <div><p>Services: {{ service.Description }}</p></div>
-                <div><p>Services: {{ service.Cost }}</p></div>
-                {% endfor %}
-            </td>
             <h1>____________________________________________</h1>
             <br/>
             {% endfor %}
