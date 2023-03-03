@@ -9,16 +9,16 @@
         <caption>Список заказов находящихся в бд:</caption>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">№ Заказа</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Id Контракта</th>
             <th scope="col">Id Мойки</th>
             <th scope="col">№ Бокса</th>
-            <th scope="col">№ Заказа</th>
-            <th scope="col">ContractId</th>
-            <th scope="col">Sum</th>
-            <th scope="col">Status</th>
-            <th scope="col">DateCreateMy</th>
-            <th scope="col">SumCompleted</th>
-            <th scope="col">SumPaidStationCompleted</th>
-            <th scope="col">Services</th>
+            <th scope="col">Предоставленные сервисы</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Сумма совершенной оплаты</th>
+            <th scope="col">Сумма списания</th>
+            <th scope="col">Сумма оплаты партнеру</th>
         </tr>
 
         {% for post in context['posts'] %}
