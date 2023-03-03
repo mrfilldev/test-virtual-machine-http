@@ -187,7 +187,7 @@ async def admin():
     }
 
     return render_template(
-        'admin.html',
+        'admin_zone/admin.html',
         context=context
     )
 
