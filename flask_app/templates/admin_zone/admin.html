@@ -25,7 +25,7 @@
         <tr>
 
             <th scope="row">
-                <div><p>{{ context['count_orders'] - current }}</p></div>
+                <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
             </th>
             <td>
                 <div><p>{{ post.Id }}</p></div>
