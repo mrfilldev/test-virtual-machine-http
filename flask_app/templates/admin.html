@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-{% if logged_in %}
+{% if locker %}
 {% block body %}
 
 <h1>Список заказов находящихся в бд:</h1>
@@ -27,4 +27,6 @@
 {% endblock %}
 
 {% else %}
+{% endif %}
+
 
