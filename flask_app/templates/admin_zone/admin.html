@@ -23,7 +23,7 @@
         </tr>
 
         {% for post in context['posts'] %}
-        <tr onclick="document.location='page/new.html'">
+        <tr onclick="document.location='order/ {% post.Id %} .html'">
 
             <th scope="row">
                 <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
