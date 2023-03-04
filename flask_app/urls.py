@@ -102,7 +102,7 @@ def index():
     if 'username' in session:
         return redirect(url_for('admin'))
 
-    return render_template('index.html')
+    return render_template('users/index.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
