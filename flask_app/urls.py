@@ -193,11 +193,6 @@ async def test():
     return render_template(
         'test.html',
     )
-@app.route('/secret', methods=['POST', 'GET'])
-async def secret():
-    return render_template(
-        'secret.html',
-    )
 
 
 if __name__ == '__main__':
