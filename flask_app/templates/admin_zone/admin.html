@@ -33,48 +33,48 @@
     </tr>
 
     {% for post in context['posts'] %}
-    <tr data-href="{{ url_for('post', post_id=post.Id) }}">
+    <tr data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
         <th scope="row">
             <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
         </th>
         <td>
-            <div><p>{{ post.Id }}</p></div>
+            <div><p>{{ order.Id }}</p></div>
         </td>
 
         <td>
-            <div><p>{{ post.DateCreateMy }}</p></div>
+            <div><p>{{ order.DateCreateMy }}</p></div>
         </td>
 
         <td>
-            <div><p>{{ post.ContractId }}</p></div>
+            <div><p>{{ order.ContractId }}</p></div>
         </td>
         <td>
-            <div><p>{{ post.CarWashId }}</p></div>
+            <div><p>{{ order.CarWashId }}</p></div>
         </td>
         <td>
-            <div><p>{{ post.BoxNumber }}</p></div>
+            <div><p>{{ order.BoxNumber }}</p></div>
         </td>
         <td>
-            {% for service in post.Services %}
+            {% for service in order.Services %}
             <div>id: {{ service.Id }}</div>
             <div>Имя: {{ service.Description }}</div>
             <div>Цена: {{ service.Cost }}</div>
             {% endfor %}
         </td>
         <td>
-            <div><p>{{ post.Status }}</p></div>
+            <div><p>{{ order.Status }}</p></div>
         </td>
 
         <td class="text-end">
-            {{ post.Sum }}
+            {{ order.Sum }}
         </td>
         <td class="text-end">
-            {{ post.SumCompleted }}
+            {{ order.SumCompleted }}
         </td>
         <td class="text-end">
 
-            {{ post.SumPaidStationCompleted }} &#8381
+            {{ order.SumPaidStationCompleted }} &#8381
         </td>
 
     </tr>
