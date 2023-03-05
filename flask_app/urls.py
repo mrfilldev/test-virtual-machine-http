@@ -167,7 +167,7 @@ def logout():
 async def admin():
     # user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
 
-    posts = []
+    orders = []
     all_orders = orders.find()
     count_orders = 0
     for i in all_orders:
@@ -175,9 +175,9 @@ async def admin():
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        posts.append(order)
+        orders.append(order)
     context = {
-        'posts': posts,
+        'orders': orders,
         'count_orders': count_orders,
 
     }
