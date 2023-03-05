@@ -8,79 +8,79 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $('tr').on('click', function() {
-          var id = $(this).attr('id');
-          alert('You clicked row with ID ' + id);
+<script>
+    $(document).ready(function () {
+        $('table tbody tr').click(function () {
+            window.location = $(this).data('href');
+            return false;
         });
-      });
-    </script>
+    });
+</script>
 
 <table class="table table-striped table-bordered">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">№ Заказа</th>
-            <th scope="col">Дата создания</th>
-            <th scope="col">Id Контракта</th>
-            <th scope="col">Id Мойки</th>
-            <th scope="col">№ Бокса</th>
-            <th scope="col">Предоставленные сервисы</th>
-            <th scope="col">Статус</th>
-            <th scope="col">Сумма стоимости заказа</th>
-            <th scope="col">Сумма списания</th>
-            <th scope="col">Выплачено партнеру</th>
-        </tr>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">№ Заказа</th>
+        <th scope="col">Дата создания</th>
+        <th scope="col">Id Контракта</th>
+        <th scope="col">Id Мойки</th>
+        <th scope="col">№ Бокса</th>
+        <th scope="col">Предоставленные сервисы</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Сумма стоимости заказа</th>
+        <th scope="col">Сумма списания</th>
+        <th scope="col">Выплачено партнеру</th>
+    </tr>
 
-        {% for post in context['posts'] %}
-        <tr id="{{ post.Id }}">
+    {% for post in context['posts'] %}
+    <tr data-href="{{ url_for('post', post_id=post.Id) }}">
 
-            <th scope="row">
-                <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
-            </th>
-            <td>
-                <div><p>{{ post.Id }}</p></div>
-            </td>
+        <th scope="row">
+            <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
+        </th>
+        <td>
+            <div><p>{{ post.Id }}</p></div>
+        </td>
 
-            <td>
-                <div><p>{{ post.DateCreateMy }}</p></div>
-            </td>
+        <td>
+            <div><p>{{ post.DateCreateMy }}</p></div>
+        </td>
 
-            <td>
-                <div><p>{{ post.ContractId }}</p></div>
-            </td>
-            <td>
-                <div><p>{{ post.CarWashId }}</p></div>
-            </td>
-            <td>
-                <div><p>{{ post.BoxNumber }}</p></div>
-            </td>
-            <td>
-                {% for service in post.Services %}
-                <div>id: {{ service.Id }}</div>
-                <div>Имя: {{ service.Description }}</div>
-                <div>Цена: {{ service.Cost }}</div>
-                {% endfor %}
-            </td>
-            <td>
-                <div><p>{{ post.Status }}</p></div>
-            </td>
+        <td>
+            <div><p>{{ post.ContractId }}</p></div>
+        </td>
+        <td>
+            <div><p>{{ post.CarWashId }}</p></div>
+        </td>
+        <td>
+            <div><p>{{ post.BoxNumber }}</p></div>
+        </td>
+        <td>
+            {% for service in post.Services %}
+            <div>id: {{ service.Id }}</div>
+            <div>Имя: {{ service.Description }}</div>
+            <div>Цена: {{ service.Cost }}</div>
+            {% endfor %}
+        </td>
+        <td>
+            <div><p>{{ post.Status }}</p></div>
+        </td>
 
-            <td class="text-end">
-                {{ post.Sum }}
-            </td>
-            <td class="text-end">
-                {{ post.SumCompleted }}
-            </td>
-            <td class="text-end">
+        <td class="text-end">
+            {{ post.Sum }}
+        </td>
+        <td class="text-end">
+            {{ post.SumCompleted }}
+        </td>
+        <td class="text-end">
 
-                {{ post.SumPaidStationCompleted }}	&#8381
-            </td>
+            {{ post.SumPaidStationCompleted }} &#8381
+        </td>
 
-        </tr>
+    </tr>
 
-        {% endfor %}
-    </table>
+    {% endfor %}
+</table>
 
 {% endblock %}
 
