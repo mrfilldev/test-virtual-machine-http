@@ -171,7 +171,7 @@ async def admin():
     all_orders = orders.find()
     count_orders = 0
     for i in all_orders:
-        count_orders +=1
+        count_orders += 1
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
@@ -189,6 +189,13 @@ async def admin():
 
 
 @app.route('/test', methods=['POST', 'GET'])
+async def test():
+    return render_template(
+        'test.html',
+    )
+
+
+@app.route('/order_detail/<int:order_id>', methods=['POST', 'GET'])
 async def test():
     return render_template(
         'test.html',
