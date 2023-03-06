@@ -228,7 +228,7 @@ def format_datetime(value):
     #print(variant)
     value = value.replace('T', ' ').replace('Z', '')
     date_time_obj = datetime.strptime(value, '%Y-%m-%d %H:%M:%S.%f')
-    result = f"Дата: {date_time_obj.date()} \n Время: {date_time_obj.time()}"
+    result = f"Дата создания: {date_time_obj.date()} \nВремя создания: {date_time_obj.time()}"
 
 
     print(result)
