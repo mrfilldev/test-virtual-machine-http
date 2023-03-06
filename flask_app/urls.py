@@ -224,8 +224,8 @@ async def order_detail(order_id):
 
 @app.template_filter()
 def format_datetime(value):
-    variant = value.strftime('%Y-%m-%d')
-    print(variant)
+    #variant = value.strftime('%Y-%m-%d')
+    #print(variant)
     value = value.replace('T', ' ').replace('Z', '')
     date_time_obj = datetime.strptime(value, '%Y-%m-%d %H:%M:%S.%f')
     result = f"Дата: {date_time_obj.date()} \n Время: {date_time_obj.time()}"
