@@ -24,7 +24,7 @@
         </td>
 
         <td>
-            <div><p>{{ strftime('%H:%M%:%S',context['order'].DateCreateMy) }}</p></div>
+            <div><p>{{ context['order'].DateCreateMy.strftime('%Y-%m-%d') }}</p></div>
         </td>
 
         <td>
