@@ -197,8 +197,10 @@ async def test():
 
 @app.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
 async def order_detail(order_id):
+
+
     return render_template(
-        'test.html',
+        'admin_zone/order_detail.html',
     )
 
 
