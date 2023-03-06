@@ -38,9 +38,9 @@
         </td>
         <td>
             {% for service in context['order'].Services %}
-            id: {{ service.Id }}
-            Имя: {{ service.Description }}
-            Цена: {{ service.Cost }}
+            id: {{ service.Id}}}<br>
+            Имя: {{ service.Description }}<br>
+            Цена: {{ service.Cost }}<br>
             {% endfor %}
         </td>
         <td>
