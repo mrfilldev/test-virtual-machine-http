@@ -21,42 +21,42 @@
     <tr>
 
         <td>
-            <div><p>{{ order.Id }}</p></div>
+            <div><p>{{ context['order'].Id }}</p></div>
         </td>
 
         <td>
-            <div><p>{{ order.DateCreateMy }}</p></div>
+            <div><p>{{ context['order'].DateCreateMy }}</p></div>
         </td>
 
         <td>
-            <div><p>{{ order.ContractId }}</p></div>
+            <div><p>{{ context['order'].ContractId }}</p></div>
         </td>
         <td>
-            <div><p>{{ order.CarWashId }}</p></div>
+            <div><p>{{ context['order'].CarWashId }}</p></div>
         </td>
         <td>
-            <div><p>{{ order.BoxNumber }}</p></div>
+            <div><p>{{ context['order'].BoxNumber }}</p></div>
         </td>
         <td>
-            {% for service in order.Services %}
+            {% for service in context['order'].Services %}
             <div>id: {{ service.Id }}</div>
             <div>Имя: {{ service.Description }}</div>
             <div>Цена: {{ service.Cost }}</div>
             {% endfor %}
         </td>
         <td>
-            <div><p>{{ order.Status }}</p></div>
+            <div><p>{{ context['order'].Status }}</p></div>
         </td>
 
         <td class="text-end">
-            {{ order.Sum }}
+            {{ context['order'].Sum }}
         </td>
         <td class="text-end">
-            {{ order.SumCompleted }}
+            {{ context['order'].SumCompleted }}
         </td>
         <td class="text-end">
 
-            {{ order.SumPaidStationCompleted }} &#8381
+            {{ context['order'].SumPaidStationCompleted }} &#8381
         </td>
 
     </tr>
