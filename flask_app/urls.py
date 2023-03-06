@@ -136,8 +136,8 @@ def login():
         if user is None:
             return redirect(url_for('index'))  # , #ecode='101')
             # Получаем данные из формы
-        print('user', user)
-        print('pass', user['password'])
+        #print('user', user)
+        #print('pass', user['password'])
 
         if user and bcrypt.checkpw(password, user['password']):
             session['username'] = username
