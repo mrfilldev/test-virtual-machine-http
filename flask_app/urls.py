@@ -220,11 +220,6 @@ async def order_detail(order_id):
     )
 
 
-from flask import Flask
-import babel
-
-app = Flask(__name__)
-
 @app.template_filter()
 def format_datetime(value):
     result = value.replace('T', ' ')
@@ -232,6 +227,7 @@ def format_datetime(value):
     result = result.replace('Z', '')
     print(result)
     return result
+
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
