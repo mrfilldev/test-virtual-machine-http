@@ -48,15 +48,15 @@
         </td>
 
         <td class="text-end">
-            {{ context['order'].Sum }} <br>
-            {{'%0.2f'| format(context['order'].Sum|float)}}
+            {{'%0.2f'| format(context['order'].Sum|float)}}&#8381
 
         </td>
         <td class="text-end">
-            {{ context['order'].SumCompleted }}
+            {{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381
+
         </td>
         <td class="text-end">
-            {{ context['order'].SumPaidStationCompleted }} &#8381
+            {{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381
         </td>
 
     </tr>
