@@ -206,7 +206,7 @@ async def order_detail(order_id):
         'order': order_obj
     }
     return render_template(
-        'admin_zone/order_detail.html.html',
+        'admin_zone/order_detail.html',
         context=context
     )
 
