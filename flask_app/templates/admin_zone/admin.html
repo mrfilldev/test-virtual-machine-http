@@ -67,20 +67,16 @@
         </td>
 
         <td class="text-end">
-            {% set number = order.Sum %}
-            {{'%0.2f'| format(number|float)}}&#8381
-
+            {{ order.Sum }}
         </td>
         <td class="text-end">
-            {% set number = order.SumCompleted %}
-            {{'%0.2f'| format(number|float)}}&#8381
-
+            {{ order.SumCompleted }}
         </td>
         <td class="text-end">
-            {% set number = order.SumPaidStationCompleted %}
 
-            {{'%0.2f'| format(number|float)}}&#8381
+            {{ order.SumPaidStationCompleted }} &#8381
         </td>
+
     </tr>
 
     {% endfor %}
