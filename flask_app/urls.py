@@ -175,6 +175,7 @@ async def admin():
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print(order)
         orders_list.append(order)
     context = {
         'orders': orders_list,
