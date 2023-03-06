@@ -4,7 +4,7 @@
 <caption>Список заказов находящихся в бд:</caption>
 
 <table class="table table-striped table-bordered">
-    <td>
+    <tr>
         <th scope="col">№ Заказа</th>
         <th scope="col">Дата создания</th>
         <th scope="col">Id Контракта</th>
@@ -15,49 +15,49 @@
         <th scope="col">Сумма стоимости заказа</th>
         <th scope="col">Сумма списания</th>
         <th scope="col">Выплачено партнеру</th>
-    </td>
+    </tr>
 
-    <td>
+    <tr>
 
-        <tr>
+        <td>
             <div><p>{{ context['order'].Id }}</p></div>
-        </tr>
+        </td>
 
-        <tr>
+        <td>
             <div><p>{{ context['order'].DateCreateMy }}</p></div>
-        </tr>
+        </td>
 
-        <tr>
+        <td>
             <div><p>{{ context['order'].ContractId }}</p></div>
-        </tr>
-        <tr>
+        </td>
+        <td>
             <div><p>{{ context['order'].CarWashId }}</p></div>
-        </tr>
-        <tr>
+        </td>
+        <td>
             <div><p>{{ context['order'].BoxNumber }}</p></div>
-        </tr>
-        <tr>
+        </td>
+        <td>
             {% for service in context['order'].Services %}
             <div>id: {{ service.Id }}</div>
             <div>Имя: {{ service.Description }}</div>
             <div>Цена: {{ service.Cost }}</div>
             {% endfor %}
-        </tr>
-        <tr>
+        </td>
+        <td>
             <div><p>{{ context['order'].Status }}</p></div>
-        </tr>
+        </td>
 
-        <tr class="text-end">
+        <td class="text-end">
             {{ context['order'].Sum }}
-        </tr>
-        <tr class="text-end">
+        </td>
+        <td class="text-end">
             {{ context['order'].SumCompleted }}
-        </tr>
-        <tr class="text-end">
+        </td>
+        <td class="text-end">
             {{ context['order'].SumPaidStationCompleted }} &#8381
-        </tr>
+        </td>
 
-    </td>
+    </tr>
 
 </table>
 
