@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 import traceback
+
+import babel
 import boto3
+import dateutil
 from bson import json_util
 from flask import Flask, render_template, url_for, request, session, redirect, Response
+from jinja2 import environment
+
 import carwash_list
 import carwash_order
 import ping_carwash_box
@@ -136,8 +141,8 @@ def login():
         if user is None:
             return redirect(url_for('index'))  # , #ecode='101')
             # Получаем данные из формы
-        #print('user', user)
-        #print('pass', user['password'])
+        # print('user', user)
+        # print('pass', user['password'])
 
         if user and bcrypt.checkpw(password, user['password']):
             session['username'] = username
@@ -214,6 +219,12 @@ async def order_detail(order_id):
         context=context
     )
 
+
+def datetime_format(value, format="%H:%M %d-%m-%y"):
+    return value.strftime(format)
+
+
+environment.filters["datetime_format"] = datetime_format
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
