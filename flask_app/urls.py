@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import traceback
-
+import jinja2
 import babel
 import boto3
 import dateutil
@@ -220,11 +220,18 @@ async def order_detail(order_id):
     )
 
 
-def datetime_format(value, format="%H:%M %d-%m-%y"):
-    return value.strftime(format)
+from flask import Flask
+import babel
 
+app = Flask(__name__)
 
-environment.filters["datetime_format"] = datetime_format
+@app.template_filter()
+def format_datetime(value):
+    result = value.replace('T', ' ')
+    print(result)
+    result = result.replace('Z', '')
+    print(result)
+    return result
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'

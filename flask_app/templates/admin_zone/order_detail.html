@@ -24,7 +24,7 @@
         </td>
 
         <td>
-            <div><p>{{ context['order'].DateCreate | iso8601_to_time | datetimeformat('%a, %B %d') }}</p></div>
+            <div><p>{{ context['order'].DateCreate | format_datetime }}</p></div>
         </td>
 
         <td>
