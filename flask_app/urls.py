@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from dateutil import parser
 import traceback
 from datetime import datetime
 
@@ -226,13 +227,11 @@ async def order_detail(order_id):
 def format_datetime(value):
     #variant = value.strftime('%Y-%m-%d')
     #print(variant)
-    value = value.replace('T', ' ').replace('Z', '')
-    date_time_obj = datetime.strptime(value, '%Y-%m-%d %H:%M:%S.%f')
-    result = f"Дата {date_time_obj.date()} <br> Время {date_time_obj.time()}"
-
-
-    print(result)
-    return result
+    value = parser.parse(value)
+    print(value)
+    value = value.strftime("%m/%d/%y %H:%M:%S")
+    print(value)
+    return value
 
 
 if __name__ == '__main__':
