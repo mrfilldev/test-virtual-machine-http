@@ -30,6 +30,8 @@ class Config(object):
         url,
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
     db_orders = client['orders']
+    db_users = client['users']
+
     col_orders = db_orders["test_orders"]
-    col_users = db_orders["test_users"]
+    col_users = db_users["test_users"]
 

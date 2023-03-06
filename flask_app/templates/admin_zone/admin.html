@@ -68,6 +68,8 @@
 
         <td class="text-end">
             {{ order.Sum }}
+            {{'%0.2f'| format(order.Sum|float)}}&#8381
+
         </td>
         <td class="text-end">
             {{ order.SumCompleted }}
