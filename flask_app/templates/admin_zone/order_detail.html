@@ -20,31 +20,31 @@
     <tr>
 
         <td>
-            <div><p>{{ context['order'].Id }}</p></div>
+            {{ context['order'].Id }}
         </td>
 
         <td>
-            <div><p>{{ context['order'].DateCreate | format_datetime }}</p></div>
+            {{ context['order'].DateCreate | format_datetime }}
         </td>
 
         <td>
-            <div><p>{{ context['order'].ContractId }}</p></div>
+            {{ context['order'].ContractId }}
         </td>
         <td>
-            <div><p>{{ context['order'].CarWashId }}</p></div>
+            {{ context['order'].CarWashId }}
         </td>
         <td>
-            <div><p>{{ context['order'].BoxNumber }}</p></div>
+            {{ context['order'].BoxNumber }}
         </td>
         <td>
             {% for service in context['order'].Services %}
-            <div>id: {{ service.Id }}</div>
-            <div>Имя: {{ service.Description }}</div>
-            <div>Цена: {{ service.Cost }}</div>
+            id: {{ service.Id }}
+            Имя: {{ service.Description }}
+            Цена: {{ service.Cost }}
             {% endfor %}
         </td>
         <td>
-            <div><p>{{ context['order'].Status }}</p></div>
+            {{ context['order'].Status }}
         </td>
 
         <td class="text-end">

@@ -35,34 +35,33 @@
     <tr data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
         <th scope="row">
-            <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
+            {{ context['count_orders'] - loop.index0 }}
         </th>
         <td>
-            <div><p>{{ order.Id }}</p></div>
+            {{ order.Id }}
         </td>
 
         <td>
-            <div><p>{{ order.DateCreate | format_datetime }}</p></div>
+            {{ order.DateCreate | format_datetime }}
         </td>
 
         <td>
-            <div><p>{{ order.ContractId }}</p></div>
+            {{ order.ContractId }}
         </td>
         <td>
-            <div><p>{{ order.CarWashId }}</p></div>
+            {{ order.CarWashId }}
         </td>
         <td>
-            <div><p>{{ order.BoxNumber }}</p></div>
+            {{ order.BoxNumber }}
         </td>
         <td>
+            Имя:
             {% for service in order.Services %}
-            <div>id: {{ service.Id }}</div>
-            <div>Имя: {{ service.Description }}</div>
-            <div>Цена: {{ service.Cost }}</div>
+            {{ service.Description }}
             {% endfor %}
         </td>
         <td>
-            <div><p>{{ order.Status }}</p></div>
+            {{ order.Status }}
         </td>
 
         <td class="text-end">
