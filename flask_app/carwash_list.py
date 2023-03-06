@@ -48,6 +48,10 @@ class Point:  # enum.Enum):
         self.lat = latitude
         self.lon = longitude
 
+    def return_list(self):
+        list_obj = [self.lat, self.lon]
+        return list_obj
+
 
 class Carwash:
     def __init__(self, id, enable, name, address, Location: Point,

@@ -1,25 +1,18 @@
 # -*- coding: utf-8 -*-
 from dateutil import parser
 import traceback
-from datetime import datetime
 
-import jinja2
-import babel
 import boto3
-import dateutil
 from bson import json_util
 from flask import Flask, render_template, url_for, request, session, redirect, Response
-from jinja2 import environment
 
 import carwash_list
 import carwash_order
 import ping_carwash_box
 from config.config import Config
-from flask_app.forms import LoginForm
 from flask_bootstrap import Bootstrap
 import json
 from types import SimpleNamespace
-# from flask_pymongo import PyMongo
 import bcrypt
 
 app = Flask(__name__,
@@ -213,9 +206,10 @@ async def order_detail(order_id):
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-
+    location = [55.650378, 37.606487]
     context = {
-        'order': order_obj
+        'order': order_obj,
+        'location': location
     }
     return render_template(
         'admin_zone/order_detail.html',
