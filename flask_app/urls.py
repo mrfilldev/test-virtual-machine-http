@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import traceback
+from datetime import datetime
+
 import jinja2
 import babel
 import boto3
@@ -222,9 +224,10 @@ async def order_detail(order_id):
 
 @app.template_filter()
 def format_datetime(value):
-    result = value.replace('T', ' ')
-    print(result)
-    result = result.replace('Z', '')
+    date_time_obj = datetime.strptime(value, '%Y-%m-%d %H:%M:%S.%f')
+    result = f"Дата: {date_time_obj.date()} \n Время: {date_time_obj.time()}"
+    variant = value.strftime('%Y-%m-%d')
+    print(variant)
     print(result)
     return result
 
