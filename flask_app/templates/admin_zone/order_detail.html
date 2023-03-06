@@ -18,12 +18,8 @@
         <th scope="col">Выплачено партнеру</th>
     </tr>
 
-    {% for order in context['orders'] %}
     <tr data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
-        <th scope="row">
-            <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
-        </th>
         <td>
             <div><p>{{ order.Id }}</p></div>
         </td>
@@ -65,7 +61,6 @@
 
     </tr>
 
-    {% endfor %}
 </table>
 
 {% endblock %}
