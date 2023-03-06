@@ -48,7 +48,9 @@
         </td>
 
         <td class="text-end">
-            {{ context['order'].Sum }}
+            {{ context['order'].Sum }} <br>
+            ({{'%0.2f'| format(context['order'].Sum|float)}}%)
+
         </td>
         <td class="text-end">
             {{ context['order'].SumCompleted }}
