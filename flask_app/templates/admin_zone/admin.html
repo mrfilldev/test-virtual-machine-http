@@ -31,8 +31,6 @@
         <th scope="col">Сумма списания</th>
         <th scope="col">Выплачено партнеру</th>
     </tr>
-</table>
-<table class="table table-striped table-bordered">
     {% for order in context['orders'] %}
     <tr data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
