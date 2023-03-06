@@ -24,7 +24,8 @@
         </td>
 
         <td>
-            <div><p>{{ context['order'].DateCreateMy.strftime('%Y-%m-%d') }}</p></div>
+           {% set datetime_object = datetime.strptime(context['order'].DateCreateMy, '%m/%d/%y %H:%M:%S') %}
+            <div><p>{{ datetime_object }}</p></div>
         </td>
 
         <td>
