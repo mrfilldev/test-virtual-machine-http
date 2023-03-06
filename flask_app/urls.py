@@ -202,7 +202,9 @@ async def order_detail(order_id):
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-
+    print(order_obj.Sum)
+    print(order_obj.SumCompleted)
+    print(order_obj.SumPaidStationCompleted)
     context = {
         'order': order_obj
     }
