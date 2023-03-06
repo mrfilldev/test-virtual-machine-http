@@ -197,10 +197,15 @@ async def test():
 
 @app.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
 async def order_detail(order_id):
+    order_obj = orders.find_one({'Id': order_id})  # dict
+    order_obj = json.loads(order_obj, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
 
-
+    context = {
+        'order': order_obj
+    }
     return render_template(
-        'admin_zone/order_detail.html',
+        'admin_zone/order_detail.html.html',
+        context=context
     )
 
 
