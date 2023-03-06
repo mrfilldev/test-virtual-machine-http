@@ -202,12 +202,12 @@ async def order_detail(order_id):
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
 
-    context = {
+    order_obj = {
         'order': order_obj
     }
     return render_template(
         'admin_zone/order_detail.html',
-        context=context
+        context=order_obj
     )
 
 
