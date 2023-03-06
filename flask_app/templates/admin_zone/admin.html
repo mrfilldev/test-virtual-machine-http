@@ -67,16 +67,15 @@
         </td>
 
         <td class="text-end">
-            {{ order.Sum }}
             {{'%0.2f'| format(order.Sum|float)}}&#8381
 
         </td>
         <td class="text-end">
-            {{ order.SumCompleted }}
+            {{'%0.2f'| format(order.SumCompleted|float)}}&#8381
         </td>
         <td class="text-end">
+            {{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381
 
-            {{ order.SumPaidStationCompleted }} &#8381
         </td>
 
     </tr>
