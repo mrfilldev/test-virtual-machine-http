@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<caption>Список заказов находящихся в бд:</caption>
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">№ Заказа</th>
+        <th scope="col">Дата создания</th>
+        <th scope="col">Id Контракта</th>
+        <th scope="col">Id Мойки</th>
+        <th scope="col">№ Бокса</th>
+        <th scope="col">Предоставленные сервисы</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Сумма стоимости заказа</th>
+        <th scope="col">Сумма списания</th>
+        <th scope="col">Выплачено партнеру</th>
+    </tr>
+
+    {% for order in context['orders'] %}
+    <tr data-href="{{ url_for('order_detail', order_id=order.Id) }}">
+
+        <th scope="row">
+            <div><p>{{ context['count_orders'] - loop.index0 }}</p></div>
+        </th>
+        <td>
+            <div><p>{{ order.Id }}</p></div>
+        </td>
+
+        <td>
+            <div><p>{{ order.DateCreateMy }}</p></div>
+        </td>
+
+        <td>
+            <div><p>{{ order.ContractId }}</p></div>
+        </td>
+        <td>
+            <div><p>{{ order.CarWashId }}</p></div>
+        </td>
+        <td>
+            <div><p>{{ order.BoxNumber }}</p></div>
+        </td>
+        <td>
+            {% for service in order.Services %}
+            <div>id: {{ service.Id }}</div>
+            <div>Имя: {{ service.Description }}</div>
+            <div>Цена: {{ service.Cost }}</div>
+            {% endfor %}
+        </td>
+        <td>
+            <div><p>{{ order.Status }}</p></div>
+        </td>
+
+        <td class="text-end">
+            {{ order.Sum }}
+        </td>
+        <td class="text-end">
+            {{ order.SumCompleted }}
+        </td>
+        <td class="text-end">
+
+            {{ order.SumPaidStationCompleted }} &#8381
+        </td>
+
+    </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}
