@@ -5,11 +5,8 @@
 
 <table class="table table-striped table-bordered">
     <tr>
-        <th scope="col">№ Заказа</th>
-        <th scope="col">Дата создания</th>
-        <th scope="col">Id Контракта</th>
-        <th scope="col">Id Мойки</th>
-        <th scope="col">№ Бокса</th>
+
+
         <th scope="col">Предоставленные сервисы</th>
         <th scope="col">Статус</th>
         <th scope="col">Сумма стоимости заказа</th>
@@ -19,23 +16,6 @@
 
     <tr>
 
-        <td>
-            {{ context['order'].Id }}
-        </td>
-
-        <td>
-            {{ context['order'].DateCreate | format_datetime }}
-        </td>
-
-        <td>
-            {{ context['order'].ContractId }}
-        </td>
-        <td>
-            {{ context['order'].CarWashId }}
-        </td>
-        <td>
-            {{ context['order'].BoxNumber }}
-        </td>
         <td>
             {% for service in context['order'].Services %}
             id: {{ service.Id}}<br>
@@ -95,11 +75,40 @@
                 </td>
                 <td>
                     <input type="text" class="form-control-sm" placeholder="{{ context['order'].CarWashId }}">
-                    {{ context['order'].CarWashId }}
+                </td>
+                <td>
+                    Id Бокса:
+                </td>
+                <td>
+                    <input type="text" class="form-control-sm" placeholder="{{ context['order'].BoxNumber }}">
                 </td>
             </tr>
             </tbody>
+        </table>
 
+        <table class="table table-bordered table-center">
+            <thead class="table-light">
+            <tr>
+                <th scope="col" colspan="2">Заказ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                   № Заказа:
+                </td>
+                <td>
+                    <input type="text" class="form-control-sm" placeholder="{{ context['order'].Id }}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата создания:
+                <td>
+                    <input type="text" class="form-control-sm" placeholder="{{ context['order'].DateCreate | format_datetime }}">
+                </td>
+            </tr>
+            </tbody>
         </table>
     </main>
 </div>
