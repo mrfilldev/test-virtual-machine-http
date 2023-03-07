@@ -62,45 +62,45 @@
     </tr>
 
 </table>
+<div>
+    <div class="bd-sidebar">
+        <ul>
+            <li>TEXT</li>
+            <li>TEXT</li>
+            <li>TEXT</li>
+        </ul>
+    </div>
 
-<div class="bd-sidebar">
-    <ul>
-        <li>TEXT</li>
-        <li>TEXT</li>
-        <li>TEXT</li>
-    </ul>
+    <div class="container">
+        <table class="table table-bordered table-center">
+            <thead class="table-light">
+            <tr>
+                <th scope="col" colspan="2">Мойка</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Тип договора:
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="{{ context['order'].ContractId }}">
+                    {{ context['order'].ContractId }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Id Мойки:
+                </td>
+                <td>
+                    {{ context['order'].CarWashId }}
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
 </div>
-
-<div class="container">
-    <table class="table table-bordered table-center">
-        <thead class="table-light">
-        <tr>
-            <th scope="col" colspan="2">Мойка</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                Тип договора:
-            </td>
-            <td>
-                <input type="text" class="form-control" placeholder="{{ context['order'].ContractId }}">
-                {{ context['order'].ContractId }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Id Мойки:
-            </td>
-            <td>
-                {{ context['order'].CarWashId }}
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
-</div>
-
 <script src="https://api-maps.yandex.ru/2.1?da34ec26-a505-4cba-b181-99e02e03caa5&lang=ru_RU"
         type="text/javascript">
 </script>
