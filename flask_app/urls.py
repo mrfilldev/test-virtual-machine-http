@@ -169,10 +169,10 @@ async def admin():
     # user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
 
     orders_list = []
-    all_orders = (orders.find()).sort()
+    all_orders = orders.find()
     count_orders = 0
 
-    for i in all_orders:
+    for i in sorted(all_orders):
         count_orders += 1
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
