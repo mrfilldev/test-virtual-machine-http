@@ -8,8 +8,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <a class="nav-link
+                                {% if request.resolver_match.view_name  == 'admin' %}active{% endif %}"
+                            href="{% url_for(admin) %}">История заказов</a>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/admin">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/profile">Мой Профиль</a>
