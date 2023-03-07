@@ -71,22 +71,23 @@
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    Тип договора:
-                </td>
-                <td>
-                    {{ context['order'].ContractId }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Id Мойки:
-                </td>
-                <td>
-                    {{ context['order'].CarWashId }}
-                </td>
-            </tr>
+        <tr>
+            <td>
+                Тип договора:
+            </td>
+            <td>
+                <input type="text" class="form-control" placeholder="{{ context['order'].ContractId }}">
+                {{ context['order'].ContractId }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Id Мойки:
+            </td>
+            <td>
+                {{ context['order'].CarWashId }}
+            </td>
+        </tr>
         </tbody>
 
     </table>
@@ -107,11 +108,7 @@
             center: [55.76, 37.64],
             zoom: 10,
         });
-        var my_var = {
-        {
-            location_var | safe
-        }
-    }
+        var my_var = location_var | safe
         var myPlacemark = new ymaps.Placemark(my_var, {
             hintContent: 'Москва!',
             balloonContent: 'Столица России'
