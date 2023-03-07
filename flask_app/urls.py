@@ -122,7 +122,7 @@ def main():
     return render_template('admin_zone/main.html')
 
 @app.route('/')
-def index():
+def reg_yan_auth():
     if request.args.get('code', False):
         # Если скрипт был вызван с указанием параметра "code" в URL,
         # то выполняется запрос на получение токена
