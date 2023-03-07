@@ -2,7 +2,8 @@
 
 {% block body %}
 <caption>Детали заказа находящегося в бд:</caption>
-<script src="https://api-maps.yandex.ru/2.1?da34ec26-a505-4cba-b181-99e02e03caa5&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1?da34ec26-a505-4cba-b181-99e02e03caa5&lang=ru_RU"
+        type="text/javascript"></script>
 <table class="table table-striped table-bordered">
     <tr>
         <th scope="col">№ Заказа</th>
@@ -65,11 +66,12 @@
 
 {% set id=context.location  %}
 <script type="text/javascript">
-  ymaps.ready(function () {
-    var myMap = new ymaps.Map("YMapsID", {
-      zoom: id
+    document.querySelector("#id")
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map("YMapsID", {
+            zoom: id
+        });
     });
-  });
 </script>
 <div id="YMapsID" style="width: 450px; height: 350px;"></div>
 {% endblock %}
