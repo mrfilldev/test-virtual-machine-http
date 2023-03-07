@@ -101,10 +101,13 @@ async def make_carwash_order():
 @app.route('/')
 def index():
     if 'username' in session:
-        return redirect(url_for('admin'))
+        return redirect(url_for('main'))
 
     return render_template('users/index.html')
 
+@app.route('/main')
+def main():
+    return render_template('admin_zone/main.html')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
