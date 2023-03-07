@@ -173,7 +173,7 @@ async def admin():
     count_orders = 0
 
     for count_orders, i in enumerate(all_orders, 1):
-        #count_orders += 1
+        # count_orders += 1
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
@@ -218,10 +218,16 @@ async def order_detail(order_id):
     )
 
 
+@app.route('/profile', methods=['GET'])
+def profile():
+
+    return render_template('profile/profile.html')
+
+################################################################
 @app.template_filter()
 def format_datetime(value):
-    #variant = value.strftime('%Y-%m-%d')
-    #print(variant)
+    # variant = value.strftime('%Y-%m-%d')
+    # print(variant)
     value = parser.parse(value)
     print(value)
     value = value.strftime("%m/%d/%y %H:%M:%S")
