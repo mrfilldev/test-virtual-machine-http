@@ -36,21 +36,10 @@
             {{ context['count_orders'] - loop.index0 }}
         </th>
         <td>
-            {{ order.Id }}
-        </td>
-
-        <td>
             {{ order.DateCreate | format_datetime }}
-        </td>
-
-        <td>
-            {{ order.ContractId }}
         </td>
         <td>
             {{ order.CarWashId }}
-        </td>
-        <td>
-            {{ order.BoxNumber }}
         </td>
         <td>
             Имя:
