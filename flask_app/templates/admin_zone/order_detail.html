@@ -63,33 +63,33 @@
 
 </table>
 
-
-<table class="table table-bordered">
-    <thead class="table-light">
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="table-light">
         <tr>
             <th scope="col" colspan="2">Мойка</th>
         </tr>
-    </thead>
-    <tr>
-        <td>
-            Тип договора:
-        </td>
-        <td>
-            {{ context['order'].ContractId }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Id Мойки:
-        </td>
-        <td>
-            {{ context['order'].CarWashId }}
-        </td>
+        </thead>
+        <tr>
+            <td>
+                Тип договора:
+            </td>
+            <td>
+                {{ context['order'].ContractId }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Id Мойки:
+            </td>
+            <td>
+                {{ context['order'].CarWashId }}
+            </td>
 
-    </tr>
+        </tr>
 
-</table>
-
+    </table>
+</div>
 
 <script src="https://api-maps.yandex.ru/2.1?da34ec26-a505-4cba-b181-99e02e03caa5&lang=ru_RU"
         type="text/javascript">
