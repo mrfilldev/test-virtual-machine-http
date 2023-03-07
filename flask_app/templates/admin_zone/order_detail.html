@@ -45,11 +45,11 @@
 <div class="container-xxl my-md-4 bd-layout">
     <aside class="bd-sidebar">
 
-            <ul>
-                <li>TEXT</li>
-                <li>TEXT</li>
-                <li>TEXT</li>
-            </ul>
+        <ul>
+            <li>TEXT</li>
+            <li>TEXT</li>
+            <li>TEXT</li>
+        </ul>
 
     </aside>
 
@@ -76,6 +76,8 @@
                 <td>
                     <input type="text" class="form-control-sm" placeholder="{{ context['order'].CarWashId }}">
                 </td>
+            <tr>
+            </tr>
                 <td>
                     Id Бокса:
                 </td>
@@ -95,7 +97,7 @@
             <tbody>
             <tr>
                 <td>
-                   № Заказа:
+                    № Заказа:
                 </td>
                 <td>
                     <input type="text" class="form-control-sm" placeholder="{{ context['order'].Id }}">
@@ -105,7 +107,8 @@
                 <td>
                     Дата создания:
                 <td>
-                    <input type="text" class="form-control-sm" placeholder="{{ context['order'].DateCreate | format_datetime }}">
+                    <input type="text" class="form-control-sm"
+                           placeholder="{{ context['order'].DateCreate | format_datetime }}">
                 </td>
             </tr>
             </tbody>
