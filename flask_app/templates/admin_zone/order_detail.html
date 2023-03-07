@@ -69,9 +69,12 @@
     document.querySelector("#id")
     ymaps.ready(function () {
         var myMap = new ymaps.Map("YMapsID", {
-            zoom: id
+            center: id,
+            zoom: 10,
         });
     });
 </script>
+
 <div id="YMapsID" style="width: 450px; height: 350px;"></div>
+
 {% endblock %}
