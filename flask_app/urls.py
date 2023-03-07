@@ -4,7 +4,8 @@ import traceback
 
 import boto3
 from bson import json_util
-from flask import Flask, render_template, url_for, request, session, redirect, Response
+from flask import Flask, render_template, url_for, request, session, redirect, Response, jsonify
+from requests import post
 
 import carwash_list
 import carwash_order
@@ -14,6 +15,17 @@ from flask_bootstrap import Bootstrap
 import json
 from types import SimpleNamespace
 import bcrypt
+
+from urllib.parse import urlencode
+
+
+# Идентификатор приложения
+client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
+# Пароль приложения
+client_secret = 'ПАРОЛЬ_ПРИЛОЖЕНИЯ'
+# Адрес сервера Яндекс.OAuth
+baseurl = 'https://oauth.yandex.ru/'
+
 
 app = Flask(__name__,
             static_url_path='',
@@ -108,6 +120,28 @@ def index():
 @app.route('/main')
 def main():
     return render_template('admin_zone/main.html')
+
+@app.route('/')
+def index():
+    if request.args.get('code', False):
+        # Если скрипт был вызван с указанием параметра "code" в URL,
+        # то выполняется запрос на получение токена
+        print(request.args)
+        print(request.data)
+        data = {
+            'grant_type': 'authorization_code',
+            'code': request.args.get('code'),
+            'client_id': client_id,
+            'client_secret': client_secret
+        }
+        data = urlencode(data)
+        # Токен необходимо сохранить для использования в запросах к API Директа
+        return jsonify(post(baseurl + "token", data).json())
+    else:
+        # Если скрипт был вызван без указания параметра "code",
+        # то пользователь перенаправляется на страницу запроса доступа
+        return redirect(baseurl + "authorize?response_type=code&client_id={}".format(client_id))
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
