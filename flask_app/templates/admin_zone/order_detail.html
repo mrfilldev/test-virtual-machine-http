@@ -70,23 +70,24 @@
             <th scope="col" colspan="2">Мойка</th>
         </tr>
         </thead>
-        <tr>
-            <td>
-                Тип договора:
-            </td>
-            <td>
-                {{ context['order'].ContractId }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Id Мойки:
-            </td>
-            <td>
-                {{ context['order'].CarWashId }}
-            </td>
-
-        </tr>
+        <tbody>
+            <tr>
+                <td>
+                    Тип договора:
+                </td>
+                <td>
+                    {{ context['order'].ContractId }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Id Мойки:
+                </td>
+                <td>
+                    {{ context['order'].CarWashId }}
+                </td>
+            </tr>
+        </tbody>
 
     </table>
 </div>
