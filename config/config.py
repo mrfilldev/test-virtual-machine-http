@@ -35,3 +35,4 @@ class Config(object):
     col_orders = db_orders["test_orders"]
     col_users = db_users["test_users"]
 
+    yan_auth = os.environ.get('YAN_AUTH_KEY')
