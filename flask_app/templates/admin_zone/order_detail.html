@@ -136,9 +136,11 @@
                     </td>
                     <td>
                         {% for service in context['order'].Services %}
-                            <input style="width: 60%" type="text" class="form-control-sm" value="id: {{ service.Id}}">
-                            <input style="width: 60%" type="text" class="form-control-sm" value="Имя: {{ service.Description }}">
-                            <input style="width: 60%" type="text" class="form-control-sm" value="Цена: {{ service.Cost }}">
+                        <input style="width: 60%" type="text" class="form-control-sm"
+                               value="Наименование: {{ service.Description }}">
+                        <input style="width: 60%" type="text" class="form-control-sm" value="Цена: {{ service.Cost }}">
+                        <input style="width: 60%" type="text" class="form-control-sm" value="id: {{ service.Id}}">
+                        <br>
                         {% endfor %}
                     </td>
                 </tr>
