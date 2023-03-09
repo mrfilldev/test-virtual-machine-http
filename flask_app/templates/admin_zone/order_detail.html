@@ -7,9 +7,151 @@
     <div class="row align-items-start">
         <div class="col">
             Одна из трёх колонок
+            <aside class="bd-sidebar">
+
+                <ul>
+                    <li>TEXT</li>
+                    <li>TEXT</li>
+                    <li>TEXT</li>
+                </ul>
+
+            </aside>
         </div>
         <div class="col">
             Одна из трёх колонок
+
+            <main class="container-sm">
+                <table class="table table-bordered table-center">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col" colspan="3">Мойка</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 20%">
+                            Тип договора:
+                        </td>
+                        <td style="width: 40%">
+                            <input style="width: 100%" type="text" class="form-control-sm"
+                                   value="{{ context['order'].ContractId }}">
+                        </td>
+                        <td rowspan="3" style="width: 30%">
+                            <img src="https://static-maps.yandex.ru/1.x/?l=map&z=15&size=500,350&pt={{ context.location['longitude'] }},{{ context.location['latitude'] }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">
+                            Id Мойки:
+                        </td>
+                        <td style="width: 20%">
+                            <input style="width: 100%" width="20%" type="text" class="form-control-sm"
+                                   value="{{ context['order'].CarWashId }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">
+                            Id Бокса:
+                        </td>
+                        <td style="width: 20%">
+                            <input style="width: 100%" type="text" class="form-control-sm"
+                                   value="{{ context['order'].BoxNumber }}">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered table-center">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col" colspan="2">Заказ</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 20%">
+                            № Заказа:
+                        </td>
+                        <td>
+                            <input style="width: 45%" type="text" class="form-control-sm"
+                                   value="{{ context['order'].Id }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">
+                            Дата создания:
+                        </td>
+                        <td>
+                            <input style="width: 45%" type="text" class="form-control-sm"
+                                   value="{{ context['order'].DateCreate | format_datetime }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">
+                            Статус заказа:
+                        </td>
+                        <td>
+                            <input style="width: 45%" type="text" class="form-control-sm"
+                                   value="{{ context['order'].Status }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">
+                            Оказанный сервис:
+                        </td>
+                        <td>
+                            {% for service in context['order'].Services %}
+                            <input style="width: 60%" type="text" class="form-control-sm"
+                                   value="Наименование: {{ service.Description }}">
+                            <input style="width: 60%" type="text" class="form-control-sm"
+                                   value="Цена: {{ service.Cost }}">
+                            <input style="width: 60%" type="text" class="form-control-sm" value="id: {{ service.Id}}">
+                            <br>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered table-center">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col" colspan="2">Оплата</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 20%">
+                            Сумма стоимости заказа:
+                        </td>
+                        <td>
+                            <input style="width: 45%" type="text" class="form-control-sm"
+                                   value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">
+                            Сумма списания:
+                        </td>
+                        <td>
+                            <input style="width: 45%" type="text" class="form-control-sm"
+                                   value="{{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">
+                            Выплачено партнеру:
+                        </td>
+                        <td>
+                            <input style="width: 45%" type="text" class="form-control-sm"
+                                   value="{{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </main>
         </div>
         <div class="col">
             Одна из трёх колонок
@@ -26,136 +168,7 @@
 
         </aside>
 
-        <main class="container-sm">
-            <table class="table table-bordered table-center">
-                <thead class="table-light">
-                <tr>
-                    <th scope="col" colspan="3">Мойка</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td style="width: 20%">
-                        Тип договора:
-                    </td>
-                    <td style="width: 40%">
-                        <input style="width: 100%" type="text" class="form-control-sm"
-                               value="{{ context['order'].ContractId }}">
-                    </td>
-                    <td rowspan="3" style="width: 30%">
-                        <img src="https://static-maps.yandex.ru/1.x/?l=map&z=15&size=500,350&pt={{ context.location['longitude'] }},{{ context.location['latitude'] }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 20%">
-                        Id Мойки:
-                    </td>
-                    <td style="width: 20%">
-                        <input style="width: 100%" width="20%" type="text" class="form-control-sm"
-                               value="{{ context['order'].CarWashId }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 20%">
-                        Id Бокса:
-                    </td>
-                    <td style="width: 20%">
-                        <input style="width: 100%" type="text" class="form-control-sm"
-                               value="{{ context['order'].BoxNumber }}">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
 
-            <table class="table table-bordered table-center">
-                <thead class="table-light">
-                <tr>
-                    <th scope="col" colspan="2">Заказ</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td style="width: 20%">
-                        № Заказа:
-                    </td>
-                    <td>
-                        <input style="width: 45%" type="text" class="form-control-sm" value="{{ context['order'].Id }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 20%">
-                        Дата создания:
-                    </td>
-                    <td>
-                        <input style="width: 45%" type="text" class="form-control-sm"
-                               value="{{ context['order'].DateCreate | format_datetime }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 20%">
-                        Статус заказа:
-                    </td>
-                    <td>
-                        <input style="width: 45%" type="text" class="form-control-sm"
-                               value="{{ context['order'].Status }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 20%">
-                        Оказанный сервис:
-                    </td>
-                    <td>
-                        {% for service in context['order'].Services %}
-                        <input style="width: 60%" type="text" class="form-control-sm"
-                               value="Наименование: {{ service.Description }}">
-                        <input style="width: 60%" type="text" class="form-control-sm" value="Цена: {{ service.Cost }}">
-                        <input style="width: 60%" type="text" class="form-control-sm" value="id: {{ service.Id}}">
-                        <br>
-                        {% endfor %}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <table class="table table-bordered table-center">
-                <thead class="table-light">
-                <tr>
-                    <th scope="col" colspan="2">Оплата</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td style="width: 20%">
-                        Сумма стоимости заказа:
-                    </td>
-                    <td>
-                        <input style="width: 45%" type="text" class="form-control-sm"
-                               value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 20%">
-                        Сумма списания:
-                    </td>
-                    <td>
-                        <input style="width: 45%" type="text" class="form-control-sm"
-                               value="{{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 20%">
-                        Выплачено партнеру:
-                    </td>
-                    <td>
-                        <input style="width: 45%" type="text" class="form-control-sm"
-                               value="{{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
-        </main>
     </div>
 </div>
 
