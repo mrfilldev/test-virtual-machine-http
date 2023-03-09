@@ -244,7 +244,7 @@ async def order_detail(order_id):
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    location = [55.650378, 37.606487]
+    location = "55.650378, 37.606487"
     context = {
         'order': order_obj,
         'location': location
