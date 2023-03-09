@@ -18,14 +18,12 @@ import bcrypt
 
 from urllib.parse import urlencode
 
-
 # Идентификатор приложения
 client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
 # Пароль приложения
 client_secret = 'ПАРОЛЬ_ПРИЛОЖЕНИЯ'
 # Адрес сервера Яндекс.OAuth
 baseurl = 'https://oauth.yandex.ru/'
-
 
 app = Flask(__name__,
             static_url_path='',
@@ -117,9 +115,11 @@ def index():
 
     return render_template('users/index.html')
 
+
 @app.route('/main')
 def main():
     return render_template('admin_zone/main.html')
+
 
 @app.route('/')
 def reg_yan_auth():
@@ -244,7 +244,10 @@ async def order_detail(order_id):
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    location = [55.650378, 37.606487]
+    location = {
+        'latitude': 55.650378,
+        'longitute': 37.606487
+    }
     context = {
         'order': order_obj,
         'location': location
@@ -257,8 +260,8 @@ async def order_detail(order_id):
 
 @app.route('/profile', methods=['GET'])
 def profile():
-
     return render_template('profile/profile.html')
+
 
 ################################################################
 @app.template_filter()
