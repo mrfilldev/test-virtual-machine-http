@@ -246,7 +246,7 @@ async def order_detail(order_id):
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     location = {
         'latitude': 55.650378,
-        'longitute': 37.606487
+        'longitude': 37.606487
     }
     context = {
         'order': order_obj,
