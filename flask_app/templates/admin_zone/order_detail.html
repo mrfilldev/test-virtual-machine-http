@@ -40,7 +40,7 @@
                             Id Мойки:
                         </td>
                         <td>
-                            <input width="20%" type="text" class="form-control-sm"
+                            <input style="width: 100%"width="20%" type="text" class="form-control-sm"
                                    value="{{ context['order'].CarWashId }}">
                         </td>
                     </tr>
@@ -49,7 +49,7 @@
                             Id Бокса:
                         </td>
                         <td>
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 100%" type="text" class="form-control-sm"
                                    value="{{ context['order'].BoxNumber }}">
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
                             № Заказа:
                         </td>
                         <td>
-                            <input style="width: 49%"type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="{{ context['order'].Id }}">
                         </td>
                     </tr>
@@ -77,7 +77,7 @@
                             Дата создания:
                         </td>
                         <td>
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="{{ context['order'].DateCreate | format_datetime }}">
                         </td>
                     </tr>
@@ -86,7 +86,7 @@
                             Статус заказа:
                         </td>
                         <td>
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="{{ context['order'].Status }}">
                         </td>
                     </tr>
@@ -96,11 +96,11 @@
                         </td>
                         <td>
                             {% for service in context['order'].Services %}
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="Наименование: {{ service.Description }}"><br>
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="Цена: {{ service.Cost }}"><br>
-                            <input type="text" class="form-control-sm" value="id: {{ service.Id}}"><br>
+                            <input style="width: 49%" type="text" class="form-control-sm" value="id: {{ service.Id}}"><br>
                             <br>
                             {% endfor %}
                         </td>
@@ -120,7 +120,7 @@
                             Сумма стоимости заказа:
                         </td>
                         <td>
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
                         </td>
                     </tr>
@@ -129,7 +129,7 @@
                             Сумма списания:
                         </td>
                         <td>
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="{{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381">
                         </td>
                     </tr>
@@ -138,7 +138,7 @@
                             Выплачено партнеру:
                         </td>
                         <td>
-                            <input type="text" class="form-control-sm"
+                            <input style="width: 49%" type="text" class="form-control-sm"
                                    value="{{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381">
                         </td>
                     </tr>
