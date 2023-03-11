@@ -140,7 +140,7 @@ def index():
     #return render_template('users/index.html')
 
 
-@app.route('/')
+@app.route('/main')
 #@login_required
 def main():
     email = dict(session)['profile']['email']
