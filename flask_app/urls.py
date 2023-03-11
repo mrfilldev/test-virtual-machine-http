@@ -141,8 +141,8 @@ def index():
 @app.route('/main')
 #@login_required
 def main():
-    email = dict(session)['profile']['username']
-    return f'Hello, you are logge in as {email}!'
+    username = dict(session)['username']
+    return f'Hello, you are logge in as {username}!'
 
 
 @app.route('/')
