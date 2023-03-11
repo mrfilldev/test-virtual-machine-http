@@ -132,18 +132,16 @@ async def make_carwash_order():
 ########################################################################
 @app.route('/')
 def index():
-    # if 'username' in session:
+    if 'username' in session:
+        return redirect(url_for('main'))
 
-
-    return redirect(url_for('main'))
-
-    #return render_template('users/index.html')
+    return render_template('users/index.html')
 
 
 @app.route('/main')
 #@login_required
 def main():
-    email = dict(session)['profile']['email']
+    email = dict(session)['profile']['username']
     return f'Hello, you are logge in as {email}!'
 
 
