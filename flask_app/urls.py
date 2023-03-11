@@ -142,7 +142,7 @@ def index():
 #@login_required
 def main():
     username = dict(session)['username']
-    return f'Hello, you are logge in as {username}!'
+    return f'Hello, you are logged in as {username}!'
 
 
 @app.route('/')
