@@ -18,6 +18,7 @@ class Config(object):
     CHANNEL_ID = os.environ.get('CHANNEL_ID')
     BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
+    # pymongo
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
         pw=quote('mrfilldev040202'),
@@ -35,4 +36,6 @@ class Config(object):
     col_orders = db_orders["test_orders"]
     col_users = db_users["test_users"]
 
-    yan_auth = os.environ.get('YAN_AUTH_KEY')
+    # yandex oauth
+    YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')
+    YAN_CLIENT_SECRET = os.environ.get('YAN_CLIENT_SECRET')

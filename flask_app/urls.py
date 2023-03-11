@@ -18,6 +18,11 @@ import bcrypt
 
 from urllib.parse import urlencode
 
+
+from authlib.integrations.flask_client import OAuth
+
+
+
 # Идентификатор приложения
 client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
 # Пароль приложения
@@ -31,16 +36,15 @@ app = Flask(__name__,
             # template_folder='/templates'
             )
 bootstrap = Bootstrap(app)
+oauth = OAuth(app)
 
-# app.config["MONGO_URI"] = Config.url
-# mongo = PyMongo(app)
-
-# load_dotenv()
-
+users = Config.col_users
+orders = Config.col_orders
 URL_DEV = Config.URL_DEV
 API_KEY = Config.API_KEY  # ['123456', '7tllmnubn49ghu5qrep97']
 
 ##################################################################
+# SQS MESSAGE QUEUE CONFIGURATION
 queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker' \
                '-carwsh-orders'
 client = boto3.client(
@@ -52,8 +56,27 @@ client = boto3.client(
 )
 queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
 ########################################################################
-users = Config.col_users
-orders = Config.col_orders
+# google = oauth.register(
+#     name='google',
+#     client_id=Config.YAN_CLIENT_ID,
+#     client_secret=Config.YAN_CLIENT_SECRET,
+#     access_token_url='https://accounts.google.com/o/oauth2/token',
+#     access_token_params=None,
+#     authorize_url='https://accounts.google.com/o/oauth2/auth',
+#     authorize_params=None,
+#     api_base_url='https://www.googleapis.com/oauth2/v1/',
+#     userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
+#     client_kwargs={'scope': 'openid email profile'},
+# )
+
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+
 
 
 @app.route('/carwash/ping')
@@ -100,25 +123,28 @@ async def make_carwash_order():
         print(f'caught {type(e)}: e', e)  # добавить логгер
         return Response(status=400)
 
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+@app.route('/')
+def index():
+    # if 'username' in session:
 
-# @app.route('/login')
-# def login():
-#     form = LoginForm()
-#     return render_template('login.html', title='Sign In', form=form)
-#
+
+    return redirect(url_for('main'))
+
+    #return render_template('users/index.html')
 
 
 @app.route('/')
-def index():
-    if 'username' in session:
-        return redirect(url_for('main'))
-
-    return render_template('users/index.html')
-
-
-@app.route('/main')
+#@login_required
 def main():
-    return render_template('admin_zone/main.html')
+    email = dict(session)['profile']['email']
+    return f'Hello, you are logge in as {email}!'
 
 
 @app.route('/')
@@ -188,12 +214,12 @@ def login():
         return 'Invalid username/password combination'
 
 
-@app.route('/logout', methods=['POST', 'GET'])
+@app.route('/logout')
 def logout():
     try:
-        if 'username' in session:
-            session.pop('username', None)
-        return redirect(url_for('index'))
+        for key in list(session.keys()):
+            session.pop(key)
+        return redirect('/')
 
     except Exception as e:
         traceback.print_exc()
@@ -274,7 +300,7 @@ def format_datetime(value):
     print(value)
     return value
 
-
+################################################################
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.config['SECRET_KEY'] = Config.SECRET_KEY
