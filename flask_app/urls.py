@@ -165,7 +165,7 @@ def index():
 
 @app.route('/main')
 def main():
-    for key in dict(session.keys()):
+    for key in dict(session):
         print(key, ":", session[key])
     return render_template("main.html")
 
