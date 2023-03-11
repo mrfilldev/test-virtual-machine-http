@@ -36,7 +36,7 @@ app = Flask(__name__,
             # template_folder='/templates'
             )
 bootstrap = Bootstrap(app)
-oauth = OAuth(app)
+#oauth = OAuth(app)
 
 users = Config.col_users
 orders = Config.col_orders
