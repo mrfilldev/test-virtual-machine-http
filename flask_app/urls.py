@@ -19,7 +19,7 @@ import bcrypt
 from urllib.parse import urlencode
 
 
-from authlib.integrations.flask_client import OAuth
+#from authlib.integrations.flask_client import OAuth
 
 
 
