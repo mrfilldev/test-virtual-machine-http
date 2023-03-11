@@ -20,8 +20,7 @@ from urllib.parse import urlencode
 
 from flask_app.decorators.auth_decorator import login_required
 
-#from authlib.integrations.flask_client import OAuth
-
+# from authlib.integrations.flask_client import OAuth
 
 
 # Идентификатор приложения
@@ -37,7 +36,7 @@ app = Flask(__name__,
             # template_folder='/templates'
             )
 bootstrap = Bootstrap(app)
-#oauth = OAuth(app)
+# oauth = OAuth(app)
 
 users = Config.col_users
 orders = Config.col_orders
@@ -56,6 +55,8 @@ client = boto3.client(
     region_name='ru-central1'
 )
 queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
+
+
 ########################################################################
 # google = oauth.register(
 #     name='google',
@@ -70,14 +71,36 @@ queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('Queu
 #     client_kwargs={'scope': 'openid email profile'},
 # )
 
-########################################################################
-########################################################################
-########################################################################
-########################################################################
-########################################################################
-########################################################################
-########################################################################
 
+# @app.route('/')
+# def reg_yan_auth():
+#     if request.args.get('code', False):
+#         # Если скрипт был вызван с указанием параметра "code" в URL,
+#         # то выполняется запрос на получение токена
+#         print(request.args)
+#         print(request.data)
+#         data = {
+#             'grant_type': 'authorization_code',
+#             'code': request.args.get('code'),
+#             'client_id': client_id,
+#             'client_secret': client_secret
+#         }
+#         data = urlencode(data)
+#         # Токен необходимо сохранить для использования в запросах к API Директа
+#         return jsonify(post(baseurl + "token", data).json())
+#     else:
+#         # Если скрипт был вызван без указания параметра "code",
+#         # то пользователь перенаправляется на страницу запроса доступа
+#         return redirect(baseurl + "authorize?response_type=code&client_id={}".format(client_id))
+
+
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
 
 
 @app.route('/carwash/ping')
@@ -124,6 +147,7 @@ async def make_carwash_order():
         print(f'caught {type(e)}: e', e)  # добавить логгер
         return Response(status=400)
 
+
 ########################################################################
 ########################################################################
 ########################################################################
@@ -140,32 +164,9 @@ def index():
 
 
 @app.route('/main')
-@login_required
 def main():
     username = dict(session)['username']
     return f'Hello, you are logged in as {username}!'
-
-
-@app.route('/')
-def reg_yan_auth():
-    if request.args.get('code', False):
-        # Если скрипт был вызван с указанием параметра "code" в URL,
-        # то выполняется запрос на получение токена
-        print(request.args)
-        print(request.data)
-        data = {
-            'grant_type': 'authorization_code',
-            'code': request.args.get('code'),
-            'client_id': client_id,
-            'client_secret': client_secret
-        }
-        data = urlencode(data)
-        # Токен необходимо сохранить для использования в запросах к API Директа
-        return jsonify(post(baseurl + "token", data).json())
-    else:
-        # Если скрипт был вызван без указания параметра "code",
-        # то пользователь перенаправляется на страницу запроса доступа
-        return redirect(baseurl + "authorize?response_type=code&client_id={}".format(client_id))
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -284,6 +285,7 @@ async def order_detail(order_id):
 
 
 @app.route('/profile', methods=['GET'])
+@login_required
 def profile():
     return render_template('profile/profile.html')
 
@@ -298,6 +300,7 @@ def format_datetime(value):
     value = value.strftime("%m/%d/%y %H:%M:%S")
     print(value)
     return value
+
 
 ################################################################
 if __name__ == '__main__':
