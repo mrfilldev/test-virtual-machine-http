@@ -165,8 +165,9 @@ def index():
 
 @app.route('/main')
 def main():
-    username = dict(session)['username']
-    return f'Hello, you are logged in as {username}!'
+    for key in dict(session.keys()):
+        print(key, ":", session[key])
+    return render_template("main.html")
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -287,6 +288,7 @@ async def order_detail(order_id):
 @app.route('/profile', methods=['GET'])
 @login_required
 def profile():
+    username = dict(session)['username']
     return render_template('profile/profile.html')
 
 
