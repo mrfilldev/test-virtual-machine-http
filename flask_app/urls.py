@@ -18,6 +18,7 @@ import bcrypt
 
 from urllib.parse import urlencode
 
+from flask_app.decorators.auth_decorator import login_required
 
 #from authlib.integrations.flask_client import OAuth
 
@@ -139,7 +140,7 @@ def index():
 
 
 @app.route('/main')
-#@login_required
+@login_required
 def main():
     username = dict(session)['username']
     return f'Hello, you are logged in as {username}!'
