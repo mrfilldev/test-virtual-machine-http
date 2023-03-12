@@ -16,7 +16,7 @@ from flask_bootstrap import Bootstrap
 import json
 from types import SimpleNamespace
 import bcrypt
-
+from forms import CarwashForm
 from urllib.parse import urlencode
 
 from flask_app.decorators.auth_decorator import login_required
@@ -301,8 +301,17 @@ def carwashes():
 @app.route('/create_carwash', methods=['GET'])
 @login_required
 def create_carwash():
-    username = dict(session)['username']
-    return render_template('carwash/create_carwash.html')
+    form = CarwashForm
+    if form.validate_on_submit():
+        print(form.name)
+        print(form.name)
+        print(form.name)
+        print(form.name)
+        print(form.name)
+
+    return render_template("carwash/create_carwash.html", form=form)
+#    username = dict(session)['username']
+ #   return render_template('carwash/create_carwash.html')
 
 
 
