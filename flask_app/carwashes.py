@@ -93,7 +93,7 @@ def create_carwash_obj(form):
 
     res = Config.col_carwashes.aggregate([{'$count': 'total'}])
     print(res)
-    res = Config.col_carwashes.count_documents()
+    res = Config.col_carwashes.count_documents({})
     print(res)
     res = Config.col_carwashes.estimated_document_count()
     print(res)
