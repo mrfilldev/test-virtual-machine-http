@@ -9,7 +9,7 @@ class CarwashForm(FlaskForm):
     # enable = BooleanField("enable: ", validators=[DataRequired()])
     Address = StringField("Адрес: ", validators=[DataRequired()])
     Location = StringField("Местоположение: ", validators=[DataRequired()])
-    Type = RadioField('Programming Language', choices=[('SelfServiceFixPrice', 'SelfServiceFixPrice'),
+    Type = RadioField('Type', choices=[('SelfServiceFixPrice', 'SelfServiceFixPrice'),
                                                        ('SelfService', 'SelfService'),
                                                        ('Manual', 'Manual'),
                                                        ('Portal', 'Portal'),
