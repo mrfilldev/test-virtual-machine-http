@@ -7,29 +7,21 @@
     <div class="row justify-content-center">
 
         <div class="col-md-4 col-md-offset-4">
-            <form action="" method="post" class="form-contact">
-                {{ form.hidden_tag() }}
-
-                {% for field in form if field.name not in ['csrf_token', 'remember', 'submit'] -%}
-                <p>{{ field.label() }}
-                    {% if field.errors %}
-                    {{ field(class="invalid") }}
-                    <span class="invalid-feedback">
-                        {% for e in field.errors %}
-                        {{ e }}
-                        {% endfor %}
-                    </span>
-                    {% else %}
-                    {{ field() }}
-                    {% endif %}
-                    {% endfor %}
-
-                <p>{{ form.remember.label() }} {{ form.remember() }}
-                <p>{{ form.submit() }}
-
-                Еще не зарегистрированы?<br>Тогда вам <a href="{{ url_for('register') }}">сюда</a>.
+            <form method=POST action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" name="pass" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Log In</button>
             </form>
             <br>
+            <div>
+                Еще не зарегистрированы?<br>Тогда вам <a href="{{ url_for('register') }}">сюда</a>.
+            </div>
         </div>
     </div>
 
