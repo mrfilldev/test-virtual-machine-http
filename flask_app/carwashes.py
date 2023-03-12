@@ -101,7 +101,7 @@ def create_carwash_obj(form):
     # print(res)
     id = Config.col_carwashes.count_documents({}) + 1
     enable = True
-    name = form.name
+    name = form.Name
     address = form.Address
     location = Point(form.Location.split[', '][0], form.Location.split[', '][1])
     type = Type.SelfServiceFixPrice.name
