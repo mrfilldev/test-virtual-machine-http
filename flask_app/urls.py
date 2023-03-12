@@ -303,7 +303,7 @@ def carwashes():
 def create_carwash():
     form = CarwashForm()
     if request.method == 'POST':
-        print(form.name.value)
+        print(form.name)
         print(form.id)
         print(form.enable)
         print(form.address)
