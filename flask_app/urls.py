@@ -292,6 +292,21 @@ def profile():
     username = dict(session)['username']
     return render_template('profile/profile.html')
 
+@app.route('/carwashes', methods=['GET'])
+@login_required
+def carwashes():
+    username = dict(session)['username']
+    return render_template('carwash/carwash_list.html')
+
+@app.route('/create_carwash', methods=['GET'])
+@login_required
+def create_carwash():
+    username = dict(session)['username']
+    return render_template('carwash/create_carwash.html')
+
+
+
+
 
 ################################################################
 @app.template_filter()
