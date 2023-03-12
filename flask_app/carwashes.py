@@ -92,7 +92,7 @@ def create_carwash_obj(form):
     price_group2 = [price2, price4, price6]
 
     res = Config.col_carwashes.aggregate([{'$count': 'total'}])
-    print(res)
+    print(res['total'])
     # id = (Config.col_carwashes.aggregate([{'$count': 'total'}])) + 1
     # enable = True
     # name = form.name
