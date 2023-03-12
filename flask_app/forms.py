@@ -9,7 +9,7 @@ class CarwashForm(FlaskForm):
     enable = BooleanField("enable: ", validators=[DataRequired()])
     address = StringField("address: ", validators=[DataRequired()])
     Location = StringField("Location: ", validators=[DataRequired()])
-    Type = RadioField("Name: ", validators=[DataRequired()])
+    Type = StringField("Name: ", validators=[DataRequired()])
     stepCost = FloatField("stepCost: ", validators=[DataRequired()])
     limitMinCost = FloatField("limitMinCost: ", validators=[DataRequired()])
     Price = FloatField("Price: ", validators=[DataRequired()])
