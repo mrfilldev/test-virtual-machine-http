@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
 
-{% for field in form if field.name not in ['csrf_token', 'submit'] %}
-	<p>{{ field.label() }}
-		{{ field() }}
-{% endfor %}
+                {% for field in form if field.name not in ['csrf_token', 'submit'] %}
+                <p>{{ field.label() }}
+                    {{ field() }}
+                    {% endfor %}
 
-<p>{{ form.submit() }}
-</form>
+                <p>{{ form.submit() }}
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
