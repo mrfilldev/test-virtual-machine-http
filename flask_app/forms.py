@@ -5,15 +5,13 @@ from wtforms.validators import DataRequired, Email
 
 class CarwashForm(FlaskForm):
     name = StringField("Name: ", validators=[DataRequired()])
-    id = StringField("id: ", validators=[DataRequired()])
-    enable = BooleanField("enable: ", validators=[DataRequired()])
-    address = StringField("address: ", validators=[DataRequired()])
+    # id = StringField("id: ", validators=[DataRequired()])
+    # enable = BooleanField("enable: ", validators=[DataRequired()])
+    Address = StringField("address: ", validators=[DataRequired()])
     Location = StringField("Location: ", validators=[DataRequired()])
     Type = StringField("Type: ", validators=[DataRequired()])
-    stepCost = FloatField("stepCost: ", validators=[DataRequired()])
-    limitMinCost = FloatField("limitMinCost: ", validators=[DataRequired()])
-    Price = FloatField("Price: ", validators=[DataRequired()])
-    Boxes = StringField("stepCost: ", validators=[DataRequired()])
-    submit = SubmitField("Submit")
-
-
+    StepCost = FloatField("stepCost: ", validators=[DataRequired()])
+    LimitMinCost = FloatField("limitMinCost: ", validators=[DataRequired()])
+    Price = FloatField("Цена: ", validators=[DataRequired()])
+    # Boxes = StringField("stepCost: ", validators=[DataRequired()])
+    Submit = SubmitField("Создать")
