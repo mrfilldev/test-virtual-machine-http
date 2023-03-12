@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email
 
 
 class CarwashForm(FlaskForm):
-    name = StringField("Название: ", validators=[DataRequired()])
+    Name = StringField("Название: ", validators=[DataRequired()])
     Address = StringField("Адрес: ", validators=[DataRequired()])
     Location = StringField("Местоположение: ", validators=[DataRequired()])
     Submit = SubmitField("Создать")
