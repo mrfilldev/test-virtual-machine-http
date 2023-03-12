@@ -103,7 +103,7 @@ def create_carwash_obj(form):
     enable = True
     name = form.Name
     address = form.Address
-    location = Point(form.Location.split[', '][0], form.Location.split[', '][1])
+    location = Point((str(form.Location)).split(', ')[0], form.Location.split[', '][1])
     type = Type.SelfServiceFixPrice.name
     stepCost = 200.0
     limitMinCost = 1000.0
