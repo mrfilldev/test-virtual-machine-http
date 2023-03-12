@@ -113,7 +113,6 @@ def collect_objs_in_list():
     my_home = Carwash(
         '1', True, 'Мой дом :)',
         address_my,
-
         location_my,
         Type.Dry.name,
         200.0,

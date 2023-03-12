@@ -16,6 +16,8 @@ from flask_bootstrap import Bootstrap
 import json
 from types import SimpleNamespace
 import bcrypt
+
+from flask_app.carwashes import create_carwash_obj
 from forms import CarwashForm
 from urllib.parse import urlencode
 
@@ -303,9 +305,7 @@ def carwashes():
 def create_carwash():
     form = CarwashForm()
     if request.method == 'POST':
-        print(form.Name)
-        print(form.Address)
-        print(form.Location)
+        create_carwash_obj(form)
 
 
 
@@ -313,7 +313,7 @@ def create_carwash():
 
 
     return render_template("carwash/create_carwash.html", form=form)
-#    username = dict(session)['username']
+    #    username = dict(session)['username']
  #   return render_template('carwash/create_carwash.html')
 
 

@@ -32,9 +32,11 @@ class Config(object):
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
     db_orders = client['orders']
     db_users = client['users']
+    db_carwashes = client['carwashes']
 
     col_orders = db_orders["test_orders"]
     col_users = db_users["test_users"]
+    col_carwashes = db_carwashes["test_users"]
 
     # yandex oauth
     YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')
