@@ -302,7 +302,7 @@ def carwashes():
 @login_required
 def create_carwash():
     form = CarwashForm
-    if form.validate_on_submit():
+    if form:
         print(form.name)
         print(form.name)
         print(form.name)
