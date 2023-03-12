@@ -119,5 +119,5 @@ def create_carwash_obj(form):
     print('TYPE: ', new_carwash_json)
     new_carwash_simp_name = json.loads(new_carwash_json, object_hook=lambda d: SimpleNamespace(**d))
     print('TYPE: ', new_carwash_simp_name)
-    res = Config.col_carwashes.insert_one(new_carwash_simp_name)
+    res = Config.col_carwashes.insert_one(new_carwash_json)
     print('WRITED CARWASH: ', res)
