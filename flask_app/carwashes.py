@@ -91,7 +91,7 @@ def create_carwash_obj(form):
     price_group1 = [price1, price3, price5]
     price_group2 = [price2, price4, price6]
 
-    id = Config.col_carwashes.find().count() + 1
+    id = Config.col_carwashes.count_documents() + 1
     enable = True
     name = form.name
     address = form.Address
