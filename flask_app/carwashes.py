@@ -92,9 +92,9 @@ def create_carwash_obj(form):
     price_group2 = [price2, price4, price6]
 
     res = Config.col_carwashes.aggregate([{'$count': 'total'}])
-    print(res)
+    print("Config.col_carwashes.aggregate([{'$count': 'total'}]) ",res)
     res = Config.col_carwashes.count_documents({})
-    print(res)
+    print("Config.col_carwashes.count_documents({}) ",res)
     res = Config.col_carwashes.estimated_document_count()
     print(res)
     res = Config.col_carwashes.find().count()
