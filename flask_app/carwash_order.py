@@ -19,9 +19,9 @@ def to_camel_case(request):
         dictionary2[key[0].upper() + key[1:]] = dictionary1[key]
 
     print(dictionary2.keys())
-    data = json.dumps(dictionary2, default=lambda x: x.__dict__)
+    data = json.dumps(dictionary2, default=lambda x: x.__dict__) # dict -> json
     print('data: ', type(data), data, '\n')
-    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d)) # json -> simplenamespace
     return data
 
     ########################################################################
