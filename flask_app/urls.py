@@ -12,6 +12,7 @@ import carwash_order
 import ping_carwash_box
 from config.config import Config
 from flask_bootstrap import Bootstrap
+
 import json
 from types import SimpleNamespace
 import bcrypt
