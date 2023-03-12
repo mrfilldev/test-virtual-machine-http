@@ -92,22 +92,22 @@ def create_carwash_obj(form):
     price_group2 = [price2, price4, price6]
 
     res = Config.col_carwashes.aggregate([{'$count': 'total'}])
-    print(res)
-    id = (Config.col_carwashes.aggregate([{'$count': 'total'}])) + 1
-    enable = True
-    name = form.name
-    address = form.Address
-    location = Point(form.Location.split[', '][0], form.Location.split[', '][1])
-    type = Type.SelfServiceFixPrice.name
-    stepCost = 200.0
-    limitMinCost = 1000.0
-    boxes = group_of_boxes1
-    price = price_group1
-
-    new_carwash = Carwash(
-        id, enable, name, address, location, type,
-        stepCost, limitMinCost, boxes, price
-    )
-    new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
-    res = Config.col_carwashes.insert_one(new_carwash_json)
-    print('WRITED CARWASH: ', res)
+    print(res['total'])
+    # id = (Config.col_carwashes.aggregate([{'$count': 'total'}])) + 1
+    # enable = True
+    # name = form.name
+    # address = form.Address
+    # location = Point(form.Location.split[', '][0], form.Location.split[', '][1])
+    # type = Type.SelfServiceFixPrice.name
+    # stepCost = 200.0
+    # limitMinCost = 1000.0
+    # boxes = group_of_boxes1
+    # price = price_group1
+    #
+    # new_carwash = Carwash(
+    #     id, enable, name, address, location, type,
+    #     stepCost, limitMinCost, boxes, price
+    # )
+    # new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
+    # res = Config.col_carwashes.insert_one(new_carwash_json)
+    # print('WRITED CARWASH: ', res)
