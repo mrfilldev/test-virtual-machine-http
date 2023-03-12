@@ -301,7 +301,7 @@ def carwashes():
 @app.route('/create_carwash', methods=['GET', 'POST'])
 @login_required
 def create_carwash():
-    form = CarwashForm
+    form = CarwashForm()
     if request.method == 'POST':
         print(form.name)
         print(form.name)
