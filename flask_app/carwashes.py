@@ -1,5 +1,6 @@
 import enum
 import json
+from types import SimpleNamespace
 
 from config.config import Config
 
@@ -114,6 +115,7 @@ def create_carwash_obj(form):
         id, enable, name, address, location, type,
         stepCost, limitMinCost, boxes, price
     )
-    new_carwash_json = json.dumps(eval(new_carwash), default=lambda x: x.__dict__)
-    res = Config.col_carwashes.insert_one(new_carwash_json)
+    new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
+    new_carwash_simp_name = json.loads(new_carwash_json, object_hook=lambda d: SimpleNamespace(**d))
+    res = Config.col_carwashes.insert_one(new_carwash_simp_name)
     print('WRITED CARWASH: ', res)
