@@ -303,16 +303,14 @@ def carwashes():
 def create_carwash():
     form = CarwashForm()
     if request.method == 'POST':
-        print(form.name)
-        print(form.id)
-        print(form.enable)
-        print(form.address)
+        print(form.Name)
+        print(form.Address)
         print(form.Location)
-        print(form.Type)
-        print(form.stepCost)
-        print(form.limitMinCost)
-        print(form.Price)
-        print(form.stepCost)
+
+
+
+
+
 
     return render_template("carwash/create_carwash.html", form=form)
 #    username = dict(session)['username']

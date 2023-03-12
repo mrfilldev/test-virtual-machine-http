@@ -83,6 +83,7 @@ def collect_objs_in_list():
     data = []
 
     location_my = Point(55.650378, 37.606487)
+    location_crystal = Point(55.750654, 37.536016)
     # location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
 
     box1 = Boxes('1', BoxStatus.Free.name)
@@ -127,7 +128,7 @@ def collect_objs_in_list():
         '2', True, 'Crystal city',
         address_crystal,
 
-        location_my,
+        location_crystal,
         Type.SelfServiceFixPrice.name,
         200.0,
         1000.0,
