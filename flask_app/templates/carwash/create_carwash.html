@@ -7,7 +7,7 @@
             <form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
                 {% for field in form if field.name not in ['csrf_token', 'Submit'] %}
                 <p>{{ field.label() }}
-                    {{ field() }}
+                    {{ field(class="form-control") }}
                     {% endfor %}
                 <p>
                 <div>{{ form.Submit(class="btn btn-primary btn-block") }}</div>
