@@ -298,11 +298,11 @@ def carwashes():
     username = dict(session)['username']
     return render_template('carwash/carwash_list.html')
 
-@app.route('/create_carwash', methods=['GET'])
+@app.route('/create_carwash', methods=['GET', 'POST'])
 @login_required
 def create_carwash():
     form = CarwashForm
-    if form:
+    if request.method == 'POST':
         print(form.name)
         print(form.name)
         print(form.name)
