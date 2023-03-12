@@ -115,5 +115,5 @@ def create_carwash_obj(form):
         stepCost, limitMinCost, boxes, price
     )
     new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
-    res = Config.col_carwashes.insert_one(new_carwash_json)
+    res = Config.col_carwashes.insert_one(eval(new_carwash_json))
     print('WRITED CARWASH: ', res)
