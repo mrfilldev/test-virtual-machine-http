@@ -10,12 +10,12 @@ class CarwashForm(FlaskForm):
     Address = StringField("Адрес: ", validators=[DataRequired()])
     Location = StringField("Местоположение: ", validators=[DataRequired()])
     Type = RadioField('Type', choices=[('SelfServiceFixPrice', 'SelfServiceFixPrice'),
-                                                       ('SelfService', 'SelfService'),
-                                                       ('Manual', 'Manual'),
-                                                       ('Portal', 'Portal'),
-                                                       ('Tunnel', 'Tunnel'),
-                                                       ('Dry', 'Dry')
-                                                       ])
+                                       ('SelfService', 'SelfService'),
+                                       ('Manual', 'Manual'),
+                                       ('Portal', 'Portal'),
+                                       ('Tunnel', 'Tunnel'),
+                                       ('Dry', 'Dry')
+                                       ])
     StepCost = FloatField("stepCost: ", validators=[DataRequired()])
     LimitMinCost = FloatField("limitMinCost: ", validators=[DataRequired()])
     Price = FloatField("Цена: ", validators=[DataRequired()])
