@@ -7,16 +7,16 @@
 	<p>{{ field.label() }} 
 	{% if field.errors %}
 		{{ field(class="invalid") }}
-	<span class="invalid-feedback">
-		{% for e in field.errors %}
-		{{ e }}
-		{% endfor %}
-	</span>
+
 	{% else %}
 		{{ field() }}
 	{% endif %}
 {% endfor %}
-
+<span class="invalid-feedback">
+		{% for e in field.errors %}
+		{{ e }}
+		{% endfor %}
+	</span>
 <p>{{ form.submit() }}
 </form>
 {% endblock %}
