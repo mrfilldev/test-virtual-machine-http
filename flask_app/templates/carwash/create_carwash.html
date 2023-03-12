@@ -6,7 +6,6 @@
 {% for field in form if field.name not in ['csrf_token', 'submit'] %}
 	<p>{{ field.label() }}
 		{{ field() }}
-	{% endif %}
 {% endfor %}
 
 <p>{{ form.submit() }}
