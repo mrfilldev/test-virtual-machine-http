@@ -309,8 +309,9 @@ def carwashes():
     for count_carwashes, i in enumerate(all_orders, 1):
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
-        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        carwashes_list.append(order_obj)
+        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        carwashes_list.append(carwash_obj)
+        print(carwash_obj)
     context = {
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
