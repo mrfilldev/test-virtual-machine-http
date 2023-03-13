@@ -45,6 +45,11 @@ async def send_accept_status(order, user_cancel):
         print("SEND ACCEPT in ", rand_time)
         await asyncio.sleep(rand_time)
 
+    old_order = {'Id': order.Id}
+    set_command = {"$set": {"Status": "Accepted"}}
+    new_order = Config.col_orders.update_one(old_order, set_command)
+    print('UPDATE DATA: ', new_order)
+
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
@@ -67,6 +72,11 @@ async def send_canceled_status(order, reason):
     print("START SEND CANCEL STATUS")
     rand_time = randint(1, 20)
 
+    old_order = {'Id': order.Id}
+    set_command = {"$set": {"Status": "Canceled"}}
+    new_order = Config.col_orders.update_one(old_order, set_command)
+    print('UPDATE DATA: ', new_order)
+
     print("SEND CANCEL in ", rand_time)
     await asyncio.sleep(rand_time)
 
@@ -83,6 +93,11 @@ async def send_canceled_status(order, reason):
 
 async def send_completed_status(order):
     print("Start SEND COMPLETED STATUS")
+
+    old_order = {'Id': order.Id}
+    set_command = {"$set": {"Status": "Completed"}}
+    new_order = Config.col_orders.update_one(old_order, set_command)
+    print('UPDATE DATA: ', new_order)
 
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
