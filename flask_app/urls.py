@@ -246,10 +246,6 @@ async def admin():
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print(order_obj)
-        print(order_obj.Sum)
-        print(order_obj.SumCompleted)
-        print(order_obj.SumPaidStationCompleted)
         orders_list.append(order_obj)
     context = {
         'orders_list': orders_list,
@@ -369,9 +365,7 @@ def format_datetime(value):
     # variant = value.strftime('%Y-%m-%d')
     # print(variant)
     value = parser.parse(value)
-    print(value)
     value = value.strftime("%d.%m.%Y %H:%M:%S")
-    print(value)
     return value
 
 
