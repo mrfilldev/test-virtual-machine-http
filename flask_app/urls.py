@@ -238,7 +238,7 @@ async def admin():
     # user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
 
     orders_list = []
-    all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
+    all_orders = orders.find([['_id', -1]])  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     count_orders = 0
 
     for count_orders, i in enumerate(all_orders, 1):
