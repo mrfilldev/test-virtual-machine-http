@@ -89,7 +89,7 @@ async def send_canceled_status(order, reason):
 async def send_completed_status(order):
     print("Start SEND COMPLETED STATUS")
 
-    await update_order_status(order, dict_reason['Completed'])
+    await update_order_status(order, 'Completed')
 
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
