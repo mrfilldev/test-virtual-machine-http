@@ -361,7 +361,7 @@ def format_datetime(value):
     # print(variant)
     value = parser.parse(value)
     print(value)
-    value = value.strftime("%m.%d.%yyyy %H:%M:%S")
+    value = value.strftime("%m.%d.%Y %H:%M:%S")
     print(value)
     return value
 
