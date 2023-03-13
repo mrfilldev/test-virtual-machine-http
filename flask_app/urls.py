@@ -239,7 +239,10 @@ async def admin():
     if request.method == 'POST':
         all_orders = orders.find(
             {
-                'CarWashId': request.form['search_field']
+
+                'CarWashId': request.form['search_field'],
+                'Services': request.form['search_field'],
+
             })  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     orders_list = []
     count_orders = 0
