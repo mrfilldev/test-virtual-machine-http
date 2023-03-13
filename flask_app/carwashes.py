@@ -112,19 +112,19 @@ def create_carwash_obj(form):
     print("location: ", location)
     print("type_name: ", )
 
-    type = Types.SelfServiceFixPrice.name
+    types = Types.SelfServiceFixPrice.name
     stepCost = 200.0
     limitMinCost = 1000.0
     boxes = group_of_boxes1
     price = price_group1
 
     new_carwash = Carwash(
-        id, enable, name, address, location, type,
+        id, enable, name, address, location, types,
         stepCost, limitMinCost, boxes, price
     )
     new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
-    print('TYPE: ', new_carwash_json)
+    print('TYPE: ', type(new_carwash_json))
     new_carwash_dict = json.loads(new_carwash_json)#, object_hook=lambda d: SimpleNamespace(**d))
-    print('TYPE: ', new_carwash_dict)
+    print('TYPE: ', type(new_carwash_dict))
     #res = Config.col_carwashes.insert_one(new_carwash_dict)
     #print('WRITED CARWASH: ', res)
