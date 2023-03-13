@@ -241,7 +241,7 @@ async def admin():
     all_orders = orders.find('_id', -1)  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     count_orders = 0
 
-    for count_orders, i in enumerate(all_orders, 1):
+    for count_orders, i in enumerate(list(all_orders)[::-1], 1):
         # count_orders += 1
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
