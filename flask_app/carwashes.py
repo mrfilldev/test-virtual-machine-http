@@ -5,7 +5,7 @@ from types import SimpleNamespace
 from config.config import Config
 
 
-class Type(enum.IntEnum):
+class Types(enum.IntEnum):
     SelfServiceFixPrice = 1  # автомойка самообслуживания Fix Price
     SelfService = 2  # автомойка самообслуживания
     Contactless = 3  # безконтактная
@@ -103,16 +103,16 @@ def create_carwash_obj(form):
     id = Config.col_carwashes.count_documents({}) + 1
     enable = True
     name = form.Name
-    print("name: ", name)
-    print("type_name: ", type(name))
+    print("name: ", name.value)
+    print("type_name: ", )
     address = form.Address
     print("address: ", address)
-    print("type_name: ", type(name))
+
     location = Point(str(form.Location).split(', ')[0], str(form.Location).split(', ')[1])
     print("location: ", location)
-    print("type_name: ", type(name))
+    print("type_name: ", )
 
-    type = Type.SelfServiceFixPrice.name
+    type = Types.SelfServiceFixPrice.name
     stepCost = 200.0
     limitMinCost = 1000.0
     boxes = group_of_boxes1
