@@ -134,11 +134,6 @@ async def user_canceled(order):
         if order_status == 'UserCanceled':
             await send_canceled_status(order, 'Отмена пользователем')
 
-            old_order = {'Id': order.id}
-            set_command = {"$set": {"Status": "UserCanceled"}}
-            new_order = Config.col_orders.update_one(old_order, set_command)
-            print('UPDATE DATA: ', new_order)
-
             return True
 
         await asyncio.sleep(0.1)
