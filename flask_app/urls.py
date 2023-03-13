@@ -43,6 +43,9 @@ bootstrap = Bootstrap(app)
 
 users = Config.col_users
 orders = Config.col_orders
+carwases = Config.col_carwashes
+
+
 URL_DEV = Config.URL_DEV
 API_KEY = Config.API_KEY  # ['123456', '7tllmnubn49ghu5qrep97']
 
@@ -250,7 +253,7 @@ async def admin():
         print(order_obj.SumPaidStationCompleted)
         orders_list.append(order_obj)
     context = {
-        'orders': orders_list,
+        'orders_list': orders_list,
         'count_orders': count_orders,
 
     }
@@ -294,11 +297,31 @@ def profile():
     username = dict(session)['username']
     return render_template('profile/profile.html', username=username)
 
+
 @app.route('/carwashes', methods=['GET'])
 @login_required
 def carwashes():
-    username = dict(session)['username']
-    return render_template('carwash/carwash_list.html')
+
+    carwashes_list = []
+    all_orders = carwashes.find()
+    count_carwashes = 0
+
+    for count_carwashes, i in enumerate(all_orders, 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        carwashes_list.append(order_obj)
+    context = {
+        'carwashes_list': carwashes_list,
+        'count_carwashes': count_carwashes,
+
+    }
+
+    return render_template(
+        'carwash/carwash_list.html',
+        context=context
+    )
+
 
 @app.route('/create_carwash', methods=['GET', 'POST'])
 @login_required
@@ -309,10 +332,9 @@ def create_carwash():
 
     return render_template("carwash/create_carwash.html", form=form)
     #    username = dict(session)['username']
- #   return render_template('carwash/create_carwash.html')
 
 
-
+#   return render_template('carwash/create_carwash.html')
 
 
 ################################################################
