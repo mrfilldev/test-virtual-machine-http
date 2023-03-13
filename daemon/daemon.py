@@ -34,7 +34,8 @@ API_KEY = '7tllmnubn49ghu5qrep97'
 dict_reason = {
     'CarWashCanceled': 'Отмена заказа Мойкой',
     'UserCanceled': 'Отмена заказа пользователем',
-    'StationCanceled': 'Отмена заказа Станцией Мойки',
+    'StationCanceled': 'Отмена заказа Системой Станций Моек',
+    'SystemAggregator_Error': 'Отмена заказа Системой Агрегации',
 }
 
 
@@ -68,10 +69,7 @@ async def send_canceled_status(order, reason):
     print("START SEND CANCEL STATUS")
     rand_time = randint(1, 20)
 
-    old_order = {'Id': order.Id}
-    set_command = {"$set": {"Status": dict_reason[reason]}}
-    new_order = Config.col_orders.update_one(old_order, set_command)
-    print('UPDATE DATA: ', new_order)
+    await update_order_status(order, reason)
 
     print("SEND CANCEL in ", rand_time)
     await asyncio.sleep(rand_time)
@@ -90,10 +88,7 @@ async def send_canceled_status(order, reason):
 async def send_completed_status(order):
     print("Start SEND COMPLETED STATUS")
 
-    old_order = {'Id': order.Id}
-    set_command = {"$set": {"Status": "Completed"}}
-    new_order = Config.col_orders.update_one(old_order, set_command)
-    print('UPDATE DATA: ', new_order)
+    await update_order_status(order, 'Completed')
 
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
@@ -192,10 +187,7 @@ async def get_order_messege_queue():
                 )
             except Exception as error:
                 # write to log
-                #  message = f'Сбой в работе программы: {error}'
-                # logger.exception(message)
-
-                await send_canceled_status(order_json, reason='Ошибка на стороне сервера')
+                await send_canceled_status(order_json, reason=dict_reason['SystemAggregator_Error'])
                 traceback.print_exc()
                 print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
 
@@ -217,9 +209,16 @@ async def write_into_db(order):
     print('Объекты в коллекции', Config.col_orders.find())
 
 
-async def update_order_status(order_json, status):
-    old_order = {'Id': order_json.Id}
-    set_command = {"$set": {"Status": status}}
+async def update_order_status(order, status):
+    if status in dict_reason.keys():
+        set_command = {"$set": {"Status": status}}
+    else:
+        set_command = {"$set": {"Status": dict_reason[status]}}
+
+    old_order = {'Id': order.Id}
+    print('Id: ', order.Id)
+
+    print('UPDATE STATUS: ', status)
     new_order = Config.col_orders.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
     # Response(status=200)
