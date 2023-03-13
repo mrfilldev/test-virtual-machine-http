@@ -45,7 +45,6 @@ users = Config.col_users
 orders = Config.col_orders
 db_carwashes = Config.col_carwashes
 
-
 URL_DEV = Config.URL_DEV
 API_KEY = Config.API_KEY  # ['123456', '7tllmnubn49ghu5qrep97']
 
@@ -239,7 +238,7 @@ async def admin():
     # user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
 
     orders_list = []
-    all_orders = orders.find()
+    all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     count_orders = 0
 
     for count_orders, i in enumerate(all_orders, 1):
@@ -301,7 +300,6 @@ def profile():
 @app.route('/carwashes', methods=['GET'])
 @login_required
 def carwashes():
-
     carwashes_list = []
     all_orders = db_carwashes.find()
     count_carwashes = 0
