@@ -62,12 +62,12 @@
             </td>
             <td>
                 {% for box in carwash.Boxes %}
-                {{ box.number }} - {{ box.status }}
+                {{ box.number }} - {{ box.status }}<br>
                 {% endfor %}
             </td>
             <td>
                 {% for price in carwash.Price %}
-                {{ price.description }} - {{ price.cost }}<br>
+                {{ price.description }}: {{ price.cost }}<br>
                 {% endfor %}
             </td>
 
