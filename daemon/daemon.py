@@ -62,7 +62,7 @@ async def send_accept_status(order, user_cancel):
     if not user_cancel:
         await send_completed_status(order)
     else:
-        await send_canceled_status(order, reason=dict_reason['UserCanceled'])
+        await send_canceled_status(order, reason='UserCanceled')
 
 
 async def send_canceled_status(order, reason):
@@ -79,7 +79,7 @@ async def send_canceled_status(order, reason):
     params = {
         'apikey': API_KEY,
         'orderId': order.Id,
-        'reason': reason
+        'reason': dict_reason['reason']
     }
     requests.get(url, params=params)
     print("url:", url)
@@ -124,7 +124,7 @@ async def user_canceled(order):
         print('Status: ', order_status)
 
         if order_status == 'UserCanceled':
-            await send_canceled_status(order, dict_reason[order_status])
+            await send_canceled_status(order, order_status)
 
             return True
 
@@ -174,7 +174,7 @@ async def get_order_messege_queue():
                 print('order_json: ', order_json)
                 if order_json.BoxNumber == '2':
                     await update_order_status(order_json, 'StationCanceled')
-                    await send_canceled_status(order_json, dict_reason['StationCanceled'])
+                    await send_canceled_status(order_json, 'StationCanceled')
                 elif order_json.BoxNumber == '3':
                     await user_canceled(order_json)
                 else:
@@ -188,7 +188,7 @@ async def get_order_messege_queue():
                 )
             except Exception as error:
                 # write to log
-                await send_canceled_status(order_json, reason=dict_reason['SystemAggregator_Error'])
+                await send_canceled_status(order_json, reason='SystemAggregator_Error')
                 traceback.print_exc()
                 print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
 
@@ -211,11 +211,7 @@ async def write_into_db(order):
 
 
 async def update_order_status(order, status):
-    if status in dict_reason.keys():
-        set_command = {"$set": {"Status": status}}
-    else:
-        set_command = {"$set": {"Status": dict_reason[status]}}
-
+    set_command = {"$set": {"Status": status}}
     old_order = {'Id': order.Id}
     print('Id: ', order.Id)
 
