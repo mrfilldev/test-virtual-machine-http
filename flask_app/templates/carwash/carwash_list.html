@@ -26,9 +26,9 @@
         <th scope="col">Адрес</th>
         <th scope="col">Координаты</th>
         <th scope="col">Тип</th>
-        <th scope="col">Сумма стоимости заказа</th>
-        <th scope="col">Сумма списания</th>
-        <th scope="col">Выплачено партнеру</th>
+        <th scope="col">Минимальный шаг суммы заказа</th>
+        <th scope="col">Минимальная сумма заказа</th>
+
     </tr>
     {% for carwash in context['carwashes_list'] %}
         <tr class="tr-carwash" data-href="{{ url_for('carwash_detail', carwash_id=carwash.Id) }}">
@@ -58,7 +58,6 @@
                 {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
             </td>
             <td>
-                {{ carwash.LimitMinCost }}
                 {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
             </td>
             <td>
