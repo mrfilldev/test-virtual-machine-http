@@ -26,7 +26,7 @@
         <th scope="col">Сумма списания</th>
         <th scope="col">Выплачено партнеру</th>
     </tr>
-    {% for carwash in context['carwash_list'] %}
+    {% for carwash in context['carwashes_list'] %}
         <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
             <th scope="row">
