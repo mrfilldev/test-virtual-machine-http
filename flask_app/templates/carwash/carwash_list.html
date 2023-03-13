@@ -24,8 +24,8 @@
         <th scope="col">Адрес</th>
         <th scope="col">Координаты</th>
         <th scope="col">Тип</th>
-        <th scope="col">Минимальный шаг суммы заказа</th>
-        <th scope="col">Минимальная сумма заказа</th>
+        <th scope="col">Мин. шаг суммы</th>
+        <th scope="col">Мин. сумма </th>
         <th scope="col">Боксы</th>
         <th scope="col">Цены</th>
 
@@ -62,16 +62,12 @@
             </td>
             <td>
                 {% for box in carwash.Boxes %}
-                {{ box.number }}<br>
-                {{ box.status }}<br>
+                {{ box.number }} - {{ box.status }}
                 {% endfor %}
             </td>
             <td>
                 {% for price in carwash.Price %}
-                {{ price.Id }}<br>
-                {{ price.description }}<br>
-                {{ price.cost }}<br>
-                {{ price.costType }}<br>
+                {{ price.description }} - {{ price.cost }}<br>
                 {% endfor %}
             </td>
 
