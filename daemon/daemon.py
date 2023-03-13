@@ -32,6 +32,7 @@ URL_DEV = 'http://app.tst.tanker.yandex.net'
 API_KEY = '7tllmnubn49ghu5qrep97'
 
 dict_reason = {
+    'Completed': 'Выполнено успешно',
     'CarWashCanceled': 'Отмена заказа Мойкой',
     'UserCanceled': 'Отмена заказа пользователем',
     'StationCanceled': 'Отмена заказа Системой Станций Моек',
@@ -88,7 +89,7 @@ async def send_canceled_status(order, reason):
 async def send_completed_status(order):
     print("Start SEND COMPLETED STATUS")
 
-    await update_order_status(order, 'Completed')
+    await update_order_status(order, dict_reason['Completed'])
 
     extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
     print('extended_date: ', extended_date)
