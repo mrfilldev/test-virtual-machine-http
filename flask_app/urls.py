@@ -292,7 +292,7 @@ async def order_detail(order_id):
 @login_required
 def profile():
     username = dict(session)['username']
-    return render_template('profile/profile.html')
+    return render_template('profile/profile.html', username=username)
 
 @app.route('/carwashes', methods=['GET'])
 @login_required
@@ -306,11 +306,6 @@ def create_carwash():
     form = CarwashForm()
     if request.method == 'POST':
         create_carwash_obj(form)
-
-
-
-
-
 
     return render_template("carwash/create_carwash.html", form=form)
     #    username = dict(session)['username']
