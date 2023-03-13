@@ -335,7 +335,25 @@ def create_carwash():
     #    username = dict(session)['username']
 
 
-#   return render_template('carwash/create_carwash.html')
+@app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
+async def carwash_detail(carwash_id):
+    return f'carwash_detil {carwash_id}'
+    # order_obj = orders.find_one({'Id': order_id})  # dict
+    # data = json.loads(json_util.dumps(order_obj))
+    # data = json.dumps(data, default=lambda x: x.__dict__)
+    # order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    # location = {
+    #     'latitude': 55.650378,
+    #     'longitude': 37.606487
+    # }
+    # context = {
+    #     'order': order_obj,
+    #     'location': location
+    # }
+    # return render_template(
+    #     'admin_zone/order_detail.html',
+    #     context=context
+    # )
 
 
 ################################################################
