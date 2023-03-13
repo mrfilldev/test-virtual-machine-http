@@ -121,20 +121,20 @@ async def send_completed_status(order):
 
 # task = asyncio.create_task(carwash_order.send_accept_status(order))
 
-async def user_canceled(order_json, id):
+async def user_canceled(order):
     after_minute = time.time() + 60
 
     while time.time() <= after_minute:
         #  проверку в бд
-        order_in_db = Config.col_orders.find_one({'Id': str(order_json.Id)})  # получаем словарь
+        order_in_db = Config.col_orders.find_one({'Id': str(order.Id)})  # получаем словарь
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order_status = order_in_db['Status']
         print('Status: ', order_status)
 
         if order_status == 'UserCanceled':
-            await send_canceled_status(order_json, 'Отмена пользователем')
+            await send_canceled_status(order, 'Отмена пользователем')
 
-            old_order = {'Id': id}
+            old_order = {'Id': order.id}
             set_command = {"$set": {"Status": "UserCanceled"}}
             new_order = Config.col_orders.update_one(old_order, set_command)
             print('UPDATE DATA: ', new_order)
@@ -143,7 +143,7 @@ async def user_canceled(order_json, id):
 
         await asyncio.sleep(0.1)
     user_cancel = False
-    await send_accept_status(order_json, user_cancel)
+    await send_accept_status(order, user_cancel)
 
 
 async def make_some_noize(order):
@@ -189,7 +189,7 @@ async def get_order_messege_queue():
                     await update_order_status(order_json, 'StationCanceled')
                     await send_canceled_status(order_json, dict_reason['StationCanceled'])
                 elif order_json.BoxNumber == '3':
-                    await user_canceled(order_json, order.Id)
+                    await user_canceled(order_json)
                 else:
                     await send_accept_status(order_json, user_cancel=False)
 
