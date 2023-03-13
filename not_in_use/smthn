@@ -1,0 +1,26 @@
+namespace(
+    _id=namespace(
+        $oid='640f0135fb5301f51c145d34'
+    ),
+    Id=1,
+    Enable=True,
+    Name='test_1',
+    Address='test2',
+    Location=namespace(
+                lat='12345',
+                lon='54321'
+    ),
+    Type='SelfServiceFixPrice',
+    StepCost=200.0,
+    LimitMinCost=1000.0,
+    Boxes=[
+        namespace(number='1', status='Free'),
+        namespace(number='2', status='Free'),
+        namespace(number='3', status='Free'),
+        namespace(number='4', status='Busy')
+    ],
+    Price=[
+        namespace(Id='1', description='Кузов', cost=1000.0, costType='Fix'),
+        namespace(Id='3', description='Комплекс', cost=2200.0, costType='Fix'),
+        namespace(Id='5', description='Комплекс + чернение', cost=2500.0, costType='Fix')
+    ])

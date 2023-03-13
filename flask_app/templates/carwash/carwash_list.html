@@ -27,15 +27,52 @@
         <th scope="col">Выплачено партнеру</th>
     </tr>
     {% for carwash in context['carwash_list'] %}
-    <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id) }}">
+        <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
-        <th scope="row">
-            {% for value in carwash %}
-                {{ value }}
-            {% endfor %}
-        </th>
+            <th scope="row">
+                {{ context['count_carwashes'] - loop.index0 }}
+            </th>
+            <td>
+                {{ carwash.Id }}
+            </td>
+            <td>
+                {{ carwash.Name }}
+            </td>
+            <td>
+                {{ carwash.Enable }}
+            </td>
+            <td>
+                {{ carwash.Address }}
+            </td>
+            <td>
+                {{ carwash.Location }}
+            </td>
+            <td>
+                {{ carwash.Type }}
+            </td>
+            <td>
+                {{ carwash.StepCost }}
+            </td>
+            <td>
+                {{ carwash.LimitMinCost }}
+            </td>
+            <td>
+                {% for box in carwash.Boxes %}
+                {{ box.number }}<br>
+                {{ box.status }}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for price in carwash.Price %}
+                {{ price.Id }}<br>
+                {{ price.description }}<br>
+                {{ price.cost }}<br>
+                {{ price.costType }}<br>
+                {% endfor %}
+            </td>
 
-    </tr>
+
+        </tr>
 
     {% endfor %}
 </table>
