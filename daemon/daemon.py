@@ -69,7 +69,7 @@ async def send_canceled_status(order, reason):
     rand_time = randint(1, 20)
 
     old_order = {'Id': order.Id}
-    set_command = {"$set": {"Status": "Canceled"}}
+    set_command = {"$set": {"Status": dict_reason[reason]}}
     new_order = Config.col_orders.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
 
@@ -128,7 +128,7 @@ async def user_canceled(order):
         print('Status: ', order_status)
 
         if order_status == 'UserCanceled':
-            await send_canceled_status(order, 'Отмена пользователем')
+            await send_canceled_status(order, dict_reason[order_status])
 
             return True
 
