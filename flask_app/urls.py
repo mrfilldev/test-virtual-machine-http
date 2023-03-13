@@ -235,12 +235,30 @@ def logout():
 
 @app.route('/admin', methods=['POST', 'GET'])
 async def admin():
-    # user = {'nickname': 'no name'}  # выдуманный пользователь-заглушка
-
+    if request.method == 'POST':
+        orders_list = []
+        all_orders = orders.find(
+            {
+                'CarWashId': {request.form['search_field']}
+            })  # { 'DateCreate: {gt: ''}' ; orderStatus: })
+        count_orders = 0
+        for count_orders, i in enumerate(list(all_orders)[::-1], 1):
+            # count_orders += 1
+            data = json.loads(json_util.dumps(i))
+            data = json.dumps(data, default=lambda x: x.__dict__)
+            order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+            orders_list.append(order_obj)
+        context = {
+            'orders_list': orders_list,
+            'count_orders': count_orders,
+        }
+        return render_template(
+            'admin_zone/admin.html',
+            context=context
+        )
     orders_list = []
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     count_orders = 0
-
     for count_orders, i in enumerate(list(all_orders)[::-1], 1):
         # count_orders += 1
         data = json.loads(json_util.dumps(i))
@@ -250,9 +268,7 @@ async def admin():
     context = {
         'orders_list': orders_list,
         'count_orders': count_orders,
-
     }
-
     return render_template(
         'admin_zone/admin.html',
         context=context
