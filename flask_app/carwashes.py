@@ -102,8 +102,8 @@ def create_carwash_obj(form):
     # print(res)
     id = Config.col_carwashes.count_documents({}) + 1
     enable = True
-    name = form.Name
-    print("name: ", name.value)
+    name = eval(form.Name)
+    print("name: ", name['value'])
     print("type_name: ", )
     address = form.Address
     print("address: ", address)
