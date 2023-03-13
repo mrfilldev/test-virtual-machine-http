@@ -43,7 +43,7 @@ bootstrap = Bootstrap(app)
 
 users = Config.col_users
 orders = Config.col_orders
-carwases = Config.col_carwashes
+db_carwashes = Config.col_carwashes
 
 
 URL_DEV = Config.URL_DEV
@@ -303,7 +303,7 @@ def profile():
 def carwashes():
 
     carwashes_list = []
-    all_orders = carwashes.find()
+    all_orders = db_carwashes.find()
     count_carwashes = 0
 
     for count_carwashes, i in enumerate(all_orders, 1):
