@@ -276,10 +276,19 @@ async def order_detail(order_id):
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    location = {
+    location_my = {
         'latitude': 55.650378,
         'longitude': 37.606487
     }
+    location_crystal = {
+        'latitude': 55.750843,
+        'longitude': 37.536693
+    }
+    if order_obj.CarWashId == 1:
+        location = location_my
+    else:
+        location = location_crystal
+
     context = {
         'order': order_obj,
         'location': location
