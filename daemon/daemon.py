@@ -79,7 +79,7 @@ async def send_canceled_status(order, reason):
     params = {
         'apikey': API_KEY,
         'orderId': order.Id,
-        'reason': dict_reason['reason']
+        'reason': dict_reason[reason]
     }
     requests.get(url, params=params)
     print("url:", url)
