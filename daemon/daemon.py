@@ -211,11 +211,7 @@ async def write_into_db(order):
 
 
 async def update_order_status(order, status):
-    if status in dict_reason.keys():
-        set_command = {"$set": {"Status": status}}
-    else:
-        set_command = {"$set": {"Status": dict_reason[status]}}
-
+    set_command = {"$set": {"Status": status}}
     old_order = {'Id': order.Id}
     print('Id: ', order.Id)
 
