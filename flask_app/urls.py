@@ -18,6 +18,7 @@ from types import SimpleNamespace
 import bcrypt
 
 from flask_app.carwashes import create_carwash_obj
+from flask_app.specific_methods import method_of_filters
 from forms import CarwashForm
 from urllib.parse import urlencode
 
@@ -237,14 +238,9 @@ def logout():
 async def admin():
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     if request.method == 'POST':
+        find_arguments = method_of_filters(request)
         # parse
-        all_orders = orders.find(
-            {
-
-                'CarWashId': request.form['search_field']
-                #  'Services': {'Description': request.form['search_field']},
-
-            })  # { 'DateCreate: {gt: ''}' ; orderStatus: })
+        all_orders = orders.find(find_arguments)
     orders_list = []
     count_orders = 0
     for count_orders, i in enumerate(list(all_orders)[::-1], 1):
