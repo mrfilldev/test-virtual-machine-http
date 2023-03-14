@@ -16,7 +16,7 @@ def method_of_filters(request):
     for i in request.form:
         print(i)
     result = {}
-    if request.form['search_field'] != '' and request.form['status'] != '':
+    if request.form['search_field'] != '' and request.form['status'] != '': #  1 1
         if is_valid_guid(request.form['search_field']):
             print('is_guid')
             print('search_field & status')
@@ -34,10 +34,9 @@ def method_of_filters(request):
                 'CarWashId': request.form['search_field'],
                 'Status': request.form['status']
                 # 'DateCreate': {'$gt': start_time.isoformat()}
-            }
+            } #
     elif request.form['search_field'] == '' and request.form['status'] != '':
         print('only status')
-
         result = {
             'Status': request.form['status']
             # 'DateCreate': {'$gt': start_time.isoformat()}
@@ -48,5 +47,6 @@ def method_of_filters(request):
             'CarWashId': request.form['search_field'],
             # 'DateCreate': {'$gt': start_time.isoformat()}
         }
-
+    print('search_field', request.form['search_field'])
+    print('status', request.form['status'])
     return result
