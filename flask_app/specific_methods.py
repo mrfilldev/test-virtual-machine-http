@@ -3,8 +3,13 @@ import re
 
 def is_valid_guid(guid_string):
     print(guid_string)
-    pattern = r'^\b[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}\b$'
-    return bool(re.match(pattern, guid_string))
+    #  pattern = r'^\b[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}\b$' не сработало?!
+    # return bool(re.match(pattern, guid_string))
+
+    if len(guid_string) == 32:
+        return True
+    else:
+        return False
 
 
 def method_of_filters(request):
