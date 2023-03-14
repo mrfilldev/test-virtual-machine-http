@@ -14,12 +14,14 @@ def method_of_filters(request):
             # искать среди order.Status
             # искать среди order.Date
             # искать среди order.Id
+            print('TRUE')
             result = {
                 'Id': request.form['search_field'],
                 # 'DateCreate': {'$gt': start_time.isoformat()}
             }
 
         else:
+            print('FALSE')
             # искать среди order.CarWashId
             # искать среди order.Status
             # искать среди order.Date
