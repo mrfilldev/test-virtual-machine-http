@@ -7,8 +7,10 @@ def is_valid_guid(guid_string):
     # return bool(re.match(pattern, guid_string))
 
     if len(guid_string) == 32:
+        print('len == 32')
         return True
     else:
+        print('len != 32')
         return False
 
 
@@ -25,11 +27,9 @@ def method_of_filters(request):
                 'Status': request.form['status']
                 # 'DateCreate': {'$gt': start_time.isoformat()}
             }
-
         else:
             print('not_guid')
             print('search_field & status')
-
             result = {
                 'CarWashId': request.form['search_field'],
                 'Status': request.form['status']
