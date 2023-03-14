@@ -33,14 +33,14 @@ def method_of_filters(request):
                 'Status': request.form['status']
                 # 'DateCreate': {'$gt': start_time.isoformat()}
             }
-    elif request.form['status'] != '':
+    elif request.form['search_field'] == '' and request.form['status'] != '':
         print('only status')
 
         result = {
             'Status': request.form['status']
             # 'DateCreate': {'$gt': start_time.isoformat()}
         }
-    elif request.form['search_field'] != '':
+    elif request.form['search_field'] != '' and request.form['status'] == '':
         print('only search_field')
         result = {
             'CarWashId': request.form['search_field'],
