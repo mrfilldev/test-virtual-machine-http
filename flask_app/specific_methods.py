@@ -38,7 +38,6 @@ def method_of_filters(request):
             'Status': request.form['status']
             # 'DateCreate': {'$gt': start_time.isoformat()}
         }
-        pass
     elif request.form['search_field'] != '':
         result = {
             'CarWashId': request.form['search_field'],
