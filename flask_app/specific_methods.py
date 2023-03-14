@@ -14,28 +14,34 @@ def is_valid_guid(guid_string):
 
 def method_of_filters(request):
     result = {}
-    if request.form['search_field'] != '':
+    if request.form['search_field'] != '' and request.form['status'] != '':
         if is_valid_guid(request.form['search_field']):
-            # искать среди order.Status
-            # искать среди order.Date
-            # искать среди order.Id
-            print('TRUE')
+            print('is_guid')
             result = {
                 'Id': request.form['search_field'],
+                'Status': request.form['status']
                 # 'DateCreate': {'$gt': start_time.isoformat()}
             }
 
         else:
-            print('FALSE')
+            print('not_guid')
             # искать среди order.CarWashId
             # искать среди order.Status
             # искать среди order.Date
             result = {
                 'CarWashId': request.form['search_field'],
+                'Status': request.form['status']
                 # 'DateCreate': {'$gt': start_time.isoformat()}
             }
-    else:
+    elif request.form['status'] != '':
         result = {
+            'Status': request.form['status']
+            # 'DateCreate': {'$gt': start_time.isoformat()}
+        }
+        pass
+    elif request.form['search_field'] != '':
+        result = {
+            'CarWashId': request.form['search_field'],
             # 'DateCreate': {'$gt': start_time.isoformat()}
         }
 
