@@ -15,7 +15,6 @@ def method_of_filters(request):
             # искать среди order.Id
             result = {
                 'Id': request.form['search_field'],
-                'Status': request.form['status'],
                 # 'DateCreate': {'$gt': start_time.isoformat()}
             }
 
@@ -25,7 +24,6 @@ def method_of_filters(request):
             # искать среди order.Date
             result = {
                 'CarWashId': request.form['search_field'],
-                'Status': request.form['status'],
                 # 'DateCreate': {'$gt': start_time.isoformat()}
             }
     else:
