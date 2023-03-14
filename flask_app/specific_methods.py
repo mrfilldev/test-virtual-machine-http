@@ -16,7 +16,7 @@ def is_valid_guid(guid_string):
 
 def method_of_filters(request):
     for i in request.form:
-        print(i)
+        print(i, request.form[i])
     result = {}
     if request.form['search_field'] != '' and request.form['status'] != '': #  1 1
         if is_valid_guid(request.form['search_field']):
