@@ -13,6 +13,8 @@ def is_valid_guid(guid_string):
 
 
 def method_of_filters(request):
+    for i in request.form:
+        print(i)
     result = {}
     if request.form['search_field'] != '' and request.form['status'] != '':
         if is_valid_guid(request.form['search_field']):
