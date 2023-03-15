@@ -19,7 +19,10 @@
                 <button type="submit" class="btn btn-primary btn-block">Войти</button>
             </form>
             <br>
-            <button type="button" class="btn btn-primary btn-block" href="{{ url_for('oauth') }}">Войти через Я</button>
+
+            <form action="{{ url_for('oauth') }}">
+                <button type="button" class="btn btn-primary btn-block">Войти через Я</button>
+            </form>
 
             <br>
             <div>
