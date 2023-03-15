@@ -29,9 +29,14 @@ def get_code(request):
         'code': request.args.get('code'),
     }
 
-    x = requests.post(url, params=params)
-    print('STATUS_CODE: ', x.status_code)
+    response = requests.post(url, params=params)
+    print('STATUS_CODE: ', response.status_code)
     print("url:", url)
     print("params:", params)
 
-    print(x)
+    print(response)
+
+    print(response.content)
+    print(response.encoding)
+    print(response.json())
+
