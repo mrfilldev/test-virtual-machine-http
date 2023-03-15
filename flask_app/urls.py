@@ -204,8 +204,10 @@ def register():
 
 @app.route('/oauth')
 def oauth():
-    url = f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}&redirect_uri=http://test-tanker-carwash/main'
+    url = f'https://oauth.yandex.ru/authorize'
+
     params = {
+        'response_type': 'code',
         'client_id': Config.YAN_CLIENT_ID,
         'redirect_uri': 'http://test-tanker-carwash.ru/main',
     }
