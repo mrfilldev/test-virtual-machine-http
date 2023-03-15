@@ -16,7 +16,7 @@ def is_valid_guid(guid_string):
 
 def method_of_filters(request):
     result = {}
-    if request.form['search_field'] == '' and request.form['status'] == '':
+    if request.form['search_field'] is None and request.form['status'] is None:
         print('0 0')
 
     if request.form['search_field'] == '' and request.form['status'] != '':
