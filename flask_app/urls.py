@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import date
+
 from dateutil import parser
 import traceback
 
@@ -250,9 +252,11 @@ async def admin():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(order_obj)
         orders_list.append(order_obj)
+    today = date.today()
     context = {
         'orders_list': orders_list,
         'count_orders': count_orders,
+        'date': today
     }
     return render_template(
         'admin_zone/admin.html',
