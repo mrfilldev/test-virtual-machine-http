@@ -23,8 +23,8 @@ def get_code(request):
 
     params = {
         # Content - Length:
-        'content_type': 'application/x-www-form-urlencoded',
-        'Authorization': encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
+        #'content_type': 'application/x-www-form-urlencoded',
+        #'Authorization': encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
         'grant_type': 'authorization_code',
         'code': request.args.get('code'),
     }
