@@ -22,12 +22,11 @@ def get_code(request):
     code = encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET)
     print('code: ', code)
     headers = {
+        'Content-type': 'application/x-www-form-urlencoded',
         'Authorization': 'Basic ' + encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
     }
 
     params = {
-        # Content - Length:
-        'content_type': 'application/x-www-form-urlencoded',
         'grant_type': 'authorization_code',
         'code': request.args.get('code'),
     }
@@ -42,7 +41,7 @@ def get_code(request):
 
 
 
-# curl -v -X POST 'https://oauth.yandex.ru/token' \
-# -H 'Content-type: application/x-www-form-urlencoded' \
-# -H 'Authorization: Basic MGM1NDZjZmFhNGU4NDBjNGI0MWJjYTRhOGFmMmU1NmE6Y2UxMGIxZjU0MTQxNGJhOWEwYmYzMTM5ZDBkZjlmNDk=' \
-# -d 'grant_type=authorization_code&code=1455575'
+curl -v -X POST 'https://oauth.yandex.ru/token' \
+-H 'Content-type: application/x-www-form-urlencoded' \
+-H 'Authorization: Basic MGM1NDZjZmFhNGU4NDBjNGI0MWJjYTRhOGFmMmU1NmE6Y2UxMGIxZjU0MTQxNGJhOWEwYmYzMTM5ZDBkZjlmNDk=' \
+-d 'grant_type=authorization_code&code=6678635'
