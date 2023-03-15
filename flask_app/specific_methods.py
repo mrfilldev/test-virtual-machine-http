@@ -18,31 +18,17 @@ def method_of_filters(request):
     result = {}
     if request.form['search_field'] == '' and request.form['status'] == '':
         print('0 0')
-        pass
 
     if request.form['search_field'] == '' and request.form['status'] != '':
         print('0 1')
-        pass
+
     if request.form['search_field'] != '' and request.form['status'] == '':
         print('1 0')
-        pass
 
     if request.form['search_field'] != '' and request.form['status'] != '':
         print('1 1')
-        pass
 
     return result
-
-
-
-
-
-
-
-
-
-
-
 
 #     for i in request.form:
 #         print(i, request.form[i])
