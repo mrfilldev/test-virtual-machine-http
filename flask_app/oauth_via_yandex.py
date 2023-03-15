@@ -8,10 +8,8 @@ from config.config import Config
 
 def encode_base64(client_id, client_secret):
     stroka = str(client_id) + ':' + str(client_secret)
-    encoded = (base64.b64encode(stroka.encode('ascii')))
-    encoded_ascii = encoded.decode('ascii')
-    print('encoded_ascii', encoded_ascii)
-    return encoded_ascii
+    encoded = base64.b64encode(stroka)
+    return encoded
 
 
 def get_code(request):
@@ -27,7 +25,7 @@ def get_code(request):
 
     params = {
         # Content - Length:
-        #'content_type': 'application/x-www-form-urlencoded',
+        'content_type': 'application/x-www-form-urlencoded',
         'grant_type': 'authorization_code',
         'code': request.args.get('code'),
     }
