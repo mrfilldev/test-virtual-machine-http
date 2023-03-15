@@ -309,7 +309,7 @@ def profile():
 
 @app.route('/carwashes', methods=['GET'])
 @login_required
-def carwashes():
+async def carwashes():
     carwashes_list = []
     all_orders = db_carwashes.find()
     count_carwashes = 0
@@ -334,7 +334,7 @@ def carwashes():
 
 @app.route('/create_carwash', methods=['GET', 'POST'])
 @login_required
-def create_carwash():
+async def create_carwash():
     form = CarwashForm()
     if request.method == 'POST':
         create_carwash_obj(form)
@@ -364,6 +364,7 @@ async def carwash_detail(carwash_id):
     # )
 
 
+@app.route('/reg_yan', methods=['GET', 'POST'])
 def reg_yan():
     return redirect(f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}')
 
