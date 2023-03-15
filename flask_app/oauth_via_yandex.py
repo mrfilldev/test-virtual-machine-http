@@ -37,6 +37,6 @@ def get_code(request):
     print(response)
 
     print(response.content)
-    print(response.encoding)
-    print(response.json())
+
+
 
