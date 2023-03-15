@@ -17,10 +17,10 @@
                     <input type="password" class="form-control" name="pass" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Log In</button>
-            </form>
+
             <br>
 
-            <a href="{{ url_for('login_yan') }}">
+            <a href="{{ url_for('login_yan') }}" id="login_yan">
                 <svg style="width: auto" viewBox="0 0 567 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 24C0 12.6863 0 7.02944 3.51472 3.51472C7.02944 0 12.6863 0 24 0H543C554.314 0 559.971 0 563.485 3.51472C567 7.02944 567 12.6863 567 24V32C567 43.3137 567 48.9706 563.485 52.4853C559.971 56 554.314 56 543 56H24C12.6863 56 7.02944 56 3.51472 52.4853C0 48.9706 0 43.3137 0 32V24Z"
                           fill="black"></path>
@@ -55,7 +55,7 @@
                           fill="white"></path>
                 </svg>
             </a>
-
+            </form>
             <br>
             <div>
                 Еще не зарегистрированы?<br>Тогда вам <a href="{{ url_for('register') }}">сюда</a>.
