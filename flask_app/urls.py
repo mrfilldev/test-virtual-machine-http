@@ -212,7 +212,7 @@ def oauth():
 
     x = requests.get(url, params=params)
     print('STATUS_CODE: ', x.status_code)
-    return redirect(url_for('main'))
+    return redirect(url)
 
 
 @app.route('/login', methods=['POST', 'GET'])
