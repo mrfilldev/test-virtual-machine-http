@@ -34,9 +34,8 @@ def get_code(request):
     print("url:", url)
     print("params:", params)
 
-    print(response)
-
-    print(response.content)
+    print('\nresponse: ', response)
+    print('\nresponse.content: ', response.content)
 
 
 
