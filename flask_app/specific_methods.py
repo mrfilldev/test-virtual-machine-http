@@ -18,6 +18,7 @@ def method_of_filters(request):
     result = {}
     for i in request.form:
         print(i, request.form[i])
+
     if request.form['search_field'] is None and request.form['status'] is None:
         print('0 0')
 
