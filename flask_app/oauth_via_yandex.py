@@ -8,7 +8,7 @@ from config.config import Config
 
 def encode_base64(client_id, client_secret):
     stroka = str(client_id) + ':' + str(client_secret)
-    encoded = base64.b64encode(stroka)
+    encoded = base64.b64encode(stroka.encode("UTF-8"))
     return encoded
 
 
