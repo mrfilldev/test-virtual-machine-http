@@ -204,21 +204,8 @@ async def register():
 
 @app.route('/oauth')
 async def oauth():
-    url = f'https://oauth.yandex.ru/authorize'
-    url2: str = f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}&redirect_uri=http://test-tanker-carwash.ru/main'
-
-    # params = {
-    #     'response_type': 'code',
-    #     'client_id': Config.YAN_CLIENT_ID,
-    #     'redirect_uri': 'http://test-tanker-carwash.ru/main',
-    # }
-    # print(params['response_type'])
-    # print(params['client_id'])
-    # print(params['redirect_uri'])
-    # #x = requests.get(url, params=params)
-    # y = requests.get(url2)
-    # print('STATUS_CODE: ', y.status_code)
-    return redirect(url2)
+    url: str = f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}&redirect_uri=http://test-tanker-carwash.ru/main'
+    return redirect(url)
 
 
 @app.route('/login', methods=['POST', 'GET'])
