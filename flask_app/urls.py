@@ -173,7 +173,7 @@ def index():
     return render_template('users/index.html')
 
 
-@app.route('/main')
+@app.route('/main/<int:code>')
 def main():
     oauth_via_yandex.get_code(request)
     for key in dict(session):
