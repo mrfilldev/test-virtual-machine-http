@@ -1,4 +1,6 @@
 import re
+import datetime
+from dateutil import parser
 
 
 def is_valid_guid(guid_string):
@@ -19,6 +21,7 @@ def method_of_filters(request):
 
     for i in request.form:
         print(i, request.form[i])
+    start_time = parser.parse(str(request.form['date']) + str(request.form['time']))
 
     if request.form['search_field'] != '' and request.form['status'] != '':
         print('HERE')
@@ -27,8 +30,9 @@ def method_of_filters(request):
             print('search_field & status')
             result = {
                 'Id': request.form['search_field'],
-                'Status': request.form['status']
-                # 'DateCreate': {'$gt': start_time.isoformat()}
+                'Status': request.form['status'],
+                'DateCreate': {'$gt': start_time.isoformat()}
+
             }
         else:
             print('not_guid')
