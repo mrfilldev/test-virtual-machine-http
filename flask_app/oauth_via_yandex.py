@@ -22,7 +22,7 @@ def get_code(request):
     url = 'https://oauth.yandex.ru'
 
     headers = {
-        'Authorization': encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
+        'Authorization': 'Basic ' + encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
     }
 
     params = {
