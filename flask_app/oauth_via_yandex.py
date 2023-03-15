@@ -21,21 +21,26 @@ def get_code(request):
 
     url = 'https://oauth.yandex.ru'
 
+    headers = {
+        'Authorization': encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
+    }
+
     params = {
         # Content - Length:
         #'content_type': 'application/x-www-form-urlencoded',
-        #'Authorization': encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
         'grant_type': 'authorization_code',
         'code': request.args.get('code'),
     }
 
-    response = requests.post(url, params=params)
+    response = requests.post(url, params=params, headers=headers)
     print('STATUS_CODE: ', response.status_code)
     print("url:", url)
     print("params:", params)
 
     print('\nresponse: ', response)
     print('\nresponse.content: ', response.content)
+
+
 
 
 
