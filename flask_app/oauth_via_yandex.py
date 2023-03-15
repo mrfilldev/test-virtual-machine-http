@@ -29,7 +29,7 @@ def get_code(request):
         'code': request.args.get('code'),
     }
 
-    x = requests.get(url, params=params)
+    x = requests.post(url, params=params)
     print('STATUS_CODE: ', x.status_code)
     print("url:", url)
     print("params:", params)
