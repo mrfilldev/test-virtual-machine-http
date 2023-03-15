@@ -200,7 +200,7 @@ def register():
         return 'Invalid username/password combination'
 
 
-@app.route('/login_yan', methods=['POST', 'GET'])
+#@app.route('/login_yan', methods=['POST', 'GET'])
 def login_yan():
     url = 'https://oauth.yandex.ru/authorize?response_type=code'
     params = {
