@@ -174,6 +174,7 @@ def index():
 
 @app.route('/main')
 def main():
+    if request.method
     for key in dict(session):
         print(key, ":", session[key])
     return render_template("main.html")
@@ -205,7 +206,7 @@ def oauth():
     url = 'https://oauth.yandex.ru/authorize?response_type=code'
     params = {
         'client_id': Config.YAN_CLIENT_ID,
-
+        'redirect_uri': 'http%3A%2F%2Ftest-tanker-carwash%2Fmain',
     }
 
     x = requests.get(url, params=params)
