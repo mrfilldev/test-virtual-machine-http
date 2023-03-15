@@ -24,7 +24,7 @@ def method_of_filters(request):
     if request.form['date'] == '':
         start_time = parser.parse('1970-01-01T00:00:00.000Z')
     else:
-        start_time = parser.parse(str(request.form['date']) + str(request.form['time']))
+        start_time = parser.parse(str(request.form['date']) + ' ' + str(request.form['time']))
 
     if request.form['search_field'] != '' and request.form['status'] != '':
         print('HERE')
