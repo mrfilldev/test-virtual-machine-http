@@ -389,7 +389,7 @@ async def carwash_detail(carwash_id):
 
 ################################################################
 @app.template_filter()
-async def format_datetime(value):
+def format_datetime(value):
     # variant = value.strftime('%Y-%m-%d')
     # print(variant)
     if isinstance(value, date):
