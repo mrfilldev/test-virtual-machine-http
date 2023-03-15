@@ -207,7 +207,7 @@ def oauth():
     url = 'https://oauth.yandex.ru/authorize?response_type=code'
     params = {
         'client_id': Config.YAN_CLIENT_ID,
-        'redirect_uri': 'http%3A%2F%2Ftest-tanker-carwash%2Fmain',
+        'redirect_uri': 'http://test-tanker-carwash/main',
     }
 
     x = requests.get(url, params=params)
