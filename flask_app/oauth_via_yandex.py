@@ -22,7 +22,6 @@ def get_code(request):
     code = encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET)
     print('code: ', code)
     headers = {
-        'Content-type': 'application/x-www-form-urlencoded',
         'Authorization': 'Basic ' + encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
     }
 
@@ -31,7 +30,7 @@ def get_code(request):
         'code': request.args.get('code'),
     }
 
-    response = requests.post(url, params=params, headers=headers)
+    response = requests.post(url, data=params, headers=headers)
     print('STATUS_CODE: ', response.status_code)
     print("url:", url)
     print("params:", params)
