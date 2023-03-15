@@ -20,6 +20,7 @@ import json
 from types import SimpleNamespace
 import bcrypt
 
+from flask_app import oauth_via_yandex
 from flask_app.carwashes import create_carwash_obj
 from flask_app.specific_methods import method_of_filters
 from forms import CarwashForm
@@ -174,7 +175,7 @@ def index():
 
 @app.route('/main')
 def main():
-    if request.method
+    oauth_via_yandex.get_code(request)
     for key in dict(session):
         print(key, ":", session[key])
     return render_template("main.html")
