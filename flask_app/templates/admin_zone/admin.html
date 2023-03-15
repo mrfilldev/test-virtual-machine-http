@@ -20,9 +20,9 @@
                      aria-describedby="addon-wrapping">
         &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
         <option value="">Статус</option>
+        <option value="OrderCreated">OrderCreated</option>
         <option value="Completed">Completed</option>
         <option value="UserCanceled">UserCanceled</option>
-        <option value="OrderCreated">OrderCreated</option>
         <option value="Canceled">Canceled</option>
     </select>
         &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}" class="form-control" placeholder="{{ context['date'] | format_datetime }}"
