@@ -21,8 +21,8 @@ def method_of_filters(request):
 
     for i in request.form:
         print(i, request.form[i])
-    if request.form['date'] != '':
-        start_time = parser.parse(str(request.form['date']) + str(request.form['time']))
+
+    start_time = parser.parse(str(request.form['date']) + str(request.form['time']))
 
     if request.form['search_field'] != '' and request.form['status'] != '':
         print('HERE')
