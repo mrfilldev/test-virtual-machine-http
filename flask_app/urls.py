@@ -369,8 +369,11 @@ async def carwash_detail(carwash_id):
 def format_datetime(value):
     # variant = value.strftime('%Y-%m-%d')
     # print(variant)
-    value = parser.parse(value)
-    value = value.strftime("%d.%m.%Y %H:%M:%S")
+    if isinstance(value, date):
+        value = value.strftime('%d.%m.%Y')
+    else:
+        value = parser.parse(value)
+        value = value.strftime("%d.%m.%Y %H:%M:%S")
     return value
 
 
