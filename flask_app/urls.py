@@ -200,33 +200,35 @@ def register():
         return 'Invalid username/password combination'
 
 
+@app.route('/login_yan', methods=['POST', 'GET'])
+def login_yan():
+    url = 'https://oauth.yandex.ru/authorize?response_type=code'
+    params = {
+        'client_id': Config.YAN_CLIENT_ID,
+    }
+
+    x = requests.get(url, params=params)
+    print('STATUS_CODE: ', x.status_code)
+
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     try:
-        if request.form['username'] == '' and request.form['pass'].encode('utf-8') == '':
-            url = 'https://oauth.yandex.ru/authorize?response_type=code'
-            params = {
-                'client_id': Config.YAN_CLIENT_ID,
-            }
 
-            x = requests.get(url, params=params)
-            print('STATUS_CODE: ', x.status_code)
+        username = request.form['username']
+        password = request.form['pass'].encode('utf-8')
+        user = users.find_one({'name': username})
 
-        else:
-            username = request.form['username']
-            password = request.form['pass'].encode('utf-8')
-            user = users.find_one({'name': username})
+        if user is None:
+            return redirect(url_for('index'))  # , #ecode='101')
+            # Получаем данные из формы
+        # print('user', user)
+        # print('pass', user['password'])
 
-            if user is None:
-                return redirect(url_for('index'))  # , #ecode='101')
-                # Получаем данные из формы
-            # print('user', user)
-            # print('pass', user['password'])
-
-            if user and bcrypt.checkpw(password, user['password']):
-                session['username'] = username
-                return redirect(url_for('admin'))
-            # return redirect(url_for('index'), ecode='102')
+        if user and bcrypt.checkpw(password, user['password']):
+            session['username'] = username
+            return redirect(url_for('admin'))
+        # return redirect(url_for('index'), ecode='102')
 
     except Exception as e:
         traceback.print_exc()
@@ -373,9 +375,6 @@ async def carwash_detail(carwash_id):
     #     'admin_zone/order_detail.html',
     #     context=context
     # )
-
-
-
 
 
 ################################################################
