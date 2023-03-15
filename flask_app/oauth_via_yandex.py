@@ -33,3 +33,5 @@ def get_code(request):
     print('STATUS_CODE: ', x.status_code)
     print("url:", url)
     print("params:", params)
+
+    print(x)
