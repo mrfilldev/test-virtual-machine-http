@@ -22,7 +22,7 @@ def method_of_filters(request):
     for i in request.form:
         print(i, request.form[i])
     if request.form['date'] == '':
-        start_time = '1970-01-01T00:00:00.000Z'
+        start_time = parser.parse('1970-01-01T00:00:00.000Z')
     else:
         start_time = parser.parse(str(request.form['date']) + str(request.form['time']))
 
