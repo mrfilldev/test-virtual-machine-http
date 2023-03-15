@@ -54,7 +54,9 @@ def method_of_filters(request):
             'Status': request.form['status'],
             'DateCreate': {'$gt': start_time.isoformat()}
         }
-    print('search_field', request.form['search_field'])
-    print('status', request.form['status'])
+    elif request.form['search_field'] == '' and request.form['status'] == '':
+        result = {
+            'DateCreate': {'$gt': start_time.isoformat()}
+        }
 
     return result
