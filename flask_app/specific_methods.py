@@ -20,6 +20,7 @@ def method_of_filters(request):
     result = {}
     print('yes')
     if request.form['search_field'] != '' and request.form['status'] != '': #  1 1
+        print('HERE')
         if is_valid_guid(request.form['search_field']):
             print('is_guid')
             print('search_field & status')
