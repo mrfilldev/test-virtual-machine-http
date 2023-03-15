@@ -40,8 +40,8 @@ def get_code(request):
     print('\nresponse.content: ', response.content)
 
 
-
-curl -v -X POST 'https://oauth.yandex.ru/token' \
--H 'Content-type: application/x-www-form-urlencoded' \
--H 'Authorization: Basic MGM1NDZjZmFhNGU4NDBjNGI0MWJjYTRhOGFmMmU1NmE6Y2UxMGIxZjU0MTQxNGJhOWEwYmYzMTM5ZDBkZjlmNDk=' \
--d 'grant_type=authorization_code&code=6678635'
+#
+# curl -v -X POST 'https://oauth.yandex.ru/token' \
+# -H 'Content-type: application/x-www-form-urlencoded' \
+# -H 'Authorization: Basic MGM1NDZjZmFhNGU4NDBjNGI0MWJjYTRhOGFmMmU1NmE6Y2UxMGIxZjU0MTQxNGJhOWEwYmYzMTM5ZDBkZjlmNDk=' \
+# -d 'grant_type=authorization_code&code=6678635'
