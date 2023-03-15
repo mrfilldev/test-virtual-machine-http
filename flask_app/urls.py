@@ -202,20 +202,23 @@ def register():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     try:
-        username = request.form['username']
-        password = request.form['pass'].encode('utf-8')
-        user = users.find_one({'name': username})
+        if request.form['username'] == '' and request.form['pass'].encode('utf-8') == '':
+            return redirect(f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}')
+        else:
+            username = request.form['username']
+            password = request.form['pass'].encode('utf-8')
+            user = users.find_one({'name': username})
 
-        if user is None:
-            return redirect(url_for('index'))  # , #ecode='101')
-            # Получаем данные из формы
-        # print('user', user)
-        # print('pass', user['password'])
+            if user is None:
+                return redirect(url_for('index'))  # , #ecode='101')
+                # Получаем данные из формы
+            # print('user', user)
+            # print('pass', user['password'])
 
-        if user and bcrypt.checkpw(password, user['password']):
-            session['username'] = username
-            return redirect(url_for('admin'))
-        # return redirect(url_for('index'), ecode='102')
+            if user and bcrypt.checkpw(password, user['password']):
+                session['username'] = username
+                return redirect(url_for('admin'))
+            # return redirect(url_for('index'), ecode='102')
 
     except Exception as e:
         traceback.print_exc()
@@ -364,9 +367,7 @@ async def carwash_detail(carwash_id):
     # )
 
 
-@app.route('/reg_yan', methods=['GET', 'POST'])
-def reg_yan():
-    return redirect(f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}')
+
 
 
 ################################################################
