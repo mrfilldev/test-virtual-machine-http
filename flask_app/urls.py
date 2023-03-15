@@ -364,6 +364,10 @@ async def carwash_detail(carwash_id):
     # )
 
 
+def reg_yan():
+    return redirect(f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}')
+
+
 ################################################################
 @app.template_filter()
 def format_datetime(value):
