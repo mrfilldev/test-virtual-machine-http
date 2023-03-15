@@ -211,7 +211,9 @@ def oauth():
         'client_id': Config.YAN_CLIENT_ID,
         'redirect_uri': 'http://test-tanker-carwash.ru/main',
     }
-
+    print(params['response_type'])
+    print(params['client_id'])
+    print(params['redirect_uri'])
     x = requests.get(url, params=params)
     print('STATUS_CODE: ', x.status_code)
     return redirect(url)
