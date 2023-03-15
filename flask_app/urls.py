@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 
+import requests
 from dateutil import parser
 import traceback
 
@@ -203,7 +204,14 @@ def register():
 def login():
     try:
         if request.form['username'] == '' and request.form['pass'].encode('utf-8') == '':
-            return redirect(f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}')
+            url = 'https://oauth.yandex.ru/authorize?response_type=code'
+            params = {
+                'client_id': Config.YAN_CLIENT_ID,
+            }
+
+            x = requests.get(url, params=params)
+            print('STATUS_CODE: ', x.status_code)
+
         else:
             username = request.form['username']
             password = request.form['pass'].encode('utf-8')
