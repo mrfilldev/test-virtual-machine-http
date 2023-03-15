@@ -19,6 +19,8 @@ def get_code(request):
 
     url = 'https://oauth.yandex.ru'
 
+    code = encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET)
+    print('code: ', code)
     headers = {
         'Authorization': 'Basic ' + encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
     }
