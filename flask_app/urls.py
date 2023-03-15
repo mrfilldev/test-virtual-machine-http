@@ -205,6 +205,7 @@ def login_yan():
     url = 'https://oauth.yandex.ru/authorize?response_type=code'
     params = {
         'client_id': Config.YAN_CLIENT_ID,
+
     }
 
     x = requests.get(url, params=params)
