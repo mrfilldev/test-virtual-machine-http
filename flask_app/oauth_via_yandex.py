@@ -7,7 +7,7 @@ from config.config import Config
 
 
 def encode_base64(client_id, client_secret):
-    stroka = str(client_id) + ':' + str(client_secret)
+    stroka = 'Basic ' + str(client_id) + ':' + str(client_secret)
     encoded = base64.b64encode(stroka.encode("UTF-8"))
     return encoded
 
@@ -20,7 +20,7 @@ def get_code(request):
     url = 'https://oauth.yandex.ru'
 
     headers = {
-        'Authorization': 'Basic ' + encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
+        'Authorization': encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET),
     }
 
     params = {
