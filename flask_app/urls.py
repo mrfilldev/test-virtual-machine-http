@@ -166,7 +166,7 @@ async def make_carwash_order():
 ########################################################################
 ########################################################################
 @app.route('/')
-def index():
+async def index():
     if 'username' in session:
         return redirect(url_for('main'))
 
@@ -174,7 +174,7 @@ def index():
 
 
 @app.route('/main')
-def main():
+async def main():
     oauth_via_yandex.get_code(request)
     for key in dict(session):
         print(key, ":", session[key])
@@ -182,7 +182,7 @@ def main():
 
 
 @app.route('/register', methods=['POST', 'GET'])
-def register():
+async def register():
     try:
         if request.method == 'POST':
             existing_user = users.find_one({'name': request.form['username']})
@@ -203,7 +203,7 @@ def register():
 
 
 @app.route('/oauth')
-def oauth():
+async def oauth():
     url = f'https://oauth.yandex.ru/authorize'
     url2: str = f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}&redirect_uri=http://test-tanker-carwash.ru/main'
 
@@ -222,7 +222,7 @@ def oauth():
 
 
 @app.route('/login', methods=['POST', 'GET'])
-def login():
+async def login():
     try:
 
         username = request.form['username']
@@ -247,7 +247,7 @@ def login():
 
 
 @app.route('/logout')
-def logout():
+async def logout():
     try:
         for key in list(session.keys()):
             session.pop(key)
@@ -325,7 +325,7 @@ async def order_detail(order_id):
 
 @app.route('/profile', methods=['GET'])
 @login_required
-def profile():
+async def profile():
     username = dict(session)['username']
     return render_template('profile/profile.html', username=username)
 
@@ -389,7 +389,7 @@ async def carwash_detail(carwash_id):
 
 ################################################################
 @app.template_filter()
-def format_datetime(value):
+async def format_datetime(value):
     # variant = value.strftime('%Y-%m-%d')
     # print(variant)
     if isinstance(value, date):
