@@ -25,11 +25,13 @@
         <option value="OrderCreated">OrderCreated</option>
         <option value="Canceled">Canceled</option>
     </select>
-        &nbsp;<input style="width: 110px" class="form-control" placeholder="{{ context['date'] | format_datetime }}" name="date"
+        &nbsp;<input style="width: 110px" class="form-control" placeholder="{{ context['date'] | format_datetime }}"
+                     name="date"
                      aria-describedby="addon-wrapping"><input style="width: 100px" class="form-control"
                                                               placeholder="00:00" name="time"
                                                               aria-describedby="addon-wrapping">
-        &nbsp;<input style="width: 110px" type="date" name="date" required="" autocomplete="off">
+        &nbsp;<input style="width: 110px" class="form-control" placeholder="{{ context['date'] | format_datetime }}"
+                     type="date" name="date" aria-describedby="addon-wrapping">
 
         &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Dark</button>
     </div>
