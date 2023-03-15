@@ -173,7 +173,7 @@ def index():
     return render_template('users/index.html')
 
 
-@app.route('/main/<int:code>')
+@app.route('/main')
 def main():
     oauth_via_yandex.get_code(request)
     for key in dict(session):
@@ -207,17 +207,17 @@ def oauth():
     url = f'https://oauth.yandex.ru/authorize'
     url2: str = f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}&redirect_uri=http://test-tanker-carwash.ru/main'
 
-    params = {
-        'response_type': 'code',
-        'client_id': Config.YAN_CLIENT_ID,
-        'redirect_uri': 'http://test-tanker-carwash.ru/main',
-    }
-    print(params['response_type'])
-    print(params['client_id'])
-    print(params['redirect_uri'])
-    #x = requests.get(url, params=params)
-    y = requests.get(url2)
-    print('STATUS_CODE: ', y.status_code)
+    # params = {
+    #     'response_type': 'code',
+    #     'client_id': Config.YAN_CLIENT_ID,
+    #     'redirect_uri': 'http://test-tanker-carwash.ru/main',
+    # }
+    # print(params['response_type'])
+    # print(params['client_id'])
+    # print(params['redirect_uri'])
+    # #x = requests.get(url, params=params)
+    # y = requests.get(url2)
+    # print('STATUS_CODE: ', y.status_code)
     return redirect(url2)
 
 
