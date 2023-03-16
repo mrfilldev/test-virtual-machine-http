@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block body %}
-
+    Профиль:
+    Имя пользователя: user['display_name']
+    Контактный номер телефона: user['default_phone']
     {% for inf in context['inf_list'] %}
     {{ inf }} <br>
     {% endfor %}
