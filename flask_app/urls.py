@@ -326,7 +326,6 @@ def profile():
     #username = dict(session)['username']
     context = {
         'user_inf': oauth_via_yandex.get_user(session['ya-token'])
-
     }
     return render_template('profile/profile.html', context=context)
 
