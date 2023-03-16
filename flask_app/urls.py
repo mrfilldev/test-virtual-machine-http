@@ -325,10 +325,8 @@ def order_detail(order_id):
 def profile():
     #username = dict(session)['username']
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
-    context = {
-        'user_inf': user_inf
-    }
-    return render_template('profile/profile.html', context=context)
+
+    return render_template('profile/profile.html', context=user_inf)
 
 
 @app.route('/carwashes', methods=['GET'])
