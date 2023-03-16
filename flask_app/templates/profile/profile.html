@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container">
     <div class="row justify-content-end">
-        <div class="col align-self-end">
+        <div class="container">
             <h1>Профиль</h1><br>
             Имя пользователя: {{ context['user']['display_name'] }}<br>
             Контактный номер телефона: {{ context['user']['default_phone']['number'] }}<br>
@@ -12,17 +12,19 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col align-self-start">
-            <form action="{{ url_for('create_carwash') }}" method="POST">
-                <a class="btn btn-light" href="{{ url_for('create_carwash') }}" aria-disabled="true">Создать Мойку</a>
-            </form>
 
-            <form action="{{ url_for('carwashes') }}" method="POST">
-                <a class="btn btn-secondary" href="{{ url_for('carwashes') }}" aria-disabled="true">Все Мойки</a>
-            </form>
-        </div>
 
+        <form action="{{ url_for('carwashes') }}" method="POST">
+            <a style="width: 150px" class="form-control btn btn-secondary" href="{{ url_for('carwashes') }}"
+               aria-disabled="true">Все Мойки</a>
+        </form>
+        <form action="{{ url_for('carwashes') }}" method="POST">
+            <a style="width: 150px" class="form-control btn btn-secondary" href="{{ url_for('create_carwash') }}"
+               aria-disabled="true">Все Мойки</a>
+        </form>
     </div>
+
+</div>
 </div>
 <div class="container">
     <div class="row">
@@ -84,7 +86,7 @@ ________________________________________________________________________________
                             Id Мойки:
                         </td>
                         <td>
-                            <input style="width: 100%"width="20%" type="text" class="form-control"
+                            <input style="width: 100%" width="20%" type="text" class="form-control"
                                    value="{ context['order'].CarWashId }">
                         </td>
                     </tr>
