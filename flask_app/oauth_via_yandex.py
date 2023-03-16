@@ -59,13 +59,13 @@ def get_user(ya_token):
         'Authorization': 'OAuth ' + ya_token,
     }
 
-    resp = requests.get(url, params=params, headers=headers)
-    print('STATUS_CODE: ', resp.status_code)
-    print('STATUS_CODE: ', resp.content)
+    response = requests.get(url, params=params, headers=headers)
+    print('STATUS_CODE: ', response.status_code)
+    print('content: ', response.content)
     print("url:", url)
     print("params:", params)
-
-    return resp
+    response = json.loads(response.content.decode('utf-8'))
+    return response
 
 #
 # curl -v GET 'https://login.yandex.ru/info?' \
