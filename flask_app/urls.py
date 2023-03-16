@@ -183,11 +183,10 @@ def main():
     print('ya-token has been inserted')
     #get values of user
     #values_of_user = oauth_via_yandex.get_user(resp['access_token'])
-
     #resp = make_response(render_template("profile/profile.html"))
-    resp = render_template("profile/profile.html")
+    #resp = render_template("profile/profile.html")
     #resp.set_cookie('username', username)
-    return render_template("profile/profile.html")
+    return redirect(url_for('profile'))
 
 
 @app.route('/register', methods=['POST', 'GET'])
