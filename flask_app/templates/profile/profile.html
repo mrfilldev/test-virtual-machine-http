@@ -1,23 +1,45 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h1>Профиль</h1><br>
+<div class="container">
+    <div class="col align-self-end">
+        <h1>Профиль</h1><br>
+        Имя пользователя: {{ context['user']['display_name'] }}<br>
+        Контактный номер телефона: {{ context['user']['default_phone']['number'] }}<br>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+            <form action="url_for('create_carwash')" method="POST">
+                <input type="submit" class="btn btn-light" value="+ Добавить Мойку">
+            </form>
 
-    Имя пользователя: {{ context['user']['display_name'] }}<br>
-    Контактный номер телефона: {{ context['user']['default_phone']['number'] }}<br>
-<form action="url_for('create_carwash')" method="POST">
-    <input type="submit" class="btn btn-dark" value="+ Добавить Мойку">
-</form>
+            <form action="url_for('carwashes')" method="POST">
+                <input type="submit" class="btn btn-secondary" value="Список Моек">
+            </form>
+        </div>
 
-    <button> + Создать Мойку</button><br>
-
-<form action="url_for('carwashes')" method="POST">
-    <input type="submit" class="btn btn-dark" value="Список Моек">
-</form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+            Одна из трёх колонок
+        </div>
+        <div class="col align-self-center">
+            Одна из трёх колонок
+        </div>
+        <div class="col align-self-end">
+            Одна из трёх колонок
+        </div>
+    </div>
+</div>
+<br>
 ____________________________________________________________________________________________________________________<br>
-    {% for inf in context['inf_list'] %}
-    {{ inf }} <br>
-    {% endfor %}
+{% for inf in context['inf_list'] %}
+{{ inf }} <br>
+{% endfor %}
 {% endblock %}
 
 
