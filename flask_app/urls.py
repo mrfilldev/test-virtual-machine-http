@@ -328,7 +328,8 @@ def profile():
         inf_list.append(f"{k} -> {user_inf[k]} \n")
     print(user_inf)
     context = {
-        'user_inf': inf_list
+        'user': user_inf,
+        'inf_list': inf_list
     }
     return render_template('profile/profile.html', context=context)
 
