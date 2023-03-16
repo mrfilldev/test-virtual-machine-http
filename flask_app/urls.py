@@ -181,12 +181,12 @@ def main():
         print(key, ":", session[key])
     session['ya-token'] = resp['access_token']
     print('ya-token has been inserted')
+    return redirect(url_for('profile'))
     #get values of user
     #values_of_user = oauth_via_yandex.get_user(resp['access_token'])
     #resp = make_response(render_template("profile/profile.html"))
     #resp = render_template("profile/profile.html")
     #resp.set_cookie('username', username)
-    return redirect(url_for('profile'))
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -324,7 +324,10 @@ def order_detail(order_id):
 def profile():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     print(user_inf)
-    return render_template('profile/profile.html', context=user_inf)
+    context = {
+        'user_inf': user_inf
+    }
+    return render_template('profile/profile.html', context=context)
 
 
 @app.route('/carwashes', methods=['GET'])
