@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, BooleanField, RadioField, FloatField, FieldList
+from wtforms import StringField, SubmitField, TextAreaField, BooleanField, RadioField, FloatField, FieldList, \
+    SelectField, IntegerField
 from wtforms.validators import DataRequired, Email
 
 
@@ -7,7 +8,10 @@ class CarwashForm(FlaskForm):
     Name = StringField("Название: ", validators=[DataRequired()])
     Address = StringField("Адрес: ", validators=[DataRequired()])
     Location = StringField("Местоположение: ", validators=[DataRequired()])
-    Submit = SubmitField("Создать")
+    Status = BooleanField("Состояние: ", validators=[DataRequired()])
+    Type = SelectField('Тип оказываемых услуг: ', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
+    Amount_boxes = IntegerField("Число боксов:")
+    Submit = SubmitField("Добавить")
 
     # Type = RadioField('Type', choices=[('SelfServiceFixPrice', 'SelfServiceFixPrice'),
     #                                    ('SelfService', 'SelfService'),
