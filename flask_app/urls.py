@@ -294,7 +294,7 @@ def test():
         'inf_list': inf_list
     }
     return render_template(
-        'test.html',
+        'admin_zone/test.html',
         context
     )
 
