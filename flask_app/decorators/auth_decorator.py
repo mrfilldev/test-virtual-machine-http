@@ -9,7 +9,9 @@ def login_required(f):
         # You would add a check here and usethe user id or something to fetch
         # the other data for that user/check if they exist
         if user:
+            # обмен на инф
             return f(*args, **kwargs)
+        # выброс на авториз
         return render_template('custom_error/need_to_login.html')
 
     return decorated_function

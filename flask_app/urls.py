@@ -175,9 +175,11 @@ async def index():
 
 @app.route('/main')
 async def main():
-    oauth_via_yandex.get_code(request)
+    resp = oauth_via_yandex.get_code(request)
     for key in dict(session):
         print(key, ":", session[key])
+
+    session['ya-token'] = resp.access_token
     return render_template("main.html")
 
 
