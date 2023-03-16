@@ -13,7 +13,6 @@ def encode_base64(client_id, client_secret):
 
 
 def get_code(request):
-
     state = request.args.get('state')
     print(state)
 
@@ -44,8 +43,24 @@ def get_code(request):
 
     return response
 
+
 #
 # curl -v -X POST 'https://oauth.yandex.ru/token' \
 # -H 'Content-type: application/x-www-form-urlencoded' \
 # -H 'Authorization: Basic MGM1NDZjZmFhNGU4NDBjNGI0MWJjYTRhOGFmMmU1NmE6Y2UxMGIxZjU0MTQxNGJhOWEwYmYzMTM5ZDBkZjlmNDk=' \
 # -d 'grant_type=authorization_code&code=6678635'
+def get_user(ya_token):
+    url = 'https://login.yandex.ru/info?'
+    params = {
+        'format': json,
+        'jwt_secret': 'secret_try'
+    }
+    headers = {
+        'Authorization': 'Basic ' + ya_token,
+    }
+
+    resp = requests.get(url, params=params, headers=headers)
+    print('STATUS_CODE: ', resp.status_code)
+    print("url:", url)
+    print("params:", params)
+
