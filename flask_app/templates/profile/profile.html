@@ -16,7 +16,7 @@
             </form>
 
             <form action="{{ url_for('carwashes') }}" method="POST">
-                <input type="submit" class="btn btn-secondary" value="Список Моек">
+                <a class="btn btn-secondary" href="{{ url_for('carwashes') }}" aria-disabled="true">Все Мойки</a>
             </form>
         </div>
 
