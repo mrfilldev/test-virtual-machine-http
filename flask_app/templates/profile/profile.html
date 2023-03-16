@@ -139,14 +139,14 @@ ________________________________________________________________________________
                             Оказанный сервис:
                         </td>
                         <td>
-                            {% for service in context['order'].Services %}
+
                             <input style="width: 49%" type="text" class="form-control"
                                    value="Наименование: { service.Description }"><br>
                             <input style="width: 49%" type="text" class="form-control"
                                    value="Цена: { service.Cost }"><br>
                             <input style="width: 49%" type="text" class="form-control" value="id: { service.Id}"><br>
                             <br>
-                            {% endfor %}
+
                         </td>
                     </tr>
                     </tbody>
