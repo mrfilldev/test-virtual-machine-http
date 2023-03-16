@@ -2,7 +2,8 @@
 
 {% block body %}
 
-    {% for inf in context['user_inf'] %}
+    {% for key, inf in context['user_inf'] %}
+    {{ key }}
     {{ inf }}
     {% endfor %}
 {% endblock %}
