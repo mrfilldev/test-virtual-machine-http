@@ -61,6 +61,8 @@ def get_user(ya_token):
 
     resp = requests.get(url, params=params, headers=headers)
     print('STATUS_CODE: ', resp.status_code)
+    print('STATUS_CODE: ', resp.content)
     print("url:", url)
     print("params:", params)
 
+    return resp

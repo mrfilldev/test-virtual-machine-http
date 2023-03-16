@@ -185,7 +185,7 @@ def main():
     values_of_user = oauth_via_yandex.get_user(resp['access_token'])
 
     resp = make_response(render_template("main.html"))
-    resp.set_cookie('username', username)
+    #resp.set_cookie('username', username)
 
 
     return resp
