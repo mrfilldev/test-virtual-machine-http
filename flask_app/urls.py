@@ -251,7 +251,7 @@ async def logout():
 
 @app.route('/admin', methods=['POST', 'GET'])
 @login_required
-async def admin():
+def admin():
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     if request.method == 'POST':
         find_arguments = method_of_filters(request)
