@@ -7,7 +7,7 @@ import traceback
 
 import boto3
 from bson import json_util
-from flask import Flask, render_template, url_for, request, session, redirect, Response, jsonify
+from flask import Flask, render_template, url_for, request, session, redirect, Response, jsonify, make_response
 from requests import post
 
 import carwash_list
@@ -175,13 +175,20 @@ def index():
 
 @app.route('/main')
 def main():
+    # get ya-token
     resp = oauth_via_yandex.get_code(request)
     for key in dict(session):
         print(key, ":", session[key])
-
     session['ya-token'] = resp['access_token']
     print('ya-token has been inserted')
-    return render_template("main.html")
+    #get values of user
+    values_of_user = oauth_via_yandex.get_user(resp['access_token'])
+
+    resp = make_response(render_template("main.html"))
+    resp.set_cookie('username', username)
+
+
+    return resp
 
 
 @app.route('/register', methods=['POST', 'GET'])
