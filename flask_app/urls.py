@@ -295,7 +295,7 @@ def test():
     }
     return render_template(
         'admin_zone/test.html',
-        context
+        context=context
     )
 
 
