@@ -5,11 +5,15 @@
 
     Имя пользователя: {{ context['user']['display_name'] }}<br>
     Контактный номер телефона: {{ context['user']['default_phone']['number'] }}<br>
+<form action="url_for('create_carwash')" method="POST">
+    <input type="submit" class="btn btn-dark" value="+ Добавить Мойку">
+</form>
 
     <button> + Создать Мойку</button><br>
 
-
-    <button>Список Моек</button><br>
+<form action="url_for('carwashes')" method="POST">
+    <input type="submit" class="btn btn-dark" value="Список Моек">
+</form>
 ____________________________________________________________________________________________________________________<br>
     {% for inf in context['inf_list'] %}
     {{ inf }} <br>
