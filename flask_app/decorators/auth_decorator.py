@@ -12,7 +12,6 @@ def login_required(f):
             # обмен на инф
             return f(*args, **kwargs)
         # выброс на авториз
-
         return render_template('custom_error/need_to_login.html')
 
     return decorated_function

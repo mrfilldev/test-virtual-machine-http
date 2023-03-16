@@ -36,6 +36,12 @@ def get_code(request):
     print("params:", params)
     print('\nresponse: ', response)
     print('\nresponse.content: ', response.content)
+    response = json.loads(response.content.decode('utf-8'))
+    print("response['access_token']:", response['access_token'])
+    print("response['expires_in']:", response['expires_in'])
+    print("response['refresh_token']:", response['refresh_token'])
+    print("response['token_type']:", response['token_type'])
+
     return response
 
 #
