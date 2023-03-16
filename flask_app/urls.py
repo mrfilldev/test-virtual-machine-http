@@ -284,8 +284,18 @@ def admin():
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
+    user_inf = oauth_via_yandex.get_user(session['ya-token'])
+    inf_list = []
+    for k in user_inf:
+        inf_list.append(f"{k} -> {user_inf[k]} \n")
+    print(user_inf)
+    context = {
+        'user': user_inf,
+        'inf_list': inf_list
+    }
     return render_template(
         'test.html',
+        context
     )
 
 
