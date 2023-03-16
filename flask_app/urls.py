@@ -179,7 +179,8 @@ async def main():
     for key in dict(session):
         print(key, ":", session[key])
 
-    session['ya-token'] = resp.access_token
+    session['ya-token'] = resp['access_token']
+    print('ya-token has been inserted')
     return render_template("main.html")
 
 

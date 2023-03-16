@@ -1,4 +1,4 @@
-from flask import session, render_template
+from flask import session, render_template, redirect, url_for
 from functools import wraps
 
 
@@ -12,6 +12,6 @@ def login_required(f):
             # обмен на инф
             return f(*args, **kwargs)
         # выброс на авториз
-        return render_template('custom_error/need_to_login.html')
+        return redirect(url_for('oauth'))
 
     return decorated_function
