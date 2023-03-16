@@ -166,7 +166,7 @@ async def make_carwash_order():
 ########################################################################
 ########################################################################
 @app.route('/')
-async def index():
+def index():
     if 'username' in session:
         return redirect(url_for('main'))
 
@@ -174,7 +174,7 @@ async def index():
 
 
 @app.route('/main')
-async def main():
+def main():
     resp = oauth_via_yandex.get_code(request)
     for key in dict(session):
         print(key, ":", session[key])
@@ -185,7 +185,7 @@ async def main():
 
 
 @app.route('/register', methods=['POST', 'GET'])
-async def register():
+def register():
     try:
         if request.method == 'POST':
             existing_user = users.find_one({'name': request.form['username']})
@@ -206,13 +206,13 @@ async def register():
 
 
 @app.route('/oauth')
-async def oauth():
+def oauth():
     url: str = f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}&redirect_uri=http://test-tanker-carwash.ru/main'
     return redirect(url)
 
 
 @app.route('/login', methods=['POST', 'GET'])
-async def login():
+def login():
     try:
 
         username = request.form['username']
@@ -237,7 +237,7 @@ async def login():
 
 
 @app.route('/logout')
-async def logout():
+def logout():
     try:
         for key in list(session.keys()):
             session.pop(key)
@@ -279,7 +279,7 @@ def admin():
 
 
 @app.route('/test', methods=['POST', 'GET'])
-async def test():
+def test():
     return render_template(
         'test.html',
     )
@@ -287,7 +287,7 @@ async def test():
 
 @app.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
 @login_required
-async def order_detail(order_id):
+def order_detail(order_id):
     order_obj = orders.find_one({'Id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
@@ -317,14 +317,14 @@ async def order_detail(order_id):
 
 @app.route('/profile', methods=['GET'])
 @login_required
-async def profile():
+def profile():
     username = dict(session)['username']
     return render_template('profile/profile.html', username=username)
 
 
 @app.route('/carwashes', methods=['GET'])
 @login_required
-async def carwashes():
+def carwashes():
     carwashes_list = []
     all_orders = db_carwashes.find()
     count_carwashes = 0
@@ -349,7 +349,7 @@ async def carwashes():
 
 @app.route('/create_carwash', methods=['GET', 'POST'])
 @login_required
-async def create_carwash():
+def create_carwash():
     form = CarwashForm()
     if request.method == 'POST':
         create_carwash_obj(form)
@@ -360,7 +360,7 @@ async def create_carwash():
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 @login_required
-async def carwash_detail(carwash_id):
+def carwash_detail(carwash_id):
     return f'carwash_detil {carwash_id}'
     # order_obj = orders.find_one({'Id': order_id})  # dict
     # data = json.loads(json_util.dumps(order_obj))
