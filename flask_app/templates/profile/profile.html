@@ -13,18 +13,27 @@
 <div class="container">
     <div class="row">
 
+            <div class="row justify-content-start">
+            <form action="{{ url_for('create_carwash') }}" method="POST">
+                <a class="btn btn-light" href="{{ url_for('create_carwash') }}" aria-disabled="true">Создать Мойку</a>
+            </form>
 
-        <form action="{{ url_for('carwashes') }}" method="POST">
-            <a style="width: 150px" class="form-control btn btn-secondary" href="{{ url_for('carwashes') }}"
-               aria-disabled="true">Все Мойки</a>
+            <form action="{{ url_for('create_carwash') }}" method="POST">
+                <a style="width: 150px" class="form-control btn btn-secondary" href="{{ url_for('carwashes') }}" aria-disabled="true">Добавить Мойку</a>
+            </form>
+                <form action="{{ url_for('carwashes') }}" method="POST">
+                <a style="width: 150px" class="form-control btn btn-secondary" href="{{ url_for('create_carwash') }}" aria-disabled="true">Все Мойки</a>
+            </form>
+        </div>
+
+        <form method=POST action="{{ url_for('admin') }}">
+                <a style="width: 150px" class="form-control btn btn-secondary" href="{{ url_for('carwashes') }}" aria-disabled="true">Все Мойки</a>
+
+                <!-- DATETIMEPICKER bootstrap.min.js -->
+                &nbsp<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
         </form>
-        <form action="{{ url_for('carwashes') }}" method="POST">
-            <a style="width: 150px" class="form-control btn btn-secondary" href="{{ url_for('create_carwash') }}"
-               aria-disabled="true">Все Мойки</a>
-        </form>
+
     </div>
-
-</div>
 </div>
 <div class="container">
     <div class="row">
