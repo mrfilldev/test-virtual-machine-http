@@ -2,10 +2,12 @@
 
 {% block body %}
 <div class="container">
-    <div class="col align-self-end">
-        <h1>Профиль</h1><br>
-        Имя пользователя: {{ context['user']['display_name'] }}<br>
-        Контактный номер телефона: {{ context['user']['default_phone']['number'] }}<br>
+    <div class="row justify-content-end">
+        <div class="col align-self-end">
+            <h1>Профиль</h1><br>
+            Имя пользователя: {{ context['user']['display_name'] }}<br>
+            Контактный номер телефона: {{ context['user']['default_phone']['number'] }}<br>
+        </div>
     </div>
 </div>
 <div class="container">
