@@ -325,7 +325,7 @@ def order_detail(order_id):
 def profile():
     #username = dict(session)['username']
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
-
+    print(user_inf)
     return render_template('profile/profile.html', context=user_inf)
 
 
