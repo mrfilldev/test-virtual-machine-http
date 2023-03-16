@@ -2,8 +2,8 @@
 
 {% block body %}
 
-    {% for i in context['user_inf'] %}
-    {{ i }}
+    {% for inf in context['orders_list'] %}
+    {{ inf }}
     {% endfor %}
 {% endblock %}
 
