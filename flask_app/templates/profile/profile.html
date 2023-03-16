@@ -4,7 +4,7 @@
 <h1>Профиль</h1><br>
 
     Имя пользователя: {{ context['user']['display_name'] }}
-    Контактный номер телефона: {{ user['default_phone'] }}
+    Контактный номер телефона: {{ context['user']['default_phone'] }}
     {% for inf in context['inf_list'] %}
     {{ inf }} <br>
     {% endfor %}
