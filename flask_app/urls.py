@@ -250,6 +250,7 @@ async def logout():
 
 
 @app.route('/admin', methods=['POST', 'GET'])
+@login_required
 async def admin():
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     if request.method == 'POST':
@@ -285,6 +286,7 @@ async def test():
 
 
 @app.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
+@login_required
 async def order_detail(order_id):
     order_obj = orders.find_one({'Id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
@@ -357,6 +359,7 @@ async def create_carwash():
 
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
+@login_required
 async def carwash_detail(carwash_id):
     return f'carwash_detil {carwash_id}'
     # order_obj = orders.find_one({'Id': order_id})  # dict
