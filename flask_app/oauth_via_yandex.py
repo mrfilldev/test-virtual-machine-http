@@ -52,11 +52,11 @@ def get_code(request):
 def get_user(ya_token):
     url = 'https://login.yandex.ru/info?'
     params = {
-        'format': json,
+        'format': 'json',
         'jwt_secret': 'secret_try'
     }
     headers = {
-        'Authorization': 'Basic ' + ya_token,
+        'Authorization': 'OAuth ' + ya_token,
     }
 
     resp = requests.get(url, params=params, headers=headers)
@@ -66,3 +66,8 @@ def get_user(ya_token):
     print("params:", params)
 
     return resp
+
+#
+# curl -v GET 'https://login.yandex.ru/info?' \
+# -H 'Authorization: OAuth y0_AgAAAAAetcd8AAk1CgAAAADemu3gczbsmIFPTsuSiWY_l8Q0_STY3h8' \
+# -d 'format=json&jwt_secret=secret_try'
