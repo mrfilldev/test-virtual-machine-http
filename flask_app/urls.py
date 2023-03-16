@@ -184,9 +184,10 @@ def main():
     #get values of user
     #values_of_user = oauth_via_yandex.get_user(resp['access_token'])
 
-    resp = make_response(render_template("profile/profile.html"))
+    #resp = make_response(render_template("profile/profile.html"))
+    resp = render_template("profile/profile.html")
     #resp.set_cookie('username', username)
-    return resp
+    return render_template("profile/profile.html")
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -219,7 +220,6 @@ def oauth():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     try:
-
         username = request.form['username']
         password = request.form['pass'].encode('utf-8')
         user = users.find_one({'name': username})
@@ -323,7 +323,6 @@ def order_detail(order_id):
 @app.route('/profile', methods=['GET'])
 @login_required
 def profile():
-    #username = dict(session)['username']
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     print(user_inf)
     return render_template('profile/profile.html', context=user_inf)
