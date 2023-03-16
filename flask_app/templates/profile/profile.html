@@ -73,7 +73,7 @@ ________________________________________________________________________________
                         </td>
                         <td style="width: 40%">
                             <input style="width: 100%" type="text" class="form-control"
-                                   value="{{ context['order'].ContractId }}">
+                                   value="{ context['order'].ContractId }">
                         </td>
                         <td rowspan="3">
                             <img src="https://static-maps.yandex.ru/1.x/?l=map&z=17&size=400,450&pt={{ context.location['longitude'] }},{{ context.location['latitude'] }},org">
@@ -85,7 +85,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 100%"width="20%" type="text" class="form-control"
-                                   value="{{ context['order'].CarWashId }}">
+                                   value="{ context['order'].CarWashId }">
                         </td>
                     </tr>
                     <tr>
@@ -94,7 +94,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 100%" type="text" class="form-control"
-                                   value="{{ context['order'].BoxNumber }}">
+                                   value="{ context['order'].BoxNumber }">
                         </td>
                     </tr>
                     </tbody>
@@ -113,7 +113,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="{{ context['order'].Id }}">
+                                   value="{ context['order'].Id }">
                         </td>
                     </tr>
                     <tr>
@@ -122,7 +122,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="{{ context['order'].DateCreate | format_datetime }}">
+                                   value="{ context['order'].DateCreate | format_datetime }">
                         </td>
                     </tr>
                     <tr>
@@ -131,7 +131,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="{{ context['order'].Status }}">
+                                   value="{ context['order'].Status }">
                         </td>
                     </tr>
                     <tr>
@@ -141,10 +141,10 @@ ________________________________________________________________________________
                         <td>
                             {% for service in context['order'].Services %}
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="Наименование: {{ service.Description }}"><br>
+                                   value="Наименование: { service.Description }"><br>
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="Цена: {{ service.Cost }}"><br>
-                            <input style="width: 49%" type="text" class="form-control" value="id: {{ service.Id}}"><br>
+                                   value="Цена: { service.Cost }"><br>
+                            <input style="width: 49%" type="text" class="form-control" value="id: { service.Id}"><br>
                             <br>
                             {% endfor %}
                         </td>
@@ -165,7 +165,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
+                                   value="{'%0.2f'| format(context['order'].Sum|float)}&#8381">
                         </td>
                     </tr>
                     <tr>
@@ -174,7 +174,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="{{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381">
+                                   value="{'%0.2f'| format(context['order'].SumCompleted|float)}&#8381">
                         </td>
                     </tr>
                     <tr>
@@ -183,7 +183,7 @@ ________________________________________________________________________________
                         </td>
                         <td>
                             <input style="width: 49%" type="text" class="form-control"
-                                   value="{{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381">
+                                   value="{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}&#8381">
                         </td>
                     </tr>
                     </tbody>
