@@ -65,5 +65,4 @@ def get_user(ya_token):
     print("url:", url)
     print("params:", params)
 
-    return(resp)
-
+    return resp
