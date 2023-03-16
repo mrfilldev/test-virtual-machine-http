@@ -6,12 +6,9 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = dict(session).get('ya-token', None)
-        # You would add a check here and usethe user id or something to fetch
-        # the other data for that user/check if they exist
         if user:
-            # обмен на инф
             return f(*args, **kwargs)
-        # выброс на авториз
+        # выброс на авторизацию
         return redirect(url_for('oauth'))
 
     return decorated_function
