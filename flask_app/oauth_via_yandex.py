@@ -34,10 +34,9 @@ def get_code(request):
     print('STATUS_CODE: ', response.status_code)
     print("url:", url)
     print("params:", params)
-
     print('\nresponse: ', response)
     print('\nresponse.content: ', response.content)
-
+    return response
 
 #
 # curl -v -X POST 'https://oauth.yandex.ru/token' \
