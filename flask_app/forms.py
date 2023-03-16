@@ -8,8 +8,11 @@ class CarwashForm(FlaskForm):
     Name = StringField("Название: ", validators=[DataRequired()])
     Address = StringField("Адрес: ", validators=[DataRequired()])
     Location = StringField("Местоположение: ", validators=[DataRequired()])
-    Status = BooleanField("Состояние: ", validators=[DataRequired()])
-    Type = SelectMultipleField('Тип оказываемых услуг: ', choices=[('cpp', 'Ручная мойка'), ('py', 'Python'), ('text', 'Plain Text')])
+    is_manual = BooleanField("Ручная мойка: ", validators=[DataRequired()])
+    is_wheel_station = BooleanField("Шиномонтаж: ", validators=[DataRequired()])
+    is_ = BooleanField("Шиномонтаж: ", validators=[DataRequired()])
+    Type = SelectMultipleField('Доступна ли мойка: ',
+                               choices=[('True', 'Работает'), ('False', 'В ремонте'), ('False', 'В планах')])
     Amount_boxes = IntegerField("Число боксов:")
     Submit = SubmitField("Добавить")
 
