@@ -325,7 +325,7 @@ def profile():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     inf_list = []
     for k in user_inf:
-        inf_list.append(f"Key: {k} -> Value: {user_inf[k]}")
+        inf_list.append(f"{k} -> {user_inf[k]} \n")
     print(user_inf)
     context = {
         'user_inf': inf_list
