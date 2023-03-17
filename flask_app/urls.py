@@ -337,7 +337,21 @@ def profile():
     for k in user_inf:
         inf_list.append(f"{k} -> {user_inf[k]} \n")
     print(user_inf)
+
+    carwashes_list = []
+    all_orders = db_carwashes.find()
+    count_carwashes = 0
+
+    for count_carwashes, i in enumerate(all_orders, 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        carwashes_list.append(carwash_obj)
+        print(carwash_obj)
+
     context = {
+        'carwashes_list': carwashes_list,
+        'count_carwashes': count_carwashes,
         'user': user_inf,
         'inf_list': inf_list
     }
