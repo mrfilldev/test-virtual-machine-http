@@ -7,16 +7,16 @@
         {% for field in form if field.name not in ['csrf_token', 'Submit'] %}
         <tr>
             {% if field.type == "BooleanField" %}
-            {{ field.label }} {{ field }}<br>
+            {{ field.label }} {{ field }}<br><p>
             {% elif field.type == "RadioField" %}
             {{ field.label }}
-            {{ field }}<br>
+            {{ field }}<br><p>
             {% elif field.type == "IntegerField" %}
             {{ field.label }}<br>
-            {{ field }}<br>
+            {{ field }}<br><p>
             {% else %}
             {{ field.label }}
-            {{ field(class="form-control") }}
+            {{ field(class="form-control") }}<p>
             {% endif %}
         </tr>
         {% endfor %}
