@@ -254,7 +254,7 @@ def logout():
 
 
 @app.route('/admin', methods=['POST', 'GET'])
-@login_required
+#@login_required
 def admin():
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     if request.method == 'POST':
@@ -300,7 +300,7 @@ def test():
 
 
 @app.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
-@login_required
+#@login_required
 def order_detail(order_id):
     order_obj = orders.find_one({'Id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
@@ -330,7 +330,7 @@ def order_detail(order_id):
 
 
 @app.route('/profile', methods=['GET'])
-@login_required
+#@login_required
 def profile():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     inf_list = []
@@ -359,7 +359,7 @@ def profile():
 
 
 @app.route('/carwashes', methods=['GET'])
-@login_required
+#@login_required
 def carwashes():
     carwashes_list = []
     all_orders = db_carwashes.find()
@@ -384,7 +384,7 @@ def carwashes():
 
 
 @app.route('/create_carwash', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def create_carwash():
     if request.method == 'POST':
         create_carwash_obj(request)
@@ -393,7 +393,7 @@ def create_carwash():
 
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
-@login_required
+#@login_required
 def carwash_detail(carwash_id):
     return render_template("carwash/carwash_detail.html")
     # order_obj = orders.find_one({'Id': order_id})  # dict
