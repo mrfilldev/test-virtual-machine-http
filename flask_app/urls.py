@@ -395,7 +395,7 @@ def create_carwash():
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 @login_required
 def carwash_detail(carwash_id):
-    return f'carwash_detil {carwash_id}'
+    return render_template("carwash/carwash_detail.html")
     # order_obj = orders.find_one({'Id': order_id})  # dict
     # data = json.loads(json_util.dumps(order_obj))
     # data = json.dumps(data, default=lambda x: x.__dict__)
