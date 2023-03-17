@@ -10,6 +10,9 @@
                     {% if field.type == "BooleanField" %}
 
                     {{ field.label }} {{ field }}<br>
+                    {% if field.type == "SelectMultipleField" %}
+                    {{ field.label }}
+                    {{ field }}<br>
                     {% else %}
                     {{ field.label }}
                     {{ field(class="form-control") }}
