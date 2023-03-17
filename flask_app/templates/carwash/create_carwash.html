@@ -8,12 +8,11 @@
                 {% for field in form if field.name not in ['csrf_token', 'Submit'] %}
                 <tr>
                     {% if field.type == "BooleanField" %}
-
                         {{ field.label }} {{ field }}<br>
-                            {% if field.type == "RadioField" %}
-                                {{ field.label }}
-                                {{ field }}<br>
-                            {% endif %}
+                    {% endif %}
+                    {% if field.type == "RadioField" %}
+                        {{ field.label }}
+                        {{ field }}<br>
                     {% else %}
                         {{ field.label }}
                         {{ field(class="form-control") }}
