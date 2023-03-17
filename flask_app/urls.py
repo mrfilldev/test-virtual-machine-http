@@ -386,11 +386,11 @@ def carwashes():
 @app.route('/create_carwash', methods=['GET', 'POST'])
 @login_required
 def create_carwash():
-    form = CarwashForm()
     if request.method == 'POST':
-        create_carwash_obj(form)
+        find_arguments = create_carwash_obj(request)
+        return redirect(url_for('carwashes'))
 
-    return render_template("carwash/create_carwash.html", form=form)
+    return render_template("carwash/create_carwash.html")
     #    username = dict(session)['username']
 
 
