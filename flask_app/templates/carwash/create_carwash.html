@@ -9,16 +9,17 @@
                 <tr>
                     {% if field.type == "BooleanField" %}
 
-                    {{ field.label }} {{ field }}<br>
-                    {% if field.type == "SelectMultipleField" %}
-                    {{ field.label }}
-                    {{ field }}<br>
+                        {{ field.label }} {{ field }}<br>
+                            {% if field.type == "SelectMultipleField" %}
+                                {{ field.label }}
+                                {{ field }}<br>
+                            {% endif %}
                     {% else %}
-                    {{ field.label }}
-                    {{ field(class="form-control") }}
+                        {{ field.label }}
+                        {{ field(class="form-control") }}
                     {% endif %}
                 </tr>
-                    {% endfor %}
+                {% endfor %}
                 <p>
                 <div>{{ form.Submit(class="btn btn-primary btn-block") }}</div>
             </form>
