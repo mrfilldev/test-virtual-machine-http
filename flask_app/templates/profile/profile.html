@@ -15,19 +15,21 @@
 <div class="container">
     <div class="row justify-content-between">
         <div class="col-4">
-            <form method=POST action="{{ url_for('admin') }}">
+            <div class="row justify-content-start">
+                <form method=POST action="{{ url_for('admin') }}">
 
-                &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
-                             aria-describedby="addon-wrapping">
-                &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
-                <option value="">Статус</option>
-                <option value="OrderCreated">OrderCreated</option>
-                <option value="Completed">Completed</option>
-                <option value="UserCanceled">UserCanceled</option>
-                <option value="Canceled">Canceled</option>
-            </select>
-                &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
-            </form>
+                    &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
+                                 aria-describedby="addon-wrapping">
+                    &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
+                    <option value="">Статус</option>
+                    <option value="OrderCreated">OrderCreated</option>
+                    <option value="Completed">Completed</option>
+                    <option value="UserCanceled">UserCanceled</option>
+                    <option value="Canceled">Canceled</option>
+                </select>
+                    &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
+                </form>
+            </div>
         </div>
         <div class="col-4">
             <a href="urlfor('/')"><input style="width: 40px" class="btn btn-dark" placeholder="+"></a>
