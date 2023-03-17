@@ -37,6 +37,7 @@
 
 
 <table class="table">
+    <thead>
     <tr>
         <th scope="col">№ Заказа</th>
         <th scope="col">Дата создания</th>
@@ -47,7 +48,10 @@
         <th scope="col">Сумма списания</th>
         <th scope="col">Выплачено партнеру</th>
     </tr>
+    </thead>
+    <tbody class="table-hover">
     {% for order in context['orders_list'] %}
+
     <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
         <th scope="row">
@@ -79,10 +83,9 @@
         <td class="text-end">
             {{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381
         </td>
-
     </tr>
-
     {% endfor %}
+    </tbody>
 </table>
 
 {% endblock %}
