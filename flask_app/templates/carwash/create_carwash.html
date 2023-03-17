@@ -3,7 +3,9 @@
 {% block body %}
 <br>
 <div class="row justify-content-center">
-    <div class="col-10">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
         <form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
 
             <table class="table table-bordered table-center align-middle">
@@ -56,17 +58,20 @@
                     </td>
                     <td>
                         <div class="form-check-inline">
-                            <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash" autocomplete="off">
+                            <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash"
+                                   autocomplete="off">
                             <label class="btn btn-outline-secondary" for="hand_carwash">Ручная мойка</label><br>
                         </div>
                         <div class="form-check-inline">
 
-                            <input name="is_wheel_station" type="checkbox" class="btn-check" id="wheel_station" autocomplete="off">
+                            <input name="is_wheel_station" type="checkbox" class="btn-check" id="wheel_station"
+                                   autocomplete="off">
                             <label class="btn btn-outline-secondary" for="wheel_station">Шиномонтаж</label><br>
                         </div>
                         <div class="form-check-inline">
 
-                            <input name="is_detaling" type="checkbox" class="btn-check" id="detaling" autocomplete="off">
+                            <input name="is_detaling" type="checkbox" class="btn-check" id="detaling"
+                                   autocomplete="off">
                             <label class="btn btn-outline-secondary" for="detaling">Детейлинг</label><br>
                         </div>
                     </td>
@@ -77,11 +82,13 @@
                         Состояние Мойки:
                     </td>
                     <td>
-                        <input type="radio" class="btn-check" name="options-outlined" value="enable" id="success-outlined"
+                        <input type="radio" class="btn-check" name="options-outlined" value="enable"
+                               id="success-outlined"
                                autocomplete="off" checked>
                         <label class="btn btn-outline-success" for="success-outlined">Активна</label>
 
-                        <input type="radio" class="btn-check" name="options-outlined" value="disable" id="danger-outlined"
+                        <input type="radio" class="btn-check" name="options-outlined" value="disable"
+                               id="danger-outlined"
                                autocomplete="off">
                         <label class="btn btn-outline-danger" for="danger-outlined">Не активна</label>
                     </td>
@@ -91,6 +98,8 @@
             <button style="width: 100px" type="submit" class="btn btn-dark">Добавить</button>
 
         </form>
+    </div>
+    <div class="col-2">
     </div>
 </div>
 
