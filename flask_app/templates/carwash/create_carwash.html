@@ -6,17 +6,16 @@
     <form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
         {% for field in form if field.name not in ['csrf_token', 'Submit'] %}
         <tr>
-            {% if field.type == "BooleanField" %}
-            {{ field.label }} {{ field }}<br><p>
             {% elif field.type == "RadioField" %}
-            {{ field.label }} {{ field }}
+                {{ field.label }} {{ field }}
+            {% elif field.type == "BooleanField" %}
+                {{ field.label }} {{ field }}
             {% elif field.type == "IntegerField" %}
-            <br><p>
-            {{ field.label }}<br>
-            {{ field }}<br><p>
+                {{ field.label }}<br>
+                {{ field }}<br><p>
             {% else %}
-            {{ field.label }}
-            {{ field(class="form-control") }}<p>
+                {{ field.label }}
+                {{ field(class="form-control") }}<p>
             {% endif %}
         </tr>
         {% endfor %}
