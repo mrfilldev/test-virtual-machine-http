@@ -1,85 +1,96 @@
-{% extends "base.html" %}
+{% extends "profile/base_4_users.html" %}
 
 
-{% if locker %}
 {% block body %}
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('.tr-carwash').click(function () {
+        $('.tr-order').click(function () {
             window.location = $(this).data('href');
             return false;
         });
     });
 </script>
+<form method=POST action="{{ url_for('admin') }}">
+    <div class="row justify-content-start">
+        &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
+                     aria-describedby="addon-wrapping">
+        &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
+        <option value="">Статус</option>
+        <option value="OrderCreated">OrderCreated</option>
+        <option value="Completed">Completed</option>
+        <option value="UserCanceled">UserCanceled</option>
+        <option value="Canceled">Canceled</option>
+    </select>
+        &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}" class="form-control"
+                     placeholder="{{ context['date'] | format_datetime }}"
+                     type="date" name="date" aria-describedby="addon-wrapping"><input style="width: 100px"
+                                                                                      class="form-control"
+                                                                                      placeholder="00:00" name="time"
+                                                                                      aria-describedby="addon-wrapping">
+        <!-- DATETIMEPICKER bootstrap.min.js -->
+        &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
+    </div>
+</form>
 
-<table class="table table-striped table-bordered">
+
+<table class="table table-hover">
+    <thead>
     <tr>
         <th scope="col">№ Мойки</th>
         <th scope="col">Id Мойки</th>
         <th scope="col">Имя Мойки</th>
-        <th scope="col">Статус</th>
         <th scope="col">Адрес</th>
         <th scope="col">Координаты</th>
         <th scope="col">Тип</th>
         <th scope="col">Мин. шаг суммы</th>
-        <th scope="col">Мин. сумма </th>
-        <th scope="col">Боксы</th>
-        <th scope="col">Цены</th>
-
     </tr>
-    {% for carwash in context['carwashes_list'] %}
-        <tr class="tr-carwash" data-href="{{ url_for('carwash_detail', carwash_id=carwash.Id) }}">
+    </thead>
+    <tbody class=".table-hover">
+    {% for order in context['orders_list'] %}
 
-            <th scope="row">
-                {{ context['count_carwashes'] - loop.index0 }}
-            </th>
-            <td>
-                {{ carwash.Id }}
-            </td>
-            <td>
-                {{ carwash.Name }}
-            </td>
-            <td>
-                {{ carwash.Enable }}
-            </td>
-            <td>
-                {{ carwash.Address }}
-            </td>
-            <td>
-                {{ carwash.Location.lat }}, {{ carwash.Location.lon }}
-            </td>
-            <td>
-                {{ carwash.Type }}
-            </td>
-            <td>
-                {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
-            </td>
-            <td>
-                {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
-            </td>
-            <td>
-                {% for box in carwash.Boxes %}
-                {{ box.number }} - {{ box.status }}<br>
-                {% endfor %}
-            </td>
-            <td>
-                {% for price in carwash.Price %}
-                {{ price.description }}: {{ price.cost }}<br>
-                {% endfor %}
-            </td>
-
-
-        </tr>
-
+    <tr><!--    <tr> class="tr-carwash" data-href="{{ url_for('order_detail', order_id=order.Id) }}">-->
+        <th scope="row">
+            {{ context['count_carwashes'] - loop.index0 }}
+        </th>
+        <td>
+            {{ carwash.Id }}
+        </td>
+        <td>
+            {{ carwash.Name }}
+        </td>
+        <td>
+            {{ carwash.Enable }}
+        </td>
+        <td>
+            {{ carwash.Address }}
+        </td>
+        <td>
+            {{ carwash.Location.lat }}, {{ carwash.Location.lon }}
+        </td>
+        <td>
+            {{ carwash.Type }}
+        </td>
+        <td>
+            {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
+        </td>
+        <td>
+            {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
+        </td>
+        <td>
+            {% for box in carwash.Boxes %}
+            {{ box.number }} - {{ box.status }}<br>
+            {% endfor %}
+        </td>
+        <td>
+            {% for price in carwash.Price %}
+            {{ price.description }}: {{ price.cost }}<br>
+            {% endfor %}
+        </td>
+    </tr>
     {% endfor %}
+    </tbody>
 </table>
-
 {% endblock %}
-
-{% else %}
-{% endif %}
-
-
