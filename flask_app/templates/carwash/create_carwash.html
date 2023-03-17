@@ -55,24 +55,18 @@
                         Тип услуг:
                     </td>
                     <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="hand_carwash">
-                            <label class="form-check-label" for="hand_carwash">
-                                Ручная мойка
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="wheel_station">
-                            <label class="form-check-label" for="wheel_station">
-                                Шиномонтаж
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="detaling">
-                            <label class="form-check-label" for="detaling">
-                                Детейлинг
-                            </label>
-                        </div>
+                        <input type="radio" class="btn-check" name="options" id="hand_carwash" autocomplete="off" checked>
+                        <label class="btn btn-secondary" for="hand_carwash">Ручная мойка</label>
+
+                        <input type="radio" class="btn-check" name="options" id="wheel_station" autocomplete="off">
+                        <label class="btn btn-secondary" for="wheel_station">Шиномонтаж</label>
+
+
+                        <input type="radio" class="btn-check" name="options" id="detaling" autocomplete="off">
+                        <label class="btn btn-secondary" for="detaling">Детейлинг</label>
+
+                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" disabled>
+                        <label class="btn btn-secondary" for="option3">Сброс &#9746;</label>
 
                     </td>
                 </tr>
