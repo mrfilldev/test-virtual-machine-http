@@ -12,10 +12,9 @@
                     <td>{{ field }} {{ field.label }}</td>
                     {% else %}
                     <td>{{ field.label }}</td>
-                    <td>{{ field }}</td>
+                    <td>{{ field(class="form-control") }}</td>
                     {% endif %}
                 </tr>
-
                     {% endfor %}
                 <p>
                 <div>{{ form.Submit(class="btn btn-primary btn-block") }}</div>
