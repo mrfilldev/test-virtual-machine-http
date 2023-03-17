@@ -10,7 +10,7 @@
                     {% if field.type == "BooleanField" %}
 
                         {{ field.label }} {{ field }}<br>
-                            {% if field.type == "SelectMultipleField" %}
+                            {% if field.type == "RadioField" %}
                                 {{ field.label }}
                                 {{ field }}<br>
                             {% endif %}
