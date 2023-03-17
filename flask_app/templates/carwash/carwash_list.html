@@ -24,13 +24,6 @@
         <option value="UserCanceled">UserCanceled</option>
         <option value="Canceled">Canceled</option>
     </select>
-        &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}" class="form-control"
-                     placeholder="{{ context['date'] | format_datetime }}"
-                     type="date" name="date" aria-describedby="addon-wrapping"><input style="width: 100px"
-                                                                                      class="form-control"
-                                                                                      placeholder="00:00" name="time"
-                                                                                      aria-describedby="addon-wrapping">
-        <!-- DATETIMEPICKER bootstrap.min.js -->
         &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
     </div>
 </form>
@@ -49,7 +42,7 @@
     </tr>
     </thead>
     <tbody class=".table-hover">
-    {% for order in context['orders_list'] %}
+    {% for carwash in context['carwashes_list'] %}
 
     <tr><!--    <tr> class="tr-carwash" data-href="{{ url_for('order_detail', order_id=order.Id) }}">-->
         <th scope="row">
