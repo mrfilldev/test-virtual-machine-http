@@ -1,13 +1,6 @@
 {% extends "profile/base_4_users.html" %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-
-            <h5>{{ context['user']['first_name'] }}, ваши мойки:</h5><br>
-
-    </div>
-</div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -19,20 +12,22 @@
         });
     });
 </script>
-<form method=POST action="{{ url_for('admin') }}">
-    <div class="row justify-content-start">
-        &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
-                     aria-describedby="addon-wrapping">
-        &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
-        <option value="">Статус</option>
-        <option value="OrderCreated">OrderCreated</option>
-        <option value="Completed">Completed</option>
-        <option value="UserCanceled">UserCanceled</option>
-        <option value="Canceled">Canceled</option>
-    </select>
-        &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
-    </div>
-</form>
+<div class="container">
+    <form method=POST action="{{ url_for('admin') }}">
+        <div class="row justify-content-start">
+            &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
+                         aria-describedby="addon-wrapping">
+            &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
+            <option value="">Статус</option>
+            <option value="OrderCreated">OrderCreated</option>
+            <option value="Completed">Completed</option>
+            <option value="UserCanceled">UserCanceled</option>
+            <option value="Canceled">Canceled</option>
+        </select>
+            &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
+        </div>
+    </form>
+</div>
 
 
 <table class="table table-hover">
