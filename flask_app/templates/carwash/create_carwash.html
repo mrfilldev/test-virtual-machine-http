@@ -9,8 +9,7 @@
                 <tr>
                     {% if field.type == "BooleanField" %}
                         {{ field.label }} {{ field }}<br>
-                    {% endif %}
-                    {% if field.type == "RadioField" %}
+                    {% elif field.type == "RadioField" %}
                         {{ field.label }}
                         {{ field }}<br>
                     {% else %}
