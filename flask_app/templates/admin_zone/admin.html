@@ -14,27 +14,31 @@
         });
     });
 </script>
-<form method=POST action="{{ url_for('admin') }}">
-    <div class="row justify-content-start">
-        &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
-                     aria-describedby="addon-wrapping">
-        &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
-        <option value="">Статус</option>
-        <option value="OrderCreated">OrderCreated</option>
-        <option value="Completed">Completed</option>
-        <option value="UserCanceled">UserCanceled</option>
-        <option value="Canceled">Canceled</option>
-    </select>
-        &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}" class="form-control" placeholder="{{ context['date'] | format_datetime }}"
-                     type="date" name="date" aria-describedby="addon-wrapping"><input style="width: 100px"
-                                                                                      class="form-control"
-                                                                                      placeholder="00:00" name="time"
-                                                                                      aria-describedby="addon-wrapping">
+<div class="container">
+    <form method=POST action="{{ url_for('admin') }}">
+        <div class="row justify-content-start">
+            &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
+                         aria-describedby="addon-wrapping">
+            &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
+            <option value="">Статус</option>
+            <option value="OrderCreated">OrderCreated</option>
+            <option value="Completed">Completed</option>
+            <option value="UserCanceled">UserCanceled</option>
+            <option value="Canceled">Canceled</option>
+        </select>
+            &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}" class="form-control"
+                         placeholder="{{ context['date'] | format_datetime }}"
+                         type="date" name="date" aria-describedby="addon-wrapping"><input style="width: 100px"
+                                                                                          class="form-control"
+                                                                                          placeholder="00:00"
+                                                                                          name="time"
+                                                                                          aria-describedby="addon-wrapping">
             <!-- DATETIMEPICKER bootstrap.min.js -->
-        &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
-    </div>
-</form>
-
+            &nbsp;<button style="width: 80px" type="submit" class="btn btn-dark">Найти</button>
+        </div>
+    </form>
+    >
+</div>
 
 <table class="table table-hover">
     <thead>
