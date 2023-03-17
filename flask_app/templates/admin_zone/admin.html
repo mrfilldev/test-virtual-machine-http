@@ -49,7 +49,7 @@
         <th scope="col">Выплачено партнеру</th>
     </tr>
     </thead>
-    <tbody class="table-hover">
+    <tbody class="table table-hover">
     {% for order in context['orders_list'] %}
 
     <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id) }}">
