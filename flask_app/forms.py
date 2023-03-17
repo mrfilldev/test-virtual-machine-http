@@ -10,7 +10,6 @@ class CarwashForm(FlaskForm):
     Location = StringField("Местоположение: ", validators=[DataRequired()])
     is_manual = BooleanField("Ручная мойка: ", validators=[DataRequired()])
     is_wheel_station = BooleanField("Шиномонтаж: ", validators=[DataRequired()])
-    is_ = BooleanField("Шиномонтаж: ", validators=[DataRequired()])
     Type = SelectMultipleField('Доступна ли мойка: ',
                                choices=[('True', 'Работает'), ('False', 'В ремонте'), ('False', 'В планах')])
     Amount_boxes = IntegerField("Число боксов:")
