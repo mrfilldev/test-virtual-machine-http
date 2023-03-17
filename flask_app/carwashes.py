@@ -65,7 +65,14 @@ class Carwash:
         self.Price = Price
 
 
-def create_carwash_obj(form):
+def create_carwash_obj(request):
+    for i in request.form:
+        print(i, request.form[i])
+
+
+
+
+def smthn_old():
     location_my = Point(55.650378, 37.606487)
     location_crystal = Point(55.750654, 37.536016)
     # location_my_dict = {'longitude': '55.650378', 'latitude': '37.606487'}
