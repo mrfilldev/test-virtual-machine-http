@@ -6,7 +6,7 @@
     <form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
         {% for field in form if field.name not in ['csrf_token', 'Submit'] %}
         <tr>
-            {% elif field.type == "RadioField" %}
+            {% if field.type == "RadioField" %}
                 {{ field.label }} {{ field }}
             {% elif field.type == "BooleanField" %}
                 {{ field.label }} {{ field }}
