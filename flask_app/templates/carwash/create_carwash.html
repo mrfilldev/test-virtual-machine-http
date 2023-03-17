@@ -12,6 +12,9 @@
                     {% elif field.type == "RadioField" %}
                         {{ field.label }}
                         {{ field }}<br>
+                    {% elif field.type == "IntegerField" %}
+                        {{ field.label }}
+                        {{ field }}<br>
                     {% else %}
                         {{ field.label }}
                         {{ field(class="form-control") }}
