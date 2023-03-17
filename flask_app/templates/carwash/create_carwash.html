@@ -4,23 +4,40 @@
 <div class="row justify-content-center">
     <div class="col-md-3">
     <form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
-        {% for field in form if field.name not in ['csrf_token', 'Submit'] %}
-        <tr>
-            {% if field.type == "RadioField" %}
-                {{ field.label }} {{ field }}
-            {% elif field.type == "BooleanField" %}
-                {{ field.label }} {{ field }}
-            {% elif field.type == "IntegerField" %}
-                {{ field.label }}<br>
-                {{ field }}<br><p>
-            {% else %}
-                {{ field.label }}
-                {{ field(class="form-control") }}<p>
-            {% endif %}
-        </tr>
-        {% endfor %}
-        <p>
-        <div>{{ form.Submit(class="btn btn-primary btn-block") }}</div>
+
+        <table class="table table-bordered table-center">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col" colspan="3">Мойка</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 200px">
+                            Название:
+                        </td>
+                        <td style="width: 40%">
+                            <input style="width: 100%" type="text" class="form-control" required>
+                        </td>
+                        <td style="width: 200px">
+                            Адрес:
+                        </td>
+                        <td style="width: 40%">
+                            <input style="width: 100%" type="text" class="form-control" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
+                            Локация:
+                        </td>
+                        <td>
+                            <input style="width: 100%" width="20%" type="text" class="form-control" placeholder="lat" required>
+                            <input style="width: 100%" width="20%" type="text" class="form-control" placeholder="lon" required>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
     </form>
 </div>
 </div>
