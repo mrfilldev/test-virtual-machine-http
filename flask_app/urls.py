@@ -387,11 +387,9 @@ def carwashes():
 @login_required
 def create_carwash():
     if request.method == 'POST':
-        find_arguments = create_carwash_obj(request)
+        create_carwash_obj(request)
         return redirect(url_for('carwashes'))
-
     return render_template("carwash/create_carwash.html")
-    #    username = dict(session)['username']
 
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])

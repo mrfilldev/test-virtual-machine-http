@@ -18,7 +18,7 @@
                         Название:
                     </td>
                     <td>
-                        <input style="width: 100%" type="text" class="form-control" required>
+                        <input name="name" style="width: 100%" type="text" class="form-control" required>
                     </td>
                 </tr>
                 <tr>
@@ -26,7 +26,7 @@
                         Адрес:
                     </td>
                     <td>
-                        <input style="width: 100%" type="text" class="form-control" required>
+                        <input name="address" style="width: 100%" type="text" class="form-control" required>
                     </td>
                 </tr>
                 <tr>
@@ -35,9 +35,9 @@
                     </td>
                     <td>
                         <div class="row justify-content-evenly">
-                            <input style="width: 48%" type="text" class="form-control"
+                            <input name="lat" style="width: 48%" type="text" class="form-control"
                                    required placeholder="latitude">
-                            <input style="width: 48%" type="text" class="form-control"
+                            <input name="lon" style="width: 48%" type="text" class="form-control"
                                    required placeholder="longitude">
                         </div>
                     </td>
@@ -47,7 +47,7 @@
                         Кол-во боксов:
                     </td>
                     <td>
-                        <input style="width: 100%" type="text" class="form-control" required>
+                        <input name="amount_boxes" style="width: 100%" type="text" class="form-control" required>
                     </td>
                 </tr>
                 <tr>
@@ -56,17 +56,17 @@
                     </td>
                     <td>
                         <div class="form-check-inline">
-                            <input type="checkbox" class="btn-check" id="hand_carwash" autocomplete="off">
+                            <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash" autocomplete="off">
                             <label class="btn btn-outline-secondary" for="hand_carwash">Ручная мойка</label><br>
                         </div>
                         <div class="form-check-inline">
 
-                            <input type="checkbox" class="btn-check" id="wheel_station" autocomplete="off">
+                            <input name="is_wheel_station" type="checkbox" class="btn-check" id="wheel_station" autocomplete="off">
                             <label class="btn btn-outline-secondary" for="wheel_station">Шиномонтаж</label><br>
                         </div>
                         <div class="form-check-inline">
 
-                            <input type="checkbox" class="btn-check" id="detaling" autocomplete="off">
+                            <input name="is_detaling" type="checkbox" class="btn-check" id="detaling" autocomplete="off">
                             <label class="btn btn-outline-secondary" for="detaling">Детейлинг</label><br>
                         </div>
                     </td>
@@ -77,11 +77,11 @@
                         Состояние Мойки:
                     </td>
                     <td>
-                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
+                        <input type="radio" class="btn-check" name="enable" id="success-outlined"
                                autocomplete="off" checked>
                         <label class="btn btn-outline-success" for="success-outlined">Активна</label>
 
-                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"
+                        <input type="radio" class="btn-check" name="disable" id="danger-outlined"
                                autocomplete="off">
                         <label class="btn btn-outline-danger" for="danger-outlined">Не активна</label>
                     </td>
