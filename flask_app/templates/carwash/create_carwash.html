@@ -6,20 +6,32 @@
         <div class="col-md-4 col-md-offset-4">
             <form action="{{ url_for('create_carwash') }}" method="post" class="form-contact">
 
-                    {{ form.Name.label() }}
-                    {{ form.Name }}
-                    {{ form.Address.label() }}
-                    {{ form.Address }}
-                    {{ form.Location.label() }}
-                    {{ form.Location }}
-                    {{ form.is_manual.label() }}
-                    {{ form.is_manual }}
-                    {{ form.is_wheel_station.label() }}
-                    {{ form.is_wheel_station }}
-                    {{ form.Type.label() }}
-                    {{ form.Type }}
-                    {{ form.Amount_boxes.label() }}
-                    {{ form.Amount_boxes }}
+                {{ form.Name.label() }}
+                {{ form.Name }}
+                {{ form.Address.label() }}
+                {{ form.Address }}
+                {{ form.Location.label() }}
+                {{ form.Location }}
+                {{ form.is_manual.label() }}
+                {{ form.is_manual }}
+                {{ form.is_wheel_station.label() }}
+                {{ form.is_wheel_station }}
+                {{ form.Type.label() }}
+                {{ form.Type }}
+                {{ form.Amount_boxes.label() }}
+                {{ form.Amount_boxes }}
+                {% for field in form %}
+                <tr>
+                    {% if field.type == "BooleanField" %}
+                    <td></td>
+                    <td>{{ field }} {{ field.label }}</td>
+                    {% else %}
+                    <td>{{ field.label }}</td>
+                    <td>{{ field }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
                 <p>
                 <div>{{ form.Submit(class="btn btn-primary btn-block") }}</div>
             </form>
