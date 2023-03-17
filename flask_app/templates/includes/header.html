@@ -1,16 +1,17 @@
-<div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <meta name="theme-color" content="#ffffff">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('admin') }}" aria-disabled="true">История
-                        заказов</a>
+                    <a class="nav-link" href="{{ url_for('admin') }}" aria-disabled="true">История заказов</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('profile') }}" aria-disabled="true">Профиль</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('create_carwash') }}" aria-disabled="true">Создать
-                        Мойку</a>
+                    <a class="nav-link" href="{{ url_for('create_carwash') }}" aria-disabled="true">Создать Мойку</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('carwashes') }}" aria-disabled="true">Все Мойки</a>
@@ -21,17 +22,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout') }}" aria-disabled="true">Выйти</a>
                 </li>
+
             </ul>
+        </div>
     </div>
-</div>
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
-</div>
 </nav>
