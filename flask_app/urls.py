@@ -256,7 +256,7 @@ def logout():
         return 'Invalid username/password combination'
 
 
-@app.route('/orders', methods=['POST', 'GET'])
+@app.route('/orders_list', methods=['POST', 'GET'])
 @login_required
 def orders_list():
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
@@ -280,7 +280,7 @@ def orders_list():
         'date': today
     }
     return render_template(
-        'admin_zone/admin.html',
+        'profile/orders_list.html',
         context=context
     )
 
@@ -327,7 +327,7 @@ def order_detail(order_id):
         'location': location
     }
     return render_template(
-        'admin_zone/order_detail.html',
+        'admin_zone/templates/profile/order_detail.html',
         context=context
     )
 
