@@ -19,12 +19,12 @@
             &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
                          aria-describedby="addon-wrapping">
             &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
-                <option value="">Статус</option>
-                <option value="OrderCreated">OrderCreated</option>
-                <option value="Completed">Completed</option>
-                <option value="UserCanceled">UserCanceled</option>
-                <option value="Canceled">Canceled</option>
-            </select>
+            <option value="">Статус</option>
+            <option value="OrderCreated">OrderCreated</option>
+            <option value="Completed">Completed</option>
+            <option value="UserCanceled">UserCanceled</option>
+            <option value="Canceled">Canceled</option>
+        </select>
             &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}" class="form-control"
                          placeholder="{{ context['date'] | format_datetime }}"
                          type="date" name="date" aria-describedby="addon-wrapping"><input style="width: 100px"
@@ -38,59 +38,60 @@
     </form>
 
 </div>
+<div class="table-responsive">
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">№ Заказа</th>
-        <th scope="col">Дата создания</th>
-        <th scope="col">Название Мойки</th>
-        <th scope="col">Предоставленные сервисы</th>
-        <th scope="col">Статус</th>
-        <th scope="col">Сумма стоимости заказа</th>
-        <th scope="col">Сумма списания</th>
-        <th scope="col">Выплачено партнеру</th>
-    </tr>
-    </thead>
-    <tbody class=".table-hover">
-    {% for order in context['orders_list'] %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">№ Заказа</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Название Мойки</th>
+            <th scope="col">Предоставленные сервисы</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Сумма стоимости заказа</th>
+            <th scope="col">Сумма списания</th>
+            <th scope="col">Выплачено партнеру</th>
+        </tr>
+        </thead>
+        <tbody class=".table-hover">
+        {% for order in context['orders_list'] %}
 
-    <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id) }}">
+        <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id) }}">
 
-        <th scope="row">
-            {{ context['count_orders'] - loop.index0 }}
-        </th>
-        <td>
-            {{ order.DateCreate | format_datetime }}
-        </td>
-        <td>
-            test_carwash {{ order.CarWashId }}
-        </td>
-        <td>
-            Имя:
-            {% for service in order.Services %}
-            {{ service.Description }}
-            {% endfor %}
-        </td>
-        <td>
-            {{ order.Status }}
-        </td>
+            <th scope="row">
+                {{ context['count_orders'] - loop.index0 }}
+            </th>
+            <td>
+                {{ order.DateCreate | format_datetime }}
+            </td>
+            <td>
+                test_carwash {{ order.CarWashId }}
+            </td>
+            <td>
+                Имя:
+                {% for service in order.Services %}
+                {{ service.Description }}
+                {% endfor %}
+            </td>
+            <td>
+                {{ order.Status }}
+            </td>
 
-        <td class="text-end">
-            {{'%0.2f'| format(order.Sum|float)}}&#8381
+            <td class="text-end">
+                {{'%0.2f'| format(order.Sum|float)}}&#8381
 
-        </td>
-        <td class="text-end">
-            {{'%0.2f'| format(order.SumCompleted|float)}}&#8381
-        </td>
-        <td class="text-end">
-            {{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381
-        </td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
+            </td>
+            <td class="text-end">
+                {{'%0.2f'| format(order.SumCompleted|float)}}&#8381
+            </td>
+            <td class="text-end">
+                {{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
 
 
