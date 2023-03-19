@@ -234,7 +234,7 @@ def login():
 
         if user and bcrypt.checkpw(password, user['password']):
             session['username'] = username
-            return redirect(url_for('admin'))
+            return redirect(url_for('orders_list'))
         # return redirect(url_for('index'), ecode='102')
 
     except Exception as e:
@@ -256,9 +256,9 @@ def logout():
         return 'Invalid username/password combination'
 
 
-@app.route('/admin', methods=['POST', 'GET'])
+@app.route('/orders', methods=['POST', 'GET'])
 @login_required
-def admin():
+def orders_list():
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     if request.method == 'POST':
         find_arguments = method_of_filters(request)

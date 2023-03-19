@@ -27,7 +27,7 @@ print(dbs.list_collection_names())
 
 # print(dbs.tst_items.count())
 # dbs.server_info()
-# dbs.admin.command('{ ping: 1 }')
+# dbs.orders_list.command('{ ping: 1 }')
 # dbs.test_collection.find(...)
 
 
