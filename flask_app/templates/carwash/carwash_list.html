@@ -37,63 +37,64 @@
     </div>
 </div>
 
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">№</th>
 
-<table class="table table-hover table-responsive">
-    <thead>
-    <tr>
-        <th scope="col">№</th>
+            <th scope="col">Имя Мойки</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Тип</th>
+            <th scope="col">Мин. шаг суммы</th>
+            <th scope="col">Мин. стоимость</th>
+            <th scope="col">Боксы</th>
+            <th scope="col">Услуги</th>
+        </tr>
+        </thead>
+        <tbody class=".table-hover">
+        {% for carwash in context['carwashes_list'] %}
 
-        <th scope="col">Имя Мойки</th>
-        <th scope="col">Адрес</th>
-        <th scope="col">Статус</th>
-        <th scope="col">Тип</th>
-        <th scope="col">Мин. шаг суммы</th>
-        <th scope="col">Мин. стоимость</th>
-        <th scope="col">Боксы</th>
-        <th scope="col">Услуги</th>
-    </tr>
-    </thead>
-    <tbody class=".table-hover">
-    {% for carwash in context['carwashes_list'] %}
+        <tr>
+            <th scope="row">
+                {{ context['count_carwashes'] - loop.index0 }}
+            </th>
 
-    <tr>
-        <th scope="row">
-            {{ context['count_carwashes'] - loop.index0 }}
-        </th>
+            <td>
+                {{ carwash.Name }}
+            </td>
 
-        <td>
-            {{ carwash.Name }}
-        </td>
+            <td>
+                {{ carwash.Address }}
+            </td>
 
-        <td>
-            {{ carwash.Address }}
-        </td>
-
-        <td>
-            {{ carwash.Enable }}
-        </td>
-        <td>
-            {{ carwash.Type }}
-        </td>
-        <td>
-            {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
-        </td>
-        <td>
-            {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
-        </td>
-        <td>
-            {% for box in carwash.Boxes %}
-            {{ box.number }} - {{ box.status }}<br>
-            {% endfor %}
-        </td>
-        <td>
-            {% for price in carwash.Price %}
-            {{ price.description }}: {{ price.cost }}<br>
-            {% endfor %}
-        </td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+            <td>
+                {{ carwash.Enable }}
+            </td>
+            <td>
+                {{ carwash.Type }}
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
+            </td>
+            <td>
+                {% for box in carwash.Boxes %}
+                {{ box.number }} - {{ box.status }}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for price in carwash.Price %}
+                {{ price.description }}: {{ price.cost }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
 
