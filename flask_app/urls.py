@@ -235,7 +235,9 @@ def main():
                     'psuid': user_inf['psuid'],
                     'login': user_inf['login'],
                     'access_level': 'Новый пользователь',
-                    'date_registered': str(date_now)
+                    'date_registered': str(date_now),
+                    'company_name': '',
+                    'inn': '',
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
