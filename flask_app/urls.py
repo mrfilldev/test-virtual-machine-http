@@ -447,7 +447,7 @@ def fill_company():
                 "inn": inn,
             },
         }
-        new_order = Config.col_orders.update_one(user_yan_inf['id'], set_command)
+        user = users.update_one(user_yan_inf['id'], set_command)
         return redirect(url_for('profile'))
 
     context = {
