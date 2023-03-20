@@ -187,11 +187,12 @@ def pereprava():
 def main():
     # get ya-token
     try:
-        resp = oauth_via_yandex.get_code(request)
-        for key in dict(session):
-            print(key, ":", session[key])
-        session['ya-token'] = resp['access_token']
-        print('ya-token has been inserted')
+        if 'ya-token' not in session:
+            resp = oauth_via_yandex.get_code(request)
+            for key in dict(session):
+                print(key, ":", session[key])
+            session['ya-token'] = resp['access_token']
+            print('ya-token has been inserted')
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
         user = users.find_one({'id': user_inf['id']})
 
