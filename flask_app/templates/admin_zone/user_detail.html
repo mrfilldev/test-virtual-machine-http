@@ -27,26 +27,18 @@
                         <tbody>
                         <tr>
                             <td style="width: 200px">
-                                id:
-                            </td>
-                            <td style="width: 40%">
-                                {{ context['user']['id'] }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                psuid:
-                            </td>
-                            <td>
-                                {{ context['user'].psuid }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
                                 логин:
                             </td>
                             <td>
                                 {{ context['user'].login }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                id:
+                            </td>
+                            <td style="width: 40%">
+                                {{ context['user']['id'] }}">
                             </td>
                         </tr>
                         <tr>
@@ -64,6 +56,14 @@
                             </td>
                             <td>
                                 {{ context['user'].date_registered | format_datetime }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                psuid:
+                            </td>
+                            <td>
+                                {{ context['user'].psuid }}
                             </td>
                         </tr>
                         </tbody>
