@@ -420,7 +420,7 @@ def profile():
                 "company_name": company_name, "inn": inn,
             },
         }
-        user = users.update_one({user_yan_inf['id']}, set_command)
+        user = users.update_one({'id': user_yan_inf['id']}, set_command)
 
     status = ''
     if user.access_level == 'Новый пользователь':
