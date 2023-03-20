@@ -225,7 +225,7 @@ def main():
                     'psuid': user_inf['psuid'],
                     'login': user_inf['login'],
                     'access_level': 0,
-                    'date_registered': date_now
+                    'date_registered': str(date_now)
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
@@ -482,15 +482,6 @@ def format_datetime(value):
     # print(variant)
     if isinstance(value, date):
         value = value.strftime('%d.%m.%Y')
-    elif isinstance(value, SimpleNamespace):
-        try:
-            value = value.date_create
-            print('SimpleNamespace -> str: ', value)
-        except Exception as error:
-            traceback.print_exc()
-            print(f'EXEPTION: \n{type(Exception)}: e', error)  # добавить логгер
-            return 'Invalid username/password combination'
-
     else:
         value = parser.parse(value)
         value = value.strftime("%d.%m.%Y %H:%M:%S")
