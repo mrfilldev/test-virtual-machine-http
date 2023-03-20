@@ -436,7 +436,7 @@ def profile():
         'user': user,
         'user_yan_inf': user_yan_inf,
     }
-    return render_template('profile/profile.html', context=context)
+    return render_template('new_user_zone/new_user_profile.html', context=context)
 
 
 @app.route('/fill_company_info/', methods=['GET', 'POST'])
