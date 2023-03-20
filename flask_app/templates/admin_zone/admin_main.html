@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<div class="row justify-content-center">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
+        {% for i in context['inf_list'] %}
+        {{ i }}
+        {% endfor %}
+    </div>
+    <div class="col-2">
+    </div>
+</div>
+
+{% endblock %}
+

@@ -22,15 +22,12 @@ from types import SimpleNamespace
 import bcrypt
 
 from flask_app import oauth_via_yandex
-from flask_app.admin_functions import check_root
+from flask_app.admin_functions import check_root, admin_main
 from flask_app.carwashes import create_carwash_obj
 from flask_app.specific_methods import method_of_filters
-from forms import CarwashForm
-from urllib.parse import urlencode
-
 from flask_app.decorators.auth_decorator import login_required
 
-# from authlib.integrations.flask_client import OAuth
+
 
 
 # Идентификатор приложения
@@ -180,8 +177,13 @@ def pereprava():
     print(root)
     if root == 'admin':
         return redirect(url_for('admin'))
-
     return render_template('users/index.html')
+
+
+@app.route('/admin_main')
+def pereprava():
+    admin_main(request, session)
+
 
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
