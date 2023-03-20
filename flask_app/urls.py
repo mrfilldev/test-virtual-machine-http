@@ -173,6 +173,7 @@ def index():
     return render_template('users/index.html')
 
 
+@app.route('/pereprava')
 def pereprava():
     root = check_root(session)
     if root > 100:
