@@ -1,10 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block body %}
+{% include 'includes/header.html' %}
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+            {% if context['status'] == 'owner' %}
+            <ul>
+                <li></li>
+                <li>Часы работы: _______</li>
+                <li>Номер телефона: _______</li>
+            </ul>
+            {% endif %}
+
+        </div>
+        <div class="col-10">
+            <main class="container-sm">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-center">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" colspan="3">Ваши данные</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                логин:
+                            </td>
+                            <td>
+                                {{ context['user'].login }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                id:
+                            </td>
+                            <td style="width: 40%">
+                                {{ context['user'].id }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                уровень доступа:
+                            </td>
+                            <td>
+                                {{ context['user'].access_level }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                дата регистрации:
+                            </td>
+                            <td>
+                                {{ context['user'].date_registered | format_datetime }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="table-responsive">
+                        <form method=POST action="{{ url_for('profile') }}">
+                            <table class="table table-bordered table-center">
+                                <thead class="table-light">
+                                <tr>
+                                    <th scope="col" colspan="3">Пользователь</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Название компании:
+                                    </td>
+                                    <td>
+                                        <input style="width: 100%" type="text" class="form-control"
+                                               name="company_name"
+                                               value="{{ context['user'].company_name }}">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        ИНН компании:
+                                    </td>
+                                    <td style="width: 40%">
+                                        <input style="width: 100%" type="text" class="form-control"
+                                               name="inn"
+                                               value="{{ context['user'].inn }}">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button style="width: auto" type="submit" class="btn btn-outline-secondary">
+                                Редактировать
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}
