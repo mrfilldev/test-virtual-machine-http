@@ -413,6 +413,8 @@ def profile():
         status = 'new_user'
     elif user.access_level == 'Владелец сети':
         status = 'owner'
+    elif user.access_level == 'admin':
+        status = 'admin'
     context = {
         'status': status,
         'user': user,
@@ -441,7 +443,6 @@ def fill_company():
         }
         new_order = Config.col_orders.update_one(user_yan_inf['id'], set_command)
         return redirect(url_for('profile'))
-
     context = {
         'status': status,
         'user': user,
