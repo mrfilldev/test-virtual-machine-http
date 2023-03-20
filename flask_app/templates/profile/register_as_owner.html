@@ -31,7 +31,7 @@
                                 </td>
                                 <td>
                                     <input style="width: 100%" type="text" class="form-control" name="company_name"
-                                           value="">
+                                           value="{% if context['status'] == 'owner'%} {{ context['user'].company_name }} {% endif %}">
                                 </td>
                             </tr>
                             <tr>
@@ -39,8 +39,8 @@
                                     ИНН компании:
                                 </td>
                                 <td style="width: 40%">
-                                    <input style="width: 100%" type="text" class="form-control" name="company_inn"
-                                           value="">
+                                    <input style="width: 100%" type="text" class="form-control" name="company_name"
+                                           value="{% if context['status'] == 'owner'%} {{ context['user'].inn }} {% endif %}">
                                 </td>
                             </tr>
                             </tbody>

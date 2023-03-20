@@ -65,8 +65,14 @@
                         <div class="col-1">
                             <a class="btn btn-outline-secondary" href="{{ url_for('fill_company') }}">Заполнить данные</a>
                         </div>
+                    {% elif context['status'] == 'owner' %}
 
+
+                        <div class="col-1">
+                            <a class="btn btn-outline-secondary" href="{{ url_for('fill_company') }}">Редактировать данные</a>
+                        </div>
                     {% else %}
+
 
                     {% endif %}
 
