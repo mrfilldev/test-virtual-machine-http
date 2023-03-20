@@ -186,6 +186,8 @@ def pereprava():
 @login_required
 def user_detail(user_id):
     user_obj = orders.find_one({'Id': user_id})  # dict
+    print(user_obj)
+
     data = json.loads(json_util.dumps(user_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
