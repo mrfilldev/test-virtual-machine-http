@@ -424,7 +424,8 @@ def profile():
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
         'user': user_inf,
-        'inf_list': inf_list
+        'inf_list': inf_list,
+        'status': 'user'
     }
     return render_template('profile/profile.html', context=context)
 

@@ -9,8 +9,9 @@
     <div class="col-2">
     </div>
     <div class="col-8">
+        Ваш статус: {{ context['status'] }} <br>
         {% for i in context['inf_list'] %}
-        {{ i }}
+        {{ i }}<br>
         {% endfor %}
     </div>
     <div class="col-2">
