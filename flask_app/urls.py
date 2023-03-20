@@ -450,7 +450,7 @@ def fill_company():
             },
         }
         user = users.update_one(user_yan_inf['id'], set_command)
-        return redirect(url_for('profile'))
+        #return redirect(url_for('profile'))
 
     context = {
         'status': status,
