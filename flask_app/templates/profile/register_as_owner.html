@@ -18,7 +18,6 @@
             <main class="container-sm">
                 <div class="table-responsive">
                     <form method=POST action="{{ url_for('fill_company') }}">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <table class="table table-bordered table-center">
                             <thead class="table-light">
                             <tr>
