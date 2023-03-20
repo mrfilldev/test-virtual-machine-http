@@ -440,7 +440,9 @@ def fill_company():
         status = 'admin'
     if request.method == 'POST':
         company_name = request.form['company_name']
-        inn = request.form['company_inn']
+        inn = request.form['inn']
+        print('company_name: ', company_name)
+        print('inn: ', inn)
         set_command = {
             "$set": {
                 "company_name": company_name,
