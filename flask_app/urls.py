@@ -207,6 +207,7 @@ def main():
                     'date_registered': date_now
                 }
             )
+            print(f'user {user_inf["login"]} has been inserted')
 
         return redirect(url_for('profile'))
     except Exception as error:
