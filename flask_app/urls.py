@@ -417,7 +417,6 @@ def profile():
     context = {
         'user': user,
         'user_yan_inf': user_yan_inf,
-        'inf_list': inf_list,
     }
     return render_template('profile/profile.html', context=context)
 
