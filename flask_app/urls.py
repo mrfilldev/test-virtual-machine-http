@@ -181,7 +181,7 @@ def pereprava():
 
 
 @app.route('/admin_main')
-def pereprava():
+def admin():
     admin_main(request, session)
 
 
