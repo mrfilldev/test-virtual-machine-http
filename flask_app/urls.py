@@ -414,11 +414,6 @@ def profile():
         pass
     elif user.access_level == 'Владелец сети':
         pass
-    elif user.access_level == 'admin':
-        return redirect(url_for('carwashes'))
-    else:
-        return render_template('users/index.html')
-
     context = {
         'user': user,
         'user_yan_inf': user_yan_inf,
@@ -426,24 +421,6 @@ def profile():
     return render_template('profile/profile.html', context=context)
 
 
-@app.route('/profile/<string:user_id>', methods=['GET'])
-@login_required
-def profile_detail(user_id):
-    user = users.find_one({'id': user_id})
-    data = json.loads(json_util.dumps(user))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-    inf_list = []
-    for k in user_yan_inf:
-        inf_list.append(f"{k} -> {user_yan_inf[k]} \n")
-    print(user_yan_inf)
-    context = {
-        'user': user,
-        'user_yan_inf': user_yan_inf,
-        'inf_list': inf_list,
-    }
-    return render_template('profile/profile_detail.html', context=context)
 
 
 @app.route('/carwashes', methods=['GET'])
