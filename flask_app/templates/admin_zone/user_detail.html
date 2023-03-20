@@ -74,7 +74,7 @@
                     </button>
 
                         <div class="col-1">
-                            <a class="btn btn-outline-warning" href="{{ url_for('admin_delete_user') }}">Удалить пользователя</a>
+                            <a class="btn btn-outline-warning" href="{{ url_for('admin_delete_user', user_id=context['user'].id)) }}">Удалить пользователя</a>
                         </div>
 
                     </form>
