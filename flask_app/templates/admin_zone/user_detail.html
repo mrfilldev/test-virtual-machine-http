@@ -17,57 +17,62 @@
         <div class="col-10">
             <main class="container-sm">
                 <div class="table-responsive">
+                    <form method=POST action="{{ url_for('orders_list') }}">
+                        <table class="table table-bordered table-center">
+                            <thead class="table-light">
+                            <tr>
+                                <th scope="col" colspan="3">Пользователь</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="width: 200px">
+                                    логин:
+                                </td>
+                                <td>
+                                    {{ context['user'].login }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px">
+                                    id:
+                                </td>
+                                <td style="width: 40%">
+                                    {{ context['user']['id'] }}"
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px">
+                                    уровень доступа:
+                                </td>
+                                <td>
 
-                    <table class="table table-bordered table-center">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col" colspan="3">Пользователь</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="width: 200px">
-                                логин:
-                            </td>
-                            <td>
-                                {{ context['user'].login }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                id:
-                            </td>
-                            <td style="width: 40%">
-                                {{ context['user']['id'] }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                уровень доступа:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['user'].access_level }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                дата регистрации:
-                            </td>
-                            <td>
-                                {{ context['user'].date_registered | format_datetime }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                psuid:
-                            </td>
-                            <td>
-                                {{ context['user'].psuid }}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                    <input style="width: 100%" type="text" class="form-control"
+                                           value="{{ context['user'].access_level">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px">
+                                    дата регистрации:
+                                </td>
+                                <td>
+                                    {{ context['user'].date_registered | format_datetime }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px">
+                                    psuid:
+                                </td>
+                                <td>
+                                    {{ context['user'].psuid }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Сохранить</button>
+
+                    </form>
                 </div>
             </main>
         </div>
