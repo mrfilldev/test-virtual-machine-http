@@ -20,5 +20,8 @@ def check_root(session):
     user_id = user_inf['id']
     user = users.find_one({'id': user_id})
 
+    if user['access_level'] >= 99:
+        return 'admin'
 
-    pass
+    else:
+        return 'user'
