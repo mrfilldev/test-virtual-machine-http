@@ -1,7 +1,6 @@
 from flask_app import oauth_via_yandex
 from config.config import Config
 
-
 users = Config.col_users
 
 
@@ -20,8 +19,7 @@ def check_root(session):
     user_id = user_inf['id']
     user = users.find_one({'id': user_id})
 
-    if user['access_level'] >= 99:
+    if user['access_level'] == 'admin':
         return 'admin'
-
     else:
         return 'user'
