@@ -27,9 +27,6 @@ from flask_app.carwashes import create_carwash_obj
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required
 
-
-
-
 # Идентификатор приложения
 client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
 # Пароль приложения
@@ -180,11 +177,9 @@ def pereprava():
     return redirect(url_for('index'))
 
 
-
 @app.route('/admin_main')
 def admin():
     return admin_main(request, session)
-
 
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
@@ -401,9 +396,24 @@ def order_detail(order_id):
     )
 
 
+@app.route('/profile/', methods=['GET'])
+@login_required
+def profile():
+    user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
+    inf_list = []
+    for k in user_yan_inf:
+        inf_list.append(f"{k} -> {user_yan_inf[k]} \n")
+    print(user_yan_inf)
+    context = {
+        'user_yan_inf': user_yan_inf,
+        'inf_list': inf_list,
+    }
+    return render_template('profile/profile.html', context=context)
+
+
 @app.route('/profile/<string:user_id>', methods=['GET'])
 @login_required
-def profile(user_id):
+def profile_detail(user_id):
     user = users.find_one({'id': user_id})
     data = json.loads(json_util.dumps(user))
     data = json.dumps(data, default=lambda x: x.__dict__)
@@ -413,15 +423,12 @@ def profile(user_id):
     for k in user_yan_inf:
         inf_list.append(f"{k} -> {user_yan_inf[k]} \n")
     print(user_yan_inf)
-
-
-
     context = {
         'user': user,
         'user_yan_inf': user_yan_inf,
         'inf_list': inf_list,
     }
-    return render_template('profile/profile.html', context=context)
+    return render_template('profile/profile_detail.html', context=context)
 
 
 @app.route('/carwashes', methods=['GET'])
