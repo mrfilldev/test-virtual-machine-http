@@ -424,8 +424,13 @@ def profile():
 @app.route('/fill_company_info/', methods=['GET'])
 @login_required
 def fill_company():
+    user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
+    user = users.find_one({'id': user_yan_inf['id']})
+    data = json.loads(json_util.dumps(user))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    status = ''
     if request.method == 'POST':
-        user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
         company_name = request.form['company_name']
         inn = request.form['company_inn']
         set_command = {
@@ -435,9 +440,14 @@ def fill_company():
             },
         }
         new_order = Config.col_orders.update_one(user_yan_inf['id'], set_command)
+        return redirect(url_for('profile'))
 
-    context = {}
-    return render_template('profile/profile.html', context=context)
+    context = {
+        'status': status,
+        'user': user,
+        'user_yan_inf': user_yan_inf,
+    }
+    return render_template('profile/register_as_owner.html', context=context)
 
 
 @app.route('/carwashes', methods=['GET'])
