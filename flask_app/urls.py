@@ -442,7 +442,7 @@ def fill_company():
             },
         }
         new_order = Config.col_orders.update_one(user_yan_inf['id'], set_command)
-        return redirect(url_for('profile'))
+        return render_template(url_for('profile'))
     context = {
         'status': status,
         'user': user,
