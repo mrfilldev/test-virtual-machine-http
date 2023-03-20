@@ -22,7 +22,7 @@ from types import SimpleNamespace
 import bcrypt
 
 from flask_app import oauth_via_yandex
-from flask_app.admin_functions import check_root, admin_main
+from flask_app.admin_functions import check_root, admin_main, admin_delete_user
 from flask_app.carwashes import create_carwash_obj
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required
@@ -180,6 +180,13 @@ def pereprava():
 @app.route('/admin_main')
 def admin():
     return admin_main(request, session)
+
+@app.route('/admin_delete_user/<string:user_id>')
+def admin(user_id):
+    admin_delete_user(request, session, user_id)
+    return redirect(url_for('admin'))
+
+
 
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
