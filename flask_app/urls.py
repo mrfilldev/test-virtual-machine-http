@@ -182,6 +182,24 @@ def pereprava():
 
     return render_template('users/index.html')
 
+@app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
+@login_required
+def order_detail(user_id):
+    user_obj = orders.find_one({'Id': user_id})  # dict
+    data = json.loads(json_util.dumps(user_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+
+    context = {
+        'user': user_obj,
+    }
+    return render_template(
+        'admin_zone/user_detail.html',
+        context=context
+    )
+
+
+
 
 @app.route('/main')
 def main():

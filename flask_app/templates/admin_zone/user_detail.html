@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            Контакты мойки:
+            <aside class="bd-sidebar">
+                <ul>
+                    <li>Адрес: ________</li>
+                    <li>Часы работы: _______</li>
+                    <li>Номер телефона: _______</li>
+                </ul>
+            </aside>
+        </div>
+        <div class="col-10">
+            <main class="container-sm">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-center">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" colspan="3">Мойка</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                id:
+                            </td>
+                            <td style="width: 40%">
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{ context['user'].id }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                psuid:
+                            </td>
+                            <td>
+                                <input style="width: 100%" width="20%" type="text" class="form-control"
+                                       value="{{ context['user'].psuid }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                логин:
+                            </td>
+                            <td>
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{ context['user'].login }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                уровень доступа:
+                            </td>
+                            <td>
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{ context['user'].access_level }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                дата ругистрации:
+                            </td>
+                            <td>
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{ context['user'].date_registered }}">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordered table-center">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" colspan="2">Заказ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                № Заказа:
+                            </td>
+                            <td>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="{{ context['order'].Id }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Дата создания:
+                            </td>
+                            <td>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="{{ context['order'].DateCreate | format_datetime }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Статус заказа:
+                            </td>
+                            <td>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="{{ context['order'].Status }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Оказанный сервис:
+                            </td>
+                            <td>
+                                {% for service in context['order'].Services %}
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="Наименование: {{ service.Description }}"><br>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="Цена: {{ service.Cost }}"><br>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="id: {{ service.Id}}"><br>
+                                <br>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordered table-center">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" colspan="2">Оплата</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                Сумма стоимости заказа:
+                            </td>
+                            <td>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Сумма списания:
+                            </td>
+                            <td>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="{{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Выплачено партнеру:
+                            </td>
+                            <td>
+                                <input style="width: 49%" type="text" class="form-control"
+                                       value="{{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}
