@@ -21,7 +21,7 @@
                         <table class="table table-bordered table-center">
                             <thead class="table-light">
                             <tr>
-                                <th scope="col" colspan="3">Пользователь</th>
+                                <th scope="col" colspan="3">Ваши данные</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -55,14 +55,6 @@
                                 </td>
                                 <td>
                                     {{ context['user'].date_registered | format_datetime }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    psuid:
-                                </td>
-                                <td>
-                                    {{ context['user'].psuid }}
                                 </td>
                             </tr>
                             </tbody>
