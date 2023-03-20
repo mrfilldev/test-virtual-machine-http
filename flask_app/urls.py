@@ -179,12 +179,11 @@ def pereprava():
 def admin():
     return admin_main(request, session)
 
+
 @app.route('/admin_delete_user/<string:user_id>')
 def admin_delete_user(user_id):
     delete_user(request, session, user_id)
     return redirect(url_for('admin'))
-
-
 
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
@@ -409,18 +408,36 @@ def profile():
     data = json.loads(json_util.dumps(user))
     data = json.dumps(data, default=lambda x: x.__dict__)
     user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-
+    status = ''
     if user.access_level == 'новый пользователь':
-        pass
+        status = 'new_user'
     elif user.access_level == 'Владелец сети':
-        pass
+        status = 'owner'
     context = {
+        'status': status,
         'user': user,
         'user_yan_inf': user_yan_inf,
     }
     return render_template('profile/profile.html', context=context)
 
 
+@app.route('/fill_company_info/', methods=['GET'])
+@login_required
+def fill_company():
+    if request.method == 'POST':
+        user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
+        company_name = request.form['company_name']
+        inn = request.form['company_inn']
+        set_command = {
+            "$set": {
+                "company_name": company_name,
+                "inn": inn,
+            },
+        }
+        new_order = Config.col_orders.update_one(user_yan_inf['id'], set_command)
+
+    context = {}
+    return render_template('profile/profile.html', context=context)
 
 
 @app.route('/carwashes', methods=['GET'])
