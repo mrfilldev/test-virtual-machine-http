@@ -231,9 +231,9 @@ def main():
             print(f'user {user_inf["login"]} has been inserted')
 
         return redirect(url_for('profile'))
-    except Exception as error:
+    except Exception as e:
         traceback.print_exc()
-        print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
+        print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
         return "ошибОчка на стороне сервера :("
 
 
@@ -483,8 +483,14 @@ def format_datetime(value):
     if isinstance(value, date):
         value = value.strftime('%d.%m.%Y')
     elif isinstance(value, SimpleNamespace):
-        value = str(value)
-        print('SimpleNamespace -> str: ', value)
+        try:
+            value = value.date_create
+            print('SimpleNamespace -> str: ', value)
+        except Exception as error:
+            traceback.print_exc()
+            print(f'EXEPTION: \n{type(Exception)}: e', error)  # добавить логгер
+            return 'Invalid username/password combination'
+
     else:
         value = parser.parse(value)
         value = value.strftime("%d.%m.%Y %H:%M:%S")
