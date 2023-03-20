@@ -21,6 +21,7 @@ from types import SimpleNamespace
 import bcrypt
 
 from flask_app import oauth_via_yandex
+from flask_app.admin_functions import check_root
 from flask_app.carwashes import create_carwash_obj
 from flask_app.specific_methods import method_of_filters
 from forms import CarwashForm
@@ -167,8 +168,15 @@ async def make_carwash_order():
 ########################################################################
 @app.route('/')
 def index():
-    if 'username' in session:
+    if 'ya-token' in session:
         return redirect(url_for('main'))
+    return render_template('users/index.html')
+
+
+def pereprava():
+    root = check_root(session)
+    if root > 100:
+        return redirect(url_for('admin'))
 
     return render_template('users/index.html')
 
@@ -182,9 +190,22 @@ def main():
             print(key, ":", session[key])
         session['ya-token'] = resp['access_token']
         print('ya-token has been inserted')
+        user_inf = oauth_via_yandex.get_user(session['ya-token'])
+        users.insert_one(
+            {
+                'id': user_inf['id'],
+                'psuid': user_inf['psuid'],
+                'login': user_inf['login'],
+                'access_level': 0
+            }
+        )
+
         return redirect(url_for('profile'))
     except Exception as error:
-        return "ошибОчка"
+        traceback.print_exc()
+        print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
+        return "ошибОчка на стороне сервера :("
+
     # get values of user
     # values_of_user = oauth_via_yandex.get_user(resp['access_token'])
     # resp = make_response(render_template("profile/profile.html"))
