@@ -423,7 +423,7 @@ def profile():
     return render_template('profile/profile.html', context=context)
 
 
-@app.route('/fill_company_info/', methods=['GET'])
+@app.route('/fill_company_info/', methods=['GET', 'POST'])
 @login_required
 def fill_company():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
