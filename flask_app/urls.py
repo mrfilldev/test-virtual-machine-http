@@ -442,13 +442,19 @@ def fill_company():
             },
         }
         new_order = Config.col_orders.update_one(user_yan_inf['id'], set_command)
-        return render_template(url_for('profile'))
-    context = {
-        'status': status,
-        'user': user,
-        'user_yan_inf': user_yan_inf,
-    }
-    return render_template('profile/register_as_owner.html', context=context)
+        context = {
+            'status': status,
+            'user': user,
+            'user_yan_inf': user_yan_inf,
+        }
+        return render_template(url_for('profile'), context=context)
+    else:
+        context = {
+            'status': status,
+            'user': user,
+            'user_yan_inf': user_yan_inf,
+        }
+        return render_template('profile/register_as_owner.html', context=context)
 
 
 @app.route('/carwashes', methods=['GET'])
