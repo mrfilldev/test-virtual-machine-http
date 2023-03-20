@@ -66,6 +66,65 @@ ________________________________________________________________________________
 {% endfor %}
 
 ____________________________________________________________________________________________________________________<br>
+<div class="table-responsive">
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">№</th>
+
+            <th scope="col">test</th>
+            <th scope="col">test</th>
+            <th scope="col">test</th>
+            <th scope="col">test</th>
+            <th scope="col">test</th>
+
+        </tr>
+        </thead>
+        <tbody class=".table-hover">
+        {% for user in context['users_list'] %}
+
+        <tr>
+            <th scope="row">
+                {{ context['count_users'] - loop.index0 }}
+            </th>
+
+            <td>
+                {{ user.id }}
+            </td>
+
+            <td>
+                {{ user.psuid }}
+            </td>
+
+            <td>
+                {{ user.login }}
+            </td>
+            <td>
+                {{ user.access_level }}
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
+            </td>
+            <td>
+                {% for box in carwash.Boxes %}
+                {{ box.number }} - {{ box.status }}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for price in carwash.Price %}
+                {{ price.description }}: {{ price.cost }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+____________________________________________________________________________________________________________________<br>
 
 <!-- Необязательный JavaScript; выберите один из двух! -->
 

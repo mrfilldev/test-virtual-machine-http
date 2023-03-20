@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from datetime import date
+import time
+from datetime import datetime, date
 
 import requests
 from dateutil import parser
@@ -192,26 +193,26 @@ def main():
         session['ya-token'] = resp['access_token']
         print('ya-token has been inserted')
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
-        users.insert_one(
-            {
-                'id': user_inf['id'],
-                'psuid': user_inf['psuid'],
-                'login': user_inf['login'],
-                'access_level': 0
-            }
-        )
+        user = users.find_one({'id': user_inf['id']})
+
+        if user is None:
+            format = '%Y-%m-%dT%H:%M:%S%Z'
+            date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+            users.insert_one(
+                {
+                    'id': user_inf['id'],
+                    'psuid': user_inf['psuid'],
+                    'login': user_inf['login'],
+                    'access_level': 0,
+                    'date_registered': date_now
+                }
+            )
 
         return redirect(url_for('profile'))
     except Exception as error:
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
         return "ошибОчка на стороне сервера :("
-
-    # get values of user
-    # values_of_user = oauth_via_yandex.get_user(resp['access_token'])
-    # resp = make_response(render_template("profile/profile.html"))
-    # resp = render_template("profile/profile.html")
-    # resp.set_cookie('username', username)
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -310,13 +311,25 @@ def orders_list():
 @app.route('/test', methods=['POST', 'GET'])
 def test():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
+    all_users = users.find({})
+    users_list = []
+    count_users = 0
+    for count_users, i in enumerate(list(all_users)[::-1], 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print(user_obj)
+        users_list.append(user_obj)
+
     inf_list = []
     for k in user_inf:
         inf_list.append(f"{k} -> {user_inf[k]} \n")
     print(user_inf)
     context = {
         'user': user_inf,
-        'inf_list': inf_list
+        'inf_list': inf_list,
+        'users_list': users_list,
+        'count_users': count_users,
     }
     return render_template(
         'admin_zone/test.html',
@@ -349,7 +362,7 @@ def order_detail(order_id):
         'location': location
     }
     return render_template(
-        'admin_zone/templates/profile/order_detail.html',
+        'profile/order_detail.html',
         context=context
     )
 
