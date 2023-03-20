@@ -185,7 +185,7 @@ def pereprava():
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
 @login_required
 def user_detail(user_id):
-    user_obj = orders.find_one({'id': user_id})  # dict
+    user_obj = orders.find_one({'id': int(user_id)})  # dict
     print(user_obj)
 
     data = json.loads(json_util.dumps(user_obj))
