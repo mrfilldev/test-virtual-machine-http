@@ -182,6 +182,7 @@ def pereprava():
 
     return render_template('users/index.html')
 
+
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
 @login_required
 def user_detail(user_id):
@@ -199,8 +200,6 @@ def user_detail(user_id):
         'admin_zone/user_detail.html',
         context=context
     )
-
-
 
 
 @app.route('/main')
@@ -483,6 +482,9 @@ def format_datetime(value):
     # print(variant)
     if isinstance(value, date):
         value = value.strftime('%d.%m.%Y')
+    elif isinstance(value, SimpleNamespace):
+        value = str(value)
+        print('SimpleNamespace -> str: ', value)
     else:
         value = parser.parse(value)
         value = value.strftime("%d.%m.%Y %H:%M:%S")
