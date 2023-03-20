@@ -406,7 +406,10 @@ def order_detail(order_id):
 @login_required
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-
+    user = users.find_one({'id': user_yan_inf['id']})
+    data = json.loads(json_util.dumps(user))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     if request.method == 'POST':
         company_name = request.form['company_name']
         inn = request.form['inn']
@@ -414,14 +417,13 @@ def profile():
         print('inn: ', inn)
         set_command = {
             "$set": {
-                "company_name": company_name, "inn": inn,
+                "company_name": company_name,
+                "inn": inn,
+                "access_level": "Владелец сети"
             },
         }
         user = users.update_one({'id': user_yan_inf['id']}, set_command)
-    user = users.find_one({'id': user_yan_inf['id']})
-    data = json.loads(json_util.dumps(user))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+
     status = ''
     if user.access_level == 'Новый пользователь':
         status = 'new_user'
