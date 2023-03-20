@@ -422,7 +422,7 @@ def profile():
             },
         }
         user = users.update_one(user_yan_inf['id'], set_command)
-        return redirect(url_for('profile'))
+
     status = ''
     if user.access_level == 'Новый пользователь':
         status = 'new_user'
