@@ -61,22 +61,87 @@
                     </table>
                     {% if context['status'] == 'new_user' %}
 
-
-                        <div class="col-1">
-                            <a class="btn btn-outline-secondary" href="{{ url_for('fill_company') }}">Заполнить данные</a>
+                    <main class="container-sm">
+                        <div class="table-responsive">
+                            <form method=POST action="{{ url_for('profile') }}">
+                                <table class="table table-bordered table-center">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th scope="col" colspan="3">Пользователь</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 200px">
+                                            Название компании:
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%" type="text" class="form-control"
+                                                   name="company_name"
+                                                   value="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 200px">
+                                            ИНН компании:
+                                        </td>
+                                        <td style="width: 40%">
+                                            <input style="width: 100%" type="text" class="form-control"
+                                                   name="company_name"
+                                                   value="">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button style="width: auto" type="submit" class="btn btn-outline-secondary">
+                                    Сохранить
+                                </button>
+                            </form>
                         </div>
+                    </main>
+
                     {% elif context['status'] == 'owner' %}
-
-
-                        <div class="col-1">
-                            <a class="btn btn-outline-secondary" href="{{ url_for('refill_company') }}">Редактировать данные</a>
+                    <main class="container-sm">
+                        <div class="table-responsive">
+                            <form method=POST action="{{ url_for('profile') }}">
+                                <table class="table table-bordered table-center">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th scope="col" colspan="3">Пользователь</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 200px">
+                                            Название компании:
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%" type="text" class="form-control"
+                                                   name="company_name"
+                                                   value="{{ context['user'].company_name }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 200px">
+                                            ИНН компании:
+                                        </td>
+                                        <td style="width: 40%">
+                                            <input style="width: 100%" type="text" class="form-control"
+                                                   name="company_name"
+                                                   value="{{ context['user'].inn }}">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button style="width: auto" type="submit" class="btn btn-outline-secondary">
+                                    Сохранить
+                                </button>
+                            </form>
                         </div>
-                    {% else %}
-
-
+                    </main>
+                    {% elif context['status'] == 'admin' %}
+                        РЕЖИМ АДМИНИСТРАТОРА!!!
                     {% endif %}
-
-
                 </div>
             </main>
         </div>

@@ -408,6 +408,19 @@ def profile():
     data = json.loads(json_util.dumps(user))
     data = json.dumps(data, default=lambda x: x.__dict__)
     user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    if request.method == 'POST':
+        company_name = request.form['company_name']
+        inn = request.form['inn']
+        print('company_name: ', company_name)
+        print('inn: ', inn)
+        set_command = {
+            "$set": {
+                "company_name": company_name,
+                "inn": inn,
+            },
+        }
+        user = users.update_one(user_yan_inf['id'], set_command)
+        return redirect(url_for('profile'))
     status = ''
     if user.access_level == 'Новый пользователь':
         status = 'new_user'

@@ -14,44 +14,6 @@
                 </ul>
             </aside>
         </div>
-        <div class="col-10">
-            <main class="container-sm">
-                <div class="table-responsive">
-                    <form method=POST action="{{ url_for('fill_company') }}">
-                        <table class="table table-bordered table-center">
-                            <thead class="table-light">
-                            <tr>
-                                <th scope="col" colspan="3">Пользователь</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td style="width: 200px">
-                                    Название компании:
-                                </td>
-                                <td>
-                                    <input style="width: 100%" type="text" class="form-control" name="company_name"
-                                           value="{% if context['status'] == 'owner'%} {{ context['user'].company_name }} {% endif %}">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    ИНН компании:
-                                </td>
-                                <td style="width: 40%">
-                                    <input style="width: 100%" type="text" class="form-control" name="company_name"
-                                           value="{% if context['status'] == 'owner'%} {{ context['user'].inn }} {% endif %}">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
 
-                        <button style="width: auto" type="submit" class="btn btn-outline-secondary">Сохранить</button>
-
-                    </form>
-                </div>
-            </main>
-        </div>
-    </div>
 </div>
 {% endblock %}
