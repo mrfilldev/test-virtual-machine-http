@@ -177,6 +177,7 @@ def index():
 @app.route('/pereprava')
 def pereprava():
     root = check_root(session)
+    print(root)
     if root == 'admin':
         return redirect(url_for('admin'))
 
