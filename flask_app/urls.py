@@ -2,14 +2,12 @@
 import time
 from datetime import datetime, date
 
-import requests
 from dateutil import parser
 import traceback
 
 import boto3
 from bson import json_util
-from flask import Flask, render_template, url_for, request, session, redirect, Response, jsonify, make_response
-from requests import post
+from flask import Flask, render_template, url_for, request, session, redirect, Response
 
 import carwash_list
 import carwash_order
@@ -22,7 +20,7 @@ from types import SimpleNamespace
 import bcrypt
 
 from flask_app import oauth_via_yandex
-from flask_app.admin_functions import check_root, admin_main, delete_user
+from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user
 from flask_app.carwashes import create_carwash_obj
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required
@@ -417,7 +415,7 @@ def profile():
     elif user.access_level == 'Владелец сети':
         pass
     elif user.access_level == 'admin':
-        return render_template(url_for('carwashes'))
+        return redirect(url_for('carwashes'))
     else:
         return render_template('users/index.html')
 
@@ -464,7 +462,6 @@ def carwashes():
     context = {
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
-
     }
 
     return render_template(
