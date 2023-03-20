@@ -234,7 +234,7 @@ def main():
                     'id': user_inf['id'],
                     'psuid': user_inf['psuid'],
                     'login': user_inf['login'],
-                    'access_level': 'новый пользователь',
+                    'access_level': 'Новый пользователь',
                     'date_registered': str(date_now)
                 }
             )
@@ -409,7 +409,7 @@ def profile():
     data = json.dumps(data, default=lambda x: x.__dict__)
     user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     status = ''
-    if user.access_level == 'новый пользователь':
+    if user.access_level == 'Новый пользователь':
         status = 'new_user'
     elif user.access_level == 'Владелец сети':
         status = 'owner'
@@ -432,7 +432,7 @@ def fill_company():
     data = json.dumps(data, default=lambda x: x.__dict__)
     user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     status = ''
-    if user.access_level == 'новый пользователь':
+    if user.access_level == 'Новый пользователь':
         status = 'new_user'
     elif user.access_level == 'Владелец сети':
         status = 'owner'
