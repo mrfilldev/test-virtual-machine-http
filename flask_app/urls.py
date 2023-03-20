@@ -242,7 +242,7 @@ def main():
             )
             print(f'user {user_inf["login"]} has been inserted')
 
-        return redirect(url_for('profile', user_id=user_inf['id']))
+        return redirect(url_for('profile'))
     except Exception as e:
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
