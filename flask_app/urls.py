@@ -190,7 +190,7 @@ def user_detail(user_id):
         new_value = request.form['access_level']
         set_command = {"$set": {"access_level": new_value}}
         old_user = {'id': str(user_id)}
-        new_user = Config.col_orders.update_one(old_user, set_command)
+        new_user = users.update_one(old_user, set_command)
         print('new_user', new_user)
 
     user_obj = users.find_one({'id': str(user_id)})  # dict
