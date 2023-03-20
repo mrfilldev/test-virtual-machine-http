@@ -103,22 +103,6 @@ ________________________________________________________________________________
             <td>
                 {{ user.access_level }}
             </td>
-            <td>
-                {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
-            </td>
-            <td>
-                {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
-            </td>
-            <td>
-                {% for box in carwash.Boxes %}
-                {{ box.number }} - {{ box.status }}<br>
-                {% endfor %}
-            </td>
-            <td>
-                {% for price in carwash.Price %}
-                {{ price.description }}: {{ price.cost }}<br>
-                {% endfor %}
-            </td>
         </tr>
         {% endfor %}
         </tbody>
