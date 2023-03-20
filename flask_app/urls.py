@@ -425,18 +425,21 @@ def profile():
         users.update_one({'id': user_yan_inf['id']}, set_command)
 
     status = ''
+    template = 'new_user_zone/new_user_profile.html'
     if user.access_level == 'Новый пользователь':
         status = 'new_user'
     elif user.access_level == 'Владелец сети':
         status = 'owner'
+        template = 'new_user_zone/new_user_profile.html'
     elif user.access_level == 'admin':
         status = 'admin'
+        return redirect(url_for('admin'))
     context = {
         'status': status,
         'user': user,
         'user_yan_inf': user_yan_inf,
     }
-    return render_template('new_user_zone/new_user_profile.html', context=context)
+    return render_template(template, context=context)
 
 
 @app.route('/fill_company_info/', methods=['GET', 'POST'])
