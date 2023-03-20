@@ -59,7 +59,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        {% if context['status'] == new_user %}
+                        {% if context['status'] == 'new_user' %}
                         <div class="col-1">
                             <button style="width: auto" class="btn btn-outline-secondary"
                                     href="{{ url_for('fill_company') }}">
