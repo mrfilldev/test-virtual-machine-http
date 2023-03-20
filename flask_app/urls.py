@@ -400,11 +400,22 @@ def order_detail(order_id):
 @login_required
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-    inf_list = []
-    for k in user_yan_inf:
-        inf_list.append(f"{k} -> {user_yan_inf[k]} \n")
-    print(user_yan_inf)
+    user = users.find_one({'id': user_yan_inf['id']})
+    data = json.loads(json_util.dumps(user))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+
+    if user.access_level == 'новый пользователь':
+        pass
+    elif user.access_level == 'Владелец сети':
+        pass
+    elif user.access_level == 'admin':
+        pass
+    else:
+        return render_template('users/index.html')
+
     context = {
+        'user': user,
         'user_yan_inf': user_yan_inf,
         'inf_list': inf_list,
     }
