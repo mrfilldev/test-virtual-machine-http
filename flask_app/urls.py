@@ -422,7 +422,7 @@ def profile():
                 "access_level": "Владелец сети"
             },
         }
-        user = users.update_one({'id': user_yan_inf['id']}, set_command)
+        users.update_one({'id': user_yan_inf['id']}, set_command)
 
     status = ''
     if user.access_level == 'Новый пользователь':
