@@ -310,6 +310,7 @@ def orders_list():
 
 
 @app.route('/test', methods=['POST', 'GET'])
+@login_required
 def test():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     all_users = users.find({})
