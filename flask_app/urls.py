@@ -417,7 +417,7 @@ def profile():
     elif user.access_level == 'Владелец сети':
         pass
     elif user.access_level == 'admin':
-        pass
+        return render_template(url_for('carwashes'))
     else:
         return render_template('users/index.html')
 
