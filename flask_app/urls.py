@@ -177,7 +177,8 @@ def pereprava():
     print(root)
     if root == 'admin':
         return redirect(url_for('admin'))
-    return render_template('users/index.html')
+    return redirect(url_for('index'))
+
 
 
 @app.route('/admin_main')
@@ -234,13 +235,13 @@ def main():
                     'id': user_inf['id'],
                     'psuid': user_inf['psuid'],
                     'login': user_inf['login'],
-                    'access_level': 0,
+                    'access_level': 'новый пользователь',
                     'date_registered': str(date_now)
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
 
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile', user_id=user_inf['id']))
     except Exception as e:
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
@@ -400,31 +401,24 @@ def order_detail(order_id):
     )
 
 
-@app.route('/profile', methods=['GET'])
+@app.route('/profile/<string:user_id>', methods=['GET'])
 @login_required
-def profile():
-    user_inf = oauth_via_yandex.get_user(session['ya-token'])
+def profile(user_id):
+    user = users.find_one({'id': user_id})
+    data = json.loads(json_util.dumps(user))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
     inf_list = []
-    for k in user_inf:
-        inf_list.append(f"{k} -> {user_inf[k]} \n")
-    print(user_inf)
+    for k in user_yan_inf:
+        inf_list.append(f"{k} -> {user_yan_inf[k]} \n")
+    print(user_yan_inf)
 
-    carwashes_list = []
-    all_orders = db_carwashes.find()
-    count_carwashes = 0
-
-    for count_carwashes, i in enumerate(all_orders, 1):
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        carwashes_list.append(carwash_obj)
-        print(carwash_obj)
 
 
     context = {
-        'carwashes_list': carwashes_list,
-        'count_carwashes': count_carwashes,
-        'user': user_inf,
+        'user': user,
+        'user_yan_inf': user_yan_inf,
         'inf_list': inf_list,
     }
     return render_template('profile/profile.html', context=context)
