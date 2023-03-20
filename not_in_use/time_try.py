@@ -1,15 +1,18 @@
+import time
 from datetime import datetime, timedelta, date
-
 from dateutil import parser
 
-string = '2023-02-27T14:24:49.215Z'
+format = '%Y-%m-%dT%H:%M:%S%Z'
+date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+print(date_now)
+
+"""string = '2023-02-27T14:24:49.215Z'
 
 value = parser.parse(string)
 print(value)
 value = value.strftime("%m/%d/%y %H:%M:%S")
 print(value)
-
-
+"""
 
 # # определение временного диапазона
 # start_time = datetime.now() - timedelta(minutes=15)
@@ -20,7 +23,6 @@ print(value)
 # start_time = datetime.strftime(start_time, "%Y-%m-%dd %H:%M:%S")
 #
 #
-
 
 
 # result = string.replace('T', ' ')

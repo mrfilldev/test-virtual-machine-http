@@ -219,6 +219,7 @@ def main():
         if user is None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
             date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+            print(date_now)
             users.insert_one(
                 {
                     'id': user_inf['id'],

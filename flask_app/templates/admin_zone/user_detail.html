@@ -63,8 +63,7 @@
                                 дата регистрации:
                             </td>
                             <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['user'].date_registered }}">
+                                {{ context['user'].date_registered | format_datetime }}
                             </td>
                         </tr>
                         </tbody>

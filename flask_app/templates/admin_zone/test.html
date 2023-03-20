@@ -115,7 +115,7 @@ ________________________________________________________________________________
                 {{ user.access_level }}
             </td>
             <td>
-                {{ user.date_registered }}
+                {{ user.date_registered | format_datetime}}
             </td>
         </tr>
         {% endfor %}
