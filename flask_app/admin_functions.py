@@ -48,7 +48,7 @@ def admin_main(request, session):
     return render_template('admin_zone/admin_main.html', context=context)
 
 
-def admin_delete_user(request, session, user_id):
+def delete_user(request, session, user_id):
     users.delete_one({'id': user_id})
 
 
