@@ -447,6 +447,7 @@ def profile():
                 },
             }
             users.update_one({'id': user_yan_inf['id']}, set_command)
+            db_companies.delete_one({'_id': inn})
         else:
             set_command = {
                 "$set": {
