@@ -34,7 +34,7 @@
                                        value="{{ context['carwash'].ContractId }}">
                             </td>
                             <td rowspan="3">
-                                <img src="https://static-maps.yandex.ru/1.x/?l=map&z=17&size=400,450&pt={{ context.location['longitude'] }},{{ context.location['latitude'] }},org">
+                                <img src="https://static-maps.yandex.ru/1.x/?l=map&z=17&size=400,450&pt={{ context['carwash']['location']['lon'] }},{{ context['carwash']['location']['lat'] }},org">
                             </td>
                         </tr>
                         <tr>
