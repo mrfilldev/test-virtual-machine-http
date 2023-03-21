@@ -338,7 +338,7 @@ def logout():
 
 
 @app.route('/orders_list', methods=['POST', 'GET'])
-@login_required
+@owner_status_required
 def orders_list():
     all_orders = orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     if request.method == 'POST':
