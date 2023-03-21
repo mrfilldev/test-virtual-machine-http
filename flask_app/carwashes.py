@@ -72,6 +72,7 @@ def create_boxes(amount_boxes: int):
 
     result = group_of_boxes
     print('result', result)
+    return result
 
 
 def create_carwash_obj(request):
@@ -85,7 +86,7 @@ def create_carwash_obj(request):
     types = Types.SelfServiceFixPrice.name
     stepCost = 10.0
     limitMinCost = 100.0
-    boxes = create_boxes(request.form['amount_boxes'])
+    boxes = create_boxes(int(request.form['amount_boxes']))
     status = request.form['options-outlined']
     price = []
 
