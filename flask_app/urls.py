@@ -217,12 +217,20 @@ def user_detail(user_id):
         context=context
     )
 
-@app.route('/add_carwash_owner/', methods=['POST', 'GET'])
+@app.route('/add_company/', methods=['POST', 'GET'])
 @login_required
 @admin_status_required
-def add_carwash_owner():
-
-    return render_template('admin_zone/add_carwash_owner.html')
+def add_company():
+    if request.method == 'POST':
+        inn = request.form['inn']
+        format = '%Y-%m-%dT%H:%M:%S%Z'
+        db_companies.insert_one(
+            {
+                "_id": inn,
+                "date": str(datetime.strptime(time.strftime(format, time.localtime()), format))
+            }
+        )
+    return render_template('admin_zone/add_company.html')
 
 @app.route('/main')
 def main():
