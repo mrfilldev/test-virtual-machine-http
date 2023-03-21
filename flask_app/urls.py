@@ -337,7 +337,7 @@ def orders_list():
         'date': today
     }
     return render_template(
-        'profile/orders_list.html',
+        'profile/templates/admin_zone/order/orders_list.html',
         context=context
     )
 
@@ -397,7 +397,7 @@ def order_detail(order_id):
         'location': location
     }
     return render_template(
-        'profile/order_detail.html',
+        'profile/templates/admin_zone/order/order_detail.html',
         context=context
     )
 
@@ -423,23 +423,21 @@ def profile():
             },
         }
         users.update_one({'id': user_yan_inf['id']}, set_command)
-
     status = ''
-    template = 'new_user_zone/profile.html'
-    if user.access_level == 'Новый пользователь':
-        status = 'new_user'
-    elif user.access_level == 'Владелец сети':
-        status = 'owner'
-        template = 'new_user_zone/profile.html'
-    elif user.access_level == 'admin':
-        status = 'admin'
-        return redirect(url_for('admin'))
+    # if user.access_level == 'Новый пользователь':
+    #     status = 'new_user'
+    # elif user.access_level == 'Владелец сети':
+    #     status = 'owner'
+    #
+    # elif user.access_level == 'admin':
+    #     status = 'admin'
+
     context = {
         'status': status,
         'user': user,
         'user_yan_inf': user_yan_inf,
     }
-    return render_template(template, context=context)
+    return render_template('profile/profile.html', context=context)
 
 
 @app.route('/fill_company_info/', methods=['GET', 'POST'])
