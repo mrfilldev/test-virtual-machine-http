@@ -22,21 +22,13 @@
                     <table class="table table-bordered table-center">
                         <thead class="table-light">
                         <tr>
-                            <th scope="col" colspan="3">{{ context['user_yan_inf'].display_name }}</th>
+                            <th scope="col" colspan="3">{{ context['user_yan_inf'].display_name }} #{{ context['user'].id }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td style="width: 200px">
-                                логин:
-                            </td>
-                            <td>
-                                {{ context['user'].login }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                id:
+                                Id:
                             </td>
                             <td style="width: 40%">
                                 {{ context['user'].id }}
@@ -44,7 +36,7 @@
                         </tr>
                         <tr>
                             <td style="width: 200px">
-                                уровень доступа:
+                                Статус:
                             </td>
                             <td>
                                 {{ context['user'].access_level }}
@@ -52,7 +44,7 @@
                         </tr>
                         <tr>
                             <td style="width: 200px">
-                                дата регистрации:
+                                Дата регистрации:
                             </td>
                             <td>
                                 {{ context['user'].date_registered | format_datetime }}
@@ -68,13 +60,13 @@
                             <table class="table table-bordered table-center">
                                 <thead class="table-light">
                                 <tr>
-                                    <th scope="col" colspan="3">Пользователь</th>
+                                    <th scope="col" colspan="3">Юридическая информация:</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td style="width: 200px">
-                                        Название компании:
+                                        Компания:
                                     </td>
                                     <td>
                                         <input style="width: 100%" type="text" class="form-control"
@@ -84,7 +76,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 200px">
-                                        ИНН компании:
+                                        ИНН:
                                     </td>
                                     <td style="width: 40%">
                                         <input style="width: 100%" type="text" class="form-control"
