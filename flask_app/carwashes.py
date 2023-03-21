@@ -65,11 +65,26 @@ class Carwash:
         self.Price = Price
 
 
+def create_boxes(amount_boxes: int):
+    group_of_boxes = []
+    for i in range(amount_boxes):
+        group_of_boxes.append(Boxes(i, BoxStatus.Free.name))
+
+    result = group_of_boxes
+    print('result', result)
+
+
 def create_carwash_obj(request):
     for i in request.form:
         print(i, request.form[i])
 
-
+    name_carwash = request.form['name']
+    address_carwash = request.form['address']
+    location_carwash = Point(request.form['lat'], request.form['lon'])
+    types = Types.SelfServiceFixPrice.name
+    stepCost = 10.0
+    limitMinCost = 100.0
+    boxes = create_boxes(request.form['boxes'])
 
 
 def smthn_old():
@@ -132,7 +147,7 @@ def smthn_old():
     new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
     print('TYPE: ', type(new_carwash_json))
     print('data: ', new_carwash_json)
-    new_carwash_dict = json.loads(new_carwash_json)#, object_hook=lambda d: SimpleNamespace(**d))
+    new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
     res = Config.col_carwashes.insert_one(new_carwash_dict)
