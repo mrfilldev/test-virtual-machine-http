@@ -67,7 +67,7 @@ class Carwash:
 
 def create_boxes(amount_boxes: int):
     group_of_boxes = []
-    for i in range(amount_boxes):
+    for i in range(1, amount_boxes + 1):
         group_of_boxes.append(Boxes(i, BoxStatus.Free.name))
 
     result = group_of_boxes
