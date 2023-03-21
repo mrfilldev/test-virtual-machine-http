@@ -217,6 +217,7 @@ def user_detail(user_id):
         context=context
     )
 
+
 @app.route('/add_company/', methods=['POST', 'GET'])
 @login_required
 @admin_status_required
@@ -230,7 +231,9 @@ def add_company():
                 "date": str(datetime.strptime(time.strftime(format, time.localtime()), format))
             }
         )
+        return profile
     return render_template('admin_zone/add_company.html')
+
 
 @app.route('/main')
 def main():
