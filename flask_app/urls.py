@@ -43,6 +43,7 @@ bootstrap = Bootstrap(app)
 users = Config.col_users
 orders = Config.col_orders
 db_carwashes = Config.col_carwashes
+db_companies = Config.col_companies
 
 URL_DEV = Config.URL_DEV
 API_KEY = Config.API_KEY  # ['123456', '7tllmnubn49ghu5qrep97']
@@ -426,17 +427,26 @@ def profile():
     if request.method == 'POST':
         company_name = request.form['company_name']
         inn = request.form['inn']
-        
         print('company_name: ', company_name)
         print('inn: ', inn)
-        set_command = {
-            "$set": {
-                "company_name": company_name,
-                "inn": inn,
-                "access_level": "Владелец сети"
-            },
-        }
-        users.update_one({'id': user_yan_inf['id']}, set_command)
+        company = users.find_one({'inn': inn})
+        if company is not None:
+            set_command = {
+                "$set": {
+                    "company_name": company_name,
+                    "inn": inn,
+                    "access_level": "Владелец сети"
+                },
+            }
+            users.update_one({'id': user_yan_inf['id']}, set_command)
+        else:
+            set_command = {
+                "$set": {
+                    "company_name": company_name,
+                    "inn": inn,
+                },
+            }
+            users.update_one({'id': user_yan_inf['id']}, set_command)
     status = ''
     if user.access_level == 'Новый пользователь':
         status = 'new_user'
