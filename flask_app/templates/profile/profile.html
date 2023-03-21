@@ -25,7 +25,9 @@
                     <table class="table table-bordered table-center">
                         <thead class="table-light">
                         <tr>
-                            <th scope="col" colspan="3">{{ context['user_yan_inf'].display_name }} #{{ context['user'].id }}</th>
+                            <th scope="col" colspan="3">{{ context['user_yan_inf'].display_name }} #{{
+                                context['user'].id }}
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -138,7 +140,12 @@
                     {% elif context['status'] == 'admin' %}
                     РЕЖИМ АДМИНИСТРАТОРА!!!
 
-
+                    ________________________________________________________________________<br>
+                    Ваш статус: {{ context['status'] }} <br>
+                    {% for i in context['inf_list'] %}
+                    {{ i }}<br>
+                    {% endfor %}
+                    ________________________________________________________________________<br>
                     {% endif %}
                 </div>
             </main>
