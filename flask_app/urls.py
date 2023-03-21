@@ -231,7 +231,7 @@ def add_company():
             }
         )
         print(f"Successfully added company {inn}")
-        #return redirect(url_for('profile'))
+        # return redirect(url_for('profile'))
     return render_template('admin_zone/add_company.html')
 
 
@@ -430,7 +430,6 @@ def order_detail(order_id):
 @login_required
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-
 
     if request.method == 'POST':
         company_name = request.form['company_name']
