@@ -78,6 +78,7 @@ def create_carwash_obj(request):
     for i in request.form:
         print(i, request.form[i])
 
+    id = Config.col_carwashes.count_documents({}) + 1
     name_carwash = request.form['name']
     address_carwash = request.form['address']
     location_carwash = Point(request.form['lat'], request.form['lon'])
@@ -85,9 +86,21 @@ def create_carwash_obj(request):
     stepCost = 10.0
     limitMinCost = 100.0
     boxes = create_boxes(request.form['boxes'])
-    status =
+    status = request.form['status']
+    price = []
 
-
+    new_carwash = Carwash(
+        id, status, name_carwash, address_carwash, location_carwash, types,
+        stepCost, limitMinCost, boxes, price
+    )
+    new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
+    print('TYPE: ', type(new_carwash_json))
+    print('data: ', new_carwash_json)
+    new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
+    print('TYPE: ', type(new_carwash_dict))
+    print('data: ', new_carwash_dict)
+    res = Config.col_carwashes.insert_one(new_carwash_dict)
+    print('WRITED CARWASH: ', res)
 
 
 def smthn_old():
