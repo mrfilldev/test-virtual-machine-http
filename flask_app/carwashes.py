@@ -85,7 +85,7 @@ def create_carwash_obj(request):
     types = Types.SelfServiceFixPrice.name
     stepCost = 10.0
     limitMinCost = 100.0
-    boxes = create_boxes(request.form['boxes'])
+    boxes = create_boxes(request.form['amount_boxes'])
     status = request.form['options-outlined']
     price = []
 
