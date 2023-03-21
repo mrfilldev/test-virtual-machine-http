@@ -476,7 +476,7 @@ def profile():
     return render_template('profile/profile.html', context=context)
 
 
-@app.route('/carwashes', methods=['POST','GET'])
+@app.route('/carwashes', methods=['POST', 'GET'])
 @owner_status_required
 def carwashes():
     carwashes_list = []
@@ -501,7 +501,7 @@ def carwashes():
 
 
 @app.route('/create_carwash', methods=['POST', 'GET'])
-@owner_status_required
+#@owner_status_required
 def create_carwash():
     if request.method == 'POST':
         create_carwash_obj(request)
