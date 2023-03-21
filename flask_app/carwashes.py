@@ -85,6 +85,9 @@ def create_carwash_obj(request):
     stepCost = 10.0
     limitMinCost = 100.0
     boxes = create_boxes(request.form['boxes'])
+    status =
+
+
 
 
 def smthn_old():
