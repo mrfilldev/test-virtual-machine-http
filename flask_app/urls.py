@@ -231,7 +231,8 @@ def add_company():
                 "date": str(datetime.strptime(time.strftime(format, time.localtime()), format))
             }
         )
-        return profile
+        print(f"Successfully added company {inn}")
+        return redirect(url_for('profile'))
     return render_template('admin_zone/add_company.html')
 
 
