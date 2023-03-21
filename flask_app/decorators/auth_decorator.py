@@ -37,7 +37,7 @@ def admin_status_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = get_infor()
-        if user.status == 'admin':
+        if user['status'] == 'admin':
             return f(*args, **kwargs)
         # выброс на авторизацию
         return redirect(url_for('profile'))
@@ -49,7 +49,7 @@ def owner_status_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = get_infor()
-        if user.status == 'Владелец сети':
+        if user['status'] == 'Владелец сети':
             return f(*args, **kwargs)
         # выброс на авторизацию
         return redirect(url_for('profile'))
@@ -61,7 +61,7 @@ def carwasher_status_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = get_infor()
-        if user.status == 'Сотрудник мойки':
+        if user['status'] == 'Сотрудник мойки':
             return f(*args, **kwargs)
         # выброс на авторизацию
         return redirect(url_for('profile'))
