@@ -397,7 +397,7 @@ def test():
 
 
 @app.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
-@login_required
+@owner_status_required
 def order_detail(order_id):
     order_obj = orders.find_one({'Id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
@@ -440,7 +440,7 @@ def profile():
         inn = request.form['inn']
         print('company_name: ', company_name)
         print('inn: ', inn)
-        company = users.find_one({'inn': inn})
+        company = db_companies.find_one({'_id': inn})
         if company is not None:
             set_command = {
                 "$set": {
@@ -476,7 +476,7 @@ def profile():
 
 
 @app.route('/carwashes', methods=['GET'])
-@login_required
+@owner_status_required
 def carwashes():
     carwashes_list = []
     all_orders = db_carwashes.find()
@@ -500,7 +500,6 @@ def carwashes():
 
 
 @app.route('/create_carwash', methods=['GET', 'POST'])
-@login_required
 @owner_status_required
 def create_carwash():
     if request.method == 'POST':
@@ -510,7 +509,6 @@ def create_carwash():
 
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
-@login_required
 @owner_status_required
 def carwash_detail(carwash_id):
     return render_template("carwash/carwash_detail.html")

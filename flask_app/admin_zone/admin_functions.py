@@ -32,6 +32,9 @@ def check_root(session):
 
 
 def admin_main(request, session):
+
+
+
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     inf_list = []
     for k in user_inf:
