@@ -512,23 +512,22 @@ def create_carwash():
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 @owner_status_required
 def carwash_detail(carwash_id):
+    carwash_obj = orders.find_one({'id': carwash_id})  # dict
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+
+    context = {
+        'carwash': carwash_obj,
+
+    }
+    return render_template(
+        'order/order_detail.html',
+        context=context
+    )
+
     return render_template("carwash/carwash_detail.html")
-    # order_obj = orders.find_one({'Id': order_id})  # dict
-    # data = json.loads(json_util.dumps(order_obj))
-    # data = json.dumps(data, default=lambda x: x.__dict__)
-    # order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    # location = {
-    #     'latitude': 55.650378,
-    #     'longitude': 37.606487
-    # }
-    # context = {
-    #     'order': order_obj,
-    #     'location': location
-    # }
-    # return render_template(
-    #     'admin_zone/order_detail.html',
-    #     context=context
-    # )
+
 
 
 ################################################################
