@@ -337,7 +337,7 @@ def orders_list():
         'date': today
     }
     return render_template(
-        'profile/templates/admin_zone/order/orders_list.html',
+        'order/orders_list.html',
         context=context
     )
 
