@@ -51,7 +51,7 @@ def owner_status_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = get_infor()
-        if user.access_level == 'Владелец сети':
+        if user.access_level == 'Владелец сети' or user.access_level == 'admin':
             return f(*args, **kwargs)
         # выброс на авторизацию
         return redirect(url_for('profile'))
