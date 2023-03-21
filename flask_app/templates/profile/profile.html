@@ -56,6 +56,7 @@
                                 {{ context['user'].date_registered | format_datetime }}
                             </td>
                         </tr>
+                        {% if context['status'] == 'owner' %}
                         <tr>
                             <td style="width: 200px">
                                 Организация:
@@ -72,6 +73,7 @@
                                 {{ context['user'].inn }}
                             </td>
                         </tr>
+                        {% endif %}
                         </tbody>
                     </table>
                     {% if context['status'] == 'new_user' %}
