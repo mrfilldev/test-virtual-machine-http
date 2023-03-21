@@ -425,12 +425,12 @@ def profile():
         users.update_one({'id': user_yan_inf['id']}, set_command)
 
     status = ''
-    template = 'new_user_zone/new_user_profile.html'
+    template = 'new_user_zone/profile.html'
     if user.access_level == 'Новый пользователь':
         status = 'new_user'
     elif user.access_level == 'Владелец сети':
         status = 'owner'
-        template = 'new_user_zone/new_user_profile.html'
+        template = 'new_user_zone/profile.html'
     elif user.access_level == 'admin':
         status = 'admin'
         return redirect(url_for('admin'))

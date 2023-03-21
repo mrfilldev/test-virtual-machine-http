@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block body %}
-{% include 'includes/header.html' %}
+{% include 'owner_zone/header.html' %}
 
 <br>
 <div class="container">
     <div class="row">
         <div class="col-2">
 
-            {% if context['status'] == 'owner' %}
+
             <ul>
-                <li></li>
+                <li>Адрес:______________</li>
                 <li>Часы работы: _______</li>
-                <li>Номер телефона: _______</li>
+                <li>Номер телефона: ____</li>
             </ul>
             {% endif %}
 
