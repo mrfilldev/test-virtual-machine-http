@@ -232,7 +232,7 @@ def add_company():
             }
         )
         print(f"Successfully added company {inn}")
-        return redirect(url_for('profile'))
+        #return redirect(url_for('profile'))
     return render_template('admin_zone/add_company.html')
 
 
