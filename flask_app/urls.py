@@ -424,13 +424,13 @@ def profile():
         }
         users.update_one({'id': user_yan_inf['id']}, set_command)
     status = ''
-    # if user.access_level == 'Новый пользователь':
-    #     status = 'new_user'
-    # elif user.access_level == 'Владелец сети':
-    #     status = 'owner'
-    #
-    # elif user.access_level == 'admin':
-    #     status = 'admin'
+    if user.access_level == 'Новый пользователь':
+        status = 'new_user'
+    elif user.access_level == 'Владелец сети':
+        status = 'owner'
+
+    elif user.access_level == 'admin':
+        status = 'admin'
 
     context = {
         'status': status,
