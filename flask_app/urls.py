@@ -521,12 +521,8 @@ def carwash_detail(carwash_id):
         'carwash': carwash_obj,
 
     }
-    return render_template(
-        'order/order_detail.html',
-        context=context
-    )
 
-    return render_template("carwash/carwash_detail.html")
+    return render_template("carwash/carwash_detail.html", context=context)
 
 
 
