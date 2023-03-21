@@ -95,7 +95,7 @@
                                     <td>
                                         <input style="width: 100%" type="text" class="form-control"
                                                name="company_name"
-                                               value="">
+                                               value="{{ context['user'].company_name }}">
                                     </td>
                                 </tr>
                                 <tr>
@@ -105,7 +105,7 @@
                                     <td style="width: 40%">
                                         <input style="width: 100%" type="text" class="form-control"
                                                name="inn"
-                                               value="">
+                                               value="{{ context['user'].inn }}">
                                     </td>
                                 </tr>
                                 </tbody>
