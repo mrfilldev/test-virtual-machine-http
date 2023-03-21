@@ -15,9 +15,11 @@ def get_infor():
     user = dict(session).get('ya-token', None)
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
     user = users.find_one({'id': user_yan_inf['id']})
+    print(user)
     data = json.loads(json_util.dumps(user))
     data = json.dumps(data, default=lambda x: x.__dict__)
     user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print(user)
     return user
 
 
@@ -37,7 +39,7 @@ def admin_status_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = get_infor()
-        if user['status'] == 'admin':
+        if user.access_level == 'admin':
             return f(*args, **kwargs)
         # выброс на авторизацию
         return redirect(url_for('profile'))
@@ -49,7 +51,7 @@ def owner_status_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = get_infor()
-        if user['status'] == 'Владелец сети':
+        if user.access_level == 'Владелец сети':
             return f(*args, **kwargs)
         # выброс на авторизацию
         return redirect(url_for('profile'))
@@ -61,7 +63,7 @@ def carwasher_status_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         user = get_infor()
-        if user['status'] == 'Сотрудник мойки':
+        if user.access_level == 'Сотрудник мойки':
             return f(*args, **kwargs)
         # выброс на авторизацию
         return redirect(url_for('profile'))
