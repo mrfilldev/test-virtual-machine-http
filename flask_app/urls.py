@@ -221,7 +221,7 @@ def user_detail(user_id):
 @admin_status_required
 def add_carwash_owner():
 
-    pass
+    return render_template('admin_zone/add_carwash_owner.html')
 
 @app.route('/main')
 def main():
