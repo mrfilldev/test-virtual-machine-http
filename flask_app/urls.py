@@ -426,6 +426,7 @@ def profile():
     if request.method == 'POST':
         company_name = request.form['company_name']
         inn = request.form['inn']
+        
         print('company_name: ', company_name)
         print('inn: ', inn)
         set_command = {
@@ -451,43 +452,6 @@ def profile():
         'user_yan_inf': user_yan_inf,
     }
     return render_template('profile/profile.html', context=context)
-
-
-@app.route('/fill_company_info/', methods=['GET', 'POST'])
-@login_required
-def fill_company():
-    user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-    user = users.find_one({'id': user_yan_inf['id']})
-    data = json.loads(json_util.dumps(user))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    status = ''
-    if user.access_level == 'Новый пользователь':
-        status = 'new_user'
-    elif user.access_level == 'Владелец сети':
-        status = 'owner'
-    elif user.access_level == 'admin':
-        status = 'admin'
-    if request.method == 'POST':
-        company_name = request.form['company_name']
-        inn = request.form['inn']
-        print('company_name: ', company_name)
-        print('inn: ', inn)
-        set_command = {
-            "$set": {
-                "company_name": company_name,
-                "inn": inn,
-            },
-        }
-        user = users.update_one(user_yan_inf['id'], set_command)
-        # return redirect(url_for('profile'))
-
-    context = {
-        'status': status,
-        'user': user,
-        'user_yan_inf': user_yan_inf,
-    }
-    return render_template('profile/register_as_owner.html', context=context)
 
 
 @app.route('/carwashes', methods=['GET'])

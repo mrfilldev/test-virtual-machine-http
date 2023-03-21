@@ -33,10 +33,12 @@ class Config(object):
     db_orders = client['orders']
     db_users = client['users']
     db_carwashes = client['carwashes']
+    db_companies = client['companies']
 
     col_orders = db_orders["test_orders"]
     col_users = db_users["test_users"]
     col_carwashes = db_carwashes["test_users"]
+    col_companies = db_companies["test_companies"]
 
     # yandex oauth
     YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')
