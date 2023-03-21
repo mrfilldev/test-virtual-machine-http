@@ -430,10 +430,7 @@ def order_detail(order_id):
 @login_required
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-    user = users.find_one({'id': user_yan_inf['id']})
-    data = json.loads(json_util.dumps(user))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+
 
     if request.method == 'POST':
         company_name = request.form['company_name']
@@ -459,6 +456,10 @@ def profile():
             }
             users.update_one({'id': user_yan_inf['id']}, set_command)
     status = ''
+    user = users.find_one({'id': user_yan_inf['id']})
+    data = json.loads(json_util.dumps(user))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     if user.access_level == 'Новый пользователь':
         status = 'new_user'
     elif user.access_level == 'Владелец сети':

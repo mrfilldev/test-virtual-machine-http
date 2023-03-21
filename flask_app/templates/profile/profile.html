@@ -56,6 +56,22 @@
                                 {{ context['user'].date_registered | format_datetime }}
                             </td>
                         </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Дата регистрации:
+                            </td>
+                            <td>
+                                {{ context['user'].company_name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Дата регистрации:
+                            </td>
+                            <td>
+                                {{ context['user'].inn }}
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     {% if context['status'] == 'new_user' %}
