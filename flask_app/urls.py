@@ -476,7 +476,7 @@ def profile():
     return render_template('profile/profile.html', context=context)
 
 
-@app.route('/carwashes', methods=['GET'])
+@app.route('/carwashes', methods=['POST','GET'])
 @owner_status_required
 def carwashes():
     carwashes_list = []
