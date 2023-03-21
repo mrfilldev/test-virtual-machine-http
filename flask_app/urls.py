@@ -219,7 +219,6 @@ def user_detail(user_id):
 
 
 @app.route('/add_company/', methods=['POST', 'GET'])
-@login_required
 @admin_status_required
 def add_company():
     if request.method == 'POST':
