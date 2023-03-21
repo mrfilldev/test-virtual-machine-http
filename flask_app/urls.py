@@ -218,7 +218,6 @@ def user_detail(user_id):
 
 
 @app.route('/main')
-@login_required
 def main():
     # get ya-token
     try:
