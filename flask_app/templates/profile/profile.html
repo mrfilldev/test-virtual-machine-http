@@ -12,6 +12,9 @@
                 <li>Часы работы: _______</li>
                 <li>Номер телефона: _______</li>
             </ul>
+            {% elif context['status'] == 'admin' %}
+            <a class="nav-link" href="#" aria-disabled="true">Добавить партнера</a>
+            <a class="nav-link" href="#" aria-disabled="true">Ручная отмена заказа</a>
             {% endif %}
 
         </div>
@@ -134,6 +137,8 @@
 
                     {% elif context['status'] == 'admin' %}
                     РЕЖИМ АДМИНИСТРАТОРА!!!
+
+
                     {% endif %}
                 </div>
             </main>
