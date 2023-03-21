@@ -110,42 +110,7 @@
                         </tbody>
                     </table>
 
-                    <table class="table table-bordered table-center">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col" colspan="2">Оплата</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="width: 200px">
-                                Сумма стоимости заказа:
-                            </td>
-                            <td>
-                                <input style="width: 49%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['carwash'].Sum|float)}}&#8381">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Сумма списания:
-                            </td>
-                            <td>
-                                <input style="width: 49%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['carwash'].SumCompleted|float)}}&#8381">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Выплачено партнеру:
-                            </td>
-                            <td>
-                                <input style="width: 49%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['carwash'].SumPaidStationCompleted|float)}}&#8381">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+
                 </div>
             </main>
         </div>
