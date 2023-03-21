@@ -23,7 +23,7 @@ from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user
 from flask_app.carwashes import create_carwash_obj
 from flask_app.specific_methods import method_of_filters
-from flask_app.decorators.auth_decorator import login_required
+from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
 # Идентификатор приложения
 client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
@@ -176,11 +176,15 @@ def pereprava():
 
 
 @app.route('/admin_main')
+@login_required
+@admin_status_required
 def admin():
     return admin_main(request, session)
 
 
 @app.route('/admin_delete_user/<string:user_id>')
+@admin_status_required
+@login_required
 def admin_delete_user(user_id):
     delete_user(request, session, user_id)
     return redirect(url_for('admin'))
@@ -188,6 +192,7 @@ def admin_delete_user(user_id):
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
 @login_required
+@admin_status_required
 def user_detail(user_id):
     if request.method == 'POST':
         new_value = request.form['access_level']
@@ -213,6 +218,7 @@ def user_detail(user_id):
 
 
 @app.route('/main')
+@login_required
 def main():
     # get ya-token
     try:
@@ -301,6 +307,7 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     try:
         for key in list(session.keys()):
@@ -504,6 +511,7 @@ def carwashes():
 
 @app.route('/create_carwash', methods=['GET', 'POST'])
 @login_required
+@owner_status_required
 def create_carwash():
     if request.method == 'POST':
         create_carwash_obj(request)
@@ -513,6 +521,7 @@ def create_carwash():
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 @login_required
+@owner_status_required
 def carwash_detail(carwash_id):
     return render_template("carwash/carwash_detail.html")
     # order_obj = orders.find_one({'Id': order_id})  # dict
