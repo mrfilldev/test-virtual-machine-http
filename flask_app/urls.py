@@ -500,7 +500,7 @@ def carwashes():
     )
 
 
-@app.route('/create_carwash', methods=['GET', 'POST'])
+@app.route('/create_carwash', methods=['POST', 'GET'])
 @owner_status_required
 def create_carwash():
     if request.method == 'POST':
