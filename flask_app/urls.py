@@ -216,6 +216,12 @@ def user_detail(user_id):
         context=context
     )
 
+@app.route('/add_carwash_owner/', methods=['POST', 'GET'])
+@login_required
+@admin_status_required
+def add_carwash_owner():
+
+    pass
 
 @app.route('/main')
 def main():
