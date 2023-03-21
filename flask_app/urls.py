@@ -504,7 +504,6 @@ def carwashes():
 @owner_status_required
 def create_carwash():
     if request.method == 'POST':
-
         create_carwash_obj(request)
         return redirect(url_for('carwashes'))
     return render_template("carwash/create_carwash.html")
