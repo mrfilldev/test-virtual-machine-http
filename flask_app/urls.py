@@ -410,6 +410,7 @@ def profile():
     data = json.loads(json_util.dumps(user))
     data = json.dumps(data, default=lambda x: x.__dict__)
     user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+
     if request.method == 'POST':
         company_name = request.form['company_name']
         inn = request.form['inn']
