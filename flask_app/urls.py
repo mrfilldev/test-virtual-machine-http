@@ -397,7 +397,7 @@ def order_detail(order_id):
         'location': location
     }
     return render_template(
-        'profile/templates/admin_zone/order/order_detail.html',
+        'order/order_detail.html',
         context=context
     )
 
