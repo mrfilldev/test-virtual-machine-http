@@ -90,7 +90,8 @@ def create_carwash_obj(request):
     limitMinCost = 100.0
     boxes = create_boxes(int(request.form['amount_boxes']))
 
-    status = request.form['status']
+    enable: bool = True if request.form['status'] == 'enable' else False
+    status = enable
 
     price = []
 
