@@ -142,7 +142,7 @@ def carwash_list_main():
 
         if '_id' in obj:
             obj.pop('_id')
-        print(eval(obj))
+        print(obj)
     #     array_of_carwashes.append(obj)
     # print('================================================================')
     # print(array_of_carwashes)
