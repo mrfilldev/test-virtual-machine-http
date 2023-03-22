@@ -122,7 +122,7 @@ def update_carwash_obj(request, carwash_id):
         'Enable': enable,
         'Name': form['name'],
         'Address': form['address'],
-        'Location': Point(request.form['lat'], request.form['lon']),
+        'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_lost_of_dict,
         }
