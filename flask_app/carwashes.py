@@ -115,14 +115,14 @@ def update_carwash_obj(request, carwash_id):
     print('туть4')
     enable: bool = True if form['status'] == 'enable' else False
     print('туть5')
-    old_carwash = {'Id': carwash_id}
+    old_carwash = {'Id': str(carwash_id)}
     new_fields = {"$set": {
         'Enable': enable,
         'Name': form['name'],
         'Address': form['address'],
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': 'SelfServiceFixPrice',
-        'Boxes': new_boxes_lost_of_dict
+        'Boxes': new_boxes_lost_of_dict,
         }
     }
     print('туть6')
