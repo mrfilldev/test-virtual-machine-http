@@ -120,14 +120,15 @@ def update_carwash_obj(request, carwash_id):
     old_carwash = {'Id': carwash_id}
     print('туть5')
     new_fields = {"$set": {
-        'Enable': form['Enable'],
-        'Name': form['Name'],
-        'Address': form['Address'],
+        'Enable': form['status'],
+        'Name': form['name'],
+        'Address': form['address'],
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': 'SelfServiceFixPrice',
         'Boxes': new_boxes_lost_of_dict
         }
     }
+
     new_order = Config.col_orders.update_one(old_carwash, new_fields)
     print('UPDATE FIELDS: ', new_fields)
     print('UPDATE DATA: ', new_order)
