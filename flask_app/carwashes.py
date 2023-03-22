@@ -128,7 +128,7 @@ def update_carwash_obj(request, carwash_id):
         'Boxes': new_boxes_lost_of_dict
         }
     }
-
+    print('туть6')
     new_order = Config.col_orders.update_one(old_carwash, new_fields)
     print('UPDATE FIELDS: ', new_fields)
     print('UPDATE DATA: ', new_order)
