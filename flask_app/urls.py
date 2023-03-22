@@ -480,10 +480,10 @@ def profile():
 @owner_status_required
 def carwashes():
     carwashes_list = []
-    all_orders = db_carwashes.find()
+    all_carwashes = db_carwashes.find()
     count_carwashes = 0
 
-    for count_carwashes, i in enumerate(all_orders, 1):
+    for count_carwashes, i in enumerate(list(all_carwashes)[::-1], 1):
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
