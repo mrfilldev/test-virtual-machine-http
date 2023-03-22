@@ -116,7 +116,7 @@ def update_carwash_obj(request, carwash_id):
     enable: bool = True if form['status'] == 'enable' else False
     print('туть5')
     old_carwash = {'Id': str(carwash_id)}
-    new_fields = {"$set": {
+    set_fields = {"$set": {
         'Enable': enable,
         'Name': form['name'],
         'Address': form['address'],
@@ -125,10 +125,12 @@ def update_carwash_obj(request, carwash_id):
         'Boxes': new_boxes_lost_of_dict,
         }
     }
+
     print('туть6')
-    new_carwash = db_carwashes.update_one(old_carwash, new_fields)
-    print('UPDATE FIELDS: ', new_fields)
+    new_carwash = db_carwashes.update_one(old_carwash, set_fields)
+    print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_carwash)
+    return new_carwash
 
 
 
