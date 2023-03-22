@@ -136,5 +136,7 @@ def update_carwash_obj(request, carwash_id):
 
 def carwash_list_main(request):
     all_carwashes = db_carwashes.find({})
-    return all_carwashes
+    print(all_carwashes)
+    return json.dumps(all_carwashes, default=lambda x: x.__dict__)
+
 
