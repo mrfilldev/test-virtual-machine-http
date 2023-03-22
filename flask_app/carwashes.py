@@ -139,10 +139,10 @@ def carwash_list_main():
     array_of_carwashes = []
     for obj in all_carwashes:
         print(obj)
-        arr = obj.split(',')
-        if '_id' in arr:
-            arr.pop(0)
-        print(eval(arr))
+
+        if '_id' in obj:
+            obj.pop('_id')
+        print(eval(obj))
     #     array_of_carwashes.append(obj)
     # print('================================================================')
     # print(array_of_carwashes)
