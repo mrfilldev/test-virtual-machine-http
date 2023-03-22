@@ -513,7 +513,7 @@ def create_carwash():
 @owner_status_required
 def carwash_detail(carwash_id):
     print(type(carwash_id))
-    carwash_obj = db_carwashes.find_one({'Id': carwash_id})  # dict
+    carwash_obj = db_carwashes.find_one({'Id': int(carwash_id)})  # dict
     print(carwash_obj)
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
