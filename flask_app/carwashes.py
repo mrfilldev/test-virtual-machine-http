@@ -136,10 +136,12 @@ def update_carwash_obj(request, carwash_id):
 
 def carwash_list_main():
     all_carwashes = db_carwashes.find({})
+    array_of_carwashes = []
     for obj in all_carwashes:
         print(obj)
-    result = json.loads(all_carwashes)  # , object_hook=lambda d: SimpleNamespace(**d))
-    result = json.dumps(all_carwashes, default=lambda x: x.__dict__)
+        array_of_carwashes.append(obj)
+
+    result = json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
     return result
 
 
