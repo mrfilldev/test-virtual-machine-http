@@ -116,7 +116,7 @@ def update_carwash_obj(request, carwash_id):
     enable: bool = True if form['status'] == 'enable' else False
     print('туть5')
     old_carwash = {'Id': str(carwash_id)}
-    set_fields = {"$set": {
+    set_fields = {'$set': {
         'Enable': enable,
         'Name': form['name'],
         'Address': form['address'],
