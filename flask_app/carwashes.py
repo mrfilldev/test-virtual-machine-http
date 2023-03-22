@@ -140,7 +140,9 @@ def carwash_list_main():
     for obj in all_carwashes:
         print(obj)
         array_of_carwashes.append(obj)
-
+    print('================================================================')
+    print(array_of_carwashes)
+    print('================================================================')
     result = json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
     return result
 
