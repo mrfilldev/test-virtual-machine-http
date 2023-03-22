@@ -383,7 +383,7 @@ def test():
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(user_obj)
         users_list.append(user_obj)
-
+    print(users_list)
     inf_list = []
     for k in user_inf:
         inf_list.append(f"{k} -> {user_inf[k]} \n")
