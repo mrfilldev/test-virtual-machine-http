@@ -139,11 +139,15 @@ def carwash_list_main():
     array_of_carwashes = []
     for obj in all_carwashes:
         print(obj)
-        array_of_carwashes.append(obj)
-    print('================================================================')
-    print(array_of_carwashes)
-    print('================================================================')
-    result = json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
-    return result
+        arr = obj.split(',')
+        if '_id' in arr:
+            arr.pop(0)
+        print(eval(arr))
+    #     array_of_carwashes.append(obj)
+    # print('================================================================')
+    # print(array_of_carwashes)
+    # print('================================================================')
+    # result = json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
+    # return result
 
 
