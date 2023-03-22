@@ -517,6 +517,7 @@ def create_carwash():
 @owner_status_required
 def carwash_detail(carwash_id):
     if request.method == 'POST':
+        print('туть')
         update_carwash_obj(request, carwash_id)
     print(type(carwash_id))
     carwash_obj = db_carwashes.find_one({'Id': int(carwash_id)})  # dict
