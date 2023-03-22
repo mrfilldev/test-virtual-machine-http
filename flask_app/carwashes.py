@@ -44,8 +44,8 @@ class Prices:
 
 class Point:  # enum.Enum):
     def __init__(self, latitude, longitude):
-        self.lat = latitude
-        self.lon = longitude
+        self.lat = float(latitude)
+        self.lon = float(longitude)
 
     def return_list(self):
         list_obj = [self.lat, self.lon]
@@ -122,7 +122,7 @@ def update_carwash_obj(request, carwash_id):
         'Enable': enable,
         'Name': form['name'],
         'Address': form['address'],
-        'Location': {'lat': form['lat'], 'lon': form['lon']},
+        'Location': Point(request.form['lat'], request.form['lon']),
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_lost_of_dict,
         }
