@@ -1,68 +1,100 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block body %}
 <br>
-<div class="container">
-    <div class="row">
-        <div class="col-2">
-            Контакты мойки:
-            <aside class="bd-sidebar">
-                <ul>
-                    <li>Адрес: ________</li>
-                    <li>Часы работы: _______</li>
-                    <li>Номер телефона: _______</li>
-                </ul>
-            </aside>
-        </div>
-        <div class="col-10">
-            <main class="container-sm">
-                <div class="table-responsive">
+<div class="row justify-content-center">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
+        <form method=POST action="{{ url_for('carwash_detail') }}">
+            <table class="table table-bordered table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="3">Мойка</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width: 200px">
+                        Название:
+                    </td>
+                    <td>
+                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ context['carwash'].Name }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Адрес:
+                    </td>
+                    <td>
+                        <input name="address" style="width: 100%" type="text" class="form-control" required value="{{ context['carwash'].Address }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Локация:
+                    </td>
+                    <td>
+                        <div class="row justify-content-evenly">
+                            <input name="lat" style="width: 48%" type="text" class="form-control"
+                                   required placeholder="latitude" value="{{ context['carwash'].Location['lat'] }}">
+                            <input name="lon" style="width: 48%" type="text" class="form-control"
+                                   required placeholder="longitude" value="{{ context['carwash'].Location['lon'] }}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Кол-во боксов:
+                    </td>
+                    <td>
+                        <input name="amount_boxes" style="width: 100%" type="text" class="form-control" value="{{ context['carwash'].Boxes }}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Оказываемые услуги:
+                    </td>
+                    <td>
+                        <div class="form-check-inline">
+                            <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash"
+                                   autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="hand_carwash">Ручная мойка</label><br>
+                        </div>
+                        <div class="form-check-inline">
 
-                    <table class="table table-bordered table-center">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col" colspan="3">Мойка</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="width: 200px">
-                                Тип договора:
-                            </td>
-                            <td style="width: 40%">
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['carwash'].ContractId }}">
-                            </td>
-                            <td rowspan="3">
+                            <input name="is_wheel_station" type="checkbox" class="btn-check" id="wheel_station"
+                                   autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="wheel_station">Шиномонтаж</label><br>
+                        </div>
+                        <div class="form-check-inline">
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Id Мойки:
-                            </td>
-                            <td>
-                                <input style="width: 100%" width="20%" type="text" class="form-control"
-                                       value="{{ context['carwash'].Id }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Id Бокса:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['carwash'].BoxNumber }}">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            <input name="is_detaling" type="checkbox" class="btn-check" id="detaling"
+                                   autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="detaling">Детейлинг</label><br>
+                        </div>
+                    </td>
+                </tr>
 
+                <tr>
+                    <td style="width: 200px">
+                        Состояние Мойки:
+                    </td>
+                    <td>
+                        <input type="radio" class="btn-check" name="status" value="{{ context['carwash'].Enable }}"
+                               id="status"
+                               autocomplete="off">
+                        <label class="btn btn-outline-success" for="status">Активна</label>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button style="width: 100px" type="submit" class="btn btn-dark">Добавить</button>
 
-
-                </div>
-            </main>
-        </div>
+        </form>
+    </div>
+    <div class="col-2">
     </div>
 </div>
+
 {% endblock %}
