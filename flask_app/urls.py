@@ -161,10 +161,11 @@ async def make_carwash_order():
 ########################################################################
 ########################################################################
 @app.route('/')
-@login_required
 def index():
     if 'ya-token' in session:
         return redirect(url_for('main'))
+    else:
+        return redirect(url_for('oauth'))
 
 
 @app.route('/pereprava')
