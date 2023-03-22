@@ -113,7 +113,7 @@ def update_carwash_obj(request, carwash_id):
     form = request.form
     print('туть2')
 
-    new_boxes_json = json.dumps(create_boxes(form['Boxes']), default=lambda x: x.__dict__)
+    new_boxes_json = json.dumps(create_boxes(form['amount_boxes']), default=lambda x: x.__dict__)
     print('туть3')
     new_boxes_lost_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     print('туть4')
