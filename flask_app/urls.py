@@ -518,8 +518,10 @@ def carwash_detail(carwash_id):
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    amount_boxes = len(carwash_id.Boxes)
     context = {
         'carwash': carwash_obj,
+        'amount_boxes': amount_boxes
     }
     return render_template("carwash/carwash_detail.html", context=context)
 
