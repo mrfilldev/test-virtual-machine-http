@@ -512,7 +512,7 @@ def create_carwash():
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 @owner_status_required
 def carwash_detail(carwash_id):
-    carwash_obj = db_carwashes.find_one({'id': carwash_id})  # dict
+    carwash_obj = db_carwashes.find_one({'Id': carwash_id})  # dict
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
