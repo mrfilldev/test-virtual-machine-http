@@ -92,7 +92,7 @@ async def return_carwash_list():
     print('try_apiKey: ' + try_apiKey)
     if try_apiKey in API_KEY:
         #result = carwash_list.main(request)
-        result = carwash_list_main(request)
+        result = carwash_list_main()
         status = 200
     else:
         result = 'Error, Something is wrong...'
