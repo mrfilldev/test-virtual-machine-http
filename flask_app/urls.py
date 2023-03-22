@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import time
 from datetime import datetime, date
 
@@ -17,11 +16,10 @@ from flask_bootstrap import Bootstrap
 
 import json
 from types import SimpleNamespace
-import bcrypt
 
 from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user
-from flask_app.carwashes import create_carwash_obj, update_carwash_obj
+from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
@@ -31,14 +29,13 @@ client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
 client_secret = 'ПАРОЛЬ_ПРИЛОЖЕНИЯ'
 # Адрес сервера Яндекс.OAuth
 baseurl = 'https://oauth.yandex.ru/'
-
-app = Flask(__name__,
-            static_url_path='',
-            static_folder='/static',
-            # template_folder='/templates'
-            )
+# Конфиг приложения
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='/static',
+)
 bootstrap = Bootstrap(app)
-# oauth = OAuth(app)
 
 users = Config.col_users
 orders = Config.col_orders
@@ -46,7 +43,7 @@ db_carwashes = Config.col_carwashes
 db_companies = Config.col_companies
 
 URL_DEV = Config.URL_DEV
-API_KEY = Config.API_KEY  # ['123456', '7tllmnubn49ghu5qrep97']
+API_KEY = Config.API_KEY
 
 ##################################################################
 # SQS MESSAGE QUEUE CONFIGURATION
@@ -60,43 +57,6 @@ client = boto3.client(
     region_name='ru-central1'
 )
 queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
-
-
-########################################################################
-# google = oauth.register(
-#     name='google',
-#     client_id=Config.YAN_CLIENT_ID,
-#     client_secret=Config.YAN_CLIENT_SECRET,
-#     access_token_url='https://accounts.google.com/o/oauth2/token',
-#     access_token_params=None,
-#     authorize_url='https://accounts.google.com/o/oauth2/auth',
-#     authorize_params=None,
-#     api_base_url='https://www.googleapis.com/oauth2/v1/',
-#     userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
-#     client_kwargs={'scope': 'openid email profile'},
-# )
-
-
-# @app.route('/')
-# def reg_yan_auth():
-#     if request.args.get('code', False):
-#         # Если скрипт был вызван с указанием параметра "code" в URL,
-#         # то выполняется запрос на получение токена
-#         print(request.args)
-#         print(request.data)
-#         data = {
-#             'grant_type': 'authorization_code',
-#             'code': request.args.get('code'),
-#             'client_id': client_id,
-#             'client_secret': client_secret
-#         }
-#         data = urlencode(data)
-#         # Токен необходимо сохранить для использования в запросах к API Директа
-#         return jsonify(post(baseurl + "token", data).json())
-#     else:
-#         # Если скрипт был вызван без указания параметра "code",
-#         # то пользователь перенаправляется на страницу запроса доступа
-#         return redirect(baseurl + "authorize?response_type=code&client_id={}".format(client_id))
 
 
 ########################################################################
@@ -131,7 +91,8 @@ async def return_carwash_list():
     try_apiKey = request.args.get('apikey')
     print('try_apiKey: ' + try_apiKey)
     if try_apiKey in API_KEY:
-        result = carwash_list.main(request)
+        #result = carwash_list.main(request)
+        result = carwash_list_main(request)
         status = 200
     else:
         result = 'Error, Something is wrong...'
@@ -275,7 +236,9 @@ def main():
 
 @app.route('/oauth')
 def oauth():
-    url: str = f'https://oauth.yandex.ru/authorize?response_type=code&client_id={Config.YAN_CLIENT_ID}&redirect_uri=http://test-tanker-carwash.ru/main'
+    url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
+               f'&client_id={Config.YAN_CLIENT_ID}' \
+               f'&redirect_uri=http://test-tanker-carwash.ru/main'
     return redirect(url)
 
 
@@ -331,10 +294,6 @@ def orders_list():
 def test():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     all_users = users.find({})
-    # all_orders = orders.find({})
-    # all_carwashes = db_carwashes.find({})
-    # all_companies = db_companies.find({})
-
     users_list = []
     count_users = 0
     for count_users, i in enumerate(list(all_users)[::-1], 1):
