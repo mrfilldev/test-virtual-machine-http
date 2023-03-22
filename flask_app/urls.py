@@ -278,6 +278,10 @@ def oauth():
     return redirect(url)
 
 
+def login():
+    return redirect(url_for('index'))
+
+
 @app.route('/logout')
 @login_required
 def logout():
