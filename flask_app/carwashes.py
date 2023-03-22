@@ -109,28 +109,6 @@ def create_carwash_obj(request):
 
 
 def update_carwash_obj(request, carwash_id):
-    carwash_exists_obj = db_carwashes.find_one({'Id': carwash_id})
-
-    {
-        '_id': ObjectId('6419d736018d78461bfc7706'),
-        'Id': 5,
-        'Enable': 'enable',
-        'Name': 'чистый Леонид',
-        'Address': 'ул Чистого Леонида д666',
-        'Location': {'lat': '666', 'lon': '999'},
-        'Type': 'SelfServiceFixPrice',
-        'StepCost': 10.0,
-        'LimitMinCost': 100.0,
-        'Boxes': [
-            {'number': 1, 'status': 'Free'},
-            {'number': 2, 'status': 'Free'},
-            {'number': 3, 'status': 'Free'},
-            {'number': 4, 'status': 'Free'}
-        ],
-        'Price': []
-    }
-
-
     form = request.form
     new_boxes_json = json.dumps(create_boxes(form['Boxes']), default=lambda x: x.__dict__)
     new_boxes_lost_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
