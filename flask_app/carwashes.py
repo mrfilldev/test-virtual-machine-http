@@ -44,8 +44,8 @@ class Prices:
 
 class Point:  # enum.Enum):
     def __init__(self, latitude, longitude):
-        self.lat = float(latitude)
-        self.lon = float(longitude)
+        self.lat = latitude
+        self.lon = longitude
 
     def return_list(self):
         list_obj = [self.lat, self.lon]
