@@ -114,7 +114,7 @@ def update_carwash_obj(request, carwash_id):
     new_boxes_lost_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
 
     enable: bool = True if form['status'] == 'enable' else False
-
+    print('туть5')
     old_carwash = {'Id': carwash_id}
     new_fields = {"$set": {
         'Enable': enable,
