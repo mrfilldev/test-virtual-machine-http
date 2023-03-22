@@ -126,9 +126,9 @@ def update_carwash_obj(request, carwash_id):
         }
     }
     print('туть6')
-    new_order = Config.col_orders.update_one(old_carwash, new_fields)
+    new_carwash = db_carwashes.update_one(old_carwash, new_fields)
     print('UPDATE FIELDS: ', new_fields)
-    print('UPDATE DATA: ', new_order)
+    print('UPDATE DATA: ', new_carwash)
 
 
 
