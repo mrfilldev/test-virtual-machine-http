@@ -165,7 +165,7 @@ def index():
     if 'ya-token' in session:
         return redirect(url_for('main'))
     else:
-        return redirect(url_for('oauth'))
+        return render_template(url_for('index'))
 
 
 @app.route('/pereprava')
