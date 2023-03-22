@@ -138,8 +138,8 @@ def carwash_list_main():
     all_carwashes = db_carwashes.find({})
     for obj in all_carwashes:
         print(obj)
+    result = json.loads(all_carwashes)  # , object_hook=lambda d: SimpleNamespace(**d))
     result = json.dumps(all_carwashes, default=lambda x: x.__dict__)
-    result = json.loads(result)  # , object_hook=lambda d: SimpleNamespace(**d))
     return result
 
 
