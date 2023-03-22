@@ -518,6 +518,7 @@ def create_carwash():
 def carwash_detail(carwash_id):
     if request.method == 'POST':
         update_carwash_obj(request, carwash_id)
+        return redirect(url_for('carwashes'))
     print(type(carwash_id))
     carwash_obj = db_carwashes.find_one({'Id': int(carwash_id)})  # dict
     print(carwash_obj)
