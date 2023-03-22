@@ -21,7 +21,7 @@ import bcrypt
 
 from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user
-from flask_app.carwashes import create_carwash_obj
+from flask_app.carwashes import create_carwash_obj, update_carwash_obj
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
@@ -371,6 +371,10 @@ def orders_list():
 def test():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     all_users = users.find({})
+    # all_orders = orders.find({})
+    # all_carwashes = db_carwashes.find({})
+    # all_companies = db_companies.find({})
+
     users_list = []
     count_users = 0
     for count_users, i in enumerate(list(all_users)[::-1], 1):
@@ -512,6 +516,8 @@ def create_carwash():
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 @owner_status_required
 def carwash_detail(carwash_id):
+    if request.method == 'POST':
+        update_carwash_obj(request, carwash_id)
     print(type(carwash_id))
     carwash_obj = db_carwashes.find_one({'Id': int(carwash_id)})  # dict
     print(carwash_obj)
