@@ -19,7 +19,7 @@ from types import SimpleNamespace
 
 from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
-    show_price, create_price
+    create_price, delete_price, edit_price, show_list_price
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
@@ -41,6 +41,7 @@ bootstrap = Bootstrap(app)
 users = Config.col_users
 orders = Config.col_orders
 db_carwashes = Config.col_carwashes
+prices = Config.col_prices
 db_companies = Config.col_companies
 
 URL_DEV = Config.URL_DEV
@@ -161,7 +162,7 @@ def admin_delete_user(user_id):
 @app.route('/list_of_prices')
 @admin_status_required
 def list_of_prices():
-    return show_price(session)
+    return show_list_price(session)
 
 
 @app.route('/create_price', methods=['POST', 'GET'])
@@ -173,6 +174,29 @@ def admin_create_price():
     return render_template('admin_zone/prices/create_price.html')
 
 
+@app.route('/edit_price/<string:price_id>', methods=['POST', 'GET'])
+@admin_status_required
+def admin_price_detail(price_id):
+    if request.method == 'POST':
+        new_price = edit_price(request, price_id)
+        print('new carwash: ', new_price)
+        return redirect(url_for('list_of_prices'))
+    price_obj = prices.find_one({'Id': int(price_id)})  # dict
+    print(price_obj)
+    data = json.loads(json_util.dumps(price_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    context = {
+        'carwash': price_obj,
+    }
+    return render_template('admin_zone/prices/price_detail.html', context=context)
+
+
+@app.route('/delete_price/<string:price_id>', methods=['POST'])
+@admin_status_required
+def admin_delete_price(price_id):
+    delete_price(request, price_id)
+    return redirect(url_for('list_of_prices'))
 
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])

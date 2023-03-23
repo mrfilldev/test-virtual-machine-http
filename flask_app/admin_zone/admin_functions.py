@@ -82,7 +82,7 @@ def test_view(session):
     )
 
 
-def show_price(session):
+def show_list_price(session):
     all_prices = prices.find({})
     prices_list = []
     count_prices = 0
@@ -104,40 +104,32 @@ def show_price(session):
 
 
 def create_price(request):
-    try:
-        for i in request.form:
-            print(i, request.form[i])
+    for i in request.form:
+        print(i, request.form[i])
+    form = request.form
+    id = prices.count_documents({}) + 1
+    name = form['name']
+    description = form['description']
+    cost = float(request.form['price'])
+    costType = form['costType']
+    new_price = carwashes.Prices(
+        id=id,
+        name=name,
+        description=description,
+        cost=cost,
+        costType=costType
+    )
+    print(new_price)
+    # запись в бд
+    new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
+    print(new_price)
+    print(type(new_price))
+    prices.insert_one(new_price)
 
-        form = request.form
-        print('1')
-        id = prices.count_documents({}) + 1
-        print('2')
-        name = form['name']
-        print('3')
-        description = form['description']
-        print('4')
-        cost = float(request.form['price'])
-        print('5')
-        costType = form['costType']
-        print('6')
 
-        new_price = carwashes.Prices(
-            id=id,
-            name=name,
-            description=description,
-            cost=cost,
-            costType=costType
-        )
-        print(new_price)
-        ########################
-        # запись в бд
+def edit_price(request, price_id):
+    pass
 
-        new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
-        print(new_price)
-        print(type(new_price))
-        prices.insert_one(new_price)
 
-    except Exception as error:
-        # write to log
-        traceback.print_exc()
-        print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
+def delete_price(request, price_id):
+    pass
