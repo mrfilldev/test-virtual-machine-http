@@ -95,11 +95,26 @@
                 <tr>
                     <th scope="col" colspan="3">Прейскурант</th>
                 </tr>
+                <thead>
+                <tr>
+                    <th scope="col">Тариф</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Кат.1</th>
+                    <th scope="col">Кат.2</th>
+                    <th scope="col">Кат.3</th>
+                    <th scope="col">Кат.4</th>
+                    <th scope="col">Кат.5</th>
+                    <th scope="col">Кат.6</th>
+                    <th scope="col">Кат.7</th>
+                </tr>
+                </thead>
                 </thead>
                 <tbody>
+                {% for order in context['orders_list'] %}
                 <tr>
                     <td style="width: 200px">
-                        {{ context['prices_list'].name }}:
+                        {{ context['prices_list'].name }}
                     </td>
                     <td>
                         <input name="name" style="width: 100%" type="text" class="form-control" required>
