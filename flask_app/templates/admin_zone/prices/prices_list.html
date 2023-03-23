@@ -19,11 +19,11 @@
         <tr>
             <th scope="col">№</th>
 
-            <th scope="col">test</th>
-            <th scope="col">test</th>
-            <th scope="col">test</th>
-            <th scope="col">test</th>
-            <th scope="col">test</th>
+            <th scope="col">id</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Стоимость</th>
+            <th scope="col">Тип стоимости</th>
 
         </tr>
         </thead>
@@ -47,7 +47,7 @@
                 {{ price.description }}
             </td>
             <td>
-                {{ price.cost }}
+                {{'%0.2f'| format(price.cost|float)}}&#8381
             </td>
             <td>
                 {{ price.costType }}
