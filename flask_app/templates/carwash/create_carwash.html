@@ -116,7 +116,10 @@
                         {{ price.name }}
                     </td>
                     <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required>
+                        {{ price.description }}
+                    </td>
+                    <td>
+                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.description }}">
                     </td>
                 </tr>
                 {% endfor %}
