@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<div class="row justify-content-center">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
+        <form method=POST action="{{ url_for('admin_edit_price') }}">
+            <table class="table table-bordered table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="3">Тариф Мойки</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width: 200px">
+                        Название:
+                    </td>
+                    <td>
+                        <input name="name" style="width: 100%" type="text" class="form-control"
+                               required placeholder="Как назовете?">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Описание:
+                    </td>
+                    <td>
+                        <input name="description" style="width: 100%" type="text" class="form-control"
+                               required placeholder="Что входит в мойку?">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Стоимость:
+                    </td>
+                    <td>
+                        <input name="price" style="width: 100%" type="text" class="form-control"
+                               required placeholder="&#8381">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Тип стоимости:
+                    </td>
+                    <td>
+                        &nbsp;<select style="width: 100%" class="form-control" id="validationCustom04" name="costType">
+                        <option value="">{{ context['price'].costType }}</option>
+                        <option value="Fix">Фиксированная</option>
+                        <option value="PerMinute">Поминутная</option>
+                    </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button style="width: 100px" type="submit" class="btn btn-dark">Изменить</button>
+        </form>
+      <form method=POST action="{{ url_for('admin_delete_price', price_id=price.Id) }}">
+        <button style="width: 100px" type="submit" class="btn btn-dark">Изменить</button>
+      </form>
+    </div>
+    <div class="col-2">
+    </div>
+</div>
+
+{% endblock %}
