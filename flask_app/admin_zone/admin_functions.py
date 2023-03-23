@@ -81,7 +81,7 @@ def test_view(session):
     )
 
 
-def admin_show_price(session):
+def show_price(session):
     """
     1 узнать кол-во существующих объектов в бд
     2 присвоить данные из полей формы новому объекту
@@ -106,3 +106,9 @@ def admin_show_price(session):
         'admin_zone/prices/prices_list.html',
         context=context
     )
+
+
+def create_price(request, session):
+    for i in request.form:
+        print(i, request.form[i])
+

@@ -19,7 +19,7 @@ from types import SimpleNamespace
 
 from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
-    admin_show_price
+    show_price, create_price
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
@@ -161,7 +161,15 @@ def admin_delete_user(user_id):
 @app.route('/admin_add_price')
 @admin_status_required
 def list_of_prices():
-    return admin_show_price(session)
+    return show_price(session)
+
+
+@app.route('/create_price', methods=['POST', 'GET'])
+@admin_status_required
+def admin_create_price():
+    return create_price(request, session)
+
+
 
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
