@@ -20,7 +20,7 @@
                     </td>
                     <td>
                         <input name="name" style="width: 100%" type="text" class="form-control"
-                               required placeholder="Как назовете?">
+                               required placeholder="Как назовете?" value="{{ context['price'].name }}">
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +29,7 @@
                     </td>
                     <td>
                         <input name="description" style="width: 100%" type="text" class="form-control"
-                               required placeholder="Что входит в мойку?">
+                               required placeholder="Что входит в мойку?" value="{{ context['price'].description }}">
                     </td>
                 </tr>
                 <tr>
