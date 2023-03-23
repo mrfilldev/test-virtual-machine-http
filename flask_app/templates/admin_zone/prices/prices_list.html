@@ -15,23 +15,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content-between">
-        <div class="col-4">
-
-            <form method=POST action="{{ url_for('orders_list') }}">
-                <div class="row justify-content-start">
-                    &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
-                                 aria-describedby="addon-wrapping">
-                    &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
-                    <option value="">Статус</option>
-                    <option value="OrderCreated">OrderCreated</option>
-                    <option value="Completed">Completed</option>
-                    <option value="UserCanceled">UserCanceled</option>
-                    <option value="Canceled">Canceled</option>
-                </select>
-                    &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Найти</button>
-                </div>
-            </form>
-        </div>
+        <div class="col-4"></div>
         <div class="col-1">
             <a class="btn btn-outline-secondary" href="{{ url_for('admin_create_price') }}">+</a>
         </div>
@@ -63,7 +47,7 @@
             </th>
 
             <td>
-                {{ price.id }}
+                {{ price.Id }}
             </td>
 
             <td>
