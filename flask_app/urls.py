@@ -168,7 +168,7 @@ def list_of_prices():
 @admin_status_required
 def admin_create_price():
     if request.method == 'POST':
-        create_price(request, session)
+        create_price(request)
         return redirect(url_for('list_of_prices'))
     return render_template('admin_zone/prices/create_price.html')
 

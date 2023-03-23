@@ -108,16 +108,22 @@ def show_price(session):
     )
 
 
-def create_price(request, session):
+def create_price(request):
     for i in request.form:
         print(i, request.form[i])
 
     form = request.form
+    print('1')
     id = prices.count_documents({}) + 1
+    print('2')
     name = form['name']
+    print('3')
     description = form['description']
+    print('4')
     cost = form['cost']
+    print('5')
     costType = form['costType']
+    print('6')
 
     new_price = carwashes.Prices(
         id=id,
