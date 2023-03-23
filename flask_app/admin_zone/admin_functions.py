@@ -4,7 +4,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import render_template
 
-from flask_app import oauth_via_yandex
+from flask_app import oauth_via_yandex, carwashes
 from config.config import Config
 
 users = Config.col_users
@@ -112,3 +112,20 @@ def create_price(request, session):
     for i in request.form:
         print(i, request.form[i])
 
+    form = request.form
+    id = prices.count_documents({}) + 1
+    name = form['name']
+    description = form['description']
+    cost = form['cost']
+    costType = form['costType']
+
+    new_price = carwashes.Prices(
+        id=id,
+        name=name,
+        description=description,
+        cost=cost,
+        costType=costType
+    )
+    print(new_price)
+    ########################
+    #запись в бд
