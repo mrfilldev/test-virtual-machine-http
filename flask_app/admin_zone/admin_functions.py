@@ -134,6 +134,7 @@ def create_price(request):
 
         new_price = json.dumps(new_price, default=lambda x: x.__dict__)
         print(new_price)
+        print(type(new_price))
         prices.insert_one(new_price)
 
     except Exception as error:
