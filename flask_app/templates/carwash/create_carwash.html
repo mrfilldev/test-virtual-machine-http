@@ -89,8 +89,25 @@
                 </tr>
                 </tbody>
             </table>
+            <br>
+            <table class="table table-bordered table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="3">Прейскурант</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width: 200px">
+                        {{ context['price'].name }}:
+                    </td>
+                    <td>
+                        <input name="name" style="width: 100%" type="text" class="form-control" required>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
             <button style="width: 100px" type="submit" class="btn btn-dark">Добавить</button>
-
         </form>
     </div>
     <div class="col-2">

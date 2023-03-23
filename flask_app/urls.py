@@ -162,7 +162,11 @@ def admin_delete_user(user_id):
 @app.route('/list_of_prices')
 @admin_status_required
 def list_of_prices():
-    return show_list_price(session)
+    context = show_list_price()
+    return render_template(
+        'admin_zone/prices/prices_list.html',
+        context=context
+    )
 
 
 @app.route('/create_price', methods=['POST', 'GET'])
@@ -444,7 +448,9 @@ def create_carwash():
     if request.method == 'POST':
         create_carwash_obj(request)
         return redirect(url_for('carwashes'))
-    return render_template("carwash/create_carwash.html")
+
+    context = show_list_price()
+    return render_template("carwash/create_carwash.html", context=context)
 
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])

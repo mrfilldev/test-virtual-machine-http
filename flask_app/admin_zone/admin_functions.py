@@ -82,7 +82,7 @@ def test_view(session):
     )
 
 
-def show_list_price(session):
+def show_list_price():
     all_prices = prices.find({})
     prices_list = []
     count_prices = 0
@@ -97,10 +97,7 @@ def show_list_price(session):
         'prices_list': prices_list,
         'count_prices': count_prices,
     }
-    return render_template(
-        'admin_zone/prices/prices_list.html',
-        context=context
-    )
+    return context
 
 
 def create_price(request):
