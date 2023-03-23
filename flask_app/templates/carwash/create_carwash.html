@@ -110,10 +110,10 @@
                 </thead>
                 </thead>
                 <tbody>
-                {% for order in context['orders_list'] %}
+                {% for price in context['prices_list'] %}
                 <tr>
                     <td style="width: 200px">
-                        {{ context['prices_list'].name }}
+                        {{ price.name }}
                     </td>
                     <td>
                         <input name="name" style="width: 100%" type="text" class="form-control" required>
