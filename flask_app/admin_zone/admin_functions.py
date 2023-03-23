@@ -83,12 +83,6 @@ def test_view(session):
 
 
 def show_price(session):
-    """
-    1 узнать кол-во существующих объектов в бд
-    2 присвоить данные из полей формы новому объекту
-    3 вернуть на страницу списка прайсов
-    :return:
-    """
     all_prices = prices.find({})
     prices_list = []
     count_prices = 0
@@ -136,9 +130,15 @@ def create_price(request):
         )
         print(new_price)
         ########################
-        #запись в бд
+        # запись в бд
+
+        new_price = json.dumps(new_price, default=lambda x: x.__dict__)
+        print(new_price)
+        # prices.insert_one({
+        #     '_id': id,
+        #
+        # })
     except Exception as error:
         # write to log
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
-
