@@ -1,4 +1,5 @@
 import json
+import traceback
 from types import SimpleNamespace
 
 from bson import json_util
@@ -109,29 +110,35 @@ def show_price(session):
 
 
 def create_price(request):
-    for i in request.form:
-        print(i, request.form[i])
+    try:
+        for i in request.form:
+            print(i, request.form[i])
 
-    form = request.form
-    print('1')
-    id = prices.count_documents({}) + 1
-    print('2')
-    name = form['name']
-    print('3')
-    description = form['description']
-    print('4')
-    cost = int(form['cost'])
-    print('5')
-    costType = form['costType']
-    print('6')
+        form = request.form
+        print('1')
+        id = prices.count_documents({}) + 1
+        print('2')
+        name = form['name']
+        print('3')
+        description = form['description']
+        print('4')
+        cost = int(form['cost'])
+        print('5')
+        costType = form['costType']
+        print('6')
 
-    new_price = carwashes.Prices(
-        id=id,
-        name=name,
-        description=description,
-        cost=cost,
-        costType=costType
-    )
-    print(new_price)
-    ########################
-    #запись в бд
+        new_price = carwashes.Prices(
+            id=id,
+            name=name,
+            description=description,
+            cost=cost,
+            costType=costType
+        )
+        print(new_price)
+        ########################
+        #запись в бд
+    except Exception as error:
+        # write to log
+        traceback.print_exc()
+        print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
+
