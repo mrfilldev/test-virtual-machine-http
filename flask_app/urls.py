@@ -195,7 +195,7 @@ def admin_price_detail(price_id):
 @app.route('/delete_price/<string:price_id>', methods=['POST'])
 @admin_status_required
 def admin_delete_price(price_id):
-    delete_price(request, price_id)
+    delete_price(price_id)
     return redirect(url_for('list_of_prices'))
 
 

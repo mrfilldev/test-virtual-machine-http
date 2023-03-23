@@ -128,8 +128,21 @@ def create_price(request):
 
 
 def edit_price(request, price_id):
-    pass
+    form = request.form
+    price_id = {'Id': int(price_id)}
+    print('old_carwash: ', price_id)
+    set_fields = {'$set': {
+        'name': form['name'],
+        'description': form['description'],
+        'cost': form['cost'],
+        'costType': form['costType']
+
+    }}
+    new_price = prices.update_one(price_id, set_fields)
+    print('UPDATE FIELDS: ', set_fields)
+    print('UPDATE DATA: ', new_price)
+    return new_price
 
 
-def delete_price(request, price_id):
-    pass
+def delete_price(price_id):
+    prices.delete_one({'Id': price_id})

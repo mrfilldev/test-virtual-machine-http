@@ -124,9 +124,7 @@ def update_carwash_obj(request, carwash_id):
     form = request.form
     new_boxes_json = json.dumps(create_boxes(int(form['amount_boxes'])), default=lambda x: x.__dict__)
     new_boxes_lost_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
-    print('туть4')
     enable: bool = True if form['status'] == 'enable' else False
-    print('туть5')
     old_carwash = {'Id': int(carwash_id)}
     print('old_carwash: ', old_carwash)
     set_fields = {'$set': {
@@ -136,10 +134,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_lost_of_dict,
-    }
-    }
-
-    print('туть6')
+    }}
     new_carwash = db_carwashes.update_one(old_carwash, set_fields)
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_carwash)
