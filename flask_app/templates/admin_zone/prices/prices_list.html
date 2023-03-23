@@ -57,7 +57,7 @@
         <tbody class=".table-hover">
         {% for price in context['prices_list'] %}
 
-        <tr class="tr-user" data-href="{{ url_for('user_detail', user_id=user.id) }}">
+        <tr>
             <th scope="row">
                 {{ context['count_prices'] - loop.index0 }}
             </th>
