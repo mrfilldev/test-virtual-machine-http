@@ -128,13 +128,15 @@ def create_price(request):
 
 
 def edit_price(request, price_id):
+    print('1')
     form = request.form
     price_id = {'Id': int(price_id)}
+    print('2')
     print('old_carwash: ', price_id)
     set_fields = {'$set': {
         'name': form['name'],
         'description': form['description'],
-        'cost': form['cost'],
+        'cost': form['price'],
         'costType': form['costType']
 
     }}

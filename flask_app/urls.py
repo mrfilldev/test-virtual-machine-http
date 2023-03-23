@@ -179,7 +179,7 @@ def admin_create_price():
 def admin_price_detail(price_id):
     if request.method == 'POST':
         new_price = edit_price(request, price_id)
-        print('new carwash: ', new_price)
+        print('new price: ', new_price)
         return redirect(url_for('list_of_prices'))
     price_obj = prices.find_one({'Id': int(price_id)})  # dict
     print(price_obj)
