@@ -122,7 +122,7 @@ def create_price(request):
         print('3')
         description = form['description']
         print('4')
-        cost = int(form['cost'])
+        cost = int(form['price'])
         print('5')
         costType = form['costType']
         print('6')
