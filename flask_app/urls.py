@@ -158,7 +158,7 @@ def admin_delete_user(user_id):
     return redirect(url_for('admin'))
 
 
-@app.route('/admin_add_price')
+@app.route('/list_of_prices')
 @admin_status_required
 def list_of_prices():
     return show_price(session)
