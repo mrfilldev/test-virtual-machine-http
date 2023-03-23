@@ -167,7 +167,8 @@ def list_of_prices():
 @app.route('/create_price', methods=['POST', 'GET'])
 @admin_status_required
 def admin_create_price():
-    return create_price(request, session)
+    create_price(request, session)
+    return render_template('admin_zone/prices/create_price.html')
 
 
 
