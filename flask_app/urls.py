@@ -18,7 +18,8 @@ import json
 from types import SimpleNamespace
 
 from flask_app import oauth_via_yandex
-from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user
+from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
+    admin_show_price
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
@@ -91,7 +92,7 @@ async def return_carwash_list():
     try_apiKey = request.args.get('apikey')
     print('try_apiKey: ' + try_apiKey)
     if try_apiKey in API_KEY:
-        #result = carwash_list.main(request)
+        # result = carwash_list.main(request)
         result = carwash_list_main()
         status = 200
     else:
@@ -139,22 +140,31 @@ def pereprava():
 
 
 @app.route('/admin_main')
-@login_required
 @admin_status_required
 def admin():
     return admin_main(request, session)
 
 
+@app.route('/test', methods=['POST', 'GET'])
+@login_required
+def test():
+    return test_view(session)
+
+
 @app.route('/admin_delete_user/<string:user_id>')
 @admin_status_required
-@login_required
 def admin_delete_user(user_id):
     delete_user(request, session, user_id)
     return redirect(url_for('admin'))
 
 
+@app.route('/admin_add_price')
+@admin_status_required
+def list_of_prices():
+    return admin_show_price(session)
+
+
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
-@login_required
 @admin_status_required
 def user_detail(user_id):
     if request.method == 'POST':
@@ -285,36 +295,6 @@ def orders_list():
     }
     return render_template(
         'order/orders_list.html',
-        context=context
-    )
-
-
-@app.route('/test', methods=['POST', 'GET'])
-@login_required
-def test():
-    user_inf = oauth_via_yandex.get_user(session['ya-token'])
-    all_users = users.find({})
-    users_list = []
-    count_users = 0
-    for count_users, i in enumerate(list(all_users)[::-1], 1):
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print(user_obj)
-        users_list.append(user_obj)
-    print(users_list)
-    inf_list = []
-    for k in user_inf:
-        inf_list.append(f"{k} -> {user_inf[k]} \n")
-    print(user_inf)
-    context = {
-        'user': user_inf,
-        'inf_list': inf_list,
-        'users_list': users_list,
-        'count_users': count_users,
-    }
-    return render_template(
-        'admin_zone/test.html',
         context=context
     )
 

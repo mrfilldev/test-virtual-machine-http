@@ -17,6 +17,16 @@ class Types(enum.IntEnum):
     Dry = 7  # сухая
 
 
+class CategoryAuto(enum.IntEnum):
+    First = 1
+    Second = 2
+    Third = 3
+    Fourth = 4
+    Fifth = 5
+    Sixth = 6
+    Seventh = 7
+
+
 class BoxStatus(enum.IntEnum):
     Free = 1  # – свободен
     Busy = 2  # - занят
@@ -35,8 +45,9 @@ class Boxes:
 
 
 class Prices:
-    def __init__(self, id, description, cost, costType):
+    def __init__(self, id, name, description, cost, costType):
         self.Id = id
+        self.name = name
         self.description = description
         self.cost = cost
         self.costType = costType
@@ -125,7 +136,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_lost_of_dict,
-        }
+    }
     }
 
     print('туть6')
@@ -133,6 +144,11 @@ def update_carwash_obj(request, carwash_id):
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_carwash)
     return new_carwash
+
+
+def create_price_obj(request, carwash_id):
+    for i in request.form:
+        print(i, request.form[i])
 
 
 def carwash_list_main():
@@ -151,5 +167,3 @@ def carwash_list_main():
     # print('================================================================')
     result = json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
     return result
-
-

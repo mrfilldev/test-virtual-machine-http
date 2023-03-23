@@ -33,11 +33,13 @@ class Config(object):
     db_orders = client['orders']
     db_users = client['users']
     db_carwashes = client['carwashes']
+    db_prices = client['prices']
     db_companies = client['companies']
 
     col_orders = db_orders["test_orders"]
     col_users = db_users["test_users"]
-    col_carwashes = db_carwashes["test_users"]
+    col_carwashes = db_carwashes["test_users"]  # КОСЯК, требует вмешательства
+    col_prices = db_prices["test_prices"]
     col_companies = db_companies["test_companies"]
 
     # yandex oauth
