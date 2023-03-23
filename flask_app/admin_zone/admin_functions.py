@@ -134,10 +134,8 @@ def create_price(request):
 
         new_price = json.dumps(new_price, default=lambda x: x.__dict__)
         print(new_price)
-        # prices.insert_one({
-        #     '_id': id,
-        #
-        # })
+        prices.insert_one(new_price)
+
     except Exception as error:
         # write to log
         traceback.print_exc()
