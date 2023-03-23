@@ -187,7 +187,7 @@ def admin_price_detail(price_id):
     data = json.dumps(data, default=lambda x: x.__dict__)
     price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     context = {
-        'carwash': price_obj,
+        'price': price_obj,
     }
     return render_template('admin_zone/prices/price_detail.html', context=context)
 
