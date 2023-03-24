@@ -178,7 +178,7 @@ def admin_create_price():
     context = {
         'CostIdSum': CostIdSum,
     }
-    return render_template('admin_zone/prices/create_price.html')
+    return render_template('admin_zone/prices/create_price.html', context=context)
 
 
 @app.route('/edit_price/<string:price_id>', methods=['POST', 'GET'])
