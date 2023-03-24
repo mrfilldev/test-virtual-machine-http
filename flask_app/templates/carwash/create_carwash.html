@@ -116,22 +116,13 @@
                     <td>
                         {{ price.description }}
                     </td>
-                    <td>
-                        <input name="Compact" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
-                    </td>
-                    <td>
-                        <input name="MiddleSize" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
-                    </td>
-                    <td>
-                        <input name="Crossover" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
-                    </td>
-                    <td>
-                        <input name="OffRoad" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
-                    </td>
-                    <td>
-                        <input name="MicroBus" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
-                    </td>
+                    {% for i in context['prices_list'].categoryPrice %}
 
+                    <td>
+                        <input name="{{ (price.categoryPrice.category | int) }}" style="width: 100%" type="text"
+                               class="form-control" required value="{{ (price.categoryPrice.sum | int) }}">
+                    </td>
+                    {% endfor %}
                 </tr>
                 {% endfor %}
                 </tbody>
