@@ -178,6 +178,7 @@ def admin_create_price():
     categories = []
     for i in list(CategoryAuto):
         categories.append(i.name)
+    print('\nCATEGORY: ', categories, '\n')
     context = {
         'categories': categories,
     }
