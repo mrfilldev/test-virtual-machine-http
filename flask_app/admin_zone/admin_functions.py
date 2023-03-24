@@ -109,7 +109,6 @@ def create_price(request):
     id = prices.count_documents({}) + 1
     name = form['name']
     description = form['description']
-    cost = float(request.form['price'])
     costType = form['costType']
 
     for i in list(CategoryAuto):
@@ -118,7 +117,7 @@ def create_price(request):
             name=name,
             description=description,
             category=i.name,
-            cost=cost,
+            cost=form[str(i.name)],
             costType=costType
         )
         print(new_price)
