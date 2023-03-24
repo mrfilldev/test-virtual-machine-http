@@ -176,7 +176,7 @@ def admin_create_price():
         create_price(request)
         return redirect(url_for('list_of_prices'))
     context = {
-        'CostIdSum': CostIdSum,
+        'CategoryAuto': CategoryAuto,
     }
     return render_template('admin_zone/prices/create_price.html', context=context)
 
