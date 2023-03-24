@@ -104,7 +104,6 @@
                     <th scope="col">Кат.3</th>
                     <th scope="col">Кат.4</th>
                     <th scope="col">Кат.5</th>
-                    <th scope="col">Кат.6</th>
                 </tr>
                 </thead>
                 </thead>
@@ -117,11 +116,22 @@
                     <td>
                         {{ price.description }}
                     </td>
-                    {% for i in range(6) %}
                     <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                        <input name="Compact" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
                     </td>
-                    {% endfor %}
+                    <td>
+                        <input name="MiddleSize" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                    </td>
+                    <td>
+                        <input name="Crossover" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                    </td>
+                    <td>
+                        <input name="OffRoad" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                    </td>
+                    <td>
+                        <input name="MicroBus" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                    </td>
+
                 </tr>
                 {% endfor %}
                 </tbody>

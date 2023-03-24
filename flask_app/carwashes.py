@@ -22,8 +22,7 @@ class CategoryAuto(enum.IntEnum):
     MiddleSize = 20
     Crossover = 30
     OffRoad = 40
-    Fifth = 50
-    MicroBus = 60
+    MicroBus = 50
 
 
 class BoxStatus(enum.IntEnum):
