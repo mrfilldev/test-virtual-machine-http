@@ -39,7 +39,7 @@
                     <td colspan="2">
                         <div class="row justify-content-evenly">
                             {% for i in context['categories'] %}
-                            <input name="{{ i }}" style="width: 150px" type="text" class="form-control"
+                            {{ i }}: &nbsp;<input name="{{ i }}" style="width: 150px" type="text" class="form-control"
                                    required
                                    placeholder="{{ i }}">
                             {% endfor %}
