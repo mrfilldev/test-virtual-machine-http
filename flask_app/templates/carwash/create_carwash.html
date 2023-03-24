@@ -117,24 +117,11 @@
                     <td>
                         {{ price.description }}
                     </td>
+                    {% for i in range(6) %}
                     <td>
                         <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.cost }}">
                     </td>
-                    <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.cost }}">
-                    </td>
-                    <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.cost }}">
-                    </td>
-                    <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.cost }}">
-                    </td>
-                    <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.cost }}">
-                    </td>
-                    <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.cost }}">
-                    </td>
+                    {% endfor %}
                 </tr>
                 {% endfor %}
                 </tbody>
