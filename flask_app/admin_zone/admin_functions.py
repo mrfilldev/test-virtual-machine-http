@@ -143,6 +143,8 @@ def edit_price(request, price_id):
     categoryPrice = []
     for i in list(CategoryAuto):
         categoryPrice.append(CostIdSum(form[i.name], form[str(i.name)]))
+    data = json.dumps(categoryPrice, default=lambda x: x.__dict__)
+    categoryPrice = json.loads(data)  # , object_hook=lambda d: SimpleNamespace(**d))
     set_fields = {'$set': {
         'name': form['name'],
         'description': form['description'],
