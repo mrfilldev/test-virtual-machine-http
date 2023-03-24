@@ -186,7 +186,7 @@ def admin_price_detail(price_id):
         print('new price: ', new_price)
         return redirect(url_for('list_of_prices'))
     price_obj = prices.find_one({'Id': int(price_id)})  # dict
-    print(price_obj)
+    print(price_obj.json())
     data = json.loads(json_util.dumps(price_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
