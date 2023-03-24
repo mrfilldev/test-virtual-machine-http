@@ -119,7 +119,7 @@
                     </td>
                     {% for i in range(6) %}
                     <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ price.cost }}">
+                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
                     </td>
                     {% endfor %}
                 </tr>
