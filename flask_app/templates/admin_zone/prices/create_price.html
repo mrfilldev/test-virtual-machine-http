@@ -32,20 +32,28 @@
                                required placeholder="Что входит в мойку?">
                     </td>
                 </tr>
+
                 <tr>
-                    <td style="width: 200px">
+                    <th colspan="2" style="width: 200px">
                         Стоимость:
+                    </th>
+                </tr>
+                {% for i in context['categories'] %}
+                <tr>
+
+                    <td>
+                        {{ i }}:
                     </td>
-                    <td colspan="2">
-                        <div class="row justify-content-evenly">
-                            {% for i in context['categories'] %}
-                            {{ i }}: &nbsp;<input name="{{ i }}" style="width: 150px" type="text" class="form-control"
-                                   required
-                                   placeholder="{{ i }}">
-                            {% endfor %}
-                        </div>
+                    <td>
+
+
+                        <input name="{{ i }}" style="width: 150px" type="text" class="form-control"
+                               required
+                               placeholder="{{ i }}">
+
                     </td>
                 </tr>
+                {% endfor %}
                 <tr>
                     <td style="width: 200px">
                         Тип стоимости:
