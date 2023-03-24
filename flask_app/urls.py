@@ -20,7 +20,7 @@ from types import SimpleNamespace
 from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
     create_price, delete_price, edit_price, show_list_price
-from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main
+from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CostIdSum
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
@@ -175,6 +175,9 @@ def admin_create_price():
     if request.method == 'POST':
         create_price(request)
         return redirect(url_for('list_of_prices'))
+    context = {
+        'CostIdSum': CostIdSum,
+    }
     return render_template('admin_zone/prices/create_price.html')
 
 
