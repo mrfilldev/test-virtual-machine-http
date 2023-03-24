@@ -175,8 +175,11 @@ def admin_create_price():
     if request.method == 'POST':
         create_price(request)
         return redirect(url_for('list_of_prices'))
+    categories = []
+    for i in list(CategoryAuto):
+        categories.append(i.name)
     context = {
-        'CategoryAuto': CategoryAuto,
+        'CategoryAuto': categories,
     }
     return render_template('admin_zone/prices/create_price.html', context=context)
 
