@@ -120,7 +120,7 @@ def create_price(request):
             cost=form[str(i.name)],
             costType=costType
         )
-        print(new_price)
+        print(new_price.category)
         # запись в бд
         # new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
         # print(new_price)
