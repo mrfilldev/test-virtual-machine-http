@@ -114,7 +114,6 @@ def create_price(request):
     for i in list(CategoryAuto):
         categoryPrice.append(CostIdSum(i.name, form[str(i.name)]))
 
-
     new_price = carwashes.Prices(
         id=id,
         name=name,
@@ -126,13 +125,11 @@ def create_price(request):
     for i in new_price.categoryPrice:
         print(f'{i.category} -> {i.sum}')
 
-
-
     # запись в бд
-    # new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
-    # print(new_price)
-    # print(type(new_price))
-    # prices.insert_one(new_price)
+    new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
+    print(new_price)
+    print(type(new_price))
+    prices.insert_one(new_price)
 
 
 def edit_price(request, price_id):
