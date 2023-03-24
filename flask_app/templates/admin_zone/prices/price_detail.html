@@ -39,8 +39,8 @@
                     <td colspan="2">
                         <div class="row justify-content-evenly">
                             {% for i in context['price'].categoryPrice %}
-                            <input name="{{ i.category }}" style="width: 100px" type="text" class="form-control" required
-                                   value="{{ i.sum }}">
+                            <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
+                                   value="{{ i['sum'] }}">
                             {% endfor %}
                         </div>
                     </td>
