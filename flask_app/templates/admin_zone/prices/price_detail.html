@@ -37,17 +37,19 @@
                         Стоимость:
                     </th>
                 </tr>
-                <tr>{% for i in context['price'].categoryPrice %}
+                {% for i in context['price'].categoryPrice %}
+                <tr>
 
                     <td>
                         {{ i['category'] }}
                     </td>
+
                     <td>
-                            <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
-                                   value="{{ i['sum'] }}">
+                        <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
+                               value="{{ i['sum'] }}">
                     </td>
-                    {% endfor %}
                 </tr>
+                {% endfor %}
                 <tr>
                     <td style="width: 200px">
                         Тип стоимости:
