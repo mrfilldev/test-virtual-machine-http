@@ -10,7 +10,7 @@
             <table class="table table-bordered table-center align-middle">
                 <thead class="table-light">
                 <tr>
-                    <th scope="col" colspan="3">Тариф Мойки</th>
+                    <th scope="col" colspan="2">Тариф Мойки</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,13 +33,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px">
+                    <th colspan="2" style="width: 200px">
                         Стоимость:
-                    </td>
-                    <td colspan="2">
+                    </th>
+                    <td>
                         <div class="row justify-content-center">
                             {% for i in context['price'].categoryPrice %}
-                            {{ i.category }}: &nbsp;<input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
+                            <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
                                    value="{{ i['sum'] }}">
                             {% endfor %}
                         </div>
