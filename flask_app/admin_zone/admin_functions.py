@@ -124,7 +124,8 @@ def create_price(request):
     )
     print(new_price.categoryPrice)
     for i in new_price.categoryPrice:
-        print(i.category)
+        print(f'{i.category} -> {i.sum}')
+
 
 
     # запись в бд
