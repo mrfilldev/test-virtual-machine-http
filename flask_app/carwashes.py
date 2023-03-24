@@ -18,13 +18,12 @@ class Types(enum.IntEnum):
 
 
 class CategoryAuto(enum.IntEnum):
-    First = 1
-    Second = 2
-    Third = 3
-    Fourth = 4
-    Fifth = 5
-    Sixth = 6
-    Seventh = 7
+    Compact = 10
+    MiddleSize = 20
+    Crossover = 30
+    OffRoad = 40
+    Fifth = 50
+    MicroBus = 60
 
 
 class BoxStatus(enum.IntEnum):
@@ -45,10 +44,11 @@ class Boxes:
 
 
 class Prices:
-    def __init__(self, id, name, description, cost, costType):
+    def __init__(self, id, name, description, category, cost, costType):
         self.Id = id
         self.name = name
         self.description = description
+        self.category = category
         self.cost = cost
         self.costType = costType
 
