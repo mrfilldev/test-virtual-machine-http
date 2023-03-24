@@ -106,27 +106,32 @@ def create_price(request):
     for i in request.form:
         print(i, request.form[i])
     form = request.form
+    id = prices.count_documents({}) + 1
+    name = form['name']
+    category = []
+    cost = []
+    description = form['description']
+    costType = form['costType']
     for i in list(CategoryAuto):
+        category.append(i.name) # ['compact', 'OffRoad',]
+        cost.append(form[str(i.name)])
 
-        id = prices.count_documents({}) + 1
-        name = form['name']
-        description = form['description']
-        costType = form['costType']
+    new_price = carwashes.Prices(
+        id=id,
+        name=name,
+        description=description,
+        category=category,
+        cost=cost,
+        costType=costType
+    )
+    print(new_price.category)
+    print(new_price.cost)
 
-        new_price = carwashes.Prices(
-            id=id,
-            name=name,
-            description=description,
-            category=i.name,
-            cost=form[str(i.name)],
-            costType=costType
-        )
-        print(new_price.category)
         # запись в бд
-        new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
-        print(new_price)
-        print(type(new_price))
-        prices.insert_one(new_price)
+        # new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
+        # print(new_price)
+        # print(type(new_price))
+        # prices.insert_one(new_price)
 
 
 def edit_price(request, price_id):
