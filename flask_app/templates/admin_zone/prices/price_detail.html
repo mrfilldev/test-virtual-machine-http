@@ -36,9 +36,19 @@
                     <td style="width: 200px">
                         Стоимость:
                     </td>
-                    <td>
-                        <input name="price" style="width: 100%" type="text" class="form-control"
-                               required placeholder="&#8381" value="{{'%0.2f'| format(context['price'].cost|float)}}">
+                    <td colspan="2">
+                        <div class="row justify-content-evenly">
+                            <input name="Compact" style="width: 100px" type="text" class="form-control" required
+                                   value="100">
+                            <input name="MiddleSize" style="width: 100px" type="text" class="form-control" required
+                                   value="300">
+                            <input name="Crossover" style="width: 100px" type="text" class="form-control" required
+                                   value="500">
+                            <input name="OffRoad" style="width: 100px" type="text" class="form-control" required
+                                   value="700">
+                            <input name="MicroBus" style="width: 100px" type="text" class="form-control" required
+                                   value="900" placeholder="">
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -57,9 +67,9 @@
             </table>
             <button style="width: 100px" type="submit" class="btn btn-dark">Изменить</button>
         </form>
-      <form method=POST action="{{ url_for('admin_delete_price', price_id=context['price'].Id) }}">
-        <button style="width: 100px" type="submit" class="btn btn-dark">Удалить</button>
-      </form>
+        <form method=POST action="{{ url_for('admin_delete_price', price_id=context['price'].Id) }}">
+            <button style="width: 100px" type="submit" class="btn btn-dark">Удалить</button>
+        </form>
     </div>
     <div class="col-2">
     </div>
