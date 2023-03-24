@@ -140,11 +140,13 @@ def edit_price(request, price_id):
     price_id = {'Id': int(price_id)}
     print('2')
     print('old_carwash: ', price_id)
-
+    categoryPrice = []
+    for i in list(CategoryAuto):
+        categoryPrice.append(CostIdSum(form[i.name], form[str(i.name)]))
     set_fields = {'$set': {
         'name': form['name'],
         'description': form['description'],
-        'categoryPrice': categoryPrice_obj,
+        'categoryPrice': categoryPrice,
         'costType': form['costType']
 
     }}
