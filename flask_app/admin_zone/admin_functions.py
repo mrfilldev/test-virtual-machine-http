@@ -141,8 +141,11 @@ def edit_price(request, price_id):
     print('2')
     print('old_carwash: ', price_id)
     categoryPrice = []
+    print(list(CategoryAuto))
     for category in list(CategoryAuto):
         print(category)
+        print(category.name)
+        print(form[str(category.name)])
         categoryPrice.append(CostIdSum(category.name, form[str(category.name)]))
     data = json.dumps(categoryPrice, default=lambda x: x.__dict__)
     categoryPrice = json.loads(data)  # , object_hook=lambda d: SimpleNamespace(**d))
