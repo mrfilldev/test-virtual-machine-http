@@ -116,7 +116,7 @@
                     <td>
                         {{ price.description }}
                     </td>
-                    {% for i in context['prices_list'].categoryPrice %}
+                    {% for i in price.categoryPrice %}
 
                     <td>
                         <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
