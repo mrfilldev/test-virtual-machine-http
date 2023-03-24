@@ -44,7 +44,7 @@ class Boxes:
 
 class CostIdSum:
     def __init__(self, category, sum):
-        self.costId = category
+        self.category = category
         self.sum = sum
 
 

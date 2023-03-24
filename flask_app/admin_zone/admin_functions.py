@@ -121,6 +121,7 @@ def create_price(request):
         categoryPrice=categoryPrice,
         costType=costType
     )
+    print(new_price.categoryPrice.)
     print(new_price.categoryPrice)
 
     # запись в бд
