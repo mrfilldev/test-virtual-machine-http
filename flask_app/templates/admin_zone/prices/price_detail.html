@@ -39,11 +39,9 @@
                 </tr>
                 {% for i in context['price'].categoryPrice %}
                 <tr>
-
                     <td>
                         {{ i['category'] }}
                     </td>
-
                     <td>
                         <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
                                value="{{ i['sum'] }}">

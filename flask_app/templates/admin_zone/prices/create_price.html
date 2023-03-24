@@ -40,17 +40,11 @@
                 </tr>
                 {% for i in context['categories'] %}
                 <tr>
-
                     <td>
                         {{ i }}:
                     </td>
                     <td>
-
-
-                        <input name="{{ i }}" style="width: 150px" type="text" class="form-control"
-                               required
-                               placeholder="{{ i }}">
-
+                        <input name="{{ i }}" style="width: 150px" type="text" class="form-control" required placeholder="{{ i }}">
                     </td>
                 </tr>
                 {% endfor %}
