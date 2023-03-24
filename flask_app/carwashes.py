@@ -42,13 +42,18 @@ class Boxes:
         self.status = boxStatus
 
 
+class CostIdSum:
+    def __init__(self, category, sum):
+        self.costId = category
+        self.sum = sum
+
+
 class Prices:
-    def __init__(self, id, name, description, category, cost, costType):
+    def __init__(self, id, name, description, categoryPrice, costType):
         self.Id = id
         self.name = name
         self.description = description
-        self.category = category
-        self.cost = cost
+        self.categoryPrice = categoryPrice
         self.costType = costType
 
 
