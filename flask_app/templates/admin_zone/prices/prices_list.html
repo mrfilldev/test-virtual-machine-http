@@ -58,7 +58,7 @@
                 {{ price.description }}
             </td>
             <td>
-                {{'%0.2f'| format(price.cost|float)}}&#8381
+                {{'%0.2f'| format(price.categoryPrice.cost|float)}}&#8381
             </td>
             <td>
                 {{ price.costType }}
