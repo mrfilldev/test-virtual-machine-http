@@ -37,15 +37,16 @@
                         Стоимость:
                     </th>
                 </tr>
-                <tr>
+                <tr>{% for i in context['price'].categoryPrice %}
+
                     <td>
-                        <div class="row justify-content-center">
-                            {% for i in context['price'].categoryPrice %}
+                        {{ i['category'] }}
+                    </td>
+                    <td>
                             <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
                                    value="{{ i['sum'] }}">
-                            {% endfor %}
-                        </div>
                     </td>
+                    {% endfor %}
                 </tr>
                 <tr>
                     <td style="width: 200px">
