@@ -37,9 +37,12 @@
                         Стоимость:
                     </td>
                     <td>
-                        <input name="price" style="width: 100%" type="text" class="form-control"
-                               required placeholder="&#8381">
-                    </td>
+                        <input name="Compact" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                        <input name="MiddleSize" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                        <input name="Crossover" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                        <input name="OffRoad" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+                        <input name="MicroBus" style="width: 100%" type="text" class="form-control" required value="{{ (price.cost | int) }}">
+
                 </tr>
                 <tr>
                     <td style="width: 200px">

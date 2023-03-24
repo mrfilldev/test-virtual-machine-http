@@ -7,6 +7,8 @@ from flask import render_template
 
 from flask_app import oauth_via_yandex, carwashes
 from config.config import Config
+from ..carwashes import CategoryAuto
+
 
 users = Config.col_users
 prices = Config.col_prices
@@ -109,19 +111,22 @@ def create_price(request):
     description = form['description']
     cost = float(request.form['price'])
     costType = form['costType']
-    new_price = carwashes.Prices(
-        id=id,
-        name=name,
-        description=description,
-        cost=cost,
-        costType=costType
-    )
-    print(new_price)
-    # запись в бд
-    new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
-    print(new_price)
-    print(type(new_price))
-    prices.insert_one(new_price)
+
+    for i in list(CategoryAuto):
+        new_price = carwashes.Prices(
+            id=id,
+            name=name,
+            description=description,
+            category=i.name,
+            cost=cost,
+            costType=costType
+        )
+        print(new_price)
+        # запись в бд
+        # new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
+        # print(new_price)
+        # print(type(new_price))
+        # prices.insert_one(new_price)
 
 
 def edit_price(request, price_id):
