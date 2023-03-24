@@ -121,8 +121,8 @@ def create_price(request):
         categoryPrice=categoryPrice,
         costType=costType
     )
-    print(new_price.categoryPrice.)
-    print(new_price.categoryPrice)
+    print(new_price.categoryPrice.category)
+    print(new_price.categoryPrice.sum)
 
     # запись в бд
     # new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
