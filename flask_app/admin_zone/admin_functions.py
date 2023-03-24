@@ -133,15 +133,18 @@ def create_price(request):
 
 
 def edit_price(request, price_id):
+    for i in request.form:
+        print(i, request.form[i])
     print('1')
     form = request.form
     price_id = {'Id': int(price_id)}
     print('2')
     print('old_carwash: ', price_id)
+
     set_fields = {'$set': {
         'name': form['name'],
         'description': form['description'],
-        'cost': form['price'],
+        'categoryPrice': categoryPrice_obj,
         'costType': form['costType']
 
     }}
