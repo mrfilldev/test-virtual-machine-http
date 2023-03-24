@@ -179,7 +179,7 @@ def admin_create_price():
     for i in list(CategoryAuto):
         categories.append(i.name)
     context = {
-        'CategoryAuto': categories,
+        'categories': categories,
     }
     return render_template('admin_zone/prices/create_price.html', context=context)
 
