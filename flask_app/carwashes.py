@@ -24,8 +24,19 @@ class CategoryAuto(enum.IntEnum):
     OffRoad = 40
     MicroBus = 50
 
-    # def CategoryAutoToDispaly(self, category):
-    #     swithch
+    def CategoryAutoToDispaly(self):
+        if self == CategoryAuto.Compact:
+            return 'Кат.1'
+        elif self == CategoryAuto.MiddleSize:
+            return 'Кат.2'
+        elif self == CategoryAuto.Crossover:
+            return 'Кат.3'
+        elif self == CategoryAuto.OffRoad:
+            return 'Кат.4'
+        elif self == CategoryAuto.MicroBus:
+            return 'Кат.5'
+
+
 
 
 class BoxStatus(enum.IntEnum):
