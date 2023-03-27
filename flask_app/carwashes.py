@@ -49,12 +49,12 @@ class CostIdSum:
 
 
 class Prices:
-    def __init__(self, id, name, description, categoryPrice, costType):
+    def __init__(self, id, name, description, cost_id_sum, cost_type):
         self.Id = id
         self.name = name
         self.description = description
-        self.categoryPrice = categoryPrice
-        self.costType = costType
+        self.categoryPrice = cost_id_sum
+        self.costType = cost_type
 
 
 class Point:  # enum.Enum):
@@ -93,9 +93,10 @@ def create_boxes(amount_boxes: int):
 
 
 def create_carwash_obj(request):
+    print('\n################################################################\n')
     for i in request.form:
         print(i, request.form[i])
-
+    print('\n################################################################\n')
     # id = Config.col_carwashes.count_documents({}) + 1
     # name_carwash = request.form['name']
     # address_carwash = request.form['address']
