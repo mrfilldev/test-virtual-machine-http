@@ -98,6 +98,9 @@ def create_carwash_obj(request):
         print(i, request.form[i])
 
 
+    print(request.form)
+
+
     print('\n################################################################\n')
     # id = Config.col_carwashes.count_documents({}) + 1
     # name_carwash = request.form['name']
