@@ -141,11 +141,11 @@ def create_carwash_obj(request):
             #prices.append(PricesCarWash(id, i.name, j))
             print(PricesCarWash(id, i.name, j))
     print(prices)
-    print(dict_of_form['Compact'])
-    print(dict_of_form['MiddleSize'])
-    print(dict_of_form['Crossover'])
-    print(dict_of_form['OffRoad'])
-    print(dict_of_form['MicroBus'])
+    # print(dict_of_form['Compact'])
+    # print(dict_of_form['MiddleSize'])
+    # print(dict_of_form['Crossover'])
+    # print(dict_of_form['OffRoad'])
+    # print(dict_of_form['MicroBus'])
 
     new_carwash = Carwash(
         id, status, name_carwash, address_carwash, location_carwash, types,
