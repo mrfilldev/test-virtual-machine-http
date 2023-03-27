@@ -126,7 +126,8 @@
                                style="width: 100px" type="text"
                                class="form-control" placeholder="{{ i['sum'] }}"
                                value="{% for obj in context['carwash']['Price'] %}
-                               {% if obj.id == number.Id %}obj.cost{% endif %}">
+                               {% if obj.id == number.Id %}obj.cost{% endif %}
+{% endfor %}">
                     </td>
                     {% endfor %}
 
