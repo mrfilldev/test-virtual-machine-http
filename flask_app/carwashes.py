@@ -39,8 +39,6 @@ class CategoryAuto(enum.IntEnum):
             return category
 
 
-
-
 class BoxStatus(enum.IntEnum):
     Free = 1  # – свободен
     Busy = 2  # - занят
@@ -71,6 +69,7 @@ class Prices:
         self.description = description
         self.categoryPrice = cost_id_sum
         self.costType = cost_type
+
 
 class PricesCarWash:
     def __init__(self, id, cost_id_sum, cost_type):
@@ -139,7 +138,8 @@ def create_carwash_obj(request):
 
     for i in list(CategoryAuto):
         for j in dict_of_form[i.name]:
-            prices.append(CostIdSum(i.name, j))
+            #prices.append(PricesCarWash(id, i.name, j))
+            print(PricesCarWash(id, i.name, j))
     print(prices)
     print(dict_of_form['Compact'])
     print(dict_of_form['MiddleSize'])
@@ -157,8 +157,8 @@ def create_carwash_obj(request):
     new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
-    res = Config.col_carwashes.insert_one(new_carwash_dict)
-    print('WRITED CARWASH: ', res)
+    # res = Config.col_carwashes.insert_one(new_carwash_dict)
+    # print('WRITED CARWASH: ', res)
 
 
 def update_carwash_obj(request, carwash_id):
