@@ -98,7 +98,7 @@ def create_carwash_obj(request):
         print(i, request.form[i])
 
 
-    print(request.form)
+    print(eval(request.form))
 
 
     print('\n################################################################\n')
