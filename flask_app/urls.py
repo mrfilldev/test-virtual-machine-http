@@ -475,7 +475,8 @@ def carwash_detail(carwash_id):
     amount_boxes = len(carwash_obj.Boxes)
 
     all_prices = prices.find()
-    prices_list=[]
+    prices_list = []
+    count_prices = 0
     for count_prices, i in enumerate(list(all_prices)[::-1], 1):
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
@@ -486,7 +487,7 @@ def carwash_detail(carwash_id):
     context = {
         'carwash': carwash_obj,
         'amount_boxes': amount_boxes,
-        'prices': prices_list,
+        'prices_list': prices_list,
         'count_prices': count_prices
     }
     return render_template("carwash/carwash_detail.html", context=context)
