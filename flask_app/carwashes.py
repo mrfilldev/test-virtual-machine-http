@@ -100,7 +100,7 @@ def create_carwash_obj(request):
     for i in request.form:
         print(i, request.form[i])
 
-    for k, v in request.form.keys(), request.form.values():
+    for k, v in request.form.items():
         print(k, '-> ', v)
 
     print('\n################################################################\n')
