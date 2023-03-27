@@ -125,9 +125,9 @@
                                style="width: 100px" type="text"
                                class="form-control" placeholder="{{ i['sum'] }}"
                                value="
-                               {{ if price.Id in carwash['Price'].Id }}
+                               {% if price.Id in carwash['Price'].Id %}
                                carwash['Price'].Id
-                               {{ endif }}">
+                               {% endif %}">
                     </td>
                     {% endfor %}
 
