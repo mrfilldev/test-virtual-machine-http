@@ -19,7 +19,8 @@
                         Название:
                     </td>
                     <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control" required value="{{ context['carwash'].Name }}">
+                        <input name="name" style="width: 100%" type="text" class="form-control" required
+                               value="{{ context['carwash'].Name }}">
                     </td>
                 </tr>
                 <tr>
@@ -27,7 +28,8 @@
                         Адрес:
                     </td>
                     <td>
-                        <input name="address" style="width: 100%" type="text" class="form-control" required value="{{ context['carwash'].Address }}">
+                        <input name="address" style="width: 100%" type="text" class="form-control" required
+                               value="{{ context['carwash'].Address }}">
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +50,8 @@
                         Кол-во боксов:
                     </td>
                     <td>
-                        <input name="amount_boxes" style="width: 100%" type="text" class="form-control" value="{{ context['amount_boxes'] }}" required>
+                        <input name="amount_boxes" style="width: 100%" type="text" class="form-control"
+                               value="{{ context['amount_boxes'] }}" required>
                     </td>
                 </tr>
                 <tr>
@@ -87,6 +90,42 @@
                         <label class="btn btn-outline-success" for="status">Активна</label>
                     </td>
                 </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="10">Прейскурант</th>
+                </tr>
+                <thead>
+                <tr>
+                    <th scope="col">Название</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Кат.1</th>
+                    <th scope="col">Кат.2</th>
+                    <th scope="col">Кат.3</th>
+                    <th scope="col">Кат.4</th>
+                    <th scope="col">Кат.5</th>
+                </tr>
+                </thead>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td style="width: 200px">
+                        price.name
+                    </td>
+                    <td>
+                        price.description
+                    </td>
+                    {% for i in context['carwash'][Price] %}
+                    <td>
+                        <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
+                               value="{{ i['sum'] }}">
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
             <button style="width: 100px" type="submit" class="btn btn-dark">Сохранить</button>
