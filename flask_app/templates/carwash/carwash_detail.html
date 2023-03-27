@@ -101,11 +101,10 @@
                 <tr>
                     <th scope="col">Название</th>
                     <th scope="col">Описание</th>
-                    <th scope="col">Кат.1</th>
-                    <th scope="col">Кат.2</th>
-                    <th scope="col">Кат.3</th>
-                    <th scope="col">Кат.4</th>
-                    <th scope="col">Кат.5</th>
+                    {% for enum in context['enum_list'] %}
+                    <th scope="col">{{ enum }}</th>
+                    {% endfor %}
+
                 </tr>
                 </thead>
                 </thead>
@@ -121,12 +120,14 @@
                     <td>
                         {{ price.description }}
                     </td>
-
+                    {% for enum in context['enum_list'] %}
                     <td>
-                        {% set ns.counter = ns.counter+1 %}
-                        <input name="{{ context['carwash']['Price'][ns.counter] }}" style="width: 100px" type="text" class="form-control" required
+
+                        <input name="{{ context['carwash']['Price'][ns.counter] }}" style="width: 100px" type="text"
+                               class="form-control" required
                                value="{{ context['carwash']['Price'][ns.counter] }}">
                     </td>
+                    {% endfor %}
 
 
                 </tr>

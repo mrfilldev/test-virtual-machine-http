@@ -484,11 +484,14 @@ def carwash_detail(carwash_id):
         prices_list.append(price_obj)
         print(price_obj)
 
+    enum_list = list(CategoryAuto)
+    print(enum_list)
     context = {
         'carwash': carwash_obj,
         'amount_boxes': amount_boxes,
         'prices_list': prices_list,
-        'count_prices': count_prices
+        'count_prices': count_prices,
+        'enum_list': enum_list
     }
     return render_template("carwash/carwash_detail.html", context=context)
 

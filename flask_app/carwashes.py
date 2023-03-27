@@ -24,6 +24,9 @@ class CategoryAuto(enum.IntEnum):
     OffRoad = 40
     MicroBus = 50
 
+    # def CategoryAutoToDispaly(self, category):
+    #     swithch
+
 
 class BoxStatus(enum.IntEnum):
     Free = 1  # – свободен
@@ -53,6 +56,12 @@ class Prices:
         self.Id = id
         self.name = name
         self.description = description
+        self.categoryPrice = cost_id_sum
+        self.costType = cost_type
+
+class PricesCarWash:
+    def __init__(self, id, cost_id_sum, cost_type):
+        self.Id = id
         self.categoryPrice = cost_id_sum
         self.costType = cost_type
 
