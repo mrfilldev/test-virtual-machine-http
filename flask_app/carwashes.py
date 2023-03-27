@@ -94,7 +94,7 @@ def create_boxes(amount_boxes: int):
 
 def create_carwash_obj(request):
     print('\n################################################################\n')
-    dict_of_form = request.form.to_dict()
+    dict_of_form = request.form.to_dict(flat=True)
     print(dict_of_form)
     print('################################################################\n')
 
