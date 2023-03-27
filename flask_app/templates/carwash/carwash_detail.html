@@ -121,7 +121,7 @@
                     </td>
                     {% for i in price.categoryPrice %}
                     <td>
-                        {% set id_of_cell = price.Id %}
+                        {% set id_of_cell = str(price.Id) %}
                         <input name="prices_{{ price.Id }}_{{ i['category'] }}"
                                style="width: 100px" type="text"
                                class="form-control" placeholder="{{ i['sum'] }}"
