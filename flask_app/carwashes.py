@@ -138,8 +138,11 @@ def create_carwash_obj(request):
 
     for i in list(CategoryAuto):
         for j in dict_of_form[i.name]:
-            #prices.append(PricesCarWash(id, i.name, j))
-            print(PricesCarWash(id, i.name, j))
+            if 'price' in j:
+                print(j.split('_'))
+
+            # prices.append(PricesCarWash(id, i.name, j))
+            # print(PricesCarWash(id, i.name, j))
     print(prices)
     # print(dict_of_form['Compact'])
     # print(dict_of_form['MiddleSize'])
