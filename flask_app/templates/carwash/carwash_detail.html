@@ -102,7 +102,7 @@
                     <th scope="col">Название</th>
                     <th scope="col">Описание</th>
                     {% for enum in context['enum_list'] %}
-                    <th scope="col">{{ enum.name.CategoryAutoToDispaly }}</th>
+                    <th scope="col">{{ enum.name.CategoryAutoToDispaly(enum.name) }}</th>
                     {% endfor %}
 
                 </tr>
