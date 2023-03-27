@@ -120,7 +120,7 @@
                     {% for i in price.categoryPrice %}
 
                     <td>
-                        <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
+                        <input name="{{ i['category'] }}{{ loop.index }}" style="width: 100px" type="text" class="form-control" required
                                value="{{ i['sum'] }}">
                     </td>
                     {% endfor %}
