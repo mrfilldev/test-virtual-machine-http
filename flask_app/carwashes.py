@@ -193,7 +193,7 @@ def create_price_obj(request, carwash_id):
 
 
 def delete_carwash_obj(carwash_id):
-    db_carwashes.delete_one({'Id': carwash_id})
+    db_carwashes.delete_one({'Id': int(carwash_id)})
 
 
 def carwash_list_main():
