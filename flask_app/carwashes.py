@@ -137,11 +137,10 @@ def create_carwash_obj(request):
     status = enable
     prices = []
 
-    for i in list(CategoryAuto):
-        for j in dict_of_form:
-            if 'price' in j:
-                print(j.split('_'))
-                prices.append(PricesCarWash(j.split('_')[0], j.split('_')[1], j.split('_')[2]))
+    for j in dict_of_form:
+        if 'price' in j:
+            print(j.split('_'))
+            prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
             # prices.append(PricesCarWash(id, i.name, j))
             # print(PricesCarWash(id, i.name, j))
     print(prices)
