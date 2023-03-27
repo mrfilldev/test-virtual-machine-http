@@ -473,9 +473,21 @@ def carwash_detail(carwash_id):
     data = json.dumps(data, default=lambda x: x.__dict__)
     carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     amount_boxes = len(carwash_obj.Boxes)
+
+    all_prices = prices.find()
+    prices_list=[]
+    for count_prices, i in enumerate(list(all_prices)[::-1], 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        prices_list.append(price_obj)
+        print(price_obj)
+
     context = {
         'carwash': carwash_obj,
-        'amount_boxes': amount_boxes
+        'amount_boxes': amount_boxes,
+        'prices': prices_list,
+        'count_prices': count_prices
     }
     return render_template("carwash/carwash_detail.html", context=context)
 

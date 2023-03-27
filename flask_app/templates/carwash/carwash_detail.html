@@ -110,13 +110,13 @@
                 </thead>
                 </thead>
                 <tbody>
-                {% for i in context['carwash']['Price'] %}
+                {% for price in context['prices_list'] %}
                 <tr>
                     <td style="width: 200px">
-                        price.name
+                        {{ price.name }}
                     </td>
                     <td>
-                        price.description
+                        {{ price.description }}
                     </td>
                     {% for i in context['carwash']['Price'] %}
                     <td>
