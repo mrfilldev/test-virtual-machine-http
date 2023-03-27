@@ -116,11 +116,9 @@
                     <td>
                         {{ price.description }}
                     </td>
-                    {% set ns = namespace(counter=false) %}
                     {% for i in price.categoryPrice %}
-
                     <td>
-                        <input name="{{ i['category'] }}{% set ns.counter = ns.counter+1 %}" style="width: 100px" type="text" class="form-control" required
+                        <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
                                value="{{ i['sum'] }}">
                     </td>
                     {% endfor %}
