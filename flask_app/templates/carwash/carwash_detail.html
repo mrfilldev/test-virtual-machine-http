@@ -124,7 +124,7 @@
                         <input name="prices_{{ price.Id }}_{{ i['category'] }}"
                                style="width: 100px" type="text"
                                class="form-control" placeholder="{{ i['sum'] }}"
-                               value="{% if price.Id in context['carwash']['Price'].Id %}carwash['Price'].Id{% endif %}">
+                               value="{% if price.Id in context['carwash']['Price'].Id %}carwash['Price'][price.Id].Id{% endif %}">
                     </td>
                     {% endfor %}
 
