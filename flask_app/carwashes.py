@@ -140,7 +140,9 @@ def create_carwash_obj(request):
     for j in dict_of_form:
         if 'price' in j:
             print(j.split('_'))
-            prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
+            if request.form[j] != '':
+                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
+
             # prices.append(PricesCarWash(id, i.name, j))
             # print(PricesCarWash(id, i.name, j))
     print(prices)
