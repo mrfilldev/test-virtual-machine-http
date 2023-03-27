@@ -134,9 +134,17 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <button style="width: 100px" type="submit" class="btn btn-dark">Сохранить</button>
-
+            <div class="col-1">
+                <a style="width: auto" class="btn btn-outline-danger"
+                   href="{{ url_for('delete_carwash', carwash_id=context['carwash'].Id) }}">
+                    Удалить
+                </a>
+            </div>
+            <div class="col-1">
+                <button style="width: 100px" type="submit" class="btn btn-dark">Сохранить</button>
+            </div>
         </form>
+
     </div>
     <div class="col-2">
     </div>

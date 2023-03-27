@@ -20,7 +20,8 @@ from types import SimpleNamespace
 from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
     create_price, delete_price, edit_price, show_list_price
-from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto
+from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
+    delete_carwash_obj
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
@@ -489,13 +490,20 @@ def carwash_detail(carwash_id):
     print('carwash_obj ', carwash_obj)
     context = {
         'carwash': carwash_obj,
-        ''
+
         'amount_boxes': amount_boxes,
         'prices_list': prices_list,
         'count_prices': count_prices,
         'enum_list': enum_list
     }
     return render_template("carwash/carwash_detail.html", context=context)
+
+
+@app.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
+@owner_status_required
+def delete_carwash(carwash_id):
+    delete_carwash_obj(carwash_id)
+    return redirect(url_for('carwashes'))
 
 
 ################################################################
