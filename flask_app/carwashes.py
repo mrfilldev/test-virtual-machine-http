@@ -116,28 +116,27 @@ def create_carwash_obj(request):
     prices = []
 
     for i in list(CategoryAuto):
-        print(dict_of_form['Compact'])
         for j in dict_of_form[i.name]:
             prices.append(CostIdSum(i.name, j))
     print(prices)
+    print(dict_of_form['Compact'])
     print(dict_of_form['MiddleSize'])
     print(dict_of_form['Crossover'])
     print(dict_of_form['OffRoad'])
     print(dict_of_form['MicroBus'])
 
-
-    # new_carwash = Carwash(
-    #     id, status, name_carwash, address_carwash, location_carwash, types,
-    #     stepCost, limitMinCost, boxes, price
-    # )
-    # new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
-    # print('TYPE: ', type(new_carwash_json))
-    # print('data: ', new_carwash_json)
-    # new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
-    # print('TYPE: ', type(new_carwash_dict))
-    # print('data: ', new_carwash_dict)
-    # res = Config.col_carwashes.insert_one(new_carwash_dict)
-    # print('WRITED CARWASH: ', res)
+    new_carwash = Carwash(
+        id, status, name_carwash, address_carwash, location_carwash, types,
+        stepCost, limitMinCost, boxes, prices
+    )
+    new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
+    print('TYPE: ', type(new_carwash_json))
+    print('data: ', new_carwash_json)
+    new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
+    print('TYPE: ', type(new_carwash_dict))
+    print('data: ', new_carwash_dict)
+    #res = Config.col_carwashes.insert_one(new_carwash_dict)
+    #print('WRITED CARWASH: ', res)
 
 
 def update_carwash_obj(request, carwash_id):
