@@ -486,9 +486,10 @@ def carwash_detail(carwash_id):
 
     enum_list = list(CategoryAuto)
     print(enum_list)
-    print('carwash_obj ', carwash_obj)
+    print('carwash_obj ', carwash_obj.Price)
     context = {
         'carwash': carwash_obj,
+        ''
         'amount_boxes': amount_boxes,
         'prices_list': prices_list,
         'count_prices': count_prices,
