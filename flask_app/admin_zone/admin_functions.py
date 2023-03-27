@@ -114,13 +114,8 @@ def create_price(request):
     for i in list(CategoryAuto):
         categoryPrice.append(CostIdSum(i.name, form[str(i.name)]))
 
-    new_price = carwashes.Prices(
-        id=id,
-        name=name,
-        description=description,
-        categoryPrice=categoryPrice,
-        costType=costType
-    )
+    new_price = carwashes.Prices(id, name, description, categoryPrice, costType)
+
     print(new_price.categoryPrice)
     for i in new_price.categoryPrice:
         print(f'{i.category} -> {i.sum}')
