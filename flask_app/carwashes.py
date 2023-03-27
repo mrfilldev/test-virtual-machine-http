@@ -135,8 +135,8 @@ def create_carwash_obj(request):
     new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
-    #res = Config.col_carwashes.insert_one(new_carwash_dict)
-    #print('WRITED CARWASH: ', res)
+    res = Config.col_carwashes.insert_one(new_carwash_dict)
+    print('WRITED CARWASH: ', res)
 
 
 def update_carwash_obj(request, carwash_id):
