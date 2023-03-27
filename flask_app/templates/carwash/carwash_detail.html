@@ -119,12 +119,13 @@
                     <td>
                         {{ price.description }}
                     </td>
+                    {% for i in price.categoryPrice %}
                     <td>
-                        <input name="{{ context['carwash']['Price'].Id }}_{{ context['carwash']['Price'].categoryPrice }}" style="width: 100px" type="text"
+                        <input name="{{ context['carwash']['Price'].Id }}_{{ context['carwash']['Price'].categoryPrice }}"
+                               style="width: 100px" type="text"
                                class="form-control" placeholder="{{ price['sum'] }}">
                     </td>
-
-
+                    {% endfor %}
 
 
                 </tr>
