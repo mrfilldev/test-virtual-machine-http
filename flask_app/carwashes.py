@@ -102,19 +102,26 @@ def create_carwash_obj(request):
         print(k, '-> ', v)
 
     print('\n################################################################\n')
-    # id = Config.col_carwashes.count_documents({}) + 1
-    # name_carwash = request.form['name']
-    # address_carwash = request.form['address']
-    # location_carwash = Point(request.form['lat'], request.form['lon'])
-    # types = Types.SelfServiceFixPrice.name
-    # stepCost = 10.0
-    # limitMinCost = 100.0
-    # boxes = create_boxes(int(request.form['amount_boxes']))
-    # enable: bool = True if request.form['status'] == 'enable' else False
-    # status = enable
-    # price = []
-    #
-    #
+
+    id = Config.col_carwashes.count_documents({}) + 1
+    name_carwash = request.form['name']
+    address_carwash = request.form['address']
+    location_carwash = Point(request.form['lat'], request.form['lon'])
+    types = Types.SelfServiceFixPrice.name
+    stepCost = 10.0
+    limitMinCost = 100.0
+    boxes = create_boxes(int(request.form['amount_boxes']))
+    enable: bool = True if request.form['status'] == 'enable' else False
+    status = enable
+    prices = []
+
+    print(dict_of_form['Compact'])
+    print(dict_of_form['MiddleSize'])
+    print(dict_of_form['Crossover'])
+    print(dict_of_form['OffRoad'])
+    print(dict_of_form['MicroBus'])
+
+
     # new_carwash = Carwash(
     #     id, status, name_carwash, address_carwash, location_carwash, types,
     #     stepCost, limitMinCost, boxes, price
