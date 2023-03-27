@@ -138,7 +138,7 @@ def create_carwash_obj(request):
     prices = []
 
     for i in list(CategoryAuto):
-        for j in dict_of_form[i.name]:
+        for j in dict_of_form:
             if 'price' in j:
                 print(j.split('_'))
 
