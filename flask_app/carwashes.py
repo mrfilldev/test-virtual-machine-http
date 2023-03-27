@@ -117,7 +117,7 @@ def create_carwash_obj(request):
 
     for i in list(CategoryAuto):
         print(dict_of_form['Compact'])
-        for j in dict_of_form['CategoryAuto']:
+        for j in dict_of_form[i.name]:
             prices.append(CostIdSum(i.name, j))
     print(prices)
     print(dict_of_form['MiddleSize'])
