@@ -110,7 +110,10 @@
                 </thead>
                 </thead>
                 <tbody>
+
                 {% for price in context['prices_list'] %}
+                {% set ns = namespace(counter=false) %}
+
                 <tr>
                     <td style="width: 200px">
                         {{ price.name }}
@@ -118,12 +121,13 @@
                     <td>
                         {{ price.description }}
                     </td>
-                    {% for i in context['carwash']['Price'] %}
+
                     <td>
-                        <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
-                               value="{{ i['sum'] }}">
+                        {% set ns.counter = ns.counter+1 %}
+                        <input name="{{ context['carwash']['Price'][ns.counter] }}" style="width: 100px" type="text" class="form-control" required
+                               value="{{ context['carwash']['Price'][ns.counter] }}">
                     </td>
-                    {% endfor %}
+
 
                 </tr>
                 {% endfor %}
