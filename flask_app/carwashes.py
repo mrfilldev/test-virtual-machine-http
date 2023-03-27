@@ -35,6 +35,8 @@ class CategoryAuto(enum.IntEnum):
             return 'Кат.4'
         elif category == CategoryAuto.MicroBus:
             return 'Кат.5'
+        else:
+            return category
 
 
 
