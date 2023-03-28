@@ -211,4 +211,5 @@ def carwash_list_main():
     # print(array_of_carwashes)
     # print('================================================================')
     result = json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
-    return result
+    print(result)
+    #return result
