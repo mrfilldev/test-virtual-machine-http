@@ -6,6 +6,9 @@ import traceback
 from datetime import datetime as dt
 from random import randint
 from types import SimpleNamespace
+
+from bson import json_util
+
 from config.config import Config
 
 import boto3
@@ -15,6 +18,8 @@ from dotenv import load_dotenv
 
 # from flask_app.carwash_order import Order
 load_dotenv()
+
+db_carwashes = Config.col_carwashes
 
 ################################################################
 # from aws_requests_auth.aws_auth import AWSRequestsAuth
@@ -139,6 +144,14 @@ async def make_some_noize(order):
     result = result.replace('Z', '')
     print(result)
     order['DateCreateMy'] = result
+
+    carwash_obj = db_carwashes.find_one({'Id': int(order['CarWashId'])})  # dict
+    print(carwash_obj)
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    value = carwash_obj.Name
+    order['name_of_carwash'] = str(value)
     await write_into_db(order)
 
 
