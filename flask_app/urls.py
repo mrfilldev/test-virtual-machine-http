@@ -548,6 +548,16 @@ def format_name_point(value):
     value = carwash_obj.Name
     return value
 
+@app.template_filter()
+def get_param_by_id(value):
+    carwash_obj = db_carwashes.find_one({'Id': int(value)})  # dict
+    print(carwash_obj)
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    value = carwash_obj.Name
+    return value
+
 
 ################################################################
 if __name__ == '__main__':
