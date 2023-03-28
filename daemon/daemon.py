@@ -204,7 +204,7 @@ async def write_into_db(order):
     # test_items - название чего?
     # mycol - название коллекции
 
-    res = Config.col_orders.insert_one(eval(order))
+    res = Config.col_orders.insert_one(order)
     print('WRITED ORDER: ', res)
 
     print('ORDER_ID:', res.inserted_id)
