@@ -128,7 +128,7 @@ def create_prices(request, dict_of_form):
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(price_obj)
         prices_list.append(price_obj)
-    print(prices_list)
+    print('prices_list:\n', prices_list)
 
     for j in dict_of_form:
         if 'price' in j:
