@@ -188,6 +188,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_lost_of_dict,
+        'Price': prices,
     }}
     new_carwash = db_carwashes.update_one(old_carwash, set_fields)
     print('UPDATE FIELDS: ', set_fields)
