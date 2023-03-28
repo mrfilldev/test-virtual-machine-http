@@ -343,8 +343,7 @@ def orders_list():
     carwashes = db_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
     for i in carwashes:
         data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        carwash = json.dumps(data, default=lambda x: x.__dict__)
         carwashes_names.append(carwash)
     print(carwashes_names)
     for i in carwashes_names:
@@ -548,15 +547,7 @@ def format_name_point(value):
     value = carwash_obj.Name
     return value
 
-@app.template_filter()
-def get_param_by_id(value):
-    carwash_obj = db_carwashes.find_one({'Id': int(value)})  # dict
-    print(carwash_obj)
-    data = json.loads(json_util.dumps(carwash_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    value = carwash_obj.Name
-    return value
+
 
 
 ################################################################
