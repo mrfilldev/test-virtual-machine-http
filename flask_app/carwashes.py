@@ -221,7 +221,8 @@ def make_price_corrrect_4_tanker(list_price):
         data = json.loads(json_util.dumps(price_db_obj))
         data = json.dumps(data, default=lambda x: x.__dict__)
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
-        print(price_obj)
+        print('price from db:\n', price_obj)
+        print('price already in carwash db:\n', obj_price)
         # Поля которые требуется сформировать
         # Id Name Description Category Cost CostType
         result.append({
