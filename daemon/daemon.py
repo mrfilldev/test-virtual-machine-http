@@ -139,7 +139,7 @@ async def user_canceled(order):
 
 
 async def make_some_noize(order):
-    order['_id'] = str.encode(order['Id'])
+    order['_id'] = str(str.encode(order['Id']))
     order = order.pop('Id')
 
     await write_into_db(order)
