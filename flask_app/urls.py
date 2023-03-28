@@ -333,7 +333,7 @@ def orders_list():
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: Order(**d))
-        print(order_obj.items())
+        print(vars(order_obj))
         orders_list.append(order_obj)
         if order_obj.CarWashId not in distinctCarwashId:
             distinctCarwashId.append(order_obj.CarWashId)
