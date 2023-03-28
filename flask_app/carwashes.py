@@ -5,6 +5,7 @@ from types import SimpleNamespace
 from bson import json_util
 
 from config.config import Config
+from flask_app.admin_zone.admin_functions import show_list_price
 
 db_carwashes = Config.col_carwashes
 db_prices = Config.col_prices
@@ -118,11 +119,25 @@ def create_boxes(amount_boxes: int):
 
 def create_prices(request, dict_of_form):
     prices = []
+
+    all_prices = db_prices.find({})
+    prices_list = []
+    count_prices = 0
+    for count_prices, i in enumerate(list(all_prices)[::-1], 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print(price_obj)
+        prices_list.append(price_obj)
+    print(prices_list)
+
     for j in dict_of_form:
         if 'price' in j:
             print(j.split('_'))
             if request.form[j] != '':
                 prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
+            elif request.form[j] == '':
+                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], prices_list[j].sum))
     print('prices', prices)
     return prices
 
@@ -149,13 +164,8 @@ def create_carwash_obj(request):
     print()
     enable: bool = True if request.form['status'] == 'enable' else False
     status = enable
-    prices = []
+    prices = create_prices(request, dict_of_form)
 
-    for j in dict_of_form:
-        if 'price' in j:
-            print(j.split('_'))
-            if request.form[j] != '':
-                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
 
             # prices.append(PricesCarWash(id, i.name, j))
             # print(PricesCarWash(id, i.name, j))
@@ -176,8 +186,8 @@ def create_carwash_obj(request):
     new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
-    res = Config.col_carwashes.insert_one(new_carwash_dict)
-    print('WRITED CARWASH: ', res)
+    # res = Config.col_carwashes.insert_one(new_carwash_dict)
+    # print('WRITED CARWASH: ', res)
 
 
 def update_carwash_obj(request, carwash_id):
