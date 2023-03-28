@@ -329,6 +329,7 @@ def orders_list():
     for count_orders, i in enumerate(list(all_orders)[::-1], 1):
         # count_orders += 1
         data = json.loads(json_util.dumps(i))
+        data['NAME'] = format_name_point(data['CarWashId'])
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(order_obj)
