@@ -19,5 +19,5 @@ for i in orders:
             "name_of_carwash": str(value),
         },
     }
-    orders.update_one({'Id': order_dict['Id']}, set_command)
+    Config.col_orders.update_one({'Id': order_dict['Id']}, set_command)
 
