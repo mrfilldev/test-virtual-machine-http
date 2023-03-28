@@ -219,7 +219,7 @@ def carwash_list_main():
             obj.pop('_id')
 
         array_of_carwashes.append(obj)
-        print(obj.Price)
+        print(obj['Price'])
 
 
     #     array_of_carwashes.append(obj)
