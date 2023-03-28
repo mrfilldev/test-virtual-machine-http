@@ -7,7 +7,7 @@ from datetime import datetime as dt
 from random import randint
 from types import SimpleNamespace
 
-from bson import json_util
+from bson import json_util, ObjectId
 
 from config.config import Config
 
@@ -153,7 +153,7 @@ async def make_some_noize(order):
     value = carwash_obj.Name
     order['name_of_carwash'] = str(value)
 
-    order['_id'] = order['Id']
+    order['_id'] = ObjectId(order['Id'])
     order = order.pop('Id')
 
     await write_into_db(order)
