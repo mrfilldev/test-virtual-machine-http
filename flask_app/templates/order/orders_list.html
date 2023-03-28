@@ -66,7 +66,7 @@
             </td>
             <td>
                 {% for i in context['carwashes'] %}
-                {% if i == order.CarWashId | integer %}
+                {% if i == order.CarWashId | int %}
                 {{ i['Name'] }}
                 {% endif %}
                 {% endfor %}
