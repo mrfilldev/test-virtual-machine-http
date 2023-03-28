@@ -105,6 +105,9 @@ class Carwash:
         self.Boxes = Boxes
         self.Price = Price
 
+    def id(self):
+        return self._id
+
 
 def create_boxes(amount_boxes: int):
     group_of_boxes = []

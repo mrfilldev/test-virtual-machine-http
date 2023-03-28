@@ -22,6 +22,7 @@ from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_
     create_price, delete_price, edit_price, show_list_price
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj, Carwash
+from flask_app.classes_of_project import Order
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
@@ -331,19 +332,19 @@ def orders_list():
         # count_orders += 1
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
-        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        order_obj = json.loads(data, object_hook=lambda d: Order(**d))
         print(order_obj)
         orders_list.append(order_obj)
         if order_obj.CarWashId not in distinctCarwashId:
             distinctCarwashId.append(order_obj.CarWashId)
 
     # mongo find by filter in () // projections
-    carwashes = db_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id":1, "Name":1})
+    #carwashes = db_carwashes.find({"_id": {"$in": distinctCarwashId}}, {"Id":1, "Name":1})
     today = date.today()
     context = {
         'orders_list': orders_list,
         'count_orders': count_orders,
-        'carwash': carwashes,
+    #    'carwash': carwashes,
         'date': today
     }
     return render_template(
