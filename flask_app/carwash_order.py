@@ -96,7 +96,6 @@ class Order:
                  contract_id: str, sum_paid_station_completed: float):
         # [BsonId]
         self.Id = id
-        self._id = id
         self.DateCreate = date_create_date_time
         self.BoxNumber = box_number
         self.CarWashId = car_wash_id
