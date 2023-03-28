@@ -136,7 +136,8 @@ def create_prices(request, dict_of_form):
             if request.form[j] != '':
                 prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
             elif request.form[j] == '':
-                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], prices_list[j.split('_')[1]].categoryPrice.sum))
+                #prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], prices_list[j.split('_')[1]].categoryPrice.sum))
+                print(prices_list[j.split('_')[1]])
     print('prices', prices)
     return prices
 
