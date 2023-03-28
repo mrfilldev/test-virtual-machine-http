@@ -2,6 +2,8 @@ import enum
 import json
 from types import SimpleNamespace
 
+from bson import json_util
+
 from config.config import Config
 
 db_carwashes = Config.col_carwashes
@@ -215,18 +217,21 @@ def delete_carwash_obj(carwash_id):
 def make_price_corrrect_4_tanker(list_price):
     result = []
     for obj_price in list_price:
-        price_db = db_prices.find({'Id': int(obj_price['Id'])})
-
+        price_db_obj = db_prices.find({'Id': int(obj_price['Id'])})
+        data = json.loads(json_util.dumps(price_db_obj))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        print(price_obj)
         # Поля которые требуется сформировать
         # Id Name Description Category Cost CostType
-        result.append({
-            'Id': obj_price['Id'],
-            'Name': price_db['name'],
-            'Description': price_db['description'],
-            'Category': obj_price['categoryPrice'],
-            'Cost': obj_price['cost'],
-            'CostType': price_db['costType'],
-        })
+        # result.append({
+        #     'Id': obj_price['Id'],
+        #     'Name': price_db['name'],
+        #     'Description': price_db['description'],
+        #     'Category': obj_price['categoryPrice'],
+        #     'Cost': obj_price['cost'],
+        #     'CostType': price_db['costType'],
+        # })
 
     return result
 
