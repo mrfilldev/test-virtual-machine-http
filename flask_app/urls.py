@@ -339,7 +339,7 @@ def orders_list():
             distinctCarwashId.append(order_obj.CarWashId)
 
     # mongo find by filter in () // projections
-    carwashes_name = db_carwashes.find({"_id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
+    carwashes_name = db_carwashes.find({"_id": {"$in": distinctCarwashId}})
 
     for i in carwashes_name:
         print('carwashes_name: ', i)
