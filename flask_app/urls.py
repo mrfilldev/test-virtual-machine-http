@@ -345,7 +345,7 @@ def orders_list():
         data = json.loads(json_util.dumps(i))
         carwash = json.dumps(data, default=lambda x: x.__dict__)
 
-        carwashes_names.append({carwash['Id']: carwash['Name']})
+        carwashes_names.append(carwash)
     print(carwashes_names)
     for i in carwashes_names:
         print('carwashes_names: ', i)

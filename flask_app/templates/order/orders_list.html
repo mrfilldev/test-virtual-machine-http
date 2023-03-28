@@ -65,7 +65,11 @@
                 {{ order.DateCreate | format_datetime }}
             </td>
             <td>
-                {{ context['carwashes'][0].Name }}
+                {% for i in context['carwashes'] %}
+                {% if i == order.CarWashId %}
+                {{ i.Name }}
+                {% endif %}
+                {% endfor %}
             </td>
             <td>
                 Имя:
