@@ -67,7 +67,7 @@
             <td>
                 {% for i in context['carwashes'] %}
                 {% if i == order.CarWashId %}
-                {{ i.Name }}
+                {{ i['Name'] }}
                 {% endif %}
                 {% endfor %}
             </td>
