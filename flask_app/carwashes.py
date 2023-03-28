@@ -5,7 +5,6 @@ from types import SimpleNamespace
 from bson import json_util
 
 from config.config import Config
-from flask_app.admin_zone.admin_functions import show_list_price
 
 db_carwashes = Config.col_carwashes
 db_prices = Config.col_prices
