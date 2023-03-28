@@ -371,7 +371,7 @@ def order_detail(order_id):
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: Carwash(**d))  # SimpleNamespace
-    print('order_obj: \n', + order_obj)
+    print('order_obj: \n', order_obj)
     location_my = {
         'latitude': 55.650378,
         'longitude': 37.606487
