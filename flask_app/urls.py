@@ -339,12 +339,13 @@ def orders_list():
             distinctCarwashId.append(int(order_obj.CarWashId))
 
     # mongo find by filter in () // projections
-    carwashes_names=[]
+    carwashes_names = []
     carwashes = db_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
     for i in carwashes:
         data = json.loads(json_util.dumps(i))
         carwash = json.dumps(data, default=lambda x: x.__dict__)
-        carwashes_names.append(carwash)
+
+        carwashes_names.append({carwash['Id']: carwash['Name']})
     print(carwashes_names)
     for i in carwashes_names:
         print('carwashes_names: ', i)
@@ -546,8 +547,6 @@ def format_name_point(value):
     carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     value = carwash_obj.Name
     return value
-
-
 
 
 ################################################################
