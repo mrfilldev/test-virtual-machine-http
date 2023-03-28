@@ -326,6 +326,7 @@ def orders_list():
         all_orders = orders.find(find_arguments)
     orders_list = []
     count_orders = 0
+    distinctCarwashId = []
     for count_orders, i in enumerate(list(all_orders)[::-1], 1):
         # count_orders += 1
         data = json.loads(json_util.dumps(i))
@@ -333,10 +334,16 @@ def orders_list():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(order_obj)
         orders_list.append(order_obj)
+        if order_obj.CarWashId not in distinctCarwashId:
+            distinctCarwashId.append(order_obj.CarWashId)
+
+    # mongo find by filter in () // projections
+    carwashes = db_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id":1, "Name":1})
     today = date.today()
     context = {
         'orders_list': orders_list,
         'count_orders': count_orders,
+        'carwash': carwashes,
         'date': today
     }
     return render_template(
@@ -517,6 +524,7 @@ def format_datetime(value):
         value = parser.parse(value)
         value = value.strftime("%d.%m.%Y %H:%M:%S")
     return value
+
 
 @app.template_filter()
 def format_name_point(value):

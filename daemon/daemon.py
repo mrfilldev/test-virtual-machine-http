@@ -215,6 +215,9 @@ async def write_into_db(order):
     # test_items - название чего?
     # mycol - название коллекции
 
+    order['_id'] = order['Id']
+    order = order.pop('Id')
+
     res = Config.col_orders.insert_one(order)
     print('WRITED ORDER: ', res)
 
