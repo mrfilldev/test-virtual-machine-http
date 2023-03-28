@@ -12,7 +12,7 @@ for i in orders:
     carwash_obj = Config.col_carwashes.find_one({'Id': int(order_dict['CarWashId'])})  # dict
     print(carwash_obj)
     data = json.loads(json_util.dumps(carwash_obj))
-    value = carwash_obj.Name
+    value = carwash_obj['Name']
 
     set_command = {
         "$set": {
