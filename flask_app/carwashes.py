@@ -224,14 +224,14 @@ def make_price_corrrect_4_tanker(list_price):
         print(price_obj)
         # Поля которые требуется сформировать
         # Id Name Description Category Cost CostType
-        # result.append({
-        #     'Id': obj_price['Id'],
-        #     'Name': price_db['name'],
-        #     'Description': price_db['description'],
-        #     'Category': obj_price['categoryPrice'],
-        #     'Cost': obj_price['cost'],
-        #     'CostType': price_db['costType'],
-        # })
+        result.append({
+            'Id': obj_price['Id'],
+            'Name': price_obj.name,
+            'Description': price_obj.description,
+            'Category': obj_price['categoryPrice'],
+            'Cost': obj_price['cost'],
+            'CostType': price_obj.costType,
+        })
 
     return result
 
