@@ -137,7 +137,7 @@ def create_prices(request, dict_of_form):
                 prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
             elif request.form[j] == '':
 
-                obj = prices_list[int(j.split('_')[1])-1]
+                obj = prices_list[int(j.split('_')[1]) - 1]
                 print(obj)
                 categories = obj.categoryPrice
                 print(categories)
@@ -146,7 +146,6 @@ def create_prices(request, dict_of_form):
                         sum_default = category.sum
                         prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], sum_default))
 
-    print('prices', prices)
     return prices
 
 
@@ -174,9 +173,8 @@ def create_carwash_obj(request):
     status = enable
     prices = create_prices(request, dict_of_form)
 
-
-            # prices.append(PricesCarWash(id, i.name, j))
-            # print(PricesCarWash(id, i.name, j))
+    # prices.append(PricesCarWash(id, i.name, j))
+    # print(PricesCarWash(id, i.name, j))
     print(prices)
     # print(dict_of_form['Compact'])
     # print(dict_of_form['MiddleSize'])
@@ -194,8 +192,8 @@ def create_carwash_obj(request):
     new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
-    # res = Config.col_carwashes.insert_one(new_carwash_dict)
-    # print('WRITED CARWASH: ', res)
+    res = Config.col_carwashes.insert_one(new_carwash_dict)
+    print('WRITED CARWASH: ', res)
 
 
 def update_carwash_obj(request, carwash_id):
