@@ -41,14 +41,14 @@ def method_of_filters(request):
             print('not_guid')
             print('search_field & status')
             result = {
-                'CarWashId': request.form['search_field'],
+                'NAME': request.form['search_field'],
                 'Status': request.form['status'],
                 'DateCreate': {'$gt': start_time.isoformat()}
             }
     elif request.form['search_field'] != '' and request.form['status'] == '':
         print('only search_field')
         result = {
-            'CarWashId': request.form['search_field'],
+            'NAME': request.form['search_field'],
             'DateCreate': {'$gt': start_time.isoformat()}
         }
     elif request.form['search_field'] == '' and request.form['status'] != '':
