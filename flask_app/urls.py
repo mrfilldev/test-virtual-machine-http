@@ -518,6 +518,16 @@ def format_datetime(value):
         value = value.strftime("%d.%m.%Y %H:%M:%S")
     return value
 
+@app.template_filter()
+def format_name_point(value):
+    carwash_obj = db_carwashes.find_one({'Id': int(carwash_id)})  # dict
+    print(carwash_obj)
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    value = carwash_obj.Name
+    return value
+
 
 ################################################################
 if __name__ == '__main__':
