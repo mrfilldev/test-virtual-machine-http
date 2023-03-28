@@ -341,7 +341,7 @@ def orders_list():
     # mongo find by filter in () // projections
     carwashes_names = db_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
     for i in carwashes_names:
-        data = json.loads(json_util.dumps(carwashes_names))
+        data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwashes_names = json.loads(data, object_hook=lambda d: Order(**d))
 
