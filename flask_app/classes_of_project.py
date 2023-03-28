@@ -1,7 +1,7 @@
 class Order:
 
     def __init__(self, _id, CarWashId, BoxNumber, ContractId, Sum, Status, DateCreate, SumCompleted, SumPaidStationCompleted,
-                 Description, Services):
+                 Description=None, Services=None):
 
         self.Id = _id
         self.CarWashId = int(CarWashId)
