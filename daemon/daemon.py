@@ -123,7 +123,7 @@ async def user_canceled(order):
 
     while time.time() <= after_minute:
         #  проверку в бд
-        order_in_db = Config.col_orders.find_one({'Id': str(order.Id)})  # получаем словарь
+        order_in_db = Config.col_orders.find_one({'_id': str(order.id)})  # получаем словарь
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order_status = order_in_db['Status']
         print('Status: ', order_status)

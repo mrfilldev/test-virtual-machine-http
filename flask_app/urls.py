@@ -21,7 +21,7 @@ from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
     create_price, delete_price, edit_price, show_list_price
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
-    delete_carwash_obj
+    delete_carwash_obj, Carwash
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
@@ -358,7 +358,8 @@ def order_detail(order_id):
     order_obj = orders.find_one({'_id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
-    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    order_obj = json.loads(data, object_hook=lambda d: Carwash(**d))  # SimpleNamespace
+    print('order_obj: \n', + order_obj)
     location_my = {
         'latitude': 55.650378,
         'longitude': 37.606487
