@@ -215,12 +215,13 @@ def carwash_list_main():
     all_carwashes = db_carwashes.find({})
     array_of_carwashes = []
     for obj in all_carwashes:
-        print(obj)
-
         if '_id' in obj:
             obj.pop('_id')
-        print(obj)
+
         array_of_carwashes.append(obj)
+        print(obj.Price)
+
+
     #     array_of_carwashes.append(obj)
     # print('================================================================')
     # print(array_of_carwashes)
