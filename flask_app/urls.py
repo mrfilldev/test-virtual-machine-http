@@ -345,7 +345,7 @@ def orders_list():
     context = {
         'orders_list': orders_list,
         'count_orders': count_orders,
-        'carwash': carwashes_name,
+        'carwashes_name': carwashes_name,
         'date': today
     }
     return render_template(
