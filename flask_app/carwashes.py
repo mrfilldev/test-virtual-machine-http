@@ -168,9 +168,17 @@ def create_carwash_obj(request):
 
 def update_carwash_obj(request, carwash_id):
     form = request.form
+    dict_of_form = request.form.to_dict(flat=False)
     new_boxes_json = json.dumps(create_boxes(int(form['amount_boxes'])), default=lambda x: x.__dict__)
     new_boxes_lost_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     enable: bool = True if form['status'] == 'enable' else False
+    prices = []
+    for j in dict_of_form:
+        if 'price' in j:
+            print(j.split('_'))
+            if request.form[j] != '':
+                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
+    print(prices)
     old_carwash = {'Id': int(carwash_id)}
     print('old_carwash: ', old_carwash)
     set_fields = {'$set': {
