@@ -1,7 +1,6 @@
 class Order:
 
-    def __init__(self, _id, CarWashId, BoxNumber, ContractId, Sum, Status, DateCreate, SumCompleted, SumPaidStationCompleted,
-                 Description=None, Services=None):
+    def __init__(self, _id, CarWashId, BoxNumber, ContractId, Sum, Status, DateCreate, SumCompleted, SumPaidStationCompleted,):
 
         self.Id = _id
         self.CarWashId = int(CarWashId)
@@ -12,5 +11,4 @@ class Order:
         self.DateCreate = DateCreate
         self.SumPaidStationCompleted = SumCompleted
         self.SumCompleted = SumPaidStationCompleted
-        self.Description = Description
-        self.Services = Services
+
