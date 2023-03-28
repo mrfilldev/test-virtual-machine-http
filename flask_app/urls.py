@@ -332,6 +332,7 @@ def orders_list():
         # count_orders += 1
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
+        print(data)
         order_obj = json.loads(data, object_hook=lambda d: Order(**d))
         print(vars(order_obj))
         orders_list.append(order_obj)
