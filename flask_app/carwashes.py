@@ -5,6 +5,7 @@ from types import SimpleNamespace
 from config.config import Config
 
 db_carwashes = Config.col_carwashes
+db_prices = Config.col_prices
 
 
 class Types(enum.IntEnum):
@@ -211,6 +212,25 @@ def delete_carwash_obj(carwash_id):
     db_carwashes.delete_one({'Id': int(carwash_id)})
 
 
+def make_price_corrrect_4_tanker(list_price):
+    result = []
+    for obj_price in list_price:
+        price_db = db_prices.find({'Id': int(obj_price['Id'])})
+
+        # Поля которые требуется сформировать
+        # Id Name Description Category Cost CostType
+        result.append({
+            'Id': obj_price['Id'],
+            'Name': price_db['name'],
+            'Description': price_db['description'],
+            'Category': obj_price['categoryPrice'],
+            'Cost': obj_price['cost'],
+            'CostType': price_db['costType'],
+        })
+
+    return result
+
+
 def carwash_list_main():
     all_carwashes = db_carwashes.find({})
     array_of_carwashes = []
@@ -218,9 +238,11 @@ def carwash_list_main():
         if '_id' in obj:
             obj.pop('_id')
 
+        print('BEFORE: ', obj['Price'])
+        # метод получения всех требуемых данных:
+        obj['Price'] = make_price_corrrect_4_tanker(obj['Price'])
+        print('AFTER: ', obj['Price'])
         array_of_carwashes.append(obj)
-        print(obj['Price'])
-
 
     #     array_of_carwashes.append(obj)
     # print('================================================================')
