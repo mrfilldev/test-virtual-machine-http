@@ -139,11 +139,12 @@ def create_prices(request, dict_of_form):
 
                 obj = prices_list[int(j.split('_')[1])-1]
                 print(obj)
-                category = obj.categoryPrice
-                print(category)
-                if category.category == j.split('_')[2]:
-                    sum_default = category.sum
-                    prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], sum_default))
+                categories = obj.categoryPrice
+                print(categories)
+                for category in categories:
+                    if category.category == j.split('_')[2]:
+                        sum_default = category.sum
+                        prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], sum_default))
 
     print('prices', prices)
     return prices
