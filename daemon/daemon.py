@@ -152,6 +152,10 @@ async def make_some_noize(order):
     carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     value = carwash_obj.Name
     order['name_of_carwash'] = str(value)
+
+    order['_id'] = order['Id']
+    order = order.pop('Id')
+
     await write_into_db(order)
 
 
@@ -214,9 +218,6 @@ async def write_into_db(order):
     # dbs - название бд
     # test_items - название чего?
     # mycol - название коллекции
-
-    order['_id'] = order['Id']
-    order = order.pop('Id')
 
     res = Config.col_orders.insert_one(eval(order))
     print('WRITED ORDER: ', res)
