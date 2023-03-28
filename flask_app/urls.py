@@ -355,7 +355,7 @@ def orders_list():
 @app.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
 @owner_status_required
 def order_detail(order_id):
-    order_obj = orders.find_one({'Id': order_id})  # dict
+    order_obj = orders.find_one({'_id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
