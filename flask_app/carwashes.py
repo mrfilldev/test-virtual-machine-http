@@ -250,6 +250,7 @@ def make_price_corrrect_4_tanker(list_price):
             'CostType': price_obj.costType,
         })
 
+
     return result
 
 
