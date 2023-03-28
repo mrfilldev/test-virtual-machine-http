@@ -113,6 +113,17 @@ def create_boxes(amount_boxes: int):
     return result
 
 
+def create_prices(request, dict_of_form):
+    prices = []
+    for j in dict_of_form:
+        if 'price' in j:
+            print(j.split('_'))
+            if request.form[j] != '':
+                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
+    print('prices', prices)
+    return prices
+
+
 def create_carwash_obj(request):
     print('\n################################################################\n')
     dict_of_form = request.form.to_dict(flat=False)
@@ -170,15 +181,10 @@ def update_carwash_obj(request, carwash_id):
     form = request.form
     dict_of_form = request.form.to_dict(flat=False)
     new_boxes_json = json.dumps(create_boxes(int(form['amount_boxes'])), default=lambda x: x.__dict__)
-    new_boxes_lost_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
+    new_boxes_list_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     enable: bool = True if form['status'] == 'enable' else False
-    prices = []
-    for j in dict_of_form:
-        if 'price' in j:
-            print(j.split('_'))
-            if request.form[j] != '':
-                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
-    print(prices)
+    new_prices_json = json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)
+    new_prices_list_of_dict = json.loads(new_prices_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     old_carwash = {'Id': int(carwash_id)}
     print('old_carwash: ', old_carwash)
     set_fields = {'$set': {
@@ -187,8 +193,8 @@ def update_carwash_obj(request, carwash_id):
         'Address': form['address'],
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
-        'Boxes': new_boxes_lost_of_dict,
-        'Price': prices,
+        'Boxes': new_boxes_list_of_dict,
+        'Price': new_prices_list_of_dict,
     }}
     new_carwash = db_carwashes.update_one(old_carwash, set_fields)
     print('UPDATE FIELDS: ', set_fields)
@@ -220,5 +226,5 @@ def carwash_list_main():
     # print(array_of_carwashes)
     # print('================================================================')
     result = json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
-    #print(result)
+    # print(result)
     return result
