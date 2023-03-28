@@ -343,8 +343,8 @@ def orders_list():
     carwashes = db_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
     for i in carwashes:
         data = json.loads(json_util.dumps(i))
-        carwash = json.dumps(data, default=lambda x: x.__dict__)
-
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
     print(carwashes_names)
     for i in carwashes_names:
