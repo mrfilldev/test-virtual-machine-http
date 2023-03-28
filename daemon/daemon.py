@@ -218,7 +218,7 @@ async def write_into_db(order):
     order['_id'] = order['Id']
     order = order.pop('Id')
 
-    res = Config.col_orders.insert_one(order)
+    res = Config.col_orders.insert_one(eval(order))
     print('WRITED ORDER: ', res)
 
     print('ORDER_ID:', res.inserted_id)
