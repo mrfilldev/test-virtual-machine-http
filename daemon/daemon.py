@@ -139,20 +139,6 @@ async def user_canceled(order):
 
 
 async def make_some_noize(order):
-    result = order['DateCreate'].replace('T', ' ')
-    print(result)
-    result = result.replace('Z', '')
-    print(result)
-    order['DateCreateMy'] = result
-
-    carwash_obj = db_carwashes.find_one({'Id': int(order['CarWashId'])})  # dict
-    print(carwash_obj)
-    data = json.loads(json_util.dumps(carwash_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    value = carwash_obj.Name
-    order['name_of_carwash'] = str(value)
-
     order['_id'] = str.encode(order['Id'])
     order = order.pop('Id')
 
