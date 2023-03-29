@@ -217,11 +217,11 @@ def user_detail(user_id):
     if request.method == 'POST':
         new_value = request.form['access_level']
         set_command = {"$set": {"access_level": new_value}}
-        old_user = {'id': str(user_id)}
+        old_user = {'_id': str(user_id)}
         new_user = users.update_one(old_user, set_command)
         print('new_user', new_user)
 
-    user_obj = users.find_one({'id': str(user_id)})  # dict
+    user_obj = users.find_one({'_id': str(user_id)})  # dict
     print(user_obj)
 
     data = json.loads(json_util.dumps(user_obj))
