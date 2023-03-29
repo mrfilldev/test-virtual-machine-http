@@ -429,8 +429,7 @@ def order_detail(order_id):
 
 
 @app.route('/profile/', methods=['POST', 'GET'])
-@login_required
-@user_loader
+@login_required.user_loader
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
 
