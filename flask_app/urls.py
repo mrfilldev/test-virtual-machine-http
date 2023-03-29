@@ -261,12 +261,12 @@ def admin_add_network():
     add_network(request)
     return render_template('admin_zone/networks/create_network.html')
 
+
 @app.route('/list_networks/', methods=['POST', 'GET'])
 @admin_status_required
 def admin_networks():
     context = list_networks(request)
-    return render_template('admin_zone/creations/list_networks.html', context=context)
-
+    return render_template('admin_zone/networks/list_networks.html', context=context)
 
 
 ########################################################################
