@@ -455,7 +455,6 @@ def profile(current_user):
             set_command = {
                 "$set": {
                     "company_name": company_name,
-                    'current_user': current_user,
                     "inn": inn,
                 },
             }
@@ -476,6 +475,7 @@ def profile(current_user):
     context = {
         'status': status,
         'user': user,
+        'current_user': current_user,
         'user_yan_inf': user_yan_inf,
     }
     return render_template('profile/profile.html', context=context)
