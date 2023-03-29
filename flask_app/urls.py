@@ -259,7 +259,7 @@ def add_company():
 @admin_status_required
 def admin_add_network():
     add_network(request)
-    return redirect(url_for('profile'))
+    return render_template('admin_zone/creations/create_network.html')
 
 
 ########################################################################
