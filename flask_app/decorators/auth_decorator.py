@@ -77,6 +77,8 @@ def carwasher_status_required(f):
 
 def user_loader(f):
     @wraps(f)
-    def decorated_function():
-        return oauth_via_yandex.get_user(session['ya-token'])
+    def decorated_function(*args, **kwargs):
+        current_user = oauth_via_yandex.get_user(session['ya-token'])
+        if current_user is not None:
+            return f(*args, **kwargs)
     return decorated_function
