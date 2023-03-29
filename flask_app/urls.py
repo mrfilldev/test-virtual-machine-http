@@ -21,8 +21,8 @@ from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
     create_price, delete_price, edit_price, show_list_price
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
-    delete_carwash_obj, Carwash
-from flask_app.classes_of_project import Order
+    delete_carwash_obj
+from flask_app.classes_of_project import Order, Carwash
 from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
@@ -488,11 +488,11 @@ def carwash_detail(carwash_id):
         print('new carwash: ', new_carwash)
         return redirect(url_for('carwashes'))
     print(type(carwash_id))
-    carwash_obj = db_carwashes.find_one({'Id': int(carwash_id)})  # dict
+    carwash_obj = db_carwashes.find_one({'_id': int(carwash_id)})  # dict
     print(carwash_obj)
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
-    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    carwash_obj = json.loads(data, object_hook=lambda d: Carwash(**d))  # SimpleNamespace
     amount_boxes = len(carwash_obj.Boxes)
 
     all_prices = prices.find()
