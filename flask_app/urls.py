@@ -426,7 +426,7 @@ def profile():
             }
             users.update_one({'id': user_yan_inf['id']}, set_command)
     status = ''
-    user = users.find_one({'id': user_yan_inf['id']})
+    user = users.find_one({'_id': user_yan_inf['id']})
     data = json.loads(json_util.dumps(user))
     data = json.dumps(data, default=lambda x: x.__dict__)
     user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
