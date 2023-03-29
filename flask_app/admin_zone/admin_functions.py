@@ -178,6 +178,22 @@ def add_network(request):
 
     networks.insert_one(new_network_dict)
 
+def list_networks(request):
+    all_networks = networks.find({})
+    networks_list = []
+    count_networks = 0
+    for count_networks, i in enumerate(list(all_networks)[::-1], 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print(price_obj)
+        networks_list.append(price_obj)
+    print(networks_list)
+    context = {
+        'prices_list': networks_list,
+        'count_prices': count_networks,
+    }
+    return context
 
 def add_owner_network():
     pass

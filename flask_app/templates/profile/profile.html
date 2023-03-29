@@ -14,6 +14,7 @@
             </ul>
             {% elif context['status'] == 'admin' %}
             <a class="nav-link" href="{{ url_for('admin_add_network') }}" aria-disabled="true">Добавить Сеть</a>
+            <a class="nav-link" href="{{ url_for('admin_networks') }}" aria-disabled="true">Сети</a>
 
             <a class="nav-link" href="#" aria-disabled="true">Ручная отмена заказа</a>
             <a class="nav-link" href="{{ url_for('test') }}" aria-disabled="true">Пользователи</a>
