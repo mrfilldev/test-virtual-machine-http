@@ -285,12 +285,6 @@ def main():
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
-        else:
-            data = json.loads(json_util.dumps(user))
-            data = json.dumps(data, default=lambda x: x.__dict__)
-            user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-            if user_obj.access_level == 'carwash_admin':
-                return redirect(url_for('orders_list'))
 
         return redirect(url_for('profile'))
     except Exception as e:
