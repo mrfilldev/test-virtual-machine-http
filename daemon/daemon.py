@@ -214,8 +214,8 @@ async def write_into_db(order):
 
 async def update_order_status(order, status):
     set_command = {"$set": {"Status": status}}
-    old_order = {'Id': order.Id}
-    print('Id: ', order.Id)
+    old_order = {'_id': order.Id}
+    print('_id: ', order.Id)
 
     print('UPDATE STATUS: ', status)
     new_order = Config.col_orders.update_one(old_order, set_command)

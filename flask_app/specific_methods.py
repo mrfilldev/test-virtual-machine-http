@@ -35,7 +35,6 @@ def method_of_filters(request):
                 'Id': request.form['search_field'],
                 # 'Status': request.form['status'],
                 # 'DateCreate': {'$gt': start_time.isoformat()}
-
             }
         else:
             print('not_guid')
