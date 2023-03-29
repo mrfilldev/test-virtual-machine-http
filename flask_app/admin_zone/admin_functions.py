@@ -171,7 +171,7 @@ def add_network(request):
     id = uuid.uuid4().hex
     name: str = form['name']
 
-    new_network = Network(_id=id, name=name)
+    new_network = Network(_id=id, Name=name)
 
     new_network_json = json.dumps(new_network, default=lambda x: x.__dict__)
     new_network_dict = json.loads(new_network_json)
