@@ -56,7 +56,7 @@
         <tbody class=".table-hover">
         {% for carwash in context['carwashes_list'] %}
 
-        <tr class="tr-order" data-href="{{ url_for('carwash_detail', carwash_id=carwash.Id) }}">
+        <tr class="tr-order" data-href="{{ url_for('carwash_detail', carwash_id=carwash.id) }}">
             <th scope="row">
                 {{ context['count_carwashes'] - loop.index0 }}
             </th>
