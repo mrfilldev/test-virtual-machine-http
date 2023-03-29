@@ -187,7 +187,7 @@ def list_networks(request):
     for count_networks, i in enumerate(list(all_networks)[::-1], 1):
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
-        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        price_obj = json.loads(data, object_hook=lambda d: Network(**d))
         print(price_obj)
         networks_list.append(price_obj)
     print(networks_list)
