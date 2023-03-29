@@ -80,5 +80,5 @@ def user_loader(f):
     def decorated_function(*args, **kwargs):
         current_user = oauth_via_yandex.get_user(session['ya-token'])
         if current_user is not None:
-            return f(*args, **kwargs)
+            return current_user
     return decorated_function
