@@ -172,6 +172,7 @@ def create_carwash_obj(request):
     boxes = create_boxes(int(request.form['amount_boxes']))
     enable: bool = True if request.form['status'] == 'enable' else False
     status = enable
+    login_administrator = request.form['login_administrator']
     prices = create_prices(request, dict_of_form)
 
     # prices.append(PricesCarWash(id, i.name, j))
