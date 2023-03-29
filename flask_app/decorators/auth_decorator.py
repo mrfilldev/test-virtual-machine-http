@@ -5,21 +5,26 @@ from bson import json_util
 from flask import session, render_template, redirect, url_for
 from functools import wraps
 
+from flask_login import LoginManager
+
 from flask_app import oauth_via_yandex
 from config.config import Config
+from flask_app.urls import login_manager
 
-users = Config.col_owners
+owners = Config.col_owners
+users = Config.col_users
 
 
 def get_infor():
-    user = dict(session).get('ya-token', None)
-    user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-    user = users.find_one({'_id': user_yan_inf['id']})
-    print(user)
-    data = json.loads(json_util.dumps(user))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-    print(user)
+    # user = dict(session).get('ya-token', None)
+    # user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
+    current_user.role == 'admin'
+    # user = owners.find_one({'_id': user_yan_inf['id']})
+    # print(user)
+    # data = json.loads(json_util.dumps(user))
+    # data = json.dumps(data, default=lambda x: x.__dict__)
+    # user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    # print(user)
     return user
 
 
@@ -69,3 +74,7 @@ def carwasher_status_required(f):
         return redirect(url_for('profile'))
 
     return decorated_function
+
+
+def user_loader():
+    return oauth_via_yandex.get_user(session['ya-token'])
