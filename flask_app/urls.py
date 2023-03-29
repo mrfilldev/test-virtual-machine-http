@@ -492,7 +492,7 @@ def carwash_detail(carwash_id):
     print(carwash_obj)
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
-    carwash_obj = json.loads(data, object_hook=lambda d: Carwash(**d))  # SimpleNamespace
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     amount_boxes = len(carwash_obj.Boxes)
 
     all_prices = prices.find()
