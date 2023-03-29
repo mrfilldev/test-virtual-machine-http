@@ -24,6 +24,7 @@ from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_
     delete_carwash_obj
 from flask_app.classes_of_project import Order, Carwash
 from flask_app.specific_methods import method_of_filters
+from flask_login import current_user
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required, \
     user_loader
 
@@ -429,7 +430,8 @@ def order_detail(order_id):
 
 
 @app.route('/profile/', methods=['POST', 'GET'])
-@login_required.user_loader
+@login_required
+@user_loader
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
 
@@ -453,6 +455,7 @@ def profile():
             set_command = {
                 "$set": {
                     "company_name": company_name,
+                    'current_user': current_user,
                     "inn": inn,
                 },
             }
