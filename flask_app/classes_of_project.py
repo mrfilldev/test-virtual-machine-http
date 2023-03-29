@@ -1,7 +1,7 @@
 class Order:
 
-    def __init__(self, _id, CarWashId, BoxNumber, ContractId, Sum, Status, DateCreate, SumCompleted, SumPaidStationCompleted,):
-
+    def __init__(self, _id, CarWashId, BoxNumber, ContractId, Sum, Status, DateCreate, SumCompleted,
+                 SumPaidStationCompleted, ):
         self.Id = _id
         self.CarWashId = int(CarWashId)
         self.BoxNumber = BoxNumber
@@ -11,6 +11,16 @@ class Order:
         self.DateCreate = DateCreate
         self.SumPaidStationCompleted = SumCompleted
         self.SumCompleted = SumPaidStationCompleted
+
+
+class Point:  # enum.Enum):
+    def __init__(self, latitude, longitude):
+        self.lat = latitude
+        self.lon = longitude
+
+    def return_list(self):
+        list_obj = [self.lat, self.lon]
+        return list_obj
 
 
 class Carwash:
