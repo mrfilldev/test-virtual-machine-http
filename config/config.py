@@ -26,7 +26,7 @@ class Config(object):
             'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
         ]),
         rs='rs01',
-        auth_src='orders')
+        auth_src='test_database')
     client = pymongo.MongoClient(
         url,
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
