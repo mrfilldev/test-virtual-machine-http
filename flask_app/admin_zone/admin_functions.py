@@ -166,8 +166,6 @@ def delete_price(price_id):
 
 def add_network(request):
     print('\n################################################################\n')
-    dict_of_form = request.form.to_dict(flat=False)
-    print(dict_of_form)
     form = request.form
 
     id = uuid.uuid4().hex
@@ -180,6 +178,7 @@ def add_network(request):
     new_network_dict['_id'] = new_network_dict.pop('Id')
 
     networks.insert_one(new_network_dict)
+    print("Network inserted successfully")
 
 def list_networks(request):
     all_networks = networks.find({})
