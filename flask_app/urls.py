@@ -7,7 +7,6 @@ import traceback
 import boto3
 from bson import json_util
 from flask import Flask, render_template, url_for, request, session, redirect, Response
-from flask_login import LoginManager
 
 import carwash_list
 import carwash_order
@@ -40,7 +39,7 @@ app = Flask(
     static_url_path='',
     static_folder='/static',
 )
-login_manager = LoginManager(app)
+
 bootstrap = Bootstrap(app)
 
 users = Config.col_owners
