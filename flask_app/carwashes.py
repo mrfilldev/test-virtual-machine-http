@@ -195,6 +195,7 @@ def create_carwash_obj(request):
     new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
+    new_carwash_dict['_id'] = new_carwash_dict.pop('id')
     res = Config.col_carwashes.insert_one(new_carwash_dict)
     print('WRITED CARWASH: ', res)
 
@@ -207,7 +208,7 @@ def update_carwash_obj(request, carwash_id):
     enable: bool = True if form['status'] == 'enable' else False
     new_prices_json = json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)
     new_prices_list_of_dict = json.loads(new_prices_json)  # , object_hook=lambda d: SimpleNamespace(**d))
-    old_carwash = {'Id': int(carwash_id)}
+    old_carwash = {'_id': int(carwash_id)}
     print('old_carwash: ', old_carwash)
     set_fields = {'$set': {
         'Enable': enable,
