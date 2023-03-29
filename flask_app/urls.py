@@ -265,7 +265,7 @@ def main():
             session['ya-token'] = resp['access_token']
             print('ya-token has been inserted')
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
-        user = users.find_one({'id': user_inf['id']})
+        user = users.find_one({'_id': user_inf['id']})
 
         if user is None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
@@ -273,7 +273,7 @@ def main():
             print(date_now)
             users.insert_one(
                 {
-                    'id': user_inf['id'],
+                    '_id': user_inf['id'],
                     'psuid': user_inf['psuid'],
                     'login': user_inf['login'],
                     'access_level': 'Новый пользователь',
