@@ -4,25 +4,24 @@
 <br>
 <div class="container">
     <div class="row">
-        <form method=POST action="{{ url_for('user_detail', user_id=context['user'].id) }}">
-            <div class="col-2">
-                <div class="col-1">
-                    <button style="width: auto" type="submit" class="btn btn-outline-secondary"
-                            href="{{ url_for('user_detail', user_id=context['user'].id) }}">
-                        Сохранить
-                    </button>
-                </div>
-
-                <div class="col-1">
-                    <a style="width: auto" class="btn btn-outline-danger"
-                       href="{{ url_for('admin_delete_user', user_id=context['user'].id) }}">
-                        Удалить
-                    </a>
-                </div>
+        <div class="col-2">
+            <div class="col-1">
+                <button style="width: auto" type="submit" class="btn btn-outline-secondary"
+                        href="{{ url_for('user_detail', user_id=context['user'].id) }}">
+                    Сохранить
+                </button>
             </div>
-            <div class="col-10">
-                <main class="container-sm">
-                    <div class="table-responsive">
+
+            <div class="col-1">
+                <a style="width: auto" class="btn btn-outline-danger"
+                   href="{{ url_for('admin_delete_user', user_id=context['user'].id) }}">
+                    Удалить
+                </a>
+            </div>
+        </div>
+        <div class="col-10">
+            <main class="container-sm">
+                <div class="table-responsive">
 
                         <table class="table table-bordered table-center">
                             <thead class="table-light">
@@ -77,13 +76,13 @@
                         </table>
 
 
-        </form>
-        ________________________________________________________________________________________________<br>
-        {{ context['user']}}
-        ________________________________________________________________________________________________<br>
+                    </form>
+                    ________________________________________________________________________________________________<br>
+                    {{ context['user']}}
+                    ________________________________________________________________________________________________<br>
+                </div>
+            </main>
+        </div>
     </div>
-    </main>
-</div>
-</div>
 </div>
 {% endblock %}
