@@ -266,7 +266,7 @@ def main():
             print('ya-token has been inserted')
         print('ya-token is True')
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
-        print(user_inf)
+        print('user_inf: ', user_inf)
         user = users.find_one({'_id': user_inf['id']})
 
         if user is None:
