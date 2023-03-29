@@ -13,8 +13,8 @@
                 <li>Номер телефона: _______</li>
             </ul>
             {% elif context['status'] == 'admin' %}
-            <a class="nav-link" href="{{ url_for('add_network') }}" aria-disabled="true">Добавить Сеть</a>
-            <a class="nav-link" href="{{ url_for('add_owner_network') }}" aria-disabled="true">Добавить Владельца Сети</a>
+            <a class="nav-link" href="{{ url_for('admin_add_network') }}" aria-disabled="true">Добавить Сеть</a>
+
             <a class="nav-link" href="#" aria-disabled="true">Ручная отмена заказа</a>
             <a class="nav-link" href="{{ url_for('test') }}" aria-disabled="true">Пользователи</a>
             <a class="nav-link" href="{{ url_for('list_of_prices') }}" aria-disabled="true">Тарифы</a>
