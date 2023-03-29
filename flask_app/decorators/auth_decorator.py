@@ -14,7 +14,7 @@ users = Config.col_owners
 def get_infor():
     user = dict(session).get('ya-token', None)
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-    user = users.find_one({'id': user_yan_inf['id']})
+    user = users.find_one({'_id': user_yan_inf['id']})
     print(user)
     data = json.loads(json_util.dumps(user))
     data = json.dumps(data, default=lambda x: x.__dict__)
