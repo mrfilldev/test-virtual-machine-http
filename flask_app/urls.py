@@ -384,7 +384,6 @@ def order_detail(order_id):
         location = location_my
     else:
         location = location_crystal
-
     context = {
         'order': order_obj,
         'location': location
