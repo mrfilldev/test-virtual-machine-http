@@ -42,3 +42,12 @@ class Network:
     def __init__(self, _id, Name):
         self.Id = _id
         self.Name = Name
+
+
+class User:
+    def __init__(self, _id, Name, Login, Network_Id, Role):
+        self.Id = _id
+        self.Name = Name
+        self.Login = Login
+        self.Network_Id = Network_Id
+        self.Role = Role

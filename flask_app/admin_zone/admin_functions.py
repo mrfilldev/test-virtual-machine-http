@@ -9,11 +9,13 @@ from flask import render_template
 from flask_app import oauth_via_yandex, carwashes
 from config.config import Config
 from ..carwashes import CategoryAuto, CostIdSum
-from ..classes_of_project import Network
+from ..classes_of_project import Network, User
 
-users = Config.col_owners
+owners = Config.col_owners
 prices = Config.col_prices
 networks = Config.col_networks
+users = Config.col_users
+
 
 def check_root(session):
     """
@@ -28,7 +30,7 @@ def check_root(session):
     """
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     user_id = user_inf['id']
-    user = users.find_one({'id': user_id})
+    user = owners.find_one({'id': user_id})
 
     if user['access_level'] == 'admin':
         return 'admin'
@@ -54,12 +56,12 @@ def admin_main(request, session):
 
 
 def delete_user(request, session, user_id):
-    users.delete_one({'id': user_id})
+    owners.delete_one({'id': user_id})
 
 
 def test_view(session):
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
-    all_users = users.find({})
+    all_users = owners.find({})
     users_list = []
     count_users = 0
     for count_users, i in enumerate(list(all_users)[::-1], 1):
@@ -180,6 +182,7 @@ def add_network(request):
     networks.insert_one(new_network_dict)
     print("Network inserted successfully")
 
+
 def list_networks(request):
     all_networks = networks.find({})
     networks_list = []
@@ -197,5 +200,19 @@ def list_networks(request):
     }
     return context
 
-def add_owner_network():
-    pass
+
+def add_user(request):
+    print('\n################################################################\n')
+    form = request.form
+
+    id = uuid.uuid4().hex
+
+    new_user = User(_id=id, Name=form['name'], Login=form['Login'], Network_Id=form['Network_Id'], Role=form['Role'])
+
+    new_user_json = json.dumps(new_user, default=lambda x: x.__dict__)
+    new_user_dict = json.loads(new_user_json)
+    new_user_dict['_id'] = new_user_dict.pop('Id')
+
+    users.insert_one(new_user_dict)
+    print("User inserted successfully")
+
