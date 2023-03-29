@@ -258,7 +258,8 @@ def add_company():
 @app.route('/add_network/', methods=['POST', 'GET'])
 @admin_status_required
 def admin_add_network():
-    add_network(request)
+    if request.method == 'POST':
+        add_network(request)
     return render_template('admin_zone/networks/create_network.html')
 
 
