@@ -268,7 +268,7 @@ def main():
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
         print('user_inf: ', user_inf)
         user = users.find_one({'_id': user_inf['id']})
-
+        print('user: ', user)
         if user is None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
             date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
