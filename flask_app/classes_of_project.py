@@ -39,6 +39,6 @@ class Carwash:
 
 
 class Network:
-    def __init__(self, _id, name):
+    def __init__(self, _id, Name):
         self.Id = _id
-        self.Name = name
+        self.Name = Name
