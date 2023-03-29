@@ -192,8 +192,8 @@ def list_networks(request):
         networks_list.append(price_obj)
     print(networks_list)
     context = {
-        'prices_list': networks_list,
-        'count_prices': count_networks,
+        'network_list': networks_list,
+        'count_networks': count_networks,
     }
     return context
 
