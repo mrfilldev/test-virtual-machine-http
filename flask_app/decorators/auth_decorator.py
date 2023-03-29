@@ -8,7 +8,7 @@ from functools import wraps
 from flask_app import oauth_via_yandex
 from config.config import Config
 
-users = Config.col_users
+users = Config.col_owners
 
 
 def get_infor():

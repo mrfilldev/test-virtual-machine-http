@@ -93,7 +93,7 @@ class Point:  # enum.Enum):
 
 class Carwash:
     def __init__(self, id, enable, name, address, Location: Point,
-                 Type, stepCost, limitMinCost, Boxes, Price):
+                 Type, stepCost, limitMinCost, Boxes, Price, CarwashAdmin):
         self.Id = id
         self.Enable = enable
         self.Name = name
@@ -104,8 +104,7 @@ class Carwash:
         self.LimitMinCost = limitMinCost
         self.Boxes = Boxes
         self.Price = Price
-
-
+        self.CarwashAdmin = CarwashAdmin
 
 
 def create_boxes(amount_boxes: int):
@@ -186,7 +185,7 @@ def create_carwash_obj(request):
 
     new_carwash = Carwash(
         id, status, name_carwash, address_carwash, location_carwash, types,
-        stepCost, limitMinCost, boxes, prices
+        stepCost, limitMinCost, boxes, prices, login_administrator
     )
     new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
     print('TYPE: ', type(new_carwash_json))
@@ -195,8 +194,15 @@ def create_carwash_obj(request):
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
     new_carwash_dict['_id'] = new_carwash_dict.pop('Id')
-    res = Config.col_carwashes.insert_one(new_carwash_dict)
-    print('WRITED CARWASH: ', res)
+
+    Config.col_carwashes.insert_one(new_carwash_dict)
+    Config.col_carwashes_admins.insert_one(
+        {
+            '_id': new_carwash_dict['_id'],
+            'login': login_administrator,
+            'access_level': 'carwash_admin',
+        }
+    )
 
 
 def update_carwash_obj(request, carwash_id):

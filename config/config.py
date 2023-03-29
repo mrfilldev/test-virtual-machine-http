@@ -30,17 +30,14 @@ class Config(object):
     client = pymongo.MongoClient(
         url,
         tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
-    db_orders = client['orders']
-    db_users = client['users']
-    db_carwashes = client['carwashes']
-    db_prices = client['prices']
-    db_companies = client['companies']
+    db_test = client['test_database']
 
-    col_orders = db_orders["test_orders"]
-    col_users = db_users["test_users"]
-    col_carwashes = db_carwashes["test_users"]  # КОСЯК, требует вмешательства
-    col_prices = db_prices["test_prices"]
-    col_companies = db_companies["test_companies"]
+    col_orders = db_test["test_orders"]
+    col_owners = db_test["test_owners"]
+    col_carwashes_admins = db_test["test_carwashes_admins"]
+    col_carwashes = db_test["test_carwashes"]
+    col_prices = db_test["test_prices"]
+    col_companies = db_test["test_companies"]
 
     # yandex oauth
     YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')

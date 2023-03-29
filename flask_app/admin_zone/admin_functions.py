@@ -9,7 +9,7 @@ from flask_app import oauth_via_yandex, carwashes
 from config.config import Config
 from ..carwashes import CategoryAuto, CostIdSum
 
-users = Config.col_users
+users = Config.col_owners
 prices = Config.col_prices
 
 
