@@ -19,7 +19,7 @@ from types import SimpleNamespace
 
 from flask_app import oauth_via_yandex
 from flask_app.admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
-    create_price, delete_price, edit_price, show_list_price
+    create_price, delete_price, edit_price, show_list_price, add_network
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj
 from flask_app.classes_of_project import Order, Carwash
@@ -53,6 +53,7 @@ API_KEY = Config.API_KEY
 # SQS MESSAGE QUEUE CONFIGURATION
 queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker' \
                '-carwsh-orders'
+
 client = boto3.client(
     aws_access_key_id=Config.AWS_ACCESS_KEY_ID,  # os.getenv('AWS_ACCESS_KEY_ID'),
     aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY,  # os.getenv('AWS_SECRET_ACCESS_KEY'),
@@ -253,6 +254,20 @@ def add_company():
         # return redirect(url_for('profile'))
     return render_template('admin_zone/add_company.html')
 
+
+@app.route('/add_network/', methods=['POST', 'GET'])
+@admin_status_required
+def admin_add_network():
+    add_network(request)
+    return redirect(url_for('profile'))
+
+
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
 
 @app.route('/main')
 def main():

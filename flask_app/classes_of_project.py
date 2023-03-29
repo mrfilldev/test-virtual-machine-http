@@ -36,3 +36,9 @@ class Carwash:
         self.LimitMinCost = limitMinCost
         self.Boxes = Boxes
         self.Price = Price
+
+
+class Network:
+    def __init__(self, _id, name):
+        self.Id = _id
+        self.Name = name

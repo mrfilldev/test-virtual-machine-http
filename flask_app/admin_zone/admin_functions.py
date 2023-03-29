@@ -1,5 +1,6 @@
 import json
 import traceback
+import uuid
 from types import SimpleNamespace
 
 from bson import json_util
@@ -8,10 +9,11 @@ from flask import render_template
 from flask_app import oauth_via_yandex, carwashes
 from config.config import Config
 from ..carwashes import CategoryAuto, CostIdSum
+from ..classes_of_project import Network
 
 users = Config.col_owners
 prices = Config.col_prices
-
+networks = Config.col_networks
 
 def check_root(session):
     """
@@ -160,3 +162,22 @@ def edit_price(request, price_id):
 def delete_price(price_id):
     prices.delete_one({'Id': int(price_id)})
     print('deleted price: ', price_id)
+
+
+def add_network(request):
+    form = request.form
+
+    id = uuid.uuid4().hex
+    name: str = form.get('name')
+
+    new_network = Network(_id=id, name=name)
+
+    new_network_json = json.dumps(new_network, default=lambda x: x.__dict__)
+    new_network_dict = json.loads(new_network_json)
+    new_network_dict['_id'] = new_network_dict.pop('Id')
+
+    networks.insert_one(new_network_dict)
+
+
+def add_owner_network():
+    pass

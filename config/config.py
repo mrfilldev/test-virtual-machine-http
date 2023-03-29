@@ -38,6 +38,7 @@ class Config(object):
     col_carwashes = db_test["test_carwashes"]
     col_prices = db_test["test_prices"]
     col_companies = db_test["test_companies"]
+    col_networks = db_test["test_networks"]
 
     # yandex oauth
     YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')
