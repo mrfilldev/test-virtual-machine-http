@@ -9,22 +9,21 @@ from flask_login import LoginManager
 
 from flask_app import oauth_via_yandex
 from config.config import Config
-from flask_app.urls import login_manager
 
 owners = Config.col_owners
 users = Config.col_users
 
 
 def get_infor():
-    # user = dict(session).get('ya-token', None)
-    # user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
-    current_user.role == 'admin'
-    # user = owners.find_one({'_id': user_yan_inf['id']})
-    # print(user)
-    # data = json.loads(json_util.dumps(user))
-    # data = json.dumps(data, default=lambda x: x.__dict__)
-    # user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-    # print(user)
+    user = dict(session).get('ya-token', None)
+    user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
+    # current_user.role == 'admin'
+    user = owners.find_one({'_id': user_yan_inf['id']})
+    print(user)
+    data = json.loads(json_util.dumps(user))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print(user)
     return user
 
 
