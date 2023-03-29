@@ -4,20 +4,26 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-2">
-            Контакты мойки:
-            <aside class="bd-sidebar">
-                <ul>
-                    <li>Адрес: ________</li>
-                    <li>Часы работы: _______</li>
-                    <li>Номер телефона: _______</li>
-                </ul>
-            </aside>
-        </div>
-        <div class="col-10">
-            <main class="container-sm">
-                <div class="table-responsive">
-                    <form method=POST action="{{ url_for('user_detail', user_id=context['user'].id) }}">
+        <form method=POST action="{{ url_for('user_detail', user_id=context['user'].id) }}">
+            <div class="col-2">
+                <div class="col-1">
+                    <button style="width: auto" type="submit" class="btn btn-outline-secondary"
+                            href="{{ url_for('user_detail', user_id=context['user'].id) }}">
+                        Сохранить
+                    </button>
+                </div>
+
+                <div class="col-1">
+                    <a style="width: auto" class="btn btn-outline-danger"
+                       href="{{ url_for('admin_delete_user', user_id=context['user'].id) }}">
+                        Удалить
+                    </a>
+                </div>
+            </div>
+            <div class="col-10">
+                <main class="container-sm">
+                    <div class="table-responsive">
+
                         <table class="table table-bordered table-center">
                             <thead class="table-light">
                             <tr>
@@ -70,27 +76,14 @@
                             </tbody>
                         </table>
 
-                        <div class="col-1">
-                            <button style="width: auto" type="submit" class="btn btn-outline-secondary"
-                               href="{{ url_for('user_detail', user_id=context['user'].id) }}">
-                                Сохранить
-                            </button>
-                        </div>
 
-                        <div class="col-1">
-                            <a style="width: auto" class="btn btn-outline-danger"
-                               href="{{ url_for('admin_delete_user', user_id=context['user'].id) }}">
-                                Удалить
-                            </a>
-                        </div>
-
-                    </form>
-                    ________________________________________________________________________________________________<br>
-                    {{ context['user']}}
-                    ________________________________________________________________________________________________<br>
-                </div>
-            </main>
-        </div>
+        </form>
+        ________________________________________________________________________________________________<br>
+        {{ context['user']}}
+        ________________________________________________________________________________________________<br>
     </div>
+    </main>
+</div>
+</div>
 </div>
 {% endblock %}
