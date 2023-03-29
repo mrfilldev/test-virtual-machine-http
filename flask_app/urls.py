@@ -212,7 +212,7 @@ def admin_delete_price(price_id):
 
 
 @app.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
-#@admin_status_required
+@admin_status_required
 def user_detail(user_id):
     if request.method == 'POST':
         new_value = request.form['access_level']
