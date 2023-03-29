@@ -106,8 +106,6 @@
                         <tr class="table-light">
                             <th scope="col" colspan="2">Оплата</th>
                         </tr>
-
-
                         <tr>
                             <td style="width: 200px">
                                 Сумма стоимости заказа:
@@ -116,6 +114,19 @@
                                 <input style="width: 49%" type="text" class="form-control"
                                        value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
                             </td>
+                            <form>
+                                <td>
+                                    <button style="width: 49%" type="submit" class="form-control"
+                                            value="submit_order">Подтвердить
+                                    </button>
+                                </td>
+                                <td>
+                                    <button style="width: 49%" type="submit" class="form-control"
+                                            value="dismiss_order">Отменить
+                                    </button>
+                                </td>
+                            </form>
+
                         </tr>
                         <tr>
                             <td style="width: 200px">
