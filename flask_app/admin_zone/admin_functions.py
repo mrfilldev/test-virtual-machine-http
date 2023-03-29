@@ -171,7 +171,7 @@ def add_network(request):
     form = request.form
 
     id = uuid.uuid4().hex
-    name: str = form.get('name')
+    name: str = form['name']
 
     new_network = Network(_id=id, name=name)
 
