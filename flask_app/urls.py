@@ -380,7 +380,7 @@ def order_detail(order_id):
         'latitude': 55.750843,
         'longitude': 37.536693
     }
-    if order_obj.CarWashId == '1':
+    if order_obj.CarWashId == 1:
         location = location_my
     else:
         location = location_crystal
