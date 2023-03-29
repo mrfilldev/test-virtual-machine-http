@@ -92,9 +92,9 @@ class Point:  # enum.Enum):
 
 
 class Carwash:
-    def __init__(self, _id, enable, name, address, Location: Point,
+    def __init__(self, id, enable, name, address, Location: Point,
                  Type, stepCost, limitMinCost, Boxes, Price):
-        self.Id = _id
+        self.Id = id
         self.Enable = enable
         self.Name = name
         self.Address = address
@@ -105,8 +105,7 @@ class Carwash:
         self.Boxes = Boxes
         self.Price = Price
 
-    def id(self):
-        return self._id
+
 
 
 def create_boxes(amount_boxes: int):
@@ -163,7 +162,7 @@ def create_carwash_obj(request):
 
     print('\n################################################################\n')
 
-    _id = Config.col_carwashes.count_documents({}) + 1
+    id = Config.col_carwashes.count_documents({}) + 1
     name_carwash = request.form['name']
     address_carwash = request.form['address']
     location_carwash = Point(request.form['lat'], request.form['lon'])
@@ -185,7 +184,7 @@ def create_carwash_obj(request):
     # print(dict_of_form['MicroBus'])
 
     new_carwash = Carwash(
-        _id, status, name_carwash, address_carwash, location_carwash, types,
+        id, status, name_carwash, address_carwash, location_carwash, types,
         stepCost, limitMinCost, boxes, prices
     )
     new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
