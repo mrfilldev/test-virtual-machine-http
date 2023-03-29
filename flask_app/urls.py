@@ -269,11 +269,13 @@ def admin_networks():
     context = list_networks(request)
     return render_template('admin_zone/networks/list_networks.html', context=context)
 
+@app.route('/add_user/', methods=['POST', 'GET'])
+@admin_status_required
 def admin_add_user():
     if request.method == 'POST':
         add_user(request)
 
-    return render_template('admin_zone/users/create_user.html', context=context)
+    return render_template('admin_zone/users/create_user.html')
 
 ########################################################################
 ########################################################################
