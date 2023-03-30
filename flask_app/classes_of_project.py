@@ -1,4 +1,7 @@
-from flask_login import LoginManager
+from flask import session
+from flask_login import LoginManager, UserMixin
+
+from flask_app import oauth_via_yandex
 
 
 class Order:
@@ -47,10 +50,13 @@ class Network:
         self.Name = Name
 
 
-class User:
+class User(UserMixin):
     def __init__(self, _id, Name, Login, Network_Id, Role):
         self.Id = _id
         self.Name = Name
         self.Login = Login
         self.Network_Id = Network_Id
         self.Role = Role
+
+    def user_loader(self):
+        return oauth_via_yandex.get_user(session['ya-token'])
