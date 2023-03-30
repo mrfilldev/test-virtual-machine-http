@@ -23,7 +23,7 @@ from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_
     delete_carwash_obj
 from flask_app.models import Order, Carwash
 from flask_app.specific_methods import method_of_filters
-
+from flask_app import app
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required, \
     user_loader
 
@@ -35,13 +35,7 @@ client_secret = 'ПАРОЛЬ_ПРИЛОЖЕНИЯ'
 # Адрес сервера Яндекс.OAuth
 baseurl = 'https://oauth.yandex.ru/'
 # Конфиг приложения
-app = Flask(
-    __name__,
-    static_url_path='',
-    static_folder='/static',
-)
-login_manager = LoginManager(app)
-bootstrap = Bootstrap(app)
+
 
 users = Config.col_owners
 orders = Config.col_orders
@@ -431,7 +425,6 @@ def order_detail(order_id):
 
 @app.route('/profile/', methods=['POST', 'GET'])
 @login_required
-@login_manager.user_loader
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
     print('current_user: ', current_user)
