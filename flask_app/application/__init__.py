@@ -43,3 +43,11 @@ def create_app():
         region_name='ru-central1'
     )
     queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
+
+    with app.app_context():
+        from . import routes
+
+        # Register Blueprints
+        app.register_blueprint(routes.app)
+
+        return app
