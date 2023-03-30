@@ -9,10 +9,10 @@ from flask_app import oauth_via_yandex
 
 from flask_login import current_user, login_user, logout_user, login_required
 
-from urls import app
+from urls import login_manager
 
 users = Config.col_users
-login_manager = LoginManager(app)
+
 
 
 
