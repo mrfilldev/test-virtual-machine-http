@@ -28,6 +28,7 @@ from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required, \
     user_loader
 
+from flask_login import LoginManager
 # Идентификатор приложения
 client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
 # Пароль приложения
@@ -40,7 +41,7 @@ app = Flask(
     static_url_path='',
     static_folder='/static',
 )
-
+login_manager = LoginManager(app)
 bootstrap = Bootstrap(app)
 
 users = Config.col_owners
@@ -431,8 +432,8 @@ def order_detail(order_id):
 
 @app.route('/profile/', methods=['POST', 'GET'])
 @login_required
-@user_loader
-def profile(current_user):
+@login_manager.user_loader
+def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
 
     if request.method == 'POST':
@@ -475,7 +476,6 @@ def profile(current_user):
     context = {
         'status': status,
         'user': user,
-        'current_user': current_user,
         'user_yan_inf': user_yan_inf,
     }
     return render_template('profile/profile.html', context=context)

@@ -1,3 +1,6 @@
+from flask_login import LoginManager
+
+
 class Order:
 
     def __init__(self, _id, CarWashId, BoxNumber, ContractId, Sum, Status, DateCreate, SumCompleted,
