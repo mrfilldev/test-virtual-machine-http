@@ -21,7 +21,7 @@ from admin_zone.admin_functions import check_root, admin_main, delete_user, test
     create_price, delete_price, edit_price, show_list_price, add_network, list_networks, add_user
 from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj
-from flask_app.classes_of_project import Order, Carwash
+from flask_app.models import Order, Carwash
 from flask_app.specific_methods import method_of_filters
 
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required, \
