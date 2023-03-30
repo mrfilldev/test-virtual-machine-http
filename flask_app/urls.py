@@ -435,6 +435,7 @@ def order_detail(order_id):
 @login_manager.user_loader
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
+    print(current_user)
 
     if request.method == 'POST':
         company_name = request.form['company_name']
