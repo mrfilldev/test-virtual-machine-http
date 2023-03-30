@@ -1,15 +1,14 @@
 import json
 from types import SimpleNamespace
+from flask_app.urls import login_manager
 
 from bson import json_util
 from flask import session
 from flask_login import LoginManager, UserMixin
-import flask_app
 from config.config import Config
 from flask_app import oauth_via_yandex
 from flask_login import current_user, login_user, logout_user, login_required
 
-from flask_app.urls import login_manager
 
 users = Config.col_users
 
