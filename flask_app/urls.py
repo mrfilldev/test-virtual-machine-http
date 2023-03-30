@@ -8,7 +8,6 @@ import boto3
 from bson import json_util
 from flask import Flask, render_template, url_for, request, session, redirect, Response
 
-import carwash_list
 import carwash_order
 import ping_carwash_box
 from config.config import Config
