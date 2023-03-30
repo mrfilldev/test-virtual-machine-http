@@ -39,7 +39,6 @@ app = Flask(
     static_url_path='',
     static_folder='/static',
 )
-login_manager = LoginManager(app)
 bootstrap = Bootstrap(app)
 
 users = Config.col_owners
