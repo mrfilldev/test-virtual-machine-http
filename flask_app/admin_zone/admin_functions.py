@@ -207,7 +207,7 @@ def add_user(request):
 
     id = uuid.uuid4().hex
 
-    new_user = User(_id=id, Name=form['name'], Login=form['Login'], Network_Id=form['Network_Id'], Role=form['Role'])
+    new_user = User(_id=id, Name='', Login=form['Login'], Network_Id=form['Network_Id'], Role=form['Role'])
 
     new_user_json = json.dumps(new_user, default=lambda x: x.__dict__)
     new_user_dict = json.loads(new_user_json)
