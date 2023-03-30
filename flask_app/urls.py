@@ -8,7 +8,7 @@ import boto3
 from bson import json_util
 from flask import Flask, render_template, url_for, request, session, redirect, Response
 
-import carwash_order
+
 import ping_carwash_box
 from config.config import Config
 from flask_bootstrap import Bootstrap
@@ -20,6 +20,7 @@ from flask_login import LoginManager, current_user
 import oauth_via_yandex
 from carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj
+from flask_app import carwash_order
 from flask_app.models import Order
 
 from specific_methods import method_of_filters
@@ -40,6 +41,7 @@ app = Flask(
     static_folder='/static',
 )
 bootstrap = Bootstrap(app)
+login_manager = LoginManager(app)
 
 users = Config.col_owners
 orders = Config.col_orders
@@ -429,7 +431,6 @@ def order_detail(order_id):
 
 @app.route('/profile/', methods=['POST', 'GET'])
 @login_required
-@login_manager.user_loader
 def profile():
     user_yan_inf = oauth_via_yandex.get_user(session['ya-token'])
     print('current_user: ', current_user)

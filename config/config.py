@@ -44,3 +44,5 @@ class Config(object):
     # yandex oauth
     YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')
     YAN_CLIENT_SECRET = os.environ.get('YAN_CLIENT_SECRET')
+
+
