@@ -28,7 +28,7 @@ from flask_app.specific_methods import method_of_filters
 from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required, \
     user_loader
 
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 # Идентификатор приложения
 client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
 # Пароль приложения
