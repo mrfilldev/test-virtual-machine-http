@@ -11,7 +11,7 @@ app = Flask(
     static_folder='/static',
 )
 bootstrap = Bootstrap(app)
-login_manager = LoginManager(app)
+login_manager = LoginManager()
 
 def create_app():
     # Идентификатор приложения
@@ -43,7 +43,7 @@ def create_app():
         region_name='ru-central1'
     )
     queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
-
+    login_manager.init_app(app)
     with app.app_context():
         from . import routes
 
