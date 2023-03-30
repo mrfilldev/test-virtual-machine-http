@@ -8,7 +8,7 @@ from flask import render_template
 
 from flask_app import oauth_via_yandex, carwashes
 from config.config import Config
-from ..carwashes import CategoryAuto, CostIdSum
+from flask_app.carwashes import CategoryAuto, CostIdSum
 from ..classes_of_project import Network, User
 
 owners = Config.col_owners

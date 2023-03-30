@@ -1,6 +1,6 @@
 import json
 from types import SimpleNamespace
-from urls import login_manager
+from flask_app.urls import login_manager
 
 from bson import json_util
 from flask import session
