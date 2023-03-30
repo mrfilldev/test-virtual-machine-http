@@ -17,7 +17,7 @@ import json
 from types import SimpleNamespace
 from flask_login import LoginManager, current_user
 
-from . import oauth_via_yandex
+import oauth_via_yandex
 from admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
     create_price, delete_price, edit_price, show_list_price, add_network, list_networks, add_user
 from .carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
