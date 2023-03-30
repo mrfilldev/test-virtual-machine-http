@@ -18,7 +18,7 @@ from types import SimpleNamespace
 from flask_login import LoginManager, current_user
 
 import oauth_via_yandex
-from .carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
+from carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj
 from models import Order, Carwash
 from specific_methods import method_of_filters
