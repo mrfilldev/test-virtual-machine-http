@@ -6,7 +6,7 @@ from flask import Response
 
 from config.config import Config
 
-from flask_app.urls import client, queue_url
+from . import client, queue_url
 
 
 def to_camel_case(request):

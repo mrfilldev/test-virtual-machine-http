@@ -7,15 +7,11 @@ from flask_login import LoginManager, UserMixin
 from config.config import Config
 from flask_app import oauth_via_yandex
 
-
 from flask_login import current_user, login_user, logout_user, login_required
 
-# from flask_app.urls import app
+from . import login_manager
 
 users = Config.col_users
-
-
-#login_manager = LoginManager(app)
 
 
 class Order:
@@ -88,24 +84,24 @@ class User():
     def get_id(self):
         return self.Name
 
-    # @login_manager.user_loader
-    # def load_user(self):
-    #     user = oauth_via_yandex.get_user(session['ya-token'])
-    #
-    #     u = users.find_one({"Login": user['login']})
-    #     data = json.loads(json_util.dumps(u))
-    #     data = json.dumps(data, default=lambda x: x.__dict__)
-    #     u = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-    #
-    #     user['access_level'] = u['access_level']
-    #     user['date_registered'] = u['date_registered']
-    #     user['company_name'] = u['company_name']
-    #     user['inn'] = u['inn']
-    #
-    #     if not u:
-    #         return None
-    #     return user
-    #
+    @login_manager.user_loader
+    def load_user(self):
+        user = oauth_via_yandex.get_user(session['ya-token'])
+
+        u = users.find_one({"Login": user['login']})
+        data = json.loads(json_util.dumps(u))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        u = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+
+        user['access_level'] = u['access_level']
+        user['date_registered'] = u['date_registered']
+        user['company_name'] = u['company_name']
+        user['inn'] = u['inn']
+
+        if not u:
+            return None
+        return user
+
     # # @login_manager.user_loader
     # # def load_user(user_id):
     # #     return User.get_id(user_id)

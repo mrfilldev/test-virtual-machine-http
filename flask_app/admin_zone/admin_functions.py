@@ -1,5 +1,4 @@
 import json
-import traceback
 import uuid
 from types import SimpleNamespace
 
@@ -9,7 +8,7 @@ from flask import render_template
 from flask_app import oauth_via_yandex, carwashes
 from config.config import Config
 from flask_app.carwashes import CategoryAuto, CostIdSum
-from flask_app.models import Network, User
+from flask_app.application.models import Network, User
 
 owners = Config.col_owners
 prices = Config.col_prices
