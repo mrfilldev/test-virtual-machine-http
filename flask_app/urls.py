@@ -17,14 +17,14 @@ import json
 from types import SimpleNamespace
 from flask_login import LoginManager, current_user
 
-from flask_app import oauth_via_yandex
+from . import oauth_via_yandex
 from admin_zone.admin_functions import check_root, admin_main, delete_user, test_view, \
     create_price, delete_price, edit_price, show_list_price, add_network, list_networks, add_user
-from flask_app.carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
+from .carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj
-from flask_app.models import Order, Carwash
-from flask_app.specific_methods import method_of_filters
-from flask_app.decorators.auth_decorator import login_required, admin_status_required, owner_status_required
+from .models import Order, Carwash
+from .specific_methods import method_of_filters
+from .decorators.auth_decorator import login_required, admin_status_required, owner_status_required
 
 # Идентификатор приложения
 client_id = 'ИДЕНТИФИКАТОР_ПРИЛОЖЕНИЯ'
