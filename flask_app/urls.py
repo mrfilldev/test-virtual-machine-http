@@ -21,7 +21,7 @@ import oauth_via_yandex
 from carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj
 # from flask_app import carwash_order
-from flask_app.models import Order
+# from flask_app.models import Order
 
 from specific_methods import method_of_filters
 from decorators.auth_decorator import login_required, admin_status_required, owner_status_required
@@ -368,7 +368,7 @@ def orders_list():
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         print(data)
-        order_obj = json.loads(data, object_hook=lambda d: Order(**d))
+        # order_obj = json.loads(data, object_hook=lambda d: Order(**d))
         print(vars(order_obj))
         orders_list.append(order_obj)
         if order_obj.CarWashId not in distinctCarwashId:
@@ -405,7 +405,7 @@ def order_detail(order_id):
     order_obj = orders.find_one({'_id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
-    order_obj = json.loads(data, object_hook=lambda d: Order(**d))  # SimpleNamespace
+    # order_obj = json.loads(data, object_hook=lambda d: Order(**d))  # SimpleNamespace
     print('order_obj: \n', order_obj)
     location_my = {
         'latitude': 55.650378,
