@@ -1,6 +1,6 @@
 import json
 from types import SimpleNamespace
-from flask_app.urls import app
+from urls import app
 
 from bson import json_util
 from flask import session
