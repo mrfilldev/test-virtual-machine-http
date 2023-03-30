@@ -1,6 +1,6 @@
 import json
 from types import SimpleNamespace
-from urls import app
+from urls import login_manager
 
 from bson import json_util
 from flask import session
@@ -11,7 +11,7 @@ from flask_app import oauth_via_yandex
 from flask_login import current_user, login_user, logout_user, login_required
 
 users = Config.col_users
-login_manager = LoginManager(app)
+login_manager
 
 
 class Order:
