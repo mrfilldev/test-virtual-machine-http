@@ -20,7 +20,7 @@ from flask_login import LoginManager, current_user
 import oauth_via_yandex
 from carwashes import create_carwash_obj, update_carwash_obj, carwash_list_main, CategoryAuto, \
     delete_carwash_obj
-from flask_app import carwash_order
+# from flask_app import carwash_order
 from flask_app.models import Order
 
 from specific_methods import method_of_filters
@@ -113,7 +113,7 @@ async def return_carwash_list():
 @app.route('/tanker/order', methods=['POST'])
 async def make_carwash_order():
     try:
-        carwash_order.main(request)
+        # carwash_order.main(request)
         return Response(status=200)
     except Exception as e:
         # write to log
