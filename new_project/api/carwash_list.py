@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 from bson import json_util
 
-import new_project.database as database
+from new_project.db import database
 
 db_carwashes = database.col_carwashes
 db_prices = database.col_prices
