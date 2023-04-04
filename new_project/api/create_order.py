@@ -4,8 +4,7 @@ import json
 from types import SimpleNamespace
 
 sys.path.append('..')
-from ..configuration.config import Config
-from ..configuration.config import Sqs_params
+from configuration.config import Config, Sqs_params
 
 client = Sqs_params.client
 queue_url = Sqs_params.queue_url
