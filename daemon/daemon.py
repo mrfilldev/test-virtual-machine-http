@@ -106,7 +106,7 @@ async def user_canceled(order):
 
     while time.time() <= after_minute:
         #  проверку в бд
-        order_in_db = Py_mongo_db.col_orders.find_one({'_id': str(order.id)})  # получаем словарь
+        order_in_db = Py_mongo_db.col_orders.find_one({'_id': str(order._id)})  # получаем словарь
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order_status = order_in_db['Status']
         print('Status: ', order_status)
@@ -125,7 +125,7 @@ async def make_some_noize(order):
     order['_id'] = order.pop('Id')
     print(order.keys())
     print(order.values())
-    #await write_into_db(order)
+    # await write_into_db(order)
 
 
 async def get_order_messege_queue():
