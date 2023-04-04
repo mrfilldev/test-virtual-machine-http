@@ -3,7 +3,7 @@ import traceback
 from flask import Blueprint, request, Response
 from . import ping
 from .carwash_list import carwash_list_main
-from ..configuration.config import Config
+from configuration.config import Config
 
 api_bp = Blueprint(
     'api_blueprint', __name__,
