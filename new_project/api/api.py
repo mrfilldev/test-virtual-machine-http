@@ -3,7 +3,7 @@ import traceback
 from flask import Blueprint, request, Response
 from . import ping
 from .carwash_list import carwash_list_main
-from config import Config
+from config.config import Config
 
 api_bp = Blueprint(
     'api_blueprint', __name__,
@@ -15,7 +15,7 @@ api_bp = Blueprint(
 async def return_carwash_ping():
     apiKey = request.args.get('apikey')
     print('try_apiKey: ' + apiKey)
-
+    print(Config.API_KEY)
     if apiKey in Config.API_KEY:
         status = ping.main(request)
         response = Response(status=status, mimetype="application/json")
