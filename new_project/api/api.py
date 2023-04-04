@@ -3,13 +3,13 @@ import traceback
 from flask import Blueprint, request, Response
 from . import ping
 from .carwash_list import carwash_list_main
-
+from ..config import Config
 
 api_bp = Blueprint(
     'api_blueprint', __name__,
 )
 
-API_KEY = os.environ.get('API_KEY')
+API_KEY = Config.API_KEY
 
 
 @api_bp.route('/carwash/ping')
