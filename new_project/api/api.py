@@ -3,6 +3,7 @@ import traceback
 from flask import Blueprint, request, Response
 from . import ping
 from .carwash_list import carwash_list_main
+from . import create_order
 from configuration.config import Config
 
 api_bp = Blueprint(
@@ -45,10 +46,9 @@ async def return_carwash_list():
 
 
 @api_bp.route('/carwash/order', methods=['POST'])
-@api_bp.route('/tanker/order', methods=['POST'])
 async def make_carwash_order():
     try:
-        # carwash_order.main(request)
+        create_order.main(request)
         return Response(status=200)
     except Exception as e:
         # write to log
