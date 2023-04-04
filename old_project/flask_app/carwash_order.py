@@ -2,9 +2,7 @@ import enum
 import json
 from types import SimpleNamespace
 
-from flask import Response
-
-from config.config import Config
+from old_project.config import Config
 
 from . import client, queue_url
 

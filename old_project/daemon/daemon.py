@@ -7,9 +7,7 @@ from datetime import datetime as dt
 from random import randint
 from types import SimpleNamespace
 
-from bson import json_util, ObjectId, binary
-
-from config.config import Config
+from old_project.config import Config
 
 import boto3
 import requests

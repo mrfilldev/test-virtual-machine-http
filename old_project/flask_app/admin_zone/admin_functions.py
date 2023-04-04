@@ -6,7 +6,7 @@ from bson import json_util
 from flask import render_template
 
 from flask_app import oauth_via_yandex, carwashes
-from config.config import Config
+from old_project.config import Config
 from flask_app.carwashes import CategoryAuto, CostIdSum
 from flask_app.application.models import Network, User
 
@@ -51,7 +51,7 @@ def admin_main(request, session):
         'status': status
 
     }
-    return render_template('admin_zone/admin_main.html', context=context)
+    return render_template('admin_zone/../templates/admin_zone/admin_main.html', context=context)
 
 
 def delete_user(request, session, user_id):
@@ -81,7 +81,7 @@ def test_view(session):
         'count_users': count_users,
     }
     return render_template(
-        'admin_zone/test.html',
+        'admin_zone/../templates/admin_zone/test.html',
         context=context
     )
 

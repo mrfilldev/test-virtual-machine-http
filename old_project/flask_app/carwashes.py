@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 from bson import json_util
 
-from config.config import Config
+from old_project.config import Config
 
 db_carwashes = Config.col_carwashes
 db_prices = Config.col_prices

@@ -3,7 +3,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 
-from config.config import Config
+from old_project.config import Config
 
 app = Flask(
     __name__,

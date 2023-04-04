@@ -1,9 +1,8 @@
 import json
-from types import SimpleNamespace
 
 from bson import json_util
 
-from config.config import Config
+from old_project.config import Config
 
 orders = Config.col_orders.find({})
 

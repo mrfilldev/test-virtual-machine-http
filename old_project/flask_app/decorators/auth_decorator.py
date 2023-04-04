@@ -2,13 +2,11 @@ import json
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import session, render_template, redirect, url_for
+from flask import session, redirect, url_for
 from functools import wraps
 
-from flask_login import LoginManager
-
 from flask_app import oauth_via_yandex
-from config.config import Config
+from old_project.config import Config
 
 owners = Config.col_owners
 users = Config.col_users

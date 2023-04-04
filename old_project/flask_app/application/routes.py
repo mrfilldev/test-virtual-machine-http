@@ -9,15 +9,16 @@ from types import SimpleNamespace
 
 from bson import json_util
 from flask import Blueprint, redirect, render_template, url_for, request, Response, session
-from flask_login import current_user, login_required, logout_user
-from config.config import Config
-from flask_app import ping_carwash_box, oauth_via_yandex
-from flask_app.admin_zone.admin_functions import check_root, admin_main, test_view, delete_user, show_list_price, \
+from flask_login import current_user, login_required
+from old_project.config import Config
+from flask_app import oauth_via_yandex
+from old_project.flask_app import ping_carwash_box
+from old_project.flask_app.admin_zone.admin_functions import check_root, admin_main, test_view, delete_user, show_list_price, \
     create_price, edit_price, prices, delete_price, add_network, list_networks, add_user
 from flask_app.carwashes import carwash_list_main, CategoryAuto, create_carwash_obj, update_carwash_obj, db_carwashes, \
     delete_carwash_obj
 from flask_app.decorators.auth_decorator import admin_status_required, owner_status_required
-from flask_app.specific_methods import method_of_filters
+from old_project.flask_app.specific_methods import method_of_filters
 
 # Blueprint Configuration
 app = Blueprint(
@@ -82,7 +83,7 @@ def index():
     if 'ya-token' in session:
         return redirect(url_for('main'))
     else:
-        return render_template('users/index.html')
+        return render_template('users/../templates/users/index.html')
 
 
 @app.route('/pereprava')
@@ -118,7 +119,7 @@ def admin_delete_user(user_id):
 def list_of_prices():
     context = show_list_price()
     return render_template(
-        'admin_zone/prices/prices_list.html',
+        'admin_zone/prices/../templates/admin_zone/prices/prices_list.html',
         context=context
     )
 
@@ -136,7 +137,7 @@ def admin_create_price():
     context = {
         'categories': categories,
     }
-    return render_template('admin_zone/prices/create_price.html', context=context)
+    return render_template('admin_zone/prices/../templates/admin_zone/prices/create_price.html', context=context)
 
 
 @app.route('/edit_price/<string:price_id>', methods=['POST', 'GET'])
@@ -153,7 +154,7 @@ def admin_price_detail(price_id):
     context = {
         'price': price_obj,
     }
-    return render_template('admin_zone/prices/price_detail.html', context=context)
+    return render_template('admin_zone/prices/../templates/admin_zone/prices/price_detail.html', context=context)
 
 
 @app.route('/delete_price/<string:price_id>', methods=['POST'])
@@ -184,7 +185,7 @@ def user_detail(user_id):
         'user': user_obj,
     }
     return render_template(
-        'admin_zone/user_detail.html',
+        'admin_zone/../templates/admin_zone/user_detail.html',
         context=context
     )
 
@@ -203,7 +204,7 @@ def add_company():
         )
         print(f"Successfully added company {inn}")
         # return redirect(url_for('profile'))
-    return render_template('admin_zone/add_company.html')
+    return render_template('admin_zone/../templates/admin_zone/add_company.html')
 
 
 @app.route('/add_network/', methods=['POST', 'GET'])
@@ -211,14 +212,14 @@ def add_company():
 def admin_add_network():
     if request.method == 'POST':
         add_network(request)
-    return render_template('admin_zone/networks/create_network.html')
+    return render_template('admin_zone/networks/../templates/admin_zone/networks/create_network.html')
 
 
 @app.route('/list_networks/', methods=['POST', 'GET'])
 @admin_status_required
 def admin_networks():
     context = list_networks(request)
-    return render_template('admin_zone/networks/list_networks.html', context=context)
+    return render_template('admin_zone/networks/../templates/admin_zone/networks/list_networks.html', context=context)
 
 
 @app.route('/add_user/', methods=['POST', 'GET'])
@@ -227,7 +228,7 @@ def admin_add_user():
     if request.method == 'POST':
         add_user(request)
 
-    return render_template('admin_zone/users/create_user.html')
+    return render_template('admin_zone/users/../templates/admin_zone/users/create_user.html')
 
 
 ########################################################################
@@ -345,7 +346,7 @@ def orders_list():
         'date': today
     }
     return render_template(
-        'order/orders_list.html',
+        'order/../templates/order/orders_list.html',
         context=context
     )
 
@@ -375,7 +376,7 @@ def order_detail(order_id):
         'location': location
     }
     return render_template(
-        'order/order_detail.html',
+        'order/../templates/order/order_detail.html',
         context=context
     )
 
@@ -428,7 +429,7 @@ def profile():
         'user': user,
         'user_yan_inf': user_yan_inf,
     }
-    return render_template('profile/profile.html', context=context)
+    return render_template('profile/../templates/profile/profile.html', context=context)
 
 
 @app.route('/carwashes', methods=['POST', 'GET'])
@@ -450,7 +451,7 @@ def carwashes():
     }
 
     return render_template(
-        'carwash/carwash_list.html',
+        'carwash/../templates/carwash/carwash_list.html',
         context=context
     )
 
@@ -463,7 +464,7 @@ def create_carwash():
         return redirect(url_for('carwashes'))
 
     context = show_list_price()
-    return render_template("carwash/create_carwash.html", context=context)
+    return render_template("carwash/../templates/carwash/create_carwash.html", context=context)
 
 
 @app.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
@@ -502,7 +503,7 @@ def carwash_detail(carwash_id):
         'count_prices': count_prices,
         'enum_list': enum_list
     }
-    return render_template("carwash/carwash_detail.html", context=context)
+    return render_template("carwash/../templates/carwash/carwash_detail.html", context=context)
 
 
 @app.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])

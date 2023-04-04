@@ -1,4 +1,4 @@
-from config.config import Config
+from old_project.config import Config
 
 x = Config.col_owners.delete_one({"name": 'Admin'})
 print(f'user: Admin has been deleted ', x)
