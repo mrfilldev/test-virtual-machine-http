@@ -55,5 +55,4 @@ class Sqs_params:
         endpoint_url='https://message-queue.api.cloud.yandex.net',
         region_name='ru-central1'
     )
-    queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker-carwsh-orders'
     queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
