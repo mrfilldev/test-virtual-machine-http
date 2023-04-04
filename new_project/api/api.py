@@ -1,8 +1,8 @@
 import os
 import traceback
 from flask import Blueprint, request, Response
-from new_project.api import ping
-from new_project.api.carwash_list import carwash_list_main
+import ping
+from carwash_list import carwash_list_main
 
 api_bp = Blueprint(
     'api_blueprint', __name__,
