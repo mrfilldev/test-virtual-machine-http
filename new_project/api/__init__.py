@@ -1,3 +1,3 @@
-import api
-import carwash_list
-import ping
+from . import api
+from . import carwash_list
+from . import ping
