@@ -1,14 +1,11 @@
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Config(object):
-    # Определяет, включен ли режим отладки
-    # В случае если включен, flask будет показывать
-    # подробную отладочную информацию. Если выключен -
-    # - 500 ошибку без какой либо дополнительной информации.
-    DEBUG = False
-    # Включение защиты против "Cross-site Request Forgery (CSRF)"
-    CSRF_ENABLED = True
     URL_DEV = os.environ.get('URL_DEV')
     API_KEY = os.environ.get('API_KEY')
 

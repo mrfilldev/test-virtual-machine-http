@@ -13,6 +13,7 @@ app = Flask(
 
 )
 app.CSRF_ENABLED = True
+app.DEBUG = False
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
 app.register_blueprint(api_bp)
