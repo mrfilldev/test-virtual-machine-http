@@ -4,8 +4,8 @@ import sys
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
-sys.path.append('..')
-from new_project.api.api import api_bp
+
+from api.api import api_bp
 
 
 
