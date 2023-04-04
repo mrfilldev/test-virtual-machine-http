@@ -35,7 +35,7 @@ async def return_carwash_list():
     try_apiKey = request.args.get('apikey')
     print('try_apiKey: ' + try_apiKey)
     if try_apiKey in Config.API_KEY:
-        # result = carwash_list.main(request)
+        result = carwash_list.main(request)
         result = carwash_list_main()
         status = 200
     else:
