@@ -9,7 +9,6 @@ api_bp = Blueprint(
     'api_blueprint', __name__,
 )
 
-API_KEY = Config.API_KEY
 
 
 @api_bp.route('/carwash/ping')
@@ -17,7 +16,7 @@ async def return_carwash_ping():
     apiKey = request.args.get('apikey')
     print('try_apiKey: ' + apiKey)
 
-    if apiKey in API_KEY:
+    if apiKey in Config.API_KEY:
         status = ping.main(request)
         response = Response(status=status, mimetype="application/json")
 
@@ -34,7 +33,7 @@ async def return_carwash_ping():
 async def return_carwash_list():
     try_apiKey = request.args.get('apikey')
     print('try_apiKey: ' + try_apiKey)
-    if try_apiKey in API_KEY:
+    if try_apiKey in Config.API_KEY:
         # result = carwash_list.main(request)
         result = carwash_list_main()
         status = 200
