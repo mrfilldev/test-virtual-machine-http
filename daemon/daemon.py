@@ -118,7 +118,7 @@ async def user_canceled(order):
 
         await asyncio.sleep(0.1)
     user_cancel = False
-    await send_accept_status(order, user_cancel)
+    #await send_accept_status(order, user_cancel)
 
 
 async def make_some_noize(order):
