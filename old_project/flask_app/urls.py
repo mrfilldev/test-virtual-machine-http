@@ -1,5 +1,5 @@
 from application import create_app
-from new_project.config.config import Config
+from new_project.configuration.config import Config
 
 app = create_app()
 

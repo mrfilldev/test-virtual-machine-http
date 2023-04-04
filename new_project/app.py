@@ -10,10 +10,11 @@ app = Flask(
     __name__,
     static_url_path='',
     static_folder='/static',
+
 )
+app.CSRF_ENABLED = True
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
-
 app.register_blueprint(api_bp)
 
 if __name__ == '__main__':

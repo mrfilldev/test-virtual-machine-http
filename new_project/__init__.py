@@ -1,4 +1,4 @@
 from . import app
-from . import config
+from . import configuration
 from .db import database
 from . import models
