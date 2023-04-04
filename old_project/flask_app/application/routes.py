@@ -119,7 +119,7 @@ def admin_delete_user(user_id):
 def list_of_prices():
     context = show_list_price()
     return render_template(
-        'admin_zone/prices/../templates/admin_zone/prices/prices_list.html',
+        '/admin_zone/prices/../templates/admin_zone/prices/prices_list.html',
         context=context
     )
 

@@ -5,7 +5,7 @@ from configuration.config import Config
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
-    template_folder='..templates',
+    template_folder='templates',
 )
 
 
@@ -14,4 +14,4 @@ def index():
     if 'ya-token' in session:
         return redirect(url_for('main'))
     else:
-        return render_template('/templates/users/index.html')
+        return render_template('index/index.html')
