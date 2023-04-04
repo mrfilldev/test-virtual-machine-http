@@ -162,7 +162,7 @@ async def get_order_messege_queue():
                     await update_order_status(order_json, 'StationCanceled')
                     await send_canceled_status(order_json, 'StationCanceled')
                 elif order_json.BoxNumber == '3':
-                    await user_canceled(order_json)
+                    await user_canceled(order)
                 else:
                     await send_accept_status(order_json, user_cancel=False)
 
