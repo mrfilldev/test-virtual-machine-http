@@ -1,9 +1,15 @@
+import sys
 import enum
 import json
 from types import SimpleNamespace
 
-from configuration.config import Config
-from configuration.config import Sqs_params
+sys.path.append('..')
+from ..configuration.config import Config
+from ..configuration.config import Sqs_params
+
+client = Sqs_params.client
+queue_url = Sqs_params.queue_url
+
 
 def to_camel_case(request):
     dictionary1 = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
@@ -15,9 +21,9 @@ def to_camel_case(request):
         dictionary2[key[0].upper() + key[1:]] = dictionary1[key]
 
     print(dictionary2.keys())
-    data = json.dumps(dictionary2, default=lambda x: x.__dict__) # dict -> json
+    data = json.dumps(dictionary2, default=lambda x: x.__dict__)  # dict -> json
     print('data: ', type(data), data, '\n')
-    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d)) # json -> simplenamespace
+    data = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # json -> simplenamespace
     return data
 
     ########################################################################
@@ -167,7 +173,7 @@ def send_order_sqs(order):
             MessageBody=order
         )
     )
-    #return Response(status=200)
+    # return Response(status=200)
 
 
 def check_the_status(request):
@@ -187,7 +193,7 @@ def update_order(data):
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = Config.col_orders.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
-    #Response(status=200)
+    # Response(status=200)
 
 
 def main(request):
