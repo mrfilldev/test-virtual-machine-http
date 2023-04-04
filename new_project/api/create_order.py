@@ -2,10 +2,8 @@ import enum
 import json
 from types import SimpleNamespace
 
-from old_project.config import Config
-
-from . import client, queue_url
-
+from configuration.config import Config
+from configuration.config import Sqs_params
 
 def to_camel_case(request):
     dictionary1 = json.loads(request.data.decode('utf-8'))  # bytes object -> dict
