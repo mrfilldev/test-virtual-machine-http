@@ -14,4 +14,4 @@ def index():
     if 'ya-token' in session:
         return redirect(url_for('main'))
     else:
-        return render_template('new_project/templates/users/index/index.html')
+        return render_template('/new_project/templates/users/index/index.html')
