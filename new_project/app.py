@@ -7,14 +7,11 @@ from flask_login import LoginManager
 from api.api import api_bp
 from main.main import main_bp
 
-
-
-
 app = Flask(
     __name__,
     static_url_path='',
     static_folder='/static',
-    template_folder='/templates'
+    #template_folder='/templates'
 )
 app.CSRF_ENABLED = True
 app.DEBUG = False

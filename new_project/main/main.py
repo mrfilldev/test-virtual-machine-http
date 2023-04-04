@@ -5,7 +5,7 @@ from configuration.config import Config
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
-    template_folder='templates',
+    #template_folder='templates',
 )
 
 
