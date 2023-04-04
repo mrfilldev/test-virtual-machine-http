@@ -1,5 +1,6 @@
 import os
 
+import boto3
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,3 +16,14 @@ class Config(object):
 
     CHANNEL_ID = os.environ.get('CHANNEL_ID')
     BOT_TOKEN = os.environ.get('BOT_TOKEN')
+
+
+class Sqs_params:
+    client = boto3.client(
+        aws_access_key_id=Config.AWS_ACCESS_KEY_ID,  # os.getenv('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=Config.AWS_SECRET_ACCESS_KEY,  # os.getenv('AWS_SECRET_ACCESS_KEY'),
+        service_name='sqs',
+        endpoint_url='https://message-queue.api.cloud.yandex.net',
+        region_name='ru-central1'
+    )
+    queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')

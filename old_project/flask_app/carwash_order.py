@@ -2,9 +2,9 @@ import enum
 import json
 from types import SimpleNamespace
 
-from old_project.config import Config
+from configuration.config import Config
+from configuration.config import Sqs_params
 
-from . import client, queue_url
 
 
 def to_camel_case(request):
@@ -164,8 +164,8 @@ def make_order(data):
 def send_order_sqs(order):
     print(
         'Sending order:...',
-        client.send_message(
-            QueueUrl=queue_url,
+        Sqs_params.client.send_message(
+            QueueUrl=Sqs_params.queue_url,
             MessageBody=order
         )
     )
