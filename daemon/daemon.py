@@ -31,7 +31,7 @@ dict_reason = {
 
 async def send_accept_status(order, user_cancel):
     print("Start SEND ACCEPT STATUS")
-    if order.BoxNumber != '3':
+    if order['BoxNumber'] != '3':
         rand_time = randint(1, 20)
         print("SEND ACCEPT in ", rand_time)
         await asyncio.sleep(rand_time)
@@ -39,7 +39,7 @@ async def send_accept_status(order, user_cancel):
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
         'apikey': API_KEY,
-        'orderId': order.Id
+        'orderId': order['_id']
     }
 
     x = requests.get(url, params=params)
@@ -66,7 +66,7 @@ async def send_canceled_status(order, reason):
     url = URL_DEV + "/api/carwash/order/canceled"
     params = {
         'apikey': API_KEY,
-        'orderId': order.Id,
+        'orderId': order['_id'],
         'reason': dict_reason[reason]
     }
     requests.get(url, params=params)
@@ -87,8 +87,8 @@ async def send_completed_status(order):
     url = URL_DEV + "/api/carwash/order/completed"
     params = {
         'apikey': API_KEY,
-        'orderId': order.Id,
-        'sum': order.Sum,
+        'orderId': order['_id'],
+        'sum': order['Sum'],
         'extendedOrderId': extended_order_id,
         'extended_date': extended_date
 
@@ -150,21 +150,20 @@ async def get_order_messege_queue():
             # order = msg.get('Body')
             print('Received message: ', msg.get('Body'))
             print('TYPE: ', type(msg.get('Body')))
-            order_json = json.loads(msg.get('Body'), object_hook=lambda d: SimpleNamespace(**d))
             order = eval(msg.get('Body'))
             print('TYPE: ', type(order))
             try:
 
                 await make_some_noize(order)
                 # get the message
-                print('order_json: ', order_json)
-                if order_json.BoxNumber == '2':
-                    await update_order_status(order_json, 'StationCanceled')
-                    await send_canceled_status(order_json, 'StationCanceled')
-                elif order_json.BoxNumber == '3':
+                print('order: ', order)
+                if order['BoxNumber'] == '2':
+                    await update_order_status(order, 'StationCanceled')
+                    await send_canceled_status(order, 'StationCanceled')
+                elif order['BoxNumber'] == '3':
                     await user_canceled(order)
                 else:
-                    await send_accept_status(order_json, user_cancel=False)
+                    await send_accept_status(order, user_cancel=False)
 
                 # Delete processed messages
                 print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
@@ -174,7 +173,7 @@ async def get_order_messege_queue():
                 )
             except Exception as error:
                 # write to log
-                await send_canceled_status(order_json, reason='SystemAggregator_Error')
+                await send_canceled_status(order, reason='SystemAggregator_Error')
                 traceback.print_exc()
                 print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
 
@@ -198,8 +197,8 @@ async def write_into_db(order):
 
 async def update_order_status(order, status):
     set_command = {"$set": {"Status": status}}
-    old_order = {'_id': order.Id}
-    print('_id: ', order.Id)
+    old_order = {'_id': order['_id']}
+    print('_id: ', order['_id'])
 
     print('UPDATE STATUS: ', status)
     new_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
