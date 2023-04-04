@@ -29,6 +29,6 @@ if __name__ == '__main__':
 #     url,
 #     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
 #
-# db = client['orders']
-# col = db["test_orders"]
+# web_params = client['orders']
+# col = web_params["test_orders"]
 #

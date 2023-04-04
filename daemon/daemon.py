@@ -1,36 +1,22 @@
 import asyncio
 import json
-import os
+
 import time
 import traceback
 from datetime import datetime as dt
 from random import randint
 from types import SimpleNamespace
 
-from old_project.config import Config
+from web_params.params import Py_mongo_db, Sqs_params
 
-import boto3
 import requests
-# import pymongo
+
 from dotenv import load_dotenv
 
-# from flask_app.carwash_order import Order
 load_dotenv()
 
-db_carwashes = Config.col_carwashes
+db_carwashes = Py_mongo_db.col_carwashes
 
-################################################################
-# from aws_requests_auth.aws_auth import AWSRequestsAuth
-client = boto3.client(
-    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-    service_name='sqs',
-    endpoint_url='https://message-queue.api.cloud.yandex.net',
-    region_name='ru-central1'
-)
-queue_orders = 'https://message-queue.api.cloud.yandex.net/b1gjm9f9sf1pbis8lhhp/dj600000000bqnoc01b1/test-tanker-carwsh-orders'
-queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
-################################################################
 URL_DEV = 'http://app.tst.tanker.yandex.net'
 API_KEY = '7tllmnubn49ghu5qrep97'
 
@@ -49,7 +35,6 @@ async def send_accept_status(order, user_cancel):
         rand_time = randint(1, 20)
         print("SEND ACCEPT in ", rand_time)
         await asyncio.sleep(rand_time)
-
 
     url = URL_DEV + "/api/carwash/order/accept"
     params = {
@@ -121,7 +106,7 @@ async def user_canceled(order):
 
     while time.time() <= after_minute:
         #  проверку в бд
-        order_in_db = Config.col_orders.find_one({'_id': str(order.id)})  # получаем словарь
+        order_in_db = Py_mongo_db.col_orders.find_one({'_id': str(order.id)})  # получаем словарь
         print('ORDER_IN_DB: ', type(order_in_db), order_in_db)
         order_status = order_in_db['Status']
         print('Status: ', order_status)
@@ -145,8 +130,8 @@ async def make_some_noize(order):
 async def get_order_messege_queue():
     while True:
 
-        messages = client.receive_message(
-            QueueUrl=queue_url,
+        messages = Sqs_params.client.receive_message(
+            QueueUrl=Sqs_params.queue_url,
             MaxNumberOfMessages=10,
             VisibilityTimeout=60,
             WaitTimeSeconds=20
@@ -182,8 +167,8 @@ async def get_order_messege_queue():
 
                 # Delete processed messages
                 print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
-                client.delete_message(
-                    QueueUrl=queue_url,
+                Sqs_params.client.delete_message(
+                    QueueUrl=Sqs_params.queue_url,
                     ReceiptHandle=msg.get('ReceiptHandle')
                 )
             except Exception as error:
@@ -202,12 +187,12 @@ async def write_into_db(order):
     # test_items - название чего?
     # mycol - название коллекции
 
-    res = Config.col_orders.insert_one(order)
+    res = Py_mongo_db.col_orders.insert_one(order)
     print('WRITED ORDER: ', res)
 
     print('ORDER_ID:', res.inserted_id)
 
-    print('Объекты в коллекции', Config.col_orders.find())
+    print('Объекты в коллекции', Py_mongo_db.col_orders.find())
 
 
 async def update_order_status(order, status):
@@ -216,6 +201,6 @@ async def update_order_status(order, status):
     print('_id: ', order.Id)
 
     print('UPDATE STATUS: ', status)
-    new_order = Config.col_orders.update_one(old_order, set_command)
+    new_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
     # Response(status=200)
