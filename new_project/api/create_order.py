@@ -190,7 +190,7 @@ def check_enable():
 
 
 def update_order(data):
-    old_order = {'Id': data.Id}
+    old_order = {'_id': data.Id}
     set_command = {"$set": {"Status": "UserCanceled"}}
     new_order = database.col_orders.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
