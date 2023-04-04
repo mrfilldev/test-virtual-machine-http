@@ -1,7 +1,7 @@
 import os
 import traceback
 from flask import Blueprint, request, Response
-import ping
+from . import ping
 from carwash_list import carwash_list_main
 
 api_bp = Blueprint(
