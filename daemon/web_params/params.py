@@ -54,7 +54,7 @@ class Sqs_params:
         endpoint_url='https://message-queue.api.cloud.yandex.net',
         region_name='ru-central1'
     )
-    queue_url = client.create_queue(QueueName='test-tanker-carwsh-orders').get('QueueUrl')
+    queue_url = client.create_queue(QueueName='test-tanker-carwash-orders').get('QueueUrl')
 
     # # from aws_requests_auth.aws_auth import AWSRequestsAuth
     # client = boto3.client(
