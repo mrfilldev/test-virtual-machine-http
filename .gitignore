@@ -8,3 +8,6 @@ venv_win_10
 old_project/not_in_use/rubbish.py
 
 .env
+
+__pycache__
+*.pyc
