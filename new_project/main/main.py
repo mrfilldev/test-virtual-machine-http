@@ -7,6 +7,8 @@ from datetime import datetime, date
 
 from flask import Blueprint, request, Response, session, redirect, url_for, render_template
 from configuration.config import Config
+from db import database
+
 
 from . import oauth_via_yandex
 
@@ -46,7 +48,7 @@ def main():
         print('ya-token is True')
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
         print('user_inf: ', user_inf)
-        user = Config.col_users.find_one({'_id': user_inf['id']})
+        user = database.col_users.find_one({'_id': user_inf['id']})
         print('user: ', user)
         if user is None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
