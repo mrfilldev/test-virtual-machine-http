@@ -8,7 +8,7 @@ from datetime import datetime, date
 from flask import Blueprint, request, Response, session, redirect, url_for, render_template
 from configuration.config import Config
 
-import oauth_via_yandex
+from . import oauth_via_yandex
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
