@@ -8,6 +8,14 @@ main_bp = Blueprint(
 )
 
 
+@main_bp.route('/oauth')
+def oauth():
+    url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
+               f'&client_id={Config.YAN_CLIENT_ID}' \
+               f'&redirect_uri=http://test-tanker-carwash.ru/main'
+    return redirect(url)
+
+
 @main_bp.route('/')
 def index():
     if 'ya-token' in session:

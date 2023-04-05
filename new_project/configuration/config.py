@@ -17,6 +17,10 @@ class Config(object):
     CHANNEL_ID = os.environ.get('CHANNEL_ID')
     BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
+    # yandex oauth
+    YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')
+    YAN_CLIENT_SECRET = os.environ.get('YAN_CLIENT_SECRET')
+
 
 class Sqs_params:
     client = boto3.client(
