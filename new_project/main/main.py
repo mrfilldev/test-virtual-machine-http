@@ -33,7 +33,7 @@ def index():
         return render_template('main/index.html')
 
 
-@app.route('/main')
+@main_bp.route('/main')
 def main():
     # get ya-token
     try:
