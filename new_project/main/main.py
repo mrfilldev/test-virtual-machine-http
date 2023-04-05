@@ -10,6 +10,8 @@ main_bp = Blueprint(
 
 @main_bp.route('/oauth')
 def oauth():
+    print(Config.YAN_CLIENT_ID)
+
     url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
                f'&client_id={Config.YAN_CLIENT_ID}' \
                f'&redirect_uri=http://test-tanker-carwash.ru/main'
