@@ -8,7 +8,7 @@ from ..main.main import main_bp
 from ..profile.profile import profile_bp
 
 app = Flask(__name__,
-            template_folder='..template')
+            template_folder='.template')
 app.CSRF_ENABLED = True
 app.DEBUG = False
 
