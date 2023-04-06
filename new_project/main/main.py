@@ -1,6 +1,8 @@
 import traceback
 
 from flask import Blueprint, request, session, redirect, url_for, render_template
+from flask_login import login_required
+
 from ..configuration.config import Config
 
 from . import oauth_via_yandex
@@ -67,3 +69,17 @@ def main():
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
         return "ошибОчка на стороне сервера :("
+
+
+@main_bp.route('/logout')
+@login_required
+def logout():
+    try:
+        for key in list(session.keys()):
+            session.pop(key)
+        return redirect('/')
+
+    except Exception as e:
+        traceback.print_exc()
+        print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
+        return 'Invalid username/password combination'
