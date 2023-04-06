@@ -11,7 +11,7 @@ from db import database
 
 
 from . import oauth_via_yandex
-from ..models import User
+from models import User
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
