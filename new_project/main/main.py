@@ -25,7 +25,7 @@ def index():
     if 'ya-token' in session:
         return redirect(url_for('main_blueprint.main'))
     else:
-        return render_template('templates/main/index.html')
+        return render_template('main/index.html')
 
 
 @main_bp.route('/main')
