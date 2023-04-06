@@ -4,8 +4,8 @@ import json
 from types import SimpleNamespace
 
 sys.path.append('..')
-from configuration.config import Sqs_params
-from db import database
+from ..configuration.config import Sqs_params
+from ..db import database
 
 
 client = Sqs_params.client
