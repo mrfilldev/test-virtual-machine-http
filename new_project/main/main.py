@@ -30,7 +30,7 @@ def oauth():
 @main_bp.route('/')
 def index():
     if 'ya-token' in session:
-        return redirect(url_for('main'))
+        return redirect(url_for('main_bp.main'))
     else:
         return render_template('main/index.html')
 
@@ -51,19 +51,9 @@ def main():
         user = database.col_users.find_one({'_id': user_inf['id']})
         print('user: ', user)
         if user is None:
-            format = '%Y-%m-%dT%H:%M:%S%Z'
-            date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
-            print(date_now)
-            print({
-                '_id': user_inf['id'],
-                'psuid': user_inf['psuid'],
-                'login': user_inf['login'],
-                'access_level': 'Новый пользователь',
-                'date_registered': str(date_now),
-                'company_name': '',
-                'inn': '',
-            })
-
+            # format = '%Y-%m-%dT%H:%M:%S%Z'
+            # date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+            # print(date_now)
             # Config.col_users.insert_one(
             #     {
             #         '_id': user_inf['id'],
