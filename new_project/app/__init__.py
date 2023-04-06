@@ -8,7 +8,7 @@ from ..api.api import api_bp
 from ..main.main import main_bp
 from ..profile.profile import profile_bp
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.CSRF_ENABLED = True
 app.DEBUG = False
 
