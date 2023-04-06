@@ -50,7 +50,7 @@ def main():
 
         #user_inf = User.load_user()
 
-        print('user_inf: ', user_inf)
+        # print('user_inf: ', user_inf)
         # user = database.col_users.find_one({'_id': user_inf['id']})
         # print('user: ', user)
         # if user is None:
