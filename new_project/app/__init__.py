@@ -11,12 +11,7 @@ from flask_bootstrap import Bootstrap
 # from .main.main import main_bp
 # from .profile.profile import profile_bp
 
-app = Flask(
-    __name__,
-    static_url_path='',
-    static_folder='/static',
-    # template_folder='/templates'
-)
+app = Flask(__name__)
 app.CSRF_ENABLED = True
 app.DEBUG = False
 
