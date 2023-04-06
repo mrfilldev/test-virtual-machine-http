@@ -1,17 +1,9 @@
-import os
-
-import time
 import traceback
-from datetime import datetime, date
 
-
-from flask import Blueprint, request, Response, session, redirect, url_for, render_template
+from flask import Blueprint, request, session, redirect, url_for, render_template
 from ..configuration.config import Config
-from ..db import database
-
 
 from . import oauth_via_yandex
-from ..models import User
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
