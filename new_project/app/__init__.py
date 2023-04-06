@@ -1,11 +1,9 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 
-from new_project.db import database
-
 from flask_login import LoginManager
 
-from new_project.api.api import api_bp
+from .new_project.api.api import api_bp
 from .main.main import main_bp
 from .profile.profile import profile_bp
 
