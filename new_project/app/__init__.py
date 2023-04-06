@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 
-from .api import api_bp
+from api import api_bp
 from .db import database
 
 from flask_login import LoginManager
