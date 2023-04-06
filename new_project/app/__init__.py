@@ -1,15 +1,15 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 
-# from . import models
-# from . import configuration
-# from .api.api import api_bp
-# from .db import database
-#
-# from flask_login import LoginManager
-#
-# from .main.main import main_bp
-# from .profile.profile import profile_bp
+from . import models
+from . import configuration
+from .api.api import api_bp
+from .db import database
+
+from flask_login import LoginManager
+
+from .main.main import main_bp
+from .profile.profile import profile_bp
 
 app = Flask(__name__)
 app.CSRF_ENABLED = True
