@@ -4,8 +4,8 @@ from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 
 from ..api.api import api_bp
-from .main.main import main_bp
-from .profile.profile import profile_bp
+from ..main.main import main_bp
+from ..profile.profile import profile_bp
 
 app = Flask(__name__)
 app.CSRF_ENABLED = True
