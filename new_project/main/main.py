@@ -48,7 +48,7 @@ def main():
             print('ya-token has been inserted')
         print('ya-token is True')
 
-        user_inf = User.load_user()
+        #user_inf = User.load_user()
 
         print('user_inf: ', user_inf)
         # user = database.col_users.find_one({'_id': user_inf['id']})
