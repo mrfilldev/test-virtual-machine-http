@@ -1,7 +1,7 @@
 import json
 import requests
 import base64
-from configuration.config import Config
+from ..configuration.config import Config
 
 
 def encode_base64(client_id, client_secret):
