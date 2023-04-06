@@ -5,10 +5,10 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import session
 
-from . import login
 from configuration.config import Config
-from flask_app import oauth_via_yandex
+from main import oauth_via_yandex
 from db import database
+from app import login
 
 users = database.col_users
 
