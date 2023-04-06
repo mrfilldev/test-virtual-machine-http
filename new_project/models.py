@@ -5,7 +5,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import session
 
-from app import login
+from . import login
 from configuration.config import Config
 from flask_app import oauth_via_yandex
 from db import database
