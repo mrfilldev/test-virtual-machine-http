@@ -3,6 +3,8 @@ import traceback
 from flask import Blueprint, request, Response, render_template
 from ..configuration.config import Config
 
+from flask_login import current_user
+
 profile_bp = Blueprint(
     'profile_blueprint', __name__,
 )
