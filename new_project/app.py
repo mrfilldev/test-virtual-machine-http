@@ -6,6 +6,7 @@ from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from api.api import api_bp
 from main.main import main_bp
+from profile.profile import profile_bp
 
 app = Flask(
     __name__,
@@ -19,6 +20,8 @@ bootstrap = Bootstrap(app)
 login_manager = LoginManager()
 app.register_blueprint(api_bp)
 app.register_blueprint(main_bp)
+app.register_blueprint(profile_bp)
+
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
