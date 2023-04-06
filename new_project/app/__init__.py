@@ -1,8 +1,6 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 
-from . import models
-from . import configuration
 from .api.api import api_bp
 from .db import database
 
