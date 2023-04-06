@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from new_project import app
+from . import app
 
 
 
