@@ -6,6 +6,8 @@ from flask_login import login_required
 from ..configuration.config import Config
 
 from . import oauth_via_yandex
+from ..db import database
+from ..db.models import User
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
@@ -42,11 +44,11 @@ def main():
             print('ya-token has been inserted')
         print('ya-token is True')
 
-        #user_inf = User.load_user()
+        user_inf = User.load_user()
 
-        # print('user_inf: ', user_inf)
-        # user = database.col_users.find_one({'_id': user_inf['id']})
-        # print('user: ', user)
+        print('user_inf: ', user_inf)
+        user = database.col_users.find_one({'_id': user_inf['id']})
+        print('user: ', user)
         # if user is None:
             # format = '%Y-%m-%dT%H:%M:%S%Z'
             # date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
