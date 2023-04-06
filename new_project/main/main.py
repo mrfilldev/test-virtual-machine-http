@@ -30,7 +30,7 @@ def oauth():
 @main_bp.route('/')
 def index():
     if 'ya-token' in session:
-        return redirect(url_for('main_bp.main'))
+        return redirect(url_for('main_blueprint.main'))
     else:
         return render_template('main/index.html')
 
