@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 
 from flask_login import LoginManager
 
-from .new_project.api.api import api_bp
+from ..api.api import api_bp
 from .main.main import main_bp
 from .profile.profile import profile_bp
 
