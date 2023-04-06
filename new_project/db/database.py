@@ -1,7 +1,6 @@
 from urllib.parse import quote_plus as quote
 import pymongo
 
-
 # pymongo
 url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
     user=quote('user1'),

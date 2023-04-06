@@ -11,6 +11,7 @@ from db import database
 
 
 from . import oauth_via_yandex
+from ..models import User
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
@@ -46,11 +47,13 @@ def main():
             session['ya-token'] = resp['access_token']
             print('ya-token has been inserted')
         print('ya-token is True')
-        user_inf = oauth_via_yandex.get_user(session['ya-token'])
+
+        user_inf = User.load_user()
+
         print('user_inf: ', user_inf)
-        user = database.col_users.find_one({'_id': user_inf['id']})
-        print('user: ', user)
-        if user is None:
+        # user = database.col_users.find_one({'_id': user_inf['id']})
+        # print('user: ', user)
+        # if user is None:
             # format = '%Y-%m-%dT%H:%M:%S%Z'
             # date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
             # print(date_now)
@@ -65,7 +68,7 @@ def main():
             #         'inn': '',
             #     }
             # )
-            print(f'user {user_inf["login"]} has been inserted')
+            # print(f'user {user_inf["login"]} has been inserted')
 
         return redirect(url_for('profile_blueprint.profile_future_client'))
     except Exception as e:
