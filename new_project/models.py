@@ -8,7 +8,7 @@ from flask import session
 from configuration.config import Config
 from main import oauth_via_yandex
 from db import database
-from . import login
+from .app import login
 
 
 users = database.col_users
