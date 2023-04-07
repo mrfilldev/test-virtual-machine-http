@@ -14,6 +14,7 @@ app.DEBUG = False
 
 bootstrap = Bootstrap(app)
 login = LoginManager()
+login.init_app(app)
 app.register_blueprint(api_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(profile_bp)
