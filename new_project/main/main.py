@@ -3,6 +3,7 @@ import traceback
 from flask import Blueprint, request, session, redirect, url_for, render_template
 from flask_login import login_required
 
+from ..app import login
 from ..configuration.config import Config
 
 from . import oauth_via_yandex
@@ -32,6 +33,7 @@ def index():
         return render_template('main/index.html')
 
 
+@login.user_loader
 @main_bp.route('/main')
 def main():
     # get ya-token
