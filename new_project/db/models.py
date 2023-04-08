@@ -8,7 +8,7 @@ from flask import session
 from ..configuration.config import Config
 from ..main import oauth_via_yandex
 from ..db import database
-from new_project.app import login
+# from new_project.app import login
 
 
 users = database.col_users
@@ -61,7 +61,6 @@ class Network:
 
 
 class User:
-
     def __init__(self, username, email, isActive, role):
         self.username = username
         self.email = email
@@ -85,20 +84,20 @@ class User:
     def get_id(self):
         return self.username
 
-    @login.user_loader
-    def load_user(self):
-        user = oauth_via_yandex.get_user(session['ya-token'])
-
-        u = users.find_one({"login": user['login']})
-
-        if not u:
-            return None
-        return User(
-            username=u['Name'],
-            email=u['email'],
-            isActive=u['isActive'],
-            role=u['role'],
-        )
+    # @login.user_loader
+    # def load_user(self):
+    #     user = oauth_via_yandex.get_user(session['ya-token'])
+    #
+    #     u = users.find_one({"login": user['login']})
+    #
+    #     if not u:
+    #         return None
+    #     return User(
+    #         username=u['Name'],
+    #         email=u['email'],
+    #         isActive=u['isActive'],
+    #         role=u['role'],
+    #     )
 
     # # @login_manager.user_loader
     # # def load_user(user_id):

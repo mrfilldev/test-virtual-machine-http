@@ -1,6 +1,6 @@
 import os
 import traceback
-from flask import Blueprint, request, Response, render_template
+from flask import Blueprint, request, Response, render_template, g
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -13,6 +13,8 @@ profile_bp = Blueprint(
 @profile_bp.route('/profile_safe')
 def profile_future_client():
     # return 'Хотите стать клиентом - свяжитесь с нами'
+    print(g)
+    print(type(g))
     return render_template('profile/profile_future_client.html')
 
 
