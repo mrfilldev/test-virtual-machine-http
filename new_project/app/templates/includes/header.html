@@ -18,9 +18,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main_blueprint.logout') }}" aria-disabled="true">Выйти</a>
                 </li>
+                {% if g.user_db_role == 'admin' %}
                 <li class="nav-item">
-                    <a class="nav-link" href="##" aria-disabled="true"> пам пам </a>
+                    <a class="nav-link" href="##" aria-disabled="true"> Пользователи </a>
                 </li>
+                {% endif %}
 
 
             </ul>
