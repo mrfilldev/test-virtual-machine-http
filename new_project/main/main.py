@@ -36,6 +36,11 @@ def index():
 
 @main_bp.before_request
 def load_user():
+    resp = oauth_via_yandex.get_code(request)
+    for key in dict(session):
+        print(key, ":", session[key])
+    session['ya-token'] = resp['access_token']
+    print('ya-token has been inserted')
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     print(g)
     print(type(g))
