@@ -29,8 +29,9 @@ def load_user():
 @profile_bp.route('/profile_safe')
 def profile():
     # return 'Хотите стать клиентом - свяжитесь с нами'
-    print(g.user)
-    print(type(g))
+    print(g.user_db)
+    print(g.user_inf)
+
     if g.user.role is None:
         return redirect(url_for('profile_future_client'))
     else:
@@ -47,30 +48,26 @@ def profile():
 @profile_bp.route('/profile_safe')
 def profile_future_client():
     # return 'Хотите стать клиентом - свяжитесь с нами'
-    print(g.user)
-    print(type(g))
+
     return render_template('profile/profile_future_client.html')
 
 
 @profile_bp.route('/profile_owner')
 def profile_owner():
     # return 'Вы наш клиент'
-    print(g.user)
-    print(type(g))
+
     return render_template('profile/profile_owner.html')
 
 
 @profile_bp.route('/profile_worker')
 def profile_worker():
     # return 'Вы сотрудник мойки'
-    print(g.user)
-    print(type(g))
+
     return render_template('profile/profile_worker.html')
 
 
 @profile_bp.route('/admin')
 def profile_admin():
     # return 'Вы admin'
-    print(g.user)
-    print(type(g))
+
     return redirect(url_for('admin_bp.admin_profile'))
