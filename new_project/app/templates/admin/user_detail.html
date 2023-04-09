@@ -2,19 +2,19 @@
 
 {% block body %}
 <br>
-<form method=POST action="{{ url_for('user_detail', user_id=context['user']._id) }}">
+<form method=POST action="{{ url_for('admin_blueprint.admin_user_detail', user_id=context['user']._id) }}">
     <div class="container">
         <div class="row">
             <div class="col-2">
 
                 <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
-                        href="{{ url_for('user_detail', user_id=context['user'].id) }}">
+                        href="{{ url_for('admin_blueprint.admin_user_detail', user_id=context['user'].id) }}">
                     Сохранить
                 </button>
 
 
                 <a style="width: 130px" class="btn btn-outline-danger"
-                   href="{{ url_for('admin_delete_user', user_id=context['user'].id) }}">
+                   href="{{ url_for('admin_blueprint.admin_delete_user', user_id=context['user'].id) }}">
                     Удалить
                 </a>
 
