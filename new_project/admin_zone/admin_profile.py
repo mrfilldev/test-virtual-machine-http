@@ -4,7 +4,7 @@ from dateutil import parser
 from flask import render_template, request, Blueprint, session, g
 
 from .manage_networks import list_networks, network_detail
-from .manage_prices import show_list_price
+from .manage_prices import show_list_price, create_price
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
 from ..main import oauth_via_yandex
@@ -69,6 +69,13 @@ def admin_add_network():
 @admin_bp.route('/list_of_prices/')
 def list_of_prices():
     return show_list_price()
+
+
+@admin_bp.route('/create_price', methods=['POST', 'GET'])
+def admin_create_price():
+    return create_price(request)
+
+
 
 
 @admin_bp.app_template_filter()
