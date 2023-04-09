@@ -8,7 +8,7 @@ from ..db import database
 from ..main import oauth_via_yandex
 
 
-def test_view():
+def users_list_view():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     all_users = database.col_users.find({})
     users_list = []
@@ -58,6 +58,7 @@ def user_detail(request, user_id):
         'admin/user_detail.html',
         context=context
     )
+
 
 def delete_user(user_id):
     database.col_users.delete_one({'id': user_id})

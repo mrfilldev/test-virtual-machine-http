@@ -3,7 +3,7 @@ from datetime import date
 from dateutil import parser
 from flask import render_template, request, Blueprint, session, g
 
-from .manage_users import test_view, user_detail
+from .manage_users import users_list_view, user_detail, delete_user
 from ..main import oauth_via_yandex
 
 admin_bp = Blueprint(
@@ -29,7 +29,7 @@ def admin_users():
     # print(g.user_db)
     # print(g.user_inf)
 
-    return test_view()
+    return users_list_view()
 
 
 @admin_bp.route('/admin_user_detail/<string:user_id>', methods=['POST', 'GET'])
@@ -39,7 +39,7 @@ def admin_user_detail(user_id):
 
 @admin_bp.route('/admin_delete_user/<string:user_id>', methods=['POST', 'GET'])
 def admin_delete_user(user_id):
-    return user_detail(user_id)
+    return delete_user(user_id)
 
 
 @admin_bp.app_template_filter()
