@@ -2,13 +2,13 @@ import json
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template
+from flask import render_template, session
 
 from ..db import database
 from ..main import oauth_via_yandex
 
 
-def test_view(session):
+def test_view():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     all_users = database.col_users.find({})
     users_list = []
