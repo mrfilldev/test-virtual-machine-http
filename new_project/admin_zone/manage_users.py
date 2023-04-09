@@ -41,10 +41,10 @@ def user_detail(request, user_id):
         new_value = request.form['access_level']
         set_command = {"$set": {"access_level": new_value}}
         old_user = {'_id': str(user_id)}
-        new_user = Config.col_users.update_one(old_user, set_command)
+        new_user = database.col_users.update_one(old_user, set_command)
         print('new_user', new_user)
 
-    user_obj = Config.col_users.find_one({'_id': str(user_id)})  # dict
+    user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
     print(user_obj)
 
     data = json.loads(json_util.dumps(user_obj))
@@ -55,6 +55,6 @@ def user_detail(request, user_id):
         'user': user_obj,
     }
     return render_template(
-        'admin_zone/../templates/admin_zone/user_detail.html',
+        'admin/user_detail.html',
         context=context
     )
