@@ -28,7 +28,7 @@ def admin_main():
 
 @admin_bp.route('/test')
 def admin_test():
-    return test_view
+    return test_view()
 
 #
 # def delete_user(request, session, user_id):
