@@ -1,3 +1,6 @@
+from datetime import date
+
+from dateutil import parser
 from flask import render_template,request, Blueprint, session, g
 
 from .manage_users import test_view, user_detail
@@ -32,6 +35,19 @@ def admin_users():
 @admin_bp.route('/admin_user_detail/<string:user_id>', methods=['POST', 'GET'])
 def admin_user_detail(user_id):
     return user_detail(request, user_id)
+
+
+@admin_bp.app_template_filter()
+def format_datetime(value):
+    # variant = value.strftime('%Y-%m-%d')
+    # print(variant)
+    if isinstance(value, date):
+        value = value.strftime('%d.%m.%Y')
+    else:
+        value = parser.parse(value)
+        value = value.strftime("%d.%m.%Y %H:%M:%S")
+    return value
+
 
 #
 # def delete_user(request, session, user_id):
