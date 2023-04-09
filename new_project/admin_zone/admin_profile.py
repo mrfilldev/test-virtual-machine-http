@@ -1,10 +1,4 @@
-import json
-import uuid
-from types import SimpleNamespace
-from urllib import request
-
-from bson import json_util
-from flask import render_template, Blueprint, session, g
+from flask import render_template,request, Blueprint, session, g
 
 from .manage_users import test_view, user_detail
 from ..main import oauth_via_yandex
