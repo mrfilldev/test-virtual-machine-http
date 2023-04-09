@@ -58,3 +58,6 @@ def user_detail(request, user_id):
         'admin/user_detail.html',
         context=context
     )
+
+def delete_user(user_id):
+    database.col_users.delete_one({'id': user_id})
