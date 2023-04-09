@@ -32,14 +32,14 @@ def profile():
     print(g.user_db)
     print(g.user_inf)
 
-    if g.user_db.role is None:
+    if g.user_db['role'] is None:
         return redirect(url_for('profile_future_client'))
     else:
-        if g.user_db.role == 'admin':
+        if g.user_db['role'] == 'admin':
             return redirect(url_for('profile_admin'))
-        elif g.user_db.role == 'network_owner':
+        elif g.user_db['role'] == 'network_owner':
             return redirect(url_for('profile_owner'))
-        elif g.user_db.role == 'network_worker':
+        elif g.user_db['role'] == 'network_worker':
             return redirect(url_for('profile_worker'))
         else:
             return redirect(url_for('profile_future_client'))
