@@ -29,15 +29,14 @@ def profile():
     print(g.user_db)
     print(g.user_inf)
 
-    if 'role' not in g.user_db:
-        return profile_future_client()
-    else:
+    if 'role' in g.user_db:
         if g.user_db['role'] == 'admin':
             return redirect(url_for('profile_blueprint.profile_admin'))
         elif g.user_db['role'] == 'network_owner':
             return redirect(url_for('profile_blueprint.profile_owner'))
         elif g.user_db['role'] == 'network_worker':
             return redirect(url_for('profile_blueprint.profile_worker'))
+    return profile_future_client()
 
 
 @profile_bp.route('/profile_safe')
