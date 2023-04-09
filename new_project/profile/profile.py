@@ -16,19 +16,14 @@ profile_bp = Blueprint(
 @profile_bp.before_request
 def load_user():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
-    print(g)
-    print(type(g))
-    for i in g:
-        print(i)
-    print('user_inf: ', user_inf)
     g.user_inf = user_inf
-    print(g.user_inf)
+    print('g.user_inf: ', g.user_inf)
     user = database.col_users.find_one({'_id': user_inf['id']})
     g.user_db = user
-    print(g.user_db)
+    print('g.user_db: :', g.user_db)
 
 
-@profile_bp.route('/profile_safe')
+@profile_bp.route('/profile')
 def profile():
     # return 'Хотите стать клиентом - свяжитесь с нами'
     print(g.user_db)
@@ -69,5 +64,4 @@ def profile_worker():
 @profile_bp.route('/admin')
 def profile_admin():
     # return 'Вы admin'
-
     return redirect(url_for('admin_blueprint.admin_main'))
