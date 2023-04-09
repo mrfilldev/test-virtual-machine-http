@@ -36,7 +36,7 @@ def test_view():
     )
 
 
-def user_detail(user_id):
+def user_detail(request, user_id):
     if request.method == 'POST':
         new_value = request.form['access_level']
         set_command = {"$set": {"access_level": new_value}}

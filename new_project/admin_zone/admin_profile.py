@@ -1,6 +1,7 @@
 import json
 import uuid
 from types import SimpleNamespace
+from urllib import request
 
 from bson import json_util
 from flask import render_template, Blueprint, session
@@ -31,9 +32,9 @@ def admin_users():
     return test_view()
 
 
-@admin_bp.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
+@admin_bp.route('/admin_user_detail/<string:user_id>', methods=['POST', 'GET'])
 def admin_user_detail(user_id):
-    return user_detail(user_id)
+    return user_detail(request, user_id)
 
 #
 # def delete_user(request, session, user_id):
