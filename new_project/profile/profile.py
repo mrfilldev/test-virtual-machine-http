@@ -28,18 +28,22 @@ def load_user():
 @profile_bp.route('/profile_safe')
 def profile_future_client():
     # return 'Хотите стать клиентом - свяжитесь с нами'
-    # print(g)
-    # print(type(g))
+    print(g.user)
+    print(type(g))
     return render_template('profile/profile_future_client.html')
 
 
 @profile_bp.route('/profile_owner')
 def profile_owner():
     # return 'Вы наш клиент'
+    print(g.user)
+    print(type(g))
     return render_template('profile/profile_owner.html')
 
 
 @profile_bp.route('/profile_worker')
 def profile_worker():
     # return 'Вы сотрудник мойки'
+    print(g.user)
+    print(type(g))
     return render_template('profile/profile_worker.html')
