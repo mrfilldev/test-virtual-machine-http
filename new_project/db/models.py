@@ -61,28 +61,27 @@ class Network:
 
 
 class User:
-    def __init__(self, username, email, isActive, role):
-        self.username = username
+    def __init__(self, Id, email, role):
+        self.Id = Id
         self.email = email
-        #self.isActive = isActive
         self.role = role
-        self.timestamp = datetime.now()
 
 
-    @staticmethod
-    def is_authenticated():
-        return True
 
-    @staticmethod
-    def is_active():
-        return True
-
-    @staticmethod
-    def is_anonymous():
-        return False
-
-    def get_id(self):
-        return self.username
+    # @staticmethod
+    # def is_authenticated():
+    #     return True
+    #
+    # @staticmethod
+    # def is_active():
+    #     return True
+    #
+    # @staticmethod
+    # def is_anonymous():
+    #     return False
+    #
+    # def get_id(self):
+    #     return self.username
 
     # @login.user_loader
     # def load_user(self):

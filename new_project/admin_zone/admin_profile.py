@@ -3,6 +3,7 @@ from datetime import date
 from dateutil import parser
 from flask import render_template, request, Blueprint, session, g
 
+from .manage_networks import list_networks, add_network
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
 from ..main import oauth_via_yandex
@@ -42,9 +43,6 @@ def admin_main():
 
 @admin_bp.route('/users')
 def admin_users():
-    # print(g.user_db)
-    # print(g.user_inf)
-
     return users_list_view()
 
 
@@ -56,6 +54,16 @@ def admin_user_detail(user_id):
 @admin_bp.route('/admin_delete_user/<string:user_id>', methods=['POST', 'GET'])
 def admin_delete_user(user_id):
     return delete_user(user_id)
+
+
+@admin_bp.route('/admin_networks_list/')
+def admin_networks_list():
+    return list_networks()
+
+
+@admin_bp.route('/admin_network/', methods=['POST', 'GET'])
+def admin_add_network():
+    return add_network()
 
 
 @admin_bp.app_template_filter()

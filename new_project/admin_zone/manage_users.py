@@ -1,10 +1,12 @@
 import json
+import uuid
 from types import SimpleNamespace
 
 from bson import json_util
 from flask import render_template, session
 
 from ..db import database
+from ..db.models import User
 from ..main import oauth_via_yandex
 
 
@@ -58,6 +60,22 @@ def user_detail(request, user_id):
         'admin/user_detail.html',
         context=context
     )
+
+
+def add_user(request):
+    print('\n################################################################\n')
+    form = request.form
+
+    id = uuid.uuid4().hex
+
+    new_user = User(Id=id, email=form['email'], role=form.role)
+
+    new_user_json = json.dumps(new_user, default=lambda x: x.__dict__)
+    new_user_dict = json.loads(new_user_json)
+    new_user_dict['_id'] = new_user_dict.pop('Id')
+
+    database.col_users.insert_one(new_user_dict)
+    print("User inserted successfully")
 
 
 def delete_user(user_id):
