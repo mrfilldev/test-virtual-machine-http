@@ -4,11 +4,27 @@ from dateutil import parser
 from flask import render_template, request, Blueprint, session, g
 
 from .manage_users import users_list_view, user_detail, delete_user
+from ..db import database
 from ..main import oauth_via_yandex
 
 admin_bp = Blueprint(
     'admin_blueprint', __name__,
 )
+
+
+@admin_bp.before_request
+def load_user():
+    user_inf = oauth_via_yandex.get_user(session['ya-token'])
+    print(g)
+    print(type(g))
+    for i in g:
+        print(i)
+    print('user_inf: ', user_inf)
+    g.user_inf = user_inf
+    print(g.user_inf)
+    user = database.col_users.find_one({'_id': user_inf['id']})
+    g.user_db = user
+    print(g.user_db)
 
 
 @admin_bp.route('/admin')
