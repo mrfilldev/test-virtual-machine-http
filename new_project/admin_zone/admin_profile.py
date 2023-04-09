@@ -4,7 +4,7 @@ from types import SimpleNamespace
 from urllib import request
 
 from bson import json_util
-from flask import render_template, Blueprint, session
+from flask import render_template, Blueprint, session, g
 
 from .manage_users import test_view, user_detail
 from ..main import oauth_via_yandex
@@ -29,7 +29,11 @@ def admin_main():
 
 @admin_bp.route('/users')
 def admin_users():
+    print(g.user_db)
+    print(g.user_inf)
+
     return test_view()
+
 
 
 @admin_bp.route('/admin_user_detail/<string:user_id>', methods=['POST', 'GET'])
