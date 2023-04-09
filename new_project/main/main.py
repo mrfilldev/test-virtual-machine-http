@@ -1,6 +1,6 @@
 import traceback
 
-from flask import Blueprint, request, session, redirect, url_for, render_template
+from flask import Blueprint, request, session, redirect, url_for, render_template, g
 from flask_login import login_required
 
 from ..app import login
@@ -46,8 +46,9 @@ def main():
             print('ya-token has been inserted')
         print('ya-token is True')
 
-        user_inf = User.load_user()
-
+        user_inf = oauth_via_yandex.get_user(session['ya-token'])
+        print(g)
+        print(type(g))
         print('user_inf: ', user_inf)
         user = database.col_users.find_one({'_id': user_inf['id']})
         print('user: ', user)
