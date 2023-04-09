@@ -63,7 +63,7 @@ def admin_networks_list():
 
 @admin_bp.route('/admin_network/', methods=['POST', 'GET'])
 def admin_add_network():
-    return network_detail()
+    return network_detail(request)
 
 
 @admin_bp.app_template_filter()
