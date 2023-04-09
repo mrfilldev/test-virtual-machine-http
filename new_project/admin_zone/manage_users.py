@@ -34,3 +34,27 @@ def test_view():
         'admin/test.html',
         context=context
     )
+
+
+def user_detail(user_id):
+    if request.method == 'POST':
+        new_value = request.form['access_level']
+        set_command = {"$set": {"access_level": new_value}}
+        old_user = {'_id': str(user_id)}
+        new_user = Config.col_users.update_one(old_user, set_command)
+        print('new_user', new_user)
+
+    user_obj = Config.col_users.find_one({'_id': str(user_id)})  # dict
+    print(user_obj)
+
+    data = json.loads(json_util.dumps(user_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print(user_obj)
+    context = {
+        'user': user_obj,
+    }
+    return render_template(
+        'admin_zone/../templates/admin_zone/user_detail.html',
+        context=context
+    )

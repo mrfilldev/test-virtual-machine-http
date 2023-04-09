@@ -5,7 +5,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import render_template, Blueprint, session
 
-from .manage_users import test_view
+from .manage_users import test_view, user_detail
 from ..main import oauth_via_yandex
 
 admin_bp = Blueprint(
@@ -26,9 +26,14 @@ def admin_main():
     return render_template('admin/admin_profile.html', context=context)
 
 
-@admin_bp.route('/test')
-def admin_test():
+@admin_bp.route('/users')
+def admin_users():
     return test_view()
+
+
+@admin_bp.route('/user_detail/<string:user_id>', methods=['POST', 'GET'])
+def admin_user_detail(user_id):
+    return user_detail(user_id)
 
 #
 # def delete_user(request, session, user_id):
