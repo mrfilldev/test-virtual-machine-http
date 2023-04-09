@@ -3,12 +3,12 @@ import traceback
 from flask import Blueprint, request, session, redirect, url_for, render_template, g
 from flask_login import login_required
 
-from ..app import login
+#from ..app import login
 from ..configuration.config import Config
 
 from . import oauth_via_yandex
 from ..db import database
-from ..db.models import User
+#from ..db.models import User
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
