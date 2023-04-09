@@ -32,7 +32,7 @@ def profile():
     print(g.user_db)
     print(g.user_inf)
 
-    if g.user_db['role'] is None:
+    if 'role' not in g.user_db:
         return redirect(url_for('profile_future_client'))
     else:
         if g.user_db['role'] == 'admin':
