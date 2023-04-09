@@ -16,23 +16,23 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                 {% if g.user_db.role == 'admin' %}
-                <div class="dropdown">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Действие
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"> Мойки </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"> Сети </a>
-                        </li>
-                    </ul>
-                </div>
+
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Действие
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"> Мойки </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"> Сети </a>
+                    </li>
+                </ul>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('admin_blueprint.admin_users') }}" aria-disabled="true">
                         Пользователи </a>
