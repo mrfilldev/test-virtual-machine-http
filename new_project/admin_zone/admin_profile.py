@@ -9,7 +9,7 @@ from .manage_users import test_view
 from ..main import oauth_via_yandex
 
 admin_bp = Blueprint(
-    'profile_blueprint', __name__,
+    'admin_blueprint', __name__,
 )
 
 
