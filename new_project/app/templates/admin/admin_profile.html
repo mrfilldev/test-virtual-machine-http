@@ -44,7 +44,7 @@
                                 Статус:
                             </td>
                             <td>
-                                {{ g.user.role }}
+                                {{ g.user_db.role }}
                             </td>
                         </tr>
                         <tr>
@@ -52,7 +52,7 @@
                                 Дата регистрации:
                             </td>
                             <td>
-                                {{ g.user.date_registered | format_datetime }}
+                                {{ g.user_db.date_registered | format_datetime }}
                             </td>
                         </tr>
 
