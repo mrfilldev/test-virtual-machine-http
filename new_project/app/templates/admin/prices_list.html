@@ -17,7 +17,7 @@
     <div class="row justify-content-between">
         <div class="col-4"></div>
         <div class="col-1">
-            <a class="btn btn-outline-secondary" href="{{ url_for('admin_create_price') }}">+</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.list_of_prices') }}">+</a>
         </div>
     </div>
 </div>
@@ -40,7 +40,7 @@
         <tbody class=".table-hover">
         {% for price in context['prices_list'] %}
 
-        <tr class="tr-price" data-href="{{ url_for('admin_price_detail', price_id=price.Id) }}">
+        <tr class="tr-price" data-href="{{ url_for('admin_blueprint.admin_price_detail', price_id=price.Id) }}">
             <th scope="row">
                 {{ context['count_prices'] - loop.index0 }}
             </th>
