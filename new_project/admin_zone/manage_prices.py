@@ -5,8 +5,8 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import redirect, render_template, url_for
 
-from new_project.db import database
-from new_project.db.models import CategoryAuto, CostIdSum, Prices
+from ..db import database
+from ..db.models import CategoryAuto, CostIdSum, Prices
 
 
 def show_list_price():
