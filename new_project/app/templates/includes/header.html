@@ -18,11 +18,11 @@
                 {% if g.user_db.role == 'admin' %}
                 <div class="dropdown">
                     <li class="nav-item dropdown">
-                        <a class="nav-link data-bs-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDarkDropdownMenuLink"
                            data-bs-toggle="dropdown" aria-expanded="false">
                             Выпадающий список
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-dark">
                         <li>
                             <a class="dropdown-item"
                                href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи </a>
