@@ -32,7 +32,7 @@ def admin_users():
     return test_view()
 
 
-@admin_bp.route('/admin_user_detail/<user_id>', methods=['POST', 'GET'])
+@admin_bp.route('/admin_user_detail/<string:user_id>', methods=['POST', 'GET'])
 def admin_user_detail(user_id):
     return user_detail(request, user_id)
 
