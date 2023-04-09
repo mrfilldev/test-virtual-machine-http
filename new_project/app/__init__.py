@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 
 # from flask_login import LoginManager
 
+from ..admin_zone.admin_profile import admin_bp
 from ..configuration.config import Config
 from ..api.api import api_bp
 from ..main.main import main_bp
@@ -16,6 +17,7 @@ bootstrap = Bootstrap(app)
 # login = LoginManager()
 # login.init_app(app)
 app.register_blueprint(api_bp)
+app.register_blueprint(admin_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(profile_bp)
 app.config['SECRET_KEY'] = Config.SECRET_KEY
