@@ -47,7 +47,7 @@ def main():
             print('ya-token has been inserted')
         print('ya-token is True')
 
-        print('user: ', g.user)
+        #print('user: ', g.user)
         # if user is None:
         # format = '%Y-%m-%dT%H:%M:%S%Z'
         # date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
