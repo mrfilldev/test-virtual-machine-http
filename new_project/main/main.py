@@ -34,7 +34,7 @@ def index():
         return render_template('main/index.html')
 
 
-@app.before_request
+@main_bp.before_request
 def load_user():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     print(g)
