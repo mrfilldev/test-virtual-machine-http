@@ -29,11 +29,10 @@ def admin_main():
 
 @admin_bp.route('/users')
 def admin_users():
-    print(g.user_db)
-    print(g.user_inf)
+    # print(g.user_db)
+    # print(g.user_inf)
 
     return test_view()
-
 
 
 @admin_bp.route('/admin_user_detail/<string:user_id>', methods=['POST', 'GET'])
