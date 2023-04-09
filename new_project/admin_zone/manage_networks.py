@@ -42,4 +42,4 @@ def list_networks():
         'network_list': networks_list,
         'count_networks': count_networks,
     }
-    return render_template('admin/networks.html', context=context)
+    return render_template('admin/list_networks.html', context=context)
