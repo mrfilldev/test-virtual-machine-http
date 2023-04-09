@@ -22,8 +22,10 @@ def load_user():
         print(i)
     print('user_inf: ', user_inf)
     g.user_inf = user_inf
+    print(g.user_inf)
     user = database.col_users.find_one({'_id': user_inf['id']})
     g.user_db = user
+    print(g.user_db)
 
 
 @profile_bp.route('/profile_safe')
