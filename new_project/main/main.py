@@ -50,7 +50,9 @@ def main():
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
         print('user_inf: ', user_inf)
         user = database.col_users.find_one({'_id': user_inf['id']})
+        print(user)
         network = database.col_networks.find_one({'owner_id': user_inf['id']})
+        print(network)
         if user is None:
             if network is not None:
                 format = '%Y-%m-%dT%H:%M:%S%Z'
