@@ -4,8 +4,8 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import render_template
 
-from new_project.db import database
-from new_project.main import oauth_via_yandex
+from ..db import database
+from ..main import oauth_via_yandex
 
 
 def test_view(session):
