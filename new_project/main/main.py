@@ -34,22 +34,6 @@ def index():
         return render_template('main/index.html')
 
 
-@main_bp.before_request
-def load_user():
-    resp = oauth_via_yandex.get_code(request)
-    for key in dict(session):
-        print(key, ":", session[key])
-    session['ya-token'] = resp['access_token']
-    print('ya-token has been inserted')
-    user_inf = oauth_via_yandex.get_user(session['ya-token'])
-    print(g)
-    print(type(g))
-    for i in g:
-        print(i)
-    print('user_inf: ', user_inf)
-    user = database.col_users.find_one({'_id': user_inf['id']})
-    g.user = user
-
 
 @main_bp.route('/main')
 def main():
