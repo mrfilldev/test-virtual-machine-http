@@ -77,7 +77,6 @@ def main():
 
 
 @main_bp.route('/logout')
-@login_required
 def logout():
     try:
         for key in list(session.keys()):
