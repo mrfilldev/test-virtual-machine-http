@@ -3,12 +3,13 @@ import traceback
 from flask import Blueprint, request, session, redirect, url_for, render_template, g
 from flask_login import login_required
 
-#from ..app import login
+# from ..app import login
 from ..configuration.config import Config
 
 from . import oauth_via_yandex
 from ..db import database
-#from ..db.models import User
+
+# from ..db.models import User
 
 main_bp = Blueprint(
     'main_blueprint', __name__,
@@ -33,7 +34,18 @@ def index():
         return render_template('main/index.html')
 
 
-# @login.user_loader
+@app.before_request
+def load_user():
+    user_inf = oauth_via_yandex.get_user(session['ya-token'])
+    print(g)
+    print(type(g))
+    for i in g:
+        print(i)
+    print('user_inf: ', user_inf)
+    user = database.col_users.find_one({'_id': user_inf['id']})
+    g.user = user
+
+
 @main_bp.route('/main')
 def main():
     # get ya-token
@@ -46,30 +58,23 @@ def main():
             print('ya-token has been inserted')
         print('ya-token is True')
 
-        user_inf = oauth_via_yandex.get_user(session['ya-token'])
-        print(g)
-        print(type(g))
-        for i in g:
-            print(i)
-        print('user_inf: ', user_inf)
-        user = database.col_users.find_one({'_id': user_inf['id']})
-        print('user: ', user)
+        print('user: ', g.user)
         # if user is None:
-            # format = '%Y-%m-%dT%H:%M:%S%Z'
-            # date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
-            # print(date_now)
-            # Config.col_users.insert_one(
-            #     {
-            #         '_id': user_inf['id'],
-            #         'psuid': user_inf['psuid'],
-            #         'login': user_inf['login'],
-            #         'access_level': 'Новый пользователь',
-            #         'date_registered': str(date_now),
-            #         'company_name': '',
-            #         'inn': '',
-            #     }
-            # )
-            # print(f'user {user_inf["login"]} has been inserted')
+        # format = '%Y-%m-%dT%H:%M:%S%Z'
+        # date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+        # print(date_now)
+        # Config.col_users.insert_one(
+        #     {
+        #         '_id': user_inf['id'],
+        #         'psuid': user_inf['psuid'],
+        #         'login': user_inf['login'],
+        #         'access_level': 'Новый пользователь',
+        #         'date_registered': str(date_now),
+        #         'company_name': '',
+        #         'inn': '',
+        #     }
+        # )
+        # print(f'user {user_inf["login"]} has been inserted')
 
         return redirect(url_for('profile_blueprint.profile_future_client'))
     except Exception as e:
