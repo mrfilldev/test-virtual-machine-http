@@ -38,8 +38,8 @@ def test_view():
 
 def user_detail(request, user_id):
     if request.method == 'POST':
-        new_value = request.form['access_level']
-        set_command = {"$set": {"access_level": new_value}}
+        new_value = request.form['role']
+        set_command = {"$set": {"role": new_value}}
         old_user = {'_id': str(user_id)}
         new_user = database.col_users.update_one(old_user, set_command)
         print('new_user', new_user)
