@@ -68,4 +68,4 @@ def profile_worker():
 def profile_admin():
     # return 'Вы admin'
 
-    return redirect(url_for('admin_bp.admin_profile'))
+    return redirect(url_for('admin_blueprint.admin_main'))
