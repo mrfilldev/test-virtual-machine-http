@@ -1,6 +1,6 @@
 import os
 import traceback
-from flask import Blueprint, request, Response, render_template, g, session
+from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -12,17 +12,36 @@ profile_bp = Blueprint(
     'profile_blueprint', __name__,
 )
 
+
 @profile_bp.before_request
 def load_user():
-
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     print(g)
     print(type(g))
     for i in g:
         print(i)
     print('user_inf: ', user_inf)
+    g.user_inf = user_inf
     user = database.col_users.find_one({'_id': user_inf['id']})
-    g.user = user
+    g.user_db = user
+
+
+@profile_bp.route('/profile_safe')
+def profile():
+    # return 'Хотите стать клиентом - свяжитесь с нами'
+    print(g.user)
+    print(type(g))
+    if g.user.role is None:
+        return redirect(url_for('profile_future_client'))
+    else:
+        if g.user.role == 'admin':
+            return redirect(url_for('profile_admin'))
+        elif g.user.role == 'network_owner':
+            return redirect(url_for('profile_owner'))
+        elif g.user.role == 'network_worker':
+            return redirect(url_for('profile_worker'))
+        else:
+            return redirect(url_for('profile_future_client'))
 
 
 @profile_bp.route('/profile_safe')
@@ -47,3 +66,11 @@ def profile_worker():
     print(g.user)
     print(type(g))
     return render_template('profile/profile_worker.html')
+
+
+@profile_bp.route('/admin')
+def profile_admin():
+    # return 'Вы admin'
+    print(g.user)
+    print(type(g))
+    return redirect(url_for('admin_bp.admin_profile'))

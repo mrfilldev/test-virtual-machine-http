@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+            <a class="nav-link" href="url_for('admin_add_network')" aria-disabled="true">Добавить Сеть</a>
+            <a class="nav-link" href="url_for('admin_networks')" aria-disabled="true">Сети</a>
+
+            <a class="nav-link" href="url_for('admin_add_user')" aria-disabled="true">+ пользователь</a>
+
+
+            <a class="nav-link" href="#" aria-disabled="true">Ручная отмена заказа</a>
+            <a class="nav-link" href="{{ url_for('test') }}" aria-disabled="true">Пользователи</a>
+            <a class="nav-link" href="url_for('list_of_prices')" aria-disabled="true">Тарифы</a>
+
+
+        </div>
+        <div class="col-10">
+            <main class="container-sm">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-center">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" colspan="3">
+                                {{ g.user_inf.display_name }}#{{ g.user_inf.id }}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                Логин:
+                            </td>
+                            <td style="width: 80%">
+                                {{ g.user_inf.login }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Статус:
+                            </td>
+                            <td>
+                                {{ g.user.role }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Дата регистрации:
+                            </td>
+                            <td>
+                                {{ g.user.date_registered | format_datetime }}
+                            </td>
+                        </tr>
+
+                        РЕЖИМ АДМИНИСТРАТОРА!!!
+
+                        Ваш статус: {{ context['status'] }} <br>
+                        ________________________________________________________________________<br>
+                        {% for i in context['user_yan_inf'] %}
+                        {{ i }} -> {{ context['user_yan_inf'][i] }}<br>
+                        {% endfor %}
+                        ________________________________________________________________________<br>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

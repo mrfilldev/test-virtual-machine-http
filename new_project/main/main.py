@@ -83,9 +83,8 @@ def main():
                     }
                 )
                 print(f'user {user_inf["login"]} has been inserted')
-                return redirect(url_for('profile_blueprint.profile_future_client'))
         else:
-            return redirect(url_for('profile_blueprint.profile_owner'))
+            return redirect(url_for('profile_blueprint.profile'))
     except Exception as e:
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
