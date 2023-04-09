@@ -64,7 +64,7 @@ class User:
     def __init__(self, username, email, isActive, role):
         self.username = username
         self.email = email
-        self.isActive = isActive
+        #self.isActive = isActive
         self.role = role
         self.timestamp = datetime.now()
 
