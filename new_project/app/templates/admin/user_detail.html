@@ -54,10 +54,9 @@
                                     &nbsp<label>Роль пользователя
                                     <select style="width: 150px" class="form-control"
                                                   name="role">
-                                    <option value="{{ context['user'].role }}">{{ context['user'].role }}</option>
-                                    <option value="network_owner">Владелец сети</option>
-                                    <option value="worker">Сотрудник</option>
-                                    <option value="admin">admin</option>
+                                        for
+                                    <option {{ context['user'].role == item ? "selected" : "" }}>{{ context['user'].role }}</option>
+
                                 </select>
                                 </label>
                                 </td>

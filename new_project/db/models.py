@@ -164,6 +164,11 @@ class User:
         self.carwashes = []
 
 
+class UserRole(enum):
+    admin = 'Администратор'
+    network_owner = 'Владелец Сети'
+    worker = 'Сотрудник Мойки'
+
 
     # @staticmethod
     # def is_authenticated():

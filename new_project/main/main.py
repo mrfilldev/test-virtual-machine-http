@@ -76,7 +76,6 @@ def main():
                 {
                     '_id': id_network,
                     'network_name': session['owner_info']['network_name'],
-                    'owner': user_inf['login'],
                     'carwashes': [],
                 }
             )

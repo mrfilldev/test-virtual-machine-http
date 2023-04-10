@@ -53,6 +53,9 @@ def user_detail(request, user_id):
     data = json.dumps(data, default=lambda x: x.__dict__)
     user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print(user_obj)
+
+
+
     context = {
         'user': user_obj,
     }
