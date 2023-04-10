@@ -54,7 +54,7 @@
                                     <select style="width: 150px" class="form-control"
                                             name="role">
                                         <option value="{{ context['user'].role }}">
-                                            {{ context['UserRole'].context['user'].role.name }}
+                                            {{ context['UserRole'].(context['user'].role).name }}
                                         </option>
                                         {% for i in context['UserRole'] %}
                                         <option value="{{ i.name }}">{{ i.value }}</option>
