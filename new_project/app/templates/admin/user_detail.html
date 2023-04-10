@@ -51,12 +51,15 @@
                                     уровень доступа:
                                 </td>
                                 <td>
-                                    &nbsp;<select style="width: 150px" class="form-control"
+                                    &nbsp<label>Роль пользователя
+                                    <select style="width: 150px" class="form-control"
                                                   name="role">
                                     <option value="{{ context['user'].role }}">{{ context['user'].role }}</option>
                                     <option value="network_owner">Владелец сети</option>
                                     <option value="worker">Сотрудник</option>
                                     <option value="admin">Admin</option>
+                                </select>
+                                </label>
                                 </td>
                             </tr>
                             <tr>
