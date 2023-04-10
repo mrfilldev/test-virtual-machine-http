@@ -81,22 +81,22 @@ def main():
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
-        # else:
-        #     format = '%Y-%m-%dT%H:%M:%S%Z'
-        #     date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
-        #     print(date_now)
-        #     database.col_users.insert_one(
-        #         {
-        #             '_id': user_inf['id'],
-        #             'email': user_inf['default_email'],
-        #             'login': user_inf['login'],
-        #             'number': user_inf['default_phone']['number'],
-        #             'date_registered': str(date_now),
-        #         }
-        #     )
-        #     print(f'user {user_inf["login"]} has been inserted')
-        else:
-            return redirect(url_for('profile_blueprint.profile'))
+            # else:
+            #     format = '%Y-%m-%dT%H:%M:%S%Z'
+            #     date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+            #     print(date_now)
+            #     database.col_users.insert_one(
+            #         {
+            #             '_id': user_inf['id'],
+            #             'email': user_inf['default_email'],
+            #             'login': user_inf['login'],
+            #             'number': user_inf['default_phone']['number'],
+            #             'date_registered': str(date_now),
+            #         }
+            #     )
+            #     print(f'user {user_inf["login"]} has been inserted')
+
+        return redirect(url_for('profile_blueprint.profile'))
     except Exception as e:
         traceback.print_exc()
         print(f'EXEPTION: \n{type(Exception)}: e', e)  # добавить логгер
