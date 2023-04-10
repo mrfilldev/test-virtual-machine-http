@@ -63,7 +63,7 @@ def network_detail(request, network_id):
     print(network_obj)
 
     context = {
-        'user': network_obj,
+        'network': network_obj,
 
     }
     return render_template(
