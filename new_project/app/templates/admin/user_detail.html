@@ -54,8 +54,10 @@
                                     <select style="width: 150px" class="form-control"
                                             name="role">
                                         {% set role_of_current_user = context['user'].role %}
+                                        {% set role_of_user = context['UserRole'].role_of_current_user.name %}
+
                                         <option value="{{ context['user'].role }}">
-                                            {{ context['UserRole'].role_of_current_user.name }}
+                                            {{ role_of_user }}
                                         </option>
                                         {% for i in context['UserRole'] %}
                                         <option value="{{ i.name }}">{{ i.value }}</option>
