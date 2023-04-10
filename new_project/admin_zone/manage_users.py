@@ -55,6 +55,7 @@ def user_detail(request, user_id):
     print(user_obj)
 
     enum_roles = list(UserRole)
+    print(enum_roles)
 
     context = {
         'user': user_obj,
