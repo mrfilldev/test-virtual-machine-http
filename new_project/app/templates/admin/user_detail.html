@@ -42,7 +42,7 @@
                                 <td style="width: 200px">
                                     id:
                                 </td>
-                                <td style="width: 40%">
+                                <td>
                                     {{ context['user']._id }}
                                 </td>
                             </tr>
@@ -71,18 +71,16 @@
                                 <td>
                                     <div class="dropup-center dropup">
                                         <a class="btn btn-secondary dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                            Выпадающий список по центру
+                                           data-bs-toggle="dropdown" aria-expanded="false">
+                                            Сети
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Действие</a></li>
-                                            <li><a class="dropdown-item" href="#">Действие два</a></li>
-                                            <li><a class="dropdown-item" href="#">Действие три</a></li>
+                                            <li><a class="dropdown-item" href="#">Сеть 1</a></li>
+                                            <li><a class="dropdown-item" href="#">Сеть 2</a></li>
+                                            <li><a class="dropdown-item" href="#">Сеть 3</a></li>
+                                            <li><a class="dropdown-item" href="#">Сеть 4</a></li>
                                         </ul>
                                     </div>
-                                    {% for network in context['networks'] %}
-                                    {{ network }}
-                                    {% endfor %}
                                 </td>
                             </tr>
                             </tbody>
