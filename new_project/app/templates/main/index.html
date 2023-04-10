@@ -6,6 +6,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4 col-md-offset-4">
+            <fieldset>
+                <legend>Контактная информация</legend>
+                <label>Имя<input type="text" required></label>
+                <label>E-mail<input type="email" required></label>
+
             <a href="{{ url_for('main_blueprint.oauth') }}">
                 <!--кнопка яндекс авторизации-->
                 <svg width="567" height="56" viewBox="0 0 567 56" fill="none"
@@ -48,6 +53,7 @@
             <div>
                 Добро пожаловать в Я.Мойки &nbsp; :-)
             </div>
+            </fieldset>
         </div>
     </div>
 </div>
