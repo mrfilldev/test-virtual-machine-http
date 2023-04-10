@@ -10,11 +10,11 @@
             <main class="container-sm">
                 <div class="table-responsive">
                     <div class="table-responsive">
-                        <form method=POST action="{{ url_for('admin_blueprint.admin_network_detail') }}">
+                        <form method=POST action="{{ url_for('admin_blueprint.admin_add_network') }}">
                             <table class="table table-bordered table-center">
                                 <thead class="table-light">
                                 <tr>
-                                    <th scope="col" colspan="3">Сеть:</th>
+                                    <th scope="col" colspan="3">Добавить Сеть:</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -23,8 +23,15 @@
                                         Название:
                                     </td>
                                     <td>
-                                        <input style="width: 100%" type="text" class="form-control" name="name"
-                                               value="{{ context['network']._id }}">
+                                        <input style="width: 100%" type="text" class="form-control" name="name">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Владелец:
+                                    </td>
+                                    <td>
+                                        <input style="width: 100%" type="text" class="form-control" name="owner">
                                     </td>
                                 </tr>
                                 </tbody>

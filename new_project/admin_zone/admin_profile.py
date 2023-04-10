@@ -3,7 +3,7 @@ from datetime import date
 from dateutil import parser
 from flask import render_template, request, Blueprint, session, g
 
-from .manage_networks import list_networks, network_detail
+from .manage_networks import list_networks, network_detail, add_network
 from .manage_prices import show_list_price, create_price
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
@@ -64,7 +64,12 @@ def admin_networks_list():
 
 @admin_bp.route('/admin_network/', methods=['POST', 'GET'])
 def admin_add_network():
-    return network_detail(request)
+    return add_network(request)
+
+
+@admin_bp.route('/admin_network/<string:network_id>', methods=['POST', 'GET'])
+def admin_network_detail(network_id):
+    return network_detail(request, network_id)
 
 
 @admin_bp.route('/list_of_prices/')

@@ -212,7 +212,7 @@ def add_company():
 def admin_add_network():
     if request.method == 'POST':
         add_network(request)
-    return render_template('admin_zone/networks/../templates/admin_zone/networks/network_detail.html')
+    return render_template('admin_zone/networks/../templates/admin_zone/networks/add_network.html')
 
 
 @app.route('/list_networks/', methods=['POST', 'GET'])

@@ -9,7 +9,7 @@ from ..db import database
 from ..db.models import Network, User
 
 
-def network_detail(request):
+def add_network(request):
     print('\n################################################################\n')
     if request.method == 'POST':
         form = request.form
@@ -25,7 +25,7 @@ def network_detail(request):
     context = {
 
     }
-    return render_template('admin/network_detail.html', context=context)
+    return render_template('admin/add_network.html', context=context)
 
 
 def list_networks():
@@ -44,3 +44,29 @@ def list_networks():
         'count_networks': count_networks,
     }
     return render_template('admin/list_networks.html', context=context)
+
+
+def network_detail(request, network_id):
+    if request.method == 'POST':
+        network_name = request.form['network_name']
+        set_command = {"$set": {"network_name": network_name}}
+        old_network_id = {'_id': str(network_id)}
+        new_network = database.col_networks.update_one(old_network_id, set_command)
+        print('new_network', new_network)
+
+    network_obj = database.col_networks.find_one({'_id': str(network_id)})  # dict
+    print(network_obj)
+
+    data = json.loads(json_util.dumps(network_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print(network_obj)
+
+    context = {
+        'user': network_obj,
+
+    }
+    return render_template(
+        'admin/network_detail.html',
+        context=context
+    )
