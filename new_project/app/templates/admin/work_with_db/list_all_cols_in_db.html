@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<br>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.tr-user').click(function () {
+            window.location = $(this).data('href');
+            return false;
+        });
+    });
+</script>
+<div class="table-responsive">
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Название</th>
+        </tr>
+        </thead>
+        <tbody class=".table-hover">
+        {% for collection in context['list'] %}
+
+        <tr>
+            <th scope="row">
+                {{ context['count_networks'].len - loop.index0 }}
+            </th>
+
+            <td>
+                {{ collection }}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
