@@ -84,7 +84,7 @@ def main():
                     '_id': user_inf['id'],
                     'email': user_inf['default_email'],
                     'login': user_inf['login'],
-                    'number': session['owner_info']['number'],
+                    'number': session['owner_info']['phone_number'],
                     'name': session['owner_info']['name'],
                     'surname': session['owner_info']['surname'],
                     'date_registered': str(date_now),
