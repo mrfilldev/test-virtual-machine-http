@@ -23,7 +23,7 @@
             <th scope="col">test</th>
             <th scope="col">test</th>
             <th scope="col">test</th>
-            <th scope="col">test</th>
+
 
         </tr>
         </thead>
@@ -34,24 +34,19 @@
             <th scope="row">
                 {{ context['count_users'] - loop.index0 }}
             </th>
-
-            <td>
-                {{ user._id }}
-            </td>
-
-            <td>
-                {{ user.date_registered | format_datetime }}
-            </td>
-
             <td>
                 {{ user.login }}
+            </td>
+            <td>
+                {{ user._id }}
             </td>
             <td>
                 {{ user.role }}
             </td>
             <td>
-
+                {{ user.date_registered | format_datetime }}
             </td>
+
         </tr>
         {% endfor %}
         </tbody>
