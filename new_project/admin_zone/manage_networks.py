@@ -1,5 +1,6 @@
 import json
 import uuid
+from types import SimpleNamespace
 
 from bson import json_util
 from flask import render_template
@@ -14,7 +15,7 @@ def network_detail(request):
         form = request.form
         id = uuid.uuid4().hex
         name: str = form['name']
-        new_network = Network(_id=id, Name=name)
+        new_network = Network(_id=id, network_name=name)
         new_network_json = json.dumps(new_network, default=lambda x: x.__dict__)
         new_network_dict = json.loads(new_network_json)
         new_network_dict['_id'] = new_network_dict.pop('Id')
@@ -34,7 +35,7 @@ def list_networks():
     for count_networks, i in enumerate(list(all_networks)[::-1], 1):
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
-        price_obj = json.loads(data, object_hook=lambda d: Network(**d))
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(price_obj)
         networks_list.append(price_obj)
     print(networks_list)
