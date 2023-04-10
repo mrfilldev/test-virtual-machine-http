@@ -23,8 +23,10 @@ def oauth():
     print(Config.YAN_CLIENT_ID)
     if request.method == 'POST':
         form = request.form
+        for key in form:
+            print('form key ' + dict[key])
         g.owner_info = {
-            'name': {form["name"]},
+            'name': form["name"],
             'surname': form["surname"],
             'phone_number': form["phone_number"],
             'network_name': form["network_name"]
