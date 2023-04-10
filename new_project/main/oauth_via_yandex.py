@@ -18,7 +18,7 @@ def get_code(request):
     # phone_number = request.args.get('phone_number')
     # print(state, name, surname, network_name, phone_number)
 
-    print('{}\n{}\r\n{}\r\n\r\n{}'.format(
+    print('{}\n{}\r\n{}\r\n\r\n'.format(
         '-----------START-----------',
         request.method + ' ' + request.url,
         '\r\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
