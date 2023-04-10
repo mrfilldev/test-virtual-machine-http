@@ -23,15 +23,15 @@ def oauth():
     print(Config.YAN_CLIENT_ID)
     if request.method == 'POST':
         form = request.form
-
         url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
                    f'&client_id={Config.YAN_CLIENT_ID}' \
                    f'&redirect_uri=http://test-tanker-carwash.ru/main' \
                    f'&name={form["name"]}' \
                    f'&surname={form["surname"]}' \
                    f'&phone_number={form["phone_number"]}' \
-                   f'&network_name={form["network_name"]}' \
+                   f'&network_name={form["network_name"]}'
 
+        print('url_to_redirrect:', url)
         return redirect(url)
     else:
         return redirect('/')
