@@ -33,11 +33,14 @@
             </th>
 
             <td>
-                {{ network.Id }}
+                {{ network._id }}
             </td>
 
             <td>
-                {{ network.Name }}
+                {{ network.network_name }}
+            </td>
+            <td>
+                {{ network.carwashes }}
             </td>
         </tr>
         {% endfor %}
