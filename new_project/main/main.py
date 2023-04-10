@@ -24,7 +24,7 @@ def oauth():
     if request.method == 'POST':
         form = request.form
         for key in form:
-            print('form key ', dict[key])
+            print('form key ', form[key])
         g.owner_info = {
             'name': form["name"],
             'surname': form["surname"],
