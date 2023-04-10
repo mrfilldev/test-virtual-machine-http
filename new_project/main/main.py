@@ -28,11 +28,15 @@ def oauth():
     return redirect(url)
 
 
-@main_bp.route('/')
+@main_bp.route('/', methods=['POST', 'GET'])
 def index():
     if 'ya-token' in session:
         return redirect(url_for('main_blueprint.main'))
     else:
+        # if request.method == 'POST':
+        #     phone = request.form['phone']
+        #
+
         return render_template('main/index.html')
 
 
@@ -51,38 +55,38 @@ def main():
         print('user_inf: ', user_inf)
         user = database.col_users.find_one({'_id': user_inf['id']})
         print(user)
-        network = database.col_networks.find_one({'owner_id': user_inf['id']})
-        print(network)
+        # network = database.col_networks.find_one({'owner_id': user_inf['id']})
+        # print(network)
         if user is None:
-            if network is not None:
-                format = '%Y-%m-%dT%H:%M:%S%Z'
-                date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
-                print(date_now)
-                database.col_users.insert_one(
-                    {
-                        '_id': user_inf['id'],
-                        'email': user_inf['default_email'],
-                        'login': user_inf['login'],
-                        'number': user_inf['default_phone']['number'],
-                        'date_registered': str(date_now),
-                        'role': 'network_owner',
-                    }
-                )
-                print(f'user {user_inf["login"]} has been inserted')
-            else:
-                format = '%Y-%m-%dT%H:%M:%S%Z'
-                date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
-                print(date_now)
-                database.col_users.insert_one(
-                    {
-                        '_id': user_inf['id'],
-                        'email': user_inf['default_email'],
-                        'login': user_inf['login'],
-                        'number': user_inf['default_phone']['number'],
-                        'date_registered': str(date_now),
-                    }
-                )
-                print(f'user {user_inf["login"]} has been inserted')
+            # if network is not None:
+            format = '%Y-%m-%dT%H:%M:%S%Z'
+            date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+            print(date_now)
+            database.col_users.insert_one(
+                {
+                    '_id': user_inf['id'],
+                    'email': user_inf['default_email'],
+                    'login': user_inf['login'],
+                    'number': user_inf['default_phone']['number'],
+                    'date_registered': str(date_now),
+                    'role': 'network_owner',
+                }
+            )
+            print(f'user {user_inf["login"]} has been inserted')
+        # else:
+        #     format = '%Y-%m-%dT%H:%M:%S%Z'
+        #     date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+        #     print(date_now)
+        #     database.col_users.insert_one(
+        #         {
+        #             '_id': user_inf['id'],
+        #             'email': user_inf['default_email'],
+        #             'login': user_inf['login'],
+        #             'number': user_inf['default_phone']['number'],
+        #             'date_registered': str(date_now),
+        #         }
+        #     )
+        #     print(f'user {user_inf["login"]} has been inserted')
         else:
             return redirect(url_for('profile_blueprint.profile'))
     except Exception as e:

@@ -7,11 +7,12 @@
     <div class="row justify-content-center">
         <div class="col-3"></div>
         <div class="col-6">
-            <form>
+            <form method=POST action="">
 
-                <label>Контактный телефон &nbsp;
-                    <input style="width: 567px" type="text" class="form-control" name="number"
-                           placeholder="+7(999)666-99-66">
+                <label>Контактный телефон: &nbsp;
+                    <input style="width: 567px" type="tel" class="form-control" name="phone"
+                           placeholder="+7(999)666-99-66" pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
+                           minlength="18" maxlength="18">
                     <br>
                     <br>
                     <a href="{{ url_for('main_blueprint.oauth') }}" type="submit">
@@ -53,8 +54,8 @@
                         </svg>
                     </a>
                     <br>
+                    <br>
                     <div>
-                        <br>
                         Добро пожаловать в Я.Мойки &nbsp; :-)
                     </div>
             </form>
