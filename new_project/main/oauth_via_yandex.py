@@ -22,7 +22,7 @@ def get_code(request):
         '-----------START-----------',
         request.method + ' ' + request.url,
         '\r\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
-        request.body,
+        #request.body,
     ))
 
     url = 'https://oauth.yandex.ru/token'
