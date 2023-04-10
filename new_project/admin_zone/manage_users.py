@@ -54,13 +54,12 @@ def user_detail(request, user_id):
     user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print(user_obj)
 
-    enum_roles = UserRole
     for i in UserRole:
         print(i.name, i.value)
 
     context = {
         'user': user_obj,
-        'enum_roles': enum_roles
+        'UserRole': UserRole
     }
     return render_template(
         'admin/user_detail.html',
