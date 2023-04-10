@@ -53,7 +53,7 @@
                                 <td>
                                     <select style="width: 150px" class="form-control"
                                             name="role">
-                                        <option value="{{ context['user'].role }}">{{ (context['UserRole']).(context['user'].role) }}</option>
+                                        <option value="{{ context['user'].role }}">...</option>
                                         {% for i in context['UserRole'] %}
                                         <option value="{{ i.name }}">{{ i.value }}</option>
                                         {% endfor %}
