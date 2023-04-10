@@ -65,8 +65,8 @@ def main():
         print('user_inf: ', user_inf)
         user = database.col_users.find_one({'_id': user_inf['id']})
         print(user)
-        print('session["owner_info"]: ', session['owner_info'])
         if user is None:
+            print('session["owner_info"]: ', session['owner_info'])
             # if network is not None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
             date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
