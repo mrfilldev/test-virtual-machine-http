@@ -53,9 +53,11 @@
                                 <td>
                                     <select style="width: 150px" class="form-control"
                                             name="role">
-                                        <option value="{{ context['user'].role }}">...</option>
+                                        <option>(не указано)</option>
                                         {% for i in context['UserRole'] %}
-                                        <option value="{{ i.name }}">{{ i.value }}</option>
+
+                                        <option selected="{% if (context['user'].role = i.name) %}selected{% endif %}">
+                                                {{ i.value }}</option>
                                         {% endfor %}
                                     </select>
                                     </label>
