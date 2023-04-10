@@ -76,7 +76,9 @@ def main():
                     '_id': user_inf['id'],
                     'email': user_inf['default_email'],
                     'login': user_inf['login'],
-                    'number': '' if user_inf['default_phone'] is None else user_inf['default_phone']['number'],
+                    'number': session['owner_info']['number'],
+                    'name': session['owner_info']['name'],
+                    'surname': session['owner_info']['surname'],
                     'date_registered': str(date_now),
                     'role': 'network_owner',
                 }
