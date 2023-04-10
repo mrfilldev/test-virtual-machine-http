@@ -79,4 +79,4 @@ def add_user(request):
 
 
 def delete_user(user_id):
-    database.col_users.delete_one({'id': user_id})
+    database.col_users.delete_one({'_id': user_id})
