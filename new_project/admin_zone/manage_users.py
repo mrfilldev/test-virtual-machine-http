@@ -54,7 +54,7 @@ def user_detail(request, user_id):
     user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print(user_obj)
 
-    enum_roles = list(UserRole)
+    enum_roles = UserRole
     print(enum_roles)
 
     context = {
