@@ -31,6 +31,7 @@ def oauth():
             'phone_number': form["phone_number"],
             'network_name': form["network_name"]
         }
+        print(g.owner_info)
         url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
                    f'&client_id={Config.YAN_CLIENT_ID}' \
                    f'&redirect_uri=http://test-tanker-carwash.ru/main'
