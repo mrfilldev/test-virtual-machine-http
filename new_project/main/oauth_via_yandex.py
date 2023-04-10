@@ -12,7 +12,11 @@ def encode_base64(client_id, client_secret):
 
 def get_code(request):
     state = request.args.get('state')
-    print(state)
+    name = request.args.get('name')
+    surname = request.args.get('surname')
+    network_name = request.args.get('network_name')
+    phone_number = request.args.get('phone_number')
+    print(state, name, surname, network_name, phone_number)
 
     url = 'https://oauth.yandex.ru/token'
 
