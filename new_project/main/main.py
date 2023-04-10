@@ -71,6 +71,14 @@ def main():
             format = '%Y-%m-%dT%H:%M:%S%Z'
             date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
             print(date_now)
+            id_network = uuid.uuid4().hex
+            database.col_networks.insert_one(
+                {
+                    '_id': id_network,
+                    'network_name': session['owner_info']['network_name'],
+                    'carwashes': []
+                }
+            )
             database.col_users.insert_one(
                 {
                     '_id': user_inf['id'],
@@ -81,13 +89,7 @@ def main():
                     'surname': session['owner_info']['surname'],
                     'date_registered': str(date_now),
                     'role': 'network_owner',
-                }
-            )
-            database.col_networks.insert_one(
-                {
-                    '_id': uuid.uuid4().hex,
-                    'network_name': session['owner_info']['network_name'],
-                    'carwashes': []
+                    'networks': [id_network]
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
