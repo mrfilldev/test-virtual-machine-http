@@ -14,7 +14,7 @@
 
 
                 <a style="width: 130px" class="btn btn-outline-danger"
-                   href="{{ url_for('admin_blueprint.admin_delete_user', user_id=context['user'].id) }}">
+                   href="{{ url_for('admin_blueprint.admin_delete_user', user_id=context['user']._id) }}">
                     Удалить
                 </a>
 
