@@ -18,6 +18,13 @@ def get_code(request):
     # phone_number = request.args.get('phone_number')
     # print(state, name, surname, network_name, phone_number)
 
+    print('{}\n{}\r\n{}\r\n\r\n{}'.format(
+        '-----------START-----------',
+        request.method + ' ' + request.url,
+        '\r\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
+        request.body,
+    ))
+
     url = 'https://oauth.yandex.ru/token'
 
     code = encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET)
