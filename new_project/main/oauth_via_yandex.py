@@ -11,20 +11,6 @@ def encode_base64(client_id, client_secret):
 
 
 def get_code(request):
-    # state = request.args.get('state')
-    # name = request.args.get('name')
-    # surname = request.args.get('surname')
-    # network_name = request.args.get('network_name')
-    # phone_number = request.args.get('phone_number')
-    # print(state, name, surname, network_name, phone_number)
-
-    print('{}\n{}\r\n{}\r\n\r\n'.format(
-        '-----------START-----------',
-        request.method + ' ' + request.url,
-        '\r\n'.join('{}: {}'.format(k, v) for k, v in request.headers.items()),
-        #request.body,
-    ))
-
     url = 'https://oauth.yandex.ru/token'
 
     code = encode_base64(Config.YAN_CLIENT_ID, Config.YAN_CLIENT_SECRET)

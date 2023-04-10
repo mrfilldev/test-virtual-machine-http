@@ -23,14 +23,15 @@ def oauth():
     print(Config.YAN_CLIENT_ID)
     if request.method == 'POST':
         form = request.form
+        g.owner_info = {
+            'name': {form["name"]},
+            'surname': form["surname"],
+            'phone_number': form["phone_number"],
+            'network_name': form["network_name"]
+        }
         url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
                    f'&client_id={Config.YAN_CLIENT_ID}' \
-                   f'&redirect_uri=http://test-tanker-carwash.ru/main' \
-                   f'&name={form["name"]}' \
-                   f'&surname={form["surname"]}' \
-                   f'&phone_number={form["phone_number"]}' \
-                   f'&network_name={form["network_name"]}'
-
+                   f'&redirect_uri=http://test-tanker-carwash.ru/main'
         print('url_to_redirrect:', url)
         return redirect(url)
     else:
@@ -42,10 +43,6 @@ def index():
     if 'ya-token' in session:
         return redirect(url_for('main_blueprint.main'))
     else:
-        # if request.method == 'POST':
-        #     phone = request.form['phone']
-        #
-
         return render_template('main/index.html')
 
 
@@ -64,8 +61,7 @@ def main():
         print('user_inf: ', user_inf)
         user = database.col_users.find_one({'_id': user_inf['id']})
         print(user)
-        # network = database.col_networks.find_one({'owner_id': user_inf['id']})
-        # print(network)
+        print('g.owner_info: ', g.owner_info)
         if user is None:
             # if network is not None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
