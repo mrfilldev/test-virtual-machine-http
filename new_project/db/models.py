@@ -151,7 +151,7 @@ class Network:
     def __init__(self, _id, network_name):
         self.Id = _id
         self.network_name = network_name
-        self.Carwashes = []
+
 
 
 class User:
