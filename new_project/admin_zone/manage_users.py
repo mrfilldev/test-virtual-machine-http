@@ -80,4 +80,5 @@ def add_user(request):
 
 def delete_user(user_id):
     database.col_users.delete_one({'_id': user_id})
+    print(f'User {user_id} deleted successfully')
     return redirect(url_for('admin_blueprint.admin_users'))
