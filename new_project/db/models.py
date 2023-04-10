@@ -164,7 +164,7 @@ class User:
         self.carwashes = []
 
 
-class UserRole(enum):
+class UserRole(enum.Enum):
     admin = 'Администратор'
     network_owner = 'Владелец Сети'
     worker = 'Сотрудник Мойки'
