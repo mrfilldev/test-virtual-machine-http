@@ -76,7 +76,8 @@ def main():
                 {
                     '_id': id_network,
                     'network_name': session['owner_info']['network_name'],
-                    'carwashes': []
+                    'owner': user_inf['login'],
+                    'carwashes': [],
                 }
             )
             database.col_users.insert_one(
