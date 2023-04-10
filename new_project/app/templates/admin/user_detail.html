@@ -53,8 +53,8 @@
                                 <td>
                                     <select style="width: 150px" class="form-control"
                                             name="role">
-                                        {% for role in enum_roles %}
-                                            <option value="{{ role.value }}">{{ role.value, role.name }}</option>
+                                        {% for i in enum_roles %}
+                                            <option value="{{ i.name }}">{{ i.value }}</option>
                                         {% endfor %}
 
                                     </select>
