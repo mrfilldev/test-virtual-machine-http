@@ -3,7 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template, session
+from flask import render_template, session, redirect, url_for
 
 from ..db import database
 from ..db.models import User
@@ -80,3 +80,4 @@ def add_user(request):
 
 def delete_user(user_id):
     database.col_users.delete_one({'_id': user_id})
+    return redirect(url_for('admin_blueprint.admin_users'))
