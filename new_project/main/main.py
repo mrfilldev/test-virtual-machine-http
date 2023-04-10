@@ -25,13 +25,13 @@ def oauth():
         form = request.form
         for key in form:
             print('form key ', form[key])
-        g.owner_info = {
+        session['owner_info'] = {
             'name': form["name"],
             'surname': form["surname"],
             'phone_number': form["phone_number"],
             'network_name': form["network_name"]
         }
-        print(g.owner_info)
+
         url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
                    f'&client_id={Config.YAN_CLIENT_ID}' \
                    f'&redirect_uri=http://test-tanker-carwash.ru/main'
@@ -64,7 +64,7 @@ def main():
         print('user_inf: ', user_inf)
         user = database.col_users.find_one({'_id': user_inf['id']})
         print(user)
-        print('g.owner_info: ', g.owner_info)
+        print('session["owner_info"]: ', session['owner_info'])
         if user is None:
             # if network is not None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
