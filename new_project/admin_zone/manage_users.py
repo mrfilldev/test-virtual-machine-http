@@ -55,7 +55,8 @@ def user_detail(request, user_id):
     print(user_obj)
 
     enum_roles = UserRole
-    print(enum_roles)
+    for i in UserRole:
+        print(i.name, i.value)
 
     context = {
         'user': user_obj,
