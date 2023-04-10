@@ -50,15 +50,14 @@
                                 <td style="width: 200px">
                                     уровень доступа:
                                 </td>
-                                <td>{% for i in UserRole %}
+                                <td>
                                     <select style="width: 150px" class="form-control"
                                             name="role">
                                             <option value="{{ context['user'].role }}">...</option>
-
+                                        {% for i in context['UserRole'] %}
                                             <option value="{{ i.name }}">{{ i.value }}</option>
-
+                                        {% endfor %}
                                     </select>
-                                    {% endfor %}
                                 </label>
                                 </td>
                             </tr>
