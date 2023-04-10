@@ -1,5 +1,6 @@
 import time
 import traceback
+import uuid
 from datetime import datetime
 
 from flask import Blueprint, request, session, redirect, url_for, render_template, g
@@ -78,6 +79,13 @@ def main():
                     'number': '' if user_inf['default_phone'] is None else user_inf['default_phone']['number'],
                     'date_registered': str(date_now),
                     'role': 'network_owner',
+                }
+            )
+            database.col_networks.insert_one(
+                {
+                    '_id': uuid.uuid4().hex,
+                    'network_name': session['owner_info']['network_name'],
+                    'carwashes': []
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
