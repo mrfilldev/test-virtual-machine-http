@@ -11,7 +11,7 @@ from ..configuration.config import Config
 from . import oauth_via_yandex
 from ..db import database
 
-# from ..db.models import User
+from ..db.models import User
 
 main_bp = Blueprint(
     'main_blueprint', __name__,

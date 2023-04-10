@@ -66,6 +66,7 @@ def admin_networks_list():
 def admin_add_network():
     return network_detail(request)
 
+
 @admin_bp.route('/list_of_prices/')
 def list_of_prices():
     return show_list_price()
@@ -74,8 +75,6 @@ def list_of_prices():
 @admin_bp.route('/create_price', methods=['POST', 'GET'])
 def admin_create_price():
     return create_price(request)
-
-
 
 
 @admin_bp.app_template_filter()
@@ -89,13 +88,6 @@ def format_datetime(value):
         value = value.strftime("%d.%m.%Y %H:%M:%S")
     return value
 
-#
-
-#
-#
-
-#
-#
 # def show_list_price():
 #     all_prices = prices.find({})
 #     prices_list = []

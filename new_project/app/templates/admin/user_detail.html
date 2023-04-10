@@ -43,7 +43,7 @@
                                     id:
                                 </td>
                                 <td style="width: 40%">
-                                    {{ context['user'].id }}
+                                    {{ context['user']._id }}
                                 </td>
                             </tr>
                             <tr>
@@ -66,10 +66,23 @@
                             </tr>
                             <tr>
                                 <td style="width: 200px">
-                                    psuid:
+                                    Cеть:
                                 </td>
                                 <td>
-                                    {{ context['user'].psuid }}
+                                    <div class="dropup-center dropup">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            Выпадающий список по центру
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Действие</a></li>
+                                            <li><a class="dropdown-item" href="#">Действие два</a></li>
+                                            <li><a class="dropdown-item" href="#">Действие три</a></li>
+                                        </ul>
+                                    </div>
+                                    {% for network in context['networks'] %}
+                                    {{ network }}
+                                    {% endfor %}
                                 </td>
                             </tr>
                             </tbody>

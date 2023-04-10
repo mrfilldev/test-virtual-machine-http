@@ -1,4 +1,5 @@
 import enum
+from datetime import datetime
 
 from ..db import database
 
@@ -150,13 +151,19 @@ class Network:
     def __init__(self, _id, Name):
         self.Id = _id
         self.Name = Name
+        self.Carwashes = []
 
 
 class User:
     def __init__(self, Id, email, role):
         self.Id = Id
-        self.email = email
         self.role = role
+        self.email = email
+        self.date = datetime.now()
+        self.networks = []
+        self.carwashes = []
+
+
 
     # @staticmethod
     # def is_authenticated():
