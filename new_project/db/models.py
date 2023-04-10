@@ -148,9 +148,9 @@ class Order:
 
 
 class Network:
-    def __init__(self, _id, Name):
+    def __init__(self, _id, network_name):
         self.Id = _id
-        self.Name = Name
+        self.network_name = network_name
         self.Carwashes = []
 
 
