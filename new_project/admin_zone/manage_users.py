@@ -6,7 +6,7 @@ from bson import json_util
 from flask import render_template, session, redirect, url_for
 
 from ..db import database
-from ..db.models import User
+from ..db.models import User, UserRole
 from ..main import oauth_via_yandex
 
 
@@ -54,10 +54,11 @@ def user_detail(request, user_id):
     user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print(user_obj)
 
-
+    enum_roles = list(UserRole)
 
     context = {
         'user': user_obj,
+        'enum_roles': enum_roles
     }
     return render_template(
         'admin/user_detail.html',

@@ -53,11 +53,12 @@
                                 <td>
                                     &nbsp<label>Роль пользователя
                                     <select style="width: 150px" class="form-control"
-                                                  name="role">
-                                        for
-                                    <option {{ context['user'].role == item ? "selected" : "" }}>{{ context['user'].role }}</option>
+                                            name="role">
+                                         {% for role in enum_roles %}
+                                        <option value="">Статус</option>
+                                        <option value="{{ role.value}}">{{ role.name }}</option>
 
-                                </select>
+                                    </select>
                                 </label>
                                 </td>
                             </tr>
