@@ -38,11 +38,11 @@ def create_prices(request, dict_of_form):
             if request.form[j] != '':
                 prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
             elif request.form[j] == '':
-                for obj in prices_list:
+                for obj in range(len(prices_list)):
                     if prices_list[obj]._id == j.split('_')[1]:
                         obj = obj
                         print(obj)
-                        categories = obj.categoryPrice
+                        categories = prices_list[obj].categoryPrice
                         print(categories)
                         for category in categories:
                             if category.category == j.split('_')[2]:
