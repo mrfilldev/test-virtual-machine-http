@@ -60,4 +60,4 @@ def create_carwash():
         return redirect(url_for('carwashes'))
 
     context = show_list_price()
-    return render_template("carwash/../templates/carwash/create_carwash.html", context=context)
+    return render_template("view_carwash/create_carwash.html", context=context)
