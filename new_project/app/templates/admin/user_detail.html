@@ -79,8 +79,8 @@
                                             name="network_name">
                                         <option disabled="disabled">(не указано)</option>
 
-                                        {% for i in context['UserRole'] %}
-                                        <option value="{{i.name}}" {% if context['user'].role == i.name %} selected {% endif %}>{{ i.value }}</option>
+                                        {% for network in context['networks'] %}
+                                        <option value="{{network._id}}" {% if context['user'].networks[0] == network._id %} selected {% endif %}>{{ network.network_name }}</option>
                                         {% endfor %}
                                     </select>
                                 </td>
