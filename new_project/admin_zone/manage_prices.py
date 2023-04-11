@@ -106,5 +106,5 @@ def edit_price(request, price_id):
 
 
 def delete_price(price_id):
-    database.col_prices.delete_one({'Id': int(price_id)})
+    database.col_prices.delete_one({'Id': price_id})
     print('deleted price: ', price_id)
