@@ -72,7 +72,10 @@
                                     дата регистрации:
                                 </td>
                                 <td>
-                                    {{ context['user'].date_registered | format_datetime }}
+                                    <input name="lon" style="width: 48%" type="text" class="form-control"
+                                           required placeholder="longitude"
+                                           value="{{ context['user'].date_registered | format_datetime }}">
+
                                 </td>
                             </tr>
                             {% if context['user'].networks is defined %}
