@@ -31,7 +31,7 @@ def load_user():
 
 @carwash_bp.route('/carwash_list', methods=['POST', 'GET'])
 def carwashes_list():
-    list_carwashes(g)
+    return list_carwashes(g)
 
 
 @carwash_bp.route('/create_carwash', methods=['POST', 'GET'])
