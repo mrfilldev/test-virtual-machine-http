@@ -84,7 +84,7 @@ def admin_create_price():
 
 
 @admin_bp.route('/price_detail/<string:price_id>', methods=['POST', 'GET'])
-def admin_create_price(price_id):
+def admin_price_detail(price_id):
     return edit_price(request, price_id)
 
 
