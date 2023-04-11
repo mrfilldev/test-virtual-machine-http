@@ -27,7 +27,7 @@ def load_user():
     print('g.user_db: :', g.user_db)
 
 
-@carwash_bp.route('/carwash_list')
+@carwash_bp.route('/carwash_list', methods=['POST', 'GET'])
 def carwash_list():
     id_user = g.user_db['_id']
     network = g.user_db['networks'][0]
