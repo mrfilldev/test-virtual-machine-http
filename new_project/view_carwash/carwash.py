@@ -57,7 +57,7 @@ def carwashes_list():
 def create_carwash():
     if request.method == 'POST':
         create_carwash_obj(request, g)
-        return redirect(url_for('carwashes'))
+        return redirect(url_for('carwash_blueprint.carwashes_list'))
 
     context = show_list_price()
     return render_template("view_carwash/create_carwash.html", context=context)
