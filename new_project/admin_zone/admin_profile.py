@@ -5,7 +5,7 @@ from flask import render_template, request, Blueprint, session, g
 
 from .edit_data_in_db import list_all_cols_in_db
 from .manage_networks import list_networks, network_detail, add_network
-from .manage_prices import show_list_price, create_price
+from .manage_prices import show_list_price, create_price, edit_price
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
 from ..main import oauth_via_yandex
@@ -81,6 +81,11 @@ def list_of_prices():
 @admin_bp.route('/create_price', methods=['POST', 'GET'])
 def admin_create_price():
     return create_price(request)
+
+
+@admin_bp.route('/price_detail/<string:price_id>', methods=['POST', 'GET'])
+def admin_create_price(price_id):
+    return edit_price(request, price_id)
 
 
 @admin_bp.route('/list_of_prices/')
