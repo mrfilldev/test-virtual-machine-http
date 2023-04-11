@@ -74,6 +74,6 @@ def owner_carwash_detail(carwash_id):
     carwash_detail(request, carwash_id)
 
 @carwash_bp.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
-def user_carwash_detail(carwash_id):
+def delete_carwash(carwash_id):
     delete_carwash(carwash_id)
 
