@@ -33,10 +33,13 @@ def load_user():
 @carwash_bp.route('/carwash_list', methods=['POST', 'GET'])
 def carwashes_list():
     id_user = g.user_db['_id']
-    network = g.user_db['networks'][0]
-    print('network:', network)
+    if g.user_db['networks'] is True:
+        network = g.user_db['networks'][0]
+        all_carwashes = database.col_carwashes.find({'network_id': network})
+        print('network:', network)
+    else:
+        all_carwashes = database.col_carwashes.find({})
     carwashes_list = []
-    all_carwashes = database.col_carwashes.find({'network_id': network})
     count_carwashes = 0
 
     for count_carwashes, i in enumerate(list(all_carwashes)[::-1], 1):
