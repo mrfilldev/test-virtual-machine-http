@@ -31,7 +31,7 @@ def load_user():
 def carwashes():
     id_user = g.user_db['_id']
     network = g.user_db['networks'][0]
-
+    print('network:', network)
     carwashes_list = []
     all_carwashes = database.col_carwashes.find({'network_id': network})
     count_carwashes = 0
@@ -42,6 +42,7 @@ def carwashes():
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_list.append(carwash_obj)
         print(carwash_obj)
+    print(carwashes_list)
     context = {
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
