@@ -16,7 +16,7 @@
 
                     {% for i in g.user_db %}
                     {{ i.key }} -> {{ i.value }}
-                    {{ endfor }}
+                    {% endfor %}
 
                     {% for i in g.user_info %}
                     {{ i.key }} -> {{ i.value }}
