@@ -56,7 +56,7 @@ def carwashes_list():
 @carwash_bp.route('/create_carwash', methods=['POST', 'GET'])
 def create_carwash():
     if request.method == 'POST':
-        create_carwash_obj(request)
+        create_carwash_obj(request, g)
         return redirect(url_for('carwashes'))
 
     context = show_list_price()

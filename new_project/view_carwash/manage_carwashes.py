@@ -49,7 +49,7 @@ def create_prices(request, dict_of_form):
 
     return prices
 
-def create_carwash_obj(request):
+def create_carwash_obj(request, g):
     print('\n################################################################\n')
     dict_of_form = request.form.to_dict(flat=False)
     print(dict_of_form)
@@ -93,6 +93,7 @@ def create_carwash_obj(request):
     print('TYPE: ', type(new_carwash_dict))
     print('data: ', new_carwash_dict)
     new_carwash_dict['_id'] = new_carwash_dict.pop('Id')
+    new_carwash_dict['network_id'] = g.user_db['networks'][0]
 
     database.col_carwashes.insert_one(new_carwash_dict)
     database.col_carwashes_admins.insert_one(
