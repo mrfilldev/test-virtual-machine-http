@@ -1,4 +1,5 @@
 import json
+import uuid
 from types import SimpleNamespace
 
 from bson import json_util
@@ -116,7 +117,7 @@ def create_carwash_obj(request, g):
 
         print('\n################################################################\n')
 
-        id = database.col_carwashes.count_documents({}) + 1
+        id = uuid.uuid4().hex
         name_carwash = request.form['name']
         address_carwash = request.form['address']
         location_carwash = Point(request.form['lat'], request.form['lon'])
@@ -235,6 +236,6 @@ def carwash_detail(request, carwash_id):
 
 
 def carwash_delete(carwash_id):
-    database.col_carwashes.delete_one({'_id': carwash_id})
+    database.col_carwashes.delete_one({'_id': int(carwash_id)})
     print('deleted carwash_id:', carwash_id)
     return redirect(url_for('carwash_blueprint.carwashes_list'))
