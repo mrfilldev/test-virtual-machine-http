@@ -15,11 +15,11 @@
                     Вы владелец
 
                     {% for i in g.user_db %}
-                    {{ i.key }} -> {{ i.value }}
+                    {{ i.name }} -> {{ i.value }}
                     {% endfor %}
 
                     {% for i in g.user_info %}
-                    {{ i.key }} -> {{ i.value }}
+                    {{ i.name }} -> {{ i.value }}
                     {% endfor %}
                 </div>
             </main>
