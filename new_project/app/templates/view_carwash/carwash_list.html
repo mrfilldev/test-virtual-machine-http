@@ -55,6 +55,41 @@
         </thead>
         <tbody class=".table-hover">
 
+        {% for carwash in context['carwashes_list'] %}
+
+        <tr class="tr-order" data-href="#">
+            <th scope="row">
+                {{ context['count_carwashes'] - loop.index0 }}
+            </th>
+
+            <td>
+                {{ carwash.Name }}
+            </td>
+
+            <td>
+                {{ carwash.Address }}
+            </td>
+
+            <td>
+                {{ carwash.Enable }}
+            </td>
+            <td>
+                {{ carwash.Type }}
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
+            </td>
+            <td>
+                {% for box in carwash.Boxes %}
+                {{ box.number }} - {{ box.status }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+
         </tbody>
     </table>
 </div>
