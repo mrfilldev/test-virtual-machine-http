@@ -40,7 +40,7 @@ def carwashes_list():
         network = database.col_networks.find({'_id': network})
         data = json.loads(json_util.dumps(network))
         data = json.dumps(data, default=lambda x: x.__dict__)
-        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
     else:
         all_carwashes = database.col_carwashes.find({})
