@@ -71,7 +71,7 @@ def edit_price(request, price_id):
             print(i, request.form[i])
         print('1')
         form = request.form
-        price_id = {'Id': price_id}
+        price_id = {'_id': price_id}
         print('2')
         print('old_carwash: ', price_id)
         categoryPrice = []
@@ -94,7 +94,7 @@ def edit_price(request, price_id):
         print('UPDATE FIELDS: ', set_fields)
         print('UPDATE DATA: ', new_price)
 
-    price_obj = database.col_prices.find_one({'Id': price_id})  # dict
+    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
     print('PRICE OOOOBJJJEEECTTT: ', price_obj)
     data = json.loads(json_util.dumps(price_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
@@ -106,6 +106,6 @@ def edit_price(request, price_id):
 
 
 def delete_price(price_id):
-    database.col_prices.delete_one({'Id': price_id})
+    database.col_prices.delete_one({'_id': price_id})
     print('deleted price: ', price_id)
     return redirect(url_for('admin_blueprint.list_of_prices'))
