@@ -70,7 +70,7 @@
                                     {{ context['user'].date_registered | format_datetime }}
                                 </td>
                             </tr>
-                            {% if context['user'].networks == True %}
+                            {% if context['user'].networks is defined %}
                             <tr>
                                 <td style="width: 200px">
                                     Cеть:
