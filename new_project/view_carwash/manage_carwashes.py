@@ -152,7 +152,7 @@ def carwash_detail(request, carwash_id):
         print('new carwash: ', new_carwash)
         return redirect(url_for('carwash_blueprint.carwashes_list'))
     print(type(carwash_id))
-    carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
+    carwash_obj = database.col_carwashes.find_one({'_id': 1})  # dict
     print(carwash_obj)
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
@@ -184,5 +184,5 @@ def carwash_detail(request, carwash_id):
 
 
 def delete_carwash(carwash_id):
-    database.col_carwashes.delete_one({'_id': carwash_id})
+    database.col_carwashes.delete_one({'_id': 1})
     return redirect(url_for('carwash_blueprint.carwashes_list'))
