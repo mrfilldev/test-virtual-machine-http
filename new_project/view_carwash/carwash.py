@@ -36,15 +36,15 @@ def carwashes_list():
 
 @carwash_bp.route('/create_carwash', methods=['POST', 'GET'])
 def create_carwash():
-    create_carwash_obj(request, g)
+    return create_carwash_obj(request, g)
 
 
 
 @carwash_bp.route('/create_carwash/<string:carwash_id>', methods=['POST', 'GET'])
 def owner_carwash_detail(carwash_id):
-    carwash_detail(request, carwash_id)
+    return carwash_detail(request, carwash_id)
 
 @carwash_bp.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
 def delete_carwash(carwash_id):
-    carwash_delete(carwash_id)
+    return carwash_delete(carwash_id)
 
