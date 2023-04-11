@@ -150,7 +150,20 @@ def create_carwash_obj(request, g):
             }
         )
         return redirect(url_for('carwash_blueprint.carwashes_list'))
-    context = show_list_price()
+    all_prices = database.col_prices.find({})
+    prices_list = []
+    count_prices = 0
+    for count_prices, i in enumerate(list(all_prices)[::-1], 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print(price_obj)
+        prices_list.append(price_obj)
+    print(prices_list)
+    context = {
+        'prices_list': prices_list,
+        'count_prices': count_prices,
+    }
     return render_template("view_carwash/create_carwash.html", context=context)
 
 
