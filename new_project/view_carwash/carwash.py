@@ -47,4 +47,4 @@ def carwashes_list():
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
     }
-    render_template('view_carwash/carwash_list.html', context=context)
+    return render_template('view_carwash/carwash_list.html', context=context)
