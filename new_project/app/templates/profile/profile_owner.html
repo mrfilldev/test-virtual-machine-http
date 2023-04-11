@@ -13,10 +13,10 @@
 
                     профиль
                     Вы владелец
-                    {{g.user_db}}
+                    {{g.user_db}}<br>
                     {% for i in g.user_db %}
-                    {{ i }} -> {{ i }}
-                    {% endfor %}
+                    {{ i }} -> {{ g.user_db[i] }}
+                    {% endfor %}<br>
 
                     {{ g.user_inf }}
                     {% for i in g.user_inf %}
