@@ -13,6 +13,14 @@
                 <div class="table-responsive">
                     профиль
                     Вы владелец
+
+                    {% for i in g.user_db %}
+                    {{ i.key }} -> {{ i.value }}
+                    {{ endfor }}
+
+                    {% for i in g.user_info %}
+                    {{ i.key }} -> {{ i.value }}
+                    {{ endfor }}
                 </div>
             </main>
         </div>
