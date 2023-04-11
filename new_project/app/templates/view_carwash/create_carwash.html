@@ -127,7 +127,7 @@
                     </td>
                     {% for i in price.categoryPrice %}
                     <td>
-                        <input name="prices_{{ price.Id }}_{{ i['category'] }}" style="width: 100px" type="text" class="form-control"
+                        <input name="prices_{{ price._id }}_{{ i['category'] }}" style="width: 100px" type="text" class="form-control"
                                placeholder="{{ i['sum'] }}">
                     </td>
                     {% endfor %}
