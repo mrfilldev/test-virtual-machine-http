@@ -236,6 +236,6 @@ def carwash_detail(request, carwash_id):
 
 
 def carwash_delete(carwash_id):
-    database.col_carwashes.delete_one({'_id': int(carwash_id)})
+    database.col_carwashes.delete_one({'_id': carwash_id})
     print('deleted carwash_id:', carwash_id)
     return redirect(url_for('carwash_blueprint.carwashes_list'))
