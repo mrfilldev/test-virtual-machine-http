@@ -160,7 +160,7 @@ def create_carwash_obj(request, g):
         print(price_obj)
         prices_list.append(price_obj)
     print(prices_list)
-    print(prices_list[0]['_id'])
+
     context = {
         'prices_list': prices_list,
         'count_prices': count_prices,
