@@ -28,10 +28,12 @@
                                    href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_networks_list') }}"> Сети </a>
+                                <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_networks_list') }}">
+                                    Сети </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url_for('admin_blueprint.list_of_prices') }}"> Тарифы </a>
+                                <a class="dropdown-item" href="{{ url_for('admin_blueprint.list_of_prices') }}">
+                                    Тарифы </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#"> ... </a>
@@ -61,6 +63,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main_blueprint.logout') }}" aria-disabled="true">Выйти</a>
                 </li>
+                {% if g.user_inf['is_avatar_empty'] == False %}
+
+                <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-50" class="rounded-3"
+                     style="width: 150px;"
+                     alt="Avatar"/>
 
 
             </ul>
