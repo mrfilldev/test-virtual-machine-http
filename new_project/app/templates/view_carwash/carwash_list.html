@@ -57,7 +57,7 @@
 
         {% for carwash in context['carwashes_list'] %}
 
-        <tr class="tr-order" data-href="#">
+        <tr class="tr-order" data-href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
             <th scope="row">
                 {{ context['count_carwashes'] - loop.index0 }}
             </th>

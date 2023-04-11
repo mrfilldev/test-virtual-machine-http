@@ -6,8 +6,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 
-from .manage_carwashes import create_carwash_obj
-from ..admin_zone.manage_prices import show_list_price
+from .manage_carwashes import create_carwash_obj, carwash_detail, delete_carwash
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -66,9 +65,15 @@ def carwashes_list():
 
 @carwash_bp.route('/create_carwash', methods=['POST', 'GET'])
 def create_carwash():
-    if request.method == 'POST':
-        create_carwash_obj(request, g)
-        return redirect(url_for('carwash_blueprint.carwashes_list'))
+    create_carwash_obj(request, g)
 
-    context = show_list_price()
-    return render_template("view_carwash/create_carwash.html", context=context)
+
+
+@carwash_bp.route('/create_carwash/<string:carwash_id>', methods=['POST', 'GET'])
+def owner_carwash_detail(carwash_id):
+    carwash_detail(request, carwash_id)
+
+@carwash_bp.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
+def user_carwash_detail(carwash_id):
+    delete_carwash(carwash_id)
+
