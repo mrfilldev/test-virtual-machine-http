@@ -64,7 +64,7 @@
             </table>
             <button style="width: 100px" type="submit" class="btn btn-dark">Сохранить</button>
         </form>
-        <form method=POST action="{{ url_for('admin_blueprint.admin_delete_price', price_id=context['price'].Id) }}">
+        <form method=POST action="{{ url_for('admin_blueprint.admin_delete_price', price_id=context['price']._id) }}">
             <button style="width: 100px" type="submit" class="btn btn-dark">Удалить</button>
         </form>
     </div>
