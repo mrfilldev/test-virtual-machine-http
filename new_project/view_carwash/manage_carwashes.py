@@ -68,6 +68,39 @@ def show_list_price():
     return context
 
 
+def list_carwashes(g):
+    id_user = g.user_db['_id']
+    if 'networks' in g.user_db:
+        network = g.user_db['networks'][0]
+        all_carwashes = database.col_carwashes.find({'network_id': network})
+        print('network:', network)
+        network = database.col_networks.find({'_id': network})
+        data = json.loads(json_util.dumps(network))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+        print('network_obj:', network_obj)
+    else:
+        all_carwashes = database.col_carwashes.find({})
+        network_obj = None
+    carwashes_list = []
+    count_carwashes = 0
+
+    for count_carwashes, i in enumerate(list(all_carwashes)[::-1], 1):
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        carwashes_list.append(carwash_obj)
+        print(carwash_obj)
+    print(carwashes_list)
+
+    context = {
+        'carwashes_list': carwashes_list,
+        'count_carwashes': count_carwashes,
+        'network_obj': network_obj,
+    }
+    return render_template('view_carwash/carwash_list.html', context=context)
+
+
 def create_carwash_obj(request, g):
     if request.method == 'POST':
         print('\n################################################################\n')
@@ -152,7 +185,7 @@ def carwash_detail(request, carwash_id):
         print('new carwash: ', new_carwash)
         return redirect(url_for('carwash_blueprint.carwashes_list'))
     print(type(carwash_id))
-    carwash_obj = database.col_carwashes.find_one({'_id': 1})  # dict
+    carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
     print(carwash_obj)
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
@@ -184,5 +217,5 @@ def carwash_detail(request, carwash_id):
 
 
 def carwash_delete(carwash_id):
-    database.col_carwashes.delete_one({'_id': 1})
+    database.col_carwashes.delete_one({'_id': carwash_id})
     return redirect(url_for('carwash_blueprint.carwashes_list'))
