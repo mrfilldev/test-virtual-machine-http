@@ -5,6 +5,9 @@ from types import SimpleNamespace
 
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
+
+from .manage_carwashes import create_carwash_obj
+from ..admin_zone.manage_prices import show_list_price
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -48,3 +51,13 @@ def carwashes_list():
         'count_carwashes': count_carwashes,
     }
     return render_template('view_carwash/carwash_list.html', context=context)
+
+
+@carwash_bp.route('/create_carwash', methods=['POST', 'GET'])
+def create_carwash():
+    if request.method == 'POST':
+        create_carwash_obj(request)
+        return redirect(url_for('carwashes'))
+
+    context = show_list_price()
+    return render_template("carwash/../templates/carwash/create_carwash.html", context=context)
