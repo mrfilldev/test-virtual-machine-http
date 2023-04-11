@@ -75,18 +75,14 @@
                                     Cеть:
                                 </td>
                                 <td>
-                                    <div class="dropup-center dropup">
-                                        <a class="btn btn-secondary dropdown-toggle" type="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false">
-                                            Сети
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Сеть 1</a></li>
-                                            <li><a class="dropdown-item" href="#">Сеть 2</a></li>
-                                            <li><a class="dropdown-item" href="#">Сеть 3</a></li>
-                                            <li><a class="dropdown-item" href="#">Сеть 4</a></li>
-                                        </ul>
-                                    </div>
+                                    <select style="width: 150px" class="form-control"
+                                            name="network_name">
+                                        <option disabled="disabled">(не указано)</option>
+
+                                        {% for i in context['UserRole'] %}
+                                        <option value="{{i.name}}" {% if context['user'].role == i.name %} selected {% endif %}>{{ i.value }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </td>
                             </tr>
                             </tbody>

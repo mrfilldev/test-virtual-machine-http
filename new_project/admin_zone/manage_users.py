@@ -57,9 +57,18 @@ def user_detail(request, user_id):
     for i in UserRole:
         print(i.name, i.value)
 
+    network_obj = database.col_networks.find({})  # dict
+    print(network_obj)
+
+    data = json.loads(json_util.dumps(network_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print(network_obj)
+
     context = {
         'user': user_obj,
-        'UserRole': UserRole
+        'UserRole': UserRole,
+        'networks': network_obj,
     }
     return render_template(
         'admin/user_detail.html',
