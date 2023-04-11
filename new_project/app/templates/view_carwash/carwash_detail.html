@@ -121,8 +121,8 @@
                     </td>
                     {% for i in price.categoryPrice %}
                     <td>
-                        {% set id_of_cell = price.Id|string %}
-                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                        {% set id_of_cell = price._id %}
+                        <input name="prices_{{ price._id }}_{{ i['category'] }}"
                                style="width: 100px" type="text"
                                class="form-control" placeholder="{{ i['sum'] }}"
                                value="{% for obj in context['carwash']['Price'] %}{% if obj.Id == id_of_cell %}{% if obj.categoryPrice == i['category'] %}{{obj.cost}}{% endif %}{% endif %}{% endfor %}">
