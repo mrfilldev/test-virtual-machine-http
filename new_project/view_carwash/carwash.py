@@ -33,7 +33,7 @@ def load_user():
 @carwash_bp.route('/carwash_list', methods=['POST', 'GET'])
 def carwashes_list():
     id_user = g.user_db['_id']
-    if g.user_db['networks'] is True:
+    if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
         all_carwashes = database.col_carwashes.find({'network_id': network})
         print('network:', network)
