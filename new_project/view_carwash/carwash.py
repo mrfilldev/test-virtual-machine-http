@@ -28,7 +28,7 @@ def load_user():
 
 
 @carwash_bp.route('/carwash_list', methods=['POST', 'GET'])
-def carwash_list():
+def carwashes():
     id_user = g.user_db['_id']
     network = g.user_db['networks'][0]
 
