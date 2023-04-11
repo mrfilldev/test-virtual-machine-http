@@ -66,33 +66,43 @@ def create_price(request):
 
 
 def edit_price(request, price_id):
-    for i in request.form:
-        print(i, request.form[i])
-    print('1')
-    form = request.form
-    price_id = {'Id': price_id}
-    print('2')
-    print('old_carwash: ', price_id)
-    categoryPrice = []
-    print(list(CategoryAuto))
-    for category in list(CategoryAuto):
-        print(category)
-        print(category.name)
-        print(form[str(category.name)])
-        categoryPrice.append(CostIdSum(category.name, form[str(category.name)]))
-    data = json.dumps(categoryPrice, default=lambda x: x.__dict__)
-    categoryPrice = json.loads(data)  # , object_hook=lambda d: SimpleNamespace(**d))
-    set_fields = {'$set': {
-        'name': form['name'],
-        'description': form['description'],
-        'categoryPrice': categoryPrice,
-        'costType': form['costType']
+    if request.method == 'POST':
+        for i in request.form:
+            print(i, request.form[i])
+        print('1')
+        form = request.form
+        price_id = {'Id': price_id}
+        print('2')
+        print('old_carwash: ', price_id)
+        categoryPrice = []
+        print(list(CategoryAuto))
+        for category in list(CategoryAuto):
+            print(category)
+            print(category.name)
+            print(form[str(category.name)])
+            categoryPrice.append(CostIdSum(category.name, form[str(category.name)]))
+        data = json.dumps(categoryPrice, default=lambda x: x.__dict__)
+        categoryPrice = json.loads(data)  # , object_hook=lambda d: SimpleNamespace(**d))
+        set_fields = {'$set': {
+            'name': form['name'],
+            'description': form['description'],
+            'categoryPrice': categoryPrice,
+            'costType': form['costType']
 
-    }}
-    new_price = database.col_prices.update_one(price_id, set_fields)
-    print('UPDATE FIELDS: ', set_fields)
-    print('UPDATE DATA: ', new_price)
-    return new_price
+        }}
+        new_price = database.col_prices.update_one(price_id, set_fields)
+        print('UPDATE FIELDS: ', set_fields)
+        print('UPDATE DATA: ', new_price)
+
+    price_obj = database.col_prices.find_one({'Id': price_id})  # dict
+    print('PRICE OOOOBJJJEEECTTT: ', price_obj)
+    data = json.loads(json_util.dumps(price_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    context = {
+        'price': price_obj,
+    }
+    return render_template('admin/price_detail.html', context=context)
 
 
 def delete_price(price_id):
