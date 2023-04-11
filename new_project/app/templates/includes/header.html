@@ -64,8 +64,17 @@
                     <a class="nav-link" href="{{ url_for('main_blueprint.logout') }}" aria-disabled="true">Выйти</a>
                 </li>
                 {% if g.user_inf['is_avatar_empty'] == False %}
+                <a class="navbar-brand" href="#">
+                    <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24"
+                         class="d-inline-block align-text-top">
+                    Bootstrap
+                </a>
+                <a class="navbar-brand" href="#">
+                    <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50" class="d-inline-block align-text-top">
 
-                <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"/>
+                    Bootstrap
+                </a>
+
                 {% endif %}
 
 
