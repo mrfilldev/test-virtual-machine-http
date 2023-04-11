@@ -51,6 +51,7 @@ def create_price(request):
         new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
         print(new_price)
         print(type(new_price))
+        new_price['_id'] = new_price.pop('Id')
         database.col_prices.insert_one(new_price)
         return redirect(url_for('admin_blueprint.list_of_prices'))
 
@@ -69,7 +70,7 @@ def edit_price(request, price_id):
         print(i, request.form[i])
     print('1')
     form = request.form
-    price_id = {'Id': int(price_id)}
+    price_id = {'Id': price_id}
     print('2')
     print('old_carwash: ', price_id)
     categoryPrice = []
