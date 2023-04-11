@@ -5,9 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col-2">
-            профиль
-            Вы владелец
-            Ваши данные:
+            <legend>Владелец Сети<legend>
+            Ваши данные: <br><br><br>
 
             {% for i in g.user_db %}
             {{ i }} -> {{ g.user_db[i] }} <br>
