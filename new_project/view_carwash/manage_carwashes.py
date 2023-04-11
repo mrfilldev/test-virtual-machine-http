@@ -155,7 +155,7 @@ def create_carwash_obj(request, g):
     count_prices = 0
     for count_prices, i in enumerate(list(all_prices)[::-1], 1):
         data = json.loads(json_util.dumps(i))
-        price_obj = json.dumps(data, default=lambda x: x.__dict__)
+        data = json.dumps(data, default=lambda x: x.__dict__)
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(price_obj)
         prices_list.append(price_obj)
