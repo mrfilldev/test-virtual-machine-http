@@ -70,6 +70,7 @@
                                     {{ context['user'].date_registered | format_datetime }}
                                 </td>
                             </tr>
+                            {% if context['networks'] == True %}
                             <tr>
                                 <td style="width: 200px">
                                     Cеть:
@@ -85,6 +86,7 @@
                                     </select>
                                 </td>
                             </tr>
+                            {% endif %}
                             </tbody>
                         </table>
 
