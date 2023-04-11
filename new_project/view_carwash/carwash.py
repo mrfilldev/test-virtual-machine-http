@@ -16,6 +16,17 @@ carwash_bp = Blueprint(
     'carwash_blueprint', __name__,
 )
 
+
+@carwash_bp.before_request
+def load_user():
+    user_inf = oauth_via_yandex.get_user(session['ya-token'])
+    g.user_inf = user_inf
+    print('g.user_inf: ', g.user_inf)
+    user = database.col_users.find_one({'_id': user_inf['id']})
+    g.user_db = user
+    print('g.user_db: :', g.user_db)
+
+
 @carwash_bp.route('/carwash_list')
 def carwash_list():
     id_user = g.user_db['_id']
