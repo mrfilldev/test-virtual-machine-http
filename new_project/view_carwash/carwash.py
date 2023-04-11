@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 
-from .manage_carwashes import create_carwash_obj, carwash_detail, delete_carwash
+from .manage_carwashes import create_carwash_obj, carwash_detail, carwash_delete
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -75,5 +75,5 @@ def owner_carwash_detail(carwash_id):
 
 @carwash_bp.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
 def delete_carwash(carwash_id):
-    delete_carwash(carwash_id)
+    carwash_delete(carwash_id)
 

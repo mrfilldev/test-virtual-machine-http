@@ -183,6 +183,6 @@ def carwash_detail(request, carwash_id):
     return render_template("view_carwash/carwash_detail.html", context=context)
 
 
-def delete_carwash(carwash_id):
+def carwash_delete(carwash_id):
     database.col_carwashes.delete_one({'_id': 1})
     return redirect(url_for('carwash_blueprint.carwashes_list'))
