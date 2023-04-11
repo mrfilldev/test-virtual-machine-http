@@ -37,8 +37,14 @@ def carwashes_list():
         network = g.user_db['networks'][0]
         all_carwashes = database.col_carwashes.find({'network_id': network})
         print('network:', network)
+        network = database.col_networks.find({'_id': 'network'})
+        data = json.loads(json_util.dumps(network))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        print(network_obj)
     else:
         all_carwashes = database.col_carwashes.find({})
+        network_obj = None
     carwashes_list = []
     count_carwashes = 0
 
@@ -49,9 +55,11 @@ def carwashes_list():
         carwashes_list.append(carwash_obj)
         print(carwash_obj)
     print(carwashes_list)
+
     context = {
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
+        'network_obj': network_obj,
     }
     return render_template('view_carwash/carwash_list.html', context=context)
 
