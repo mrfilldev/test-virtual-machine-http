@@ -54,6 +54,7 @@
         </tr>
         </thead>
         <tbody class=".table-hover">
+        {% if context['carwashes_list'] is defined %}
         {% for carwash in context['carwashes_list'] %}
 
         <tr class="tr-order" data-href="#">
@@ -88,6 +89,7 @@
             </td>
         </tr>
         {% endfor %}
+        {% endif %}
         </tbody>
     </table>
 </div>
