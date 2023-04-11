@@ -7,20 +7,22 @@
         <div class="col-2">
             профиль
             Вы владелец
+            Ваши данные:
 
+            {% for i in g.user_db %}
+            {{ i }} -> {{ g.user_db[i] }} <br>
+            {% endfor %}<br><br>
+
+
+            {% for i in g.user_inf %}
+            {{ i }} -> {{ g.user_inf[i] }} <br>
+            {% endfor %}<br><br>
         </div>
         <div class="col-10">
             <main class="container-sm">
 
 
-                {% for i in g.user_db %}
-                {{ i }} -> {{ g.user_db[i] }} <br>
-                {% endfor %}<br><br>
 
-
-                {% for i in g.user_inf %}
-                {{ i }} -> {{ g.user_inf[i] }} <br>
-                {% endfor %}<br><br>
 
             </main>
         </div>
