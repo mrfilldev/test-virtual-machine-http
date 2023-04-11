@@ -13,12 +13,13 @@
 
                     профиль
                     Вы владелец
-
+                    {{g.user_db}}
                     {% for i in range(g.user_db) %}
                     {{ i }} -> {{ i }}
                     {% endfor %}
 
-                    {% for i in g.user_info %}
+                    {{ g.user_inf }}
+                    {% for i in g.user_inf %}
                     {{ i.name }} -> {{ i.value }}
                     {% endfor %}
 
