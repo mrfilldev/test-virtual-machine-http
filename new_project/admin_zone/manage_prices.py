@@ -52,7 +52,7 @@ def create_price(request):
         print(new_price)
         print(type(new_price))
         database.col_prices.insert_one(new_price)
-        return redirect(url_for('list_of_prices'))
+        return redirect(url_for('admin_blueprint.list_of_prices'))
 
     categories = []
     for i in list(CategoryAuto):
