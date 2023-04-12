@@ -114,6 +114,7 @@ def list_db():
 def format_datetime(value):
     # variant = value.strftime('%Y-%m-%d')
     # print(variant)
+    print(value)
     if isinstance(value, date):
         value = value.strftime('%d.%m.%Y')
     else:
