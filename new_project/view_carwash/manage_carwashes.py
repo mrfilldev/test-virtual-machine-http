@@ -200,6 +200,16 @@ def update_carwash_obj(request, carwash_id):
 
 def carwash_detail(request, carwash_id):
     if request.method == 'POST':
+        print('\n################################################################\n')
+        dict_of_form = request.form.to_dict(flat=False)
+        print(dict_of_form)
+        print('################################################################\n')
+
+        for k, v in dict_of_form.items():
+            print(k, '-> ', v)
+
+        print('\n################################################################\n')
+
         new_carwash = update_carwash_obj(request, carwash_id)
         print('new carwash: ', new_carwash)
         return redirect(url_for('carwash_blueprint.carwashes_list'))
