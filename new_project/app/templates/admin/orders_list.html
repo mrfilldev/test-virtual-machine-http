@@ -14,7 +14,7 @@
     });
 </script>
 <div class="container-fluid">
-    <form method=POST action="{{ url_for('orders_list') }}">
+    <form method=POST action="{{ url_for('admin_blueprint.orders_list') }}">
         <div class="row justify-content-start">
             &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
                          aria-describedby="addon-wrapping">
@@ -55,7 +55,7 @@
         <tbody class=".table-hover">
         {% for order in context['orders_list'] %}
 
-        <tr class="tr-order" data-href="{{ url_for('order_detail', order_id=order.Id ) }}">
+        <tr class="tr-order" data-href="#">
 
             <th scope="row">
                 {{ context['count_orders'] - loop.index0 }}
