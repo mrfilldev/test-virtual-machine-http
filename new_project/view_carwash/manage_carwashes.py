@@ -208,7 +208,7 @@ def carwash_detail(request, carwash_id):
     data = json.loads(json_util.dumps(carwash_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    print('carwash_obj: 'carwash_obj)
+    print('carwash_obj: ', carwash_obj)
     amount_boxes = len(carwash_obj.Boxes)
 
     all_prices = database.col_prices.find()
