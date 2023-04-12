@@ -6,7 +6,8 @@
     <div class="col-2">
     </div>
     <div class="col-8">
-        <form method=POST action="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context['carwash']._id) }}">
+        <form method=POST
+              action="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context['carwash']._id) }}">
             <table class="table table-bordered table-center align-middle">
                 <thead class="table-light">
                 <tr>
@@ -84,10 +85,12 @@
                         Состояние Мойки:
                     </td>
                     <td>
-                        <input type="checkbox" class="btn-check" name="status" value="{{ context['carwash'].Enable }}"
-                               id="status"
-                               autocomplete="off" required>
-                        <label class="btn btn-outline-success" for="status">Активна</label>
+                        <input class="form-check-input" type="checkbox" value="" id="status_carwash"
+                        {% if context['carwash'].Enable == True %} checked {% endif %}>
+                        <label class="form-check-label" for="status_carwash">
+                            Мойка активна
+                        </label>
+                        {{ context['carwash'].Enable }}
                     </td>
                 </tr>
                 </tbody>
