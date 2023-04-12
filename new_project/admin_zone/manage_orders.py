@@ -28,7 +28,7 @@ def list_orders():
         orders_list.append(order_obj)
 
         if order_obj is not None and order_obj.CarWashId not in distinctCarwashId:
-            distinctCarwashId.append(int(order_obj.CarWashId))
+            distinctCarwashId.append(order_obj.CarWashId)
     print('ORDERS_LIST: ', orders_list)
     # mongo find by filter in () // projections
     carwashes_names = []
