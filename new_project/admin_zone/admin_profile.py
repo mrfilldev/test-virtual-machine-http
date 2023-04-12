@@ -5,6 +5,7 @@ from flask import render_template, request, Blueprint, session, g
 
 from .edit_data_in_db import list_all_cols_in_db
 from .manage_networks import list_networks, network_detail, add_network
+from .manage_orders import list_orders
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
@@ -93,6 +94,17 @@ def admin_delete_price(price_id):
     return delete_price(price_id)
 
 
+@admin_bp.route('/orders')
+def orders():
+    return list_orders()
+
+
+################################
+################################
+################################
+################################
+################################
+################################
 @admin_bp.route('/list_of_prices/')
 def list_db():
     return list_all_cols_in_db()
@@ -108,132 +120,3 @@ def format_datetime(value):
         value = parser.parse(value)
         value = value.strftime("%d.%m.%Y %H:%M:%S")
     return value
-
-# def show_list_price():
-#     all_prices = prices.find({})
-#     prices_list = []
-#     count_prices = 0
-#     for count_prices, i in enumerate(list(all_prices)[::-1], 1):
-#         data = json.loads(json_util.dumps(i))
-#         data = json.dumps(data, default=lambda x: x.__dict__)
-#         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-#         print(price_obj)
-#         prices_list.append(price_obj)
-#     print(prices_list)
-#     context = {
-#         'prices_list': prices_list,
-#         'count_prices': count_prices,
-#     }
-#     return context
-#
-#
-# def create_price(request):
-#     for i in request.form:
-#         print(i, request.form[i])
-#     form = request.form
-#     id = prices.count_documents({}) + 1
-#     name = form['name']
-#     categoryPrice = []
-#     description = form['description']
-#     costType = form['costType']
-#
-#     for i in list(CategoryAuto):
-#         categoryPrice.append(CostIdSum(i.name, form[str(i.name)]))
-#
-#     new_price = carwashes.Prices(id, name, description, categoryPrice, costType)
-#
-#     print(new_price.categoryPrice)
-#     for i in new_price.categoryPrice:
-#         print(f'{i.category} -> {i.sum}')
-#
-#     # запись в бд
-#     new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
-#     print(new_price)
-#     print(type(new_price))
-#     prices.insert_one(new_price)
-#
-#
-# def edit_price(request, price_id):
-#     for i in request.form:
-#         print(i, request.form[i])
-#     print('1')
-#     form = request.form
-#     price_id = {'Id': int(price_id)}
-#     print('2')
-#     print('old_carwash: ', price_id)
-#     categoryPrice = []
-#     print(list(CategoryAuto))
-#     for category in list(CategoryAuto):
-#         print(category)
-#         print(category.name)
-#         print(form[str(category.name)])
-#         categoryPrice.append(CostIdSum(category.name, form[str(category.name)]))
-#     data = json.dumps(categoryPrice, default=lambda x: x.__dict__)
-#     categoryPrice = json.loads(data)  # , object_hook=lambda d: SimpleNamespace(**d))
-#     set_fields = {'$set': {
-#         'name': form['name'],
-#         'description': form['description'],
-#         'categoryPrice': categoryPrice,
-#         'costType': form['costType']
-#
-#     }}
-#     new_price = prices.update_one(price_id, set_fields)
-#     print('UPDATE FIELDS: ', set_fields)
-#     print('UPDATE DATA: ', new_price)
-#     return new_price
-#
-#
-# def delete_price(price_id):
-#     prices.delete_one({'Id': int(price_id)})
-#     print('deleted price: ', price_id)
-#
-#
-# def add_network(request):
-#     print('\n################################################################\n')
-#     form = request.form
-#
-#     id = uuid.uuid4().hex
-#     name: str = form['name']
-#
-#     new_network = Network(_id=id, Name=name)
-#
-#     new_network_json = json.dumps(new_network, default=lambda x: x.__dict__)
-#     new_network_dict = json.loads(new_network_json)
-#     new_network_dict['_id'] = new_network_dict.pop('Id')
-#
-#     networks.insert_one(new_network_dict)
-#     print("Network inserted successfully")
-#
-#
-# def list_networks(request):
-#     all_networks = networks.find({})
-#     networks_list = []
-#     count_networks = 0
-#     for count_networks, i in enumerate(list(all_networks)[::-1], 1):
-#         data = json.loads(json_util.dumps(i))
-#         data = json.dumps(data, default=lambda x: x.__dict__)
-#         price_obj = json.loads(data, object_hook=lambda d: Network(**d))
-#         print(price_obj)
-#         networks_list.append(price_obj)
-#     print(networks_list)
-#     context = {
-#         'network_list': networks_list,
-#         'count_networks': count_networks,
-#     }
-#     return context
-#
-#
-# def add_user(request):
-#     print('\n################################################################\n')
-#     form = request.form
-#
-#     id = uuid.uuid4().hex
-#
-#     new_user = User(_id=id, Name='', Login=form['Login'], Network_Id=form['Network_Id'], Role=form['Role'])
-#
-#     new_user_json = json.dumps(new_user, default=lambda x: x.__dict__)
-#     new_user_dict = json.loads(new_user_json)
-#     new_user_dict['_id'] = new_user_dict.pop('Id')
-#
-#     users.insert_one(new_user_dict)
-#     print("User inserted successfully")

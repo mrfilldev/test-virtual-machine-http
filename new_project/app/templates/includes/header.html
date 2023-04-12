@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li>
                                 <a class="dropdown-item"
-                                   href="#">Заказы</a>
+                                   href="{{ url_for('admin_blueprint.orders') }}">Заказы</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{  url_for('carwash_blueprint.carwashes_list') }}">
@@ -56,15 +56,15 @@
             </ul>
         </div>
         {% if g.user_db.role == 'admin' %}
-            {{ g.user_db.role }} {{ g.user_inf['real_name'] }}
+        {{ g.user_db.role }} {{ g.user_inf['real_name'] }}
         {% elif g.user_db.role == 'network_owner' %}
-            Владелец cети: {{ g.user_inf['real_name'] }}
+        Владелец cети: {{ g.user_inf['real_name'] }}
         {% endif %}
         {% if g.user_inf['is_avatar_empty'] == False %}
         &nbsp;<a class="navbar-brand" href="#">
-            <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
-                 class="d-inline-block align-text-top" height="50" width="50" href="/">
-        </a>
+        <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
+             class="d-inline-block align-text-top" height="50" width="50" href="/">
+    </a>
         {% endif %}
     </div>
 </nav>
