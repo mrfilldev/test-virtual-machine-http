@@ -32,7 +32,7 @@ def list_orders():
     print('ORDERS_LIST: ', orders_list)
     # mongo find by filter in () // projections
     carwashes_names = []
-    carwashes = database.col_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
+    carwashes = database.col_carwashes.find({"_id": {"$in": distinctCarwashId}}, {"_id": 1, "Name": 1})
     for i in carwashes:
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
