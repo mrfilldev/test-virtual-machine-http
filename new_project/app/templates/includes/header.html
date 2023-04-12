@@ -39,7 +39,8 @@
                     </li>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" aria-disabled="true"> {{ g.user_db.role }} {{ g.user_inf['real_name'] }} </a>
+                    <a class="nav-link" href="#" aria-disabled="true"> {{ g.user_db.role }} {{ g.user_inf['real_name']
+                        }} </a>
                 </li>
                 {% elif g.user_db.role == 'network_owner' %}
                 <li class="nav-item">
@@ -57,17 +58,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main_blueprint.logout') }}" aria-disabled="true">Выйти</a>
                 </li>
-                {% if g.user_inf['is_avatar_empty'] == False %}
-
-                <a class="navbar-brand" href="#">
-                    <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
-                         class="d-inline-block align-text-top" height="50" width="50">
-                </a>
-
-                {% endif %}
 
 
             </ul>
         </div>
+        <a class="navbar-brand" href="/">Я.Мойки</a>
+        {% if g.user_inf['is_avatar_empty'] == False %}
+
+        <a class="navbar-brand" href="#">
+            <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
+                 class="d-inline-block align-text-top" height="50" width="50">
+        </a>
+
+        {% endif %}
     </div>
 </nav>
