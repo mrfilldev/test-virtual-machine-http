@@ -137,7 +137,7 @@
             </table>
             <div class="col-6">
                 <a style="width: auto" class="btn btn-outline-danger"
-                   href="{{ url_for('carwash_blueprint.delete_carwash', carwash_id=context['carwash'].Id) }}">
+                   href="{{ url_for('carwash_blueprint.delete_carwash', carwash_id=context['carwash']._id) }}">
                     Удалить
                 </a>
             </div>
