@@ -3,7 +3,7 @@ from datetime import date
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import request, render_template
+from flask import request, render_template, url_for, redirect
 
 from .specific_methods import method_of_filters
 from ..db import database
@@ -55,3 +55,8 @@ def list_orders():
         'admin/orders_list.html',
         context=context
     )
+
+def delete_order(order_id):
+        database.col_orders.delete_one({'_id': order_id})
+        print(f'User {order_id} deleted successfully')
+        return redirect(url_for('admin_blueprint.orders'))

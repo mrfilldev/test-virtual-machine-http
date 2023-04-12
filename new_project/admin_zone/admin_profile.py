@@ -5,7 +5,7 @@ from flask import render_template, request, Blueprint, session, g
 
 from .edit_data_in_db import list_all_cols_in_db
 from .manage_networks import list_networks, network_detail, add_network
-from .manage_orders import list_orders
+from .manage_orders import list_orders, delete_order
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
@@ -97,6 +97,10 @@ def admin_delete_price(price_id):
 @admin_bp.route('/orders')
 def orders():
     return list_orders()
+
+@admin_bp.route('/delete_order/<string:order_id>')
+def order_delete(order_id):
+    return delete_order(order_id)
 
 
 ################################
