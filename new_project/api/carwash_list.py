@@ -15,7 +15,7 @@ def carwash_list_main():
     for obj in all_carwashes:
         print(obj)
         if '_id' in obj:
-            obj.pop('_id')
+            obj['Id'] = obj.pop('_id')
 
         print('BEFORE: ', obj['Price'])
         # метод получения всех требуемых данных:
