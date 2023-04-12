@@ -26,10 +26,11 @@ def list_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(vars(order_obj))
         orders_list.append(order_obj)
+
         print(order_obj)
         # if order_obj.CarWashId not in distinctCarwashId:
         #     distinctCarwashId.append(int(order_obj.CarWashId))
-
+    print(orders_list)
     # mongo find by filter in () // projections
     carwashes_names = []
     carwashes = database.col_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
