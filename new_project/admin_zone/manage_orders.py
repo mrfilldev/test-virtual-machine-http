@@ -50,6 +50,7 @@ def list_orders():
         'carwashes': carwashes_names,
         'date': today
     }
+    print('CONTEXT: ', context)
     return render_template(
         'admin/orders_list.html',
         context=context
