@@ -30,7 +30,7 @@ def list_orders():
         print(order_obj)
         # if order_obj.CarWashId not in distinctCarwashId:
         #     distinctCarwashId.append(int(order_obj.CarWashId))
-    print(orders_list)
+    print('ORDERS_LIST: ', orders_list)
     # mongo find by filter in () // projections
     carwashes_names = []
     carwashes = database.col_carwashes.find({"Id": {"$in": distinctCarwashId}}, {"Id": 1, "Name": 1})
