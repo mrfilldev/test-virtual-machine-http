@@ -10,7 +10,7 @@ from ..db import database
 
 
 def list_orders():
-    all_orders = database.col_users.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
+    all_orders = database.col_orders.find()  # { 'DateCreate: {gt: ''}' ; orderStatus: })
     if request.method == 'POST':
         find_arguments = method_of_filters(request)
         # parse
@@ -28,8 +28,8 @@ def list_orders():
         orders_list.append(order_obj)
 
         print(order_obj)
-        # if order_obj.CarWashId not in distinctCarwashId:
-        #     distinctCarwashId.append(int(order_obj.CarWashId))
+        if order_obj.CarWashId not in distinctCarwashId:
+            distinctCarwashId.append(int(order_obj.CarWashId))
     print('ORDERS_LIST: ', orders_list)
     # mongo find by filter in () // projections
     carwashes_names = []
