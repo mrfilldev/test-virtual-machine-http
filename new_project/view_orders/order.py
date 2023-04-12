@@ -28,6 +28,7 @@ def load_user():
     g.user_db = user
     print('g.user_db: :', g.user_db)
 
-@order_bp.route('/carwash_list', methods=['POST', 'GET'])
+
+@order_bp.route('/orders_list', methods=['POST', 'GET'])
 def orders_list():
     return list_orders(g)
