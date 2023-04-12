@@ -174,10 +174,19 @@ def create_carwash_obj(request, g):
 
 def update_carwash_obj(request, carwash_id):
     form = request.form
+    print('\n################################################################\n')
+    dict_of_form = request.form.to_dict(flat=False)
+    print(dict_of_form)
+    print('################################################################\n')
+
+    for k, v in dict_of_form.items():
+        print(k, '-> ', v)
+
+    print('\n################################################################\n')
+
     dict_of_form = request.form.to_dict(flat=False)
     new_boxes_json = json.dumps(create_boxes(int(form['amount_boxes'])), default=lambda x: x.__dict__)
     new_boxes_list_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
-    print('form["status"]: ', form['status'])
     enable: bool = True if form['status'] == 'on' else False
     new_prices_json = json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)
     new_prices_list_of_dict = json.loads(new_prices_json)  # , object_hook=lambda d: SimpleNamespace(**d))
@@ -200,16 +209,6 @@ def update_carwash_obj(request, carwash_id):
 
 def carwash_detail(request, carwash_id):
     if request.method == 'POST':
-        print('\n################################################################\n')
-        dict_of_form = request.form.to_dict(flat=False)
-        print(dict_of_form)
-        print('################################################################\n')
-
-        for k, v in dict_of_form.items():
-            print(k, '-> ', v)
-
-        print('\n################################################################\n')
-
         new_carwash = update_carwash_obj(request, carwash_id)
         print('new carwash: ', new_carwash)
         return redirect(url_for('carwash_blueprint.carwashes_list'))
