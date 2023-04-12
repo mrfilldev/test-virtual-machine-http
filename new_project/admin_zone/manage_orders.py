@@ -22,10 +22,10 @@ def list_orders():
         # count_orders += 1
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
-        print(data)
         # order_obj = json.loads(data, object_hook=lambda d: Order(**d))
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(vars(order_obj))
+        print(order_obj)
         orders_list.append(order_obj)
         if order_obj.CarWashId not in distinctCarwashId:
             distinctCarwashId.append(int(order_obj.CarWashId))
