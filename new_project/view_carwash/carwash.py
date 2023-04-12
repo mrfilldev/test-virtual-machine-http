@@ -40,7 +40,7 @@ def create_carwash():
 
 
 
-@carwash_bp.route('/create_carwash/<string:carwash_id>', methods=['POST', 'GET'])
+@carwash_bp.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 def owner_carwash_detail(carwash_id):
     return carwash_detail(request, carwash_id)
 
