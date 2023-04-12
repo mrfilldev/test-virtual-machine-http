@@ -117,7 +117,8 @@ def create_carwash_obj(request, g):
 
         print('\n################################################################\n')
 
-        id = uuid.uuid4().hex
+        # id = uuid.uuid4().hex
+        id = '4f3d705eca29463994b6433c4e069f21'
         name_carwash = request.form['name']
         address_carwash = request.form['address']
         location_carwash = Point(request.form['lat'], request.form['lon'])
