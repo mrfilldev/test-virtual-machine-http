@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 
-from .manage_carwashes import create_carwash_obj, carwash_detail, carwash_delete, list_carwashes
+from .work_with_carwashes import create_carwash_obj, carwash_detail, carwash_delete, list_carwashes
 from ..configuration.config import Config
 
 from flask_login import current_user
