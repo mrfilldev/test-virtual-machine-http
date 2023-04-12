@@ -13,8 +13,9 @@
     });
 </script>
 <div class="container-fluid">
-    <div class="col-12">
-        <div>
+    <div class="row justify-content-between">
+        <div class="col-4">
+            Сеть: {{ context['network_obj'].network_name }}<br>
             <form method=POST action="#">
                 <div class="row justify-content-start">
                     &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
@@ -30,7 +31,7 @@
                 </div>
             </form>
         </div>
-        <div>
+        <div class="col-1">
             <a class="btn btn-outline-secondary" href="{{ url_for('carwash_blueprint.create_carwash') }}">+</a>
         </div>
     </div>
@@ -56,7 +57,7 @@
 
         {% for carwash in context['carwashes_list'] %}
 
-        <tr class="tr-order" data-href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+        <tr class="tr-order" data-href="{{ url_for('admin_blueprint.admin_price_detail', price_id=price._id) }}">
             <th scope="row">
                 {{ context['count_carwashes'] - loop.index0 }}
             </th>
