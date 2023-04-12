@@ -93,6 +93,7 @@ def edit_price(request, price_id):
         new_price = database.col_prices.update_one(price_id, set_fields)
         print('UPDATE FIELDS: ', set_fields)
         print('UPDATE DATA: ', new_price)
+        return redirect(url_for('admin_blueprint.list_of_prices'))
 
     price_obj = database.col_prices.find_one({'_id': price_id})  # dict
     print('PRICE OOOOBJJJEEECTTT: ', price_obj)
