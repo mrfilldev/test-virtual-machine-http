@@ -187,7 +187,10 @@ def update_carwash_obj(request, carwash_id):
     dict_of_form = request.form.to_dict(flat=False)
     new_boxes_json = json.dumps(create_boxes(int(form['amount_boxes'])), default=lambda x: x.__dict__)
     new_boxes_list_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
-    enable: bool = True if form['status'] == 'on' else False
+    if 'status' not in form:
+        enable: bool = False
+    else:
+        enable: bool = True
     new_prices_json = json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)
     new_prices_list_of_dict = json.loads(new_prices_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     old_carwash = {'_id': carwash_id}
