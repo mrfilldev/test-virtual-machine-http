@@ -27,9 +27,8 @@ def list_orders():
         print(vars(order_obj))
         orders_list.append(order_obj)
 
-        # print(order_obj)
-        # if order_obj.CarWashId not in distinctCarwashId:
-        #     distinctCarwashId.append(int(order_obj.CarWashId))
+        if order_obj is not None and order_obj.CarWashId not in distinctCarwashId:
+            distinctCarwashId.append(int(order_obj.CarWashId))
     print('ORDERS_LIST: ', orders_list)
     # mongo find by filter in () // projections
     carwashes_names = []
@@ -56,7 +55,8 @@ def list_orders():
         context=context
     )
 
+
 def delete_order(order_id):
-        database.col_orders.delete_one({'_id': order_id})
-        print(f'User {order_id} deleted successfully')
-        return redirect(url_for('admin_blueprint.orders'))
+    database.col_orders.delete_one({'_id': order_id})
+    print(f'User {order_id} deleted successfully')
+    return redirect(url_for('admin_blueprint.orders'))
