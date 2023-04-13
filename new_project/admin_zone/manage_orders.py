@@ -46,7 +46,7 @@ def list_orders():
         'date': today
     }
     return render_template(
-        'admin/orders_list.html',
+        'orders/orders_list.html',
         context=context
     )
 
