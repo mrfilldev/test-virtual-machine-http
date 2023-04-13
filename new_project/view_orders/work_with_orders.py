@@ -24,7 +24,7 @@ def list_orders(g):
         for i in all_carwashes:
             data = json.loads(json_util.dumps(i))
             data = json.dumps(data, default=lambda x: x.__dict__)
-            carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+            carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
             print('carwash_obj:', carwash_obj)
             carwashes.append(carwash_obj)
 
