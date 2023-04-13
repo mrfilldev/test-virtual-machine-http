@@ -30,10 +30,12 @@ def list_orders(g):
 
         orders_of_network = database.col_orders.find({'CarWashId': {'$in': carwashes}})
         print('orders_of_network:', orders_of_network)
+        for i in orders_of_network:
+            print('orders_of_network:', i)
         orders_list = []
         count_orders = 0
         distinctCarwashId = []
-        for count_orders, i in enumerate(orders_of_network):
+        for count_orders, i in enumerate(list(orders_of_network)[::-1], 1):
             # count_orders += 1
             data = json.loads(json_util.dumps(i))
             data = json.dumps(data, default=lambda x: x.__dict__)
