@@ -97,6 +97,8 @@ def list_carwashes(g):
         print(carwash_obj)
     print(carwashes_list)
 
+
+
     context = {
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,

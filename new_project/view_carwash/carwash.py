@@ -73,4 +73,9 @@ def format_pretty_boxes(boxes):
     <span class="badge bg-warning">{unavailable}</span>
     """))
 
-
+@carwash_bp.app_template_filter()
+def enable_rus(enable):
+    if enable == 'True':
+        return 'Активна'
+    else:
+        return 'Не активна'
