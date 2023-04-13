@@ -83,7 +83,7 @@ def enable_rus(enable):
 
 
 @carwash_bp.app_template_filter()
-def enable_rus(type_of_carwash):
+def type_rus(type_of_carwash):
     if type_of_carwash == 'SelfServiceFixPrice':
         return 'автомойка самообслуживания Фикс-Цена'
     elif type_of_carwash == 'SelfService':
