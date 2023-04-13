@@ -68,9 +68,9 @@ def format_pretty_boxes(boxes):
     print(" busy: %s" % busy)
     print(" unavailable: %s" % unavailable)
     return(Markup(f"""
-    <span class="badge text-bg-success">{free}</span>
-    <span class="badge text-bg-danger">{busy}</span>
-    <span class="badge text-bg-warning">{unavailable}</span>
+    <span class="badge bg-success">{free}</span>
+    <span class="badge bg-danger">{busy}</span>
+    <span class="badge bg-warning">{unavailable}</span>
     """))
 
 
