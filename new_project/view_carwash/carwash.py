@@ -75,7 +75,7 @@ def format_pretty_boxes(boxes):
 
 @carwash_bp.app_template_filter()
 def enable_rus(enable):
-    if enable == 'True':
+    if enable == True:
         return 'Активна'
     else:
         return 'Не активна'
