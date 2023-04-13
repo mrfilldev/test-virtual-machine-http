@@ -27,7 +27,7 @@ def list_orders(g):
             carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
             print('carwash_obj:', carwash_obj)
             carwashes.append(carwash_obj.network_id)
-        print(carwashes)
+        print('carwashes: ', carwashes)
         orders_of_network = database.col_orders.find({'CarWashId': {'$in': carwashes}})
         print('orders_of_network:', orders_of_network)
 
