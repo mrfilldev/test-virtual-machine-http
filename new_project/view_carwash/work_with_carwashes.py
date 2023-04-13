@@ -159,7 +159,7 @@ def create_carwash_obj(request, g):
         set_fields = {'$set': {
             'carwashes': network_obj.carwashes.append(new_carwash_dict['_id']),
         }}
-        database.col_networks.update_one(network, set_fields)
+        database.col_networks.update_one({'_id': network}, set_fields)
 
         database.col_carwashes.insert_one(new_carwash_dict)
         database.col_carwashes_admins.insert_one(
@@ -260,7 +260,7 @@ def carwash_detail(g, request, carwash_id):
     set_fields = {'$set': {
         'carwashes': network_obj.carwashes.append(carwash_id),
     }}
-    database.col_networks.update_one(network, set_fields)
+    database.col_networks.update_one({'_id': network}, set_fields)
 
     enum_list = list(CategoryAuto)
     print(enum_list)
