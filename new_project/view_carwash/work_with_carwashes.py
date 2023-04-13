@@ -149,6 +149,18 @@ def create_carwash_obj(request, g):
         new_carwash_dict['_id'] = new_carwash_dict.pop('Id')
         new_carwash_dict['network_id'] = g.user_db['networks'][0]
 
+        network = g.user_db['networks'][0]
+        print('network:', network)
+        network = database.col_networks.find({'_id': network})
+        data = json.loads(json_util.dumps(network))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+        print('network_obj:', network_obj)
+        set_fields = {'$set': {
+            'carwashes': network_obj.carwashes.append(new_carwash_dict['_id']),
+        }}
+        database.col_networks.update_one(network, set_fields)
+
         database.col_carwashes.insert_one(new_carwash_dict)
         database.col_carwashes_admins.insert_one(
             {
@@ -237,6 +249,18 @@ def carwash_detail(request, carwash_id):
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         prices_list.append(price_obj)
         print(price_obj)
+
+    network = g.user_db['networks'][0]
+    print('network:', network)
+    network = database.col_networks.find({'_id': network})
+    data = json.loads(json_util.dumps(network))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+    print('network_obj:', network_obj)
+    set_fields = {'$set': {
+        'carwashes': network_obj.carwashes.append(carwash_id),
+    }}
+    database.col_networks.update_one(network, set_fields)
 
     enum_list = list(CategoryAuto)
     print(enum_list)
