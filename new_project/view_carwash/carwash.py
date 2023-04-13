@@ -5,6 +5,7 @@ from types import SimpleNamespace
 
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
+from markupsafe import Markup
 
 from .work_with_carwashes import create_carwash_obj, carwash_detail, carwash_delete, list_carwashes
 from ..configuration.config import Config
@@ -66,10 +67,10 @@ def format_pretty_boxes(boxes):
     print(" free: %s" % free)
     print(" busy: %s" % busy)
     print(" unavailable: %s" % unavailable)
-    return(f"""
+    return(Markup(f"""
     <span class="badge text-bg-success">{free}</span>
     <span class="badge text-bg-danger">{busy}</span>
     <span class="badge text-bg-warning">{unavailable}</span>
-    """)
+    """))
 
 
