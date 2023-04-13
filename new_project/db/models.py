@@ -19,7 +19,7 @@ class Types(enum.IntEnum):
     Dry = 7  # сухая
 
 class TypesToText(enum.IntEnum):
-    SelfServiceFixPrice = 'автомойка самообслуживания' Fix Price
+    SelfServiceFixPrice = 'автомойка самообслуживания'
     SelfService = 'автомойка самообслуживания'
     Contactless = 'безконтактная'
     Manual = 'ручная мойка'
