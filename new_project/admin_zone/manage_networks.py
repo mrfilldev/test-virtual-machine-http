@@ -50,7 +50,7 @@ def network_detail(request, network_id):
     if request.method == 'POST':
         network_name = request.form['name']
         carwashes = request.form['carwashes']
-        set_command = {"$set": {"network_name": network_name, "carwashes":}}
+        set_command = {"$set": {"network_name": network_name, "carwashes": carwashes}}
         old_network_id = {'_id': str(network_id)}
         new_network = database.col_networks.update_one(old_network_id, set_command)
         print('new_network', new_network)
