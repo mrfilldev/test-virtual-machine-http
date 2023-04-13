@@ -226,7 +226,7 @@ def update_carwash_obj(request, carwash_id):
     return new_carwash
 
 
-def carwash_detail(request, carwash_id):
+def carwash_detail(g, request, carwash_id):
     if request.method == 'POST':
         new_carwash = update_carwash_obj(request, carwash_id)
         print('new carwash: ', new_carwash)
