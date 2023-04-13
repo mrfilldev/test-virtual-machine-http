@@ -51,7 +51,7 @@ def delete_carwash(carwash_id):
 
 @carwash_bp.app_template_filter()
 def format_pretty_boxes(boxes):
-    print("boxes: %s" % boxes)
+    print("\nboxes: %s" % boxes)
     for i in range(len(boxes)):
         print(boxes[i])
 
