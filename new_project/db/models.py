@@ -18,6 +18,15 @@ class Types(enum.IntEnum):
     Tunnel = 6  # тунельная
     Dry = 7  # сухая
 
+class TypesToText(enum.IntEnum):
+    SelfServiceFixPrice = 'автомойка самообслуживания' Fix Price
+    SelfService = 'автомойка самообслуживания'
+    Contactless = 'безконтактная'
+    Manual = 'ручная мойка'
+    Portal = 'портальная'
+    Tunnel = 'тунельная'
+    Dry = 'сухая'
+
 
 class CategoryAuto(enum.IntEnum):
     Compact = 10
