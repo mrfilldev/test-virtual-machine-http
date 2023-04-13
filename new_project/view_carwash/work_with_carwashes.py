@@ -104,6 +104,7 @@ def list_carwashes(g):
         'count_carwashes': count_carwashes,
         'network_obj': network_obj,
         'enum_type_list': enum_type_list,
+        'TYPES': Types
     }
     return render_template('view_carwash/carwash_list.html', context=context)
 
