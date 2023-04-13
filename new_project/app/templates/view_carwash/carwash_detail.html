@@ -7,7 +7,7 @@
     </div>
     <div class="col-8">
         <form method=POST
-              {% if context['carwash'] is defind %}
+              {% if context['carwash'] is defined %}
                 action="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context['carwash']._id) }}">
               {% else %}
                 action="{{ url_for('carwash_blueprint.create_carwash') }}">
