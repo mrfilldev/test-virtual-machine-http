@@ -18,14 +18,23 @@ class Types(enum.IntEnum):
     Tunnel = 6  # тунельная
     Dry = 7  # сухая
 
-class TypesToText(enum.IntEnum):
-    SelfServiceFixPrice = 'автомойка самообслуживания'
-    SelfService = 'автомойка самообслуживания'
-    Contactless = 'безконтактная'
-    Manual = 'ручная мойка'
-    Portal = 'портальная'
-    Tunnel = 'тунельная'
-    Dry = 'сухая'
+    def TypeToDispaly(self, type):
+        if type == Types.SelfServiceFixPrice:
+            return 'автомойка самообслуживания Фикс-Цена'
+        elif type == Types.SelfService:
+            return 'автомойка самообслуживания'
+        elif type == Types.Contactless:
+            return 'безконтактная'
+        elif type == Types.Manual:
+            return 'ручная мойка'
+        elif type == Types.Portal:
+            return 'портальная'
+        elif type == Types.Tunnel:
+            return 'тунельная'
+        elif type == Types.Dry:
+            return 'сухая'
+        else:
+            return type
 
 
 class CategoryAuto(enum.IntEnum):
@@ -177,7 +186,6 @@ class UserRole(enum.Enum):
     admin = 'Администратор'
     network_owner = 'Владелец Сети'
     worker = 'Сотрудник Мойки'
-
 
     # @staticmethod
     # def is_authenticated():

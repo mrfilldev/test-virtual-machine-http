@@ -73,7 +73,6 @@ def show_list_price():
 
 
 def list_carwashes(g):
-    id_user = g.user_db['_id']
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
         all_carwashes = database.col_carwashes.find({'network_id': network})
@@ -97,12 +96,14 @@ def list_carwashes(g):
         print(carwash_obj)
     print(carwashes_list)
 
-
+    enum_type_list = list(Types)
+    print('enum_type_list: ', enum_type_list)
 
     context = {
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
         'network_obj': network_obj,
+        'enum_type_list': enum_type_list,
     }
     return render_template('view_carwash/carwash_list.html', context=context)
 

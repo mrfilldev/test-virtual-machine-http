@@ -74,7 +74,9 @@
                 {{ carwash.Enable | enable_rus }}
             </td>
             <td>
-                {{ carwash.Type }}
+
+                {{ carwash.Type.TypeToDispaly(carwash.Type) }}
+
             </td>
             <td>
                 {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
