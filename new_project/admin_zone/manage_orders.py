@@ -24,13 +24,11 @@ def list_orders():
         data = json.dumps(data, default=lambda x: x.__dict__)
         # order_obj = json.loads(data, object_hook=lambda d: Order(**d))
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print(vars(order_obj))
-        print('\n', order_obj, '\n')
+
         orders_list.append(order_obj)
 
         if hasattr(order_obj, 'CarWashId') and order_obj.CarWashId not in distinctCarwashId:
             distinctCarwashId.append(order_obj.CarWashId)
-    print('ORDERS_LIST: ', orders_list)
     # mongo find by filter in () // projections
     carwashes_names = []
     carwashes = database.col_carwashes.find({"_id": {"$in": distinctCarwashId}}, {"_id": 1, "Name": 1})
@@ -39,9 +37,6 @@ def list_orders():
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
-    print(carwashes_names)
-    for i in carwashes_names:
-        print('carwashes_names: ', i)
 
     today = date.today()
     context = {
@@ -50,7 +45,6 @@ def list_orders():
         'carwashes': carwashes_names,
         'date': today
     }
-    print('CONTEXT: ', context)
     return render_template(
         'admin/orders_list.html',
         context=context
