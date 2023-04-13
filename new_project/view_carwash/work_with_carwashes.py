@@ -169,7 +169,7 @@ def create_carwash_obj(request, g):
         'prices_list': prices_list,
         'count_prices': count_prices,
     }
-    return render_template("view_carwash/create_carwash.html", context=context)
+    return render_template("view_carwash/carwash_detail.html", context=context)
 
 
 def update_carwash_obj(request, carwash_id):
