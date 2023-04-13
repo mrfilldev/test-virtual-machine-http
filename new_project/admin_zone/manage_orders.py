@@ -25,6 +25,7 @@ def list_orders():
         # order_obj = json.loads(data, object_hook=lambda d: Order(**d))
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(vars(order_obj))
+        print('\n', order_obj, '\n')
         orders_list.append(order_obj)
 
         if hasattr(order_obj, 'CarWashId') and order_obj.CarWashId not in distinctCarwashId:
