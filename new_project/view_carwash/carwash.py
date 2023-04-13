@@ -52,6 +52,19 @@ def delete_carwash(carwash_id):
 @carwash_bp.app_template_filter()
 def format_pretty_boxes(boxes):
     print("\nboxes: %s" % boxes)
+    free = 0
+    busy = 0
+    unavailable = 0
     for i in range(len(boxes)):
         print(boxes[i])
+        if boxes[i].status == 'Free':
+            free += 1
+        elif boxes[i].status == 'Busy':
+            busy += 1
+        elif boxes[i].status == 'Unavailable':
+            unavailable += 1
+    print(" free: %s" % free)
+    print(" busy: %s" % busy)
+    print(" unavailable: %s" % unavailable)
+
 
