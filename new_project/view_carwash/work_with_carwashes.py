@@ -156,6 +156,8 @@ def create_carwash_obj(request, g):
         data = json.dumps(data, default=lambda x: x.__dict__)
         network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
+
+        print('network_obj.carwashes:', print(network_obj.carwashes))
         set_fields = {'$set': {
             'carwashes': print(network_obj.carwashes.append(new_carwash_dict['_id'])),
         }}
