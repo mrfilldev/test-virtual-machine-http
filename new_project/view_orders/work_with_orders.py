@@ -19,7 +19,16 @@ def list_orders(g):
         network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
 
-        orders_of_network = database.col_orders.find({'CarWashId': {'$in': network_obj.carwashes}})
+        print('network:', all_carwashes)
+        carwashes = []
+        for i in all_carwashes:
+            data = json.loads(json_util.dumps(i))
+            data = json.dumps(data, default=lambda x: x.__dict__)
+            carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+            print('carwash_obj:', carwash_obj)
+            carwashes.append(carwash_obj)
+
+        orders_of_network = database.col_orders.find({'CarWashId': {'$in': carwashes}})
     else:
         return abort(404)
     orders_list = []
