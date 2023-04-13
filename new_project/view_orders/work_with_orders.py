@@ -36,7 +36,7 @@ def list_orders(g):
         distinctCarwashId = []
         for count_orders, i in enumerate(list(orders_of_network)[::-1], 1):
             # count_orders += 1
-
+            print(i)
             data = json.loads(json_util.dumps(i))
             data = json.dumps(data, default=lambda x: x.__dict__)
             # order_obj = json.loads(data, object_hook=lambda d: Order(**d))
