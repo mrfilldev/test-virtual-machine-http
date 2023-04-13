@@ -159,7 +159,7 @@ def create_carwash_obj(request, g):
 
         print('network_obj.carwashes:', print(network_obj.carwashes))
         set_fields = {'$set': {
-            'carwashes': print(network_obj.carwashes.append(new_carwash_dict['_id'])),
+            'carwashes': list(network_obj.carwashes).append(new_carwash_dict['_id']),
         }}
         #database.col_networks.update_one({'_id': g.user_db['networks'][0]}, set_fields)
 
