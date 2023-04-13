@@ -33,7 +33,7 @@ def list_orders(g):
         orders_list = []
         count_orders = 0
         distinctCarwashId = []
-        for count_orders, i in enumerate(list(orders_of_network)[::-1], 1):
+        for count_orders, i in enumerate(orders_of_network):
             # count_orders += 1
             data = json.loads(json_util.dumps(i))
             data = json.dumps(data, default=lambda x: x.__dict__)
