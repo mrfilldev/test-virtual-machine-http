@@ -157,9 +157,9 @@ def create_carwash_obj(request, g):
         network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
         set_fields = {'$set': {
-            'carwashes': network_obj.carwashes.append(new_carwash_dict['_id']),
+            'carwashes': print(network_obj.carwashes.append(new_carwash_dict['_id'])),
         }}
-        database.col_networks.update_one({'_id': g.user_db['networks'][0]}, set_fields)
+        #database.col_networks.update_one({'_id': g.user_db['networks'][0]}, set_fields)
 
         database.col_carwashes.insert_one(new_carwash_dict)
         database.col_carwashes_admins.insert_one(
@@ -250,17 +250,17 @@ def carwash_detail(g, request, carwash_id):
         prices_list.append(price_obj)
         print(price_obj)
 
-    network = g.user_db['networks'][0]
-    print('network:', network)
-    network = database.col_networks.find({'_id': network})
-    data = json.loads(json_util.dumps(network))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
-    print('network_obj:', network_obj)
-    set_fields = {'$set': {
-        'carwashes': network_obj.carwashes.append(carwash_id),
-    }}
-    database.col_networks.update_one({'_id': g.user_db['networks'][0]}, set_fields)
+    # network = g.user_db['networks'][0]
+    # print('network:', network)
+    # network = database.col_networks.find({'_id': network})
+    # data = json.loads(json_util.dumps(network))
+    # data = json.dumps(data, default=lambda x: x.__dict__)
+    # network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+    # print('network_obj:', network_obj)
+    # set_fields = {'$set': {
+    #     'carwashes': network_obj.carwashes.append(carwash_id),
+    # }}
+    # database.col_networks.update_one({'_id': g.user_db['networks'][0]}, set_fields)
 
     enum_list = list(CategoryAuto)
     print(enum_list)
