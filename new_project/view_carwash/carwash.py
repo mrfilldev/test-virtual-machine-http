@@ -66,5 +66,10 @@ def format_pretty_boxes(boxes):
     print(" free: %s" % free)
     print(" busy: %s" % busy)
     print(" unavailable: %s" % unavailable)
+    print(f"""
+    <span class="badge text-bg-success">{free}</span>
+    <span class="badge text-bg-danger">{busy}</span>
+    <span class="badge text-bg-warning">{unavailable}</span>
+    """)
 
 
