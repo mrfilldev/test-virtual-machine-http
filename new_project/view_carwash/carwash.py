@@ -39,12 +39,16 @@ def create_carwash():
     return create_carwash_obj(request, g)
 
 
-
 @carwash_bp.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 def owner_carwash_detail(carwash_id):
     return carwash_detail(request, carwash_id)
+
 
 @carwash_bp.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
 def delete_carwash(carwash_id):
     return carwash_delete(carwash_id)
 
+
+@carwash_bp.app_template_filter()
+def format_pretty_boxes(value):
+    print("value: %s" % value)
