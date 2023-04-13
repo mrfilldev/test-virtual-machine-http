@@ -80,3 +80,23 @@ def enable_rus(enable):
         return 'Активна'
     else:
         return 'Не активна'
+
+
+@carwash_bp.app_template_filter()
+def enable_rus(type_of_carwash):
+    if type_of_carwash == 'SelfServiceFixPrice':
+        return 'автомойка самообслуживания Фикс-Цена'
+    elif type_of_carwash == 'SelfService':
+        return 'автомойка самообслуживания'
+    elif type_of_carwash == 'Contactless':
+        return 'безконтактная'
+    elif type_of_carwash == 'Manual':
+        return 'ручная мойка'
+    elif type_of_carwash == 'Portal':
+        return 'портальная'
+    elif type_of_carwash == 'Tunnel':
+        return 'тунельная'
+    elif type_of_carwash == 'Dry':
+        return 'сухая'
+    else:
+        return type_of_carwash

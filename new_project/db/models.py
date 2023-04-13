@@ -18,23 +18,7 @@ class Types(enum.IntEnum):
     Tunnel = 6  # тунельная
     Dry = 7  # сухая
 
-    def TypeToDispaly(self, type):
-        if type == str(Types.SelfServiceFixPrice):
-            return 'автомойка самообслуживания Фикс-Цена'
-        elif type == Types.SelfService:
-            return 'автомойка самообслуживания'
-        elif type == str(Types.Contactless):
-            return 'безконтактная'
-        elif type == str(Types.Manual):
-            return 'ручная мойка'
-        elif type == str(Types.Portal):
-            return 'портальная'
-        elif type == str(Types.Tunnel):
-            return 'тунельная'
-        elif type == str(Types.Dry):
-            return 'сухая'
-        else:
-            return type
+
 
 
 class CategoryAuto(enum.IntEnum):
