@@ -71,7 +71,7 @@
                 {% endfor %}
             </td>
             <td>
-                {{ order.Status }}
+                {{ order.Status | format_status_order}}
             </td>
 
             <td class="text-end">
