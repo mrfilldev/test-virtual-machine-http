@@ -25,18 +25,21 @@ class StatusOrder(enum.IntEnum):
     CarWashCanceled = 30  # заказ отменен интегрируемой системой
     UserCanceled = 40  # заказ отменен пользователем
     Expire = 50  # статус от интегрируемой системы не поступил в течение 3 часов
+    SystemAggregator_Error = 60  # Внутренняя ошибка
 
     def StatusOrderToDispaly(self, category):
         if category == StatusOrder.OrderCreated:
             return 'Заказ создан'
         elif category == StatusOrder.Completed:
-            return 'Заказ Выполнен'
+            return 'Заказ выполнен'
         elif category == StatusOrder.CarWashCanceled:
             return 'Заказ отменен мойкой'
         elif category == StatusOrder.UserCanceled:
             return 'Заказ отменен пользователем'
         elif category == StatusOrder.Expire:
             return 'Заказ не актуален'
+        elif category == StatusOrder.SystemAggregator_Error:
+            return 'Заказ не выполнен'
         else:
             return category
 
