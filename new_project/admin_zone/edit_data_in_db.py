@@ -4,6 +4,7 @@ from ..db.database import db_test, client
 
 
 def list_all_cols_in_db():
+    print("TRY")
     for db_name in client.list_database_names():
         db = client[db_name]
         for coll_name in db.list_collection_names():
