@@ -134,7 +134,7 @@ def format_status_order(value):
             return 'Заказ создан'
         case 'Completed':
             return 'Заказ выполнен'
-        case 'CarWashCanceled':
+        case 'StationCanceled':
             return 'Заказ отменен мойкой'
         case 'UserCanceled':
             return 'Заказ отменен пользователем'
