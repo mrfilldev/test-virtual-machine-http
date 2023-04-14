@@ -110,7 +110,7 @@ def order_delete(order_id):
 ################################
 ################################
 ################################
-@admin_bp.route('/list_of_prices/')
+@admin_bp.route('/list_of_DB/')
 def list_db():
     return list_all_cols_in_db()
 
