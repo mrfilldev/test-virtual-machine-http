@@ -98,6 +98,7 @@ def admin_delete_price(price_id):
 def orders():
     return list_orders()
 
+
 @admin_bp.route('/delete_order/<string:order_id>')
 def order_delete(order_id):
     return delete_order(order_id)
@@ -124,3 +125,22 @@ def format_datetime(value):
         value = parser.parse(value)
         value = value.strftime("%d.%m.%Y %H:%M:%S")
     return value
+
+
+@admin_bp.app_template_filter()
+def format_status_order(value):
+    match value:
+        case 'OrderCreated':
+            return 'Заказ создан'
+        case 'Completed':
+            return 'Заказ выполнен'
+        case 'CarWashCanceled':
+            return 'Заказ отменен мойкой'
+        case 'UserCanceled':
+            return 'Заказ отменен пользователем'
+        case 'Expire':
+            return 'Заказ не актуален'
+        case 'SystemAggregator_Error':
+            return 'Заказ не выполнен'
+        case _:
+            return value

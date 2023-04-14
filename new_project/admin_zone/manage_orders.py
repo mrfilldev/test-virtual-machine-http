@@ -37,8 +37,10 @@ def list_orders():
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
-
     today = date.today()
+
+
+
     context = {
         'orders_list': orders_list,
         'count_orders': count_orders,
