@@ -19,6 +19,26 @@ class Types(enum.IntEnum):
     Dry = 7  # сухая
 
 
+class StatusOrder(enum.IntEnum):
+    OrderCreated = 10  # заказ создан и полностью оплачен
+    Completed = 20  # заказа завершен успешно
+    CarWashCanceled = 30  # заказ отменен интегрируемой системой
+    UserCanceled = 40  # заказ отменен пользователем
+    Expire = 50  # статус от интегрируемой системы не поступил в течение 3 часов
+
+    def StatusOrderToDispaly(self, category):
+        if category == StatusOrder.OrderCreated:
+            return 'Заказ создан'
+        elif category == StatusOrder.Completed:
+            return 'Заказ Выполнен'
+        elif category == StatusOrder.CarWashCanceled:
+            return 'Заказ отменен мойкой'
+        elif category == StatusOrder.UserCanceled:
+            return 'Заказ отменен пользователем'
+        elif category == StatusOrder.Expire:
+            return 'Заказ не актуален'
+        else:
+            return category
 
 
 class CategoryAuto(enum.IntEnum):
@@ -125,7 +145,7 @@ class Order:
 
 #
 # class Point:  # enum.Enum):
-#     def __init__(self, latitude, longitude):
+#     def filters(self, latitude, longitude):
 #         self.lat = latitude
 #         self.lon = longitude
 #
@@ -135,7 +155,7 @@ class Order:
 
 #
 # class Carwash:
-#     def __init__(self, _id, enable, name, address, Location: Point,
+#     def filters(self, _id, enable, name, address, Location: Point,
 #                  Type, stepCost, limitMinCost, Boxes, Price):
 #         self.Id = _id
 #         self.Enable = enable
