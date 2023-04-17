@@ -47,13 +47,12 @@ class Order:
                  box_number: str, status, sum: float, sum_completed: float,
                  contract_id: str, sum_paid_station_completed: float):
         self.Id = id
-        self.DateCreate = date_create_date_time
-        self.BoxNumber = box_number
         self.CarWashId = car_wash_id
+        self.BoxNumber = box_number
         self.ContractId = contract_id
-
-        self.Status = Status[str(status)]
         self.Sum = sum
+        self.Status = Status[str(status)]
+        self.DateCreate = date_create_date_time
         self.SumCompleted = sum_completed
         self.SumPaidStationCompleted = sum_paid_station_completed
 

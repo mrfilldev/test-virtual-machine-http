@@ -93,7 +93,8 @@ async def make_mongo_id(order):
     order['_id'] = order.pop('Id')
     print(order.keys())
     print(order.values())
-    await write_into_db(order)
+    # await write_into_db(order)
+    return order
 
 
 async def write_into_db(order):
@@ -148,21 +149,25 @@ async def main_func():
                         match message["body"]["changeStatus"]:
                             case 'Accept':
                                 print('Accept')
-                                await send_accept_status(message["body"])
+                                # await send_accept_status(message["body"])
                             case 'Completed':
                                 print('Completed')
-                                await send_completed_status(message["body"])
+                                # await send_completed_status(message["body"])
                             case 'CarWashCanceled':
                                 print('CarWashCanceled')
-                                await send_carWashCanceled_status(message["body"])
+                                # await send_carWashCanceled_status(message["body"])
                             case 'UserCanceled':
                                 print('UserCanceled')
-                                await send_userCanceled_status(message["body"])
+                                # await send_userCanceled_status(message["body"])
                     case "createOrder":
                         print('CreateOrder')
                         print(message['order'])
                         #  await make_some_noize(order)
-                        pass
+                        order = await make_mongo_id(message['order'])
+                        print(order)
+                        #await write_into_db(order)
+
+
                     case "cancelOrder":
                         print('CancelOrder')
                         print(message['order'])
