@@ -100,24 +100,6 @@
                                        value="{{ context['order'].Status | format_status_order }}">
                             </td>
                         </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Оказанный сервис:
-                            </td>
-                            <td>
-                                {% for service in context['order'].Services %}
-                                <input style="width: 49%" type="text" class="form-control"
-                                       value="Наименование: {{ service.Description }}"><br>
-                                <input style="width: 49%" type="text" class="form-control"
-                                       value="Цена: {{ service.Cost }}"><br>
-                                <input style="width: 49%" type="text" class="form-control"
-                                       value="id: {{ service.Id}}"><br>
-                                <br>
-                                {% endfor %}
-                            </td>
-                        </tr>
-
-
                         <tr class="table-light">
                             <th scope="col" colspan="2">Оплата</th>
                         </tr>
