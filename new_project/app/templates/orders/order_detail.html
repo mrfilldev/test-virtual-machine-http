@@ -105,7 +105,7 @@
                                                         data-bs-dismiss="modal">
                                                     Закрыть
                                                 </button>
-                                                <form method=POST action="{{ url_for('order_blueprint.accept_order', order_id=context.order._id) }}">
+                                                <form method=POST action="{{ url_for('order_blueprint.order_accept', order_id=context.order._id) }}">
                                                     <button type="submit" class="btn btn-primary" >Подтвердить</button>
                                                 </form>
                                             </div>
