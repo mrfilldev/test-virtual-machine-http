@@ -2,9 +2,9 @@ import time
 from datetime import datetime, timedelta, date
 from dateutil import parser
 
-format = '%Y-%m-%dT%H:%M:%S%Z'
-date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
-print(date_now)
+# format = '%Y-%m-%dT%H:%M:%S%Z'
+# date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+# print(date_now)
 
 """string = '2023-02-27T14:24:49.215Z'
 
@@ -43,3 +43,9 @@ print(value)
 # print(current_day)
 # print(start_time)
 # print(start_time.time())
+
+
+# extended_date = datetime.now().strftime("%d-%m-%YT%H:%M:%SZ")
+extended_date = datetime.now().isoformat(timespec='microseconds')
+print(extended_date)
+

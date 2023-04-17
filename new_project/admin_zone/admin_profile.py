@@ -132,6 +132,8 @@ def format_status_order(value):
     match value:
         case 'OrderCreated':
             return 'Заказ создан'
+        case 'Accepted':
+            return 'Заказ в процессе'
         case 'Completed':
             return 'Заказ выполнен'
         case 'StationCanceled':

@@ -1,11 +1,8 @@
 import asyncio
-import json
 
 import time
 import traceback
 from datetime import datetime as dt
-from random import randint
-from types import SimpleNamespace
 
 from web_params.params import Py_mongo_db, Sqs_params
 
@@ -46,21 +43,13 @@ async def send_accept_status(order):
 async def send_completed_status(order):
     print("Start SEND COMPLETED STATUS")
 
-    await update_order_status(order, 'Completed')
-
-    extended_date = dt.now().strftime("%d-%m-%Y %H:%M%S")
-    print('extended_date: ', extended_date)
-    extended_order_id = 'test_id' + str(extended_date)
-    print('extended_order_id: ', extended_order_id)
-
     url = URL_DEV + "/api/carwash/order/completed"
     params = {
         'apikey': API_KEY,
         'orderId': order['_id'],
-        'sum': order['Sum'],
-        'extendedOrderId': extended_order_id,
-        'extended_date': extended_date
-
+        'sum': order.SumCompleted,
+        'extendedOrderId': order['_id'],
+        'extended_date': dt.now().isoformat(timespec='microseconds'),
     }
     requests.get(url, params=params)
 
@@ -71,18 +60,12 @@ async def send_completed_status(order):
 async def send_canceled_status(order, reason):
     print('REASON: ', reason)
     print("START SEND CANCEL STATUS")
-    rand_time = randint(1, 20)
-
-    await update_order_status(order, reason)
-
-    print("SEND CANCEL in ", rand_time)
-    await asyncio.sleep(rand_time)
 
     url = URL_DEV + "/api/carwash/order/canceled"
     params = {
         'apikey': API_KEY,
         'orderId': order['_id'],
-        'reason': dict_reason[reason]
+        'reason': reason
     }
     requests.get(url, params=params)
     print("url:", url)
@@ -106,15 +89,25 @@ async def write_into_db(order):
     print('Объекты в коллекции', Py_mongo_db.col_orders.find())
 
 
-async def update_order_status(order, status):
-    set_command = {"$set": {"Status": status}}
+async def update_order(order):
     old_order = {'_id': order['_id']}
-    print('_id: ', order['_id'])
+    set_command = {"$set": {
+        "Status": order['Status'],
+    }}
+    upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
+    print('updated order: ', upd_order)
 
-    print('UPDATE STATUS: ', status)
-    new_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
-    print('UPDATE DATA: ', new_order)
-    # Response(status=200)
+
+async def update_order_status(order, status):
+    old_order = {'_id': order['_id']}
+    set_command = {"$set": {
+        "Status": status,
+        "DateEnd": order['DateEnd'],
+        "Reason": order['Reason'],
+    }}
+
+    upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
+    print('updated order: ', upd_order)
 
 
 async def main_func():
@@ -149,16 +142,17 @@ async def main_func():
                         match message["new_status"]:
                             case 'Accept':
                                 print('Accept')
-                                await send_accept_status(message["body"])
+                                await send_accept_status(message["order"])
+                                await update_order_status(eval(message['order']), 'Accepted')
                             case 'Completed':
                                 print('Completed')
-                                # await send_completed_status(message["body"])
-                            case 'CarWashCanceled':
-                                print('CarWashCanceled')
-                                # await send_carWashCanceled_status(message["body"])
-                            case 'UserCanceled':
-                                print('UserCanceled')
-                                # await send_userCanceled_status(message["body"])
+                                await send_completed_status(message["order"])
+                                await update_order_status(eval(message['order']), 'Completed')
+                            case 'Canceled':
+                                print('Canceled')
+                                await send_canceled_status(message["order"], reason='StationCanceled')
+                                await update_order_status(eval(message["order"]), 'StationCanceled')
+
                     case "createOrder":
                         print('CreateOrder')
                         order = await make_mongo_id(eval(message['order']))
@@ -169,16 +163,7 @@ async def main_func():
                         print('CancelOrder')
                         order = await make_mongo_id(eval(message['order']))
                         print(f'order: {type(order)} \n', order)
-
-                        old_order = {'_id': order['_id']}
-                        set_command = {"$set": {
-                            "Status": order['Status'],
-                            "DateEnd": order['DateEnd'],
-                            "Reason": order['Reason'],
-                        }}
-                        upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
-                        print('updated order: ', upd_order)
-
+                        await update_order(order)
                     case _:
                         raise ValueError("Неопознанное сообщение: " + message)
 
