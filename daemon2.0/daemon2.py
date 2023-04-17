@@ -47,7 +47,7 @@ async def send_completed_status(order):
     params = {
         'apikey': API_KEY,
         'orderId': order['_id'],
-        'sum': order.Sum,
+        'sum': order['Sum'],
         'extendedOrderId': order['_id'],
         'extended_date': dt.now().isoformat(timespec='microseconds'),
     }
