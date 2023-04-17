@@ -146,10 +146,10 @@ async def main_func():
                 match message["task"]:
                     case "changeStatus":
                         print('changeStatus')
-                        match message["body"]["changeStatus"]:
+                        match message["new_status"]:
                             case 'Accept':
                                 print('Accept')
-                                # await send_accept_status(message["body"])
+                                await send_accept_status(message["body"])
                             case 'Completed':
                                 print('Completed')
                                 # await send_completed_status(message["body"])

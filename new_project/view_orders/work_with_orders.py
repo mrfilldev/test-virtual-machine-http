@@ -111,7 +111,9 @@ def accept_order(order_id):
     # order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     dict_to_sqs = {}
     dict_to_sqs['order'] = str(order_obj)
-    dict_to_sqs['task'] = 'createOrder'
+    dict_to_sqs['task'] = 'changeStatus'
+    dict_to_sqs['new_status'] = 'Accept'
+
     print(
         'Sending order to accept:...',
         client.send_message(
