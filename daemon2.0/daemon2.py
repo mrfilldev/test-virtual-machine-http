@@ -142,25 +142,34 @@ async def main_func():
                 # проверка на тип сообщения:
                 # changeStatus - изменение статуса
                 # createOrder - создание заказа
-                # match message["task"]:
-                #     case "changeStatus":
-                #         match message["body"]["toStatus"]:
-                #             case 'Accept':
-                #                 await send_accept_status(message["body"])
-                #             case 'Completed':
-                #                 await send_completed_status(message["body"])
-                #             case 'CarWashCanceled':
-                #                 await send_carWashCanceled_status(message["body"])
-                #             case 'UserCanceled':
-                #                 await send_userCanceled_status(message["body"])
-                #     case "createOrder":
-                #         #  await make_some_noize(order)
-                #         pass
-                #     case "cancelOrder":
-                #         #  await make_some_noize(order)
-                #         pass
-                #     case _:
-                #         raise ValueError("Неопознанное сообщение: " + message)
+                match message["task"]:
+                    case "changeStatus":
+                        print('changeStatus')
+                        match message["body"]["changeStatus"]:
+                            case 'Accept':
+                                print('Accept')
+                                await send_accept_status(message["body"])
+                            case 'Completed':
+                                print('Completed')
+                                await send_completed_status(message["body"])
+                            case 'CarWashCanceled':
+                                print('CarWashCanceled')
+                                await send_carWashCanceled_status(message["body"])
+                            case 'UserCanceled':
+                                print('UserCanceled')
+                                await send_userCanceled_status(message["body"])
+                    case "createOrder":
+                        print('CreateOrder')
+                        print(message['order'])
+                        #  await make_some_noize(order)
+                        pass
+                    case "cancelOrder":
+                        print('CancelOrder')
+                        print(message['order'])
+                        #  await make_some_noize(order)
+                        pass
+                    case _:
+                        raise ValueError("Неопознанное сообщение: " + message)
 
                 # Delete processed messages
                 print('Сообщение удалено: "{}"'.format(msg.get('ReceiptHandle')))
