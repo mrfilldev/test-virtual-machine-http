@@ -98,3 +98,9 @@ def get_carwash_obj(order_obj):
         return carwash_obj
     except Exception as error:
         return None
+
+
+def accept_order(order_id):
+    print(f'Order {order_id} is accepting')
+
+

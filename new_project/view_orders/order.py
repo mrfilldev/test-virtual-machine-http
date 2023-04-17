@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 
-from .work_with_orders import list_orders, owner_order_detail
+from .work_with_orders import list_orders, owner_order_detail, accept_order
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -37,3 +37,9 @@ def orders_list():
 @order_bp.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
 def order_detail(order_id):
     return owner_order_detail(order_id)
+
+
+@order_bp.route('/order_accept/<string:order_id>', methods=['POST', 'GET'])
+def order_accept(order_id):
+    accept_order(order_id)
+    return redirect(url_for('order_blueprint.order_detail', order_id=order_id))
