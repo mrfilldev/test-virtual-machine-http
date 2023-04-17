@@ -75,7 +75,8 @@ class Order:
 class OrderCanceled:
     def __init__(self, CarWashId, BoxNumber,
                  Id, ContractId, Sum, Status,
-                 DateCreate, DateEnd):
+                 DateCreate, DateEnd,
+                 Reason):
         self.Id = Id
         self.CarWashId = CarWashId
         self.BoxNumber = BoxNumber
@@ -84,7 +85,7 @@ class OrderCanceled:
         self.Status = Status
         self.DateCreate = DateCreate
         self.DateEnd = DateEnd
-
+        self.Reason = Reason
 
     def display_info(self):
         details = f"""
@@ -97,6 +98,7 @@ class OrderCanceled:
             Status: {self.Status} 
             DateCreate: {self.DateCreate}  
             DateEnd: {self.DateEnd}  
+            DateEnd: {self.Reason}  
 # Конец #\n"""
         print(details)
 
@@ -113,6 +115,12 @@ def make_order(data):
                 data.SumCompleted, data.ContractId, data.SumPaidStationCompleted
             )
             new_order.display_info()
+        case Status.Completed.name:
+                new_order = Order(
+                    data.Id, data.DateCreate, data.CarWashId, data.BoxNumber, data.Status, data.Sum,
+                    data.SumCompleted, data.ContractId, data.SumPaidStationCompleted
+                )
+                new_order.display_info()
         case _:
             new_order = OrderCanceled(
                 data.CarWashId,
