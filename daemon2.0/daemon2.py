@@ -102,6 +102,15 @@ async def update_order_status(order, status):
     old_order = {'_id': order['_id']}
     set_command = {"$set": {
         "Status": status,
+    }}
+    upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
+    print('updated order: ', upd_order)
+
+
+async def update_order_canceled(order, status):
+    old_order = {'_id': order['_id']}
+    set_command = {"$set": {
+        "Status": status,
         "DateEnd": order['DateEnd'],
         "Reason": order['Reason'],
     }}
