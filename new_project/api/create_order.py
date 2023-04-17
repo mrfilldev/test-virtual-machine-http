@@ -132,27 +132,27 @@ def make_order(data):
 
 
 def send_new_order_sqs(order):
+    dict_to_sqs = {}
+    dict_to_sqs['order'] = order
+    dict_to_sqs['task'] = 'createOrder'
     print(
         'Sending order:...',
         client.send_message(
             QueueUrl=queue_url,
-            MessageBody={
-                'task': 'createOrder',
-                'order': order,
-            }
+            MessageBody=dict_to_sqs
         )
     )
 
 
 def send_cancel_order_sqs(order):
+    dict_to_sqs = {}
+    dict_to_sqs['order'] = order
+    dict_to_sqs['task'] = 'cancelOrder'
     print(
         'Sending order:...',
         client.send_message(
             QueueUrl=queue_url,
-            MessageBody={
-                'task': 'cancelOrder',
-                'order': order,
-            }
+            MessageBody=dict_to_sqs
         )
     )
 
