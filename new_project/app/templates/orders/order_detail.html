@@ -109,7 +109,7 @@
                             </td>
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].Status }}">
+                                       value="{{ context['order'].Status | format_status_order }}">
                             </td>
                         </tr>
                         <tr>
