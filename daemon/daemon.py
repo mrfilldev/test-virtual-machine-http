@@ -99,8 +99,6 @@ async def send_completed_status(order):
     print('params: ', params)
 
 
-# task = asyncio.create_task(carwash_order.send_accept_status(order))
-
 async def user_canceled(order):
     after_minute = time.time() + 60
 
@@ -121,7 +119,7 @@ async def user_canceled(order):
     await send_accept_status(order, user_cancel)
 
 
-async def make_some_noize(order):
+async def make_id(order):
     order['_id'] = order.pop('Id')
     print(order.keys())
     print(order.values())
@@ -154,7 +152,7 @@ async def get_order_messege_queue():
             print('TYPE: ', type(order))
             try:
 
-                await make_some_noize(order)
+                await make_id(order)
                 # get the message
                 print('order: ', order)
                 if order['BoxNumber'] == '2':
@@ -204,3 +202,50 @@ async def update_order_status(order, status):
     new_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
     print('UPDATE DATA: ', new_order)
     # Response(status=200)
+
+
+def main():
+    while True:
+        messages = Sqs_params.client.receive_message(
+            QueueUrl=Sqs_params.queue_url,
+            MaxNumberOfMessages=10,
+            VisibilityTimeout=60,
+            WaitTimeSeconds=20
+        ).get('Messages')
+
+        print('MESSAGES', messages)
+
+        if messages is None:
+            print('Сообщение не обнаружено')
+            print("ОЖИДАНИЕ 0.5")
+            time.sleep(0.5)
+            continue
+
+        for msg in messages:
+            print('Received message: ', msg.get('Body'))
+            print('TYPE: ', type(msg.get('Body')))
+            order = eval(msg.get('Body'))
+            print('TYPE: ', type(order))
+            try:
+                await make_id(order)
+                # get the message
+                print('order: ', order)
+                if order['BoxNumber'] == '2':
+                    await update_order_status(order, 'StationCanceled')
+                    await send_canceled_status(order, 'StationCanceled')
+                elif order['BoxNumber'] == '3':
+                    await user_canceled(order)
+                else:
+                    await send_accept_status(order, user_cancel=False)
+
+                # Delete processed messages
+                print('Successfully deleted message by receipt handle "{}"'.format(msg.get('ReceiptHandle')))
+                Sqs_params.client.delete_message(
+                    QueueUrl=Sqs_params.queue_url,
+                    ReceiptHandle=msg.get('ReceiptHandle')
+                )
+            except Exception as error:
+                # write to log
+                await send_canceled_status(order, reason='SystemAggregator_Error')
+                traceback.print_exc()
+                print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
