@@ -161,17 +161,17 @@ async def main_func():
                                 # await send_userCanceled_status(message["body"])
                     case "createOrder":
                         print('CreateOrder')
-                        #  await make_some_noize(order)
                         order = await make_mongo_id(eval(message['order']))
-                        print(order)
+                        print('order: ', order)
+
                         #await write_into_db(order)
 
 
                     case "cancelOrder":
                         print('CancelOrder')
-                        print(message['order'])
-                        #  await make_some_noize(order)
-                        pass
+                        order = await make_mongo_id(eval(message['order']))
+                        print('order: ', order)
+
                     case _:
                         raise ValueError("Неопознанное сообщение: " + message)
 
