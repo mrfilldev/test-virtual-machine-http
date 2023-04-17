@@ -42,16 +42,16 @@ def order_detail(order_id):
 @order_bp.route('/order_accept/<string:order_id>', methods=['POST', 'GET'])
 def order_accept(order_id):
     accept_order(order_id)
-    return redirect(url_for('order_blueprint.orders'))
+    return redirect(url_for('order_blueprint.orders_list'))
 
 
 @order_bp.route('/order_complete/<string:order_id>', methods=['POST', 'GET'])
 def order_complete(order_id):
     complete_order(order_id)
-    return redirect(url_for('order_blueprint.orders'))
+    return redirect(url_for('order_blueprint.orders_list'))
 
 
 @order_bp.route('/order_cancel/<string:order_id>', methods=['POST', 'GET'])
 def order_cancel(order_id):
     cancel_order(order_id)
-    return redirect(url_for('order_blueprint.orders'))
+    return redirect(url_for('order_blueprint.orders_list'))
