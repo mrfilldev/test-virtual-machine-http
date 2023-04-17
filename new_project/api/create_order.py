@@ -131,6 +131,7 @@ def make_order(data):
                 data.Status,
                 data.DateCreate,
                 data.DateEnd,
+                data.Reason
             )
             new_order.display_info()
     return data
