@@ -75,8 +75,7 @@ class Order:
 class OrderCanceled:
     def __init__(self, CarWashId, BoxNumber,
                  Id, ContractId, Sum, Status,
-                 DateCreate, DateEnd,
-                 Reason):
+                 DateCreate, DateEnd):
         self.Id = Id
         self.CarWashId = CarWashId
         self.BoxNumber = BoxNumber
@@ -85,7 +84,7 @@ class OrderCanceled:
         self.Status = Status
         self.DateCreate = DateCreate
         self.DateEnd = DateEnd
-        self.Reason = Reason
+
 
     def display_info(self):
         details = f"""
@@ -124,7 +123,6 @@ def make_order(data):
                 data.Status,
                 data.DateCreate,
                 data.DateEnd,
-                data.Reason
             )
             new_order.display_info()
     return data
