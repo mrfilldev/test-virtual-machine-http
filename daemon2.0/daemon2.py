@@ -170,7 +170,7 @@ async def main_func():
                         order = await make_mongo_id(eval(message['order']))
                         print(f'order: {type(order)} \n', order)
 
-                        old_order = {'_id': order['Id']}
+                        old_order = {'_id': order['_id']}
                         set_command = {"$set": {
                             "Status": order['Status'],
                             "DateEnd": order['DateEnd'],
