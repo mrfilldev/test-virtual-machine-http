@@ -162,7 +162,7 @@ async def main_func():
                     case "createOrder":
                         print('CreateOrder')
                         order = await make_mongo_id(eval(message['order']))
-                        print('order: ', order)
+                        print(f'order: {type(order)} \n', order)
 
                         #await write_into_db(order)
 
@@ -170,7 +170,7 @@ async def main_func():
                     case "cancelOrder":
                         print('CancelOrder')
                         order = await make_mongo_id(eval(message['order']))
-                        print('order: ', order)
+                        print(f'order: {type(order)} \n', order)
 
                     case _:
                         raise ValueError("Неопознанное сообщение: " + message)
