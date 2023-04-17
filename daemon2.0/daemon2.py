@@ -163,14 +163,21 @@ async def main_func():
                         print('CreateOrder')
                         order = await make_mongo_id(eval(message['order']))
                         print(f'order: {type(order)} \n', order)
-
-                        #await write_into_db(order)
-
+                        await write_into_db(order)
 
                     case "cancelOrder":
                         print('CancelOrder')
                         order = await make_mongo_id(eval(message['order']))
                         print(f'order: {type(order)} \n', order)
+
+                        old_order = {'_id': order['Id']}
+                        set_command = {"$set": {
+                            "Status": order['Status'],
+                            "DateEnd": order['DateEnd'],
+                            "Reason": order['Reason'],
+                        }}
+                        upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
+                        print('updated order: ', upd_order)
 
                     case _:
                         raise ValueError("Неопознанное сообщение: " + message)
