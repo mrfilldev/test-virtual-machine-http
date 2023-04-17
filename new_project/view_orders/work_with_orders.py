@@ -6,7 +6,10 @@ from bson import json_util
 from flask import redirect, url_for, abort, render_template
 
 from ..db import database
+from ..configuration.config import Sqs_params
 
+client = Sqs_params.client
+queue_url = Sqs_params.queue_url
 
 def list_orders(g):
     if 'networks' in g.user_db:
@@ -102,5 +105,18 @@ def get_carwash_obj(order_obj):
 
 def accept_order(order_id):
     print(f'Order {order_id} is accepting')
-
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    data = json.loads(json_util.dumps(order_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    dict_to_sqs = {}
+    dict_to_sqs['order'] = order_obj
+    dict_to_sqs['task'] = 'createOrder'
+    print(
+        'Sending order to accept:...',
+        client.send_message(
+            QueueUrl=queue_url,
+            MessageBody=str(dict_to_sqs)
+        )
+    )
 
