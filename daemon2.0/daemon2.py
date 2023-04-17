@@ -142,15 +142,15 @@ async def main_func():
                         match message["new_status"]:
                             case 'Accept':
                                 print('Accept')
-                                await send_accept_status(message["order"])
+                                await send_accept_status(eval(message["order"]))
                                 await update_order_status(eval(message['order']), 'Accepted')
                             case 'Completed':
                                 print('Completed')
-                                await send_completed_status(message["order"])
+                                await send_completed_status(eval(message["order"]))
                                 await update_order_status(eval(message['order']), 'Completed')
                             case 'Canceled':
                                 print('Canceled')
-                                await send_canceled_status(message["order"], reason='StationCanceled')
+                                await send_canceled_status(eval(message["order"]), reason='StationCanceled')
                                 await update_order_status(eval(message["order"]), 'StationCanceled')
 
                     case "createOrder":
