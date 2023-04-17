@@ -78,8 +78,12 @@ def owner_order_detail(order_id):
     print('order_obj: \n', order_obj)
     context = {
         'order': order_obj,
+        'location': 'location'
     }
     return render_template(
         'orders/order_detail.html',
         context=context
     )
+
+
+
