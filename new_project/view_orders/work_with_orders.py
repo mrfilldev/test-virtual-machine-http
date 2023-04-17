@@ -76,9 +76,11 @@ def owner_order_detail(order_id):
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print('order_obj: \n', order_obj)
+    carwash = get_carwash_obj(order_obj)
+
     context = {
         'order': order_obj,
-        'location': 'location'
+        'carwash': carwash
     }
     return render_template(
         'orders/order_detail.html',
@@ -86,4 +88,10 @@ def owner_order_detail(order_id):
     )
 
 
-
+def get_carwash_obj(order_obj):
+    carwash_obj = database.col_carwashes.find_one(order_obj.CarWashId)
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('carwash_obj: \n', carwash_obj)
+    return carwash_obj
