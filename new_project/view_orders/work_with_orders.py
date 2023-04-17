@@ -68,3 +68,18 @@ def list_orders(g):
         )
     else:
         return abort(404)
+
+
+def owner_order_detail(order_id):
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    data = json.loads(json_util.dumps(order_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('order_obj: \n', order_obj)
+    context = {
+        'order': order_obj,
+    }
+    return render_template(
+        'orders/order_detail.html',
+        context=context
+    )
