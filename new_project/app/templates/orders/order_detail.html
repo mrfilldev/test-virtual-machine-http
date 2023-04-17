@@ -78,10 +78,11 @@
                                        value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
                             </td>
                             <td class="align-right">
+                                {% if context['order'].Status == 'OrderCreated' %}
                                 <div class="container align-right">
                                     <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">Подтвердить
+                                            data-bs-target="#staticBackdrop">Принять в работу
                                     </button>
                                 </div>
                                 <!-- Модальное окно -->
@@ -91,8 +92,8 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Подтверждение
-                                                    заказа</h5>
+                                                <h5 class="modal-title" id="staticBackdropLabel">Прием в работу
+                                                </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Закрыть"></button>
                                             </div>
@@ -105,13 +106,52 @@
                                                         data-bs-dismiss="modal">
                                                     Закрыть
                                                 </button>
-                                                <form method=POST action="{{ url_for('order_blueprint.order_accept', order_id=context.order._id) }}">
-                                                    <button type="submit" class="btn btn-primary" >Подтвердить</button>
+                                                <form method=POST
+                                                      action="{{ url_for('order_blueprint.order_accept', order_id=context.order._id) }}">
+                                                    <button type="submit" class="btn btn-primary">Принять в работу
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {% elif context['order'].Status == 'Accepted' %}
+                                <div class="container align-right">
+                                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">Подтвердить выполнение
+                                    </button>
+                                </div>
+                                <!-- Модальное окно -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                     data-bs-keyboard="false" tabindex="-1"
+                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Подтвердить выполнение
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Закрыть"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ДАЛЕЕ ЗАКАЗ СЧИТАЕТСЯ ВЫПОЛНЕННЫМ
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                    Закрыть
+                                                </button>
+                                                <form method=POST
+                                                      action="{{ url_for('order_blueprint.order_accept', order_id=context.order._id) }}">
+                                                    <button type="submit" class="btn btn-primary">Принять в работу
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
                             </td>
                         </tr>
                         </tbody>
