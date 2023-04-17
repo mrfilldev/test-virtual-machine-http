@@ -116,7 +116,7 @@ async def update_order_status(order, status):
     # Response(status=200)
 
 
-async def main():
+async def main_func():
     while True:
         messages = Sqs_params.client.receive_message(
             QueueUrl=Sqs_params.queue_url,

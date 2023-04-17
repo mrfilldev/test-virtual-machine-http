@@ -1,18 +1,18 @@
 import asyncio
 from dotenv import load_dotenv
-import daemon
+from . import daemon2
 
 load_dotenv()
 
 
-async def main():
-    order = await daemon.get_order_messege_queue()
+async def start_point():
+    await daemon2.main_func()
 
 
 if __name__ == '__main__':
     print("RUNNING")
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    loop.run_until_complete(start_point())
 
     loop.close()
     print("FINISHED")
