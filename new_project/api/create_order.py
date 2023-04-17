@@ -201,17 +201,14 @@ def main(request):
     print("REQUEST: ", request)
     print("REQUEST.DATA: ", request.data)
     data = to_camel_case(request)
-    order = make_order(data)
+    print("data: ", data)
 
-    if order.Status == Status.OrderCreated.name:
-        send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
-
-    elif order.Status == Status.UserCanceled.name:
-        print("Order canceling by user...")
-        update_order(order)
-
-    elif order.Status == Status.StationCanceled.name:
-        print("Order canceled...")
-
-    else:
-        pass
+    #order = make_order(data)
+    # if order.Status == Status.OrderCreated.name:
+    #     send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
+    #
+    # elif order.Status == Status.StationCanceled.name:
+    #     print("Order canceled...")
+    #
+    # else:
+    #     pass
