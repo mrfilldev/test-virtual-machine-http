@@ -111,11 +111,11 @@
                                                         data-bs-dismiss="modal">
                                                     Закрыть
                                                 </button>
-                                                <form method=POST
-                                                      action="{{ url_for('order_blueprint.order_cancel', order_id=context.order._id) }}">
-                                                    <button type="submit" class="btn btn-primary">Отменить
-                                                    </button>
-                                                </form>
+
+                                                <button href="{{ url_for('order_blueprint.order_cancel', order_id=context.order._id) }}"
+                                                        type="submit" class="btn btn-primary">Отменить
+                                                </button>
+
                                             </div>
                                         </div>
                                     </div>
