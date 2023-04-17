@@ -1,6 +1,6 @@
 import asyncio
 from dotenv import load_dotenv
-from . import daemon2
+import daemon2
 
 load_dotenv()
 
