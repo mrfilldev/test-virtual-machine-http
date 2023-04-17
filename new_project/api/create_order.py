@@ -139,7 +139,7 @@ def send_new_order_sqs(order):
         'Sending order:...',
         client.send_message(
             QueueUrl=queue_url,
-            MessageBody=dict_to_sqs
+            MessageBody=str(dict_to_sqs)
         )
     )
 
@@ -152,7 +152,7 @@ def send_cancel_order_sqs(order):
         'Sending order:...',
         client.send_message(
             QueueUrl=queue_url,
-            MessageBody=dict_to_sqs
+            MessageBody=str(dict_to_sqs)
         )
     )
 
