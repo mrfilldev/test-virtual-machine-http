@@ -177,11 +177,11 @@
                                                         data-bs-dismiss="modal">
                                                     Закрыть
                                                 </button>
-                                                <form method=POST
-                                                      action="{{ url_for('order_blueprint.order_complete', order_id=context.order._id) }}">
-                                                    <button type="submit" class="btn btn-primary">Заказ выполнен
-                                                    </button>
-                                                </form>
+
+                                                <button href="{{ url_for('order_blueprint.order_complete', order_id=context.order._id) }}"
+                                                        class="btn btn-outline-success">Заказ выполнен
+                                                </button>
+
                                             </div>
                                         </div>
                                     </div>
