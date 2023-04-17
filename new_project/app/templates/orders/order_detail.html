@@ -96,30 +96,11 @@
                         </tr>
                         <tr>
                             <td style="width: 200px">
-                                Сумма стоимости заказа:
+                                Сумма заказа:
                             </td>
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
                                        value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Сумма списания:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Выплачено партнеру:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381">
                             </td>
                         </tr>
                         </tbody>
