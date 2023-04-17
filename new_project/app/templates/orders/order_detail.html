@@ -82,11 +82,46 @@
                                 <div class="container align-right">
                                     <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">Принять в работу
+                                            data-bs-target="#modal_accept">Принять в работу
+                                    </button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="modal_cancel">Отменить заказ
                                     </button>
                                 </div>
                                 <!-- Модальное окно -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
+                                     data-bs-keyboard="false" tabindex="-1"
+                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel3">Отмена заказа
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Закрыть"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Прежде чем отменить заказ:<br>
+                                                УБЕДИТЕСЬ В СВОЕМ ДЕЙСТВИИ
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                    Закрыть
+                                                </button>
+                                                <form method=POST
+                                                      action="{{ url_for('order_blueprint.order_cancel', order_id=context.order._id) }}">
+                                                    <button type="submit" class="btn btn-primary">Принять в работу
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Модальное окно -->
+                                <div class="modal fade" id="modal_accept" data-bs-backdrop="static"
                                      data-bs-keyboard="false" tabindex="-1"
                                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -119,17 +154,17 @@
                                 <div class="container align-right">
                                     <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">Подтвердить выполнение
+                                            data-bs-target="#modal_complete">Подтвердить выполнение
                                     </button>
                                 </div>
                                 <!-- Модальное окно -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                <div class="modal fade" id="modal_complete" data-bs-backdrop="static"
                                      data-bs-keyboard="false" tabindex="-1"
                                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Подтвердить выполнение
+                                                <h5 class="modal-title" id="staticBackdropLabel2">Подтвердить выполнение
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Закрыть"></button>
@@ -143,8 +178,8 @@
                                                     Закрыть
                                                 </button>
                                                 <form method=POST
-                                                      action="{{ url_for('order_blueprint.order_accept', order_id=context.order._id) }}">
-                                                    <button type="submit" class="btn btn-primary">Принять в работу
+                                                      action="{{ url_for('order_blueprint.order_complete', order_id=context.order._id) }}">
+                                                    <button type="submit" class="btn btn-primary">Заказ выполнен
                                                     </button>
                                                 </form>
                                             </div>

@@ -11,6 +11,7 @@ from ..configuration.config import Sqs_params
 client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
+
 def list_orders(g):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
@@ -106,13 +107,7 @@ def get_carwash_obj(order_obj):
 def accept_order(order_id):
     print(f'Order {order_id} is accepting')
     order_obj = database.col_orders.find_one({'_id': order_id})  # dict
-    # data = json.loads(json_util.dumps(order_obj))
-    # data = json.dumps(data, default=lambda x: x.__dict__)
-    # order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    dict_to_sqs = {}
-    dict_to_sqs['order'] = str(order_obj)
-    dict_to_sqs['task'] = 'changeStatus'
-    dict_to_sqs['new_status'] = 'Accept'
+    dict_to_sqs = {'order': str(order_obj), 'task': 'changeStatus', 'new_status': 'Accepted'}
 
     print(
         'Sending order to accept:...',
@@ -122,3 +117,28 @@ def accept_order(order_id):
         )
     )
 
+
+def complete_order(order_id):
+    print(f'Order {order_id} is accepting')
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    dict_to_sqs = {'order': str(order_obj), 'task': 'changeStatus', 'new_status': 'Completed'}
+    print(
+        'Sending order to complete:...',
+        client.send_message(
+            QueueUrl=queue_url,
+            MessageBody=str(dict_to_sqs)
+        )
+    )
+
+
+def cancel_order(order_id):
+    print(f'Order {order_id} is accepting')
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    dict_to_sqs = {'order': str(order_obj), 'task': 'changeStatus', 'new_status': 'Canceled'}
+    print(
+        'Sending order to complete:...',
+        client.send_message(
+            QueueUrl=queue_url,
+            MessageBody=str(dict_to_sqs)
+        )
+    )

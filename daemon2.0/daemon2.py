@@ -149,8 +149,8 @@ async def main_func():
                     case "changeStatus":
                         print('changeStatus')
                         match message["new_status"]:
-                            case 'Accept':
-                                print('Accept')
+                            case 'Accepted':
+                                print('Accepted')
                                 await send_accept_status(eval(message["order"]))
                                 await update_order_status(eval(message['order']), 'Accepted')
                             case 'Completed':
