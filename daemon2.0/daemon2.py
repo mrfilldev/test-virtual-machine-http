@@ -163,7 +163,7 @@ async def main_func():
                         print('CreateOrder')
                         print(message['order'])
                         #  await make_some_noize(order)
-                        order = await make_mongo_id(message['order'])
+                        order = await make_mongo_id(dict(message['order']))
                         print(order)
                         #await write_into_db(order)
 
