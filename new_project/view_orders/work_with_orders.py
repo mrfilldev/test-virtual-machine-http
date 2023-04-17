@@ -89,9 +89,12 @@ def owner_order_detail(order_id):
 
 
 def get_carwash_obj(order_obj):
-    carwash_obj = database.col_carwashes.find_one(order_obj.CarWashId)
-    data = json.loads(json_util.dumps(carwash_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    print('carwash_obj: \n', carwash_obj)
-    return carwash_obj
+    try:
+        carwash_obj = database.col_carwashes.find_one(order_obj.CarWashId)
+        data = json.loads(json_util.dumps(carwash_obj))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        print('carwash_obj: \n', carwash_obj)
+        return carwash_obj
+    except Exception as error:
+        return None
