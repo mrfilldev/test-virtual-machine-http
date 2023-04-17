@@ -156,6 +156,9 @@ async def main_func():
                 #     case "createOrder":
                 #         #  await make_some_noize(order)
                 #         pass
+                #     case "cancelOrder":
+                #         #  await make_some_noize(order)
+                #         pass
                 #     case _:
                 #         raise ValueError("Неопознанное сообщение: " + message)
 
@@ -167,6 +170,6 @@ async def main_func():
                 )
             except Exception as error:
                 # write to log
-                #await send_canceled_status(order, reason='SystemAggregator_Error')
+                # await send_canceled_status(order, reason='SystemAggregator_Error')
                 traceback.print_exc()
                 print(f'EXEPTION: \n{type(Exception)}: e', Exception)  # добавить логгер
