@@ -44,13 +44,13 @@
                     <table class="table table-bordered table-center">
                         <thead class="table-light">
                         <tr>
-                            <th scope="col" colspan="3">{{ context.carwash.Name }}</th>
+                            <th scope="col" colspan="3">Мойка: {{ context.carwash.Name }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td style="width: 200px">
-                                :
+
                             </td>
                             <td style="width: 40%">
                                 <input style="width: 100%" type="text" class="form-control"
@@ -66,16 +66,16 @@
                         </tr>
                         <tr>
                             <td style="width: 200px">
-                                Id Мойки:
+                                Адрес:
                             </td>
                             <td>
                                 <input style="width: 100%" width="20%" type="text" class="form-control"
-                                       value="{{ context['order'].CarWashId }}">
+                                       value="{{ context.carwash.Address }}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">
-                                Id Бокса:
+                                Бокс:
                             </td>
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
@@ -91,7 +91,7 @@
                             </td>
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].Id }}">
+                                       value="{{ context.order._id }}">
                             </td>
                         </tr>
                         <tr>
