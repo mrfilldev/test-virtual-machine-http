@@ -161,9 +161,8 @@ async def main_func():
                                 # await send_userCanceled_status(message["body"])
                     case "createOrder":
                         print('CreateOrder')
-                        print(message['order'])
                         #  await make_some_noize(order)
-                        order = await make_mongo_id(dict(message['order']))
+                        order = await make_mongo_id(eval(message['order']))
                         print(order)
                         #await write_into_db(order)
 
