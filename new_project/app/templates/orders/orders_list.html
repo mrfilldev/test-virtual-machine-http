@@ -9,9 +9,7 @@
 <meta http-equiv="refresh" content="5000">
 <script>
 
-    $(document).ready(read());
-
-    function read() {
+    $(document).ready(function () {
 
         $('.tr-order').click(function () {
             window.location = $(this).data('href');
@@ -27,10 +25,10 @@
         //     console.log("fgdjfgfk")
         // }, 5000);
 
-    }
+    });
 
     function load() {
-        $.get("\"{{ url_for('order_blueprint.orders_list') }}", function (data) {
+        $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
             $("#tbody_orders").html(data);
             alert("Load was performed.");
         });
