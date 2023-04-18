@@ -29,7 +29,7 @@
 
     function tr_to_buttons() {
         $('.tr-order').click(function () {
-            window.location = $(this).data('href');
+            window.open($(this).data('href'), "_blank");
             return false;
         });
     }
