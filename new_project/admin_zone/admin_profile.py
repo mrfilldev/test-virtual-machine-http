@@ -1,11 +1,11 @@
 from datetime import date
 
 from dateutil import parser
-from flask import render_template, request, Blueprint, session, g
+from flask import render_template, request, Blueprint, session, g, url_for, redirect
 
 from .edit_data_in_db import list_all_cols_in_db
 from .manage_networks import list_networks, network_detail, add_network
-from .manage_orders import list_orders, delete_order
+from .manage_orders import list_orders, delete_order, cancel_order, complete_order, accept_order, owner_order_detail
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
@@ -97,6 +97,29 @@ def admin_delete_price(price_id):
 @admin_bp.route('/orders')
 def orders():
     return list_orders()
+
+
+@admin_bp.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
+def order_detail(order_id):
+    return owner_order_detail(order_id)
+
+
+@admin_bp.route('/order_accept/<string:order_id>', methods=['POST', 'GET'])
+def order_accept(order_id):
+    accept_order(order_id)
+    return redirect(url_for('admin_blueprint.orders'))
+
+
+@admin_bp.route('/order_complete/<string:order_id>', methods=['POST', 'GET'])
+def order_complete(order_id):
+    complete_order(order_id)
+    return redirect(url_for('admin_blueprint.orders'))
+
+
+@admin_bp.route('/order_cancel/<string:order_id>', methods=['POST', 'GET'])
+def order_cancel(order_id):
+    cancel_order(order_id)
+    return redirect(url_for('admin_blueprint.orders'))
 
 
 @admin_bp.route('/delete_order/<string:order_id>')

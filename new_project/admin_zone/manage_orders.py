@@ -7,6 +7,10 @@ from flask import request, render_template, url_for, redirect
 
 from .specific_methods import method_of_filters
 from ..db import database
+from ..configuration.config import Sqs_params
+
+client = Sqs_params.client
+queue_url = Sqs_params.queue_url
 
 
 def list_orders():
@@ -39,8 +43,6 @@ def list_orders():
         carwashes_names.append(carwash)
     today = date.today()
 
-
-
     context = {
         'orders_list': orders_list,
         'count_orders': count_orders,
@@ -48,8 +50,78 @@ def list_orders():
         'date': today
     }
     return render_template(
-        'orders/orders_list.html',
+        'admin/orders_list.html',
         context=context
+    )
+
+
+def owner_order_detail(order_id):
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    data = json.loads(json_util.dumps(order_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('order_obj: \n', order_obj)
+    carwash = get_carwash_obj(order_obj)
+
+    context = {
+        'order': order_obj,
+        'carwash': carwash
+    }
+    return render_template(
+        'orders/order_detail.html',
+        context=context
+    )
+
+
+def get_carwash_obj(order_obj):
+    try:
+        carwash_obj = database.col_carwashes.find_one(order_obj.CarWashId)
+        data = json.loads(json_util.dumps(carwash_obj))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        print('carwash_obj: \n', carwash_obj)
+        return carwash_obj
+    except Exception as error:
+        return None
+
+
+def accept_order(order_id):
+    print(f'Order {order_id} is accepting')
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    dict_to_sqs = {'order': str(order_obj), 'task': 'changeStatus', 'new_status': 'Accepted'}
+
+    print(
+        'Sending order to accept:...',
+        client.send_message(
+            QueueUrl=queue_url,
+            MessageBody=str(dict_to_sqs)
+        )
+    )
+
+
+def complete_order(order_id):
+    print(f'Order {order_id} is accepting')
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    dict_to_sqs = {'order': str(order_obj), 'task': 'changeStatus', 'new_status': 'Completed'}
+    print(
+        'Sending order to complete:...',
+        client.send_message(
+            QueueUrl=queue_url,
+            MessageBody=str(dict_to_sqs)
+        )
+    )
+
+
+def cancel_order(order_id):
+    print(f'Order {order_id} is accepting')
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    dict_to_sqs = {'order': str(order_obj), 'task': 'changeStatus', 'new_status': 'Canceled'}
+    print(
+        'Sending order to complete:...',
+        client.send_message(
+            QueueUrl=queue_url,
+            MessageBody=str(dict_to_sqs)
+        )
     )
 
 
