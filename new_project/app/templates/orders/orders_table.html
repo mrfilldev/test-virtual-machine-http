@@ -1,0 +1,31 @@
+{% for order in context['orders_list'] %}
+<tr class="tr-order" data-href="{{ url_for('order_blueprint.order_detail', order_id=order._id) }}">
+    <th scope="row">
+        {{ context['count_orders'] - loop.index0 }}
+    </th>
+    <td>
+        {{ order.DateCreate | format_datetime }}
+    </td>
+    <td>
+        {% for i in context['carwashes'] %}
+        {% if i._id == order.CarWashId %}
+        {{ i['Name'] }}
+        {% endif %}
+        {% endfor %}
+    </td>
+    <td>
+        {{ order.Status | format_status_order}}
+    </td>
+
+    <td class="text-end">
+        {{'%0.2f'| format(order.Sum|float)}}&#8381
+
+    </td>
+    <td class="text-end">
+        {{'%0.2f'| format(order.SumCompleted|float)}}&#8381
+    </td>
+    <td class="text-end">
+        {{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381
+    </td>
+</tr>
+{% endfor %}

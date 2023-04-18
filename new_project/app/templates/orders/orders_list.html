@@ -8,14 +8,20 @@
 
 <meta http-equiv="refresh" content="5000">
 <script>
+    function load() {
+        $('.Ajax').click(function () {
+            $.get("\"{{ url_for('order_blueprint.orders_list') }}", function (data) {
+                $(".result").html(data);
+                alert("Load was performed.");
+            });
+        });
+    }
+
     setTimeout(function () {
         location.reload();
         console.log("fgdjfgfk")
     }, 5000);
-</script>
 
-
-<script>
     $(document).ready(function () {
         $('.tr-order').click(function () {
             window.location = $(this).data('href');
@@ -44,6 +50,7 @@
                                                                                           aria-describedby="addon-wrapping">
             <!-- DATETIMEPICKER bootstrap.min.js -->
             &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Найти</button>
+            &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary" id="Ajax">Ajax onclick</button>
         </div>
     </form>
 
@@ -64,9 +71,7 @@
         </thead>
         <tbody class=".table-hover">
         {% for order in context['orders_list'] %}
-
         <tr class="tr-order" data-href="{{ url_for('order_blueprint.order_detail', order_id=order._id) }}">
-
             <th scope="row">
                 {{ context['count_orders'] - loop.index0 }}
             </th>
@@ -96,6 +101,7 @@
             </td>
         </tr>
         {% endfor %}
+
         </tbody>
     </table>
 </div>
