@@ -8,26 +8,33 @@
 
 <meta http-equiv="refresh" content="5000">
 <script>
-    function load() {
-        $('.Ajax').click(function () {
-            $.get("\"{{ url_for('order_blueprint.orders_list') }}", function (data) {
-                $(".result").html(data);
-                alert("Load was performed.");
-            });
-        });
-    }
 
-    setTimeout(function () {
-        location.reload();
-        console.log("fgdjfgfk")
-    }, 5000);
+    $(document).ready(read());
 
-    $(document).ready(function () {
+    function read() {
+
         $('.tr-order').click(function () {
             window.location = $(this).data('href');
             return false;
         });
-    });
+
+        $('#Ajax').click(function () {
+            load();
+        });
+
+        // setTimeout(function () {
+        //     location.reload();
+        //     console.log("fgdjfgfk")
+        // }, 5000);
+
+    }
+
+    function load() {
+        $.get("\"{{ url_for('order_blueprint.orders_list') }}", function (data) {
+            $("#tbody_orders").html(data);
+            alert("Load was performed.");
+        });
+    }
 </script>
 <div class="container-fluid">
     <form method=POST action="{{ url_for('admin_blueprint.orders') }}">
@@ -69,7 +76,7 @@
             <th class="text-end" scope="col">Выплачено партнеру</th>
         </tr>
         </thead>
-        <tbody class=".table-hover">
+        <tbody id="tbody_orders" class="table-hover">
         {% for order in context['orders_list'] %}
         <tr class="tr-order" data-href="{{ url_for('order_blueprint.order_detail', order_id=order._id) }}">
             <th scope="row">
