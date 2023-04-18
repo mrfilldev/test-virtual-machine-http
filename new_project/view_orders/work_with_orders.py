@@ -63,7 +63,9 @@ def list_orders(g):
             'orders_list': orders_list,
             'count_orders': count_orders,
             'carwashes': carwashes_names,
-            'date': today
+            'date': today,
+            'refresh_interval': 10,  # Задайте интервал обновления страницы в секундах
+
         }
 
         return render_template(
