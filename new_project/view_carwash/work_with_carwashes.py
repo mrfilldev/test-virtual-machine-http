@@ -219,7 +219,7 @@ def update_carwash_obj(request, carwash_id):
         'Name': form['name'],
         'Address': form['address'],
         'Location': {'lat': form['lat'], 'lon': form['lon']},
-        'Type': Types.SelfService.name,
+        'Type': Types.Manual.name,
         'Boxes': new_boxes_list_of_dict,
         'Price': new_prices_list_of_dict,
     }}
