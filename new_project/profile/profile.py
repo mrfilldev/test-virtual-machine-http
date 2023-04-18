@@ -1,6 +1,8 @@
 import os
 import traceback
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
+
+from .owner_functions import render_profile_owner
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -49,8 +51,8 @@ def profile_future_client():
 @profile_bp.route('/profile_owner')
 def profile_owner():
     # return 'Вы наш клиент'
+    return render_profile_owner(g)
 
-    return render_template('profile/profile_owner.html')
 
 
 @profile_bp.route('/profile_worker')
