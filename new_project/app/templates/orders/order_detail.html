@@ -35,7 +35,7 @@
                                 {% if context.carwash == None %}
                                 <img src="https://static-maps.yandex.ru/1.x/?ll=37.620070,55.753630&spn=0.1,0.1&l=map&size=500,450">
                                 {% else %}
-                                <img src="https://static-maps.yandex.ru/1.x/?l=map&z=17&size=650,300&pt={{ context.carwash.Location.lon |float }},{{ context.carwash.Location.lat |float  }},org">
+                                <img src="https://static-maps.yandex.ru/1.x/?l=map&z=17&size=450,300&pt={{ context.carwash.Location.lon |float }},{{ context.carwash.Location.lat |float  }},org">
                                 {% endif %}
                             </td>
                         </tr>
