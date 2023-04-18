@@ -125,7 +125,7 @@ def create_carwash_obj(request, g):
         name_carwash = request.form['name']
         address_carwash = request.form['address']
         location_carwash = Point(request.form['lat'], request.form['lon'])
-        types = Types.SelfServiceFixPrice.name
+        types = Types.Manual.name
         stepCost = 10.0
         limitMinCost = 100.0
         boxes = create_boxes(int(request.form['amount_boxes']))
