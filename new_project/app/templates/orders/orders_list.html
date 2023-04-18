@@ -11,14 +11,11 @@
 
     $(document).ready(function () {
 
-        $('.tr-order').click(function () {
-            window.location = $(this).data('href');
-            return false;
-        });
-
         $('#Ajax').click(function () {
             load();
+            tr_to_buttons();
         });
+
 
         // setTimeout(function () {
         //     location.reload();
@@ -30,7 +27,13 @@
     function load() {
         $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
             $("#tbody_orders").html(data);
-            alert("Load was performed.");
+            tr_to_buttons();
+        });
+    }
+    function tr_to_buttons() {
+        $('.tr-order').click(function () {
+            window.location = $(this).data('href');
+            return false;
         });
     }
 </script>
@@ -57,7 +60,7 @@
             &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Найти</button>
         </div>
     </form>
-            &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary" id="Ajax">Ajax onclick</button>
+    &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary" id="Ajax">Ajax onclick</button>
 
 </div>
 <div class="table-responsive">
