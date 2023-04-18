@@ -12,7 +12,7 @@ client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
 
-def list_orders(g):
+def list_orders(request, g):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
         all_carwashes = database.col_carwashes.find({'network_id': network})
@@ -67,7 +67,8 @@ def list_orders(g):
             'refresh_interval': 10,  # Задайте интервал обновления страницы в секундах
 
         }
-
+        if request.is_xhr:
+            return render_template('orders/orders_table.html', context=context)
         return render_template(
             'orders/orders_list.html',
             context=context
