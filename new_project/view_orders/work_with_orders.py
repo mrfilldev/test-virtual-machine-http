@@ -3,7 +3,7 @@ from datetime import date
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import redirect, url_for, abort, render_template
+from flask import redirect, url_for, abort, render_template, request
 
 from ..db import database
 from ..configuration.config import Sqs_params
@@ -12,7 +12,7 @@ client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
 
-def list_orders(request, g):
+def list_orders(g):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
         all_carwashes = database.col_carwashes.find({'network_id': network})
