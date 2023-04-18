@@ -6,14 +6,15 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
- <meta http-equiv="refresh" content="5">
+<meta http-equiv="refresh" content="5">
 
 
-<script>
-    setTimeout(function(){
-   window.location.reload(1);
-}, 5000);
+<script type="text/javascript">
+    function load() {
+        setTimeout("window.open(self.location, '_self');", 5000);
+    }
 </script>
+<body onload="load()">
 
 <script>
     $(document).ready(function () {
