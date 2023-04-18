@@ -5,6 +5,15 @@
 <br>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<script type="text/javascript">
+    function autoRefreshPage() {
+        window.location = window.location.href;
+    }
+
+    setInterval('autoRefreshPage()', 15000);
+</script>
 <script>
     $(document).ready(function () {
         $('.tr-order').click(function () {
@@ -65,7 +74,7 @@
             </td>
             <td>
                 {% for i in context['carwashes'] %}
-                {% if i._id == order.CarWashId  %}
+                {% if i._id == order.CarWashId %}
                 {{ i['Name'] }}
                 {% endif %}
                 {% endfor %}
