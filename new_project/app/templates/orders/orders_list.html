@@ -8,11 +8,13 @@
 
 
 <script type="text/javascript">
-    setTimeout(function () {
-        location.reload();
-    }, 5000); // 15000 milliseconds = 15 seconds
-</script>
+    function autoRefreshPage() {
 
+        window.location = window.location.href;
+    }
+
+    setInterval('autoRefreshPage()', 5000); // 15 seconds
+</script>
 <script>
     $(document).ready(function () {
         $('.tr-order').click(function () {
