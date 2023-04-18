@@ -67,7 +67,8 @@ def list_orders(g):
             'refresh_interval': 10,  # Задайте интервал обновления страницы в секундах
 
         }
-        if request.is_xhr:
+        request_xhr_key = request.headers.get('X-Requested-With')
+        if request_xhr_key == 'XMLHttpRequest':
             return render_template('orders/orders_table.html', context=context)
         return render_template(
             'orders/orders_list.html',
