@@ -33,6 +33,12 @@
             return false;
         });
     }
+    function paginator() {
+        $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
+            $("#tbody_orders").html(data);
+            tr_to_buttons();
+        });
+    }
 </script>
 <div class="container-fluid">
     <form method=POST action="{{ url_for('order_blueprint.orders_list') }}">
@@ -81,6 +87,8 @@
         </tbody>
     </table>
 </div>
+
+<button type="button" class="btn btn-outline-light">Ещё 25</button>
 {% endblock %}
 
 
