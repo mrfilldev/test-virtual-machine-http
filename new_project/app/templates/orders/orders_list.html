@@ -14,16 +14,17 @@
 
         setInterval(function () {
             check_switch();
-            console.log("fgdjfgfk")
+            console.log("5 sec");
         }, 5000);
     });
 
     function check_switch() {
         $('#load-switch').change(function () {
             if ($(this).prop('checked')) {
-                alert('on');
+                console.log("switch turned on");
+                load();
             } else {
-                alert('off');
+                console.log("switch turned off");
             }
         });
     }
