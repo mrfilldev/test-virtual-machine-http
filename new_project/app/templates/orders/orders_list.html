@@ -33,6 +33,7 @@
             return false;
         });
     }
+
     function paginator() {
         $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
             $("#tbody_orders").html(data);
@@ -86,7 +87,9 @@
 
         </tbody>
     </table>
-<button type="button" class="btn center bg-light">Ещё 20</button>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto">
+    <button type="button" class="btn center bg-light">Ещё 20</button>
 </div>
 {% endblock %}
 
