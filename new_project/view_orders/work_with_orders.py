@@ -21,7 +21,7 @@ def list_orders(g):
     elif g.user_db['role'] == 'admin':
         all_carwashes = database.col_carwashes.find({})
     else:
-        abort(404)
+        return abort(404)
     carwashes = []
     for i in all_carwashes:
         data = json.loads(json_util.dumps(i))
