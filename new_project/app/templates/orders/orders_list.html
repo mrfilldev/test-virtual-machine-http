@@ -10,14 +10,12 @@
 <script>
 
     $(document).ready(function () {
-
         tr_to_buttons();
 
         setInterval(function () {
             load();
             console.log("fgdjfgfk")
         }, 5000);
-
     });
 
     function load() {
@@ -35,10 +33,12 @@
     }
 
     function paginator() {
-        $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
-            $("#tbody_orders").html(data);
-            tr_to_buttons();
-        });
+        $("#load_orders").click(function () {
+            $.get(" {{ url_for('order_blueprint.orders_list', skip = ) }}", function (data) {
+                $("#tbody_orders").html(data);
+                tr_to_buttons();
+            });
+        })
     }
 </script>
 <div class="container-fluid">
@@ -85,8 +85,8 @@
         </tbody>
     </table>
 </div>
-<div class="d-grid col-3 mx-auto">
-    <button type="button" class="btn center bg-light">+ Ещё 20</button>
+<div class="col-2 mx-auto">
+    <button id="load_orders" type="button" class="btn center bg-light">+ Ещё 20</button>
 </div>
 <br>
 <br>
