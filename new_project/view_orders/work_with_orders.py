@@ -23,7 +23,7 @@ def list_orders(g):
         search = {}
     else:
         return abort(404)
-    orders = database.col_orders.find(search)
+    orders = database.col_orders.find(search).limit(10)
     orders_list = []
     count_orders = 0
     distinctCarwashId = []
