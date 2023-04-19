@@ -14,12 +14,12 @@ def fix_network_id_in_orders():
         data = json.loads(json_util.dumps(order))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-
+        print('order_obj: ', order_obj)
         current_carwash = database.col_carwashes.find_one({'_id': order_obj.CarWashId})
         data = json.loads(json_util.dumps(current_carwash))
         data = json.dumps(data, default=lambda x: x.__dict__)
         current_carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-
+        print('current_carwash_obj: ', current_carwash_obj)
         old_order = {'_id': order_obj._id}
         set_fields = {'$set': {
             'network_id': current_carwash_obj.network_id,
