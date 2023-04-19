@@ -1,8 +1,12 @@
 import asyncio
+import json
 
 import time
 import traceback
 from datetime import datetime as dt
+from types import SimpleNamespace
+
+from bson import json_util
 
 from web_params.params import Py_mongo_db, Sqs_params
 
@@ -74,9 +78,13 @@ async def send_canceled_status(order, reason):
 
 async def make_mongo_id(order):
     order['_id'] = order.pop('Id')
+    current_carwash = Py_mongo_db.col_carwashes.find_one({'_id': order['CarWashId']})
+    data = json.loads(json_util.dumps(current_carwash))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    current_carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    order['network_id'] = current_carwash_obj.network_id
     print(order.keys())
     print(order.values())
-    # await write_into_db(order)
     return order
 
 
