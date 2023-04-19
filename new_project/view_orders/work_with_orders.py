@@ -13,16 +13,10 @@ queue_url = Sqs_params.queue_url
 
 
 def list_orders(g):
-    if 'networks' in g.user_db:
+    if 'networks' in g.user_db or g.user_db.role == 'admin':
         network = g.user_db['networks'][0]
-        all_carwashes = database.col_carwashes.find({'network_id': network})
         print('network:', network)
-        network = database.col_networks.find({'_id': network})
-        data = json.loads(json_util.dumps(network))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
-        print('network_obj:', network_obj)
-
+        all_carwashes = database.col_carwashes.find({'network_id': network})
         print('network:', all_carwashes)
         carwashes = []
         for i in all_carwashes:
