@@ -4,6 +4,7 @@ from dateutil import parser
 from flask import render_template, request, Blueprint, session, g, url_for, redirect
 
 from .edit_data_in_db import list_all_cols_in_db
+from .fix_buttons import fix_network_id_in_orders
 from .manage_networks import list_networks, network_detail, add_network
 from .manage_orders import list_orders, delete_order, cancel_order, complete_order, accept_order, owner_order_detail
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
@@ -92,6 +93,10 @@ def admin_price_detail(price_id):
 @admin_bp.route('/delete_price/<string:price_id>', methods=['POST', 'GET'])
 def admin_delete_price(price_id):
     return delete_price(price_id)
+
+@admin_bp.route('/button_fix')
+def button_fix():
+    return fix_network_id_in_orders()
 
 
 ################################
