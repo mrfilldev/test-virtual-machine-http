@@ -17,14 +17,6 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li>
-                                <a class="dropdown-item"
-                                   href="{{ url_for('admin_blueprint.orders') }}">Заказы</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{  url_for('carwash_blueprint.carwashes_list') }}">
-                                    Мойки</a>
-                            </li>
-                            <li>
                                 <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_networks_list') }}">Сети</a>
                             </li>
                             <li>
@@ -38,7 +30,7 @@
                         </ul>
                     </li>
                 </div>
-                {% elif g.user_db.role == 'network_owner' %}
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}" aria-disabled="true">
                         Мойки </a>
@@ -47,7 +39,6 @@
                     <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}" aria-disabled="true"> Заказы </a>
                 </li>
 
-                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main_blueprint.logout') }}" aria-disabled="true">Выйти</a>
                 </li>
