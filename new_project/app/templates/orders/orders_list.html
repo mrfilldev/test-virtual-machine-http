@@ -19,9 +19,16 @@
     });
 
     function load() {
-        $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
-            $("#tbody_orders").html(data);
-            tr_to_buttons();
+        $('.load-switch input').change(function () {
+            if ($(this).prop('checked')) {
+                alert('on')
+                $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
+                    $("#tbody_orders").html(data);
+                    tr_to_buttons();
+                });
+            } else {
+                alert('off');
+            }
         });
     }
 
@@ -71,8 +78,8 @@
         <div class="col-2">
             <div class="justify-content-end">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">автообновление страницы</label>
+                    <input class="form-check-input" type="checkbox" id="load-switch">
+                    <label class="form-check-label" for="load-switch">автообновление страницы</label>
                 </div>
             </div>
         </div>
