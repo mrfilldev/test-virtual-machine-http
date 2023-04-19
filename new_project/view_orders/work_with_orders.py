@@ -2,6 +2,7 @@ import json
 from datetime import date
 from types import SimpleNamespace
 
+import pymongo
 from bson import json_util
 from flask import redirect, url_for, abort, render_template, request
 
@@ -23,7 +24,14 @@ def list_orders(g):
         search = {}
     else:
         return abort(404)
-    orders = database.col_orders.find(search).limit(10)
+
+    sort = [("abc", pymongo.DESCENDING)]
+    skip = 10
+    limit = 10
+    orders_count = database.col_orders.count_documents(search, skip=skip)
+    orders = database.col_orders.find(search).sort(sort).skip(skip).limit(limit)
+
+
     orders_list = []
     count_orders = 0
     distinctCarwashId = []
@@ -50,7 +58,7 @@ def list_orders(g):
     if request_xhr_key == 'XMLHttpRequest':
         context = {
             'orders_list': orders_list,
-            'count_orders': count_orders,
+            'count_orders': orders_count,
             'carwashes': carwashes_names,
         }
         return render_template('orders/orders_table.html', context=context)
@@ -58,7 +66,7 @@ def list_orders(g):
     today = date.today()
     context = {
         'orders_list': orders_list,
-        'count_orders': count_orders,
+        'count_orders': orders_count,
         'carwashes': carwashes_names,
         'date': today,
     }
