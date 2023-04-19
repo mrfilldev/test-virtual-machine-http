@@ -26,7 +26,7 @@ def list_orders(g):
         return abort(404)
 
     sort = [("abc", pymongo.DESCENDING)]
-    skip = 10
+    skip = 0
     limit = 10
     orders_count = database.col_orders.count_documents(search, skip=skip)
     orders = database.col_orders.find(search).sort(sort).skip(skip).limit(limit)
