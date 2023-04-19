@@ -18,7 +18,7 @@ def list_orders(g):
         print('network:', network)
         all_carwashes = database.col_carwashes.find({'network_id': network})
         print('network:', all_carwashes)
-    elif g.user_db.role == 'admin':
+    elif g.user_db['role'] == 'admin':
         all_carwashes = database.col_carwashes.find({})
     else:
         abort(404)
