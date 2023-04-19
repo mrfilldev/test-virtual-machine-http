@@ -6,7 +6,6 @@ from flask import render_template, request, Blueprint, session, g, url_for, redi
 from .edit_data_in_db import list_all_cols_in_db
 from .fix_buttons import fix_network_id_in_orders
 from .manage_networks import list_networks, network_detail, add_network
-from .manage_orders import list_orders, delete_order, cancel_order, complete_order, accept_order, owner_order_detail
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
 from .manage_users import users_list_view, user_detail, delete_user
 from ..db import database
