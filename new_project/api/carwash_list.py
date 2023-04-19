@@ -19,7 +19,7 @@ def carwash_list_main():
 
         print('BEFORE: ', obj['Price'])
         # метод получения всех требуемых данных:
-        obj['Price'] = []  # make_price_corrrect_4_tanker(obj['Price'])
+        obj['Price'] = make_price_corrrect_4_tanker(obj['Price'])
         print('AFTER: ', obj['Price'])
         array_of_carwashes.append(obj)
 

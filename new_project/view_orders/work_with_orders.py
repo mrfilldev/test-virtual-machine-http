@@ -81,6 +81,7 @@ def list_orders(g):
             context=context
         )
     else:
+        all_carwashes = database.col_carwashes.find({'network_id': network})
         return abort(404)
 
 
