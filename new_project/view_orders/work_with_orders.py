@@ -58,18 +58,24 @@ def list_orders(g):
             data = json.dumps(data, default=lambda x: x.__dict__)
             carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
             carwashes_names.append(carwash)
+
+        request_xhr_key = request.headers.get('X-Requested-With')
+        if request_xhr_key == 'XMLHttpRequest':
+            context = {
+                'orders_list': orders_list,
+                'count_orders': count_orders,
+                'carwashes': carwashes_names,
+            }
+            return render_template('orders/orders_table.html', context=context)
+
+
         today = date.today()
         context = {
             'orders_list': orders_list,
             'count_orders': count_orders,
             'carwashes': carwashes_names,
             'date': today,
-            'refresh_interval': 10,  # Задайте интервал обновления страницы в секундах
-
         }
-        request_xhr_key = request.headers.get('X-Requested-With')
-        if request_xhr_key == 'XMLHttpRequest':
-            return render_template('orders/orders_table.html', context=context)
         return render_template(
             'orders/orders_list.html',
             context=context
