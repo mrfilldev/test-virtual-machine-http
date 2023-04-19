@@ -94,9 +94,9 @@ def admin_delete_price(price_id):
     return delete_price(price_id)
 
 
-@admin_bp.route('/admin_orders_list')
-def orders():
-    return list_orders()
+# @admin_bp.route('/admin_orders_list')
+# def orders():
+#     return list_orders()
 
 
 @admin_bp.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
