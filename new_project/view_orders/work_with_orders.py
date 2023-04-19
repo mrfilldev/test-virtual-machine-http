@@ -28,7 +28,7 @@ def list_orders(g):
     sort = [("DateCreate", 1)]
     skip = 0
     limit = 25
-    orders_count = database.col_orders.count_documents(search, skip=skip)
+    orders_count = database.col_orders.count_documents(search, skip=None)
     orders = database.col_orders.find(search).sort(sort).skip(skip).limit(limit)
 
 
