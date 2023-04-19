@@ -19,7 +19,7 @@
     });
 
     function load() {
-        $('.load-switch input').change(function () {
+        $('.load-switch').change(function () {
             if ($(this).prop('checked')) {
                 alert('on')
                 $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
