@@ -16,11 +16,14 @@ def list_orders(g):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
         print('network:', network)
-        orders = database.col_orders.find({'network_id': network})
+
+        search = {'network_id': network}
     elif g.user_db['role'] == 'admin':
-        orders = database.col_orders.find({})
+
+        search = {}
     else:
         return abort(404)
+    orders = database.col_orders.find(search)
     orders_list = []
     count_orders = 0
     distinctCarwashId = []
