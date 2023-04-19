@@ -25,11 +25,11 @@ def list_orders(g):
     else:
         return abort(404)
 
-
+    sort = [("DateCreate", pymongo.ASCENDING)]
     skip = 0
     limit = 25
     orders_count = database.col_orders.count_documents(search) #skip=skip)
-    orders = database.col_orders.find(search).sort("_id", -1).skip(skip).limit(limit)
+    orders = database.col_orders.find(search).sort(sort).skip(skip).limit(limit)
 
 
     orders_list = []
