@@ -94,35 +94,6 @@ def admin_delete_price(price_id):
     return delete_price(price_id)
 
 
-# @admin_bp.route('/admin_orders_list')
-# def orders():
-#     return list_orders()
-# @admin_bp.route('/order_detail/<string:order_id>', methods=['POST', 'GET'])
-# def order_detail(order_id):
-#     return owner_order_detail(order_id)
-# @admin_bp.route('/order_accept/<string:order_id>', methods=['POST', 'GET'])
-# def order_accept(order_id):
-#     accept_order(order_id)
-#     return redirect(url_for('admin_blueprint.orders'))
-#
-#
-# @admin_bp.route('/order_complete/<string:order_id>', methods=['POST', 'GET'])
-# def order_complete(order_id):
-#     complete_order(order_id)
-#     return redirect(url_for('admin_blueprint.orders'))
-#
-#
-# @admin_bp.route('/order_cancel/<string:order_id>', methods=['POST', 'GET'])
-# def order_cancel(order_id):
-#     cancel_order(order_id)
-#     return redirect(url_for('admin_blueprint.orders'))
-#
-#
-# @admin_bp.route('/delete_order/<string:order_id>')
-# def order_delete(order_id):
-#     return delete_order(order_id)
-
-
 ################################
 ################################
 ################################
