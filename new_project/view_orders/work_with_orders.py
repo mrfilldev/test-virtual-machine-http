@@ -30,7 +30,7 @@ def list_orders(g):
         print('carwash_obj:', carwash_obj)
         carwashes.append(carwash_obj._id)
     print('carwashes: ', carwashes)
-    orders_of_network = database.col_orders.find({'CarWashId': {'$in': carwashes}}).limit(20)
+    orders_of_network = database.col_orders.find({'CarWashId': {'$in': carwashes}})
     print('orders_of_network:', orders_of_network)
 
     orders_list = []
