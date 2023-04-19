@@ -13,22 +13,25 @@
         tr_to_buttons();
 
         setInterval(function () {
-            load();
+            check_switch();
             console.log("fgdjfgfk")
         }, 5000);
     });
 
-    function load() {
+    function check_switch() {
         $('#load-switch').change(function () {
             if ($(this).prop('checked')) {
                 alert('on')
-                $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
-                    $("#tbody_orders").html(data);
-                    tr_to_buttons();
-                });
             } else {
                 alert('off');
             }
+        });
+    }
+
+    function load() {
+        $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
+            $("#tbody_orders").html(data);
+            tr_to_buttons();
         });
     }
 
