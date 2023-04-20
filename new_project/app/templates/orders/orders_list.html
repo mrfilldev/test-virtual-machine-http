@@ -41,6 +41,7 @@
 
     function load(page) {
         $.get(" {{ url_for('order_blueprint.orders_list') }}" + page, function (data) {
+            alert(data);
             if (page === 0)
                 $("#tbody_orders").html(data);
             else
