@@ -24,8 +24,7 @@
         setInterval(function () {
             console.log("5 sec");
             if ($('#load-switch').prop('checked')) {
-                page = 0;
-                load();
+                load(0);
                 console.log("switch turned on");
             } else {
                 console.log("switch turned off");
