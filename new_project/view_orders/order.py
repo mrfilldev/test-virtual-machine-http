@@ -29,6 +29,7 @@ def load_user():
     print('g.user_db: :', g.user_db)
 
 
+@order_bp.route('/orders_list/', methods=['POST', 'GET'])
 @order_bp.route('/orders_list/<skip>-<limit>', methods=['POST', 'GET'])
 def orders_list(skip=0, limit=25):
     return list_orders(g, skip, limit)
