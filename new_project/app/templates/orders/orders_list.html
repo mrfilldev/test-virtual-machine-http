@@ -10,6 +10,7 @@
 <script>
 
     $(document).ready(function () {
+        var p = 0;
         tr_to_buttons();
         paginator();
         setInterval(function () {
@@ -39,7 +40,7 @@
 
 
     function paginator() {
-        var p = 0;
+
         $("#load_orders").click(function () {
             p += 1;
             $.get(" {{ url_for('order_blueprint.orders_list') }}", {p: p}, function (data) {
