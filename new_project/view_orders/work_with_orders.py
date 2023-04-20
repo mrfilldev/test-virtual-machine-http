@@ -69,7 +69,8 @@ def list_orders(g, skip=0, limit=25):
         'count_orders': orders_count,
         'carwashes': carwashes_names,
         'date': today,
-
+        'skip': skip + 25,
+        'limit': limit,
     }
     return render_template(
         'orders/orders_list.html',
