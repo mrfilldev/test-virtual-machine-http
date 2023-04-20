@@ -31,7 +31,6 @@ def list_orders(g, skip=0, limit=25):
     orders = database.col_orders.find(search).sort(sort).skip(skip).limit(limit)
 
     orders_list = []
-    count_orders = 0
     distinctCarwashId = []
     for i in orders:
         data = json.loads(json_util.dumps(i))
