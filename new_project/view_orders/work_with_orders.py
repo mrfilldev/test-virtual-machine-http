@@ -53,7 +53,7 @@ def list_orders(g, skip=0, limit=25):
         carwashes_names.append(carwash)
     print('limit:', limit)
     print('orders_count: ', type(orders_count), orders_count)
-    limit = count_orders - limit
+    limit = count_orders
     print(limit)
     limit = orders_count if (orders_count - limit) < 25 else limit + 25
     print('limit:', limit)
