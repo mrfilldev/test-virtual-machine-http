@@ -11,18 +11,19 @@
 
     $(document).ready(function () {
         tr_to_buttons();
-    });
 
-    $('#load-switch').change(function () {
-        if ($(this).prop('checked')) {
-            console.log("switch turned on");
-            setInterval(function () {
-                load();
-                console.log("5 sec");
-            }, 5000);
-        } else {
-            console.log("switch turned off");
-        }
+
+        $('#load-switch').change(function () {
+            if ($(this).prop('checked')) {
+                console.log("switch turned on");
+                setInterval(function () {
+                    load();
+                    console.log("5 sec");
+                }, 5000);
+            } else {
+                console.log("switch turned off");
+            }
+        });
     });
 
 
