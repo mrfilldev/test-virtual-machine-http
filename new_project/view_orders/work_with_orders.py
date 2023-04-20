@@ -52,7 +52,7 @@ def list_orders(g, skip=0, limit=25):
         carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
 
-    if (orders_count - limit) <= 25:
+    if (orders_count - limit) < 25:
         limit = orders_count - limit
     else:
         limit = limit + 25
