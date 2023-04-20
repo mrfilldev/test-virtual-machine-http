@@ -54,7 +54,7 @@ def list_orders(g, skip=0, limit=25):
     print('limit:', limit)
     print('orders_count: ', type(orders_count), orders_count)
     limit = count_orders
-    print(limit)
+    print('limit:', limit)
     limit = orders_count if (orders_count - limit) < 25 else limit + 25
     print('limit:', limit)
     request_xhr_key = request.headers.get('X-Requested-With')
