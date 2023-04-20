@@ -42,7 +42,7 @@
         var p = 0;
         $("#load_orders").click(function () {
             p += 1;
-            $.get(" {{ url_for('order_blueprint.orders_list' limit=p  ) }}", function (data) {
+            $.get(" {{ url_for('order_blueprint.orders_list') }}", {p: p}, function (data) {
                 $("#tbody_orders").html(data);
                 tr_to_buttons();
                 paginator();
