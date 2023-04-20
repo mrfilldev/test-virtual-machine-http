@@ -14,15 +14,12 @@
 
         setInterval(function () {
             console.log("5 sec");
-
-
             if ($('#load-switch').prop('checked')) {
                 load();
                 console.log("switch turned on");
             } else {
                 console.log("switch turned off");
             }
-
         }, 5000);
     });
 
@@ -42,7 +39,9 @@
 
 
     function paginator() {
+
         $("#load_orders").click(function () {
+            alert($(this).text());
             $.get(" {{ url_for('order_blueprint.orders_list', skip=context.skip, limit=context.limit  ) }}", function (data) {
                 $("#tbody_orders").html(data);
                 tr_to_buttons();
