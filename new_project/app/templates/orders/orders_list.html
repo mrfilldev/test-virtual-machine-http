@@ -11,24 +11,20 @@
 
     $(document).ready(function () {
         tr_to_buttons();
-
-        setInterval(function () {
-            load();
-            check_switch();
-            console.log("5 sec");
-        }, 5000);
     });
 
-    function check_switch() {
-        $('#load-switch').change(function () {
-            if ($(this).prop('checked')) {
-                console.log("switch turned on");
+    $('#load-switch').change(function () {
+        if ($(this).prop('checked')) {
+            console.log("switch turned on");
+            setInterval(function () {
                 load();
-            } else {
-                console.log("switch turned off");
-            }
-        });
-    }
+                console.log("5 sec");
+            }, 5000);
+        } else {
+            console.log("switch turned off");
+        }
+    });
+
 
     function load() {
         $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
