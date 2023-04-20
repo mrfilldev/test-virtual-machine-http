@@ -26,6 +26,12 @@
         }, 5000);
     });
 
+    function tr_to_buttons() {
+        $('.tr-order').click(function () {
+            window.open($(this).data('href'), "_blank");
+            return false;
+        });
+    }
 
     function load() {
         $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
@@ -34,16 +40,10 @@
         });
     }
 
-    function tr_to_buttons() {
-        $('.tr-order').click(function () {
-            window.open($(this).data('href'), "_blank");
-            return false;
-        });
-    }
 
     function paginator() {
         $("#load_orders").click(function () {
-            $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
+            $.get(" {{ url_for('order_blueprint.orders_list', skip=context.skip, limit=context.limit  ) }}", function (data) {
                 $("#tbody_orders").html(data);
                 tr_to_buttons();
             });

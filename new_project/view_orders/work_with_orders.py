@@ -13,7 +13,7 @@ client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
 
-def list_orders(g):
+def list_orders(g, skip=0, limit=25):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
         print('network:', network)
@@ -26,8 +26,6 @@ def list_orders(g):
         return abort(404)
 
     sort = [("DateCreate", pymongo.DESCENDING)]
-    skip = 0
-    limit = 25
     orders_count = database.col_orders.count_documents(search) #skip=skip)
     orders = database.col_orders.find(search).sort(sort).skip(skip).limit(limit)
 
@@ -60,6 +58,8 @@ def list_orders(g):
             'orders_list': orders_list,
             'count_orders': orders_count,
             'carwashes': carwashes_names,
+            'skip': skip,
+            'limit': limit,
         }
         return render_template('orders/orders_table.html', context=context)
 
@@ -69,6 +69,7 @@ def list_orders(g):
         'count_orders': orders_count,
         'carwashes': carwashes_names,
         'date': today,
+
     }
     return render_template(
         'orders/orders_list.html',
