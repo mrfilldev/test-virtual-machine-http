@@ -30,7 +30,7 @@ def load_user():
 
 
 @order_bp.route('/orders_list/', methods=['POST', 'GET'])
-@order_bp.route('/orders_list/<string:limit>', methods=['POST', 'GET'])
+@order_bp.route('/orders_list/<p>', methods=['POST', 'GET'])
 def orders_list(p):
     return list_orders(g, int(p))
 
