@@ -26,9 +26,8 @@ def list_orders(g, skip=0, limit=25):
         return abort(404)
 
     sort = [("DateCreate", pymongo.DESCENDING)]
-    orders_count = database.col_orders.count_documents(search) #skip=skip)
+    orders_count = database.col_orders.count_documents(search)  # skip=skip)
     orders = database.col_orders.find(search).sort(sort).skip(skip).limit(limit)
-
 
     orders_list = []
     count_orders = 0
@@ -51,7 +50,7 @@ def list_orders(g, skip=0, limit=25):
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
-    skip = skip+25
+    limit = limit + 25
     request_xhr_key = request.headers.get('X-Requested-With')
     if request_xhr_key == 'XMLHttpRequest':
         context = {
