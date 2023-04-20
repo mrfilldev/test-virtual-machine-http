@@ -51,7 +51,7 @@ def list_orders(g, skip=0, limit=25):
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
-
+    skip = skip+25
     request_xhr_key = request.headers.get('X-Requested-With')
     if request_xhr_key == 'XMLHttpRequest':
         context = {
