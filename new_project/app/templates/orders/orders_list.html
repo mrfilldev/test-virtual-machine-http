@@ -11,7 +11,6 @@
 
     $(document).ready(function () {
         tr_to_buttons();
-        paginator();
         setInterval(function () {
             console.log("5 sec");
             if ($('#load-switch').prop('checked')) {
@@ -38,15 +37,14 @@
     }
 
 
-    function paginator() {
-        $("#load_orders").bind ('click', function () {
-            $.get(" {{ url_for('order_blueprint.orders_list', p=context.p  ) }}", function (data) {
-                $("#tbody_orders").html(data);
-                tr_to_buttons();
-                paginator();
-            });
+    $("#load_orders").bind('click', function () {
+        $.get(" {{ url_for('order_blueprint.orders_list', p=context.p  ) }}", function (data) {
+            $("#tbody_orders").html(data);
+            tr_to_buttons();
+            paginator();
         });
-    }
+    });
+
 </script>
 <div class="container-fluid">
     <div class="row">
