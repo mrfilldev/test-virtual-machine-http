@@ -54,15 +54,12 @@ def list_orders(g, p):
         carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
 
-    p = p + 1
-    print('next_page:', p)
     request_xhr_key = request.headers.get('X-Requested-With')
     if request_xhr_key == 'XMLHttpRequest':
         context = {
             'orders_list': orders_list,
             'count_orders': orders_count,
             'carwashes': carwashes_names,
-            'p': p,
         }
         return render_template('orders/orders_table.html', context=context)
 
@@ -71,8 +68,7 @@ def list_orders(g, p):
         'orders_list': orders_list,
         'count_orders': orders_count,
         'carwashes': carwashes_names,
-        'date': today,
-        'p': p,
+        'date': today
     }
     return render_template(
         'orders/orders_list.html',

@@ -9,11 +9,20 @@
 <meta http-equiv="refresh" content="5000">
 <script>
 
+    var page = 0;
+
     $(document).ready(function () {
         tr_to_buttons();
+
+        $("#load_orders").click(function () {
+            page++;
+            load(page);
+        });
+
         setInterval(function () {
             console.log("5 sec");
             if ($('#load-switch').prop('checked')) {
+                page = 0;
                 load();
                 console.log("switch turned on");
             } else {
@@ -29,21 +38,12 @@
         });
     }
 
-    function load() {
-        $.get(" {{ url_for('order_blueprint.orders_list') }}", function (data) {
+    function load(page) {
+        $.get(" {{ url_for('order_blueprint.orders_list') }}" + "/" + page, function (data) {
             $("#tbody_orders").html(data);
             tr_to_buttons();
         });
     }
-
-
-    $("#load_orders").bind('click', function () {
-        $.get(" {{ url_for('order_blueprint.orders_list', p=context.p  ) }}", function (data) {
-            $("#tbody_orders").html(data);
-            tr_to_buttons();
-            paginator();
-        });
-    });
 
 </script>
 <div class="container-fluid">
