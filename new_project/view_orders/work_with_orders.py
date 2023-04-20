@@ -58,7 +58,7 @@ def list_orders(g, skip=0, limit=25):
             'orders_list': orders_list,
             'count_orders': orders_count,
             'carwashes': carwashes_names,
-            'skip': skip,
+            'skip': skip + 25,
             'limit': limit,
         }
         return render_template('orders/orders_table.html', context=context)
