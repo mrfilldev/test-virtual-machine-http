@@ -12,6 +12,7 @@ from ..configuration.config import Sqs_params
 client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
+page_size = 10
 
 def list_orders(g, p):
     if 'networks' in g.user_db:
@@ -24,8 +25,8 @@ def list_orders(g, p):
         search = {}
     else:
         return abort(404)
-    skip = 10 * p
-    limit = 10 * p + 10
+    skip = page_size * p
+    limit = page_size * p + page_size
     orders_count = database.col_orders.count_documents(search)  # skip=skip)
     sort = [("DateCreate", pymongo.DESCENDING)]
     print('orders_count:', orders_count)
