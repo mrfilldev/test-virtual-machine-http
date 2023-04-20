@@ -31,7 +31,7 @@ def load_user():
 
 @order_bp.route('/orders_list/', methods=['POST', 'GET'])
 @order_bp.route('/orders_list/<string:skip>-<string:limit>', methods=['POST', 'GET'])
-def orders_list(skip=0, limit=25):
+def orders_list(skip, limit):
     return list_orders(g, int(skip), int(limit))
 
 
