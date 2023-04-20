@@ -52,6 +52,7 @@ def list_orders(g, skip=0, limit=25):
         carwash = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_names.append(carwash)
     print('limit:', limit)
+    print(count_orders - limit)
     limit = orders_count if (orders_count - limit) < 25 else limit + 25
     print('limit:', limit)
     request_xhr_key = request.headers.get('X-Requested-With')
