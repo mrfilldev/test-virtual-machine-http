@@ -40,7 +40,10 @@
 
     function load(page) {
         $.get(" {{ url_for('order_blueprint.orders_list') }}" + "/" + page, function (data) {
-            $("#tbody_orders").html(data);
+            if(page === 0)
+                $("#tbody_orders").html(data);
+            else
+                $("#tbody_orders").append(data)
             tr_to_buttons();
         });
     }
