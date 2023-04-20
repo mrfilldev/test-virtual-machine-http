@@ -53,7 +53,8 @@ def list_orders(g, skip=0, limit=25):
         carwashes_names.append(carwash)
     print('limit:', limit)
     print('orders_count: ', type(orders_count), orders_count)
-    print(int(count_orders) - limit)
+    raznica = int(count_orders) - limit
+    print(raznica)
     limit = orders_count if (orders_count - limit) < 25 else limit + 25
     print('limit:', limit)
     request_xhr_key = request.headers.get('X-Requested-With')
