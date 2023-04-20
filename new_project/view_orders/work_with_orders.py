@@ -69,7 +69,7 @@ def list_orders(g, p):
     today = date.today()
     context = {
         'orders_list': orders_list,
-        'count_orders': orders_count,
+        'count_orders': orders_count - skip,
         'carwashes': carwashes_names,
         'date': today
     }
