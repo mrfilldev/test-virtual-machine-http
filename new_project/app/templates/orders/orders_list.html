@@ -15,14 +15,14 @@
         setInterval(function () {
             console.log("5 sec");
 
-            $('#load-switch').change(function () {
-                if ($(this).prop('checked')) {
-                    load();
-                    console.log("switch turned on");
-                } else {
-                    console.log("switch turned off");
-                }
-            });
+
+            if ($(this).prop('checked')) {
+                load();
+                console.log("switch turned on");
+            } else {
+                console.log("switch turned off");
+            }
+
         }, 5000);
     });
 
