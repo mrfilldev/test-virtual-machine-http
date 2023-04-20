@@ -28,6 +28,8 @@ def list_orders(g, p):
         return abort(404)
     skip = page_size * p
     limit = page_size * p + page_size
+    print('limit:', limit)
+    print('skip:', skip)
     orders_count = database.col_orders.count_documents(search)  # skip=skip)
     sort = [("DateCreate", pymongo.DESCENDING)]
     print('orders_count:', orders_count)
