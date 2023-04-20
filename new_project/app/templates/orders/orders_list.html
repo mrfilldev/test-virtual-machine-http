@@ -20,6 +20,9 @@
             page++;
             load(page);
         });
+        $("#load-switch").click(function () {
+            load(0);
+        });
 
         setInterval(function () {
             console.log("5 sec");
