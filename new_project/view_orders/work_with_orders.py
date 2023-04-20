@@ -14,6 +14,7 @@ queue_url = Sqs_params.queue_url
 
 page_size = 10
 
+
 def list_orders(g, p):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
