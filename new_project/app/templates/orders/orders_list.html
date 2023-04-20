@@ -39,8 +39,10 @@
 
 
     function paginator() {
+        var p = 0;
         $("#load_orders").click(function () {
-            $.get(" {{ url_for('order_blueprint.orders_list', skip=context.skip, limit=context.limit  ) }}", function (data) {
+            p += 1;
+            $.get(" {{ url_for('order_blueprint.orders_list' limit=p  ) }}", function (data) {
                 $("#tbody_orders").html(data);
                 tr_to_buttons();
                 paginator();
