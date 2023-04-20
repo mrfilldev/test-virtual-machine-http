@@ -13,7 +13,7 @@ client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
 
-def list_orders(g, skip=0, limit=25):
+def list_orders(g, skip, limit):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
         print('network:', network)
