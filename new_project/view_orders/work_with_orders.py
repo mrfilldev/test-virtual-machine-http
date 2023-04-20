@@ -60,8 +60,9 @@ def list_orders(g, p):
     if request_xhr_key == 'XMLHttpRequest':
         context = {
             'orders_list': orders_list,
-            'count_orders': orders_count,
+            'count_orders': skip,
             'carwashes': carwashes_names,
+
         }
         return render_template('orders/orders_table.html', context=context)
 
