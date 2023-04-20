@@ -12,18 +12,18 @@
     $(document).ready(function () {
         tr_to_buttons();
 
+        setInterval(function () {
+            console.log("5 sec");
 
-        $('#load-switch').change(function () {
-            if ($(this).prop('checked')) {
-                console.log("switch turned on");
-                setInterval(function () {
+            $('#load-switch').change(function () {
+                if ($(this).prop('checked')) {
                     load();
-                    console.log("5 sec");
-                }, 5000);
-            } else {
-                console.log("switch turned off");
-            }
-        });
+                    console.log("switch turned on");
+                } else {
+                    console.log("switch turned off");
+                }
+            });
+        }, 5000);
     });
 
 
@@ -80,7 +80,7 @@
         <div class="col-2">
             <div class="justify-content-end">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="load-switch">
+                    <input class="form-check-input" type="checkbox" id="load-switch" checked>
                     <label class="form-check-label" for="load-switch">автообновление страницы</label>
                 </div>
             </div>
