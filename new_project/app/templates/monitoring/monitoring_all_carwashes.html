@@ -5,14 +5,14 @@
 <div class="container">
 
     <div class="col-10">
-        {% for network in amount_networks %}
-        {% for carwash in amount_carwashes_min %}
+        {% for network in context.amount_networks %}
+        {% for carwash in context.amount_carwashes_min %}
         <a href="#"><span class="badge bg-success">&nbsp;</span></a>>
         {% endfor %}
-        {% for carwash in amount_carwashes_mid %}
+        {% for carwash in context.amount_carwashes_mid %}
         <a href="#"><span class="badge bg-success">&nbsp;</span></a>>
         {% endfor %}
-        {% for carwash in amount_carwashes_max %}
+        {% for carwash in context.amount_carwashes_max %}
         <a href="#"><span class="badge bg-success">&nbsp;</span></a>>
         {% endfor %}
         {% endfor %}
