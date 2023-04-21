@@ -8,13 +8,7 @@
 
         {% for carwash in context.carwashes_list %}
         <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
-            {% if carwash.Enable == True %}
-            <span class="badge bg-success">&nbsp;</span>
-            {% elif carwash.Enable == False %}
-            <span class="badge bg-danger">&nbsp;</span>
-            {% else %}
-            <span class="badge bg-warning">&nbsp;</span>
-            {% endif %}
+            <span class="badge {{ jvnodfvndf | dfvdfvfdv }}">&nbsp;</span>
         </a>
         {% endfor %}
         <br>
