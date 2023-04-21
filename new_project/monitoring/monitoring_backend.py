@@ -8,7 +8,7 @@ from ..db import database
 from ..db.models import Types
 
 
-def get_carwashes(g_user_flask):
+def carwashes_monitoring(g_user_flask):
     if 'networks' not in g_user_flask.user_db:
         all_carwashes = database.col_carwashes.find({})
         network_obj = None
@@ -32,13 +32,9 @@ def get_carwashes(g_user_flask):
         carwashes_list.append(carwash_obj)
         print(carwash_obj)
     print(carwashes_list)
-    return carwashes_list
-
-
-def carwashes_monitoring(g_user_flask):
 
     context = {
-        'carwashes_list': get_carwashes(g_user_flask),
+        'carwashes_list': carwashes_list,
         'enum_type_list': print(list(Types)),
     }
     return render_template(
