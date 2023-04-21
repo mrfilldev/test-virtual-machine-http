@@ -6,6 +6,17 @@
 
     <div class="col-12">
 
+        {% for carwash in range(context.carwashes_list) %}
+        <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+            {% if carwash.Enable == True %}
+            <span class="badge bg-success">&nbsp;</span>
+            {% elif carwash.Enable == False %}
+            <span class="badge bg-danger">&nbsp;</span>
+            {% else %}
+            <span class="badge bg-warning">&nbsp;</span>
+            {% endif %}
+        </a>
+        {% endfor %}
         <br>
         <br>
         TEEESTING::
