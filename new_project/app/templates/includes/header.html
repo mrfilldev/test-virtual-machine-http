@@ -32,6 +32,10 @@
                 </div>
                 {% endif %}
                 <li class="nav-item">
+                    <a class="nav-link" href="{{  url_for('monitoring_blueprint.monitoring') }}" aria-disabled="true">
+                        Мониторинг </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}" aria-disabled="true">
                         Мойки </a>
                 </li>
