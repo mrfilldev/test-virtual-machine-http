@@ -23,21 +23,21 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td style="width: 200px" colspan="2" rowspan="3">
+                            <th style="width: 200px" colspan="2" rowspan="3">
                                 {{ carwash.Boxes | format_pretty_boxes }}<br>
-                            </td>
-                            <td style="width: 200px">
+                            </th>
+                            <th style="width: 200px">
                                 Статус:
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 {{ g.user_db.role }}
-                            </td>
-                            <td style="width: 200px">
+                            </th>
+                            <th style="width: 200px">
                                 Дата регистрации:
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 {{ g.user_db.date_registered | format_datetime }}
-                            </td>
+                            </th>
                         </tr>
 
                         </tbody>
