@@ -84,8 +84,8 @@
             <td>
                 {% set boxes_arr = (carwash.Boxes | format_pretty_boxes) %}
                 <span class="badge bg-success">{{ boxes_arr[0] }}</span>
-                <span class="badge bg-danger">{{ (carwash.Boxes | format_pretty_boxes)[1] }}</span>
-                <span class="badge bg-warning">{{ (carwash.Boxes | format_pretty_boxes)[2] }}</span>
+                <span class="badge bg-danger">{{ boxes_arr[1] }}</span>
+                <span class="badge bg-warning">{{ boxes_arr[2] }}</span>
             </td>
         </tr>
         {% endfor %}
