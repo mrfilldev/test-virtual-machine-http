@@ -12,7 +12,7 @@
         <div class="col-10">
             <main class="container-sm">
                 <div class="table-responsive">
-
+                    {% for carwash in context.carwashes_list %}
                     <table class="table table-bordered table-center">
                         <thead class="table-light">
                         <tr>
@@ -47,6 +47,7 @@
 
                         </tbody>
                     </table>
+                    {% endif %}
                     РЕЖИМ Мониторинга!!!
 
                     Ваш статус: {{ context['status'] }} <br>
