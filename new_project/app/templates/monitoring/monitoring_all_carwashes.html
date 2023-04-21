@@ -36,55 +36,12 @@
                         </div>
                         {% endfor %}
 
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    {% for carwash in context.carwashes_list %}
+                        <br>
+                        <br>
+                        <br>
+                    </div>
 
-                    <table class="table table-bordered table-center">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col" colspan="2">
-                                Название мойки
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th style="width: 200px" colspan="2" rowspan="3">
-                                {{ carwash.Boxes | format_pretty_boxes }}<br>
-                            </th>
-                            <th style="width: 200px">
-                                Статус:
-                            </th>
-                            <th>
-                                {{ g.user_db.role }}
-                            </th>
-                            <th style="width: 200px">
-                                Дата регистрации:
-                            </th>
-                            <th>
-                                {{ g.user_db.date_registered | format_datetime }}
-                            </th>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                    {% endfor %}
-                    РЕЖИМ Мониторинга!!!
-
-                    Ваш статус: {{ context['status'] }} <br>
-                    ________________________________________________________________________<br>
-                    {% for i in context['user_yan_inf'] %}
-                    {{ i }} -> {{ context['user_yan_inf'][i] }}<br>
-                    {% endfor %}
-                    ________________________________________________________________________<br>
                 </div>
-
-
             </main>
         </div>
     </div>
