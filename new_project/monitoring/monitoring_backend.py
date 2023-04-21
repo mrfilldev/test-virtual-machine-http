@@ -42,6 +42,6 @@ def carwashes_monitoring(g_user_flask):
         'enum_type_list': print(list(Types)),
     }
     return render_template(
-        'monitoring/all_carwashes.html',
+        'monitoring/monitoring_all_carwashes.html',
         context=context
     )
