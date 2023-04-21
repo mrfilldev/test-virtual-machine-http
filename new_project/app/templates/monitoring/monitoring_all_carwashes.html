@@ -16,15 +16,15 @@
                     <table class="table table-bordered table-center">
                         <thead class="table-light">
                         <tr>
-                            <th scope="col" colspan="3">
-                                {{ g.user_inf.display_name }}#{{ g.user_inf.id }}
+                            <th scope="col" colspan="2">
+                                Название мойки
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td style="width: 200px">
-                                Логин:
+                            <td style="width: 200px" rowspan="3">
+
                             </td>
                             <td style="width: 80%">
                                 {{ g.user_inf.login }}
@@ -57,6 +57,50 @@
                     {{ i }} -> {{ context['user_yan_inf'][i] }}<br>
                     {% endfor %}
                     ________________________________________________________________________<br>
+                </div>
+
+                <div class="bd-example">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="w-25">Заголовок 1</th>
+                                <th scope="col" class="w-25">Заголовок 2</th>
+                                <th scope="col" class="w-25">Заголовок 3</th>
+                                <th scope="col" class="w-25">Заголовок 4</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Эта ячейка наследует <code>vertical-align: middle;</code> из таблицы</td>
+                                <td>Эта ячейка наследует <code>vertical-align: middle;</code> из таблицы</td>
+                                <td>Эта ячейка наследует <code>vertical-align: middle;</code> из таблицы</td>
+                                <td>Это текст-заполнитель, предназначенный для того, чтобы занять довольно много места
+                                    по вертикали, чтобы продемонстрировать, как работает вертикальное выравнивание в
+                                    предыдущих ячейках.
+                                </td>
+                            </tr>
+                            <tr class="align-bottom">
+                                <td>Эта ячейка наследует <code>vertical-align: bottom;</code> из строки таблицы</td>
+                                <td>Эта ячейка наследует <code>vertical-align: bottom;</code> из строки таблицы</td>
+                                <td>Эта ячейка наследует <code>vertical-align: bottom;</code> из строки таблицы</td>
+                                <td>Это текст-заполнитель, предназначенный для того, чтобы занять довольно много места
+                                    по вертикали, чтобы продемонстрировать, как работает вертикальное выравнивание в
+                                    предыдущих ячейках.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Эта ячейка наследует <code>vertical-align: middle;</code> из таблицы</td>
+                                <td>Эта ячейка наследует <code>vertical-align: middle;</code> из таблицы</td>
+                                <td class="align-top">Эта ячейка выровнена по верхнему краю.</td>
+                                <td>Это текст-заполнитель, предназначенный для того, чтобы занять довольно много места
+                                    по вертикали, чтобы продемонстрировать, как работает вертикальное выравнивание в
+                                    предыдущих ячейках.
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </main>
         </div>
