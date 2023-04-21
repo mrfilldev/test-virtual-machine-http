@@ -41,10 +41,10 @@
         <thead>
         <tr>
             <th scope="col">№</th>
+            <th scope="col">Статус</th>
 
             <th scope="col">Имя Мойки</th>
             <th scope="col">Адрес</th>
-            <th scope="col">Статус</th>
             <th scope="col">Тип</th>
             <th scope="col">Мин. шаг суммы</th>
             <th scope="col">Мин. стоимость</th>
@@ -61,7 +61,9 @@
             <th scope="row">
                 {{ context['count_carwashes'] - loop.index0 }}
             </th>
-
+            <td>
+                {{ carwash.Enable | enable_rus }}
+            </td>
             <td>
                 {{ carwash.Name }}
             </td>
@@ -71,12 +73,7 @@
             </td>
 
             <td>
-                {{ carwash.Enable | enable_rus }}
-            </td>
-            <td>
-
                 {{ carwash.Type | type_rus }}
-
             </td>
             <td>
                 {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
@@ -85,9 +82,7 @@
                 {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
             </td>
             <td>
-
                 {{ carwash.Boxes | format_pretty_boxes }}<br>
-
             </td>
         </tr>
         {% endfor %}
