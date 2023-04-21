@@ -12,8 +12,8 @@
         <div class="col-10">
             <main class="container-sm">
                 <div class="table-responsive">
-                    {% for carwash in context.carwashes_list %}
                     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                        {% for carwash in context.carwashes_list %}
                         <div class="col">
                             <div class="card mb-4 rounded-3 shadow-sm">
                                 <div class="card-header py-3">
@@ -28,11 +28,14 @@
                                         <li>Статус: {{ carwash.Enable | enable_rus }}</li>
                                         <li>{{ carwash.Boxes | format_pretty_boxes }}</li>
                                     </ul>
-                                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Детальный мониторинг
+                                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Детальный
+                                        мониторинг
                                     </button>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
+
                         <div class="col">
                             <div class="card mb-4 rounded-3 shadow-sm">
                                 <div class="card-header py-3">
@@ -77,6 +80,8 @@
                     <br>
                     <br>
                     <br>
+                    {% for carwash in context.carwashes_list %}
+
                     <table class="table table-bordered table-center">
                         <thead class="table-light">
                         <tr>
