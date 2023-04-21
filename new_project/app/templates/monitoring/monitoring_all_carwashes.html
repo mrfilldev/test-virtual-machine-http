@@ -3,60 +3,60 @@
 {% block body %}
 <br>
 <div class="col-12">
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-9">
-            <main class="container-sm">
-                <div class="table-responsive">
 
-                    <table class="table table-bordered table-center">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col" colspan="3">
-                                {{ g.user_inf.display_name }}#{{ g.user_inf.id }}
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="width: 200px">
-                                Логин:
-                            </td>
-                            <td style="width: 80%">
-                                {{ g.user_inf.login }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Статус:
-                            </td>
-                            <td>
-                                {{ g.user_db.role }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Дата регистрации:
-                            </td>
-                            <td>
-                                {{ g.user_db.date_registered | format_datetime }}
-                            </td>
-                        </tr>
+    <div class="col-1"></div>
+    <div class="col-9">
+        <main class="container-sm">
+            <div class="table-responsive">
 
-                        РЕЖИМ АДМИНИСТРАТОРА!!!
+                <table class="table table-bordered table-center">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col" colspan="3">
+                            {{ g.user_inf.display_name }}#{{ g.user_inf.id }}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 200px">
+                            Логин:
+                        </td>
+                        <td style="width: 80%">
+                            {{ g.user_inf.login }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
+                            Статус:
+                        </td>
+                        <td>
+                            {{ g.user_db.role }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
+                            Дата регистрации:
+                        </td>
+                        <td>
+                            {{ g.user_db.date_registered | format_datetime }}
+                        </td>
+                    </tr>
 
-                        Ваш статус: {{ context['status'] }} <br>
-                        ________________________________________________________________________<br>
-                        {% for i in context['user_yan_inf'] %}
-                        {{ i }} -> {{ context['user_yan_inf'][i] }}<br>
-                        {% endfor %}
-                        ________________________________________________________________________<br>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
-        <div class="col-1"></div>
+                    РЕЖИМ АДМИНИСТРАТОРА!!!
+
+                    Ваш статус: {{ context['status'] }} <br>
+                    ________________________________________________________________________<br>
+                    {% for i in context['user_yan_inf'] %}
+                    {{ i }} -> {{ context['user_yan_inf'][i] }}<br>
+                    {% endfor %}
+                    ________________________________________________________________________<br>
+                    </tbody>
+                </table>
+            </div>
+        </main>
     </div>
+    <div class="col-1"></div>
+
 </div>
 {% endblock %}
