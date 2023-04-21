@@ -82,7 +82,9 @@
                 {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
             </td>
             <td>
-                {{ carwash.Boxes | format_pretty_boxes }}<br>
+                <span class="badge bg-success">{free}</span>
+                <span class="badge bg-danger">{busy}</span>
+                <span class="badge bg-warning">{unavailable}</span><br>{{ carwash.Boxes[0] | format_pretty_boxes }}<br>
             </td>
         </tr>
         {% endfor %}
