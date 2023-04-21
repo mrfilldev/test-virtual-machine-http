@@ -6,6 +6,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 
+from .monitoring_backend import carwashes_monitoring
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -30,5 +31,5 @@ def load_user():
 
 @monitoring_bp.route('/monitoring_carwash/', methods=['POST', 'GET'])
 def monitoring():
-    return monitoring(g)
+    return carwashes_monitoring(g)
 

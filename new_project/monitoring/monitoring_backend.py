@@ -35,7 +35,7 @@ def get_carwashes(g_user_flask):
     return carwashes_list
 
 
-def monitoring(g_user_flask):
+def carwashes_monitoring(g_user_flask):
 
     context = {
         'carwashes_list': get_carwashes(g_user_flask),
