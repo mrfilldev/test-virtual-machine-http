@@ -34,6 +34,10 @@ def carwashes_monitoring(g_user_flask):
     print(carwashes_list)
 
     context = {
+        'amount_networks': 100,
+        'amount_carwashes_min': 5,
+        'amount_carwashes_mid': 15,
+        'amount_carwashes_max': 100,
         'carwashes_list': carwashes_list,
         'enum_type_list': print(list(Types)),
     }
