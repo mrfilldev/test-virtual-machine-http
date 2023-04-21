@@ -73,9 +73,9 @@ def format_pretty_boxes(boxes):
 @carwash_bp.app_template_filter()
 def enable_rus(enable):
     if enable:
-        return Markup('<span class="badge bg-success">Активна</span>')
+        return 'Активна'
     else:
-        return Markup('<span class="badge bg-danger">Не активна</span>')
+        return 'Не активна'
 
 
 @carwash_bp.app_template_filter()

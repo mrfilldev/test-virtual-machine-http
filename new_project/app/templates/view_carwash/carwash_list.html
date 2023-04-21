@@ -62,10 +62,11 @@
                 {{ context['count_carwashes'] - loop.index0 }}
             </th>
             <td>
-                {{ carwash.Enable | enable_rus }}
+                {% if carwash.Enable == True %}
+                <span class="badge bg-success">{{ carwash.Enable | enable_rus }}</span>
             </td>
             <td>
-                <span class="badge bg-success">{{ carwash.Name }}</span>
+                {{ carwash.Name }}
             </td>
 
             <td>
