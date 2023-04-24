@@ -30,7 +30,7 @@ def generate_dict_of_networks(g_user_flask):
         carwash_list = []
         for carwash in all_carwashes:
             carwash_obj = deserialize_mongo_doc(carwash)
-            if carwash_obj.network_id == network_obj.network_id:
+            if carwash_obj.network_id == network_obj._id:
                 carwash_list.append(carwash_obj)
         print('network_obj: %s' % network_obj)
         dict_of_networks[network_obj.network_name] = carwash_list
