@@ -71,13 +71,14 @@ def enabled_to_rus_boolean(enable):
 
 def make_info_text(dict_of_networks):
     dict_info = {}
+    string_of_network = ''
     for network_obj in dict_of_networks:
         array_of_carwashes = dict_of_networks[network_obj]
         for carwash_obj in array_of_carwashes:
-            dict_info[network_obj] += f'{carwash_obj.Name} {carwash_obj.Address} ' \
-                                      f'Местоположение: {carwash_obj.Location.lat}, {carwash_obj.Location.lon} - ' \
-                                      f'{enabled_to_rus_boolean(carwash_obj.Enable)} \n'
-
+            string_of_network += f'{carwash_obj.Name} {carwash_obj.Address} ' \
+                                 f'Местоположение: {carwash_obj.Location.lat}, {carwash_obj.Location.lon} - ' \
+                                 f'{enabled_to_rus_boolean(carwash_obj.Enable)} \n'
+        dict_info[network_obj] = string_of_network
     return dict_info
 
 
