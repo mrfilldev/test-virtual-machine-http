@@ -3,8 +3,8 @@
 {% block body %}
 <script>
 
-    function copyToClipboard() {
-        window.prompt("Copy to clipboard: Ctrl+C, Enter", $(this).data('value'));
+    function copyToClipboard(value) {
+        window.prompt("Copy to clipboard: Ctrl+C, Enter", value);
     }
 
 </script>
