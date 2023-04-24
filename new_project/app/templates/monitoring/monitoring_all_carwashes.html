@@ -7,7 +7,7 @@
     <div class="col-12">
 
         {% for network in context.dict_of_networks %}
-        {{ network }}
+        {{ network }}:
         {% for carwash in context.dict_of_networks.network_obj %}
         <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context.dict_of_networks.network_obj._id) }}">
             {% if carwash.Enable == True %}
