@@ -36,8 +36,6 @@ def generate_dict_of_networks(g_user_flask):
     for network_obj in network_obj_list:
         carwash_list = []
         for carwash_obj in carwash_obj_list:
-            print("carwash_obj: %s" % carwash_obj)
-            print("network_obj: %s" % network_obj)
             if str(carwash_obj.network_id) == str(network_obj._id):
                 carwash_list.append(carwash_obj)
         print('network_obj: %s' % network_obj)
