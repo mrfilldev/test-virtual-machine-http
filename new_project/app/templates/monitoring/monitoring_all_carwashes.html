@@ -7,9 +7,8 @@
     <div class="col-12">
 
         {% for carwash in context.carwashes_list %}
-        <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
-            <span class="badge bg-success">&nbsp;</span>
-        </a>
+        <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}"><span
+                class="badge bg-success">&nbsp;</span></a>
         {% endfor %}
         <br>
         <br>
