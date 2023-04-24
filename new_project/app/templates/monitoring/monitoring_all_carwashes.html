@@ -6,19 +6,19 @@
 
     <div class="col-12">
 
+
+
+        {% for network in context.dict_of_networks %}
         <div class="container-fluid">
             <div class="row justify-content-between">
-                <div>
-                    что-то
+                <div class="col-4">
+                    {{ network }}:<br><br>
                 </div>
-                <div>
-                    что-то
+                <div class="col-1">
+                    Всего: ... Активно: ... Неактивно ...
                 </div>
             </div>
         </div>
-
-        {% for network in context.dict_of_networks %}
-        {{ network }}:<br><br>
         <div class="container">
             {% for carwash in context.dict_of_networks[network] %}
             <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
