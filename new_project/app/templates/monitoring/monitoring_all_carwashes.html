@@ -8,9 +8,9 @@
 
         {% for network in context.dict_of_networks %}
         {{ network }}:
-        {{ context.dict_of_networks[network] }}
 
-        {% for carwash in context.dict_of_networks.network %}
+
+        {% for carwash in context.dict_of_networks[network] %}
         {{ carwash }}
         <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
             {% if carwash.Enable == True %}
