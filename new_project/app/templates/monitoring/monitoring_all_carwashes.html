@@ -44,7 +44,7 @@
                 В данной сети мойки отсутствуют.<br><br>
                 {% else %}
                 {% for carwash in context.dict_of_networks[network] %}
-                <a data-bs-toggle="tooltip"  title="" data-bs-original-title="{{ carwash.Name }}"
+                <a data-bs-toggle="tooltip"  title="{{ carwash.Name }}" data-bs-original-title="{{ carwash.Name }}"
                     href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
                     {% if carwash.Enable == True %}
                     <span class="badge bg-success">&nbsp;</span></a>
