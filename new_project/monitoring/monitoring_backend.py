@@ -84,7 +84,7 @@ def make_info_text(dict_of_networks):
 
 def carwashes_monitoring(g_user_flask):
     dict_of_networks = generate_dict_of_networks(g_user_flask)
-    dict_of_networks.sort(key=lambda x: x.count, reverse=True)
+
     print('dict_of_networks: %s' % dict_of_networks)
     dict_analitic = analyze_networks_statistics(dict_of_networks)
     print('dict_of_network_statistics: %s' % dict_analitic)
