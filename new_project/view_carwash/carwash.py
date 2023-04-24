@@ -13,6 +13,7 @@ from ..configuration.config import Config
 from flask_login import current_user
 
 from ..db import database
+from ..db.models import BoxAmountStatus
 from ..main import oauth_via_yandex
 
 carwash_bp = Blueprint(
@@ -67,7 +68,8 @@ def format_pretty_boxes(boxes):
     print(" free: %s" % free)
     print(" busy: %s" % busy)
     print(" unavailable: %s" % unavailable)
-    return [free, busy, unavailable]
+    boxes_status = BoxAmountStatus(free, busy, unavailable)
+    return boxes_status
 
 
 @carwash_bp.app_template_filter()

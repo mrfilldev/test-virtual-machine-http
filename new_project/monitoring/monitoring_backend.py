@@ -44,11 +44,32 @@ def generate_dict_of_networks(g_user_flask):
     return dict_of_networks
 
 
+def analyze_networks_statistics(dict_of_networks):
+    dict_analitic = {}
+    for network_obj in dict_of_networks:
+        amount = 0
+        enabled = 0
+        disabled = 0
+        array_of_carwashes = dict_of_networks[network_obj]
+        for carwash_obj in array_of_carwashes:
+            amount += 1
+            if carwash_obj.Enable:
+                enabled += 1
+            else:
+                disabled += 1
+        dict_analitic[network_obj] = [amount, enabled, disabled]
+
+    return dict_analitic
+
+
 def carwashes_monitoring(g_user_flask):
     dict_of_networks = generate_dict_of_networks(g_user_flask)
     print('dict_of_networks: %s' % dict_of_networks)
+    dict_of_network_statistics = analyze_networks_statistics(dict_of_networks)
+    print('dict_of_network_statistics: %s' % dict_of_network_statistics)
     context = {
         'dict_of_networks': dict_of_networks,
+        'dict_of_network_statistics': dict_of_network_statistics,
     }
     return render_template(
         'monitoring/monitoring_all_carwashes.html',

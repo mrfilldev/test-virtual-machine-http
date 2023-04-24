@@ -72,6 +72,13 @@ class BoxStatus(enum.IntEnum):
     Unavailable = 3  # – недоступен(закрыт на ремонте)
 
 
+class BoxAmountStatus:
+    def __init__(self, free: int, busy: int, unavailable: int):
+        self.Free = free
+        self.Busy = busy
+        self.Unavailabla = unavailable
+
+
 class CostType(enum.IntEnum):
     Fix = 1  # – фиксированная
     PerMinute = 2  # – стоимость
