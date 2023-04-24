@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div style="margin-left: 75px;" class="">
-                {% for i in range(1000) %}
+
                 {% for carwash in context.dict_of_networks[network] %}
                 <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
                     {% if carwash.Enable == True %}
@@ -30,9 +30,9 @@
                 <span class="badge bg-danger">&nbsp;</span></a>
                 {% endif %}
                 {% endfor %}
-                {% endfor %}
             </div>
-        </div><br>
+        </div>
+        <br>
         {% endfor %}
 
         <br>
