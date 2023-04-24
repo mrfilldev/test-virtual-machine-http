@@ -64,7 +64,8 @@
             <td>
                 {% if carwash.Enable == True %}
                 <span class="badge bg-success">{{ carwash.Enable | enable_rus }}</span>
-                {% elif %}
+                {% else %}
+                <span class="badge bg-danger">{{ carwash.Enable | enable_rus }}</span>
                 {% endif %}
             </td>
             <td>
