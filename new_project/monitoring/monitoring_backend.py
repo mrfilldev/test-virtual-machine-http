@@ -30,7 +30,6 @@ def generate_dict_of_networks(g_user_flask):
         network_list = database.col_networks.find({'_id': g_user_flask.user_db['networks'][0]})
         for i in network_list:
             network_obj_list.append(deserialize_mongo_doc(i))
-    print("network_obj_list: %s" % network_obj_list)
     dict_of_networks = {}
 
     for network_obj in network_obj_list:
@@ -39,8 +38,6 @@ def generate_dict_of_networks(g_user_flask):
             if str(carwash_obj.network_id) == str(network_obj._id):
                 carwash_list.append(carwash_obj)
         carwash_list_sorted = sorted(carwash_list, key=lambda x: x.Enable, reverse=False)
-        print("carwash_list_sorted: %s" % carwash_list_sorted)
-        print('network_obj: %s' % network_obj)
         dict_of_networks[network_obj.network_name] = carwash_list_sorted
 
     return dict_of_networks
