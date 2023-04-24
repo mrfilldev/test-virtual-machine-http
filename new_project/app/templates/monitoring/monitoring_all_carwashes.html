@@ -16,8 +16,9 @@
                 <div class="col-2">
 
                     {% set network_analitic = context.dict_analitic[network] %}
-                    Всего: {{ network_analitic.Amount }} Активно: {{ network_analitic.Enabled }} Неактивно {{
-                    network_analitic.Disabled }}
+                    Всего: {{ network_analitic.Amount }}
+                    Активно: {{ network_analitic.Enabled }}
+                    Неактивно {{ network_analitic.Disabled }}
                 </div>
             </div>
             <div style="margin-left: 75px;" class="">
