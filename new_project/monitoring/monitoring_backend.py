@@ -18,13 +18,12 @@ def deserialize_mongo_doc(document):
 def generate_dict_of_networks(g_user_flask):
     network_obj_list = []
     carwash_obj_list = []
+    all_carwashes = database.col_carwashes.find({})
     if 'networks' not in g_user_flask.user_db:
-        all_carwashes = database.col_carwashes.find({})
         network_list = database.col_networks.find({})
         for i in network_list:
             network_obj_list.append(deserialize_mongo_doc(i))
     else:
-        all_carwashes = database.col_carwashes.find({})
         for i in all_carwashes:
             carwash_obj_list.append(deserialize_mongo_doc(i))
         network_list = database.col_networks.find({'_id': g_user_flask.user_db['networks'][0]})
