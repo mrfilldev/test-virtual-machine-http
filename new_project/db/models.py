@@ -138,6 +138,13 @@ class Carwash:
         self.CarwashAdmin = CarwashAdmin
 
 
+class CarwashAmountStatus:
+    def __init__(self, amount: int, enabled: int, disabled: int):
+        self.Amount = amount
+        self.Enabled = enabled
+        self.Disabled = disabled
+
+
 class Order:
 
     def __init__(self, _id, CarWashId, BoxNumber, ContractId, Sum, Status, DateCreate, SumCompleted,
