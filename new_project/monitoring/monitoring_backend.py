@@ -39,7 +39,7 @@ def generate_dict_of_networks(g_user_flask):
             if str(carwash_obj.network_id) == str(network_obj._id):
                 carwash_list.append(carwash_obj)
         print('network_obj: %s' % network_obj)
-        dict_of_networks[network_obj.network_name] = carwash_list
+        dict_of_networks[network_obj.network_name] = carwash_list.sort(key=lambda x: x.Enable, reverse=True)
 
     return dict_of_networks
 
@@ -84,6 +84,7 @@ def make_info_text(dict_of_networks):
 
 def carwashes_monitoring(g_user_flask):
     dict_of_networks = generate_dict_of_networks(g_user_flask)
+    dict_of_networks.sort(key=lambda x: x.count, reverse=True)
     print('dict_of_networks: %s' % dict_of_networks)
     dict_analitic = analyze_networks_statistics(dict_of_networks)
     print('dict_of_network_statistics: %s' % dict_analitic)
