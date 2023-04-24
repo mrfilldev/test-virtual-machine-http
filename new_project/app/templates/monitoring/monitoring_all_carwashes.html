@@ -34,7 +34,7 @@
             </div>
             <div style="margin-left: 115px;" class="col-11">
                 {% if context.dict_of_networks[network] == [] %}
-                В данной сети мойки отсутствуют.
+                В данной сети мойки отсутствуют.<br><br>
                 {% else %}
                 {% for i in range(500) %}
                 {% for carwash in context.dict_of_networks[network] %}
