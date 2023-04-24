@@ -23,20 +23,20 @@
                 </div>
             </div>
             <div style="margin-left: 115px;" class="">
-                {% for i in range(500) %}
                     {% if context.dict_of_networks[network] == [] %}
                         В данной сети мойки отсутствуют.
                     {% else %}
-                        {% for carwash in context.dict_of_networks[network] %}
-                           <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
-                            {% if carwash.Enable == True %}
-                                <span class="badge bg-success">&nbsp;</span></a>
-                            {% else %}
-                                <span class="badge bg-danger">&nbsp;</span></a>
-                            {% endif %}
+                        {% for i in range(500) %}
+                            {% for carwash in context.dict_of_networks[network] %}
+                               <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+                                {% if carwash.Enable == True %}
+                                    <span class="badge bg-success">&nbsp;</span></a>
+                                {% else %}
+                                    <span class="badge bg-danger">&nbsp;</span></a>
+                                {% endif %}
+                            {% endfor %}
                         {% endfor %}
                     {% endif %}
-                {% endfor %}
             </div>
         </div>
         <br>
