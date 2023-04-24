@@ -17,16 +17,16 @@
                     Всего: ... Активно: ... Неактивно ...
                 </div>
             </div>
-        </div>
-        <div class="container">
-            {% for carwash in context.dict_of_networks[network] %}
-            <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
-                {% if carwash.Enable == True %}
-                <span class="badge bg-success">&nbsp;</span></a>
+            <div class="container">
+                {% for carwash in context.dict_of_networks[network] %}
+                <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+                    {% if carwash.Enable == True %}
+                    <span class="badge bg-success">&nbsp;</span></a>
                 {% else %}
                 <span class="badge bg-danger">&nbsp;</span></a>
-            {% endif %}
-            {% endfor %}
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
         {% endfor %}
 
