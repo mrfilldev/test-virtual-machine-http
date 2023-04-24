@@ -62,14 +62,36 @@ def analyze_networks_statistics(dict_of_networks):
     return dict_analitic
 
 
+def enabled_to_rus_boolean(enable):
+    if enable:
+        return "Активна"
+    else:
+        return "Не активна"
+
+
+def make_info_text(dict_of_networks):
+    dict_info = {}
+    for network_obj in dict_of_networks:
+        array_of_carwashes = dict_of_networks[network_obj]
+        for carwash_obj in array_of_carwashes:
+            dict_info[network_obj] = f'{carwash_obj.Name} {carwash_obj.Address} ' \
+                                     f'Местоположение: {carwash_obj.Location.lat}, {carwash_obj.Location.lon}' \
+                                     f'Статус: {enabled_to_rus_boolean(carwash_obj.Enable)}'
+
+    return dict_info
+
+
 def carwashes_monitoring(g_user_flask):
     dict_of_networks = generate_dict_of_networks(g_user_flask)
     print('dict_of_networks: %s' % dict_of_networks)
     dict_analitic = analyze_networks_statistics(dict_of_networks)
     print('dict_of_network_statistics: %s' % dict_analitic)
+    dict_info_to_copy = make_info_text(dict_of_networks)
+
     context = {
         'dict_of_networks': dict_of_networks,
         'dict_analitic': dict_analitic,
+        'dict_info_to_copy': dict_info_to_copy,
     }
     return render_template(
         'monitoring/monitoring_all_carwashes.html',

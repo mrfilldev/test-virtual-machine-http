@@ -9,6 +9,7 @@ from ..db import database
 users = database.col_users
 
 
+
 class Types(enum.IntEnum):
     SelfServiceFixPrice = 1  # автомойка самообслуживания Fix Price
     SelfService = 2  # автомойка самообслуживания
