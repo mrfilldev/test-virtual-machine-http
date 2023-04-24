@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 
 {% block body %}
+<script>
+    new ClipboardJS('.btn');
+</script>
+
 <br>
 <div class="container">
 
     <div class="col-12">
-
-
         {% for network in context.dict_of_networks %}
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-3">
-                    <button id="{{ network }}" type="button" class="btn btn-outline-secondary btn-sm">Скопировать
+                    <button data-clipboard-text="{{ context.dict_info_to_copy[network] }}"
+                            type="button" class="btn btn-outline-secondary btn-sm">Скопировать
                     </button>&nbsp;
                     {{ network }}:<br><br>
                 </div>
