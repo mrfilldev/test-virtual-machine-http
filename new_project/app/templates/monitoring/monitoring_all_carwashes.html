@@ -24,9 +24,9 @@
                 <div class="col-3">
                     <div class="progress" style="height: 10px;">
                         <div class="progress-bar bg-danger" role="progressbar" aria-label="Segment one"
-                             style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                             style="width: {{ network_analitic.DisabledPercent }}%" aria-valuenow="{{ network_analitic.DisabledPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar bg-success" role="progressbar" aria-label="Segment two"
-                             style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                             style="width: {{ network_analitic.EnabledPercent }}%" aria-valuenow="{{ network_analitic.EnabledPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
