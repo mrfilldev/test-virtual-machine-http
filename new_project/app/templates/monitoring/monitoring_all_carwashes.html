@@ -15,28 +15,44 @@
                     </button>&nbsp;
                     {{ network }}:<br><br>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     {% set network_analitic = context.dict_analitic[network] %}
                     Всего: 100{{ network_analitic.Amount }}&nbsp;
                     Активно: 100{{ network_analitic.Enabled }}&nbsp;
                     Неактивно 100{{ network_analitic.Disabled }}&nbsp;
+
+                    <div class="progress-stacked">
+                        <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15"
+                             aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30"
+                             aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                            <div class="progress-bar bg-success"></div>
+                        </div>
+                        <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20"
+                             aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                            <div class="progress-bar bg-info"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="margin-left: 115px;" class="">
-                    {% if context.dict_of_networks[network] == [] %}
-                        В данной сети мойки отсутствуют.
-                    {% else %}
-                        {% for i in range(500) %}
-                            {% for carwash in context.dict_of_networks[network] %}
-                               <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
-                                {% if carwash.Enable == True %}
-                                    <span class="badge bg-success">&nbsp;</span></a>
-                                {% else %}
-                                    <span class="badge bg-danger">&nbsp;</span></a>
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                    {% endif %}
+                {% if context.dict_of_networks[network] == [] %}
+                В данной сети мойки отсутствуют.
+                {% else %}
+                {% for i in range(500) %}
+                {% for carwash in context.dict_of_networks[network] %}
+                <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+                    {% if carwash.Enable == True %}
+                    <span class="badge bg-success">&nbsp;</span></a>
+                {% else %}
+                <span class="badge bg-danger">&nbsp;</span></a>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                {% endif %}
+
             </div>
         </div>
         <br>
