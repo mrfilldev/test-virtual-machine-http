@@ -11,7 +11,7 @@ from ..db.models import Types
 def deserialize_mongo_doc(document):
     data = json.loads(json_util.dumps(document))
     data = json.dumps(data, default=lambda x: x.__dict__)
-    res_doc = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]
+    res_doc = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     return res_doc
 
 
