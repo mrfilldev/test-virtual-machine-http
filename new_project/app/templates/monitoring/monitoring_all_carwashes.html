@@ -8,7 +8,7 @@
 
         {% for network in context.dict_of_networks %}
         {{ network }}:
-        {{ context.dict_of_networks['network'] }}
+        {{ context.dict_of_networks[network] }}
 
         {% for carwash in context.dict_of_networks.network %}
         {{ carwash }}
