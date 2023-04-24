@@ -24,9 +24,13 @@
                 <div class="col-3">
                     <div class="progress" style="height: 10px;">
                         <div class="progress-bar bg-danger" role="progressbar" aria-label="Segment one"
-                             style="width: {{ network_analitic.DisabledPercent }}%" aria-valuenow="{{ network_analitic.DisabledPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                             style="width: {{ network_analitic.DisabledPercent }}%"
+                             aria-valuenow="{{ network_analitic.DisabledPercent }}" aria-valuemin="0"
+                             aria-valuemax="100"></div>
                         <div class="progress-bar bg-success" role="progressbar" aria-label="Segment two"
-                             style="width: {{ network_analitic.EnabledPercent }}%" aria-valuenow="{{ network_analitic.EnabledPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                             style="width: {{ network_analitic.EnabledPercent }}%"
+                             aria-valuenow="{{ network_analitic.EnabledPercent }}" aria-valuemin="0"
+                             aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
@@ -34,7 +38,6 @@
                 {% if context.dict_of_networks[network] == [] %}
                 В данной сети мойки отсутствуют.<br><br>
                 {% else %}
-                {% for i in range(500) %}
                 {% for carwash in context.dict_of_networks[network] %}
                 <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
                     {% if carwash.Enable == True %}
@@ -42,7 +45,6 @@
                 {% else %}
                 <span class="badge bg-danger">&nbsp;</span></a>
                 {% endif %}
-                {% endfor %}
                 {% endfor %}
                 {% endif %}
 
