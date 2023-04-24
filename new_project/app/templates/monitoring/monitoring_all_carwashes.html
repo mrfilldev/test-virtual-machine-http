@@ -2,7 +2,11 @@
 
 {% block body %}
 <script>
-    new ClipboardJS('.btn');
+
+    function copyToClipboard() {
+        window.prompt("Copy to clipboard: Ctrl+C, Enter", $(this).data('value'));
+    }
+
 </script>
 
 <br>
@@ -13,7 +17,7 @@
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-3">
-                    <button data-clipboard-text="{{ context.dict_info_to_copy[network] }}"
+                    <button onclick="copyToClipboard(document.getElementById('{{ network }}').innerHTML)" id="{{ network }}" value="{{ context.dict_info_to_copy[network] }}"
                             type="button" class="btn btn-outline-secondary btn-sm">Скопировать
                     </button>&nbsp;
                     {{ network }}:<br><br>
