@@ -17,9 +17,9 @@
                 </div>
                 <div class="col-4">
                     {% set network_analitic = context.dict_analitic[network] %}
-                    Всего: 100{{ network_analitic.Amount }}&nbsp;
-                    Активно: 100{{ network_analitic.Enabled }}&nbsp;
-                    Неактивно 100{{ network_analitic.Disabled }}&nbsp;
+                    Всего: {{ network_analitic.Amount }}&nbsp;
+                    Активно: {{ network_analitic.Enabled }}&nbsp;
+                    Неактивно {{ network_analitic.Disabled }}&nbsp;
                 </div>
                 <div class="col-3">
                     <div class="progress" style="height: 10px;">
