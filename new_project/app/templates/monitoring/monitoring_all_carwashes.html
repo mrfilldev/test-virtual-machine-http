@@ -44,13 +44,11 @@
                 В данной сети мойки отсутствуют.<br><br>
                 {% else %}
                 {% for carwash in context.dict_of_networks[network] %}
-                <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="{{ carwash.Name }}" href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
                     {% if carwash.Enable == True %}
-                    <span class="badge bg-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                          title="{{ carwash.Name }}">&nbsp;</span></a>
+                    <span class="badge bg-success">&nbsp;</span></a>
                 {% else %}
-                <span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                      title="{{ carwash.Name }}">&nbsp;</span></a>
+                <span class="badge bg-danger">&nbsp;</span></a>
                 {% endif %}
                 {% endfor %}
                 {% endif %}
