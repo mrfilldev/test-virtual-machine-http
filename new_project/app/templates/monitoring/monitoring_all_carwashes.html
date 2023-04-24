@@ -6,35 +6,19 @@
 
     <div class="col-12">
 
-        {% for carwash in context.carwashes_list %}
-        <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+        {% for network_obj in context.dict_of_networks %}
+        {{ network_obj.network_name }}
+        {% for carwash in context.dict_of_networks.network_obj %}
+        <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context.dict_of_networks.network_obj._id) }}">
             {% if carwash.Enable == True %}
-            <span class="badge bg-success">&nbsp;</span></a>
-        {% else %}
-        <span class="badge bg-danger">&nbsp;</span></a>
-        {% endif %}
+                <span class="badge bg-success">&nbsp;</span></a>
+            {% else %}
+                <span class="badge bg-danger">&nbsp;</span></a>
+            {% endif %}
+        {% endfor %}
         {% endfor %}
         <br>
         <br>
-        <!--        <div>-->
-        <!--            TEEESTING::-->
-        <!--            <br>-->
-        <!--            {% for network in range(context.amount_networks) %}-->
-        <!--            #{{ network }}:<br>-->
-        <!--            5 моек:<br>-->
-        <!--            {% for carwash in range(context.amount_carwashes_min) %}-->
-        <!--            <a href="#"><span class="badge bg-success">&nbsp;</span></a>-->
-        <!--            {% endfor %}<br>-->
-        <!--            15 моек:<br>-->
-        <!--            {% for carwash in range(context.amount_carwashes_mid) %}-->
-        <!--            <a href="#"><span class="badge bg-success">&nbsp;</span></a>-->
-        <!--            {% endfor %}<br>-->
-        <!--            100 моек:<br>-->
-        <!--            {% for carwash in range(context.amount_carwashes_max) %}-->
-        <!--            <a href="#"><span class="badge bg-success">&nbsp;</span></a>-->
-        <!--            {% endfor %}<br>-->
-        <!--            {% endfor %}-->
-        <!--        </div>-->
     </div>
 
 </div>

@@ -8,41 +8,40 @@ from ..db import database
 from ..db.models import Types
 
 
-def carwashes_monitoring(g_user_flask):
+def deserialize_mongo_doc(document):
+    data = json.loads(json_util.dumps(document))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    res_doc = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]
+    return res_doc
+
+
+def generate_dict_of_networks(g_user_flask):
     if 'networks' not in g_user_flask.user_db:
         all_carwashes = database.col_carwashes.find({})
-        network_obj = None
+        network_list = database.col_networks.find({})
     else:
-        network = g_user_flask.user_db['networks'][0]
-        all_carwashes = database.col_carwashes.find({'network_id': network})
-        print('network:', network)
-        network = database.col_networks.find({'_id': network})
-        data = json.loads(json_util.dumps(network))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
-        print('network_obj:', network_obj)
+        all_carwashes = database.col_carwashes.find({})
+        network_list = database.col_networks.find({'_id': g_user_flask.user_db['networks'][0]})
 
-    carwashes_list = []
-    count_carwashes = 0
+    dict_of_networks = {}
 
-    for count_carwashes, i in enumerate(list(all_carwashes)[::-1], 1):
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        carwashes_list.append(carwash_obj)
-        print(carwash_obj)
-    print(carwashes_list)
+    for network in network_list:
+        network_obj = deserialize_mongo_doc(network)
+        carwash_list = []
+        for carwash in all_carwashes:
+            carwash_obj = deserialize_mongo_doc(carwash)
+            if carwash_obj.network_id == network:
+                carwash_list.append(carwash_obj)
+        dict_of_networks[network_obj] = carwash_list
+
+    return dict_of_networks
+
+
+def carwashes_monitoring(g_user_flask):
+    dict_of_networks = generate_dict_of_networks(g_user_flask)
 
     context = {
-        ################################
-        'amount_networks': 100,
-        'amount_carwashes_min': 5,
-        'amount_carwashes_mid': 15,
-        'amount_carwashes_max': 100,
-        ################################
-        'count_carwashes': count_carwashes,
-        'carwashes_list': carwashes_list,
-        'enum_type_list': print(list(Types)),
+        'dict_of_networks': dict_of_networks,
     }
     return render_template(
         'monitoring/monitoring_all_carwashes.html',
