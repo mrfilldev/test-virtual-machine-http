@@ -144,6 +144,8 @@ class NetworkCarwashAmountStatus:
         self.Amount = amount
         self.Enabled = enabled
         self.Disabled = disabled
+        self.EnabledPercent = enabled / amount * 100
+        self.DisabledPercent = disabled / amount * 100
 
 
 class Order:
