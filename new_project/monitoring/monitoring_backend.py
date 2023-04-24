@@ -5,7 +5,7 @@ from bson import json_util
 from flask import render_template
 
 from ..db import database
-from ..db.models import Types
+from ..db.models import Types, NetworkCarwashAmountStatus
 
 
 def deserialize_mongo_doc(document):
@@ -57,7 +57,7 @@ def analyze_networks_statistics(dict_of_networks):
                 enabled += 1
             else:
                 disabled += 1
-        dict_analitic[network_obj] = [amount, enabled, disabled]
+        dict_analitic[network_obj] = NetworkCarwashAmountStatus(amount, enabled, disabled)
 
     return dict_analitic
 
@@ -65,11 +65,11 @@ def analyze_networks_statistics(dict_of_networks):
 def carwashes_monitoring(g_user_flask):
     dict_of_networks = generate_dict_of_networks(g_user_flask)
     print('dict_of_networks: %s' % dict_of_networks)
-    dict_of_network_statistics = analyze_networks_statistics(dict_of_networks)
-    print('dict_of_network_statistics: %s' % dict_of_network_statistics)
+    dict_analitic = analyze_networks_statistics(dict_of_networks)
+    print('dict_of_network_statistics: %s' % dict_analitic)
     context = {
         'dict_of_networks': dict_of_networks,
-        'dict_of_network_statistics': dict_of_network_statistics,
+        'dict_analitic': dict_analitic,
     }
     return render_template(
         'monitoring/monitoring_all_carwashes.html',

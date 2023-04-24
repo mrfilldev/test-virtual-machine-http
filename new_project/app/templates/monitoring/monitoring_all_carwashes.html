@@ -14,8 +14,10 @@
                     {{ network }}:<br><br>
                 </div>
                 <div class="col-3">
-                    {{ }}
-                    Всего: ... Активно: ... Неактивно ...
+
+                    {% set network_analitic = dict_analitic[network] %}
+                    Всего: {{ network_analitic.Amount }} Активно: {{ network_analitic.Enabled }} Неактивно {{
+                    network_analitic.Disabled }}
                 </div>
             </div>
             <div style="margin-left: 75px;" class="">

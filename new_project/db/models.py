@@ -138,7 +138,7 @@ class Carwash:
         self.CarwashAdmin = CarwashAdmin
 
 
-class CarwashAmountStatus:
+class NetworkCarwashAmountStatus:
     def __init__(self, amount: int, enabled: int, disabled: int):
         self.Amount = amount
         self.Enabled = enabled
