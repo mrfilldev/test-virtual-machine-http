@@ -40,7 +40,7 @@ def generate_dict_of_networks(g_user_flask):
 
 def carwashes_monitoring(g_user_flask):
     dict_of_networks = generate_dict_of_networks(g_user_flask)
-
+    print('dict_of_networks: %s' % dict_of_networks)
     context = {
         'dict_of_networks': dict_of_networks,
     }
