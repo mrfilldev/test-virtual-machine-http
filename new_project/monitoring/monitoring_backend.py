@@ -74,9 +74,9 @@ def make_info_text(dict_of_networks):
     for network_obj in dict_of_networks:
         array_of_carwashes = dict_of_networks[network_obj]
         for carwash_obj in array_of_carwashes:
-            dict_info[network_obj] = f'{carwash_obj.Name} {carwash_obj.Address} ' \
-                                     f'Местоположение: {carwash_obj.Location.lat}, {carwash_obj.Location.lon}' \
-                                     f'Статус: {enabled_to_rus_boolean(carwash_obj.Enable)}'
+            dict_info[network_obj] += f'{carwash_obj.Name} {carwash_obj.Address} ' \
+                                      f'Местоположение: {carwash_obj.Location.lat}, {carwash_obj.Location.lon} - ' \
+                                      f'{enabled_to_rus_boolean(carwash_obj.Enable)} \n'
 
     return dict_info
 
