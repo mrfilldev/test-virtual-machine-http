@@ -88,8 +88,8 @@
             <td>
                 {% set boxes_status = (carwash.Boxes | format_pretty_boxes) %}
                 <span class="badge bg-success">{{ boxes_status.Free }}</span>
-                <span class="badge bg-danger">{{ boxes_arr.Busy }}</span>
-                <span class="badge bg-warning">{{ boxes_arr.Unavailabla }}</span>
+                <span class="badge bg-danger">{{ boxes_status.Busy }}</span>
+                <span class="badge bg-warning">{{ boxes_status.Unavailabla }}</span>
             </td>
         </tr>
         {% endfor %}
