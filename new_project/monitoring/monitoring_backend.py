@@ -21,7 +21,7 @@ def generate_dict_of_networks(g_user_flask):
     all_carwashes = database.col_carwashes.find({})
     for i in all_carwashes:
         carwash_obj_list.append(deserialize_mongo_doc(i))
-    print("carwash_obj_list: ", carwash_obj_list)
+
     if 'networks' not in g_user_flask.user_db:
         network_list = database.col_networks.find({})
         for i in network_list:
@@ -84,7 +84,7 @@ def make_info_text(dict_of_networks):
 def carwashes_monitoring(g_user_flask):
     dict_of_networks = generate_dict_of_networks(g_user_flask)
 
-    print('dict_of_networks: %s' % dict_of_networks)
+
     dict_analitic = analyze_networks_statistics(dict_of_networks)
     print('dict_of_network_statistics: %s' % dict_analitic)
     dict_info_to_copy = make_info_text(dict_of_networks)
