@@ -11,7 +11,8 @@
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-4">
-                    <button id="{{ network }}" type="button" class="btn btn-outline-secondary btn-sm">Скопировать</button>&nbsp;
+                    <button id="{{ network }}" type="button" class="btn btn-outline-secondary btn-sm">Скопировать
+                    </button>&nbsp;
                     {{ network }}:<br><br>
                 </div>
                 <div class="col-4">
@@ -23,14 +24,18 @@
             </div>
             <div style="margin-left: 115px;" class="">
                 {% for i in range(500) %}
-                {% for carwash in context.dict_of_networks[network] %}
-                <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
-                    {% if carwash.Enable == True %}
-                    <span class="badge bg-success">&nbsp;</span></a>
-                {% else %}
-                <span class="badge bg-danger">&nbsp;</span></a>
-                {% endif %}
-                {% endfor %}
+                    {% if context.dict_of_networks[network] == [] %}
+                        В данной сети мойки отсутствуют.
+                    {% else %}
+                        {% for carwash in context.dict_of_networks[network] %}
+                           <a href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+                            {% if carwash.Enable == True %}
+                                <span class="badge bg-success">&nbsp;</span></a>
+                            {% else %}
+                                <span class="badge bg-danger">&nbsp;</span></a>
+                            {% endif %}
+                    {% endif %}
+                    {% endfor %}
                 {% endfor %}
             </div>
         </div>
