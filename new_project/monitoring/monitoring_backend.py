@@ -38,8 +38,10 @@ def generate_dict_of_networks(g_user_flask):
         for carwash_obj in carwash_obj_list:
             if str(carwash_obj.network_id) == str(network_obj._id):
                 carwash_list.append(carwash_obj)
+        carwash_list_sorted = sorted(carwash_list, key=lambda x: x.count, reverse=True)
+        print("carwash_list_sorted: %s" % carwash_list_sorted)
         print('network_obj: %s' % network_obj)
-        dict_of_networks[network_obj.network_name] = carwash_list.sort(key=lambda x: x.Enable, reverse=True)
+        dict_of_networks[network_obj.network_name] = carwash_list_sorted
 
     return dict_of_networks
 
