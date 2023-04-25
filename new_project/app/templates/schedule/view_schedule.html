@@ -39,19 +39,19 @@
                 {{ date | format_datetime_hour_minute }}
             </td>
             {% endfor %}
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
         </tr>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
 
         </tbody>
     </table>
