@@ -1,79 +1,63 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row">
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="chartjs-size-monitor">
-                <div class="chartjs-size-monitor-expand">
-                    <div class=""></div>
-                </div>
-                <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Панель</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Поделиться</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Экспорт</button>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-calendar" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        Эта неделя
-                    </button>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Время</th>
-                        <th scope="col">Бокс1</th>
-                        <th scope="col">Бокс2</th>
-                        <th scope="col">Бокс3</th>
-                        <th scope="col">Бокс4</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for date in context.dts %}
-                    <tr>
-                        <td>
-                            {{ date | format_datetime }}
-                        </td>
-                        <td>
-                            заказ
-                        </td>
-                        <td>
-                            заказ
-                        </td>
-                        <td>
-                            заказ
-                        </td>
-                        <td>
-                            заказ
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Время</th>
+            <th colspan="4">>Боксы</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        </thead>
+        <tbody class=".table-hover">
+
+        {% for carwash in context['carwashes_list'] %}
+
+        <tr class="tr-order"
+            data-href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
+            <th scope="row">
+                {{ context['count_carwashes'] - loop.index0 }}
+            </th>
+            <td>
+                {% if carwash.Enable == True %}
+                <span style="width: 100px" class="badge bg-success">{{ carwash.Enable | enable_rus }}</span>
+                {% else %}
+                <span style="width: 100px" class="badge bg-danger">{{ carwash.Enable | enable_rus }}</span>
+                {% endif %}
+            </td>
+            <td>
+                {{ carwash.Name }}
+            </td>
+
+            <td>
+                {{ carwash.Address }}
+            </td>
+
+            <td>
+                {{ carwash.Type | type_rus }}
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
+            </td>
+            <td>
+                {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
+            </td>
+            <td>
+                {% set boxes_status = (carwash.Boxes | format_pretty_boxes) %}
+                <span class="badge bg-success">{{ boxes_status.Free }}</span>
+                <span class="badge bg-danger">{{ boxes_status.Busy }}</span>
+                <span class="badge bg-warning">{{ boxes_status.Unavailabla }}</span>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
 </div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
-
-
 {% endblock %}
