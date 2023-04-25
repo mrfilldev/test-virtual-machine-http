@@ -20,9 +20,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table class="table table-hover tbody tr:hover td, table-hover tbody tr:hover th {
-  background-color: #color;
-}">
+    <table class="table">
         <thead>
         <tr>
 
@@ -40,7 +38,7 @@
             <td>
                 {{ date | format_datetime_hour_minute }}
             </td>
-            <td rowspan="" class="text-center">
+            <td class="text-center table-hover">
                 {{ context.list_test_orders | random_value}}
             </td>
             <td class="text-center">
