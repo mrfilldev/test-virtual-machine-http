@@ -33,12 +33,11 @@
         </thead>
         <tbody>
 
+        {% for date in context.dts %}
         <tr>
-            {% for date in context.dts %}
             <td>
                 {{ date | format_datetime_hour_minute }}
             </td>
-            {% endfor %}
             <td class="text-center">
                 {{ context.list_test_orders | random_value}}
             </td>
@@ -53,6 +52,7 @@
             </td>
         </tr>
 
+        {% endfor %}
         </tbody>
     </table>
 </div>
