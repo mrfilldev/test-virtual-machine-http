@@ -12,7 +12,7 @@ def datetime_range(start, end, delta):
 
 def view_schedule(g_user_flask):
     dts = [dt.strftime('%Y-%m-%d T%H:%M Z') for dt in
-           datetime_range(datetime(2023, 4, 25, 14, 44), datetime(2023, 4, 25, 14, 44 + 12),
+           datetime_range(datetime(2023, 4, 25, 14), datetime(2023, 4, 25, 14 + 12),
                           timedelta(minutes=15))]
 
     context = {
