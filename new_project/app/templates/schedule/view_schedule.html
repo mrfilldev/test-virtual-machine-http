@@ -31,29 +31,27 @@
             <th class="text-center">Бокс 4</th>
         </tr>
         </thead>
-        <tbody class=".table-hover">
+        <tbody>
 
-        {% for date in context.dts %}
-
-        <tr class="tr-order"
-            data-href="#">
+        <tr>
+            {% for date in context.dts %}
             <td>
                 {{ date | format_datetime_hour_minute }}
             </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
+            {% endfor %}
         </tr>
-        {% endfor %}
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
+            </td>
 
         </tbody>
     </table>
