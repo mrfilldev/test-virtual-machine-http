@@ -40,10 +40,24 @@
                         Мойки </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}" aria-disabled="true"> Заказы </a>
+                    <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}" aria-disabled="true">
+                        Заказы </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('schedule_blueprint.schedule') }}" aria-disabled="true"> Расписание </a>
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round" class="feather feather-bar-chart-2" aria-hidden="true">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                        Отчеты
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('schedule_blueprint.schedule') }}" aria-disabled="true">
+                        Расписание </a>
                 </li>
 
                 <li class="nav-item">
@@ -62,7 +76,7 @@
         &nbsp;<a class="navbar-brand" href="/">
         <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
              class="d-inline-block align-text-top" height="50" width="50" href="">
-        </a>
+    </a>
         {% endif %}
     </div>
 </nav>
