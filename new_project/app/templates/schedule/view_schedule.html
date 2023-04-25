@@ -198,7 +198,12 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    {% for date in context.dts %}
+                        <tr>
+                            <td>
+                                {{ date | format_datetime }}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
