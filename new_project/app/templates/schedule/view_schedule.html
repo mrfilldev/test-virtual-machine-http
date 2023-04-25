@@ -41,19 +41,16 @@
                 {{ date | format_datetime_hour_minute }}
             </td>
             <td class="text-center">
-                {{ list_test_orders | random_value}}
+                {{ context.list_test_orders | random_value}}
             </td>
             <td class="text-center">
-                {{ list_test_orders | random_value}}
-
-            </td>
-            <td class="text-center table-info">
-                {{ list_test_orders | random_value}}
-
+                {{ context.list_test_orders | random_value}}
             </td>
             <td class="text-center">
-                {{ list_test_orders | random_value}}
-
+                {{ context.list_test_orders | random_value}}
+            </td>
+            <td class="text-center">
+                {{ context.list_test_orders | random_value}}
             </td>
         </tr>
         {% endfor %}
