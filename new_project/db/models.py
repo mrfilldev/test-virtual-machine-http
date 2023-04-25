@@ -9,6 +9,12 @@ from ..db import database
 users = database.col_users
 
 
+class TestScheduleOrder:
+    def __init__(self, cost: int, category: int, duration: int):
+        self.Cost = cost
+        self.Category = category
+        self.Duration = duration
+
 
 class Types(enum.IntEnum):
     SelfServiceFixPrice = 1  # автомойка самообслуживания Fix Price
