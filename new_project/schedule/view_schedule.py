@@ -17,7 +17,7 @@ def view_schedule(g_user_flask):
 
     context = {
         'dts': dts,
-        '': date.today()
+        'date': date.today()
 
     }
     return render_template('schedule/view_schedule.html', context=context)
