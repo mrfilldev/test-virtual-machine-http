@@ -6,9 +6,9 @@
         <div class="col-4">
             <form method=POST action="#">
 
-                &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}"
+                &nbsp;<input style="width: 150px" value="{{ context.date | format_datetime }}"
                              class="form-control"
-                             placeholder="{{ context['date'] | format_datetime }}"
+                             placeholder="{{ context.date | format_datetime }}"
                              type="date" name="date" aria-describedby="addon-wrapping"><input style="width: 100px"
                                                                                               class="form-control"
                                                                                               placeholder="00:00"
