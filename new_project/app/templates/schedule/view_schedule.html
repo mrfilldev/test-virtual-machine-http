@@ -32,42 +32,24 @@
         </thead>
         <tbody class=".table-hover">
 
-        {% for carwash in context['carwashes_list'] %}
+        {% for date in context.dts %}
 
         <tr class="tr-order"
             data-href="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=carwash._id) }}">
             <th scope="row">
-                {{ context['count_carwashes'] - loop.index0 }}
+                {{ date }}
             </th>
             <td>
-                {% if carwash.Enable == True %}
-                <span style="width: 100px" class="badge bg-success">{{ carwash.Enable | enable_rus }}</span>
-                {% else %}
-                <span style="width: 100px" class="badge bg-danger">{{ carwash.Enable | enable_rus }}</span>
-                {% endif %}
+                запись
             </td>
             <td>
-                {{ carwash.Name }}
-            </td>
-
-            <td>
-                {{ carwash.Address }}
-            </td>
-
-            <td>
-                {{ carwash.Type | type_rus }}
+                запись
             </td>
             <td>
-                {{'%0.2f'| format(carwash.StepCost|float)}}&#8381
+                запись
             </td>
             <td>
-                {{'%0.2f'| format(carwash.LimitMinCost|float)}}&#8381
-            </td>
-            <td>
-                {% set boxes_status = (carwash.Boxes | format_pretty_boxes) %}
-                <span class="badge bg-success">{{ boxes_status.Free }}</span>
-                <span class="badge bg-danger">{{ boxes_status.Busy }}</span>
-                <span class="badge bg-warning">{{ boxes_status.Unavailabla }}</span>
+                запись
             </td>
         </tr>
         {% endfor %}

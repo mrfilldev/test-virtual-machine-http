@@ -15,6 +15,7 @@ def view_schedule(g_user_flask):
            datetime_range(datetime(year=2023, month=4, day=25, hour=14), datetime(year=2023, month=4, day=25, hour=14 + 9),
                           timedelta(minutes=15))]
 
+
     context = {
         'dts': dts,
         'date': date.today()
