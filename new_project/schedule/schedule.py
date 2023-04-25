@@ -32,3 +32,13 @@ def load_user():
 @schedule_bp.route('/schedule', methods=['POST', 'GET'])
 def schedule():
     return view_schedule(g)
+
+
+@schedule_bp.app_template_filter()
+def format_datetime_hour_minute(value):
+    if isinstance(value, date):
+        value = value.strftime("%H:%M")
+    else:
+        value = parser.parse(value)
+        value = value.strftime("%H:%M")
+    return value
