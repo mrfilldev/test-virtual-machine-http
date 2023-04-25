@@ -11,6 +11,8 @@ from ..profile.profile import profile_bp
 from ..view_carwash.carwash import carwash_bp
 from ..view_orders.order import order_bp
 from ..monitoring.monitoring import monitoring_bp
+from ..schedule.schedule import schedule_bp
+
 
 app = Flask(__name__, template_folder='templates')
 app.CSRF_ENABLED = True
@@ -26,6 +28,8 @@ app.register_blueprint(profile_bp)
 app.register_blueprint(carwash_bp)
 app.register_blueprint(order_bp)
 app.register_blueprint(monitoring_bp)
+app.register_blueprint(schedule_bp)
+
 app.config['SECRET_KEY'] = Config.SECRET_KEY
 
 if __name__ == '__main__':
