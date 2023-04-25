@@ -15,10 +15,17 @@ def view_schedule(g_user_flask):
            datetime_range(datetime(year=2023, month=4, day=25, hour=14), datetime(year=2023, month=4, day=25, hour=14 + 9),
                           timedelta(minutes=15))]
 
-
+    list_test_orders = [
+        'Кат.5 2350&#8381',
+        '',
+        'Кат.3 1200&#8381',
+        '',
+        'Кат.4 350&#8381',
+        ''
+    ]
     context = {
         'dts': dts,
-        'date': date.today()
-
+        'date': date.today(),
+        'list_test_orders': list_test_orders,
     }
     return render_template('schedule/view_schedule.html', context=context)

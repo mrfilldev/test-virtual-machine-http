@@ -2,6 +2,7 @@ import json
 import os
 import traceback
 from datetime import date
+import random
 from types import SimpleNamespace
 
 from bson import json_util
@@ -44,3 +45,9 @@ def format_datetime_hour_minute(value):
         value = parser.parse(value)
         value = value.strftime("%H:%M")
     return value
+
+
+@schedule_bp.app_template_filter()
+def random_value(list_of_strings: list):
+    return random.choice(list_of_strings)
+
