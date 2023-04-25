@@ -1,6 +1,28 @@
 {% extends "base.html" %}
 
 {% block body %}
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <form method=POST action="#">
+
+                &nbsp;<input style="width: 150px" value="{{ context['date'] | format_datetime }}"
+                             class="form-control"
+                             placeholder="{{ context['date'] | format_datetime }}"
+                             type="date" name="date" aria-describedby="addon-wrapping"><input style="width: 100px"
+                                                                                              class="form-control"
+                                                                                              placeholder="00:00"
+                                                                                              name="time"
+                                                                                              aria-describedby="addon-wrapping">
+
+
+            </form>
+        </div>
+        <div class="col-1">
+            <a class="btn btn-outline-secondary" href="{{ url_for('carwash_blueprint.create_carwash') }}">+</a>
+        </div>
+    </div>
+</div>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
