@@ -16,11 +16,11 @@ def view_schedule(g_user_flask):
     events = [
         {
             'title': 'event1',
-            'date': '2021-10-15'
+            'date': '2023-4-27'
         },
         {
             'title': 'event2',
-            'date': '2021-10-20'
+            'date': '2021-4-27'
         }
     ]
     # Pass schedule data to template
