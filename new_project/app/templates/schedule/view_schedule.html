@@ -1,22 +1,36 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <meta charset='utf-8'/>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js'></script>
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'hourGridDay',
-                events: {{ events | tojson }},
-            });
-            calendar.render();
-        });
-
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js"></script>
+</head>
 </head>
 <body>
-<div id='calendar'></div>
+<div id="calendar"></div>
+<script>
+    let calendarEl = document.getElementById('calendar');
+
+    // let calendar = new FullCalendar.Calendar(calendarEl, {
+    //
+    //
+    //
+    // });
+
+    const calendar = new Calendar(calendarEl, {
+        plugins: [timeGridPlugin],
+        initialView: 'timeGridFourDay',
+        views: {
+            timeGridFourDay: {
+                type: 'timeGrid',
+                duration: {days: 1}
+            }
+        }
+    })
+
+    calendar.render();
+</script>
 </body>
 </html>
