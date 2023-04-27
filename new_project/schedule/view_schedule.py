@@ -13,7 +13,7 @@ def datetime_range(start, end, delta):
 
 
 def view_schedule(g_user_flask):
-    events = [
+    orders = [
         {
             'title': 'event1',
             'date': '2023-04-27'
@@ -24,4 +24,4 @@ def view_schedule(g_user_flask):
         }
     ]
     # Pass schedule data to template
-    return render_template('schedule/view_schedule.html', events=events)
+    return render_template('schedule/view_schedule.html')
