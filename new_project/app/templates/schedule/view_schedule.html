@@ -15,7 +15,7 @@
 
     // let calendar = new FullCalendar.Calendar(calendarEl, {
     //
-    //     events: {{ events | tojson}}
+    //
     //
     // });
     let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -25,7 +25,8 @@
             left: 'prev,next',
             center: 'title',
             right: 'dayGridWeek,dayGridDay' // user can switch between the two
-        }
+        },
+        events: '{{ events | tojson}}',
     })
     calendar.render();
 </script>
