@@ -13,12 +13,20 @@
 <script>
     let calendarEl = document.getElementById('calendar');
 
+    // let calendar = new FullCalendar.Calendar(calendarEl, {
+    //
+    //     events: {{ events | tojson}}
+    //
+    // });
     let calendar = new FullCalendar.Calendar(calendarEl, {
-
-        events: {{ events | tojson}}
-
-    });
-
+        plugins: [dayGridPlugin],
+        initialView: 'dayGridWeek',
+        headerToolbar: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'dayGridWeek,dayGridDay' // user can switch between the two
+        }
+    })
     calendar.render();
 </script>
 </body>
