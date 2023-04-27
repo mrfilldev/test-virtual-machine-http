@@ -8,18 +8,503 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
 </head>
 <body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            // Set options and events
-            events: '{{ schedule_data | tojson }}'
-        });
-
-        calendar.render();
-    });
-</script>
 <div id="calendar"></div>
+<div class="calendar-twelve-hour calendar" data-mdb-default-view="week" data-mdb-twelve-hour="true">
+    <div class="calendar-tools">
+        <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center">
+            <div class="my-2 me-2 my-lg-0 d-flex justify-content-center">
+                <button data-mdb-ripple-color="dark" class="btn btn-link text-dark">Today</button>
+                <button data-mdb-ripple-color="dark" class="btn btn-link text-dark"><i class="fas fa-chevron-left"></i>
+                </button>
+                <button data-mdb-ripple-color="dark" class="btn btn-link text-dark"><i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <span class="calendar-heading">April 2023</span></div>
+        <div class="d-flex justify-content-center">
+            <div id="select-wrapper-958009" class="select-wrapper">
+                <div class="form-outline"><input class="form-control select-input placeholder-active active" type="text"
+                                                 role="listbox" aria-multiselectable="false" aria-disabled="false"
+                                                 aria-haspopup="true" aria-expanded="false" readonly="true"><span
+                        class="select-arrow"></span>
+                    <div class="form-notch">
+                        <div class="form-notch-leading" style="width: 9px;"></div>
+                        <div class="form-notch-middle" style="width: 0px;"></div>
+                        <div class="form-notch-trailing"></div>
+                    </div>
+                    <div class="form-label select-fake-value">Week</div>
+                </div>
+                <select class="select select-initialized">
+                    <option value="month" false="">Month</option>
+                    <option value="week" selected="">Week</option>
+                    <option value="list" false="">List</option>
+                </select></div>
+            <button class="btn btn-primary">Add event</button>
+        </div>
+    </div>
+    <table class="week">
+        <thead>
+        <tr>
+            <th></th>
+            <th>
+                <div class="weekday-field">Sun</div>
+                <div class="day-field">23</div>
+            </th>
+            <th>
+                <div class="weekday-field">Mon</div>
+                <div class="day-field">24</div>
+            </th>
+            <th>
+                <div class="weekday-field">Tue</div>
+                <div class="day-field">25</div>
+            </th>
+            <th>
+                <div class="weekday-field">Wed</div>
+                <div class="day-field">26</div>
+            </th>
+            <th class="today">
+                <div class="weekday-field">Thu</div>
+                <div class="day-field">27</div>
+            </th>
+            <th>
+                <div class="weekday-field">Fri</div>
+                <div class="day-field">28</div>
+            </th>
+            <th>
+                <div class="weekday-field">Sat</div>
+                <div class="day-field">29</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="long-event-row">
+            <th></th>
+            <td data-date="23/04/2023">
+                <div class="events-wrapper"></div>
+            </td>
+            <td data-date="24/04/2023">
+                <div class="events-wrapper">
+                    <div class="event event-1" data-mdb-event-key="1" data-mdb-event-order="0" draggable="true"
+                         data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 1; background: rgb(199, 245, 217); color: rgb(11, 65, 33);"
+                         data-mdb-original-title="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>">Angular Meetup
+                    </div>
+                </div>
+            </td>
+            <td data-date="25/04/2023">
+                <div class="events-wrapper">
+                    <div data-mdb-event-key="1" data-mdb-event-order="0" class="event event-1 event-long"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 1; background: rgb(199, 245, 217); color: rgb(11, 65, 33);"
+                         aria-label="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>"
+                         data-mdb-original-title="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>">&nbsp;
+                    </div>
+                </div>
+            </td>
+            <td data-date="26/04/2023">
+                <div class="events-wrapper">
+                    <div data-mdb-event-key="1" data-mdb-event-order="0" class="event event-1 event-long"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 1; background: rgb(199, 245, 217); color: rgb(11, 65, 33);"
+                         aria-label="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>"
+                         data-mdb-original-title="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>">&nbsp;
+                    </div>
+                </div>
+            </td>
+            <td data-date="27/04/2023" class="today">
+                <div class="events-wrapper">
+                    <div data-mdb-event-key="1" data-mdb-event-order="0" class="event event-1 event-long"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 1; background: rgb(199, 245, 217); color: rgb(11, 65, 33);"
+                         aria-label="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>"
+                         data-mdb-original-title="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>">&nbsp;
+                    </div>
+                    <div class="event event-2 event-end" data-mdb-event-key="2" data-mdb-event-order="1"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 2; background: rgb(207, 224, 252); color: rgb(10, 71, 169);"
+                         data-mdb-original-title="<h6><strong>JS Conference</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    27/04/2023</small></p>">JS Conference
+                    </div>
+                </div>
+            </td>
+            <td data-date="28/04/2023">
+                <div class="events-wrapper">
+                    <div data-mdb-event-key="1" data-mdb-event-order="0" class="event event-1 event-long"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 1; background: rgb(199, 245, 217); color: rgb(11, 65, 33);"
+                         aria-label="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>"
+                         data-mdb-original-title="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>">&nbsp;
+                    </div>
+                    <div class="event event-3" data-mdb-event-key="3" data-mdb-event-order="1" draggable="true"
+                         data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 3; background: rgb(235, 205, 254); color: rgb(110, 2, 177);"
+                         data-mdb-original-title="<h6><strong>Vue Meetup</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 -
+    02/05/2023</small></p>">Vue Meetup
+                    </div>
+                    <div class="event event-4 event-short event-end" data-mdb-event-key="4" data-mdb-event-order="2"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 4;"
+                         data-mdb-original-title="<h6><strong>Meeting</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 <small class=&quot;fw-light&quot;>08:00 AM - 12:00 PM</small></small></p>"><i
+                            class="fas fa-circle pe-1 event-circle" style="color: rgb(207, 224, 252);"></i>Meeting
+                    </div>
+                </div>
+            </td>
+            <td data-date="29/04/2023">
+                <div class="events-wrapper">
+                    <div data-mdb-event-key="1" data-mdb-event-order="0" class="event event-1 event-long"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 1; background: rgb(199, 245, 217); color: rgb(11, 65, 33);"
+                         aria-label="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>"
+                         data-mdb-original-title="<h6><strong>Angular Meetup</strong></h6><p><small><em>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</em></small></p><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    24/04/2023 <small class=&quot;fw-light&quot;>10:00 AM</small> -
+    30/04/2023 <small class=&quot;fw-light&quot;>02:00 PM</small></small></p>">&nbsp;
+                    </div>
+                    <div data-mdb-event-key="3" data-mdb-event-order="1" class="event event-3 event-long"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 3; background: rgb(235, 205, 254); color: rgb(110, 2, 177);"
+                         aria-label="<h6><strong>Vue Meetup</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 -
+    02/05/2023</small></p>" data-mdb-original-title="<h6><strong>Vue Meetup</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 -
+    02/05/2023</small></p>">&nbsp;
+                    </div>
+                    <div class="event event-5 event-short event-end" data-mdb-event-key="5" data-mdb-event-order="2"
+                         draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10" data-mdb-html="true"
+                         style="order: 5;"
+                         data-mdb-original-title="<h6><strong>Call</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    29/04/2023 <small class=&quot;fw-light&quot;>11:00 AM - 02:00 PM</small></small></p>"><i
+                            class="fas fa-circle pe-1 event-circle" style="color: rgb(41, 41, 41);"></i>Call
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="hour-field">1:00 am</th>
+            <td data-date-time="23/04/2023 01:00 AM"></td>
+            <td data-date-time="24/04/2023 01:00 AM"></td>
+            <td data-date-time="25/04/2023 01:00 AM"></td>
+            <td data-date-time="26/04/2023 01:00 AM"></td>
+            <td data-date-time="27/04/2023 01:00 AM"></td>
+            <td data-date-time="28/04/2023 01:00 AM"></td>
+            <td data-date-time="29/04/2023 01:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">2:00 am</th>
+            <td data-date-time="23/04/2023 02:00 AM"></td>
+            <td data-date-time="24/04/2023 02:00 AM"></td>
+            <td data-date-time="25/04/2023 02:00 AM"></td>
+            <td data-date-time="26/04/2023 02:00 AM"></td>
+            <td data-date-time="27/04/2023 02:00 AM"></td>
+            <td data-date-time="28/04/2023 02:00 AM"></td>
+            <td data-date-time="29/04/2023 02:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">3:00 am</th>
+            <td data-date-time="23/04/2023 03:00 AM"></td>
+            <td data-date-time="24/04/2023 03:00 AM"></td>
+            <td data-date-time="25/04/2023 03:00 AM"></td>
+            <td data-date-time="26/04/2023 03:00 AM"></td>
+            <td data-date-time="27/04/2023 03:00 AM"></td>
+            <td data-date-time="28/04/2023 03:00 AM"></td>
+            <td data-date-time="29/04/2023 03:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">4:00 am</th>
+            <td data-date-time="23/04/2023 04:00 AM"></td>
+            <td data-date-time="24/04/2023 04:00 AM"></td>
+            <td data-date-time="25/04/2023 04:00 AM"></td>
+            <td data-date-time="26/04/2023 04:00 AM"></td>
+            <td data-date-time="27/04/2023 04:00 AM"></td>
+            <td data-date-time="28/04/2023 04:00 AM"></td>
+            <td data-date-time="29/04/2023 04:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">5:00 am</th>
+            <td data-date-time="23/04/2023 05:00 AM"></td>
+            <td data-date-time="24/04/2023 05:00 AM"></td>
+            <td data-date-time="25/04/2023 05:00 AM"></td>
+            <td data-date-time="26/04/2023 05:00 AM"></td>
+            <td data-date-time="27/04/2023 05:00 AM"></td>
+            <td data-date-time="28/04/2023 05:00 AM"></td>
+            <td data-date-time="29/04/2023 05:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">6:00 am</th>
+            <td data-date-time="23/04/2023 06:00 AM"></td>
+            <td data-date-time="24/04/2023 06:00 AM"></td>
+            <td data-date-time="25/04/2023 06:00 AM"></td>
+            <td data-date-time="26/04/2023 06:00 AM"></td>
+            <td data-date-time="27/04/2023 06:00 AM"></td>
+            <td data-date-time="28/04/2023 06:00 AM"></td>
+            <td data-date-time="29/04/2023 06:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">7:00 am</th>
+            <td data-date-time="23/04/2023 07:00 AM"></td>
+            <td data-date-time="24/04/2023 07:00 AM"></td>
+            <td data-date-time="25/04/2023 07:00 AM"></td>
+            <td data-date-time="26/04/2023 07:00 AM"></td>
+            <td data-date-time="27/04/2023 07:00 AM"></td>
+            <td data-date-time="28/04/2023 07:00 AM"></td>
+            <td data-date-time="29/04/2023 07:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">8:00 am</th>
+            <td data-date-time="23/04/2023 08:00 AM"></td>
+            <td data-date-time="24/04/2023 08:00 AM"></td>
+            <td data-date-time="25/04/2023 08:00 AM"></td>
+            <td data-date-time="26/04/2023 08:00 AM"></td>
+            <td data-date-time="27/04/2023 08:00 AM"></td>
+            <td data-date-time="28/04/2023 08:00 AM">
+                <div class="event event-short event-4" draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10"
+                     data-mdb-html="true"
+                     data-mdb-original-title="<h6><strong>Meeting</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 <small class=&quot;fw-light&quot;>08:00 AM - 12:00 PM</small></small></p>"><i
+                        class="fas fa-circle event-circle pe-1" style="color: #cfe0fc"></i>Meeting
+                </div>
+            </td>
+            <td data-date-time="29/04/2023 08:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">9:00 am</th>
+            <td data-date-time="23/04/2023 09:00 AM"></td>
+            <td data-date-time="24/04/2023 09:00 AM"></td>
+            <td data-date-time="25/04/2023 09:00 AM"></td>
+            <td data-date-time="26/04/2023 09:00 AM"></td>
+            <td data-date-time="27/04/2023 09:00 AM"></td>
+            <td data-date-time="28/04/2023 09:00 AM">
+                <div class="event event-short event-4" draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10"
+                     data-mdb-html="true"
+                     data-mdb-original-title="<h6><strong>Meeting</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 <small class=&quot;fw-light&quot;>08:00 AM - 12:00 PM</small></small></p>"><i
+                        class="fas fa-circle event-circle pe-1" style="color: #cfe0fc"></i>Meeting
+                </div>
+            </td>
+            <td data-date-time="29/04/2023 09:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">10:00 am</th>
+            <td data-date-time="23/04/2023 10:00 AM"></td>
+            <td data-date-time="24/04/2023 10:00 AM"></td>
+            <td data-date-time="25/04/2023 10:00 AM"></td>
+            <td data-date-time="26/04/2023 10:00 AM"></td>
+            <td data-date-time="27/04/2023 10:00 AM"></td>
+            <td data-date-time="28/04/2023 10:00 AM">
+                <div class="event event-short event-4" draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10"
+                     data-mdb-html="true"
+                     data-mdb-original-title="<h6><strong>Meeting</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 <small class=&quot;fw-light&quot;>08:00 AM - 12:00 PM</small></small></p>"><i
+                        class="fas fa-circle event-circle pe-1" style="color: #cfe0fc"></i>Meeting
+                </div>
+            </td>
+            <td data-date-time="29/04/2023 10:00 AM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">11:00 am</th>
+            <td data-date-time="23/04/2023 11:00 AM"></td>
+            <td data-date-time="24/04/2023 11:00 AM"></td>
+            <td data-date-time="25/04/2023 11:00 AM"></td>
+            <td data-date-time="26/04/2023 11:00 AM"></td>
+            <td data-date-time="27/04/2023 11:00 AM"></td>
+            <td data-date-time="28/04/2023 11:00 AM">
+                <div class="event event-short event-4" draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10"
+                     data-mdb-html="true"
+                     data-mdb-original-title="<h6><strong>Meeting</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    28/04/2023 <small class=&quot;fw-light&quot;>08:00 AM - 12:00 PM</small></small></p>"><i
+                        class="fas fa-circle event-circle pe-1" style="color: #cfe0fc"></i>Meeting
+                </div>
+            </td>
+            <td data-date-time="29/04/2023 11:00 AM">
+                <div class="event event-short event-5" draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10"
+                     data-mdb-html="true"
+                     data-mdb-original-title="<h6><strong>Call</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    29/04/2023 <small class=&quot;fw-light&quot;>11:00 AM - 02:00 PM</small></small></p>"><i
+                        class="fas fa-circle event-circle pe-1" style="color: #292929"></i>Call
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="hour-field">12:00 pm</th>
+            <td data-date-time="23/04/2023 12:00 PM"></td>
+            <td data-date-time="24/04/2023 12:00 PM"></td>
+            <td data-date-time="25/04/2023 12:00 PM"></td>
+            <td data-date-time="26/04/2023 12:00 PM"></td>
+            <td data-date-time="27/04/2023 12:00 PM"></td>
+            <td data-date-time="28/04/2023 12:00 PM"></td>
+            <td data-date-time="29/04/2023 12:00 PM">
+                <div class="event event-short event-5" draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10"
+                     data-mdb-html="true"
+                     data-mdb-original-title="<h6><strong>Call</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    29/04/2023 <small class=&quot;fw-light&quot;>11:00 AM - 02:00 PM</small></small></p>"><i
+                        class="fas fa-circle event-circle pe-1" style="color: #292929"></i>Call
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="hour-field">1:00 pm</th>
+            <td data-date-time="23/04/2023 01:00 PM"></td>
+            <td data-date-time="24/04/2023 01:00 PM"></td>
+            <td data-date-time="25/04/2023 01:00 PM"></td>
+            <td data-date-time="26/04/2023 01:00 PM"></td>
+            <td data-date-time="27/04/2023 01:00 PM"></td>
+            <td data-date-time="28/04/2023 01:00 PM"></td>
+            <td data-date-time="29/04/2023 01:00 PM">
+                <div class="event event-short event-5" draggable="true" data-mdb-toggle="tooltip" data-mdb-offset="0,10"
+                     data-mdb-html="true"
+                     data-mdb-original-title="<h6><strong>Call</strong></h6><p class=&quot;mb-0&quot;><small>
+    <i class=&quot;fas fa-calendar-alt pr-1&quot;></i>
+    29/04/2023 <small class=&quot;fw-light&quot;>11:00 AM - 02:00 PM</small></small></p>"><i
+                        class="fas fa-circle event-circle pe-1" style="color: #292929"></i>Call
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="hour-field">2:00 pm</th>
+            <td data-date-time="23/04/2023 02:00 PM"></td>
+            <td data-date-time="24/04/2023 02:00 PM"></td>
+            <td data-date-time="25/04/2023 02:00 PM"></td>
+            <td data-date-time="26/04/2023 02:00 PM"></td>
+            <td data-date-time="27/04/2023 02:00 PM"></td>
+            <td data-date-time="28/04/2023 02:00 PM"></td>
+            <td data-date-time="29/04/2023 02:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">3:00 pm</th>
+            <td data-date-time="23/04/2023 03:00 PM"></td>
+            <td data-date-time="24/04/2023 03:00 PM"></td>
+            <td data-date-time="25/04/2023 03:00 PM"></td>
+            <td data-date-time="26/04/2023 03:00 PM"></td>
+            <td data-date-time="27/04/2023 03:00 PM"></td>
+            <td data-date-time="28/04/2023 03:00 PM"></td>
+            <td data-date-time="29/04/2023 03:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">4:00 pm</th>
+            <td data-date-time="23/04/2023 04:00 PM"></td>
+            <td data-date-time="24/04/2023 04:00 PM"></td>
+            <td data-date-time="25/04/2023 04:00 PM"></td>
+            <td data-date-time="26/04/2023 04:00 PM"></td>
+            <td data-date-time="27/04/2023 04:00 PM"></td>
+            <td data-date-time="28/04/2023 04:00 PM"></td>
+            <td data-date-time="29/04/2023 04:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">5:00 pm</th>
+            <td data-date-time="23/04/2023 05:00 PM"></td>
+            <td data-date-time="24/04/2023 05:00 PM"></td>
+            <td data-date-time="25/04/2023 05:00 PM"></td>
+            <td data-date-time="26/04/2023 05:00 PM"></td>
+            <td data-date-time="27/04/2023 05:00 PM"></td>
+            <td data-date-time="28/04/2023 05:00 PM"></td>
+            <td data-date-time="29/04/2023 05:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">6:00 pm</th>
+            <td data-date-time="23/04/2023 06:00 PM"></td>
+            <td data-date-time="24/04/2023 06:00 PM"></td>
+            <td data-date-time="25/04/2023 06:00 PM"></td>
+            <td data-date-time="26/04/2023 06:00 PM"></td>
+            <td data-date-time="27/04/2023 06:00 PM"></td>
+            <td data-date-time="28/04/2023 06:00 PM"></td>
+            <td data-date-time="29/04/2023 06:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">7:00 pm</th>
+            <td data-date-time="23/04/2023 07:00 PM"></td>
+            <td data-date-time="24/04/2023 07:00 PM"></td>
+            <td data-date-time="25/04/2023 07:00 PM"></td>
+            <td data-date-time="26/04/2023 07:00 PM"></td>
+            <td data-date-time="27/04/2023 07:00 PM"></td>
+            <td data-date-time="28/04/2023 07:00 PM"></td>
+            <td data-date-time="29/04/2023 07:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">8:00 pm</th>
+            <td data-date-time="23/04/2023 08:00 PM"></td>
+            <td data-date-time="24/04/2023 08:00 PM"></td>
+            <td data-date-time="25/04/2023 08:00 PM"></td>
+            <td data-date-time="26/04/2023 08:00 PM"></td>
+            <td data-date-time="27/04/2023 08:00 PM"></td>
+            <td data-date-time="28/04/2023 08:00 PM"></td>
+            <td data-date-time="29/04/2023 08:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">9:00 pm</th>
+            <td data-date-time="23/04/2023 09:00 PM"></td>
+            <td data-date-time="24/04/2023 09:00 PM"></td>
+            <td data-date-time="25/04/2023 09:00 PM"></td>
+            <td data-date-time="26/04/2023 09:00 PM"></td>
+            <td data-date-time="27/04/2023 09:00 PM"></td>
+            <td data-date-time="28/04/2023 09:00 PM"></td>
+            <td data-date-time="29/04/2023 09:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">10:00 pm</th>
+            <td data-date-time="23/04/2023 10:00 PM"></td>
+            <td data-date-time="24/04/2023 10:00 PM"></td>
+            <td data-date-time="25/04/2023 10:00 PM"></td>
+            <td data-date-time="26/04/2023 10:00 PM"></td>
+            <td data-date-time="27/04/2023 10:00 PM"></td>
+            <td data-date-time="28/04/2023 10:00 PM"></td>
+            <td data-date-time="29/04/2023 10:00 PM"></td>
+        </tr>
+        <tr>
+            <th class="hour-field">11:00 pm</th>
+            <td data-date-time="23/04/2023 11:00 PM"></td>
+            <td data-date-time="24/04/2023 11:00 PM"></td>
+            <td data-date-time="25/04/2023 11:00 PM"></td>
+            <td data-date-time="26/04/2023 11:00 PM"></td>
+            <td data-date-time="27/04/2023 11:00 PM"></td>
+            <td data-date-time="28/04/2023 11:00 PM"></td>
+            <td data-date-time="29/04/2023 11:00 PM"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
