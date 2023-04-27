@@ -1,64 +1,25 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+</head>
+<body>
+  <div id="calendar"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
 
-{% block body %}
-<div class="container-fluid">
-    <div class="row justify-content-between">
-        <div class="col-4">
-            <form method=POST action="#">
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        // Set options and events
+        events: {{ schedule_data }}
+      });
 
-                &nbsp;<input style="width: 150px" value="{{ context.date | format_datetime }}"
-                             class="form-control"
-                             placeholder="{{ context.date | format_datetime }}"
-                             type="date" name="date" aria-describedby="addon-wrapping">
-
-
-            </form>
-        </div>
-        <div class="col-1">
-            <a class="btn btn-outline-secondary" href="{{ url_for('carwash_blueprint.create_carwash') }}">+</a>
-        </div>
-    </div>
-</div>
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-        <tr>
-
-            <th>Время</th>
-            <th class="text-center">Бокс 1</th>
-            <th class="text-center">Бокс 2</th>
-            <th class="text-center">Бокс 3</th>
-            <th class="text-center">Бокс 4</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for date in context.dts %}
-        <tr>
-            <td>
-                {{ date | format_datetime_hour_minute }}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-            <td class="text-center">
-                {{ context.list_test_orders | random_value}}
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-<style>
-    td:hover {
-    background: grey;
-    }
-</style>
-
-{% endblock %}
+      calendar.render();
+    });
+  </script>
+</body>
+</html>
