@@ -14,7 +14,7 @@
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             // Set options and events
-            events: '{{ schedule_data }}'
+            events: '{{ schedule_data | tojson }}'
         });
 
         calendar.render();
