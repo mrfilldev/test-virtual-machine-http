@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Schedule</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
 </head>
 <body>
-  <div id="calendar"></div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
 
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        // Set options and events
-        events: '{{ schedule_data }}'
-      });
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            // Set options and events
+            events: '{{ schedule_data }}'
+        });
 
-      calendar.render();
+        calendar.render();
     });
-  </script>
+</script>
+<div id="calendar"></div>
 </body>
 </html>
