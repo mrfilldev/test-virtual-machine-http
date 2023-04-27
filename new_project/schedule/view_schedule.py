@@ -13,7 +13,7 @@ def datetime_range(start, end, delta):
 
 
 def view_schedule(g_user_flask):
-    schedule_data = [
+    schedule_data = {
         {
             "title": "All Day Event",
             "start": "2014-09-01"
@@ -68,7 +68,7 @@ def view_schedule(g_user_flask):
             "url": "http://google.com/",
             "start": "2014-09-28"
         }
-    ]
+    }
 
     # Pass schedule data to template
     return render_template('schedule/view_schedule.html', schedule_data=schedule_data)
