@@ -20,7 +20,7 @@ def view_schedule(g_user_flask):
         },
         {
             'title': 'event2',
-            'date': '2021-04-27'
+            'date': '2023-04-28'
         }
     ]
     # Pass schedule data to template
