@@ -1,34 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js"></script>
-</head>
-</head>
-<body>
-<div id="calendar"></div>
-<script>
-    let calendarEl = document.getElementById('calendar');
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.6/index.global.min.js'></script>
+    <script>
 
-    // let calendar = new FullCalendar.Calendar(calendarEl, {
-    //
-    //
-    //
-    // });
-    let calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [dayGridPlugin],
-        initialView: 'dayGridWeek',
-        headerToolbar: {
-            left: 'prev,next',
-            center: 'title',
-            right: 'dayGridWeek,dayGridDay' // user can switch between the two
-        },
-        events: {{ events | tojson}},
-    })
-    calendar.render();
-</script>
-</body>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'resourceTimelineWeek'
+        });
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
 </html>
