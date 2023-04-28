@@ -10,11 +10,9 @@
 <script href="lib/jquery.min.js"></script>
 
 <script>
-    declare var FullCalendar: any;
     function calendar_daily() {
         console.log("in func");
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        $('#calendar').fullCalendar({
             initialView: 'timeGridDay',
             initialDate: '2023-04-07',
             headerToolbar: {
@@ -71,7 +69,6 @@
                 }
             ]
         });
-        calendar.render();
     }
     document.addEventListener('DOMContentLoaded', calendar_daily);
 </script>
