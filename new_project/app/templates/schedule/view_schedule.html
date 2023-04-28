@@ -14,17 +14,25 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 
-            // initialView: 'timeGridDay',
-            initialView: 'resourceTimeGridDay',
-
-            initialDate: '2023-04-28',
-            locale: 'ru',
-
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,resourceTimeGridDay'
             },
+
+            // initialView: 'timeGridDay',
+            initialView: 'resourceTimeGridDay',
+
+            initialDate: '2023-04-28',
+            timeZone: 'UTC',
+            slotDuration: '00:15:00',
+            minTime: 0,
+            maxTime: 24,
+            hour12: false
+
+            selectable: true,
+            locale: 'ru',
+
             resources: [
                 {id: 'a', title: 'Бокс 1'},
                 {id: 'b', title: 'Бокс 2'},
@@ -80,12 +88,6 @@
                     start: '2023-04-28T14:30:00'
                 }
             ],
-            selectable: true,
-            slotDuration: '00:15:00',
-            minTime: 0,
-            maxTime: 24,
-
-
 
             dateClick: function () {
                 alert('a day has been clicked!');
