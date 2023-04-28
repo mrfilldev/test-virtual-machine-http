@@ -17,9 +17,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        console.log("in func");
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
             initialView: 'timeGridDay',
             initialDate: '2023-04-07',
             headerToolbar: {
@@ -76,13 +76,11 @@
                 }
             ]
         });
-
         calendar.render();
     });
 
 </script>
 
 <div id='calendar'></div>
-
 
 {% endblock %}
