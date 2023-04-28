@@ -28,10 +28,12 @@
             slotDuration: '00:15:00',
             minTime: 0,
             maxTime: 24,
-            hour:'2-digit',
-            minute:'2-digit',
-
-            slotLabelFormat:"HH:mm",
+            hour: '2-digit',
+            minute: '2-digit',
+            slotLabelFormat: [
+                {month: 'long', year: 'numeric'}, // top level of text
+                {weekday: 'short'} // lower level of text
+            ],
             timeStyle: 'long',
             hour12: false,
 
