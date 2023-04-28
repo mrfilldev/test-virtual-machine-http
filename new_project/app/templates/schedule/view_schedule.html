@@ -13,16 +13,10 @@
 
 
 <script>
-    function calendar_daily() {
-        console.log("in func");
-        $('#calendar').FullCalendar({
-            initialView: 'timeGridDay',
-            initialDate: '2023-04-07',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
             events: [
                 {
                     title: 'All Day Event',
@@ -72,9 +66,9 @@
                 }
             ]
         });
-    }
+        calendar.render();
+    });
 
-    document.addEventListener('DOMContentLoaded', calendar_daily);
 </script>
 
 <div id='calendar'></div>
