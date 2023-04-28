@@ -3,9 +3,11 @@
 
 {% block body %}
 
-
-<link href="fullcalendar.min.css" rel='stylesheet' />
-<link href="fullcalendar.print.css" rel='stylesheet' media='print' />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script type="text/javascript" src="/js/sprinkle.js"></script>
+<link href="fullcalendar.min.css" rel='stylesheet'/>
+<link href="fullcalendar.print.css" rel='stylesheet' media='print'/>
 <script href="lib/moment.min.js"></script>
 <script href="lib/jquery.min.js"></script>
 
@@ -70,6 +72,7 @@
             ]
         });
     }
+
     document.addEventListener('DOMContentLoaded', calendar_daily);
 </script>
 
