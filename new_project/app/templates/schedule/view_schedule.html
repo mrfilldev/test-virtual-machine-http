@@ -17,8 +17,7 @@
         console.log("page is ready");
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            var calendar = new FullCalendar.Calendar("calendar", {
                 initialView: 'timeGridDay',
                 initialDate: '2023-04-07',
                 headerToolbar: {
