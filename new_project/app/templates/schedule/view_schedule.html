@@ -11,26 +11,63 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<meta http-equiv="refresh" content="5000">
+
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        var url = 'https://cp.simpple.ru/api/v1/widgets/ratings/753bf174295992b3ca2d0bd4a78d6598/popular&limit=8';-->
+<!--        $.get(url, function (response) {-->
+<!--            // Инициализируем таблицу-->
+<!--            return new Tabulator('#example-table', {-->
+<!--                data: JSON.parse(response),-->
+<!--                layout: 'fitColumns',-->
+<!--                columns: [-->
+<!--                    {title: 'Статья', field: 'title', width: 550},-->
+<!--                    {title: 'Количество голосов', field: 'countRates', align: 'left', formatter: 'progress'},-->
+<!--                    {title: 'Средняя оценка', field: 'rating'}-->
+<!--                ]-->
+<!--            })-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<!--<div id="example-table"></div>-->
 <script>
-$(document).ready(function () {
-    var url = 'https://cp.simpple.ru/api/v1/widgets/ratings/753bf174295992b3ca2d0bd4a78d6598/popular&limit=8';
-    $.get(url, function (response) {
-        // Инициализируем таблицу
-        return new Tabulator('#example-table', {
-            data: JSON.parse(response),
-            layout: 'fitColumns',
-            columns: [
-                {title: 'Статья', field: 'title', width: 550},
-                {title: 'Количество голосов', field: 'countRates', align: 'left', formatter: 'progress'},
-                {title: 'Средняя оценка', field: 'rating'}
-            ]
-        })
-    });
-});
+    const container = document.getElementById('products-cards-container');
+    const valuesCards = [{
+        image: '../img/image1.png',
+        title: 'title 1',
+        content: 'super content 1',
+    },
+        {
+            image: '../img/image2.png',
+            title: 'title 2',
+            content: 'super content 2'
+        },
+        {
+            image: '../img/image-3.png',
+            title: 'title3',
+            content: 'blablablablbalbalbabla blablaba'
+        },
+    ]
+
+    function returnCards(valuesCards) {
+        return "<div class=\"products-cards\">" + valuesCards.map(valuesCard => `
+  <div>
+    <div class="product-header">
+      <img src="${valuesCard.image}"/>
+    </div>
+    <div class="product-content">
+      <h4>${valuesCard.title}</h4>
+      <p>${valuesCard.content}</p>
+    </div>
+    <button class="info-button">+ info</button>
+  </div>`).join('') + "</div>";
+    }
+
+    container.innerHTML = returnCards(valuesCards);
 </script>
-<!--<script type="text/javascript" src="static/tabulator.js"></script>-->
-<div id="example-table"></div>
+<div id="products-cards-container"></div>
+
+
 <br>
 <br>
 <br>
