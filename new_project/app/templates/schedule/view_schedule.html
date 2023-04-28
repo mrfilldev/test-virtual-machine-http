@@ -31,8 +31,12 @@
             hour: '2-digit',
             minute: '2-digit',
             slotLabelFormat: [
-                {month: 'long', year: 'numeric'}, // top level of text
-                {weekday: 'short'} // lower level of text
+                {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    omitZeroMinute: true,
+                    meridiem: 'short',
+                },
             ],
             timeStyle: 'long',
             hour12: false,
