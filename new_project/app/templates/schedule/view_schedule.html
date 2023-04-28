@@ -14,8 +14,9 @@
 <script>
 
     $(document).ready(function () {
+        console.log("page is ready");
         document.addEventListener('DOMContentLoaded', function () {
-
+            console.log("addEventListener");
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
