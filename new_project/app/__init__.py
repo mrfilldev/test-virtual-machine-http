@@ -13,8 +13,11 @@ from ..view_orders.order import order_bp
 from ..monitoring.monitoring import monitoring_bp
 from ..schedule.schedule import schedule_bp
 
-
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='web/static',
+            template_folder='templates'
+            )
 app.CSRF_ENABLED = True
 app.DEBUG = False
 
