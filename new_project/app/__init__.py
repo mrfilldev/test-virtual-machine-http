@@ -15,7 +15,7 @@ from ..schedule.schedule import schedule_bp
 
 app = Flask(__name__,
             static_url_path='',
-            static_folder='web/static',
+            static_folder='static',
             template_folder='templates'
             )
 app.CSRF_ENABLED = True
