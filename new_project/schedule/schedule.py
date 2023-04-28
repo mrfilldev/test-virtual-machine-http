@@ -37,6 +37,18 @@ def schedule():
     return view_schedule(g)
 
 
+@schedule_bp.route('/data')
+def return_data():
+    start_date = request.args.get('start', '')
+    end_date = request.args.get('end', '')
+
+    with open("schedule/events.json", "r") as input_data:
+        # you should use something else here than just plaintext
+        # check out jsonfiy method or the built in json module
+        # http://flask.pocoo.org/docs/0.10/api/#module-flask.json
+        return input_data.read()
+
+
 @schedule_bp.app_template_filter()
 def format_datetime_hour_minute(value):
     if isinstance(value, date):
