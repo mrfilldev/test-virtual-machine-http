@@ -14,7 +14,12 @@
 <script>
 
     $(document).ready(function () {
+
         console.log("page is ready");
+        calendar_daily();
+    });
+
+    function calendar_daily() {
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -77,7 +82,8 @@
 
             calendar.render();
         });
-    });
+    }
+
 
 </script>
 
