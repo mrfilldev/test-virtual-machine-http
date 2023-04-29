@@ -16,35 +16,122 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             //LICENCE:
             schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-            plugins: ['interaction', 'resourceDayGrid', 'resourceTimeGrid'],
-            header: {
+
+            //VIEW
+            headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'resourceTimeGridDay,resourceDayGridWeek,resourceDayGridMonth'
+                right: 'dayGridMonth,timeGridWeek,resourceTimeGridDay'
             },
-            defaultView: 'resourceTimeGridDay',
-            views: {
-                resourceTimeGridDay: {
-                    type: 'resourceTimeGrid',
-                    duration: {days: 1},
-                    buttonText: 'Day'
-                }
+            themeSystem: 'bootstrap5',
+            contentHeight: 600,
+
+            defaultTimedEventDuration: '00:15:00',
+            initialView: 'timeGridDay',
+            // initialView: 'resourceTimeGridDay',
+
+            initialDate: '2023-04-30',
+            timeZone: 'UTC',
+            // slotDuration: '00:15:00',
+            // axisFormat: 'HH:mm',
+            // duration: 'hh:mm',
+            // timeFormat: 'h(:mm) A',
+            // timeFormat: 'HH:mm',
+            // timeStyle: 'long',
+            // hour12: false,
+            // minTime: 0,
+            // maxTime: 24,
+            // hour: '2-digit',
+            // minute: '2-digit',
+
+            selectable: true,
+            locale: 'ru',
+            eventTimeFormat: {
+                hour: 'numeric',
+                minute: '2-digit',
+                meridiem: false
             },
+            slotLabelFormat:
+                {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    omitZeroMinute: true,
+                    meridiem: 'short',
+                },
+
+
             resources: [
-                {id: 'a', title: 'Resource A'},
-                {id: 'b', title: 'Resource B'}
+                {id: 'a', title: 'Бокс 1'},
+                {id: 'b', title: 'Бокс 2'},
+                {id: 'c', title: 'Бокс 3'},
+                {id: 'd', title: 'Бокс 4'},
+                {id: 'e', title: 'Бокс 5'},
+                {id: 'f', title: 'Бокс 6'},
+                {id: 'g', title: 'Бокс 7'},
+                {id: 'h', title: 'Бокс 8'},
+                {id: 'i', title: 'Бокс 9'},
+                {id: 'j', title: 'Бокс 10'},
+                {id: 'k', title: 'Бокс 11'},
+                {id: 'l', title: 'Бокс 12'},
             ],
+
             events: [
-                {id: '1', resourceId: 'a', start: '2023-04-30T10:00:00', end: '2023-04-30T14:00:00', title: 'Event 1'},
-                {id: '2', resourceId: 'b', start: '2023-04-30T12:00:00', end: '2023-04-30T16:00:00', title: 'Event 2'}
-            ]
+                {
+                    title: 'All Day Event',
+                    start: '2023-04-01'
+                },
+                {
+                    title: 'Long Event',
+                    start: '2023-04-07',
+                    end: '2023-04-10'
+                },
+                {
+                    id: 'a',
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: '2023-04-09T16:00:00'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: '2023-04-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2023-04-11',
+                    end: '2023-04-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-04-12T10:30:00',
+                    end: '2023-04-12T12:30:00'
+                },
+                {
+                    title: 'Lunch',
+                    start: '2023-04-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-04-12T14:30:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2023-04-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    groupId: 'a',
+                    url: 'http://google.com/',
+                    start: '2023-04-28T14:30:00'
+                }
+            ],
+
+            dateClick: function () {
+                alert('a day has been clicked!');
+            }
         });
-
-
+        calendar.render();
     });
-
-    calendar.render();
-
 
 </script>
 <div class="container">
