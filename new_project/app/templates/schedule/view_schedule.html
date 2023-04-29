@@ -14,23 +14,27 @@
         console.log("in func");
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            //LICENCE:
             schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-            themeSystem: 'bootstrap5',
+            //VIEW
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,resourceTimeGridDay'
             },
+            themeSystem: 'bootstrap5',
             contentHeight: 600,
+
+            tim
 
             // initialView: 'timeGridDay',
             initialView: 'resourceTimeGridDay',
 
-
-
             initialDate: '2023-04-28',
             timeZone: 'UTC',
             slotDuration: '00:15:00',
+            axisFormat: 'HH:mm',
+
             duration: 'hh:mm',
             timeFormat: 'hh:mm a',
             minTime: 0,
