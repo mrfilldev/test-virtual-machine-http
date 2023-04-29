@@ -34,7 +34,11 @@
             slotDuration: '00:15:00',
             axisFormat: 'HH:mm',
             duration: 'hh:mm',
-            timeFormat: 'hh:mm a',
+            timeFormat: {
+                hour: "numeric",
+                minute: "2-digit",
+                meridiem: "short",
+            },
             minTime: 0,
             maxTime: 24,
             hour: '2-digit',
