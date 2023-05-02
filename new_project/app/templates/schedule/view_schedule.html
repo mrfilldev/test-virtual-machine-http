@@ -120,7 +120,7 @@
     <div id='calendar'></div>
 </div>
 
-<div class="modal fade" id="event-modal" data-bs-backdrop="static"
+<div class="modal-dialog modal-dialog-centered" id="event-modal" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -134,7 +134,7 @@
                 <form method=POST action="#">
 
                     <input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
-                                 aria-describedby="addon-wrapping">
+                           aria-describedby="addon-wrapping">
                     <select style="width: 150px" class="form-control" id="validationCustom04" name="status">
                         <option value="">Статус</option>
                         <option value="OrderCreated">OrderCreated</option>
@@ -143,9 +143,9 @@
                         <option value="Canceled">Canceled</option>
                     </select>
                     <input style="width: 150px" value="#"
-                                 class="form-control"
-                                 placeholder="#"
-                                 type="date" name="date" aria-describedby="addon-wrapping">
+                           class="form-control"
+                           placeholder="#"
+                           type="date" name="date" aria-describedby="addon-wrapping">
                     <input style="width: 100px"
                            class="form-control"
                            placeholder="00:00"
@@ -164,6 +164,9 @@
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </div>
 {% endblock %}
