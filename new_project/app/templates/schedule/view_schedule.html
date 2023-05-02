@@ -99,7 +99,10 @@
                 if (info.resource) {
                     // ваш код открытия формы, например:
                     alert('Вы кликнули на ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
+                    $("#modal_complete").show();
+
                 }
+
             },
         });
         calendar.render();
