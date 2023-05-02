@@ -95,17 +95,13 @@
             ],
 
             dateClick: function () {
-                alert('a day has been clicked!');
-                b = $("#blanket");
+                // alert('a day has been clicked!');
+                b = $("#modal_complete");
                 b.css("display", "block");
                 b.css("position", "fixed");
                 b.css("width", window.innerWidth);
                 b.css("height", window.innerHeight);
                 b.css("background-color", "rgba(0, 0, 0, 0.7)");
-                f = $("#myForm");
-                f.css("position", "fixed");
-                f.css("top", "33%");
-                f.css("left", "33%");
             },
         });
         calendar.render();
