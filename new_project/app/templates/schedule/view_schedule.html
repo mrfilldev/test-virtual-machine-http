@@ -108,8 +108,7 @@
         console.log('modal-title')
         $('#event-modal .modal-title').text('\nВы кликнули на ' +
             'ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
-        $('#event-modal #date_of_washing').value(info.date);
-        $('#event-modal #date_of_washing').placeholder(info.date);
+
 
         // Задать тело модального окна с дополнительной информацией о дате
         console.log('modal-body')
@@ -141,7 +140,8 @@
                             <form method=POST action="#">
 
                                 <label>Гос.Номер:</label> &nbsp;
-                                <input style="width: 200px" type="text" class="form-control" name="country_region_number"
+                                <input style="width: 200px" type="text" class="form-control"
+                                       name="country_region_number"
                                        placeholder="А999АА799">
                                 <label>Марка:</label> &nbsp;
                                 <input style="width: 200px" type="text" class="form-control" name="car_brand"
@@ -153,10 +153,15 @@
                                 <input style="width: 200px" type="tel" class="form-control" name="category"
                                        placeholder="Кат.1">
                                 <label>Дата:</label> &nbsp;
-                                <input id="date_of_washing" style="width: 200px" value=""
-                                 class="form-control"
-                                 placeholder=""
-                                 type="date" name="date" aria-describedby="addon-wrapping">
+                                <input style="width: 200px" value=""
+                                       class="form-control"
+                                       placeholder=""
+                                       type="date" name="date" aria-describedby="addon-wrapping">
+                                <label>Дата:</label> &nbsp;
+                                <input style="width: 200px" value=""
+                                       class="form-control"
+                                       placeholder=""
+                                       type="date" name="date" aria-describedby="addon-wrapping">
 
                                 <div>
                                     Добро пожаловать в Я.Мойки &nbsp; :-)
