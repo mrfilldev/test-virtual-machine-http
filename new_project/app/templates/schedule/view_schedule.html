@@ -6,7 +6,7 @@
 
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.6/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
-<script src='/path/to/fullcalendar/locales/ru.js'></script>
+
 
 
 <script>
@@ -36,7 +36,11 @@
 
             allDaySlot: false,
             slotDuration: '00:15:00', // устанавливаем интервал в 15 минут
-
+            slotLabelFormat: {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: false
+            },
 
             // initialView: 'resourceTimelineDay',
 
