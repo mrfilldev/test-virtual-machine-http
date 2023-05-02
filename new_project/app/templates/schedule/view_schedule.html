@@ -9,7 +9,6 @@
 <script src='/path/to/fullcalendar/locales/ru.js'></script>
 
 
-
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -22,7 +21,17 @@
             contentHeight: 600,
 
             timeZone: 'UTC',
+
+            // Добавляем русский язык
             locale: 'ru',
+            // Изменяем тексты кнопок
+            buttonText: {
+                today: 'Сегодня',
+                month: 'Месяц',
+                week: 'Неделя',
+                day: 'День',
+                list: 'Список'
+            },
             initialDate: '2023-05-01',
 
             // initialView: 'resourceTimelineDay',
