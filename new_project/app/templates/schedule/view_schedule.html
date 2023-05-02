@@ -99,7 +99,7 @@
                 if (info.resource) {
                     // ваш код открытия формы, например:
                     open_modal_window();
-                    alert('Вы кликнули на ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
+                    alert(info + '\nВы кликнули на ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
 
                 }
 
@@ -109,7 +109,7 @@
     });
 
     function open_modal_window() {
-        $("#modal_complete").show();
+        $('#modal_complete').show();
     }
 
 </script>
