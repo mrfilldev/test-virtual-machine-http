@@ -25,7 +25,9 @@
             locale: 'ru',
             initialDate: '2023-05-01',
 
-            initialView: 'resourceTimelineDay',
+            // initialView: 'resourceTimelineDay',
+            initialView: 'resourceTimeGridDay',
+
             aspectRatio: 1.5,
             headerToolbar: {
                 left: 'prev,next',
@@ -37,35 +39,18 @@
             resourceAreaHeaderContent: 'Боксы',
 
             resources: [
-                {"id":"a","title":"Auditorium A"},
-                {"id":"b","title":"Auditorium B","eventColor":"green"},
-                {"id":"c","title":"Auditorium C","eventColor":"orange"},
-                {"id":"d","title":"Auditorium D",
-                    "children":[
-                        {"id":"d1","title":"Room D1"},
-                        {"id":"d2","title":"Room D2"}
-                    ]},{"id":"e","title":"Auditorium E"},
-                {"id":"f","title":"Auditorium F","eventColor":"red"},
-                {"id":"g","title":"Auditorium G"},
-                {"id":"h","title":"Auditorium H"},
-                {"id":"i","title":"Auditorium I"},
-                {"id":"j","title":"Auditorium J"},
-                {"id":"k","title":"Auditorium K"},
-                {"id":"l","title":"Auditorium L"},
-                {"id":"m","title":"Auditorium M"},
-                {"id":"n","title":"Auditorium N"},
-                {"id":"o","title":"Auditorium O"},
-                {"id":"p","title":"Auditorium P"},
-                {"id":"q","title":"Auditorium Q"},
-                {"id":"r","title":"Auditorium R"},
-                {"id":"s","title":"Auditorium S"},
-                {"id":"t","title":"Auditorium T"},
-                {"id":"u","title":"Auditorium U"},
-                {"id":"v","title":"Auditorium V"},
-                {"id":"w","title":"Auditorium W"},
-                {"id":"x","title":"Auditorium X"},
-                {"id":"y","title":"Auditorium Y"},
-                {"id":"z","title":"Auditorium Z"}
+                {id: 'a', title: 'Бокс 1'},
+                {id: 'b', title: 'Бокс 2'},
+                {id: 'c', title: 'Бокс 3'},
+                {id: 'd', title: 'Бокс 4'},
+                {id: 'e', title: 'Бокс 5'},
+                {id: 'f', title: 'Бокс 6'},
+                {id: 'g', title: 'Бокс 7'},
+                {id: 'h', title: 'Бокс 8'},
+                {id: 'i', title: 'Бокс 9'},
+                {id: 'j', title: 'Бокс 10'},
+                {id: 'k', title: 'Бокс 11'},
+                {id: 'l', title: 'Бокс 12'},
             ],
 
             dateClick: function () {
