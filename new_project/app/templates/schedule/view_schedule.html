@@ -132,28 +132,35 @@
                         aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <form method=POST action="#">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+                            <form id="myform" method=POST action="{{ url_for('main_blueprint.oauth') }}">
 
-                    <label>Гос. Номер</label><input style="width: 100px" class="form-control" placeholder="А999АА799" name="country_number"
-                           aria-describedby="addon-wrapping">
-                    <select style="width: 150px" class="form-control" id="validationCustom04" name="status">
-                        <option value="">Статус</option>
-                        <option value="OrderCreated">OrderCreated</option>
-                        <option value="Completed">Completed</option>
-                        <option value="UserCanceled">UserCanceled</option>
-                        <option value="Canceled">Canceled</option>
-                    </select>
-                    <input style="width: 150px" value="#"
-                           class="form-control"
-                           placeholder="#"
-                           type="date" name="date" aria-describedby="addon-wrapping">
-                    <input style="width: 100px"
-                           class="form-control"
-                           placeholder="00:00"
-                           name="time"
-                           aria-describedby="addon-wrapping">
-                </form>
+                                <label>Имя:</label> &nbsp;
+                                <input style="width: 567px" type="text" class="form-control" name="name"
+                                       placeholder="Иван">
+                                <label>Фамилия:</label> &nbsp;
+                                <input style="width: 567px" type="text" class="form-control" name="surname"
+                                       placeholder="Иванов">
+                                <label>Название вашей компании:</label> &nbsp;
+                                <input style="width: 567px" type="text" class="form-control" name="network_name"
+                                       placeholder="ООО-моемВСЕподряд">
+                                <label>Контактный телефон:</label> &nbsp;
+                                <input style="width: 567px" type="tel" class="form-control" name="phone_number"
+                                       placeholder="+7(999)666-99-66"
+                                       pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
+                                       minlength="18" maxlength="18">
 
+                                <div>
+                                    Добро пожаловать в Я.Мойки &nbsp; :-)
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
