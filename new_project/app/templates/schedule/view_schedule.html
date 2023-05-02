@@ -95,17 +95,19 @@
             ],
 
             dateClick: function (info) {
-                // alert('a day has been clicked!');
-                if (info.resource) {
-                    // ваш код открытия формы, например:
-                    // open_modal_window();
-                    alert(info + '\nВы кликнули на ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
+                alert('Date: ' + info.dateStr);
+                alert('Resource ID: ' + info.resource.id);
+                alert(info + '\nВы кликнули на ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
 
-                }
+            }
 
-            },
         });
+
         calendar.render();
+
+        calendar.on('dateClick', function (info) {
+            console.log('clicked on ' + info.dateStr);
+        });
     });
 
     function open_modal_window() {
