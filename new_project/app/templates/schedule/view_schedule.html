@@ -13,7 +13,6 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.6/main.min.js"></script>-->
 
 
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         console.log("in func");
@@ -21,37 +20,68 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             //LICENCE:
             schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-
             //VIEW
+            contentHeight: 600,
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,resourceTimeGridDay'
             },
-            views: {
-                resourceTimeGridDay: {
-                    // options apply to dayGridMonth, dayGridWeek, and dayGridDay views
-                },
-                timeGrid: {
-                    // options apply to timeGridWeek and timeGridDay views
-                },
-                week: {
-                    // options apply to dayGridWeek and timeGridWeek views
-                },
-                day: {
-                    // options apply to dayGridDay and timeGridDay views
-                }
-            },
-
-            themeSystem: 'bootstrap5',
-            contentHeight: 600,
-
-            defaultTimedEventDuration: '00:15:00',
-            initialView: 'resourceTimeGridDay',
-            // initialView: 'resourceTimeGridDay',
-
             initialDate: '2023-05-01',
+
             timeZone: 'UTC',
+            locale: 'ru',
+
+            selectable: true,
+
+            plugins: ['resourceTimeGrid'],
+            initialView: 'resourceTimeGridDay',
+            slotDuration: '00:15:00', // устанавливаем интервал в 15 минут
+            events: [
+                {
+                    title: 'Event 1',
+                    start: '2023-05-02T08:00:00',
+                    end: '2023-05-02T09:00:00',
+                    resourceId: 'a'
+                },
+                {
+                    title: 'Event 2',
+                    start: '2023-05-02T08:30:00',
+                    end: '2023-05-02T09:30:00',
+                    resourceId: 'b'
+                },
+                {
+                    title: 'Event 3',
+                    start: '2023-05-02T09:15:00',
+                    end: '2023-05-02T10:00:00',
+                    resourceId: 'c'
+                }
+            ],
+            resources: [
+                {id: 'a', title: 'Resource A'},
+                {id: 'b', title: 'Resource B'},
+                {id: 'c', title: 'Resource C'}
+            ],
+
+
+            // views: {
+            //     resourceTimeGridDay: {
+            //         // options apply to dayGridMonth, dayGridWeek, and dayGridDay views
+            //     },
+            //     timeGrid: {
+            //         // options apply to timeGridWeek and timeGridDay views
+            //     },
+            //     week: {
+            //         // options apply to dayGridWeek and timeGridWeek views
+            //     },
+            //     day: {
+            //         // options apply to dayGridDay and timeGridDay views
+            //     }
+            // },
+            // themeSystem: 'bootstrap5',
+            // defaultTimedEventDuration: '00:15:00',
+            // initialView: 'resourceTimeGridDay',
+            // initialView: 'resourceTimeGridDay',
             // slotDuration: '00:15:00',
             // axisFormat: 'HH:mm',
             // duration: 'hh:mm',
@@ -63,88 +93,85 @@
             // maxTime: 24,
             // hour: '2-digit',
             // minute: '2-digit',
-
-            selectable: true,
-            locale: 'ru',
-            eventTimeFormat: {
-                hour: 'numeric',
-                minute: '2-digit',
-                meridiem: false
-            },
-            slotLabelFormat:
-                {
-                    hour: 'numeric',
-                    minute: '2-digit',
-                    omitZeroMinute: true,
-                    meridiem: 'short',
-                },
-
-
-            resources: [
-                {id: 'a', title: 'Бокс 1'},
-                {id: 'b', title: 'Бокс 2'},
-                {id: 'c', title: 'Бокс 3'},
-                {id: 'd', title: 'Бокс 4'},
-                {id: 'e', title: 'Бокс 5'},
-                {id: 'f', title: 'Бокс 6'},
-                {id: 'g', title: 'Бокс 7'},
-                {id: 'h', title: 'Бокс 8'},
-                {id: 'i', title: 'Бокс 9'},
-                {id: 'j', title: 'Бокс 10'},
-                {id: 'k', title: 'Бокс 11'},
-                {id: 'l', title: 'Бокс 12'},
-            ],
-
-            events: [
-                {
-                    title: 'All Day Event',
-                    start: '2023-04-01'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2023-04-07',
-                    end: '2023-04-10'
-                },
-                {
-                    id: 'a',
-                    groupId: '999',
-                    title: 'Repeating Event',
-                    start: '2023-04-09T16:00:00'
-                },
-                {
-                    groupId: '999',
-                    title: 'Repeating Event',
-                    start: '2023-04-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2023-04-11',
-                    end: '2023-04-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2023-04-12T10:30:00',
-                    end: '2023-04-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2023-04-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2023-04-12T14:30:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2023-04-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    groupId: 'a',
-                    url: 'http://google.com/',
-                    start: '2023-04-28T14:30:00'
-                }
-            ],
+            // eventTimeFormat: {
+            //     hour: 'numeric',
+            //     minute: '2-digit',
+            //     meridiem: false
+            // },
+            // slotLabelFormat:
+            //     {
+            //         hour: 'numeric',
+            //         minute: '2-digit',
+            //         omitZeroMinute: true,
+            //         meridiem: 'short',
+            //     },
+            //
+            //
+            // resources: [
+            //     {id: 'a', title: 'Бокс 1'},
+            //     {id: 'b', title: 'Бокс 2'},
+            //     {id: 'c', title: 'Бокс 3'},
+            //     {id: 'd', title: 'Бокс 4'},
+            //     {id: 'e', title: 'Бокс 5'},
+            //     {id: 'f', title: 'Бокс 6'},
+            //     {id: 'g', title: 'Бокс 7'},
+            //     {id: 'h', title: 'Бокс 8'},
+            //     {id: 'i', title: 'Бокс 9'},
+            //     {id: 'j', title: 'Бокс 10'},
+            //     {id: 'k', title: 'Бокс 11'},
+            //     {id: 'l', title: 'Бокс 12'},
+            // ],
+            //
+            // events: [
+            //     {
+            //         title: 'All Day Event',
+            //         start: '2023-04-01'
+            //     },
+            //     {
+            //         title: 'Long Event',
+            //         start: '2023-04-07',
+            //         end: '2023-04-10'
+            //     },
+            //     {
+            //         id: 'a',
+            //         groupId: '999',
+            //         title: 'Repeating Event',
+            //         start: '2023-04-09T16:00:00'
+            //     },
+            //     {
+            //         groupId: '999',
+            //         title: 'Repeating Event',
+            //         start: '2023-04-16T16:00:00'
+            //     },
+            //     {
+            //         title: 'Conference',
+            //         start: '2023-04-11',
+            //         end: '2023-04-13'
+            //     },
+            //     {
+            //         title: 'Meeting',
+            //         start: '2023-04-12T10:30:00',
+            //         end: '2023-04-12T12:30:00'
+            //     },
+            //     {
+            //         title: 'Lunch',
+            //         start: '2023-04-12T12:00:00'
+            //     },
+            //     {
+            //         title: 'Meeting',
+            //         start: '2023-04-12T14:30:00'
+            //     },
+            //     {
+            //         title: 'Birthday Party',
+            //         start: '2023-04-13T07:00:00'
+            //     },
+            //     {
+            //         title: 'Click for Google',
+            //         groupId: 'a',
+            //         url: 'http://google.com/',
+            //         start: '2023-04-28T14:30:00'
+            //     }
+            // ],
 
             dateClick: function () {
                 alert('a day has been clicked!');
