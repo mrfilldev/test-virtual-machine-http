@@ -107,9 +107,11 @@
         $('#event-modal').modal('show');
 
         // Задать заголовок модального окна с выбранной датой
+        console.log('modal-title')
         $('#event-modal .modal-title').text('Вы выбрали дату ' + date.format());
 
         // Задать тело модального окна с дополнительной информацией о дате
+        console.log('modal-body')
         $('#event-modal .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
     }
 
