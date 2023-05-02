@@ -132,14 +132,20 @@
             </div>
             <div class="modal-body"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Закрыть
-                </button>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-2">
+                            <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Отмена
+                            </button>
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="btn btn-outline-success">Создать</a>
 
-                <a href="#" class="btn btn-outline-success">Заказ выполнен</a>
-
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
