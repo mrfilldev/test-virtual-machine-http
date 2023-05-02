@@ -96,12 +96,16 @@
 
             dateClick: function () {
                 // alert('a day has been clicked!');
-                b = $("#modal_complete");
-                b.css("display", "block");
-                b.css("position", "fixed");
-                b.css("width", window.innerWidth);
-                b.css("height", window.innerHeight);
-                b.css("background-color", "rgba(0, 0, 0, 0.7)");
+                $("#modal_complete").dialog({
+                    autoOpen: false,
+                    show: 'slide',
+                    resizable: false,
+                    position: 'center',
+                    stack: true,
+                    height: 'auto',
+                    width: 'auto',
+                    modal: true
+                });
             },
         });
         calendar.render();
