@@ -4,8 +4,6 @@
 {% block body %}
 
 
-
-
 <script>
 
     $(document).ready(function () {
@@ -93,8 +91,8 @@
             ],
 
 
-            dateClick: function (date, jsEvent, view) {
-                open_modal_window(date);
+            dateClick: function (info) {
+                open_modal_window(info);
             }
 
         });
@@ -102,13 +100,14 @@
         calendar.render();
     });
 
-    function open_modal_window() {
+    function open_modal_window(info) {
 
         $('#event-modal').modal('show');
 
         // Задать заголовок модального окна с выбранной датой
         console.log('modal-title')
-        $('#event-modal .modal-title').text('Вы выбрали дату ' + date.format());
+        $('#event-modal .modal-title').text('\nВы кликнули на ' +
+            'ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString() + 'Вы выбрали дату ' + info.dateStr.format());
 
         // Задать тело модального окна с дополнительной информацией о дате
         console.log('modal-body')
@@ -122,25 +121,25 @@
 </div>
 
 <div class="modal fade" id="event-modal" data-bs-backdrop="static"
-             data-bs-keyboard="false" tabindex="-1"
-             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel2"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Закрыть"></button>
-                    </div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                                data-bs-dismiss="modal">Закрыть
-                        </button>
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel2"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Закрыть
+                </button>
 
-                        <a href="#" class="btn btn-outline-success">Заказ выполнен</a>
+                <a href="#" class="btn btn-outline-success">Заказ выполнен</a>
 
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
+</div>
 {% endblock %}
