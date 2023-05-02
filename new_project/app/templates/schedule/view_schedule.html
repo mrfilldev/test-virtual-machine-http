@@ -94,24 +94,25 @@
                 {id: 'l', title: 'Бокс 12'},
             ],
 
-            dateClick: function (info) {
-                alert('Date: ' + info.dateStr);
-                alert('Resource ID: ' + info.resource.id);
-                alert(info + '\nВы кликнули на ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
 
+            dateClick: function (date, jsEvent, view) {
+                open_modal_window(date);
             }
 
         });
 
         calendar.render();
-
-        calendar.on('dateClick', function (info) {
-            console.log('clicked on ' + info.dateStr);
-        });
     });
 
     function open_modal_window() {
-        $('#modal_complete').show();
+
+        $('#event-modal').modal('show');
+
+        // Задать заголовок модального окна с выбранной датой
+        $('#event-modal .modal-title').text('Вы выбрали дату ' + date.format());
+
+        // Задать тело модального окна с дополнительной информацией о дате
+        $('#event-modal .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
     }
 
 </script>
@@ -120,29 +121,22 @@
     <div id='calendar'></div>
 </div>
 
-<div class="modal fade" id="modal_complete" data-bs-backdrop="static"
+<div class="modal fade" id="event-modal" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel2">Подтвердить выполнение
-                </h5>
+                <h5 class="modal-title" id="staticBackdropLabel2"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Закрыть"></button>
             </div>
-            <div class="modal-body">
-                ДАЛЕЕ ЗАКАЗ СЧИТАЕТСЯ ВЫПОЛНЕННЫМ
-            </div>
+            <div class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                    Закрыть
-                </button>
+                        data-bs-dismiss="modal">Закрыть</button>
 
-                <a href="#"
-                   class="btn btn-outline-success">Заказ выполнен
-                </a>
+                <a href="#" class="btn btn-outline-success">Заказ выполнен</a>
 
             </div>
         </div>
