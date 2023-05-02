@@ -96,14 +96,54 @@
 
             dateClick: function () {
                 alert('a day has been clicked!');
-            }
+                b = $("#blanket");
+                b.css("display", "block");
+                b.css("position", "fixed");
+                b.css("width", window.innerWidth);
+                b.css("height", window.innerHeight);
+                b.css("background-color", "rgba(0, 0, 0, 0.7)");
+                f = $("#myForm");
+                f.css("position", "fixed");
+                f.css("top", "33%");
+                f.css("left", "33%");
+            },
         });
         calendar.render();
-    });
+    })
+    ;
 
 </script>
 <br>
 <div class="container">
     <div id='calendar'></div>
+</div>
+
+<div class="modal fade" id="modal_complete" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel2">Подтвердить выполнение
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                ДАЛЕЕ ЗАКАЗ СЧИТАЕТСЯ ВЫПОЛНЕННЫМ
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Закрыть
+                </button>
+
+                <a href="{{ url_for('order_blueprint.order_complete', order_id=context.order._id) }}"
+                   class="btn btn-outline-success">Заказ выполнен
+                </a>
+
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
