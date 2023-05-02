@@ -21,13 +21,9 @@
             //VIEW
             contentHeight: 600,
 
-
             timeZone: 'UTC',
             locale: 'ru',
             initialDate: '2023-05-01',
-
-            selectable: true,
-
 
             initialView: 'resourceTimelineDay',
             aspectRatio: 1.5,
@@ -36,6 +32,9 @@
                 center: 'title',
                 right: 'resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth'
             },
+            selectable: true,
+            editable: true,
+            resourceAreaHeaderContent: 'Rooms',
 
             dateClick: function () {
                 alert('a day has been clicked!');
