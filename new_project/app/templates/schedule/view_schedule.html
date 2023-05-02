@@ -46,7 +46,26 @@
             selectable: true,
             editable: true,
             resourceAreaHeaderContent: 'Боксы',
-
+            events: [
+                {
+                    title: 'Event 1',
+                    start: '2023-05-01T08:00:00',
+                    end: '2023-05-01T09:00:00',
+                    resourceId: 'a'
+                },
+                {
+                    title: 'Event 2',
+                    start: '2023-05-01T08:30:00',
+                    end: '2023-05-01T09:30:00',
+                    resourceId: 'b'
+                },
+                {
+                    title: 'Event 3',
+                    start: '2023-05-01T09:15:00',
+                    end: '2023-05-01T10:00:00',
+                    resourceId: 'c'
+                }
+            ],
             resources: [
                 {id: 'a', title: 'Бокс 1'},
                 {id: 'b', title: 'Бокс 2'},
