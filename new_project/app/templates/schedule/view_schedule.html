@@ -108,6 +108,8 @@
         console.log('modal-title')
         $('#event-modal .modal-title').text('\nВы кликнули на ' +
             'ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
+        $('#event-modal #date_of_washing').value(info.date);
+        $('#event-modal #date_of_washing').placeholder(info.date);
 
         // Задать тело модального окна с дополнительной информацией о дате
         console.log('modal-body')
@@ -136,22 +138,25 @@
                     <div class="row justify-content-center">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <form id="myform" method=POST action="{{ url_for('main_blueprint.oauth') }}">
+                            <form method=POST action="#">
 
                                 <label>Гос.Номер:</label> &nbsp;
                                 <input style="width: 200px" type="text" class="form-control" name="country_region_number"
                                        placeholder="А999АА799">
                                 <label>Марка:</label> &nbsp;
-                                <input style="width: 200px" type="text" class="form-control" name="surname"
-                                       placeholder="Иванов">
+                                <input style="width: 200px" type="text" class="form-control" name="car_brand"
+                                       placeholder="Mitsubishi">
                                 <label>Модель:</label> &nbsp;
                                 <input style="width: 200px" type="text" class="form-control" name="category"
-                                       placeholder="ООО-моемВСЕподряд">
+                                       placeholder="Lancer">
                                 <label>Категория:</label> &nbsp;
                                 <input style="width: 200px" type="tel" class="form-control" name="category"
-                                       placeholder="+7(999)666-99-66"
-                                       pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
-                                       minlength="18" maxlength="18">
+                                       placeholder="Кат.1">
+                                <label>Дата:</label> &nbsp;
+                                <input id="date_of_washing" style="width: 200px" value=""
+                                 class="form-control"
+                                 placeholder=""
+                                 type="date" name="date" aria-describedby="addon-wrapping">
 
                                 <div>
                                     Добро пожаловать в Я.Мойки &nbsp; :-)
