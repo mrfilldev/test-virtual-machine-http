@@ -94,18 +94,12 @@
                 {id: 'l', title: 'Бокс 12'},
             ],
 
-            dateClick: function () {
+            dateClick: function (info) {
                 // alert('a day has been clicked!');
-                $("#modal_complete").dialog({
-                    autoOpen: false,
-                    show: 'slide',
-                    resizable: false,
-                    position: 'center',
-                    stack: true,
-                    height: 'auto',
-                    width: 'auto',
-                    modal: true
-                });
+                if (info.resource) {
+                    // ваш код открытия формы, например:
+                    alert('Вы кликнули на ресурс ' + info.resource.title + ' в ' + info.date.toLocaleString());
+                }
             },
         });
         calendar.render();
