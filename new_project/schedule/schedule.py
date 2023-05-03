@@ -36,7 +36,7 @@ def schedule():
     return view_schedule(g)
 
 
-@schedule_bp.route('/create_order_carwash', methods=['POST', 'GET'])
+@schedule_bp.route('/create_order_carwash', methods=['POST'])
 def create_order_carwash():
     return create_carwash(request, g)
 
