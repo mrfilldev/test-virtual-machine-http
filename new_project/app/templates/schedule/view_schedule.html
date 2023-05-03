@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -72,9 +77,10 @@
 
             eventClick: function (info) {
                 alert('Заказ: ' + info.description + '\n' +
-                'Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY + '\n' +
-                'View: ' + info.view.type);
+                    'Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY + '\n' +
+                    'View: ' + info.view.type);
 
+                console.log(info.event.extendedProps);
                 // change the border color just for fun
                 info.el.style.borderColor = 'red';
             },
