@@ -9,10 +9,9 @@ from bson import json_util
 from dateutil import parser
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 
-
 from flask_login import current_user
 
-from .view_schedule import view_schedule
+from .view_schedule import view_schedule, mechanic_create_carwash
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -37,6 +36,11 @@ def schedule():
     return view_schedule(g)
 
 
+@schedule_bp.route('/create_carwash', methods=['POST', 'GET'])
+def create_carwash():
+    return mechanic_create_carwash(request, g)
+
+
 @schedule_bp.app_template_filter()
 def format_datetime_hour_minute(value):
     if isinstance(value, date):
@@ -50,4 +54,3 @@ def format_datetime_hour_minute(value):
 @schedule_bp.app_template_filter()
 def random_value(list_of_strings: list):
     return random.choice(list_of_strings)
-
