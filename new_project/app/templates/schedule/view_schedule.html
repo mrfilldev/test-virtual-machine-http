@@ -121,11 +121,15 @@
         $('#form').on('submit', function (e) {
             $.ajax({
                 data: {
-                    // firstname: $('#firstname').val(),
-                    // lastname: $('#lastname').val(),
+                    country_region_number: $('#country_region_number').val(),
+                    car_brand: $('#car_brand').val(),
+                    car_model: $('#car_model').val(),
+                    category: $('#category').val(),
+                    date: $('#date').val(),
+                    box: $('#box').val(),
                 },
                 type: 'POST',
-                url: '/'
+                url: '#'
             })
                 .done(function (data) {
                     $('#output').text(data.output).show();
