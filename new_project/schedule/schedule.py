@@ -11,7 +11,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 
 from flask_login import current_user
 
-from .view_schedule import view_schedule, mechanic_create_carwash
+from .view_schedule import view_schedule, create_carwash
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -36,9 +36,9 @@ def schedule():
     return view_schedule(g)
 
 
-@schedule_bp.route('/create_carwash', methods=['POST', 'GET'])
-def create_carwash():
-    return mechanic_create_carwash(request, g)
+@schedule_bp.route('/create_order_carwash', methods=['POST', 'GET'])
+def create_order_carwash():
+    return create_carwash(request, g)
 
 
 @schedule_bp.app_template_filter()

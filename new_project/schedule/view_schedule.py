@@ -17,7 +17,7 @@ def view_schedule(g_user_flask):
     return render_template('schedule/view_schedule.html')
 
 
-def mechanic_create_carwash(request, g_user_flask):
+def create_carwash(request, g_user_flask):
     print('\n################################################################\n')
     dict_of_form = request.form.to_dict(flat=False)
     print(dict_of_form)
