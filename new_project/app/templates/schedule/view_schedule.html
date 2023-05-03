@@ -130,7 +130,8 @@
                 },
                 // type: 'POST',
                 method : "POST",
-                url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
+                // url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
+                url: "/create_order_carwash",
             })
                 .done(function (data) {
                     $('#output').text(data.output).show();
