@@ -121,17 +121,18 @@
     }
 
     function send_order() {
-         $('#form').submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
-                    data: $('#form').serialize(),
-                    success: function(response) {
-                        alert(response.status);
-                    }
-                });
+        $('#form').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
+                data: $('#form').serialize(),
+                success: function (response) {
+                    // alert(response.status);
+                    $('#form').close();
+                }
             });
+        });
     }
 
 
