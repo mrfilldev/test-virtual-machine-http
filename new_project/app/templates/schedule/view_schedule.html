@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -130,10 +135,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>Гос.Номер:</label>
-                        <input style="width: 200px" type="text" class="form-control"
-                               name="country_region_number"
-                               placeholder="А999АА799">
+                        <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+
+                            <label>Гос.Номер:</label>
+                            <input style="width: 200px" type="text" class="form-control"
+                                   name="country_region_number"
+                                   placeholder="А999АА799">
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label>Марка:</label>
