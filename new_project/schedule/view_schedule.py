@@ -16,7 +16,7 @@ def datetime_range(start, end, delta):
         current += delta
 
 
-def get_orders():  # 7810324c8fea4af8bc3c3d6776cfc494
+def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
     orders = database.col_orders.find({})
     events_list = []
     for i in orders:
@@ -27,7 +27,7 @@ def get_orders():  # 7810324c8fea4af8bc3c3d6776cfc494
         events_list.append({
             'title': 'Заказ',
             'start': order_obj.DateCreate.replace('Z', ''),
-            'resourceId': order_obj.BoxNumber,
+            'resourceId': 'a',
         })
     print(events_list)
     return events_list
@@ -35,6 +35,7 @@ def get_orders():  # 7810324c8fea4af8bc3c3d6776cfc494
 
 def view_schedule(g_user_flask):
     # Pass schedule data to template
+
     resources = [
         {'id': 'a', 'title': 'Бокс 1'},
         {'id': 'b', 'title': 'Бокс 2'},
@@ -54,7 +55,7 @@ def view_schedule(g_user_flask):
     date_today = '2023-05-03'
     now_iso = datetime.now().isoformat()
 
-    events = get_orders()
+    events = get_orders('7810324c8fea4af8bc3c3d6776cfc494')
     context = {
         'orders': events,
         'boxes': resources,
