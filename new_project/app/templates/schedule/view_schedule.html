@@ -86,6 +86,8 @@
 
     function open_modal_window_order_detail(info) {
         $('#event-modal').modal('show');
+        $('#event-modal .modal-body #country_region_number').text(info.event.extendedProps.carNumber);
+
 
         $('#event-modal .modal-footer').hide();
         // info.el.style.borderColor = 'black';

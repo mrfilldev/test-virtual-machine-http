@@ -21,13 +21,15 @@ def view_schedule(g_user_flask):
             'end': '2023-05-03T17:30:00',
             'description': 'Мойка "кузов"',
             'resourceId': 'a',
+            'carNumber': 'A111AA750'
         },
         {
             'title': 'Заказ',
             'start': '2023-05-03T17:30:00',
             'end': '2023-05-03T17:45:00',
             'description': 'Мойка "кузов+коврики"',
-            'resourceId': 'b'
+            'resourceId': 'b',
+            'carNumber': 'B222AA750'
         },
         {
             'title': 'Заказ',
