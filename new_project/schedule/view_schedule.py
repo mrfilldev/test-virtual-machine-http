@@ -19,18 +19,21 @@ def view_schedule(g_user_flask):
             'title': 'Event 1',
             'start': '2023-05-03T16:00:00',
             'end': '2023-05-03T17:30:00',
-            'resourceId': 'a'
+            'description': 'something',
+            'resourceId': 'a',
         },
         {
             'title': 'Event 2',
             'start': '2023-05-03T17:30:00',
             'end': '2023-05-03T17:45:00',
+            'description': 'something',
             'resourceId': 'b'
         },
         {
             'title': 'Event 3',
             'start': '2023-05-03T18:15:00',
             'end': '2023-05-03T19:00:00',
+            'description': 'something',
             'resourceId': 'c'
         }
     ]
