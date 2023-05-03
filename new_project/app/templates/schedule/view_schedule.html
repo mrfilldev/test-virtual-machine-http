@@ -67,36 +67,24 @@
             resources: model.boxes,
 
             dateClick: function (info) {
-                open_modal_window(info);
+                open_modal_window_create_order(info);
             },
 
             eventClick: function (info) {
-                alert('Заказ: ' + info.event.extendedProps.description + '\n' +
-                    'Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY + '\n' +
-                    'View: ' + info.view.type);
-
-                console.log(info.event.extendedProps);
-                // change the border color just for fun
-                info.el.style.borderColor = 'red';
+                open_modal_window_order_detail(info);
             },
 
         });
         calendar.render();
     }
 
-    function open_modal_window(info) {
-
+    function open_modal_window_create_order(info) {
         $('#event-modal').modal('show');
-
-        // Задать заголовок модального окна с выбранной датой
-        console.log('modal-title')
-        // $('#event-modal .modal-title').text('\nВы кликнули на ' +
-        //     'ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
-
-
-        // Задать тело модального окна с дополнительной информацией о дате
-        console.log('modal-body')
-        // $('#event-modal .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
+    }
+    function open_modal_window_order_detail(info) {
+        $('#OrderDetail').modal('show');
+        $('#OrderDetail .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
+        info.el.style.borderColor = 'black';
     }
 
     function send_order() {
@@ -175,4 +163,23 @@
         </div>
     </div>
 </form>
+
+<div id="OrderDetail" class="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-check-circle text-success"></i> <span>Confirm app request</span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
