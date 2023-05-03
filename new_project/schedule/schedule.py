@@ -38,7 +38,7 @@ def schedule():
 
 @schedule_bp.route('/create_order_carwash', methods=['POST'])
 def create_order_carwash():
-    return create_carwash(request, g)
+    return create_carwash(request)
 
 
 @schedule_bp.app_template_filter()

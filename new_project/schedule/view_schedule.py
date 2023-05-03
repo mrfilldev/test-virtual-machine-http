@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, date
 
-from flask import render_template
+from flask import render_template, jsonify
 
 from new_project.db.models import TestScheduleOrder
 
@@ -17,7 +17,7 @@ def view_schedule(g_user_flask):
     return render_template('schedule/view_schedule.html')
 
 
-def create_carwash(request, g_user_flask):
+def create_carwash(request):
     print('\n################################################################\n')
     dict_of_form = request.form.to_dict(flat=False)
     print(dict_of_form)
@@ -28,4 +28,8 @@ def create_carwash(request, g_user_flask):
 
     print('\n################################################################\n')
 
-    return render_template('schedule/view_schedule.html')
+    data = request.form.to_dict()
+    print(data)
+    # обработка данных и формирование ответа
+    response = {'status': 'success'}
+    return jsonify(response)

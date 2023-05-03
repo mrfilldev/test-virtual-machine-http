@@ -118,7 +118,7 @@
         // $('#event-modal .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
     }
 
-    function form_submit() {
+    function try1() {
         $('#form').on('submit', function (e) {
             $.ajax({
                 data: {
@@ -141,12 +141,25 @@
         });
     }
 
-    function send_order() {
+    function try2() {
         var formData = new FormData(document.getElementById("form"));
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "{{ url_for('schedule_blueprint.create_order_carwash') }}");
         xhr.setRequestHeader("Content-Type", "multipart/form-data");
         xhr.send(formData);
+    }
+    function send_order() {
+         $('#myForm').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
+                    data: $('#myForm').serialize(),
+                    success: function(response) {
+                        alert(response.status);
+                    }
+                });
+            });
     }
 
 
