@@ -12,12 +12,7 @@
         render_calendar();
     });
 
-    var model = {
-    {
-        context | tojson
-    }
-    }
-    ;
+    var model = {{context | tojson}};
 
     function render_calendar() {
         console.log("in func");
@@ -85,6 +80,8 @@
 
     function open_modal_window_create_order(info) {
         $('#event-modal').modal('show');
+        $('#event-modal .modal-footer').show();
+
     }
 
     function open_modal_window_order_detail(info) {
