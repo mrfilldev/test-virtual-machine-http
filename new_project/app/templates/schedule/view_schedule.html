@@ -7,6 +7,12 @@
 <script>
 
     $(document).ready(function () {
+        // form_submit;
+        send_order();
+        render_calendar();
+    });
+
+    function render_calendar() {
         console.log("in func");
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -96,12 +102,8 @@
             }
 
         });
-
         calendar.render();
-
-        // form_submit;
-        send_order();
-    });
+    }
 
     function open_modal_window(info) {
 
@@ -118,36 +120,6 @@
         // $('#event-modal .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
     }
 
-    function try1() {
-        $('#form').on('submit', function (e) {
-            $.ajax({
-                data: {
-                    country_region_number: $('#country_region_number').val(),
-                    car_brand: $('#car_brand').val(),
-                    car_model: $('#car_model').val(),
-                    category: $('#category').val(),
-                    date: $('#date').val(),
-                    box: $('#box').val(),
-                },
-                // type: 'POST',
-                method: "POST",
-                // url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
-                url: "/create_order_carwash",
-            })
-                .done(function (data) {
-                    $('#output').text(data.output).show();
-                });
-            e.preventDefault();
-        });
-    }
-
-    function try2() {
-        var formData = new FormData(document.getElementById("form"));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "{{ url_for('schedule_blueprint.create_order_carwash') }}");
-        xhr.setRequestHeader("Content-Type", "multipart/form-data");
-        xhr.send(formData);
-    }
     function send_order() {
          $('#form').submit(function(event) {
                 event.preventDefault();
