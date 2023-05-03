@@ -128,7 +128,8 @@
                     date: $('#date').val(),
                     box: $('#box').val(),
                 },
-                type: 'POST',
+                // type: 'POST',
+                method : "POST",
                 url: '/example'
             })
                 .done(function (data) {
