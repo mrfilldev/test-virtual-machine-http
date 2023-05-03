@@ -14,7 +14,30 @@ def datetime_range(start, end, delta):
 
 def view_schedule(g_user_flask):
     # Pass schedule data to template
-    return render_template('schedule/view_schedule.html')
+    events = [
+            {
+                'title': 'Event 1',
+                'start': '2023-05-02T16:00:00',
+                'end': '2023-05-02T17:30:00',
+                'resourceId': 'a'
+            },
+            {
+                'title': 'Event 2',
+                'start': '2023-05-02T17:30:00',
+                'end': '2023-05-02T17:45:00',
+                'resourceId': 'b'
+            },
+            {
+                'title': 'Event 3',
+                'start': '2023-05-02T18:15:00',
+                'end': '2023-05-02T19:00:00',
+                'resourceId': 'c'
+            }
+        ]
+    context = {
+        'events': events
+    }
+    return render_template('schedule/view_schedule.html', context=context)
 
 
 def create_carwash(request):
