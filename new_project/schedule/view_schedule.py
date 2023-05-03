@@ -16,24 +16,24 @@ def view_schedule(g_user_flask):
     # Pass schedule data to template
     events = [
         {
-            'title': 'Event 1',
+            'title': 'Заказ',
             'start': '2023-05-03T16:00:00',
             'end': '2023-05-03T17:30:00',
-            'description': 'something',
+            'description': 'Мойка "кузов"',
             'resourceId': 'a',
         },
         {
-            'title': 'Event 2',
+            'title': 'Заказ',
             'start': '2023-05-03T17:30:00',
             'end': '2023-05-03T17:45:00',
-            'description': 'something',
+            'description': 'Мойка "кузов+коврики"',
             'resourceId': 'b'
         },
         {
-            'title': 'Event 3',
+            'title': 'Заказ',
             'start': '2023-05-03T18:15:00',
             'end': '2023-05-03T19:00:00',
-            'description': 'something',
+            'description': 'Мойка "кузов+коврики+воск"',
             'resourceId': 'c'
         }
     ]
