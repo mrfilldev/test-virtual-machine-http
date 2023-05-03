@@ -82,8 +82,8 @@
         $('#event-modal').modal('show');
     }
     function open_modal_window_order_detail(info) {
-        $('#OrderDetail').modal('show');
-        $('#OrderDetail .modal-body').text(info.event.extendedProps.description);
+        $('#event-modal').modal('show');
+        $('#event-modal .modal-body').text(info.event.extendedProps.description);
         // info.el.style.borderColor = 'black';
     }
 
@@ -164,18 +164,4 @@
     </div>
 </form>
 
-<div id="OrderDetail" class="modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-check-circle text-success"></i> <span>Детали заказа</span></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <p></p>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}
