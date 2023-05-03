@@ -149,12 +149,12 @@
         xhr.send(formData);
     }
     function send_order() {
-         $('#myForm').submit(function(event) {
+         $('#form').submit(function(event) {
                 event.preventDefault();
                 $.ajax({
                     type: 'POST',
                     url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
-                    data: $('#myForm').serialize(),
+                    data: $('#form').serialize(),
                     success: function(response) {
                         alert(response.status);
                     }
