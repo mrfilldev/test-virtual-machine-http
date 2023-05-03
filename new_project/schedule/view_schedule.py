@@ -17,7 +17,7 @@ def datetime_range(start, end, delta):
 
 
 def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
-    orders = database.col_orders.find({"CarWashId": carwash_id})
+    orders = database.col_orders.find({})
     events_list = []
     for i in orders:
         data = json.loads(json_util.dumps(i))
