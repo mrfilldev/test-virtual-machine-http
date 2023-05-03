@@ -21,6 +21,6 @@ def carwash_check(box_number):
         print('status_reply', status)
         return status
     else:
-        status = 404
+        status = 401
         print('status_reply', status)
         return status
