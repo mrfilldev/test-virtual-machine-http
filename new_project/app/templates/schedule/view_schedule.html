@@ -83,7 +83,7 @@
     }
     function open_modal_window_order_detail(info) {
         $('#OrderDetail').modal('show');
-        $('#OrderDetail .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
+        $('#OrderDetail .modal-body').html(info.event.extendedProps);
         // info.el.style.borderColor = 'black';
     }
 
