@@ -12,6 +12,8 @@
         render_calendar();
     });
 
+    var model = {{ context | tojson }};
+
     function render_calendar() {
         console.log("in func");
         var calendarEl = document.getElementById('calendar');
@@ -34,7 +36,7 @@
             },
             slotMinTime: {{ context.carwash_start_time | tojson }},
             slotMaxTime: {{ context.carwash_end_time | tojson }},
-            initialDate: {{ context.date_today[0] | tojson }},
+            initialDate: model.date_today,
 
 
             allDaySlot: false,
