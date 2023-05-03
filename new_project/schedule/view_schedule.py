@@ -1,7 +1,11 @@
+import json
 from datetime import datetime, timedelta, date
+from types import SimpleNamespace
 
+from bson import json_util
 from flask import render_template, jsonify
 
+from new_project.db import database
 from new_project.db.models import TestScheduleOrder
 
 
@@ -10,6 +14,22 @@ def datetime_range(start, end, delta):
     while current < end:
         yield current
         current += delta
+
+
+def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
+    orders = database.col_orders.find({"CarWashId": carwash_id})
+    events_list = []
+    for i in orders:
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('order_obj:', order_obj)
+        events_list.append({
+            'title': 'Заказ',
+            'start': order_obj.DateCreate.replace('Z', ''),
+            'resourceId': order_obj.BoxNumber,
+        })
+    return events_list
 
 
 def view_schedule(g_user_flask):
@@ -58,6 +78,7 @@ def view_schedule(g_user_flask):
     date_today = '2023-05-03'
     now_iso = datetime.now().isoformat()
 
+    events += get_orders('7810324c8fea4af8bc3c3d6776cfc494')
     context = {
         'orders': events,
         'boxes': resources,
