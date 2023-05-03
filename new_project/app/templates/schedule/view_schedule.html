@@ -116,6 +116,7 @@
     }
 
 
+
 </script>
 <br>
 <div class="container">
@@ -137,49 +138,50 @@
                 <div class="container">
                     <div class="row justify-content-center">
 
-                        <form method=POST action="#">
+                        <div class="col-10">
+                            <form method=POST action="#">
 
-                            <label>Гос.Номер:</label> &nbsp;
-                            <input style="width: 200px" type="text" class="form-control"
-                                   name="country_region_number"
-                                   placeholder="А999АА799">
-                            <label>Марка:</label> &nbsp;
-                            <input style="width: 200px" type="text" class="form-control" name="car_brand"
-                                   placeholder="Mitsubishi">
-                            <label>Модель:</label> &nbsp;
-                            <input style="width: 200px" type="text" class="form-control" name="car_model"
-                                   placeholder="Lancer">
-                            <label>Категория:</label> &nbsp;
-                            <input style="width: 200px" type="tel" class="form-control" name="category"
-                                   placeholder="Кат.1">
-                            <label>Дата:</label> &nbsp;
-                            <input style="width: 200px" value=""
-                                   class="form-control"
-                                   placeholder=""
-                                   type="date" name="date" aria-describedby="addon-wrapping">
-                            <label>Бокс:</label> &nbsp;
-                            <input style="width: 200px" type="text" class="form-control"
-                                   name="box"
-                                   placeholder="">
+                                <label>Гос.Номер:</label> &nbsp;
+                                <input style="width: 200px" type="text" class="form-control"
+                                       name="country_region_number"
+                                       placeholder="А999АА799">
+                                <label>Марка:</label> &nbsp;
+                                <input style="width: 200px" type="text" class="form-control" name="car_brand"
+                                       placeholder="Mitsubishi">
+                                <label>Модель:</label> &nbsp;
+                                <input style="width: 200px" type="text" class="form-control" name="car_model"
+                                       placeholder="Lancer">
+                                <label>Категория:</label> &nbsp;
+                                <input style="width: 200px" type="tel" class="form-control" name="category"
+                                       placeholder="Кат.1">
+                                <label>Дата:</label> &nbsp;
+                                <input style="width: 200px" value=""
+                                       class="form-control"
+                                       placeholder=""
+                                       type="date" name="date" aria-describedby="addon-wrapping">
+                                <label>Бокс:</label> &nbsp;
+                                <input style="width: 200px" type="text" class="form-control"
+                                       name="box"
+                                       placeholder="">
 
-                        </form>
+                            </form>
+                        </div>
+
                     </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+
+
+                    <a href="#" class="btn btn-outline-success">Создать</a>
 
                 </div>
             </div>
-
         </div>
-        <div class="modal-footer">
-            <div class="row">
 
 
-                <a href="#" class="btn btn-outline-success">Создать</a>
-
-            </div>
-        </div>
     </div>
-
-
 </div>
-
 {% endblock %}
