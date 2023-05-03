@@ -99,7 +99,8 @@
 
         calendar.render();
 
-        form_submit;
+        // form_submit;
+        send_order;
     });
 
     function open_modal_window(info) {
@@ -129,7 +130,7 @@
                     box: $('#box').val(),
                 },
                 // type: 'POST',
-                method : "POST",
+                method: "POST",
                 // url: "{{ url_for('schedule_blueprint.create_order_carwash') }}",
                 url: "/create_order_carwash",
             })
@@ -138,6 +139,14 @@
                 });
             e.preventDefault();
         });
+    }
+
+    function send_order() {
+        var formData = new FormData(document.getElementById("form"));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "{{ url_for('schedule_blueprint.create_order_carwash') }}");
+        xhr.setRequestHeader("Content-Type", "multipart/form-data");
+        xhr.send(formData);
     }
 
 
