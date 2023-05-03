@@ -15,27 +15,42 @@ def datetime_range(start, end, delta):
 def view_schedule(g_user_flask):
     # Pass schedule data to template
     events = [
-            {
-                'title': 'Event 1',
-                'start': '2023-05-02T16:00:00',
-                'end': '2023-05-02T17:30:00',
-                'resourceId': 'a'
-            },
-            {
-                'title': 'Event 2',
-                'start': '2023-05-02T17:30:00',
-                'end': '2023-05-02T17:45:00',
-                'resourceId': 'b'
-            },
-            {
-                'title': 'Event 3',
-                'start': '2023-05-02T18:15:00',
-                'end': '2023-05-02T19:00:00',
-                'resourceId': 'c'
-            }
-        ]
+        {
+            'title': 'Event 1',
+            'start': '2023-05-02T16:00:00',
+            'end': '2023-05-02T17:30:00',
+            'resourceId': 'a'
+        },
+        {
+            'title': 'Event 2',
+            'start': '2023-05-02T17:30:00',
+            'end': '2023-05-02T17:45:00',
+            'resourceId': 'b'
+        },
+        {
+            'title': 'Event 3',
+            'start': '2023-05-02T18:15:00',
+            'end': '2023-05-02T19:00:00',
+            'resourceId': 'c'
+        }
+    ]
+    resources = [
+        {'id': 'a', 'title': 'Бокс 1'},
+        {'id': 'b', 'title': 'Бокс 2'},
+        {'id': 'c', 'title': 'Бокс 3'},
+        {'id': 'd', 'title': 'Бокс 4'},
+        {'id': 'e', 'title': 'Бокс 5'},
+        {'id': 'f', 'title': 'Бокс 6'},
+        {'id': 'g', 'title': 'Бокс 7'},
+        {'id': 'h', 'title': 'Бокс 8'},
+        {'id': 'i', 'title': 'Бокс 9'},
+        {'id': 'j', 'title': 'Бокс 10'},
+        {'id': 'k', 'title': 'Бокс 11'},
+        {'id': 'l', 'title': 'Бокс 12'},
+    ]
     context = {
-        'events': events
+        'events': events,
+        'resources': resources,
     }
     return render_template('schedule/view_schedule.html', context=context)
 
