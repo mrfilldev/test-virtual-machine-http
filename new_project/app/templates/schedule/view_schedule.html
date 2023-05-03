@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -129,27 +134,26 @@
                             aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
 
-                        <div class="row">
-                            <div class="col"><label>Гос.Номер:</label></div>
-                            <div class="col"><input style="width: 200px" type="text" class="form-control"
-                                   name="country_region_number"
-                                   placeholder="А999АА799"></div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto"><label>Гос.Номер:</label></div>
+                            <div class="col-auto"><input style="width: 200px" type="text" class="form-control"
+                                                    name="country_region_number"
+                                                    placeholder="А999АА799"></div>
                         </div>
 
 
-                        <div class="row">
+                        <div class="row g-3 align-items-center">
 
 
-                            <label>Марка:</label>
-                            <input style="width: 200px" type="text" class="form-control" name="car_brand"
-                                   placeholder="Mitsubishi">
+                            <div class="col-auto"><label>Марка:</label></div>
+                            <div class="col-auto"><input style="width: 200px" type="text" class="form-control"
+                                                    name="car_brand"
+                                                    placeholder="Mitsubishi"></div>
                         </div>
 
 
-                        <div class="row">
-
+                        <div class="row g-3 align-items-center">
                             <label>Модель:</label>
                             <input style="width: 200px" type="text" class="form-control" name="car_model"
                                    placeholder="Lancer">
