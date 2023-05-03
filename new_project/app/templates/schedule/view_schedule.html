@@ -98,6 +98,8 @@
         });
 
         calendar.render();
+
+        form_submit;
     });
 
     function open_modal_window(info) {
@@ -115,12 +117,31 @@
         // $('#event-modal .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
     }
 
+    function form_submit() {
+        $('#form').on('submit', function (e) {
+            $.ajax({
+                data: {
+                    firstname: $('#firstname').val(),
+                    lastname: $('#lastname').val(),
+                },
+                type: 'POST',
+                url: '/'
+            })
+                .done(function (data) {
+                    $('#output').text(data.output).show();
+                });
+            e.preventDefault();
+        });
+    }
+
 
 </script>
 <br>
 <div class="container">
     <div id='calendar'></div>
 </div>
+<br>
+<div id="output"></div>
 
 <div class="modal fade" id="event-modal" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
@@ -133,7 +154,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Закрыть"></button>
             </div>
-            <form method=POST action="#">
+            <form id="form">
                 <div class="modal-body">
                     <div class="container">
                         <div class="row justify-content-center">
