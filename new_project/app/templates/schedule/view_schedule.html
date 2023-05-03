@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -129,61 +134,61 @@
                             aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="row">
-                            <label>Гос.Номер:</label>
-                            <input style="width: 200px" type="text" class="form-control"
-                                   name="country_region_number"
-                                   placeholder="А999АА799">
-                        </div>
+
+                    <div class="row">
+                        <label>Гос.Номер:</label>
+                        <input style="width: 200px" type="text" class="form-control"
+                               name="country_region_number"
+                               placeholder="А999АА799">
                     </div>
-                    <div class="mb-3">
-                          <div class="row">
 
 
-                            <label>Марка:</label>
-                            <input style="width: 200px" type="text" class="form-control" name="car_brand"
-                                   placeholder="Mitsubishi">
-                        </div>
+                    <div class="row">
+
+
+                        <label>Марка:</label>
+                        <input style="width: 200px" type="text" class="form-control" name="car_brand"
+                               placeholder="Mitsubishi">
                     </div>
-                    <div class="mb-3">
-                        <div class="row">
 
-                            <label>Модель:</label>
-                            <input style="width: 200px" type="text" class="form-control" name="car_model"
-                                   placeholder="Lancer">
-                        </div>
+
+                    <div class="row">
+
+                        <label>Модель:</label>
+                        <input style="width: 200px" type="text" class="form-control" name="car_model"
+                               placeholder="Lancer">
                     </div>
-                    <div class="mb-3">
-                          <div class="row">
 
 
-                            <label>Категория:</label>
-                            <input style="width: 200px" type="tel" class="form-control" name="category"
-                                   placeholder="Кат.1">
-                        </div>
+                    <div class="row">
+
+
+                        <label>Категория:</label>
+                        <input style="width: 200px" type="tel" class="form-control" name="category"
+                               placeholder="Кат.1">
                     </div>
-                    <div class="mb-3">
-                          <div class="row">
 
 
-                            <label>Дата:</label>
-                            <input style="width: 200px" value=""
-                                   class="form-control"
-                                   placeholder=""
-                                   type="date" name="date" aria-describedby="addon-wrapping">
-                        </div>
+                    <div class="row">
+
+
+                        <label>Дата:</label>
+                        <input style="width: 200px" value=""
+                               class="form-control"
+                               placeholder=""
+                               type="date" name="date" aria-describedby="addon-wrapping">
                     </div>
-                    <div class="mb-3">
-                          <div class="row">
 
 
-                            <label>Бокс:</label>
-                            <input style="width: 200px" type="text" class="form-control"
-                                   name="box"
-                                   placeholder="№">
-                        </div>
+                    <div class="row">
+
+
+                        <label>Бокс:</label>
+                        <input style="width: 200px" type="text" class="form-control"
+                               name="box"
+                               placeholder="№">
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <div class="row">
