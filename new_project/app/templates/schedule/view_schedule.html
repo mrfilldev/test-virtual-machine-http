@@ -86,6 +86,7 @@
 
     function open_modal_window_order_detail(info) {
         $('#event-modal').modal('show');
+        alert(info.event.extendedProps.carNumber)
         $('#country_region_number').val(info.event.extendedProps.carNumber);
 
 
