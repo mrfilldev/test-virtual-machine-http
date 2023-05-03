@@ -48,9 +48,18 @@ def view_schedule(g_user_flask):
         {'id': 'k', 'title': 'Бокс 11'},
         {'id': 'l', 'title': 'Бокс 12'},
     ]
+    carwash_start_time = '08:00:00'
+    carwash_end_time = '23:00:00'
+    date_today = '2023-05-03',
+    now_iso = datetime.now().isoformat()
+
     context = {
         'events': events,
         'resources': resources,
+        'carwash_start_time': carwash_start_time,
+        'carwash_end_time': carwash_end_time,
+        'date_today': date_today,
+        'now_iso': now_iso
     }
     return render_template('schedule/view_schedule.html', context=context)
 

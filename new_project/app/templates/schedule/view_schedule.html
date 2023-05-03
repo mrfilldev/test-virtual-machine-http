@@ -32,16 +32,16 @@
                 day: 'День',
                 list: 'Список'
             },
-            slotMinTime: '08:00:00',
-            slotMaxTime: '20:00:00',
-            initialDate: '2023-05-02',
+            slotMinTime: {{ context.carwash_start_time | tojson }},
+            slotMaxTime: {{ context.carwash_end_time | tojson }},
+            initialDate: {{ context.date_today | tojson }},
 
 
             allDaySlot: false,
             slotDuration: '00:15:00', // устанавливаем интервал в 15 минут
 
             nowIndicator: true,
-            now: '2023-05-02T14:40:00',
+            now: {{ context.now_iso | tojson }},
 
             slotLabelFormat: {
                 hour: 'numeric',
@@ -64,8 +64,7 @@
             events: {{ context.events | tojson }},
             resources: {{ context.resources | tojson }},
 
-
-            dateClick: function (info) {
+            dateClick: function(info) {
                 open_modal_window(info);
             }
 

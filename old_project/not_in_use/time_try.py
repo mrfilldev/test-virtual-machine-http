@@ -46,6 +46,12 @@ print(value)
 
 
 # extended_date = datetime.now().strftime("%d-%m-%YT%H:%M:%SZ")
-extended_date = datetime.now().isoformat(timespec='microseconds')
-print(extended_date)
+# extended_date = datetime.now().isoformat(timespec='microseconds')
+# print(extended_date)
 
+now = datetime.now()
+
+# Преобразуем время в формат ISO8601
+iso_time = now.isoformat()
+
+print(iso_time)
