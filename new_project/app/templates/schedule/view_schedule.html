@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{ context | tojson }};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -66,9 +71,18 @@
             events: model.orders,
             resources: model.boxes,
 
-            dateClick: function(info) {
+            dateClick: function (info) {
                 open_modal_window(info);
-            }
+            },
+
+            eventClick: function (info) {
+                alert('Event: ' + info.event.title);
+                alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                alert('View: ' + info.view.type);
+
+                // change the border color just for fun
+                info.el.style.borderColor = 'red';
+            },
 
         });
         calendar.render();
@@ -82,8 +96,6 @@
         console.log('modal-title')
         // $('#event-modal .modal-title').text('\nВы кликнули на ' +
         //     'ресурс ' + info.resource.title + ' с id ' + info.resource.id + ' в ' + info.date.toLocaleString());
-
-
 
 
         // Задать тело модального окна с дополнительной информацией о дате
