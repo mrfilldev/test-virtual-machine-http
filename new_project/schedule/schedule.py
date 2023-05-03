@@ -31,7 +31,7 @@ def load_user():
     print('g.user_db: :', g.user_db)
 
 
-@schedule_bp.route('/schedule', methods=['POST', 'GET'])
+@schedule_bp.route('/schedule', methods=['GET'])
 def schedule():
     return view_schedule(g)
 
