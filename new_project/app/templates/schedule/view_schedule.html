@@ -83,7 +83,7 @@
     }
     function open_modal_window_order_detail(info) {
         $('#OrderDetail').modal('show');
-        $('#OrderDetail .modal-body').text(info.event.extendedProps);
+        $('#OrderDetail .modal-body').text(info.event.extendedProps.description);
         // info.el.style.borderColor = 'black';
     }
 
