@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -93,7 +98,11 @@
 
         $('#event-modal .modal-footer').hide();
         // info.el.style.borderColor = 'black';
+        $('#event-modal').on('hidden', function () {
+            $.clear(this)
+        });
     }
+
 
     function send_order() {
         $('#form').submit(function (event) {
