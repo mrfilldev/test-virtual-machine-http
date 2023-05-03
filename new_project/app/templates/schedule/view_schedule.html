@@ -34,8 +34,8 @@
                 day: 'День',
                 list: 'Список'
             },
-            slotMinTime: {{ context.carwash_start_time | tojson }},
-            slotMaxTime: {{ context.carwash_end_time | tojson }},
+            slotMinTime: model.carwash_start_time,
+            slotMaxTime: model.carwash_end_time,
             initialDate: model.date_today,
 
 
@@ -43,7 +43,7 @@
             slotDuration: '00:15:00', // устанавливаем интервал в 15 минут
 
             nowIndicator: true,
-            now: {{ context.now_iso | tojson }},
+            now: model.now_iso,
 
             slotLabelFormat: {
                 hour: 'numeric',
@@ -63,8 +63,8 @@
             selectable: true,
             editable: false,
             resourceAreaHeaderContent: 'Боксы',
-            events: {{ context.events_carwash | tojson }},
-            resources: {{ context.resources | tojson }},
+            events: model.orders,
+            resources: model.boxes,
 
             dateClick: function(info) {
                 open_modal_window(info);

@@ -54,8 +54,8 @@ def view_schedule(g_user_flask):
     now_iso = datetime.now().isoformat()
 
     context = {
-        'events_carwash': events,
-        'resources': resources,
+        'orders': events,
+        'boxes': resources,
         'carwash_start_time': carwash_start_time,
         'carwash_end_time': carwash_end_time,
         'date_today': date_today,
