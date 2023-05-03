@@ -35,31 +35,6 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
 
 def view_schedule(g_user_flask):
     # Pass schedule data to template
-    events = [
-        {
-            'title': 'Заказ',
-            'start': '2023-05-03T16:00:00',
-            'end': '2023-05-03T17:30:00',
-            'description': 'Мойка "кузов"',
-            'resourceId': 'a',
-            'carNumber': 'A111AA750'
-        },
-        {
-            'title': 'Заказ',
-            'start': '2023-05-03T17:30:00',
-            'end': '2023-05-03T17:50:00',
-            'description': 'Мойка "кузов+коврики"',
-            'resourceId': 'b',
-            'carNumber': 'B222AA750'
-        },
-        {
-            'title': 'Заказ',
-            'start': '2023-05-03T18:15:00',
-            'end': '2023-05-03T19:00:00',
-            'description': 'Мойка "кузов+коврики+воск"',
-            'resourceId': 'c'
-        }
-    ]
     resources = [
         {'id': 'a', 'title': 'Бокс 1'},
         {'id': 'b', 'title': 'Бокс 2'},
@@ -79,7 +54,7 @@ def view_schedule(g_user_flask):
     date_today = '2023-05-03'
     now_iso = datetime.now().isoformat()
 
-    events += get_orders('7810324c8fea4af8bc3c3d6776cfc494')
+    events = get_orders()
     context = {
         'orders': events,
         'boxes': resources,
