@@ -19,34 +19,34 @@ def view_schedule(g_user_flask):
             'title': 'Event 1',
             'start': '2023-05-03T16:00:00',
             'end': '2023-05-03T17:30:00',
-            'resourceId': '4'
+            'resourceId': 'a'
         },
         {
             'title': 'Event 2',
             'start': '2023-05-03T17:30:00',
             'end': '2023-05-03T17:45:00',
-            'resourceId': '6'
+            'resourceId': 'b'
         },
         {
             'title': 'Event 3',
             'start': '2023-05-03T18:15:00',
             'end': '2023-05-03T19:00:00',
-            'resourceId': '7'
+            'resourceId': 'c'
         }
     ]
     resources = [
-        {'id': '1', 'title': 'Бокс 1'},
-        {'id': '2', 'title': 'Бокс 2'},
-        {'id': '3', 'title': 'Бокс 3'},
-        {'id': '4', 'title': 'Бокс 4'},
-        {'id': '5', 'title': 'Бокс 5'},
-        {'id': '6', 'title': 'Бокс 6'},
-        {'id': '7', 'title': 'Бокс 7'},
-        {'id': '8', 'title': 'Бокс 8'},
-        {'id': '9', 'title': 'Бокс 9'},
-        {'id': '10', 'title': 'Бокс 10'},
-        {'id': '11', 'title': 'Бокс 11'},
-        {'id': '12', 'title': 'Бокс 12'},
+        {'id': 'a', 'title': 'Бокс 1'},
+        {'id': 'b', 'title': 'Бокс 2'},
+        {'id': 'c', 'title': 'Бокс 3'},
+        {'id': 'd', 'title': 'Бокс 4'},
+        {'id': 'e', 'title': 'Бокс 5'},
+        {'id': 'f', 'title': 'Бокс 6'},
+        {'id': 'g', 'title': 'Бокс 7'},
+        {'id': 'h', 'title': 'Бокс 8'},
+        {'id': 'i', 'title': 'Бокс 9'},
+        {'id': 'j', 'title': 'Бокс 10'},
+        {'id': 'k', 'title': 'Бокс 11'},
+        {'id': 'l', 'title': 'Бокс 12'},
     ]
     carwash_start_time = '08:00:00'
     carwash_end_time = '23:00:00'
