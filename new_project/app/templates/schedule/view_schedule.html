@@ -84,7 +84,7 @@
     function open_modal_window_order_detail(info) {
         $('#OrderDetail').modal('show');
         $('#OrderDetail .modal-body').html('<p>Это модальное окно отображает информацию о выбранной дате.</p>');
-        info.el.style.borderColor = 'black';
+        // info.el.style.borderColor = 'black';
     }
 
     function send_order() {
@@ -168,10 +168,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-check-circle text-success"></i> <span>Confirm app request</span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                    <h5 class="modal-title"><i class="fas fa-check-circle text-success"></i> <span>Детали заказа</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
                     <p></p>
