@@ -34,7 +34,7 @@
             },
             slotMinTime: {{ context.carwash_start_time | tojson }},
             slotMaxTime: {{ context.carwash_end_time | tojson }},
-            initialDate: {{ context.date_today }},
+            initialDate: {{ context.date_today | safe}},
 
 
             allDaySlot: false,
