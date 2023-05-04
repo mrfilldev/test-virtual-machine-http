@@ -38,7 +38,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
 
 def get_boxes(carwash_obj):
     resources = []
-    for i in range(len(carwash_obj.Boxes)):
+    for i in range(1, len(carwash_obj.Boxes)):
         resources.append(
             {
                 'id': chr(ord('`') + i),
