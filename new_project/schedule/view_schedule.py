@@ -34,7 +34,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'category': '',
             'car_brand': '',
             'car_model': '',
-            'box': '',
+            'date': '',
         })
     print(events_list)
     return events_list
@@ -115,6 +115,9 @@ def create_carwash_order(request, carwash_id):
         'CarWashId': carwash_id,
         'BoxNumber': box,
         'CarNumber': country_region_number,
+        'CarModel': country_region_number,
+        'CarBrand': country_region_number,
+
         'ContractId': contract_id,
         'Sum': sum,
         'Status': Status,
