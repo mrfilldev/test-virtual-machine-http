@@ -85,7 +85,12 @@
 
     function open_modal_window_order_detail(info) {
         $('#event-modal').modal('show');
-        console.log(info.event.extendedProps);
+        console.log(info.event.extendedProps.carNumber);
+        console.log(info.event.extendedProps.resourceId);
+        console.log(info.event.extendedProps.end);
+        console.log(info.event.extendedProps.start);
+        console.log(info.event.extendedProps.category);
+        console.log(info.event.extendedProps.carNumber);
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
 
         $('#event-modal .modal-footer').hide();
