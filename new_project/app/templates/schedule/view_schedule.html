@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -116,84 +121,61 @@
 <br>
 
 
-    <div class="modal fade" id="event-modal" data-bs-backdrop="static"
-         data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title center" id="staticBackdropLabel2">Новая Запись</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Закрыть"></button>
-                </div>
-                <form id="form">
+<div class="modal fade" id="event-modal" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title center" id="staticBackdropLabel2">Новая Запись</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <form id="form">
                 <div class="modal-body">
-
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto"><label>Гос.Номер:</label></div>
-                            <div class="col-auto"><input style="width: 200px" type="text" class="form-control"
-                                                    name="country_region_number"
-                                                    placeholder="А999АА799"></div>
-                        </div>
-
-
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto"><label>Марка:</label></div>
-                            <div class="col-auto"><input style="width: 200px" type="text" class="form-control"
-                                                    name="car_brand"
-                                                    placeholder="Mitsubishi"></div>
-                        </div>
-
-
-                        <div class="row g-3 align-items-center">
-                            <label>Модель:</label>
-                            <input style="width: 200px" type="text" class="form-control" name="car_model"
-                                   placeholder="Lancer">
-                        </div>
-
-
-                        <div class="row">
-
-
-                            <label>Категория:</label>
-                            <input style="width: 200px" type="tel" class="form-control" name="category"
-                                   placeholder="Кат.1">
-                        </div>
-
-
-                        <div class="row">
-
-
-                            <label>Дата:</label>
-                            <input style="width: 200px" value=""
-                                   class="form-control"
-                                   placeholder=""
-                                   type="date" name="date" aria-describedby="addon-wrapping">
-                        </div>
-
-
-
-
-
-                            <label>Бокс:</label>
-                            <input style="width: 200px" type="text" class="form-control"
-                                   name="box"
-                                   placeholder="№">
-
-
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto"><label>Гос.Номер:</label></div>
+                        <div class="col-auto"><input style="width: 200px" type="text" class="form-control"
+                                                     name="country_region_number"
+                                                     placeholder="А999АА799"></div>
                     </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto"><label>Марка:</label></div>
+                        <div class="col-auto"><input style="width: 200px" type="text" class="form-control"
+                                                     name="car_brand"
+                                                     placeholder="Mitsubishi"></div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <label>Модель:</label>
+                        <input style="width: 200px" type="text" class="form-control" name="car_model"
+                               placeholder="Lancer">
+                    </div>
+                    <div class="row">
+                        <label>Категория:</label>
+                        <input style="width: 200px" type="tel" class="form-control" name="category"
+                               placeholder="Кат.1">
+                    </div>
+                    <div class="row">
+                        <label>Дата:</label>
+                        <input style="width: 200px" value=""
+                               class="form-control"
+                               placeholder=""
+                               type="date" name="date" aria-describedby="addon-wrapping">
+                    </div>
+                    <label>Бокс:</label>
+                    <input style="width: 200px" type="text" class="form-control"
+                           name="box"
+                           placeholder="№">
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <button type="submit" class="btn btn-outline-success">Создать</button>
                     </div>
                 </div>
-</form>
-            </div>
-
-
+            </form>
         </div>
     </div>
+</div>
+
 
 {% endblock %}
