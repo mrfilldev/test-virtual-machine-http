@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -204,13 +209,13 @@
                                         Старт:
                                     </td>
                                     <td>
-                                        <div class="row justify-content-start">
 
-                                            <input style="width: 40%" value="" class="form-control"
-                                                   placeholder="00:00"
-                                                   type="time"
-                                                   name="time_end" aria-describedby="addon-wrapping">
-                                        </div>
+
+                                        <input style="width: 40%" value="" class="form-control"
+                                               placeholder="00:00"
+                                               type="time"
+                                               name="time_end" aria-describedby="addon-wrapping">
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -218,12 +223,12 @@
                                         Конец:
                                     </td>
                                     <td>
-                                        <div class="row justify-content-start">
-                                            <input style="width: 40%" value="" class="form-control"
-                                                   placeholder="00:00"
-                                                   type="time"
-                                                   name="time_end" aria-describedby="addon-wrapping">
-                                        </div>
+
+                                        <input style="width: 40%" value="" class="form-control"
+                                               placeholder="00:00"
+                                               type="time"
+                                               name="time_end" aria-describedby="addon-wrapping">
+
                                     </td>
                                 </tr>
                                 </tbody>
