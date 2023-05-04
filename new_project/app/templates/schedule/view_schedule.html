@@ -12,7 +12,12 @@
         render_calendar();
     });
 
-    var model = {{ context.calendar | tojson }};
+    var model = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     function render_calendar() {
         console.log("in func");
@@ -111,6 +116,8 @@
                 success: function (response) {
                     // alert(response.status);
                     $('#event-modal').modal('toggle');
+                    render_calendar();
+
                 }
             });
         });
