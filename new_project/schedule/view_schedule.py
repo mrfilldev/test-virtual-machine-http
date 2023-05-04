@@ -28,7 +28,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         events_list.append({
             'title': 'Заказ',
             #'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%H:%M"))),
-            'start': print(order_obj.DateCreate.replace('Z', '')),
+            'start': print(order_obj.DateCreate.replace('Z', '').replace('.', '')),
             'end': print(order_obj.DateCreate.replace('Z', '')),
             'date': print(order_obj.DateStart),
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
