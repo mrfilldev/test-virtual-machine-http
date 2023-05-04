@@ -11,7 +11,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 
 from flask_login import current_user
 
-from .view_schedule import view_schedule, create_carwash_order, view_schedule_of_certain_carwash
+from .view_schedule import create_carwash_order, view_schedule_of_certain_carwash
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
