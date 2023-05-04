@@ -129,162 +129,92 @@
             <form id="form">
                 <div class="modal-body">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Гос.Номер:</label>
-                            </div>
-                            <div class="col-9"><input style="width: 200px" type="text" class="form-control"
-                                                      name="country_region_number"
-                                                      placeholder="А999АА799">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Марка:</label>
-                            </div>
-                            <div class="col-9"><input style="width: 200px" type="text" class="form-control"
-                                                      name="car_brand"
-                                                      placeholder="Mitsubishi">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Модель:</label>
-                            </div>
-                            <div class="col-9"><input style="width: 200px" type="text" class="form-control"
-                                                      name="car_model"
-                                                      placeholder="Lancer">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Категория:</label>
-                            </div>
-                            <div class="col-9"><input style="width: 200px" type="tel" class="form-control"
-                                                      name="category"
-                                                      placeholder="Кат.1">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3"><label>Бокс:</label></div>
-                            <div class="col-9"><input style="width: 200px" type="text" class="form-control"
-                                                      name="box"
-                                                      placeholder="№">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Дата:</label>
-                            </div>
-                            <div class="col-9">
-                                <input style="width: 200px" value="" class="form-control" placeholder="" type="date"
-                                       name="date" aria-describedby="addon-wrapping">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>C </label>
-                        </div>
-                        <div class="col-4">
-                            <input style="width: 100px" value="" class="form-control" placeholder="00:00" type="time"
-                                   name="time_start" aria-describedby="addon-wrapping">
-                        </div>
+                        <div class="table-responsive">
 
-                        <div class="col-2">
-                            <label>По</label>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">описание</th>
+                                    <th scope="col">поле ввода</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbody_orders" class="table-hover">
+                                <tr>
+                                    <td style="width: 200px">
+                                        Гос.Номер:
+                                    </td>
+                                    <td style="width: 200px">
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="country_region_number"
+                                               placeholder="А999АА799">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Марка:
+                                    </td>
+                                    <td style="width: 200px">
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="car_brand"
+                                               placeholder="Mitsubishi">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Модель:
+                                    </td>
+                                    <td style="width: 200px">
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="car_model"
+                                               placeholder="Lancer">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Категория:
+                                    </td>
+                                    <td style="width: 200px">
+                                        <input style="width: 200px" type="tel" class="form-control"
+                                               name="category"
+                                               placeholder="Кат.1">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Бокс:
+                                    </td>
+                                    <td style="width: 200px">
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="box"
+                                               placeholder="№">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Дата:
+                                    </td>
+                                    <td style="width: 200px">
+                                        <input style="width: 200px" value="" class="form-control" placeholder=""
+                                               type="date"
+                                               name="date" aria-describedby="addon-wrapping">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Время:
+                                    </td>
+                                    <td style="width: 200px">
+                                        <input style="width: 100px" value="" class="form-control" placeholder="00:00"
+                                               type="time"
+                                               name="time_start" aria-describedby="addon-wrapping">
+                                        <input style="width: 100px" value="" class="form-control" placeholder="00:00"
+                                               type="time"
+                                               name="time_end" aria-describedby="addon-wrapping">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-4">
-                            <input style="width: 100px" value="" class="form-control" placeholder="00:00" type="time"
-                                   name="time_end" aria-describedby="addon-wrapping">
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="table-responsive">
-
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th scope="col">описание</th>
-                                <th scope="col">поле ввода</th>
-                            </tr>
-                            </thead>
-                            <tbody id="tbody_orders" class="table-hover">
-                            <tr>
-                                <td style="width: 200px">
-                                    Гос.Номер:
-                                </td>
-                                <td style="width: 200px">
-                                    <input style="width: 200px" type="text" class="form-control"
-                                           name="country_region_number"
-                                           placeholder="А999АА799">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Марка:
-                                </td>
-                                <td style="width: 200px">
-                                    <input style="width: 200px" type="text" class="form-control"
-                                           name="car_brand"
-                                           placeholder="Mitsubishi">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Модель:
-                                </td>
-                                <td style="width: 200px">
-                                    <input style="width: 200px" type="text" class="form-control"
-                                           name="car_model"
-                                           placeholder="Lancer">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Категория:
-                                </td>
-                                <td style="width: 200px">
-                                    <input style="width: 200px" type="tel" class="form-control"
-                                           name="category"
-                                           placeholder="Кат.1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Бокс:
-                                </td>
-                                <td style="width: 200px">
-                                    <input style="width: 200px" type="text" class="form-control"
-                                           name="box"
-                                           placeholder="№">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Дата:
-                                </td>
-                                <td style="width: 200px">
-                                    <input style="width: 200px" value="" class="form-control" placeholder="" type="date"
-                                           name="date" aria-describedby="addon-wrapping">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Время:
-                                </td>
-                                <td style="width: 200px">
-                                    <input style="width: 100px" value="" class="form-control" placeholder="00:00"
-                                           type="time"
-                                           name="time_start" aria-describedby="addon-wrapping">
-                                    <input style="width: 100px" value="" class="form-control" placeholder="00:00"
-                                           type="time"
-                                           name="time_end" aria-describedby="addon-wrapping">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
                 <div class="modal-footer">
