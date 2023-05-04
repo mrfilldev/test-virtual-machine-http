@@ -91,6 +91,8 @@
         console.log(info.event.extendedProps.start);
         console.log(info.event.extendedProps.category);
         console.log(info.event.extendedProps.carNumber);
+        console.log(info.event.extendedProps.car_brand);
+        console.log(info.event.extendedProps.car_model);
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
 
         $('#event-modal .modal-footer').hide();
