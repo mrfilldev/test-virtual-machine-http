@@ -120,6 +120,7 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
 
 
 def create_carwash_order(request, carwash_id):
+
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data, carwash_id)
