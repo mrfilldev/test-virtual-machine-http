@@ -60,13 +60,14 @@ def get_carwash_obj(carwash_id):
 def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
     carwash_obj = get_carwash_obj(carwash_id)
 
+    events = get_orders(carwash_id)
     resources = get_boxes(carwash_obj)
+
     carwash_start_time = '08:00:00'
     carwash_end_time = '23:00:00'
     date_today = datetime.today().strftime('%Y-%m-%d')
     now_iso = datetime.now().isoformat()
 
-    events = get_orders(carwash_id)
     context = {
         'calendar': {
             'orders': events,
