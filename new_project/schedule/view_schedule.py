@@ -161,7 +161,7 @@ def create_carwash_order(request, carwash_id):
 
     print('Writing into DB')
     print(order)
-    # res = Py_mongo_db.col_orders.insert_one(order)
+    database.col_orders.insert_one(order)
 
     # формирование ответа
     response = {'status': 'success'}
