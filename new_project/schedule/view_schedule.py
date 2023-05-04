@@ -1,4 +1,5 @@
 import json
+import uuid
 from datetime import datetime, timedelta, date
 from types import SimpleNamespace
 
@@ -127,6 +128,38 @@ def create_carwash_order(request, carwash_id):
     print(data, carwash_id)
     print('\n################################################################\n')
     # обработка данных
+    order_id = uuid.uuid4().hex
+    carwash_id = carwash_id
+    box = request.form['box']
+    contract_id = 'OWN'
+    sum = 1000.0
+    sum_completed = 1000.0
+    sum_paid_station_completed = 1000.0
+    network_id = carwash_id.network_id
+    Status = 'OrderCreated'
+    date_created = datetime.now().isoformat(),
+    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'], "%Y-%m-%d %H:%M")
+    date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M")
+
+    order = {
+        '_id': order_id,
+        'CarWashId': carwash_id,
+        'BoxNumber': box,
+        'ContractId': contract_id,
+        'Sum': sum,
+        'Status': Status,
+        'DateCreate': date_created,
+        'DateStart': date_start,
+        'DateEnd': date_end,
+        'SumCompleted': sum_completed,
+        'SumPaidStationCompleted': sum_paid_station_completed,
+        'network_id': network_id,
+    }
+
+    print('Writing into DB')
+    print(order)
+    #res = Py_mongo_db.col_orders.insert_one(order)
+
 
     # формирование ответа
     response = {'status': 'success'}

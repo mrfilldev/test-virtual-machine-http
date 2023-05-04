@@ -48,10 +48,22 @@ print(value)
 # extended_date = datetime.now().strftime("%d-%m-%YT%H:%M:%SZ")
 # extended_date = datetime.now().isoformat(timespec='microseconds')
 # print(extended_date)
+#
+# now = datetime.now()
+#
+# # Преобразуем время в формат ISO8601
+# iso_time = now.isoformat()
+#
+# print(iso_time)
 
-now = datetime.now()
 
-# Преобразуем время в формат ISO8601
-iso_time = now.isoformat()
+date_str = '2023-05-04'
+time_start = '17:01'
+time_end = '18:01'
+test = date_str + 'T' + time_start + 'Z'
+d1 = datetime.strptime(test, "%Y-%m-%dT%H:%MZ")
+print(d1)
+print(type(d1))
 
-print(iso_time)
+
+print(d1.isoformat())
