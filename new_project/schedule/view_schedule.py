@@ -118,10 +118,10 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
     return render_template('schedule/view_schedule.html', context=context)
 
 
-def create_carwash_order(request):
+def create_carwash_order(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
-    print(data)
+    print(data, carwash_id)
     print('\n################################################################\n')
     # обработка данных и формирование ответа
     response = {'status': 'success'}

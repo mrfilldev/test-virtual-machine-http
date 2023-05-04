@@ -41,9 +41,9 @@ def schedule_certain_carwash(carwash_id):
     return view_schedule_of_certain_carwash(carwash_id, g)
 
 
-@schedule_bp.route('/create_order_carwash', methods=['POST'])
-def create_order_carwash():
-    return create_carwash_order(request)
+@schedule_bp.route('/create_order_carwash/<string:carwash_id>', methods=['POST'])
+def create_order_carwash(carwash_id):
+    return create_carwash_order(request, carwash_id)
 
 
 @schedule_bp.app_template_filter()
