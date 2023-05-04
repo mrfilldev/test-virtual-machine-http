@@ -93,6 +93,8 @@ def create_carwash_order(request, carwash_id):
     order_id = uuid.uuid4().hex
     carwash_id = carwash_id
     box = request.form['box']
+    country_region_number = request.form['country_region_number']
+
     contract_id = 'OWN'
     sum = 1000.0
     sum_completed = 1000.0
@@ -108,6 +110,7 @@ def create_carwash_order(request, carwash_id):
         '_id': order_id,
         'CarWashId': carwash_id,
         'BoxNumber': box,
+        'CarNumber': country_region_number,
         'ContractId': contract_id,
         'Sum': sum,
         'Status': Status,
