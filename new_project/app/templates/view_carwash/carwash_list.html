@@ -93,8 +93,8 @@
                 <span class="badge bg-warning">{{ boxes_status.Unavailabla }}</span>
             </td>
             <td>
-                <a href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=carwash._id) }}">Ссылка на
-                    расписание заказов</a>
+                <button href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=carwash._id) }}">Ссылка на
+                    расписание заказов</button>
             </td>
         </tr>
         {% endfor %}
