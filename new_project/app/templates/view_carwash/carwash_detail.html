@@ -4,6 +4,10 @@
 <br>
 <div class="row justify-content-center">
     <div class="col-2">
+        <button class="btn btn-secondary"
+                href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+            Перейти к расписанию заказов
+        </button>
     </div>
     <div class="col-8">
         <form method=POST
@@ -96,16 +100,6 @@
                         {{ context['carwash'].Enable }}
                     </td>
                 </tr>
-                <tr>
-                    <td style="width: 200px">
-                        Расписание:
-                    </td>
-                    <td>
-                        <button class="btn btn-secondary" href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
-                            Перейти к расписанию заказов
-                        </button>
-                    </td>
-                </tr>
                 </tbody>
             </table>
             <table class="table table-bordered table-center align-middle">
@@ -153,7 +147,8 @@
             </table>
             <div class="col-6">
                 <button style="width: auto" class="btn btn-outline-danger"
-                   href="{{ url_for('carwash_blueprint.delete_carwash', carwash_id=context['carwash']._id) }}" disabled>
+                        href="{{ url_for('carwash_blueprint.delete_carwash', carwash_id=context['carwash']._id) }}"
+                        disabled>
                     Удалить
                 </button>
             </div>
