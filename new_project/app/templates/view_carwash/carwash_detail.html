@@ -101,7 +101,7 @@
                         Расписание:
                     </td>
                     <td>
-                        <button href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=carwash._id) }}">
+                        <button href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
                             Перейти к расписанию заказов
                         </button>
                     </td>
