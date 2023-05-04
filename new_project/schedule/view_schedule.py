@@ -64,9 +64,9 @@ def view_schedule(g_user_flask):
     date_today = datetime.today().strftime('%Y-%m-%d')
     now_iso = datetime.now().isoformat()
 
-    #events = get_orders('7810324c8fea4af8bc3c3d6776cfc494')
+    # events = get_orders('7810324c8fea4af8bc3c3d6776cfc494')
     context = {
-        #'orders': events,
+        # 'orders': events,
         'boxes': resources,
         'carwash_start_time': carwash_start_time,
         'carwash_end_time': carwash_end_time,
@@ -139,9 +139,10 @@ def create_carwash_order(request, carwash_id):
     sum_paid_station_completed = 1000.0
     network_id = carwash_obj.network_id
     Status = 'OrderCreated'
-    date_created = datetime.now().isoformat(),
-    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'], "%Y-%m-%d %H:%M")
-    date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M")
+    date_created = datetime.now().isoformat()
+    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
+                                   "%Y-%m-%d %H:%M").isoformat()
+    date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M").isoformat()
 
     order = {
         '_id': order_id,
@@ -160,8 +161,7 @@ def create_carwash_order(request, carwash_id):
 
     print('Writing into DB')
     print(order)
-    #res = Py_mongo_db.col_orders.insert_one(order)
-
+    # res = Py_mongo_db.col_orders.insert_one(order)
 
     # формирование ответа
     response = {'status': 'success'}
