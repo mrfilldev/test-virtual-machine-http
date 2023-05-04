@@ -128,6 +128,8 @@ def create_carwash_order(request, carwash_id):
     print(data, carwash_id)
     print('\n################################################################\n')
     # обработка данных
+    carwash_obj = get_carwash_obj(carwash_id)
+
     order_id = uuid.uuid4().hex
     carwash_id = carwash_id
     box = request.form['box']
@@ -135,7 +137,7 @@ def create_carwash_order(request, carwash_id):
     sum = 1000.0
     sum_completed = 1000.0
     sum_paid_station_completed = 1000.0
-    network_id = carwash_id.network_id
+    network_id = carwash_obj.network_id
     Status = 'OrderCreated'
     date_created = datetime.now().isoformat(),
     date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'], "%Y-%m-%d %H:%M")
