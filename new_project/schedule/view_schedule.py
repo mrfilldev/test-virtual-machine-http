@@ -53,7 +53,7 @@ def view_schedule(g_user_flask):
     ]
     carwash_start_time = '08:00:00'
     carwash_end_time = '23:00:00'
-    date_today = '2023-05-03'
+    date_today = datetime.today().strftime('%Y-%m-%d')
     now_iso = datetime.now().isoformat()
 
     events = get_orders('7810324c8fea4af8bc3c3d6776cfc494')
