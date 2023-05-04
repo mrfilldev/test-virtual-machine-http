@@ -30,7 +30,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'start': order_obj.DateCreate.replace('Z', ''),
             'end': order_obj.DateCreate.replace('Z', ''),
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
-            'carNumber': order_obj.ContractId,
+            'carNumber': order_obj.CarNumber,
         })
     print(events_list)
     return events_list
