@@ -97,7 +97,7 @@
             event.preventDefault();
             $.ajax({
                 type: 'POST',
-                url: "{{ url_for('schedule_blueprint.create_order_carwash', context.carwash._id) }}",
+                url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
                 data: $('#form').serialize(),
                 success: function (response) {
                     // alert(response.status);
