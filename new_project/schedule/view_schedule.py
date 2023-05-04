@@ -126,6 +126,8 @@ def create_carwash_order(request, carwash_id):
     data = request.form.to_dict()
     print(data, carwash_id)
     print('\n################################################################\n')
-    # обработка данных и формирование ответа
+    # обработка данных
+
+    # формирование ответа
     response = {'status': 'success'}
     return jsonify(response)
