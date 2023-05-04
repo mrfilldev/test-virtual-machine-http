@@ -61,7 +61,7 @@ print(value)
 # time_start = '17:01'
 # time_end = '18:01'
 # test = date_str + 'T' + time_start + 'Z'
-# d1 = datetime.strptime(test, "%Y-%m-%dT%H:%MZ")
+# d1 = datetime.strptime(test, "%Y-%m-%dT%H:%M")
 # print(d1)
 # print(type(d1))
 #
