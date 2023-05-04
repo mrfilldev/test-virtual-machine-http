@@ -57,13 +57,13 @@ print(value)
 # print(iso_time)
 
 
-# date_str = '2023-05-04'
-# time_start = '17:01'
-# time_end = '18:01'
-# test = date_str + 'T' + time_start + 'Z'
-# d1 = datetime.strptime(test, "%Y-%m-%dT%H:%M")
-# print(d1)
-# print(type(d1))
-#
-#
-# print(d1.isoformat())
+date_str = '2023-05-04'
+time_start = '17:01'
+time_end = '18:01'
+test = date_str + 'T' + time_start
+d1 = datetime.strptime('2023-04-12T14:42:06.368', "%Y-%m-%dT%H:%M:%S.%f")
+print(d1)
+print(type(d1))
+
+
+print(d1.isoformat())
