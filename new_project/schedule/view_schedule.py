@@ -113,7 +113,8 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
         'carwash_start_time': carwash_start_time,
         'carwash_end_time': carwash_end_time,
         'date_today': date_today,
-        'now_iso': now_iso
+        'now_iso': now_iso,
+        'carwash': carwash_id,
     }
     return render_template('schedule/view_schedule.html', context=context)
 
