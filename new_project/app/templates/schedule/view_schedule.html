@@ -116,7 +116,6 @@
 <br>
 
 
-<form id="form">
     <div class="modal fade" id="event-modal" data-bs-backdrop="static"
          data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -128,6 +127,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Закрыть"></button>
                 </div>
+                <form id="form">
                 <div class="modal-body">
 
                         <div class="row g-3 align-items-center">
@@ -139,8 +139,6 @@
 
 
                         <div class="row g-3 align-items-center">
-
-
                             <div class="col-auto"><label>Марка:</label></div>
                             <div class="col-auto"><input style="width: 200px" type="text" class="form-control"
                                                     name="car_brand"
@@ -175,14 +173,14 @@
                         </div>
 
 
-                        <div class="row">
+
 
 
                             <label>Бокс:</label>
                             <input style="width: 200px" type="text" class="form-control"
                                    name="box"
                                    placeholder="№">
-                        </div>
+
 
                     </div>
                 </div>
@@ -191,11 +189,11 @@
                         <button type="submit" class="btn btn-outline-success">Создать</button>
                     </div>
                 </div>
+</form>
             </div>
 
 
         </div>
     </div>
-</form>
 
 {% endblock %}
