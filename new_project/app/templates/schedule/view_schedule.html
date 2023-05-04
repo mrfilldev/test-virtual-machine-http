@@ -94,6 +94,13 @@
         console.log(info.event.extendedProps.car_brand);
         console.log(info.event.extendedProps.car_model);
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
+        $("[name='resourceId']").val(info == null ? '' : info.event.extendedProps.resourceId);
+        $("[name='end']").val(info == null ? '' : info.event.extendedProps.end);
+        $("[name='start']").val(info == null ? '' : info.event.extendedProps.start);
+        $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
+        $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
+        $("[name='car_brand']").val(info == null ? '' : info.event.extendedProps.car_brand);
+        $("[name='car_model']").val(info == null ? '' : info.event.extendedProps.car_model);
 
         $('#event-modal .modal-footer').hide();
         // info.el.style.borderColor = 'black';
