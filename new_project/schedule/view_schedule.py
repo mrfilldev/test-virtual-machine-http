@@ -29,7 +29,9 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'title': 'Заказ',
             #'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%dT%H:%M"))),
             'start': order_obj.DateCreate.replace('Z', ''),
+            'start_value': str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%H:%M")),
             'end': order_obj.DateCreate.replace('Z', ''),
+            'end_value': str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%H:%M")),
             'date': order_obj.DateStart,
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'carNumber': order_obj.CarNumber,
@@ -109,8 +111,7 @@ def create_carwash_order(request, carwash_id):
     network_id = carwash_obj.network_id
     Status = 'OrderCreated'
     date_created = datetime.now().isoformat()
-    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
-                                   "%Y-%m-%d %H:%M").isoformat()
+    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],"%Y-%m-%d %H:%M").isoformat()
     date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M").isoformat()
 
     order = {
