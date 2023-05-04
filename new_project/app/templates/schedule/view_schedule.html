@@ -12,7 +12,7 @@
         render_calendar();
     });
 
-    var model = {{context | tojson}};
+    var model = {{ context.calendar | tojson }};
 
     function render_calendar() {
         console.log("in func");

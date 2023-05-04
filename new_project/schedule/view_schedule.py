@@ -108,19 +108,20 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
 
     events = get_orders(carwash_id)
     context = {
-        'orders': events,
-        'boxes': resources,
-        'carwash_start_time': carwash_start_time,
-        'carwash_end_time': carwash_end_time,
-        'date_today': date_today,
-        'now_iso': now_iso,
+        'calendar': {
+            'orders': events,
+            'boxes': resources,
+            'carwash_start_time': carwash_start_time,
+            'carwash_end_time': carwash_end_time,
+            'date_today': date_today,
+            'now_iso': now_iso,
+        },
         'carwash': carwash_obj,
     }
     return render_template('schedule/view_schedule.html', context=context)
 
 
 def create_carwash_order(request, carwash_id):
-
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data, carwash_id)
