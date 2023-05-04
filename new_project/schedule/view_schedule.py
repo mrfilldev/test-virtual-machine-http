@@ -98,6 +98,8 @@ def create_carwash_order(request, carwash_id):
     carwash_id = carwash_id
     box = request.form['box']
     country_region_number = request.form['country_region_number']
+    car_brand = request.form['car_brand']
+    car_model = request.form['car_model']
 
     contract_id = 'OWN'
     sum = 1000.0
@@ -115,8 +117,8 @@ def create_carwash_order(request, carwash_id):
         'CarWashId': carwash_id,
         'BoxNumber': box,
         'CarNumber': country_region_number,
-        'CarModel': country_region_number,
-        'CarBrand': country_region_number,
+        'CarModel': car_model,
+        'CarBrand': car_brand,
 
         'ContractId': contract_id,
         'Sum': sum,
