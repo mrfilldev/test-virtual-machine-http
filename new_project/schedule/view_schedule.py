@@ -69,18 +69,10 @@ def view_schedule(g_user_flask):
 
 
 def create_carwash(request):
-    print('\n################################################################\n')
-    dict_of_form = request.form.to_dict(flat=False)
-    print(dict_of_form)
-    print('################################################################\n')
-
-    for k, v in dict_of_form.items():
-        print(k, '-> ', v)
-
-    print('\n################################################################\n')
-
+    print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data)
+    print('\n################################################################\n')
     # обработка данных и формирование ответа
     response = {'status': 'success'}
     return jsonify(response)
