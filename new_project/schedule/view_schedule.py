@@ -17,7 +17,7 @@ def datetime_range(start, end, delta):
 
 
 def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
-    orders = database.col_orders.find({})
+    orders = database.col_orders.find({carwash_id})
     events_list = []
     for i in orders:
         data = json.loads(json_util.dumps(i))
@@ -63,9 +63,9 @@ def view_schedule(g_user_flask):
     date_today = datetime.today().strftime('%Y-%m-%d')
     now_iso = datetime.now().isoformat()
 
-    events = get_orders('7810324c8fea4af8bc3c3d6776cfc494')
+    #events = get_orders('7810324c8fea4af8bc3c3d6776cfc494')
     context = {
-        'orders': events,
+        #'orders': events,
         'boxes': resources,
         'carwash_start_time': carwash_start_time,
         'carwash_end_time': carwash_end_time,
