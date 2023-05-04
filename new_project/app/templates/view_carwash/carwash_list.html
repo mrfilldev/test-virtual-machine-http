@@ -49,6 +49,7 @@
             <th scope="col">Мин. шаг суммы</th>
             <th scope="col">Мин. стоимость</th>
             <th scope="col">Боксы</th>
+            <th scope="col">Ссылка на расписание</th>
 
         </tr>
         </thead>
@@ -90,6 +91,10 @@
                 <span class="badge bg-success">{{ boxes_status.Free }}</span>
                 <span class="badge bg-danger">{{ boxes_status.Busy }}</span>
                 <span class="badge bg-warning">{{ boxes_status.Unavailabla }}</span>
+            </td>
+            <td>
+                <a href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=carwash._id) }}">Ссылка на
+                    расписание заказов</a>
             </td>
         </tr>
         {% endfor %}
