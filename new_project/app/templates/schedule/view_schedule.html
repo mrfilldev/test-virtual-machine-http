@@ -110,7 +110,7 @@
                 type: 'POST',
                 url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
                 data: $('#form').serialize(),
-                success: function (response) {
+                success: function () {
                     $('#event-modal').modal('toggle');
                     reload();
                 }
@@ -121,9 +121,9 @@
 
     function reload() {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function () {
-        });
         $('#calendar').empty();
         render_calendar();
+        });
     }
 
 </script>
