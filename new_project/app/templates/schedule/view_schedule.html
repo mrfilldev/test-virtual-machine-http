@@ -88,7 +88,7 @@
     function open_modal_window_order_detail(info) {
         $('#event-modal').modal('show');
 
-        alert(info.event.extendedProps.category, info.event.extendedProps.car_brand, info.event.extendedProps.car_model);
+        alert(info.event.extendedProps.date, info.event.extendedProps.start, info.event.extendedProps.end);
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
         $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
