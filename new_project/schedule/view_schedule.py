@@ -27,17 +27,21 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         print('order_obj:', order_obj)
         events_list.append({
             'title': order_obj.CarNumber,
-            #'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%dT%H:%M"))),
+            # 'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%dT%H:%M"))),
             'start': order_obj.DateStart.replace('Z', ''),
             'end': order_obj.DateEnd.replace('Z', ''),
             'date': order_obj.DateStart,
-
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'box': order_obj.BoxNumber,
             'carNumber': order_obj.CarNumber,
             'category': 'Кат. - ',
             'car_brand': order_obj.CarBrand,
             'car_model': order_obj.CarModel,
+        })
+        print({
+            'start': order_obj.DateStart.replace('Z', ''),
+            'end': order_obj.DateEnd.replace('Z', ''),
+            'date': order_obj.DateStart,
         })
     print(events_list)
     return events_list
@@ -82,13 +86,13 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     request_xhr_key = request.headers.get('X-Requested-With')
     if request_xhr_key == 'XMLHttpRequest':
         context = {
-                'orders': events,
-                'boxes': resources,
-                'carwash_start_time': carwash_start_time,
-                'carwash_end_time': carwash_end_time,
-                'date_today': date_today,
-                'now_iso': now_iso,
-                'scrollToTime': now_format
+            'orders': events,
+            'boxes': resources,
+            'carwash_start_time': carwash_start_time,
+            'carwash_end_time': carwash_end_time,
+            'date_today': date_today,
+            'now_iso': now_iso,
+            'scrollToTime': now_format
         }
         return context
 
@@ -129,7 +133,8 @@ def create_carwash_order(request, carwash_id):
     network_id = carwash_obj.network_id
     Status = 'OrderCreated'
     date_created = datetime.now().isoformat()
-    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],"%Y-%m-%d %H:%M").isoformat()
+    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
+                                   "%Y-%m-%d %H:%M").isoformat()
     date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M").isoformat()
 
     order = {
