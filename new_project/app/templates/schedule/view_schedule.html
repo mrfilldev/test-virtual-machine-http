@@ -12,9 +12,9 @@
         render_calendar();
     });
 
-    var model = {{context.calendar | tojson}};
 
     function render_calendar() {
+        var model = {{context.calendar | tojson}};
         console.log("in func");
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -111,6 +111,7 @@
                 url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
                 data: $('#form').serialize(),
                 success: function (response) {
+                    $('#event-modal').modal('toggle');
                     reload();
                 }
             });
@@ -121,7 +122,6 @@
     function reload() {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function () {
         });
-        $('#event-modal').modal('toggle');
         render_calendar();
     }
 
