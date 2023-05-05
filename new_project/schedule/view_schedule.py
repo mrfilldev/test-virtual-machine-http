@@ -27,15 +27,18 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         print('order_obj:', order_obj)
         events_list.append({
             'title': order_obj.CarNumber,
-            # 'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%dT%H:%M"))),
+            # 'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''),
+            # "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%dT%H:%M"))),
             'start': order_obj.DateStart.replace('Z', ''),
             'end': order_obj.DateEnd.replace('Z', ''),
             'date': order_obj.DateCreate,
 
-            'start_format': '' if order_obj.DateStart == '' else datetime.strptime(order_obj.DateStart, '%m/%d/%y %H:%M:%SZ').strftime('%H:%M'),
-            'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(order_obj.DateEnd, '%m/%d/%y %H:%M:%SZ').strftime('%H:%M'),
-            'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(order_obj.DateCreate, '%m/%d/%y %H:%M:%SZ').strftime('%H:%M'),
-
+            'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
+                order_obj.DateStart.replace('Z', ''),"%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
+            'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
+                order_obj.DateEnd.replace('Z', ''),"%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
+            'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
+                order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
 
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'box': order_obj.BoxNumber,
