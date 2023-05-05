@@ -111,10 +111,7 @@
                 url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
                 data: $('#form').serialize(),
                 success: function (response) {
-                    // alert(response.status);
-
                     reload();
-
                 }
             });
         });
@@ -123,6 +120,8 @@
 
     function reload() {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function () {
+            render_calendar();
+
             $('#event-modal').modal('toggle');
         });
     }
