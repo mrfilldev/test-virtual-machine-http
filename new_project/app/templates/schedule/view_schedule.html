@@ -5,16 +5,16 @@
 
 
 <script>
-    var model = {{context.calendar | tojson}};
+    var context_calendar = {{context.calendar | tojson}};
 
     $(document).ready(function () {
         // form_submit;
         send_order();
-        render_calendar();
+        render_calendar(context_calendar);
         // reload();
     });
 
-    function render_calendar() {
+    function render_calendar(model) {
         console.log("in func");
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -122,8 +122,7 @@
     function reload() {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
             $('#calendar').empty();
-            model = data
-            render_calendar();
+            render_calendar(data);
         });
     }
 
