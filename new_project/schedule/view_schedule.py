@@ -33,12 +33,12 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'end': order_obj.DateEnd.replace('Z', ''),
             'date': order_obj.DateCreate,
 
-            'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
-                (order_obj.DateStart.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
-            'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
-                (order_obj.DateEnd.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
-            'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
-                (order_obj.DateCreate.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+            # 'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
+            #     (order_obj.DateStart.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+            # 'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
+            #     (order_obj.DateEnd.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+            # 'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
+            #     (order_obj.DateCreate.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
 
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'box': order_obj.BoxNumber,
@@ -47,11 +47,11 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'car_brand': order_obj.CarBrand,
             'car_model': order_obj.CarModel,
         })
-        print({
-            'start': order_obj.DateStart.replace('Z', ''),
-            'end': order_obj.DateEnd.replace('Z', ''),
-            'date': order_obj.DateStart,
-        })
+        print('start', order_obj.DateStart)
+        print('end', order_obj.DateEnd)
+        print('date', order_obj.DateCreate)
+
+
     print(events_list)
     return events_list
 
