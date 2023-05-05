@@ -32,6 +32,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'end': order_obj.DateEnd.replace('Z', ''),
             'date': order_obj.DateStart,
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
+            'box': order_obj.BoxNumber,
             'carNumber': order_obj.CarNumber,
             'category': 'Кат. - ',
             'car_brand': order_obj.CarBrand,

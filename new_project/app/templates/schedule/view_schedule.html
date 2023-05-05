@@ -91,7 +91,7 @@
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
         $("[name='end']").val(info == null ? '' : info.event.extendedProps.end);
         $("[name='start']").val(info == null ? '' : info.event.extendedProps.start);
-        $("[name='box']").val(info == null ? '' : info.event.extendedProps.resourceId);
+        $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
         $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
         $("[name='car_brand']").val(info == null ? '' : info.event.extendedProps.car_brand);
         $("[name='car_model']").val(info == null ? '' : info.event.extendedProps.car_model);
@@ -123,7 +123,7 @@
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
             $('#calendar').empty();
             render_calendar(data);
-            alert(data)
+            alert(data);
         });
     }
 
