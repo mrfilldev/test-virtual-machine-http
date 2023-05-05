@@ -80,6 +80,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     request_xhr_key = request.headers.get('X-Requested-With')
     if request_xhr_key == 'XMLHttpRequest':
         context = {
+            'calendar': {
                 'orders': events,
                 'boxes': resources,
                 'carwash_start_time': carwash_start_time,
@@ -87,8 +88,9 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
                 'date_today': date_today,
                 'now_iso': now_iso,
                 'scrollToTime': now_format
+            }
         }
-        return json.dumps(context)
+        return context
 
     context = {
         'calendar': {
