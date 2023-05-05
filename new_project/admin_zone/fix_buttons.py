@@ -16,7 +16,7 @@ def fix_network_id_in_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj: ', order_obj)
         database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-            "DateStart": '',
+            "DateEnd": '',
 
         }})
 
