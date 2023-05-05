@@ -81,6 +81,7 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
             'carwash_end_time': carwash_end_time,
             'date_today': date_today,
             'now_iso': now_iso,
+            'scrollToTime': now_iso
         },
         'carwash': carwash_obj,
     }

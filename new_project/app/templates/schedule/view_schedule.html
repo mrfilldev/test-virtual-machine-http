@@ -45,6 +45,7 @@
             nowIndicator: true,
             now: model.now_iso,
 
+
             slotLabelFormat: {
                 hour: 'numeric',
                 minute: '2-digit',
@@ -76,6 +77,7 @@
 
         });
         calendar.render();
+        calendar.scrollToTime(model.scrollToTime);
     }
 
     function open_modal_window_create_order(info) {
