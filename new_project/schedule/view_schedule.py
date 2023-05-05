@@ -91,7 +91,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
             },
             'carwash': carwash_obj,
         }
-        return context
+        return json.dumps(context)
 
     context = {
         'calendar': {
