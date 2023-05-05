@@ -110,13 +110,20 @@
                 data: $('#form').serialize(),
                 success: function (response) {
                     // alert(response.status);
-                    $('#event-modal').modal('toggle');
-                    render_calendar();
+
+                    reload();
+
                 }
             });
         });
     }
 
+
+    function reload() {
+        $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
+            $('#event-modal').modal('toggle');
+        });
+    }
 
 </script>
 <br>
