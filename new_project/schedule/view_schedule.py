@@ -38,7 +38,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
                 (order_obj.DateEnd.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
             'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
-                (order_obj.DateCreate.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+                (order_obj.DateCreate.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M:%S").strftime('%Y-%m-%d'),
 
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'box': order_obj.BoxNumber,
