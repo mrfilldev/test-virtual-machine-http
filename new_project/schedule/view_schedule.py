@@ -89,7 +89,6 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
                 'now_iso': now_iso,
                 'scrollToTime': now_format
             },
-            'carwash': carwash_obj,
         }
         return json.dumps(context)
 
