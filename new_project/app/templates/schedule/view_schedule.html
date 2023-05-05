@@ -88,9 +88,9 @@
     function open_modal_window_order_detail(info) {
         $('#event-modal').modal('show');
 
-        alert(info.event.extendedProps.date);
-        alert(info.event.extendedProps.start);
-        alert(info.event.extendedProps.end);
+        alert(info.event.extendedProps.date_format);
+        alert(info.event.extendedProps.start_format);
+        alert(info.event.extendedProps.end_format);
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
         $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
