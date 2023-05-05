@@ -105,7 +105,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
         },
         'carwash': carwash_obj,
     }
-    return render_template('schedule/calendar.html', context=context)
+    return render_template('schedule/view_schedule.html', context=context)
 
 
 def create_carwash_order(request, carwash_id):
