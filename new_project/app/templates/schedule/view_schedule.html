@@ -88,14 +88,15 @@
     function open_modal_window_order_detail(info) {
         $('#event-modal').modal('show');
 
+        alert(info.event.extendedProps.category, info.event.extendedProps.car_brand, info.event.extendedProps.car_model);
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
-        $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start);
-        $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end);
-        $("[name='date']").val(info == null ? '' : info.event.extendedProps.date);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
         $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
         $("[name='car_brand']").val(info == null ? '' : info.event.extendedProps.car_brand);
         $("[name='car_model']").val(info == null ? '' : info.event.extendedProps.car_model);
+        $("[name='date']").val(info == null ? '' : info.event.extendedProps.date);
+        $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start);
+        $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end);
 
         $('#event-modal .modal-footer').hide();
         // info.el.style.borderColor = 'black';
