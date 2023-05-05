@@ -26,7 +26,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj:', order_obj)
         events_list.append({
-            'title': 'Заказ',
+            'title': order_obj.CarNumber,
             #'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%dT%H:%M"))),
             'start': order_obj.DateStart.replace('Z', ''),
             'end': order_obj.DateEnd.replace('Z', ''),
