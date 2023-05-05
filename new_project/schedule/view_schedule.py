@@ -71,10 +71,10 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
     carwash_start_time = '08:00:00'
     carwash_end_time = '23:00:00'
     date_today = datetime.today().strftime('%Y-%m-%d')
-    now_time = datetime.now()
+
     now_iso = datetime.now().isoformat()
 
-    now_format = datetime.now().strptime(now_time, '%H:%M:%S') - timedelta(hours=1.5)
+    now_format = (datetime.now() - timedelta(hours=1.5)).strftime('%H:%M:%S')
     print('now_format: ', now_format)
 
     context = {
