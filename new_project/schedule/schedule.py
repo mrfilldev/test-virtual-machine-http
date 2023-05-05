@@ -38,7 +38,7 @@ def load_user():
 
 @schedule_bp.route('/schedule_certain_carwash/<string:carwash_id>', methods=['GET'])
 def schedule_certain_carwash(carwash_id):
-    return view_schedule_of_certain_carwash(carwash_id, g)
+    return view_schedule_of_certain_carwash(request, carwash_id, g)
 
 
 @schedule_bp.route('/create_order_carwash/<string:carwash_id>', methods=['POST'])

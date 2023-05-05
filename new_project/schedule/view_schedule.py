@@ -62,7 +62,7 @@ def get_carwash_obj(carwash_id):
     return carwash_obj
 
 
-def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
+def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     carwash_obj = get_carwash_obj(carwash_id)
 
     events = get_orders(carwash_id)
@@ -77,6 +77,22 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
     now_format = (datetime.now() - timedelta(hours=1.5)).strftime('%H:%M:%S')
     print('now_format: ', now_format)
 
+    request_xhr_key = request.headers.get('X-Requested-With')
+    if request_xhr_key == 'XMLHttpRequest':
+        context = {
+            'calendar': {
+                'orders': events,
+                'boxes': resources,
+                'carwash_start_time': carwash_start_time,
+                'carwash_end_time': carwash_end_time,
+                'date_today': date_today,
+                'now_iso': now_iso,
+                'scrollToTime': now_format
+            },
+            'carwash': carwash_obj,
+        }
+        return render_template('orders/orders_table.html', context=context)
+
     context = {
         'calendar': {
             'orders': events,
@@ -89,7 +105,7 @@ def view_schedule_of_certain_carwash(carwash_id, g_user_flask):
         },
         'carwash': carwash_obj,
     }
-    return render_template('schedule/view_schedule.html', context=context)
+    return render_template('schedule/calendar.html', context=context)
 
 
 def create_carwash_order(request, carwash_id):
