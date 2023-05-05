@@ -5,18 +5,13 @@
 
 
 <script>
-    var model = {
-    {
-        context.calendar | tojson
-    }
-    }
-    ;
+    var model = {{context.calendar | tojson}};
 
     $(document).ready(function () {
         // form_submit;
         send_order();
-        // render_calendar();
-        reload();
+        render_calendar();
+        // reload();
     });
 
     function render_calendar() {
