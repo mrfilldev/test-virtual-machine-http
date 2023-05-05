@@ -34,11 +34,11 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'date': order_obj.DateCreate,
 
             'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
-                order_obj.DateStart.replace('Z', '') + '.00', "%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
+                order_obj.DateStart.replace('Z', '') + '.000', "%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
             'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
-                order_obj.DateEnd.replace('Z', '') + '.00', "%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
+                order_obj.DateEnd.replace('Z', '') + '.000', "%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
             'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
-                order_obj.DateCreate.replace('Z', '') + '.00', "%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
+                order_obj.DateCreate.replace('Z', '') + '.000', "%Y-%m-%dT%H:%M:%S.%f").strftime('%H:%M'),
 
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'box': order_obj.BoxNumber,
