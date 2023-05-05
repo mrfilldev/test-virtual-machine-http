@@ -120,10 +120,9 @@
 
     function reload() {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function () {
-            render_calendar();
-
-            $('#event-modal').modal('toggle');
         });
+        render_calendar();
+        $('#event-modal').modal('toggle');
     }
 
 </script>
