@@ -122,6 +122,7 @@
     function reload() {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function () {
         });
+        $('#calendar').empty();
         render_calendar();
     }
 
