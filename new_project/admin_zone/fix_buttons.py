@@ -15,10 +15,7 @@ def fix_network_id_in_orders():
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj: ', order_obj)
-        database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-            "DateEnd": '',
-
-        }})
+        database.col_orders.delete_one({'_id': '66b19dc4de074320b72da08e1e25cf15'})
 
         # if hasattr(order_obj, 'CarWashId'):
         #     current_carwash = database.col_carwashes.find_one({'_id': order_obj.CarWashId})
