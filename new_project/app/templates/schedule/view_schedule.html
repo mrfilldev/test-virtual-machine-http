@@ -90,7 +90,6 @@
 
     function open_modal_window_order_detail(info) {
         $('#event-modal').modal('show');
-        alert($('#form').serialize())
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
         $("[name='order_id']").val(info == null ? '' : info.event.extendedProps.order_id);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
@@ -108,7 +107,7 @@
 
     function reload() {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
-            $('#calendar').empty();
+                $('#calendar').empty();
             render_calendar(data);
         });
     }
@@ -147,11 +146,10 @@
     function edit_order() {
         $('#edit').click(function (event) {
             event.preventDefault();
-            alert($('#form').serialize())
-            console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
+            console.log("{{ url_for('schedule_blueprint.edit_order_carwash') }}");
             $.ajax({
                 type: 'POST',
-                url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
+                url: "{{ url_for('schedule_blueprint.edit_order_carwash') }}",
                 data: $('#form').serialize(),
                 success: function () {
                     $('#event-modal').modal('toggle');

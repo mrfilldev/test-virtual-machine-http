@@ -45,7 +45,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'box': order_obj.BoxNumber,
             'carNumber': order_obj.CarNumber,
-            'category': 'Кат. - ',
+            'category': 'Кат. - ' if '' or None else order_obj.Category,
             'car_brand': order_obj.CarBrand,
             'car_model': order_obj.CarModel,
         })
@@ -131,16 +131,17 @@ def create_carwash_order(request, carwash_id):
 
     order_id = uuid.uuid4().hex
     carwash_id = carwash_id
+    network_id = carwash_obj.network_id
     box = request.form['box']
     country_region_number = request.form['country_region_number']
     car_brand = request.form['car_brand']
     car_model = request.form['car_model']
+    category = request.form['category']
 
     contract_id = 'OWN'
     sum = 1000.0
     sum_completed = 1000.0
     sum_paid_station_completed = 1000.0
-    network_id = carwash_obj.network_id
     Status = 'OrderCreated'
     date_created = datetime.now().isoformat()
     date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
@@ -154,7 +155,7 @@ def create_carwash_order(request, carwash_id):
         'CarNumber': country_region_number,
         'CarModel': car_model,
         'CarBrand': car_brand,
-
+        'Category': category,
         'ContractId': contract_id,
         'Sum': sum,
         'Status': Status,
@@ -181,12 +182,25 @@ def edit_carwash_order(request):
     print(data)
     print('\n################################################################\n')
 
-    old_order = {'_id': order_id}
-    print('old_order: ', order_id)
+    new_order = request.form['order_id']
+
+    old_order = {'_id': new_order}
+    print('old_order: ', new_order)
     set_fields = {'$set': {
+        'BoxNumber': request.form['box'],
+        'CarNumber': request.form['country_region_number'],
+        'CarModel': request.form['car_model'],
+        'CarBrand': request.form['car_brand'],
+        'Category': request.form['category'],
+        'ContractId': 'OWN',
+        'DateStart': datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
+                                       "%Y-%m-%d %H:%M").isoformat(),
+        'DateEnd': datetime.strptime(request.form['date'] + ' ' + request.form['time_end'],
+                                     "%Y-%m-%d %H:%M").isoformat(),
 
     }}
-    #new_order = database.col_carwashes.update_one(old_order, set_fields)
+    # new_order = database.col_carwashes.update_one(old_order, set_fields)
+    print(" #####  EDITING  #####")
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_order)
 

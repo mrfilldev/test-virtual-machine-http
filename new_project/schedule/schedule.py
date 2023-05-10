@@ -46,6 +46,11 @@ def create_order_carwash(carwash_id):
     return create_carwash_order(request, carwash_id)
 
 
+@schedule_bp.route('/edit_order_carwash/<string:carwash_id>', methods=['POST'])
+def edit_order_carwash(carwash_id):
+    return edit_carwash_order(request, carwash_id)
+
+
 @schedule_bp.app_template_filter()
 def format_datetime_hour_minute(value):
     if isinstance(value, date):
