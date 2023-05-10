@@ -182,10 +182,8 @@ def edit_carwash_order(request, carwash_id):
     print(data, carwash_id)
     print('\n################################################################\n')
 
-    new_order = request.form['order_id']
-
-    old_order = {'_id': new_order}
-    print('old_order: ', new_order)
+    id_order = {'_id': request.form['order_id']}
+    print('id_order: ', request.form['order_id'])
     set_fields = {'$set': {
         'BoxNumber': request.form['box'],
         'CarNumber': request.form['country_region_number'],
@@ -197,9 +195,8 @@ def edit_carwash_order(request, carwash_id):
                                        "%Y-%m-%d %H:%M").isoformat(),
         'DateEnd': datetime.strptime(request.form['date'] + ' ' + request.form['time_end'],
                                      "%Y-%m-%d %H:%M").isoformat(),
-
     }}
-    new_order = database.col_carwashes.update_one(old_order, set_fields)
+    new_order = database.col_orders.update_one(id_order, set_fields)
     print(" #####  EDITING  #####")
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_order)
