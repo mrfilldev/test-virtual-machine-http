@@ -247,7 +247,7 @@
                                         <select name="box" style="width: 200px" class="form-select" required>
                                         <option disabled="disabled">(не указано)</option>
 
-                                        {% for i in context['box'] %}
+                                        {% for i in range(context['box']) %}
                                         <option value="{{ 1 }}">{{ i }}</option>
                                         {% endfor %}
                                         </select>
