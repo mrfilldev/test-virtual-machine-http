@@ -230,9 +230,13 @@
                                         Категория:
                                     </td>
                                     <td>
-                                        <input style="width: 200px" type="tel" class="form-control"
-                                               name="category"
-                                               placeholder="Кат.1" required>
+                                        <select name="category" style="width: 200px" class="form-select" required>
+                                        <option disabled="disabled">(не указано)</option>
+
+                                        {% for i in context['category'] %}
+                                        <option value="{{i.name}}">{{ i.value }}</option>
+                                        {% endfor %}
+                                    </select>
                                     </td>
                                 </tr>
                                 <tr>

@@ -51,6 +51,14 @@ class StatusOrder(enum.IntEnum):
             return category
 
 
+class Catergory(enum.Enum):
+    Compact = 'Кат. 1'
+    MiddleSize = 'Кат. 2'
+    Crossover = 'Кат. 3'
+    OffRoad = 'Кат. 4'
+    MicroBus = 'Кат. 5'
+
+
 class CategoryAuto(enum.IntEnum):
     Compact = 10
     MiddleSize = 20
