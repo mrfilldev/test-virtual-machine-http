@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         // form_submit;
@@ -114,7 +119,9 @@
     function send_order() {
         $('#form').submit(function (event) {
             event.preventDefault();
-            alert(event.target.id)
+            var formData = $('#' + event.currentTarget.id).serialize();
+
+            alert(event.target.name)
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
             $.ajax({
                 type: 'POST',
@@ -251,8 +258,11 @@
                 </div>
                 <div class="modal-footer">
                     <div class="row">
-                        <button id="create" name="create_button" type="submit" class="btn btn-outline-success">Создать</button>
-                        <button id="edit" name="edit_button" type="submit" class="btn btn-outline-warning">Редактировать</button>
+                        <button id="create" name="create_button" type="submit" class="btn btn-outline-success">Создать
+                        </button>
+                        <button id="edit" name="edit_button" type="submit" class="btn btn-outline-warning">
+                            Редактировать
+                        </button>
                     </div>
                 </div>
             </form>
