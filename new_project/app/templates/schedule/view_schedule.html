@@ -10,6 +10,7 @@
     $(document).ready(function () {
         // form_submit;
         send_order();
+        edit_order();
         //check_button_clicked()
         render_calendar(context_calendar);
         // reload();
@@ -139,6 +140,12 @@
                     reload();
                 }
             });
+        });
+    }
+    function edit_order() {
+        $('#edit').click(function (event) {
+            event.preventDefault();
+            alert('EDIT')
         });
     }
 
