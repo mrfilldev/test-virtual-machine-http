@@ -41,7 +41,7 @@
 
             allDaySlot: false,
             slotDuration: '00:15:00', // устанавливаем интервал в 15 минут
-
+            scrollTime: model.scrollToTime,
             nowIndicator: true,
             now: model.now_iso,
 
@@ -77,8 +77,7 @@
 
         });
         calendar.render();
-        calendar.scrollToTime(model.scrollToTime);
-        calendar.scrollToTime(model.scrollToTime);
+
     }
 
     function open_modal_window_create_order(info) {
