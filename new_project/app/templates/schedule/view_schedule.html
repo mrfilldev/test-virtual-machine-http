@@ -78,6 +78,7 @@
         });
         calendar.render();
         calendar.scrollToTime(model.scrollToTime);
+        calendar.scrollToTime(model.scrollToTime);
     }
 
     function open_modal_window_create_order(info) {
@@ -123,7 +124,6 @@
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
             $('#calendar').empty();
             render_calendar(data);
-            alert(data);
         });
     }
 
