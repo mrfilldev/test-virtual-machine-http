@@ -45,7 +45,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
             'box': order_obj.BoxNumber,
             'carNumber': order_obj.CarNumber,
-            'category': 'Кат. - ' if '' or None else order_obj.Category,
+            'category': 'Кат. - ' if '' else order_obj.Category,
             'car_brand': order_obj.CarBrand,
             'car_model': order_obj.CarModel,
         })
