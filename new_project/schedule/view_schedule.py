@@ -67,6 +67,8 @@ def get_boxes(carwash_obj):
             }
         )
     return resources
+def get_amount_boxes(carwash_obj):
+   return len(carwash_obj.Boxes)
 
 
 def get_carwash_obj(carwash_id):
@@ -118,6 +120,8 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
         },
         'carwash': carwash_obj,
         'category': Catergory,
+        'box': get_amount_boxes(carwash_obj),
+
     }
     return render_template('schedule/view_schedule.html', context=context)
 
