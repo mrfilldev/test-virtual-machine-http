@@ -176,10 +176,10 @@ def create_carwash_order(request, carwash_id):
     return jsonify(response)
 
 
-def edit_carwash_order(request):
+def edit_carwash_order(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
-    print(data)
+    print(data, carwash_id)
     print('\n################################################################\n')
 
     new_order = request.form['order_id']

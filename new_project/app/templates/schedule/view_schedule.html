@@ -146,10 +146,10 @@
     function edit_order() {
         $('#edit').click(function (event) {
             event.preventDefault();
-            console.log("{{ url_for('schedule_blueprint.edit_order_carwash') }}");
+            console.log("{{ url_for('schedule_blueprint.edit_order_carwash', carwash_id=context.carwash._id) }}");
             $.ajax({
                 type: 'POST',
-                url: "{{ url_for('schedule_blueprint.edit_order_carwash') }}",
+                url: "{{ url_for('schedule_blueprint.edit_order_carwash', carwash_id=context.carwash._id) }}",
                 data: $('#form').serialize(),
                 success: function () {
                     $('#event-modal').modal('toggle');
