@@ -114,7 +114,7 @@
     function send_order() {
         $('#form').submit(function (event) {
             event.preventDefault();
-            alert(event.toString())
+            alert(event.target.id)
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
             $.ajax({
                 type: 'POST',
