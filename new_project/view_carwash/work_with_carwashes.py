@@ -93,7 +93,7 @@ def list_carwashes(g):
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         carwashes_list.append(carwash_obj)
-        print(carwash_obj)
+
     print(carwashes_list)
 
     enum_type_list = list(Types)
