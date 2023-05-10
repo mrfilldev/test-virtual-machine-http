@@ -111,21 +111,21 @@
         });
     }
 
-    function send_order() {
-        $('#form').submit(function (event) {
-            event.preventDefault();
-            console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-            $.ajax({
-                type: 'POST',
-                url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-                data: $('#form').serialize(),
-                success: function () {
-                    $('#event-modal').modal('toggle');
-                    reload();
-                }
-            });
-        });
-    }
+    // function send_order() {
+    //     $('#form').submit(function (event) {
+    //         event.preventDefault();
+    //         console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
+    //             data: $('#form').serialize(),
+    //             success: function () {
+    //                 $('#event-modal').modal('toggle');
+    //                 reload();
+    //             }
+    //         });
+    //     });
+    // }
 
     function check_button_clicked() {
         $('#form').submit(function () {
