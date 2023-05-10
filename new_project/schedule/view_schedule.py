@@ -199,7 +199,7 @@ def edit_carwash_order(request, carwash_id):
                                      "%Y-%m-%d %H:%M").isoformat(),
 
     }}
-    # new_order = database.col_carwashes.update_one(old_order, set_fields)
+    new_order = database.col_carwashes.update_one(old_order, set_fields)
     print(" #####  EDITING  #####")
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_order)
