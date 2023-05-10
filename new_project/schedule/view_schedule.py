@@ -26,9 +26,11 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj:', order_obj)
         events_list.append({
+
             'title': order_obj.CarNumber,
-            # 'start': print(str(datetime.strptime(order_obj.DateCreate.replace('Z', ''),
-            # "%Y-%m-%dT%H:%M:%S.%f").strftime("%Y-%m-%dT%H:%M"))),
+
+            'order_id': order_obj._id,
+
             'start': order_obj.DateStart.replace('Z', ''),
             'end': order_obj.DateEnd.replace('Z', ''),
             'date': order_obj.DateCreate,
@@ -50,7 +52,6 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         print('start', order_obj.DateStart)
         print('end', order_obj.DateEnd)
         print('date', order_obj.DateCreate)
-
 
     print(events_list)
     return events_list
@@ -170,5 +171,24 @@ def create_carwash_order(request, carwash_id):
     database.col_orders.insert_one(order)
 
     # формирование ответа
+    response = {'status': 'success'}
+    return jsonify(response)
+
+
+def edit_carwash_order(request):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print(data)
+    print('\n################################################################\n')
+
+    old_order = {'_id': order_id}
+    print('old_order: ', order_id)
+    set_fields = {'$set': {
+
+    }}
+    #new_order = database.col_carwashes.update_one(old_order, set_fields)
+    print('UPDATE FIELDS: ', set_fields)
+    print('UPDATE DATA: ', new_order)
+
     response = {'status': 'success'}
     return jsonify(response)

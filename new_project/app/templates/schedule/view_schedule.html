@@ -92,6 +92,7 @@
         $('#event-modal').modal('show');
 
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
+        $("[name='order_id']").val(info == null ? '' : info.event.extendedProps.order_id);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
         $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
         $("[name='car_brand']").val(info == null ? '' : info.event.extendedProps.car_brand);
@@ -145,7 +146,7 @@
     function edit_order() {
         $('#edit').click(function (event) {
             event.preventDefault();
-            alert('EDIT')
+            alert($('#form').serialize())
         });
     }
 
@@ -182,7 +183,7 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="table-responsive">
-
+                            <input type="hidden" name="order_id">
                             <table class="table table-hover">
                                 <tbody id="tbody_orders" class="table-hover">
                                 <tr>
