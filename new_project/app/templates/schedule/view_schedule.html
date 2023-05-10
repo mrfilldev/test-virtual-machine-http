@@ -9,7 +9,8 @@
 
     $(document).ready(function () {
         // form_submit;
-        send_order();
+        //send_order();
+        check_button_clicked()
         render_calendar(context_calendar);
         // reload();
     });
@@ -99,9 +100,16 @@
         $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
 
         $('#event-modal .modal-footer #create').hide();
+        $('#event-modal .modal-footer #edit').show();
         // info.el.style.borderColor = 'black';
     }
 
+    function reload() {
+        $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
+            $('#calendar').empty();
+            render_calendar(data);
+        });
+    }
 
     function send_order() {
         $('#form').submit(function (event) {
@@ -119,11 +127,15 @@
         });
     }
 
-
-    function reload() {
-        $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
-            $('#calendar').empty();
-            render_calendar(data);
+    function check_button_clicked() {
+        $('#form').submit(function (event) {
+            if (isset($_POST['edit_button'])) {
+                alert('edit')
+            } else if (isset($_POST['create_button'])) {
+                alert('create')
+            } else {
+                alert('error')
+            }
         });
     }
 
@@ -133,11 +145,11 @@
 
 <legend>
     <div class="container">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col text-end">Мойка: {{ context.carwash.Name }}</div>
-    </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col text-end">Мойка: {{ context.carwash.Name }}</div>
+        </div>
     </div>
 </legend>
 <div class="container">
@@ -249,8 +261,8 @@
                 </div>
                 <div class="modal-footer">
                     <div class="row">
-                        <button id="create" type="submit" class="btn btn-outline-success">Создать</button>
-                        <button id="edit" type="submit" class="btn btn-outline-warning">Редактировать</button>
+                        <button id="create" name="create_button" type="submit" class="btn btn-outline-success">Создать</button>
+                        <button id="edit" name="edit_button" type="submit" class="btn btn-outline-warning">Редактировать</button>
                     </div>
                 </div>
             </form>
