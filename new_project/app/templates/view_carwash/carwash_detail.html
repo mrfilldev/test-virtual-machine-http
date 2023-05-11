@@ -8,8 +8,8 @@
            href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
             Расписание заказов
         </a>
-        <a class="btn btn-outline-secondary"
-           href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}" aria-disabled="true">
+        <a class="btn btn-outline-secondary disabled"
+           href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
             Оперативная панель
         </a>
     </div>
