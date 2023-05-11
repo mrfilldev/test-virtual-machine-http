@@ -3,7 +3,12 @@
 {% block body %}
 <br>
 <div class="row justify-content-center">
-    <div class="col-2"></div>
+    <div class="col-2">
+        <a class="btn btn-secondary"
+           href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+            Расписание заказов
+        </a>
+    </div>
     <div class="col-8">
         <form method=POST
               action="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context['carwash']._id) }}">
@@ -142,11 +147,6 @@
             </table>
 
             <button style="width: auto" type="submit" class="btn btn-dark">Сохранить</button>
-
-            <a class="btn btn-secondary"
-               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
-                Перейти к расписанию заказов
-            </a>
 
         </form>
     </div>
