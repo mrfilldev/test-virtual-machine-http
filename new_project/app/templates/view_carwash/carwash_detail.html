@@ -13,50 +13,18 @@
                href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
                 Оперативная панель
             </a>
-            <button type="button" class="btn btn-outline-secondary disabled">Кнопка</button>
-            <button type="button" class="btn btn-outline-secondary disabled">Кнопка</button>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-secondary disabled dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    Выпадающая кнопка
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                </ul>
-            </div>
-            <button type="button" class="btn btn-outline-secondary disabled">Кнопка</button>
-            <button type="button" class="btn btn-outline-secondary disabled">Кнопка</button>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-secondary disabled dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    Выпадающая кнопка
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                </ul>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-secondary disabled dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    Выпадающая кнопка
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                </ul>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-secondary disabled dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    Выпадающая кнопка
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                    <li><a class="dropdown-item" href="#">Выпадающая ссылка</a></li>
-                </ul>
-            </div>
+            <a class="btn btn-outline-secondary disabled"
+               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+                Журнал заказов
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+                Кассовые смены
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+                Статистика
+            </a>
         </div>
     </div>
     <div class="col-8">
