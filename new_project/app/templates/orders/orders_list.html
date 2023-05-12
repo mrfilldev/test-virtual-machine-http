@@ -44,7 +44,7 @@
         }
 
         function load(page) {
-            carwash_id = {{ context.carwash_id }};
+
 
             $.get(" {{ url_for('order_blueprint.orders_list') }}" + carwash_id + '/' + page, function (data) {
                 if (data === "")
