@@ -113,6 +113,7 @@ async def update_order_status(order, status):
     }}
     upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
     print('updated order: ', upd_order)
+    await  set_busy_status_box(order)
 
 
 async def update_order_canceled(order, status):
