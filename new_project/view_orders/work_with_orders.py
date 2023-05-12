@@ -15,18 +15,23 @@ queue_url = Sqs_params.queue_url
 page_size = 10
 
 
-def list_orders(g, p):
-    if 'networks' in g.user_db:
-        network = g.user_db['networks'][0]
-        print('network:', network)
+def list_orders(g_user_flask, page, carwash_id):
+    if carwash_id == '':
 
-        search = {'network_id': network}
-    elif g.user_db['role'] == 'admin':
+        if 'networks' in g_user_flask.user_db:
+            network = g_user_flask.user_db['networks'][0]
+            print('network:', network)
 
-        search = {}
+            search = {'network_id': network}
+        elif g_user_flask.user_db['role'] == 'admin':
+
+            search = {}
+        else:
+            return abort(404)
     else:
-        return abort(404)
-    skip = page_size * p
+        search = {'CarWashId': carwash_id}
+
+    skip = page_size * page
     # limit = page_size * p + page_size
     # print('limit:', limit)
     print('skip:', skip)
