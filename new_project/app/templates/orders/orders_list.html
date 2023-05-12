@@ -10,10 +10,12 @@
     <script>
 
         var page = 0;
-        var carwash_id = {{ context.carwash_id }};
-        if (typeof carwash_id === "undefined") {
-            carwash_id = ''
+        var carwash_id = {
+        {
+            context.carwash_id
         }
+        }
+        ;
         console.log(page);
 
         $(document).ready(function () {
@@ -47,15 +49,18 @@
         }
 
         function load(page) {
-                $.get(" {{ url_for('order_blueprint.orders_list') }}" + carwash_id + '/' + page, function (data) {
-                    if (data === "")
-                        $('#load_orders').hide();
-                    if (page === 0)
-                        $("#tbody_orders").html(data);
-                    else
-                        $("#tbody_orders").append(data)
-                    tr_to_buttons();
-                });
+            if (typeof carwash_id === "undefined") {
+                carwash_id = ''
+            }
+            $.get(" {{ url_for('order_blueprint.orders_list') }}" + carwash_id + '/' + page, function (data) {
+                if (data === "")
+                    $('#load_orders').hide();
+                if (page === 0)
+                    $("#tbody_orders").html(data);
+                else
+                    $("#tbody_orders").append(data)
+                tr_to_buttons();
+            });
         }
 
     </script>
