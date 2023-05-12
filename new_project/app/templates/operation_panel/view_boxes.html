@@ -15,12 +15,11 @@
                 <div class="card-header">
                     Бокс {{ i.number }}
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h5 class="card-title">{{ i.status | status_to_rus }}</h5>
                     <p class="card-text">следующая запись: недоступно</p>
-                    <select name="status" style="width: 200px" class="form-select center" required>
+                    <select name="status" class="form-select" required>
                         <option disabled="disabled">статус</option>
-
                         {% for i in context.status_model %}
                         <option value="{{i.name}}">{{ i.value }}</option>
                         {% endfor %}
