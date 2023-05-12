@@ -127,6 +127,31 @@ async def update_order_canceled(order, status):
     print('updated order: ', upd_order)
 
 
+def get_carwash_obj(carwash_id):
+    carwash_obj = Py_mongo_db.col_carwashes.find_one({'_id': carwash_id})  # dict
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('carwash_obj: ', carwash_obj)
+    return carwash_obj
+
+
+async def set_busy_status_box(order):
+    carwash_id = order['CarWashId']
+    box_number = order['BoxNumber']
+
+    carwash_obj = get_carwash_obj(carwash_id)
+    print('carwash_obj.Boxes.box_number', carwash_obj.Boxes)
+
+    old_order = {'_id': carwash_id}
+    set_command = {"$set": {
+        "Boxes": 'status',
+    }}
+
+    #upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
+    #print('updated order: ', upd_order)
+
+
 async def main_func():
     while True:
         messages = Sqs_params.client.receive_message(
@@ -159,17 +184,26 @@ async def main_func():
                         match message["new_status"]:
                             case 'Accepted':
                                 print('Accepted')
-                                await send_accept_status(eval(message["order"]))
-                                await update_order_status(eval(message['order']), 'Accepted')
+                                if eval(message["order"])["ContractId"] == "OWN":
+                                    await update_order_status(eval(message['order']), 'Accepted')
+                                else:
+                                    await send_accept_status(eval(message["order"]))
+                                    await update_order_status(eval(message['order']), 'Accepted')
+                                print('Accepted')
                             case 'Completed':
+                                if eval(message["order"])["ContractId"] == "OWN":
+                                    await update_order_status(eval(message['order']), 'Completed')
+                                else:
+                                    await send_completed_status(eval(message["order"]))
+                                    await update_order_status(eval(message['order']), 'Completed')
                                 print('Completed')
-                                await send_completed_status(eval(message["order"]))
-                                await update_order_status(eval(message['order']), 'Completed')
                             case 'Canceled':
+                                if eval(message["order"])["ContractId"] == "OWN":
+                                    await update_order_status(eval(message["order"]), 'StationCanceled')
+                                else:
+                                    await send_canceled_status(eval(message["order"]), reason='StationCanceled')
+                                    await update_order_status(eval(message["order"]), 'StationCanceled')
                                 print('Canceled')
-                                await send_canceled_status(eval(message["order"]), reason='StationCanceled')
-                                await update_order_status(eval(message["order"]), 'StationCanceled')
-
                     case "createOrder":
                         print('CreateOrder')
                         order = await make_mongo_id(eval(message['order']))
