@@ -88,9 +88,9 @@ class BoxStatus(enum.IntEnum):
 
 
 class BoxStatusModel(enum.Enum):
-    Free = 'Свободен'  # – свободен
-    Busy = 'Занят'  # - занят
-    Unavailable = 'Недоступен'  # – недоступен(закрыт на ремонте)
+
+    Ready = 'Готов к работе'
+    Unavailable = 'Недоступен'
 
 
 class BoxAmountStatus:
