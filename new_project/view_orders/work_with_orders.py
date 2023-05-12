@@ -67,6 +67,7 @@ def list_orders(g_user_flask, page, carwash_id):
             'orders_list': orders_list,
             'count_orders': orders_count - skip,
             'carwashes': carwashes_names,
+            'carwash_id': carwash_id
 
         }
         return render_template('orders/orders_table.html', context=context)
@@ -76,7 +77,8 @@ def list_orders(g_user_flask, page, carwash_id):
         'orders_list': orders_list,
         'count_orders': orders_count,
         'carwashes': carwashes_names,
-        'date': today
+        'date': today,
+        'carwash_id': carwash_id
     }
     return render_template(
         'orders/orders_list.html',
