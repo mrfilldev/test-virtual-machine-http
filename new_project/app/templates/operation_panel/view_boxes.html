@@ -9,14 +9,14 @@
 <br>
 <div class="container">
     <div class="row">
-        {% for i in range(1, 13) %}
+        {% for i in context.carwash_obj.Boxes %}
         <div class="col-4">
             <div class="card text-center">
                 <div class="card-header">
-                    Бокс {{ i }}
+                    Бокс {{ i.number }}
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Свободен</h5>
+                    <h5 class="card-title">{{ i.status | status_to_rus }}</h5>
                     <p class="card-text">следующая запись: 14:00</p>
                     <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
                 </div>

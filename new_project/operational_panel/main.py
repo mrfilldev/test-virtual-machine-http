@@ -39,3 +39,16 @@ def load_user():
 @operation_panel_bp.route('/operation_panel_boxes/<string:carwash_id>', methods=['GET'])
 def operation_panel_boxes(carwash_id):
     return view_boxes(request, carwash_id, g)
+
+
+@operation_panel_bp.app_template_filter()
+def status_to_rus(status):
+    match status:
+        case 'Free':
+            return 'Свободен'
+        case 'Busy':
+            return 'Занят'
+        case 'Unavailable':
+            return 'Недоступен'
+        case _:
+            return status

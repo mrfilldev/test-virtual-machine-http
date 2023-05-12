@@ -16,15 +16,11 @@ def get_carwash_obj(carwash_id):
     return carwash_obj
 
 
-def get_boxes_info(carwash_obj):
-    for i in carwash_obj.Boxes:
-        pass
-    pass
+
 
 def view_boxes(request, carwash_id, g_flask_user):
     carwash_obj = get_carwash_obj(carwash_id)
     print(carwash_obj)
-    boxes_info = get_boxes_info(carwash_obj)
     context = {
         'carwash_obj': carwash_obj,
     }
