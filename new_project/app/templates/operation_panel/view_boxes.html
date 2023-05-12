@@ -18,7 +18,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ i.status | status_to_rus }}</h5>
                     <p class="card-text">следующая запись: недоступно</p>
-                    <select name="status" style="width: 200px" class="form-select" required>
+                    <select name="status" style="width: 200px" class="form-select center" required>
                         <option disabled="disabled">статус</option>
 
                         {% for i in context.status_model %}
