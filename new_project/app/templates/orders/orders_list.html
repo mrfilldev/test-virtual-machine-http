@@ -18,10 +18,10 @@
 
             $("#load_orders").click(function () {
                 page++;
-                load(page);
+                load(page, carwash_id);
             });
             $("#load-switch").click(function () {
-                load(0);
+                load(0, carwash_id);
                 $('#load_orders').show();
             });
 
@@ -43,7 +43,7 @@
             });
         }
 
-        function load(page) {
+        function load(page, carwash_id) {
 
 
             $.get(" {{ url_for('order_blueprint.orders_list') }}" + carwash_id + '/' + page, function (data) {
