@@ -17,13 +17,20 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ i.status | status_to_rus }}</h5>
-                    <p class="card-text">следующая запись: 14:00</p>
-                    <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+                    <p class="card-text">следующая запись: недоступно</p>
+                    <select name="status" style="width: 200px" class="form-select" required>
+                        <option disabled="disabled">статус</option>
+
+                        {% for i in context.status_model %}
+                        <option value="{{i.name}}">{{ i.value }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="card-footer text-muted">
                     2 дня спустя
                 </div>
-            </div> <br>
+            </div>
+            <br>
         </div>
         {% endfor %}
     </div>

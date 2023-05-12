@@ -87,6 +87,12 @@ class BoxStatus(enum.IntEnum):
     Unavailable = 3  # – недоступен(закрыт на ремонте)
 
 
+class BoxStatusModel(enum.IntEnum):
+    Free = 'Свободен'  # – свободен
+    Busy = 'Занят'  # - занят
+    Unavailable = 'Недоступен'  # – недоступен(закрыт на ремонте)
+
+
 class BoxAmountStatus:
     def __init__(self, free: int, busy: int, unavailable: int):
         self.Free = free

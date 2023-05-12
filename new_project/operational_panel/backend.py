@@ -5,6 +5,7 @@ from bson import json_util
 from flask import render_template
 
 from new_project.db import database
+from new_project.db.models import BoxStatusModel
 
 
 def get_carwash_obj(carwash_id):
@@ -23,6 +24,7 @@ def view_boxes(request, carwash_id, g_flask_user):
     print(carwash_obj)
     context = {
         'carwash_obj': carwash_obj,
+        'status_model': BoxStatusModel,
     }
     return render_template('operation_panel/view_boxes.html', context=context)
 
