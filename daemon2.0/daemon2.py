@@ -143,13 +143,16 @@ async def set_busy_status_box(order):
 
     carwash_obj = get_carwash_obj(carwash_id)
     print('carwash_obj.Boxes.box_number', carwash_obj.Boxes)
+    for i in carwash_obj.Boxes:
+        if i.number == box_number:
+            i.status = 'Busy'
 
-    old_order = {'_id': carwash_id}
+    carwash = {'_id': carwash_id}
     set_command = {"$set": {
-        "Boxes": 'status',
+        "Boxes": carwash_obj.Boxes,
     }}
-
-    #upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
+    print(set_command)
+    #upd_order = Py_mongo_db.col_carwashes.update_one(carwash, set_command)
     #print('updated order: ', upd_order)
 
 
