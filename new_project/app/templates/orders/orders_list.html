@@ -11,7 +11,7 @@
 
         var page = 0;
         var carwash_id = {{ context.carwash_id }}
-        if (carwash_id === undefined) {
+        if (typeof carwash_id === "undefined") {
             carwash_id = ''
         }
         console.log(page);
