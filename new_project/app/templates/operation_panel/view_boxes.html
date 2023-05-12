@@ -18,12 +18,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ i.status | status_to_rus }}</h5>
                     <p class="card-text">следующая запись: недоступно</p>
-                    <select name="status" class="form-select" required>
-                        <option disabled="disabled">статус</option>
-                        {% for i in context.status_model %}
-                        <option value="{{i.name}}">{{ i.value }}</option>
-                        {% endfor %}
-                    </select>
+
+                    <a href="#" class="btn btn-outline-warning disabled">Отключить бокс</a>
                 </div>
                 <div class="card-footer text-muted">
                     2 дня спустя
