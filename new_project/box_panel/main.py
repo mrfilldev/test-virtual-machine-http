@@ -37,7 +37,7 @@ def load_user():
 
 
 @box_panel_bp.route('/operation_panel_boxes/<string:carwash_id>', methods=['GET'])
-def operation_panel_boxes(carwash_id):
+def box_panel(carwash_id):
     return view_boxes(request, carwash_id, g)
 
 
