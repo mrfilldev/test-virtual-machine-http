@@ -26,7 +26,7 @@ def view_boxes(request, carwash_id, g_flask_user):
         'carwash_obj': carwash_obj,
         'status_model': BoxStatusModel,
     }
-    return render_template('operation_panel/view_boxes.html', context=context)
+    return render_template('box_panel/view_boxes.html', context=context)
 
 
 
