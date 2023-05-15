@@ -204,7 +204,7 @@ def pin_admin(carwash_id, login):
         user = {'_id': user_obj._id}
         print('user-admin._id: ', user)
         set_fields = {'$set': {
-            'PinnedCarwashId': login,
+            'PinnedCarwashId': carwash_id,
         }}
         database.col_users.update_one(user, set_fields)
 
