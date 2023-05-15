@@ -177,9 +177,9 @@
                 {% endfor %}
                 </tbody>
             </table>
-
+            {% if g.user_db.role != 'network_worker' %}
             <button style="width: auto" type="submit" class="btn btn-outline-success">Сохранить</button>
-
+            {% endif %}
         </form>
     </div>
     <div class="col-2"></div>
