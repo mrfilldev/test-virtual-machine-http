@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <input name="name" style="width: 100%" type="text" class="form-control" required
-                               value="{{ context['carwash'].Name }}">
+                               value="{{ context['carwash'].Name if context['carwash'] is not none else '' }}">
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +60,7 @@
                     </td>
                     <td>
                         <input name="address" style="width: 100%" type="text" class="form-control" required
-                               value="{{ context['carwash'].Address }}">
+                               value="{{ context['carwash'].Address if context['carwash'] is not none else '' }}">
                     </td>
                 </tr>
                 <tr>
@@ -82,7 +82,7 @@
                     </td>
                     <td>
                         <input name="amount_boxes" style="width: 100%" type="text" class="form-control"
-                               value="{{ context['amount_boxes'] }}" required>
+                               value="{{ context['amount_boxes'] if context['carwash'] is not none else '' }}" required>
                     </td>
                 </tr>
                 <tr>
@@ -129,7 +129,7 @@
                     </td>
                     <td>
                         <input class="form-control" type="text" name="login_administrator"
-                               value="{{ context['login_administrator'] }}" required>
+                               value="{{ context['login_administrator'] if context['carwash'] is not none else '' }}" required>
                     </td>
                 </tr>
                 </tbody>
