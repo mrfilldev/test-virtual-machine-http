@@ -187,7 +187,7 @@ def create_carwash_obj(request, g):
         'prices_list': prices_list,
         'count_prices': count_prices,
     }
-    return render_template("view_carwash/create_carwash.html", context=context)
+    return render_template("view_carwash/carwash_detail.html", context=context)
 
 
 def update_carwash_obj(request, carwash_id):
@@ -221,6 +221,7 @@ def update_carwash_obj(request, carwash_id):
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
         'Price': new_prices_list_of_dict,
+        'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
     print('UPDATE FIELDS: ', set_fields)
