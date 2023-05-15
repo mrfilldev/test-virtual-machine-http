@@ -185,7 +185,6 @@ def create_carwash_obj(request, g):
 
     context = {
         'create_new': True,
-        'carwash': None,
         'prices_list': prices_list,
         'count_prices': count_prices,
     }
