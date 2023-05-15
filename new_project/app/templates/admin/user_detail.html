@@ -88,7 +88,7 @@
                                             name="network_name">
                                         <option disabled="disabled">(не указано)</option>
 
-                                        {% for i in context['network'] %}
+                                        {% for i in context.networks %}
                                         <option value="{{i._id}}">{{ i.network_name }}</option>
                                         {% endfor %}
                                         </select>
