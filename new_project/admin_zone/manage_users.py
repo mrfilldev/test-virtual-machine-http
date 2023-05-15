@@ -48,7 +48,7 @@ def user_detail(request, user_id):
         set_command = {
             "$set": {
                 "role": request.form['role'],
-                "networks": f'[{str(request.form["role"])}]',
+                "networks": f'[{str(request.form["network"])}]',
 
             }
         }

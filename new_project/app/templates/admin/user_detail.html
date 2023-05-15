@@ -85,10 +85,10 @@
                                 </td>
                                 <td>
                                     <select style="width: 350px" class="form-select"
-                                            name="network_name">
+                                            name="network">
                                         <option disabled="disabled">(не указано)</option>
 
-                                        {% for i in context.networks %}
+                                        {% for i in context.network %}
                                         <option value="{{i._id}}">{{ i.network_name }}</option>
                                         {% endfor %}
                                         </select>
