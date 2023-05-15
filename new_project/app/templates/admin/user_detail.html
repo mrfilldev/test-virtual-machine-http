@@ -88,8 +88,8 @@
                                         <option disabled="disabled">(не указано)</option>
 
                                         {% for i in context.networks %}
-                                        <option value="{{i._id}}"
-                                         {% if (i._id == context.user.networks[0]) %} selected="selected" { %endif %}>{{ i.network_name }} -  {{i._id}}</option>
+                                        <option value="{{i._id}}" {% if i._id == context.user.networks[0] %} selected="selected"
+                                        {% endif %}>{{ i.network_name }} -  {{i._id}}</option>
                                         {% endfor %}
                                         </select>
                                     </select>
