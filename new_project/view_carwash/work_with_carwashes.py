@@ -192,6 +192,25 @@ def create_carwash_obj(request, g):
     return render_template("view_carwash/carwash_detail.html", context=context)
 
 
+def pin_admin(carwash_id, login):
+    user = database.col_users.find_one({'email': login})  # dict
+    print(user)
+    data = json.loads(json_util.dumps(user))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    if user_obj is None:
+        pass
+    else:
+        user = {'_id': user_obj._id}
+        print('user-admin._id: ', user)
+        set_fields = {'$set': {
+            'PinnedCarwashId': login,
+        }}
+        database.col_users.update_one(user_obj._id, set_fields)
+
+
+
+
 def update_carwash_obj(request, carwash_id):
     form = request.form
     print('\n################################################################\n')
@@ -226,6 +245,7 @@ def update_carwash_obj(request, carwash_id):
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
+    pin_admin(carwash_id, form['login_administrator'])
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_carwash)
     return new_carwash
