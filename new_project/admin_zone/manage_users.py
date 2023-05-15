@@ -40,8 +40,18 @@ def users_list_view():
 
 def user_detail(request, user_id):
     if request.method == 'POST':
-        new_value = request.form['role']
-        set_command = {"$set": {"role": new_value}}
+        user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
+        data = json.loads(json_util.dumps(user_obj))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+
+        set_command = {
+            "$set": {
+                "role": request.form['role'],
+                "networks": f'[{str(request.form["role"])}]',
+
+            }
+        }
         old_user = {'_id': str(user_id)}
         new_user = database.col_users.update_one(old_user, set_command)
         print('new_user', new_user)
