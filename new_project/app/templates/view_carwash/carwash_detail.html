@@ -35,7 +35,7 @@
               {% if context.create_new== True %}
               action="{{ url_for('carwash_blueprint.create_carwash') }}"
               {% else %}
-              action="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context['carwash']._id) }}"
+              action="{{ url_for('carwash_blueprint.carwash_detail', carwash_id=context['carwash']._id) }}"
               {% endif %}
         >
             <table class="table table-bordered table-center align-middle">
