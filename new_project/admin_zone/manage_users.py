@@ -44,11 +44,11 @@ def user_detail(request, user_id):
         data = json.loads(json_util.dumps(user_obj))
         data = json.dumps(data, default=lambda x: x.__dict__)
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-
+        empty_arr = []
         set_command = {
             "$set": {
                 "role": request.form['role'],
-                "networks": [{str(request.form["network"])}],
+                "networks": empty_arr.append(request.form['network']),
 
             }
         }
