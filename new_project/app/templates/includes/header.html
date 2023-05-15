@@ -47,7 +47,7 @@
                 {% endif %}
                 {% if g.user_db.role == 'network_worker' %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}" aria-disabled="true">
+                    <a class="nav-link" href="{{  url_for('carwash_blueprint.carwash_detail', carwash_id=g.user_db.PinnedCarwashId) }}" aria-disabled="true">
                         Мойки </a>
                 </li>
                 <li class="nav-item">
