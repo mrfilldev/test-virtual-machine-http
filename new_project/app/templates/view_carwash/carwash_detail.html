@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <input name="name" style="width: 100%" type="text" class="form-control" required
-                               value="{{ context['carwash'].Name }}">
+                               value="{{ context['carwash'].Name if context['carwash'] is not none else '' }}">
                     </td>
                 </tr>
                 <tr>
