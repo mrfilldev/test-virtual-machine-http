@@ -57,7 +57,7 @@
         {% elif g.user_db.role == 'network_owner' %}
         Владелец cети: {{ g.user_inf['real_name'] }}
         {% elif g.user_db.role == 'network_worker' %}
-        Администратор мойки: {{ g.user_inf['real_name'] }}
+        Администратор мойки
         {% endif %}
         {% if g.user_inf['is_avatar_empty'] == False %}
         &nbsp;<a class="navbar-brand" href="/">
