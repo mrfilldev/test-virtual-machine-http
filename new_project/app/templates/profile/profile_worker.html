@@ -3,22 +3,170 @@
 
 {% block body %}
 <br>
-<div class="col-12">
-    <div class="row">
-        <div class="col-2">
+<div class="row justify-content-center">
+    <div class="col-2 text-center">
+        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('main_blueprint.logout') }}">
+                Выйти
+            </a>
 
-            <button class="btn btn-outline-primary" href="{{ url_for('main_blueprint.logout') }}" aria-disabled="true">Выйти</button>
-
-
-        </div>
-        <div class="col-10">
-            <main class="container-sm">
-                <div class="table-responsive">
-                    профиль
-                    вы Сотрудник
-                </div>
-            </main>
         </div>
     </div>
+    <div class="col-8">
+        <form method=POST
+              {% if context.create_new== True %}
+              action="{{ url_for('carwash_blueprint.create_carwash') }}"
+              {% else %}
+              action="{{ url_for('carwash_blueprint.owner_carwash_detail', carwash_id=context['carwash']._id) }}"
+              {% endif %}
+        >
+            <table class="table table-bordered table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="3">Мойка</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width: 200px">
+                        Название:
+                    </td>
+                    <td>
+                        <input name="name" style="width: 100%" type="text" class="form-control" required
+                               value="{{ context['carwash'].Name if context['carwash'] is not none else '' }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Адрес:
+                    </td>
+                    <td>
+                        <input name="address" style="width: 100%" type="text" class="form-control" required
+                               value="{{ context['carwash'].Address if context['carwash'] is not none else '' }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Локация:
+                    </td>
+                    <td>
+                        <div class="row justify-content-evenly">
+                            <input name="lat" style="width: 48%" type="text" class="form-control"
+                                   required placeholder="latitude" value="{{ context['carwash'].Location.lat if context['carwash'] is not none else '' }}">
+                            <input name="lon" style="width: 48%" type="text" class="form-control"
+                                   required placeholder="longitude" value="{{ context['carwash'].Location.lon if context['carwash'] is not none else '' }}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Кол-во боксов:
+                    </td>
+                    <td>
+                        <input name="amount_boxes" style="width: 100%" type="text" class="form-control"
+                               value="{{ context['amount_boxes'] if context['carwash'] is not none else '' }}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Оказываемые услуги:
+                    </td>
+                    <td>
+                        <div class="form-check-inline">
+                            <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash"
+                                   autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="hand_carwash">Ручная мойка</label><br>
+                        </div>
+                        <div class="form-check-inline">
+
+                            <input name="is_wheel_station" type="checkbox" class="btn-check" id="wheel_station"
+                                   autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="wheel_station">Шиномонтаж</label><br>
+                        </div>
+                        <div class="form-check-inline">
+
+                            <input name="is_detaling" type="checkbox" class="btn-check" id="detaling"
+                                   autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="detaling">Детейлинг</label><br>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width: 200px">
+                        Состояние Мойки:
+                    </td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" name="status"
+                                   id="flexSwitchCheckChecked"
+                                   {% if context['carwash'].Enable == True %} checked {% endif %}>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Мойка активна</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Администратор Мойки:
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="login_administrator"
+                               value="{{ context['login_administrator'] if context['carwash'] is not none else '' }}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="10">Прейскурант</th>
+                </tr>
+                <thead>
+                <tr>
+                    <th scope="col">Название</th>
+                    <th scope="col">Описание</th>
+                    {% for enum in context['enum_list'] %}
+                    <th scope="col">{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                    {% endfor %}
+
+                </tr>
+                </thead>
+                </thead>
+                <tbody>
+
+                {% for price in context['prices_list'] %}
+
+                <tr>
+                    <td style="width: 200px">
+                        {{ price.name }}
+
+                    </td>
+                    <td>
+                        {{ price.description }}
+                    </td>
+                    {% for i in price.categoryPrice %}
+                    <td>
+                        {% set id_of_cell = price['_id'] %}
+                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                               style="width: 100px" type="text"
+                               class="form-control" placeholder="{{ i['sum'] }}"
+                               value="{% for obj in context['carwash']['Price'] %}{% if obj.Id == id_of_cell %}{% if obj.categoryPrice == i['category'] %}{{obj.cost}}{% endif %}{% endif %}{% endfor %}">
+
+                    </td>
+                    {% endfor %}
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if g.user_db.role != 'network_worker' %}
+            <button style="width: auto" type="submit" class="btn btn-outline-success">Сохранить</button>
+            {% endif %}
+        </form>
+    </div>
+    <div class="col-2"></div>
+
 </div>
+
 {% endblock %}
