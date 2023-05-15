@@ -44,6 +44,7 @@ def user_detail(request, user_id):
         data = json.loads(json_util.dumps(user_obj))
         data = json.dumps(data, default=lambda x: x.__dict__)
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        print(user_obj)
         empty_arr = []
         set_command = {
             "$set": {
