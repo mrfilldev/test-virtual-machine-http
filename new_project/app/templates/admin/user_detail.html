@@ -35,8 +35,8 @@
                                     логин:
                                 </td>
                                 <td>
-                                    <input name="lon" style="width: 350px" type="text" class="form-control"
-                                           required placeholder="longitude" value="{{ context['user'].login }}">
+                                    <input name="login" style="width: 350px" type="text" class="form-control"
+                                           required placeholder="login" value="{{ context['user'].login }}">
 
                                 </td>
                             </tr>
@@ -45,8 +45,8 @@
                                     id:
                                 </td>
                                 <td>
-                                    <input name="lon" style="width: 350px" type="text" class="form-control"
-                                           required placeholder="longitude" value="{{ context['user']._id }}">
+                                    <input name="id" style="width: 350px" type="text" class="form-control"
+                                           required placeholder="id" value="{{ context['user']._id }}">
 
                                 </td>
                             </tr>
@@ -76,6 +76,16 @@
                                            required placeholder="longitude"
                                            value="{{ context['user'].date_registered | format_datetime }}">
 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px">
+                                    Закреплен за мойкой:
+                                </td>
+                                <td>
+                                    <input name="pinned_carwash" style="width: 350px" type="text" class="form-control"
+                                           required placeholder="мойка"
+                                           value="{{ context.user.pinned_carwash_id }}">
                                 </td>
                             </tr>
                             {% if context['user'].networks is defined %}
