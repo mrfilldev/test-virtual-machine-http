@@ -229,7 +229,7 @@ class User:
 class UserRole(enum.Enum):
     admin = 'Администратор'
     network_owner = 'Владелец Сети'
-    worker = 'Сотрудник Мойки'
+    network_worker = 'Сотрудник Мойки'
 
     # @staticmethod
     # def is_authenticated():
