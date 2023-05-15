@@ -209,8 +209,6 @@ def pin_admin(carwash_id, login):
         database.col_users.update_one(user, set_fields)
 
 
-
-
 def update_carwash_obj(request, carwash_id):
     form = request.form
     print('\n################################################################\n')
@@ -251,7 +249,7 @@ def update_carwash_obj(request, carwash_id):
     return new_carwash
 
 
-def carwash_detail(g, request, carwash_id):
+def back_carwash_detail(g, request, carwash_id):
     if request.method == 'POST':
         new_carwash = update_carwash_obj(request, carwash_id)
         print('new carwash: ', new_carwash)
