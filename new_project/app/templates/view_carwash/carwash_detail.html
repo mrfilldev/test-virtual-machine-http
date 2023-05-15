@@ -129,7 +129,7 @@
                     </td>
                     <td>
                         <input class="form-control" type="text" name="login_administrator"
-                               value="{{ context['login_administrator'] if context['carwash'] is not none else '' }}">
+                               value="{{ context.carwash.CarwashAdmin if context['carwash'] is not none else '' }}">
                     </td>
                 </tr>
                 </tbody>
