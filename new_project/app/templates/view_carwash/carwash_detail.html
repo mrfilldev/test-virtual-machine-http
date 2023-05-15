@@ -5,6 +5,8 @@
 <div class="row justify-content-center">
     <div class="col-2 text-center">
         <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            {% if context.create_new== True %}
+            {% else %}
             <a class="btn btn-outline-secondary"
                href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
                 Расписание заказов
@@ -25,6 +27,7 @@
                href="#">
                 Статистика
             </a>
+            {% endif %}
         </div>
     </div>
     <div class="col-8">
