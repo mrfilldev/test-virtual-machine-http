@@ -5,6 +5,7 @@ from bson import json_util
 from flask import render_template
 
 from ..db import database
+from ..db.models import CategoryAuto
 
 
 def get_prices_obj_list():
@@ -22,5 +23,6 @@ def get_prices_obj_list():
 def show_prices_list(carwash_id):
     context = {
         'prices': get_prices_obj_list(),
+        'enum_list': list(CategoryAuto)
     }
     return render_template('prices/price_list.html', context=context)
