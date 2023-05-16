@@ -139,6 +139,7 @@
                 <tr>
                     <th scope="col" colspan="10">Прейскурант</th>
                 </tr>
+                </thead>
                 <tr>
                     <th>Название</th>
                     <th>Описание</th>
@@ -146,7 +147,6 @@
                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                     {% endfor %}
                 </tr>
-                </thead>
                 <tbody>
 
                 {% for price in context['prices_list'] %}
