@@ -290,7 +290,6 @@ def back_carwash_detail(g, request, carwash_id):
     print('carwash_obj ', carwash_obj)
     context = {
         'carwash': carwash_obj,
-
         'amount_boxes': amount_boxes,
         'prices_list': prices_list,
         'count_prices': count_prices,

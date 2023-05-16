@@ -11,6 +11,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 
 from flask_login import current_user
 
+from .backend import get_prices_obj_list
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -32,7 +33,8 @@ def load_user():
 
 @prices_bp.route('/prices_list_table/<string:carwash_id>', methods=['GET'])
 def prices_list_table(carwash_id):
-    return f"Прайсы {carwash_id}"
+    return f"Прайсы {carwash_id}, {get_prices_obj_list}"
+
 
 
 @prices_bp.app_template_filter()
