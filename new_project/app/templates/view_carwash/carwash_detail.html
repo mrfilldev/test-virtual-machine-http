@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
+<script>
+
+    $(document).ready(function () {
+        add_info_about_selected_price();
+    });
+    function add_info_about_selected_price() {
+        $('select').on('change', function () {
+            alert(this.value);
+        });
+    }
+</script>
 <br>
 <div class="row justify-content-center">
     <div class="col-2 text-center">
@@ -166,9 +178,9 @@
                 <tbody>
                 <tr>
                     <td>
-                        <select>
+                        <select onchange="add_info_about_selected_price()">
                             {% for i in context.prices_list %}
-                            <option>{{ i.name }}</option>
+                            <option value="{{ i._id }}">{{ i.name }}</option>
                             {% endfor %}
                         </select>
                     </td>
