@@ -16,6 +16,8 @@
     function get_info_price_by_id(id) {
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (price_obj) {
             alert(price_obj);
+            console.log(price_obj);
+
         });
     }
 
