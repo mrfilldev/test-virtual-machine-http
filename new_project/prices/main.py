@@ -11,7 +11,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 
 from flask_login import current_user
 
-from .backend import show_prices_list
+from .backend import show_prices_list, get_price_info
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
