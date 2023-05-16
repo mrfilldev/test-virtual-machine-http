@@ -33,7 +33,7 @@ def load_user():
 
 @prices_bp.route('/prices_list_table/<string:carwash_id>', methods=['GET'])
 def prices_list_table(carwash_id):
-    return f"Прайсы {carwash_id}, {get_prices_obj_list}"
+    return f"Прайсы {carwash_id}, {get_prices_obj_list()}"
 
 
 
