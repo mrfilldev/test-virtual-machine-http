@@ -20,8 +20,17 @@ def get_prices_obj_list():
     return prices_list
 
 
+def get_carwash_obj(carwash_id):
+    carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    return carwash_obj
+
+
 def show_prices_list(carwash_id):
     context = {
+        'carwash': get_carwash_obj(carwash_id),
         'prices': get_prices_obj_list(),
         'enum_list': list(CategoryAuto)
     }

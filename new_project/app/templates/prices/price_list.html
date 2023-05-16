@@ -15,9 +15,8 @@
         <th>id</th>
         <th>Название</th>
         <th>Описание</th>
-        {% for enum in context['enum_list'] %}
-        <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
-        {% endfor %}
+        <th>Добавить в {{ context.carwash.Name }}</th>
+
     </tr>
     </thead>
     <tbody>
@@ -34,16 +33,15 @@
         <td>
             {{ price.description }}
         </td>
-        {% for i in price.categoryPrice %}
-        <td>
-            {% set id_of_cell = price['_id'] %}
-            <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                   style="width: 100px" type="text"
-                   class="form-control" placeholder="{{ i['sum'] }}"
-                   value="{% for obj in context['carwash']['Price'] %}{% if obj.Id == id_of_cell %}{% if obj.categoryPrice == i['category'] %}{{obj.cost}}{% endif %}{% endif %}{% endfor %}">
 
+        <td>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" name="status"
+                       id="flexSwitchCheckChecked"
+                       checked>
+            </div>
         </td>
-        {% endfor %}
+
 
     </tr>
     {% endfor %}
