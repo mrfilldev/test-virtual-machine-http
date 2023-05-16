@@ -164,9 +164,6 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                {% for price in context['prices_list'] %}
-
                 <tr>
                     <td>
                         <select>
@@ -181,10 +178,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
-
                 </tr>
-                {% endfor %}
                 </tbody>
             </table>
             {% if g.user_db.role != 'network_worker' %}
