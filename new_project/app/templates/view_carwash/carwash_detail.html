@@ -178,7 +178,7 @@
                 <tr>
                     <td>
                         <select class="form-select" onchange="getval(this);">
-                            <option>(не указано)</option>
+                            <option>Выберите..</option>
                             {% for i in context.prices_list %}
                             <option value="{{ i._id }}">{{ i.name }}</option>
                             {% endfor %}
