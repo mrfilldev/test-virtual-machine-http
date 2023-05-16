@@ -28,3 +28,4 @@ def delete_prices_from_all_carwashes():
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('carwash_obj: ', carwash_obj)
+    return redirect(url_for('admin_blueprint.admin_main'))
