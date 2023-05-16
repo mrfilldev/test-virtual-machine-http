@@ -2,49 +2,75 @@
 
 {% block body %}
 <br>
-<table class="table table-bordered table-center align-middle">
-    <thead class="table-light">
-    <tr>
-        <th scope="col" colspan="7">
-            <div class="row">
-                <div class="col-10">Прайс-лист доступных услуг</div>
-            </div>
-        </th>
-    </tr>
-    <tr>
-        <th>id</th>
-        <th>Название</th>
-        <th>Описание</th>
-        <th>Добавить в {{ context.carwash.Name }}</th>
 
-    </tr>
-    </thead>
-    <tbody>
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <form method=POST action="#">
+                <div class="row justify-content-start">
+                    &nbsp;<input style="width: 100px" class="form-control" placeholder="Поиск" name="search_field"
+                                 aria-describedby="addon-wrapping">
+                    &nbsp;<select style="width: 150px" class="form-control" id="validationCustom04" name="status">
+                    <option value="">Статус</option>
+                    <option value="OrderCreated">OrderCreated</option>
+                    <option value="Completed">Completed</option>
+                    <option value="UserCanceled">UserCanceled</option>
+                    <option value="Canceled">Canceled</option>
+                </select>
+                    &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Найти</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-1">
+            <a class="btn btn-outline-secondary" href="{{ url_for('carwash_blueprint.create_carwash') }}">+</a>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="table-light">
+        <tr>
+            <th scope="col" colspan="7">
+                <div class="row">
+                    <div class="col-10">Прайс-лист доступных услуг</div>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th>id</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Добавить в {{ context.carwash.Name }}</th>
 
-    {% for price in context.prices %}
+        </tr>
+        </thead>
+        <tbody>
 
-    <tr>
-        <td>
-            {{ price._id }}
-        </td>
-        <td>
-            {{ price.name }}
-        </td>
-        <td>
-            {{ price.description }}
-        </td>
+        {% for price in context.prices %}
 
-        <td>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" name="status"
-                       id="flexSwitchCheckChecked"
-                       checked>
-            </div>
-        </td>
+        <tr>
+            <td>
+                {{ price._id }}
+            </td>
+            <td>
+                {{ price.name }}
+            </td>
+            <td>
+                {{ price.description }}
+            </td>
+
+            <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" name="status"
+                           id="flexSwitchCheckChecked"
+                           checked>
+                </div>
+            </td>
 
 
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
