@@ -10,27 +10,7 @@
 
     function getval(sel) {
         alert(sel.value);
-        alert(sel.value);
-        $('#table_prices').append(
-            '<tr>\n' +
-            '        <td style="width: 200px">\n' +
-            '            {{ price.name }}\n' +
-            '\n' +
-            '        </td>\n' +
-            '        <td>\n' +
-            '            {{ price.description }}\n' +
-            '        </td>\n' +
-            '        {% for i in price.categoryPrice %}\n' +
-            '        <td>\n' +
-            '            {% set id_of_cell = price[\'_id\'] %}\n' +
-            '            <input name="prices_{{ price[\'_id\'] }}_{{ i[\'category\'] }}"\n' +
-            '                   style="width: 100px" type="text"\n' +
-            '                   class="form-control" placeholder="{{ i[\'sum\'] }}"\n' +
-            '                   value="{% for obj in context[\'carwash\'][\'Price\'] %}{% if obj.Id == id_of_cell %}{% if obj.categoryPrice == i[\'category\'] %}{{obj.cost}}{% endif %}{% endif %}{% endfor %}">\n' +
-            '\n' +
-            '        </td>\n'
-        );
-
+        alert();
     }
 
     function put_info_to_line_of_table(info) {
@@ -217,7 +197,7 @@
                         <select class="form-select" onchange="getval(this);">
                             <option>Выберите..</option>
                             {% for i in context.prices_list %}
-                            <option value="{{ i._id }}">{{ i.name }}</option>
+                            <option value="{{ i }}">{{ i.name }}</option>
                             {% endfor %}
                         </select>
                     </td>
@@ -234,3 +214,4 @@
 </div>
 
 {% endblock %}
+
