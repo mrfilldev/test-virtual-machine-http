@@ -177,7 +177,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <select onchange="getval()">
+                        <select class="form-select" onchange="getval()">
                             <option>(не указано)</option>
                             {% for i in context.prices_list %}
                             <option value="{{ i._id }}">{{ i.name }}</option>
