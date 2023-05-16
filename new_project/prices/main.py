@@ -30,12 +30,9 @@ def load_user():
     print('g.user_db: :', g.user_db)
 
 
-
 @prices_bp.route('/prices_list_table/<string:carwash_id>', methods=['GET'])
 def prices_list_table(carwash_id):
-    pass
-
-
+    return f"Прайсы {carwash_id}"
 
 
 @prices_bp.app_template_filter()
