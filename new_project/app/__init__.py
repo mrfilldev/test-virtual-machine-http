@@ -13,6 +13,7 @@ from ..view_orders.order import order_bp
 from ..monitoring.monitoring import monitoring_bp
 from ..schedule.schedule import schedule_bp
 from ..box_panel.main import box_panel_bp
+from ..prices.main import prices_bp
 
 app = Flask(__name__,
             static_url_path='',
@@ -34,6 +35,7 @@ app.register_blueprint(order_bp)
 app.register_blueprint(monitoring_bp)
 app.register_blueprint(schedule_bp)
 app.register_blueprint(box_panel_bp)
+app.register_blueprint(prices_bp)
 
 app.config['SECRET_KEY'] = Config.SECRET_KEY
 
