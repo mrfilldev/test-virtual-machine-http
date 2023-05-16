@@ -5,12 +5,11 @@
 <script>
 
     $(document).ready(function () {
-        add_info_about_selected_price();
+
     });
-    function add_info_about_selected_price() {
-        $('select').on('change', function () {
-            alert(this.value);
-        });
+
+    function getval(sel) {
+        alert(sel.value);
     }
 </script>
 <br>
@@ -178,7 +177,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <select onchange="add_info_about_selected_price()">
+                        <select onchange="getval()">
                             {% for i in context.prices_list %}
                             <option value="{{ i._id }}">{{ i.name }}</option>
                             {% endfor %}
