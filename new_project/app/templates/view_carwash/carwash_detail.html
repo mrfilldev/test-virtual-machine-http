@@ -54,7 +54,7 @@
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
-                data: $('#form').serialize(),
+                data: $('#form_prices').serialize(),
                 success: function () {
                 }
             });
