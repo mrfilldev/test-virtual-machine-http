@@ -28,6 +28,10 @@
 
     function open_modal_window_prices_list() {
         $('#prices_list_search').modal('show');
+        $.get("{{ url_for('prices_blueprint.get_price_info_by_id', carwash_id=context.carwash._id) }}", function (data) {
+            $("#fullscreen_prices_list").html(data);
+        });
+
 
     }
 
@@ -243,8 +247,8 @@
                 <h1 class="modal-title fs-4" id="exampleModalFullscreenLabel">Full screen modal</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
+            <div class="modal-body" id="fullscreen_prices_list">
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
