@@ -23,18 +23,19 @@
     }
 
     function send_update_prices() {
-        $('#update_prices').on('submit', function(event){
+        $('#update_prices').click(function (event) {
             event.preventDefault();
+            $('#prices_list_search').modal('toggle');
             console.log("Сохранение прайсов");
-            $.ajax({
-                type: 'POST',
-                url: "#",
-                data: $('#form').serialize(),
-                success: function () {
-                    $('#prices_list_search').modal('toggle');
-                    reload();
-                }
-            });
+            // $.ajax({
+            //     type: 'POST',
+            //     url: "#",
+            //     data: $('#form').serialize(),
+            //     success: function () {
+            //         $('#prices_list_search').modal('toggle');
+            //         reload();
+            //     }
+            // });
         });
     }
 
