@@ -1,23 +1,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <legend>Прайс-лист доступных услуг</legend>
+            <legend>Доступные тарифы для {{ context.carwash.Name }}</legend>
         </div>
-        <div class="col-6">
+        <div class="col-9">
             <form method=POST action="#">
                 <div class="row justify-content-center">
-                    &nbsp;<input style="width: auto" class="form-control" placeholder="Поиск" name="search_field"
+                    &nbsp;<input style="width: 400px" class="form-control" placeholder="Поиск" name="search_field"
                                  aria-describedby="addon-wrapping">
 
                     &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Найти</button>
                 </div>
             </form>
         </div>
-        <div class="col-3">
-            <div class="justify-content-end">
 
-            </div>
-        </div>
     </div>
 </div>
 <br>
@@ -27,7 +23,7 @@
         <tr>
             <th>Название</th>
             <th>Описание</th>
-            <th>Добавить в {{ context.carwash.Name }}</th>
+            <th>Включить Тариф</th>
 
         </tr>
         </thead>
