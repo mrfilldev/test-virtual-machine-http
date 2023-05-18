@@ -28,8 +28,8 @@
     function send_update_prices() {
         // $("#form_prices").on("submit", function (event) {
         $('#prices').click(function (event) {
-            alert("prices update");
             event.preventDefault();
+            alert("prices update");
             console.log("{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}");
             $.ajax({
                 type: 'POST',
