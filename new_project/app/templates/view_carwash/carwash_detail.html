@@ -29,7 +29,7 @@
     function open_modal_window_prices_list() {
         $('#prices_list_search').modal('show');
         $.get("{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}", function (data) {
-            $("#fullscreen_prices_list").html(data);
+            $("#prices_list_search").html(data);
         });
 
 
