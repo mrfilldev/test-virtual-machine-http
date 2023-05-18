@@ -50,10 +50,10 @@
     function send_update_prices() {
         $('#update_prices').click(function (event) {
             event.preventDefault();
-            console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
+            console.log("{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}");
             $.ajax({
                 type: 'POST',
-                url: "{{ url_for('carwash_blueprint.delete_carwash', carwash_id=context.carwash._id) }}",
+                url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
                 data: $('#form').serialize(),
                 success: function () {
                 }

@@ -48,7 +48,7 @@ def carwash_detail(carwash_id):
 
 
 @carwash_bp.route('/test_prices_status/<string:carwash_id>', methods=['POST', 'GET'])
-def carwash_detail(carwash_id):
+def test_prices_status(carwash_id):
     return check_price_status(request, carwash_id)
 
 
