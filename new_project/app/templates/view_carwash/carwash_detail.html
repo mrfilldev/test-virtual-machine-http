@@ -23,18 +23,27 @@
     }
 
     function send_update_prices() {
-        $('#create').click(function (event) {
-            event.preventDefault();
-            console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-            $.ajax({
-                type: 'POST',
-                url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-                data: $('#form').serialize(),
-                success: function () {
-                    $('#event-modal').modal('toggle');
-                    reload();
+
+        function sendAjaxForm(ajax_form, url) {
+            jQuery.ajax({
+                url: url,
+                type: "POST",
+                dataType: "html",
+                data: jQuery("#" + ajax_form).serialize(),
+                success: function (response) {
+                    alert("success");
+                },
+                error: function (response) {
+                    alert("failure");
                 }
             });
+            return false;
+        }
+
+        $("#form_prices").on("submit", function (event) {
+            event.preventDefault();
+            sendAjaxForm('form_prices', "#");
+            return false;
         });
     }
 
