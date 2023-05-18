@@ -17,8 +17,8 @@
         $.get("{{ url_for('prices_blueprint.get_price_info_by_id') }}" + id, function (data) {
             alert(data);
             console.log(data);
-            $("#prices_select option[value=id]").remove();
             $("#table_prices tr:last").before(data)
+            $("#prices_select option[value=id]").remove();
         });
     }
 
@@ -203,7 +203,7 @@
                 <tbody>
                 <tr>
                     <td colspan="8">
-                        <select name="prices_select" class="form-select" onchange="getval(this);">
+                        <select id=selectBox" name="prices_select" class="form-select" onchange="getval(this);">
                             <option>Выберите..</option>
                             {% for i in context.prices_list %}
                             <option value="{{ i._id }}">{{ i.name }}</option>
