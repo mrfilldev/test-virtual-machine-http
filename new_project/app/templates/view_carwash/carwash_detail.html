@@ -29,7 +29,7 @@
     function open_modal_window_prices_list() {
         $('#prices_list_search').modal('show');
         $.get("{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}", function (data) {
-            $("#modal_insert").html(data);
+            $("#fullscreen_prices_list").html(data);
         });
 
 
@@ -241,7 +241,20 @@
 
 <div class="modal fade" id="prices_list_search" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
      aria-hidden="true" style="display: none;">
-    <div id="modal_insert"></div>
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
+                    <legend>Тарифы</legend>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="fullscreen_prices_list"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
