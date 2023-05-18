@@ -3,25 +3,22 @@
         <div class="row">
             <legend>Тарифы</legend>
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <form method=POST action="#">
-                            <div class="row justify-content-center">
-                                <input style="width: 500px" class="form-control"
-                                       placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
-                                       aria-describedby="addon-wrapping">
+                <form method=POST action="#">
+                    <div class="row justify-content-center">
+                        <input style="width: 500px" class="form-control"
+                               placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
+                               aria-describedby="addon-wrapping">
 
-                                <button style="width: 80px" type="submit" class="btn btn-outline-secondary">
-                                    Поиск
-                                </button>
-                            </div>
-                        </form>
+                        <button style="width: 80px" type="submit" class="btn btn-outline-secondary">
+                            Поиск
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
+</div>
 </div>
 <div class="modal-body">
     <div class="table-responsive">
