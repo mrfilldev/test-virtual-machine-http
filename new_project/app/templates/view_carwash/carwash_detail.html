@@ -196,7 +196,7 @@
                                     </div>
                                     <div class="col">
                                         <a onclick="open_modal_window_prices_list();"
-                                                style="width: 100px" class="btn-sm btn btn-outline-secondary">мод
+                                           style="width: 100px" class="btn-sm btn btn-outline-secondary">мод
                                         </a>
                                     </div>
                                 </div>
@@ -235,8 +235,22 @@
 
 </div>
 
-<div class="modal-fullscreen" id="prices_list_search">
-
+<div class="modal fade" id="prices_list_search" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
+     aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4" id="exampleModalFullscreenLabel">Full screen modal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
