@@ -36,6 +36,7 @@ def prices_list_table(carwash_id):
     return show_prices_list(carwash_id)
 
 
+
 @prices_bp.route('/price_info/', methods=['GET'])
 @prices_bp.route('/price_info/<string:price_id>', methods=['GET'])
 def get_price_info_by_id(price_id):

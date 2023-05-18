@@ -2,7 +2,7 @@ import json
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template
+from flask import render_template, request
 
 from ..db import database
 from ..db.models import CategoryAuto
@@ -34,7 +34,11 @@ def show_prices_list(carwash_id):
         'prices': get_prices_obj_list(),
         'enum_list': list(CategoryAuto)
     }
-    return render_template('prices/price_list.html', context=context)
+    request_xhr_key = request.headers.get('X-Requested-With')
+    if request_xhr_key == 'XMLHttpRequest':
+        return render_template('prices/price_list_modal_full_screen.html', context=context)
+    else:
+        return render_template('prices/price_list.html', context=context)
 
 
 def get_price_info(price_id):
