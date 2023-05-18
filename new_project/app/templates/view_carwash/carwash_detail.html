@@ -48,7 +48,7 @@
     }
 
     function send_update_prices() {
-        $('#update_prices').click(function (event) {
+        $('#prices_update').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}");
             $.ajax({
