@@ -33,7 +33,7 @@
             <tr>
                 <th>Название</th>
                 <th>Описание</th>
-                <th style="text-align: center">Включить Тариф</th>
+                <th style="text-align: center">Состояние Тарифа</th>
             </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
                     {{ price.description }}
                 </td>
 
-                <td>
+                <td style="text-align: center">
                     <div class="col"></div>
                     <div class="col"></div>
                     <div class="col">
@@ -54,7 +54,7 @@
                             <input class="form-check-input" type="checkbox" role="switch" name="status"
                                    id="flexSwitchCheckChecked"
                                    checked>
-                        </div>
+                        </div><label>Включить</label>
                     </div>
 
                 </td>
