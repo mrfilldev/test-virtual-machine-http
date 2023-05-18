@@ -25,31 +25,6 @@
         });
     }
 
-    function submit_form_update_prices() {
-
-        function sendAjaxForm(ajax_form, url) {
-            jQuery.ajax({
-                url: url,
-                type: "POST",
-                dataType: "html",
-                data: jQuery("#" + ajax_form).serialize(),
-                success: function (response) {
-                    alert("success");
-                },
-                error: function (response) {
-                    alert("failure");
-                }
-            });
-            return false;
-        }
-
-        $("#form_prices").on("submit", function (event) {
-            event.preventDefault();
-            sendAjaxForm('form_prices', "#");
-            return false;
-        });
-    }
-
     function send_update_prices() {
         // $("#form_prices").on("submit", function (event) {
         $('#prices').click(function (event) {
