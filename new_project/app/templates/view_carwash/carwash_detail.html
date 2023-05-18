@@ -23,9 +23,11 @@
     }
 
     function update_prices() {
-        $('#prices_list_search').modal('hide');
+        $('#update_prices').click(function (event) {
+            $('#prices_list_search').modal('hide');
 
-        alert("prices update")
+            alert("prices update");
+        });
         // $('#update_prices').click(function (event) {
         //     event.preventDefault();
         //     console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
