@@ -6,19 +6,17 @@
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <div class="row">
+        <form method=POST action="#">
             <div class="row justify-content-center">
-                <form method=POST action="#">
-                    <input style="width: 500px" class="form-control"
-                           placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
-                           aria-describedby="addon-wrapping">
+                <input style="width: 500px" class="form-control"
+                       placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
+                       aria-describedby="addon-wrapping">
 
-                    <button style="width: 80px" type="submit" class="btn btn-outline-secondary">
-                        Поиск
-                    </button>
-                </form>
+                <button style="width: 80px" type="submit" class="btn btn-outline-secondary">
+                    Поиск
+                </button>
             </div>
-        </div>
+        </form>
     </div>
     <div class="table-responsive">
         <table class="table table-hover">
