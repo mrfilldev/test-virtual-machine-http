@@ -18,8 +18,11 @@
             alert(data);
             console.log(data);
             $("#table_prices tr:last").before(data)
-            $("#prices_select option[value=id]").remove();
+            $("#prices_select option[value=${id}]").remove();
         });
+    }
+    function remove_option_from_select(id) {
+        $("#prices_select option[value=${id}]").remove();
     }
 
     function put_info_to_line_of_table(info) {
