@@ -1,5 +1,5 @@
 <tr>
-    <td style="width: 200px">
+    <td style="width: auto">
         {{ context.price.name }}
     </td>
     <td>
@@ -9,7 +9,7 @@
     <td>
         {% set id_of_cell = context.price['_id'] %}
         <input name="prices_{{ context.price['_id'] }}_{{ i['category'] }}"
-               style="width: 100px" type="text"
+               style="width: auto" type="text"
                class="form-control" placeholder="{{ i['sum'] }}"
                value="">
     </td>
