@@ -27,15 +27,6 @@
             event.preventDefault();
             $('#prices_list_search').modal('toggle');
             console.log("Сохранение прайсов");
-            // $.ajax({
-            //     type: 'POST',
-            //     url: "#",
-            //     data: $('#form').serialize(),
-            //     success: function () {
-            //         $('#prices_list_search').modal('toggle');
-            //         reload();
-            //     }
-            // });
         });
     }
 
@@ -44,21 +35,6 @@
         $.get("{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}", function (data) {
             $("#fullscreen_prices_list").html(data);
         });
-    }
-
-    function put_info_to_line_of_table(info) {
-        $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
-        $("[name='order_id']").val(info == null ? '' : info.event.extendedProps.order_id);
-        $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
-        $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
-        $("[name='car_brand']").val(info == null ? '' : info.event.extendedProps.car_brand);
-        $("[name='car_model']").val(info == null ? '' : info.event.extendedProps.car_model);
-        $("[name='date']").val(info == null ? '' : info.event.extendedProps.date_format);
-        $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
-        $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
-
-        $('#event-modal .modal-footer #create').hide();
-        $('#event-modal .modal-footer #edit').show();
     }
 
 </script>
