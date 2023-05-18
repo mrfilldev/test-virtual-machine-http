@@ -1,15 +1,13 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-5">
-            <legend>Доступные тарифы для {{ context.carwash.Name }}</legend>
-        </div>
-        <div class="col-7">
+
+        <div class="col-12">
             <form method=POST action="#">
                 <div class="row justify-content-center">
-                    &nbsp;<input style="width: 400px" class="form-control" placeholder="Поиск" name="search_field"
+                    &nbsp;<input style="width: auto" class="form-control" placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
                                  aria-describedby="addon-wrapping">
 
-                    &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Найти</button>
+                    &nbsp;<button style="width: 80px" type="submit" class="btn btn-outline-secondary">Поиск</button>
                 </div>
             </form>
         </div>
