@@ -42,8 +42,9 @@ def get_price_info(price_id):
     data = json.loads(json_util.dumps(price_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('price_obj: ', price_obj)
     context = {
-        'price': price_obj,
+            'price': price_obj,
         'enum_list': list(CategoryAuto),
     }
     return render_template('view_carwash/carwash_detail_price.html', context=context)
