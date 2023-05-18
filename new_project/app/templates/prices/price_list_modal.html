@@ -1,14 +1,12 @@
-<div class="modal-header">
-    <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
-        <legend>Тарифы</legend>
-    </div>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
 <div class="modal-body">
     <div class="container-fluid">
         <form method=POST action="#">
             <div class="row">
-                <div class="col-2"></div>
+                <div class="col-2">
+                    <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
+                        <legend>Тарифы</legend>
+                    </div>
+                </div>
                 <div class="col-8">
                     <div class="row justify-content-center">
                         <input style="width: 400px" class="form-control"
@@ -17,7 +15,9 @@
                         <button style="width: 80px" type="submit" class="btn btn-outline-secondary">Поиск</button>
                     </div>
                 </div>
-                <div class="col-2"></div>
+                <div class="col-2">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
         </form>
     </div>
