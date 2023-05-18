@@ -38,6 +38,7 @@ def show_prices_list(carwash_id):
 
 
 def get_price_info(price_id):
+    print('price_id', price_id)
     price_obj = database.col_carwashes.find_one({'_id': price_id})  # dict
     data = json.loads(json_util.dumps(price_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
