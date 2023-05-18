@@ -207,7 +207,7 @@
                 <tr>
                     <td colspan="8">
                         <select id=prices_select" name="prices_select" class="form-select" onchange="getval(this);">
-                            <option>Выберите..</option>
+                            <option selected>Выберите..</option>
                             {% for i in context.prices_list %}
                             <option value="{{ i._id }}">{{ i.name }} -> {{ i.description }}</option>
                             {% endfor %}
