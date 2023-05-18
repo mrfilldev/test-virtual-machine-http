@@ -36,7 +36,7 @@ def show_prices_list(carwash_id):
     }
     request_xhr_key = request.headers.get('X-Requested-With')
     if request_xhr_key == 'XMLHttpRequest':
-        return render_template('prices/price_list_modal_full_screen.html', context=context)
+        return render_template('prices/price_list_modal.html', context=context)
     else:
         return render_template('prices/price_list.html', context=context)
 
