@@ -17,6 +17,7 @@
         $.get("{{ url_for('prices_blueprint.get_price_info_by_id') }}" + id, function (data) {
             alert(data);
             console.log(data);
+            $("#table_prices").append(data)
         });
     }
 
