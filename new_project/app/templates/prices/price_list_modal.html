@@ -1,22 +1,20 @@
 <div class="modal-header">
     <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
+        <legend>Тарифы</legend>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="col-2"><legend>Тарифы</legend></div>
-                    <div class="col-10">
-                        <form method=POST action="#">
-                            <div class="row justify-content-center">
-                                <input style="width: 500px" class="form-control"
-                                       placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
-                                       aria-describedby="addon-wrapping">
+                    <form method=POST action="#">
+                        <div class="row justify-content-center">
+                            <input style="width: 500px" class="form-control"
+                                   placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
+                                   aria-describedby="addon-wrapping">
 
-                                <button style="width: 80px" type="submit" class="btn btn-outline-secondary">
-                                    Поиск
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                            <button style="width: 80px" type="submit" class="btn btn-outline-secondary">
+                                Поиск
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
