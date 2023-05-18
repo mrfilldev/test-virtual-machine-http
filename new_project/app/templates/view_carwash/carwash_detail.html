@@ -28,7 +28,7 @@
             console.log("Сохранение прайсов");
             $.ajax({
                 type: 'POST',
-                url: "{{ # }}",
+                url: "#",
                 data: $('#form').serialize(),
                 success: function () {
                     $('#prices_list_search').modal('toggle');
