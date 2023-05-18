@@ -29,7 +29,7 @@
     function open_modal_window_prices_list() {
         $('#prices_list_search').modal('show');
         $.get("{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}", function (data) {
-            $("#prices_list_search").html(data);
+
         });
 
 
@@ -239,10 +239,7 @@
 
 </div>
 
-<div class="modal fade" id="prices_list_search" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
-     aria-hidden="true" style="display: none;">
 
-</div>
 
 
 {% endblock %}
