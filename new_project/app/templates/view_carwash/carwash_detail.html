@@ -5,7 +5,7 @@
 <script>
 
     $(document).ready(function () {
-
+        send_update_prices();
         $("#prices").click(function(){
             alert("button");
         })
@@ -34,7 +34,7 @@
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
-                data: $('#form_prices').serialize(),
+                data: $('#postPricesForm').serialize(),
                 success: function () {
                 }
             });
