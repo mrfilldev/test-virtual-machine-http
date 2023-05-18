@@ -5,7 +5,7 @@
 <script>
 
     $(document).ready(function () {
-        update_prices();
+        send_update_prices();
     });
 
     function getval(sel) {
@@ -22,24 +22,20 @@
         });
     }
 
-    function update_prices() {
+    function send_update_prices() {
         $('#update_prices').click(function (event) {
-            $('#prices_list_search').modal('toggle');
-            alert("prices update");
+            event.preventDefault();
+            console.log("Сохранение прайсов");
+            $.ajax({
+                type: 'POST',
+                url: "{{ # }}",
+                data: $('#form').serialize(),
+                success: function () {
+                    $('#prices_list_search').modal('toggle');
+                    reload();
+                }
+            });
         });
-        // $('#update_prices').click(function (event) {
-        //     event.preventDefault();
-        //     console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-        //         data: $('#form').serialize(),
-        //         success: function () {
-        //             $('#event-modal').modal('toggle');
-        //             reload();
-        //         }
-        //     });
-        // });
     }
 
     function open_modal_window_prices_list() {
