@@ -14,10 +14,9 @@
     }
 
     function get_info_price_by_id(id) {
-        $.get("{{ url_for('prices_blueprint.get_price_info_by_id') }}" + id, function (price_obj) {
-            alert(price_obj);
-            console.log(price_obj);
-
+        $.get("{{ url_for('prices_blueprint.get_price_info_by_id') }}" + id, function (data) {
+            alert(data);
+            console.log(data);
         });
     }
 
@@ -34,7 +33,6 @@
 
         $('#event-modal .modal-footer #create').hide();
         $('#event-modal .modal-footer #edit').show();
-        // info.el.style.borderColor = 'black';
     }
 
 </script>
