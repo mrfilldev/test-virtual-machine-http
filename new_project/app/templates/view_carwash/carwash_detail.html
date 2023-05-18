@@ -23,7 +23,7 @@
     }
 
     function send_update_prices() {
-        $('#update_prices').click(function (event) {
+        $('#update_prices').on('submit', function(event){
             event.preventDefault();
             console.log("Сохранение прайсов");
             $.ajax({
