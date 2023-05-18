@@ -3,7 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, jsonify
 
 from ..db import database
 from ..db.models import Boxes, BoxStatus, PricesCarWash, Point, Types, Carwash, CategoryAuto
@@ -273,18 +273,6 @@ def back_carwash_detail(g, request, carwash_id):
         prices_list.append(price_obj)
         print(price_obj)
 
-    # network = g.user_db['networks'][0]
-    # print('network:', network)
-    # network = database.col_networks.find({'_id': network})
-    # data = json.loads(json_util.dumps(network))
-    # data = json.dumps(data, default=lambda x: x.__dict__)
-    # network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
-    # print('network_obj:', network_obj)
-    # set_fields = {'$set': {
-    #     'carwashes': network_obj.carwashes.append(carwash_id),
-    # }}
-    # database.col_networks.update_one({'_id': g.user_db['networks'][0]}, set_fields)
-
     enum_list = list(CategoryAuto)
     print(enum_list)
     print('carwash_obj ', carwash_obj)
@@ -296,6 +284,17 @@ def back_carwash_detail(g, request, carwash_id):
         'enum_list': enum_list
     }
     return render_template("view_carwash/carwash_detail.html", context=context)
+
+
+def check_price_status(request, carwash_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print(data, carwash_id)
+    print('\n################################################################\n')
+    # обработка данных
+    # формирование ответа
+    response = {'status': 'success'}
+    return jsonify(response)
 
 
 def carwash_delete(carwash_id):

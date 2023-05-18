@@ -7,7 +7,8 @@ from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 from markupsafe import Markup
 
-from .work_with_carwashes import create_carwash_obj, back_carwash_detail, carwash_delete, list_carwashes
+from .work_with_carwashes import create_carwash_obj, back_carwash_detail, carwash_delete, list_carwashes, \
+    check_price_status
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -44,6 +45,11 @@ def create_carwash():
 @carwash_bp.route('/carwash_detail/<string:carwash_id>', methods=['POST', 'GET'])
 def carwash_detail(carwash_id):
     return back_carwash_detail(g, request, carwash_id)
+
+
+@carwash_bp.route('/test_prices_status/<string:carwash_id>', methods=['POST', 'GET'])
+def carwash_detail(carwash_id):
+    return check_price_status(request, carwash_id)
 
 
 @carwash_bp.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
