@@ -306,7 +306,7 @@ def check_price_status(request, carwash_id):
     carwash = {'_id': carwash_id}
     print('carwash: ', carwash)
     set_fields = {'$set': {
-        'Price': prices_list,
+        'Price': json.loads(json.dumps(prices_list, default=lambda x: x.__dict__)),
     }}
     database.col_carwashes.update_one(carwash, set_fields)
     # обработка данных
