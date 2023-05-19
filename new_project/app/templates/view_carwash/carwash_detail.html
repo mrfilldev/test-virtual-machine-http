@@ -5,10 +5,7 @@
 <script>
 
     $(document).ready(function () {
-        send_update_prices();
-        $("#prices").click(function(){
-            alert("button");
-        })
+
     });
 
     function getval(sel) {
@@ -26,19 +23,16 @@
     }
 
     function send_update_prices() {
-        // $("#form_prices").on("submit", function (event) {
-        $('#prices').click(function (event) {
-            event.preventDefault();
-            alert("prices update");
-            console.log("{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}");
-            $.ajax({
-                type: 'POST',
-                url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
-                data: $('#postPricesForm').serialize(),
-                success: function () {
-                }
-            });
+        alert("prices update");
+        console.log("{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}");
+        $.ajax({
+            type: 'POST',
+            url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
+            data: $('#postPricesForm').serialize(),
+            success: function () {
+            }
         });
+
     }
 
     function open_modal_window_prices_list() {
@@ -241,7 +235,77 @@
      aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-xl">
         <div class="modal-content" id="fullscreen_prices_list">>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
+                                <legend>Тарифы</legend>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row justify-content-center">
+                                <input style="width: 400px" class="form-control"
+                                       placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
+                                       aria-describedby="addon-wrapping">
+                                <button style="width: 80px" type="submit" class="btn btn-outline-secondary">Поиск
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col"></div>
+                                <div class="col text-end">
+                                    <a type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+                <form id="postPricesForm">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                            <tr>
+                                <th>Название</th>
+                                <th>Описание</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for price in context.prices %}
+                            <tr>
+                                <td>
+                                    {{ price.name }}
+                                </td>
+                                <td>
+                                    {{ price.description }}
+                                </td>
+
+                                <td style="align-items: center;">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                               id="check_input">
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col text-end">
+                            <button onclick="send_update_prices();" id="prices" class="btn btn-outline-success">
+                                Сохранить
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
