@@ -214,6 +214,24 @@
                 </thead>
                 <tbody>
                 <tr>
+                    <td style="width: 150px">
+                        {{ context.price.name }}
+                    </td>
+                    <td style="width: 150px">
+                        {{ context.price.description }}
+                    </td>
+                    {% for i in context.price.categoryPrice %}
+                    <td>
+                        {% set id_of_cell = context.price['_id'] %}
+                        <input name="prices_{{ context.price['_id'] }}_{{ i['category'] }}"
+                               style="width: 75px" type="text"
+                               class="form-control" placeholder="{{ i['sum'] }}"
+                               value="">
+                    </td>
+                    {% endfor %}
+                    <td><a href="#" class="btn btn-outline-danger">Удалить</a></td>
+                </tr>
+                <tr>
                     <td colspan="8">
                         <select id=prices_select" name="prices_select" class="form-select" onchange="getval(this);">
                             <option selected>Выберите..</option>
