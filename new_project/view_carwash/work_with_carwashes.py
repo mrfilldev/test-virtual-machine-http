@@ -228,8 +228,8 @@ def update_carwash_obj(request, carwash_id):
         enable: bool = False
     else:
         enable: bool = True
-    new_prices_json = json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)
-    new_prices_list_of_dict = json.loads(new_prices_json)  # , object_hook=lambda d: SimpleNamespace(**d))
+    #new_prices_json = json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)
+    #new_prices_list_of_dict = json.loads(new_prices_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     old_carwash = {'_id': carwash_id}
     print('old_carwash: ', old_carwash)
     set_fields = {'$set': {
@@ -239,7 +239,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        'Price': new_prices_list_of_dict,
+        #'Price': new_prices_list_of_dict,
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
