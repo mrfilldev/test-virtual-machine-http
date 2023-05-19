@@ -214,6 +214,7 @@
                 </thead>
                 <tbody>
                 <tr>
+                    {% for prie in context.price_list %}
                     <td style="width: 150px">
                         {{ context.price.name }}
                     </td>
@@ -228,8 +229,9 @@
                                class="form-control" placeholder="{{ i['sum'] }}"
                                value="">
                     </td>
-                    {% endfor %}
                     <td><a href="#" class="btn btn-outline-danger">Удалить</a></td>
+                    {% endfor %}
+                    {% endfor %}
                 </tr>
                 <tr>
                     <td colspan="8">
