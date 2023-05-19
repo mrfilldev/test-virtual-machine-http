@@ -302,6 +302,13 @@ def check_price_status(request, carwash_id):
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         prices_list.append(price_obj)
     print(prices_list)
+
+    carwash = {'_id': carwash_id}
+    print('carwash: ', carwash)
+    set_fields = {'$set': {
+        'Price': prices_list,
+    }}
+    database.col_carwashes.update_one(carwash, set_fields)
     # обработка данных
     # формирование ответа
     response = {'status': 'success'}
