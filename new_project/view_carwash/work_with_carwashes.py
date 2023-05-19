@@ -208,6 +208,29 @@ def pin_admin(carwash_id, login):
         }}
         database.col_users.update_one(user, set_fields)
 
+def get_carwash_obj(carwash_id):
+    carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    return carwash_obj
+
+
+def update_cost_of_price(dict_of_form, carwash_id):
+    carwash_obj = get_carwash_obj(carwash_id)
+    print('Price: ', carwash_obj.Price)
+
+    for key in dict_of_form.keys():
+        if 'price' in key:
+            id = key.split('_')[1]
+            print(id)
+            cat = key.split('_')[2]
+            print(cat)
+            for price in carwash_obj.Price:
+                for category in price.categoryPrice:
+                    print(category)
+
+
 
 def update_carwash_obj(request, carwash_id):
     form = request.form
@@ -229,6 +252,8 @@ def update_carwash_obj(request, carwash_id):
     else:
         enable: bool = True
 
+    update_cost_of_price(dict_of_form, carwash_id)
+
     old_carwash = {'_id': carwash_id}
     print('old_carwash: ', old_carwash)
     set_fields = {'$set': {
@@ -238,20 +263,18 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        #'Price': ,
+        # 'Price': ,
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
     pin_admin(carwash_id, form['login_administrator'])
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_carwash)
-    return new_carwash
 
 
 def back_carwash_detail(g, request, carwash_id):
     if request.method == 'POST':
-        new_carwash = update_carwash_obj(request, carwash_id)
-        print('new carwash: ', new_carwash)
+        update_carwash_obj(request, carwash_id)
         return redirect(url_for('carwash_blueprint.carwashes_list'))
     print(type(carwash_id))
     carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
