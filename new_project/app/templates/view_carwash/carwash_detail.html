@@ -234,16 +234,6 @@
 
                 </tr>
                 {% endfor %}
-                <tr>
-                    <td colspan="8">
-                        <select id=prices_select" name="prices_select" class="form-select" onchange="getval(this);">
-                            <option selected>Выберите..</option>
-                            {% for i in context.prices_list %}
-                            <option value="{{ i._id }}">{{ i.name }} -> {{ i.description }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                </tr>
                 </tbody>
             </table>
             {% if g.user_db.role != 'network_worker' %}
