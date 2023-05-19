@@ -40,10 +40,6 @@
         $('#prices_list_search').modal('show');
     }
 
-    function reload_price_list() {
-
-    }
-
 
 </script>
 <br>
@@ -181,6 +177,8 @@
                 </tr>
                 </tbody>
             </table>
+
+
             <table class="table table-bordered table-center align-middle" id="table_prices">
                 <thead class="table-light">
                 <tr>
@@ -209,30 +207,33 @@
                     {% for enum in context['enum_list'] %}
                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                     {% endfor %}
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
+
+                {% for price in context['prices_list'] %}
+
                 <tr>
-                    {% for prie in context.price_list %}
-                    <td style="width: 150px">
-                        {{ context.price.name }}
+                    <td style="width: 200px">
+                        {{ price.name }}
+
                     </td>
-                    <td style="width: 150px">
-                        {{ context.price.description }}
-                    </td>
-                    {% for i in context.price.categoryPrice %}
                     <td>
-                        {% set id_of_cell = context.price['_id'] %}
-                        <input name="prices_{{ context.price['_id'] }}_{{ i['category'] }}"
-                               style="width: 75px" type="text"
-                               class="form-control" placeholder="{{ i['sum'] }}"
-                               value="">
+                        {{ price.description }}
                     </td>
-                    <td><a href="#" class="btn btn-outline-danger">Удалить</a></td>
+                    {% for i in price.categoryPrice %}
+                    <td>
+                        {% set id_of_cell = price['_id'] %}
+                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                               style="width: 100px" type="text"
+                               class="form-control" placeholder="{{ i['sum'] }}"
+                               value="{% for obj in context['carwash']['Price'] %}{% if obj.Id == id_of_cell %}{% if obj.categoryPrice == i['category'] %}{{obj.cost}}{% endif %}{% endif %}{% endfor %}">
+
+                    </td>
                     {% endfor %}
-                    {% endfor %}
+
                 </tr>
+                {% endfor %}
                 <tr>
                     <td colspan="8">
                         <select id=prices_select" name="prices_select" class="form-select" onchange="getval(this);">
