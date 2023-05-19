@@ -5,7 +5,7 @@
 <script>
 
     $(document).ready(function () {
-
+        send_update_prices();
     });
 
     function getval(sel) {
@@ -23,16 +23,17 @@
     }
 
     function send_update_prices() {
-        alert("prices update");
-        console.log("{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}");
-        $.ajax({
-            type: 'POST',
-            url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
-            data: $('#postPricesForm').serialize(),
-            success: function () {
-            }
+        $('#prices_update').click(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
+                data: $('#postPricesForm').serialize(),
+                success: function () {
+                     $('#prices_list_search').modal('toggle');
+                }
+            });
         });
-
     }
 
     function open_modal_window_prices_list() {
@@ -296,7 +297,7 @@
                         <div class="col"></div>
                         <div class="col"></div>
                         <div class="col text-end">
-                            <button onclick="send_update_prices();" id="prices" class="btn btn-outline-success">
+                            <button id="prices_update" class="btn btn-outline-success">
                                 Сохранить
                             </button>
                         </div>
