@@ -11,7 +11,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 
 from flask_login import current_user
 
-from .backend import get_price_info
+from .backend import show_prices_list, get_price_info
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -30,6 +30,10 @@ def load_user():
     g.user_db = user
     print('g.user_db: :', g.user_db)
 
+
+@prices_bp.route('/prices_list_table/<string:carwash_id>', methods=['GET'])
+def prices_list_table(carwash_id):
+    return show_prices_list(carwash_id)
 
 
 
