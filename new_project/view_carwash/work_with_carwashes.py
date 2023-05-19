@@ -291,6 +291,9 @@ def check_price_status(request, carwash_id):
     data = request.form.to_dict()
     print(data, carwash_id)
     print('\n################################################################\n')
+
+    for i in data.keys():
+        print(i)
     # обработка данных
     # формирование ответа
     response = {'status': 'success'}
