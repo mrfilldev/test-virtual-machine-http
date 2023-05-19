@@ -291,9 +291,17 @@ def check_price_status(request, carwash_id):
     data = request.form.to_dict()
     print(data, carwash_id)
     print('\n################################################################\n')
-
+    arr_of_id_price = []
     for i in data.keys():
-        print(i)
+        arr_of_id_price.append(i)
+    price_objects = database.col_prices.find({'_id': {'$in': arr_of_id_price}})
+    prices_list = []
+    for i in price_objects:
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        prices_list.append(price_obj)
+    print(prices_list)
     # обработка данных
     # формирование ответа
     response = {'status': 'success'}
