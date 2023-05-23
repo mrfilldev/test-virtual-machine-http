@@ -208,6 +208,7 @@ def pin_admin(carwash_id, login):
         }}
         database.col_users.update_one(user, set_fields)
 
+
 def get_carwash_obj(carwash_id):
     carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
     data = json.loads(json_util.dumps(carwash_obj))
@@ -219,20 +220,21 @@ def get_carwash_obj(carwash_id):
 def update_cost_of_price(dict_of_form, carwash_id):
     carwash_obj = get_carwash_obj(carwash_id)
     print('Price: ', carwash_obj.Price)
+    print('Price._id: ', carwash_obj.Price._id)
+    print('Price.categoryPrice: ', carwash_obj.Price.categoryPrice)
 
-    for key in dict_of_form.keys():
-        if 'price' in key:
-            id = key.split('_')[1]
-            print(id)
-            cat = key.split('_')[2]
-            print(cat)
-            for price in carwash_obj.Price:
-                for category in price.categoryPrice:
-                    print('category: ', category)
-                    category.sum = (dict_of_form[key])[0]
-                    print('category.sum: ', category.sum)
-
-
+    print('carwash_obj.Price.categoryPrice.Compact: ', carwash_obj.Price.categoryPrice.Compact)
+    # for key in dict_of_form.keys():
+    #     if 'price' in key:
+    #         id = key.split('_')[1]
+    #         # print(id)
+    #         cat = key.split('_')[2]
+    #         # print(cat)
+    #         for price in carwash_obj.Price:
+    #             for category in price.categoryPrice:
+    #                 # print('category: ', category)
+    #                 category.sum = (dict_of_form[key])[0]
+    #                 # print('category.sum: ', category.sum)
 
 
 def update_carwash_obj(request, carwash_id):
