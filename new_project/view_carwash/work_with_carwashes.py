@@ -219,11 +219,12 @@ def get_carwash_obj(carwash_id):
 
 def update_cost_of_price(dict_of_form, carwash_id):
     carwash_obj = get_carwash_obj(carwash_id)
-    print('Price: ', carwash_obj.Price)
-    print('Price._id: ', carwash_obj.Price._id)
-    print('Price.categoryPrice: ', carwash_obj.Price.categoryPrice)
+    for price in carwash_obj.Price:
+        print('price: ', price)
+        print('price._id: ', price._id)
+        print('price.categoryPrice: ', price.categoryPrice)
 
-    print('carwash_obj.Price.categoryPrice.Compact: ', carwash_obj.Price.categoryPrice.Compact)
+        print('price.categoryPrice.Compact: ', price.categoryPrice.Compact)
     # for key in dict_of_form.keys():
     #     if 'price' in key:
     #         id = key.split('_')[1]
