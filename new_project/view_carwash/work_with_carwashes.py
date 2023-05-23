@@ -37,7 +37,7 @@ def create_prices(request, dict_of_form):
         if 'price' in j:
             print(j.split('_'))
             if request.form[j] != '':
-                prices.append(PricesCarWash(j.split('_')[1], j.split('_')[2], request.form[j]))
+                prices.append(PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], cost=request.form[j]))
             elif request.form[j] == '':
                 for obj in range(len(prices_list)):
                     if prices_list[obj]._id == j.split('_')[1]:
@@ -277,7 +277,8 @@ def update_carwash_obj(request, carwash_id):
     else:
         enable: bool = True
 
-    update_cost_of_price(dict_of_form, carwash_id)
+    # update_cost_of_price(dict_of_form, carwash_id)
+
 
     old_carwash = {'_id': carwash_id}
     print('old_carwash: ', old_carwash)
@@ -288,7 +289,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        # 'Price': ,
+        'Price': json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
