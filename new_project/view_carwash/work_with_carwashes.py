@@ -228,9 +228,9 @@ def update_cost_of_price(dict_of_form, carwash_id):
             print(cat)
             for price in carwash_obj.Price:
                 for category in price.categoryPrice:
-                    print(category)
+                    print('category: ', category)
                     category.sum = (dict_of_form[key])[0]
-                    print(category.sum)
+                    print('category.sum: ', category.sum)
 
 
 
