@@ -218,8 +218,19 @@ def get_carwash_obj(carwash_id):
 
 
 def update_cost_of_price(dict_of_form, carwash_id):
+    # prices_67e40c84b5f4455ea17226a6704724cd_Compact ->  ['']
+    # prices_67e40c84b5f4455ea17226a6704724cd_MiddleSize ->  ['']
+    # prices_67e40c84b5f4455ea17226a6704724cd_Crossover ->  ['']
+    # prices_67e40c84b5f4455ea17226a6704724cd_OffRoad ->  ['']
+    # prices_67e40c84b5f4455ea17226a6704724cd_MicroBus ->  ['']
+    # prices_8c29975f4eca44b8a723ece13a47b548_Compact ->  ['']
+    # prices_8c29975f4eca44b8a723ece13a47b548_MiddleSize ->  ['']
+    # prices_8c29975f4eca44b8a723ece13a47b548_Crossover ->  ['']
+    # prices_8c29975f4eca44b8a723ece13a47b548_OffRoad ->  ['']
+    # prices_8c29975f4eca44b8a723ece13a47b548_MicroBus ->  ['']
+
     carwash_obj = get_carwash_obj(carwash_id)
-    for price in carwash_obj.Price:
+    for price in carwash_obj.Price:  # перебор данных существующих в бд
         print('price: ', price)
         print('price._id: ', price._id)
         print('price.categoryPrice: ', price.categoryPrice)
