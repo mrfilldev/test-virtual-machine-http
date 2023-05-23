@@ -30,7 +30,7 @@
                 url: "{{ url_for('carwash_blueprint.test_prices_status', carwash_id=context.carwash._id) }}",
                 data: $('#postPricesForm').serialize(),
                 success: function () {
-                    $('#ч   ').modal('toggle');
+                    $('#prices_list_search').modal('toggle');
                 }
             });
         });
