@@ -224,7 +224,7 @@ def update_cost_of_price(dict_of_form, carwash_id):
         print('price._id: ', price._id)
         print('price.categoryPrice: ', price.categoryPrice)
         for categoryPrice in price.categoryPrice:
-            print('price.categoryPrice.Compact: ', categoryPrice)
+            print('price.categoryPrice.category: ', categoryPrice.category)
     # for key in dict_of_form.keys():
     #     if 'price' in key:
     #         id = key.split('_')[1]
