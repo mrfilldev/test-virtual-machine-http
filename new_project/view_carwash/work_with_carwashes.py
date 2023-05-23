@@ -228,14 +228,22 @@ def update_cost_of_price(dict_of_form, carwash_id):
     # prices_8c29975f4eca44b8a723ece13a47b548_Crossover ->  ['']
     # prices_8c29975f4eca44b8a723ece13a47b548_OffRoad ->  ['']
     # prices_8c29975f4eca44b8a723ece13a47b548_MicroBus ->  ['']
+    arr_of_accepted_prices = {}
+    for key in dict_of_form.keys():
+        if 'price' in key:
+            arr_of_accepted_prices[key] = dict_of_form.key
+    print('Accepted prices: ', arr_of_accepted_prices)
 
-    carwash_obj = get_carwash_obj(carwash_id)
-    for price in carwash_obj.Price:  # перебор данных существующих в бд
-        print('price: ', price)
-        print('price._id: ', price._id)
-        print('price.categoryPrice: ', price.categoryPrice)
-        for categoryPrice in price.categoryPrice:
-            print('price.categoryPrice.category: ', categoryPrice.category)
+
+    # carwash_obj = get_carwash_obj(carwash_id)
+    # for price in carwash_obj.Price:  # перебор данных существующих в бд
+    #     print('price: ', price)
+    #     print('price._id: ', price._id)
+    #     print('price.categoryPrice: ', price.categoryPrice)
+    #     for categoryPrice in price.categoryPrice:
+    #         print('price.categoryPrice.category: ', categoryPrice.category)
+
+
     # for key in dict_of_form.keys():
     #     if 'price' in key:
     #         id = key.split('_')[1]
