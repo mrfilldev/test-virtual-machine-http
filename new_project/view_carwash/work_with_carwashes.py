@@ -72,6 +72,17 @@ def show_list_price():
     return context
 
 
+def get_all_prices():
+    all_prices = database.col_prices.find({})
+    prices_list = []
+    for i in all_prices:
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        prices_list.append(price_obj)
+    return prices_list
+
+
 def list_carwashes(g):
     if 'networks' in g.user_db:
         network = g.user_db['networks'][0]
@@ -132,7 +143,6 @@ def create_carwash_obj(request, g):
         status = enable
         login_administrator = request.form['login_administrator']
         prices = create_prices(request, dict_of_form)
-
         print(prices)
 
         new_carwash = Carwash(
@@ -234,7 +244,6 @@ def update_cost_of_price(dict_of_form, carwash_id):
             arr_of_accepted_prices[key] = dict_of_form[key]
     print('Accepted prices: ', arr_of_accepted_prices)
 
-
     # carwash_obj = get_carwash_obj(carwash_id)
     # for price in carwash_obj.Price:  # перебор данных существующих в бд
     #     print('price: ', price)
@@ -242,7 +251,6 @@ def update_cost_of_price(dict_of_form, carwash_id):
     #     print('price.categoryPrice: ', price.categoryPrice)
     #     for categoryPrice in price.categoryPrice:
     #         print('price.categoryPrice.category: ', categoryPrice.category)
-
 
     # for key in dict_of_form.keys():
     #     if 'price' in key:
@@ -279,7 +287,6 @@ def update_carwash_obj(request, carwash_id):
 
     # update_cost_of_price(dict_of_form, carwash_id)
 
-
     old_carwash = {'_id': carwash_id}
     print('old_carwash: ', old_carwash)
     set_fields = {'$set': {
@@ -289,7 +296,8 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        'Price': json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)),
+        # 'Price': json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)),
+        'Price': json.loads(json.dumps(get_all_prices(), default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
