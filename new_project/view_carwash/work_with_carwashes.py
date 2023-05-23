@@ -231,7 +231,7 @@ def update_cost_of_price(dict_of_form, carwash_id):
     arr_of_accepted_prices = {}
     for key in dict_of_form.keys():
         if 'price' in key:
-            arr_of_accepted_prices[key] = dict_of_form.key
+            arr_of_accepted_prices[key] = dict_of_form[key]
     print('Accepted prices: ', arr_of_accepted_prices)
 
 
