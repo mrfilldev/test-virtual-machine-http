@@ -342,7 +342,7 @@ def back_carwash_detail(g, request, carwash_id):
     return render_template("view_carwash/carwash_detail.html", context=context)
 
 
-def check_price_status(request, carwash_id):
+def change_price_status(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data, carwash_id)
