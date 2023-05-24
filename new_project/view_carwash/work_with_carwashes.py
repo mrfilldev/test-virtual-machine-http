@@ -37,7 +37,7 @@ def create_prices(request, dict_of_form):
         if 'price' in j:
             print(j.split('_'))
             if request.form[j] != '':
-                prices.append(PricesCarWash(category=j.split('_')[2], sum=request.form[j]))
+                prices.append(PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=request.form[j]))
             elif request.form[j] == '':
                 for i in all_prices:
                     data = json.loads(json_util.dumps(i))
@@ -48,8 +48,10 @@ def create_prices(request, dict_of_form):
                         for price in price_obj.categoryPrice:
                             if price.category == j.split('_')[2]:
                                 sum_default = price.sum
-                                prices.append(PricesCarWash(category=j.split('_')[2], sum=sum_default))
-
+                                prices.append(
+                                    PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
+                                )
+    print('prices : ', prices)
 
 
 def show_list_price():
