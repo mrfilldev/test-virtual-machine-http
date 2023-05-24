@@ -362,10 +362,10 @@ def change_price_status(request, carwash_id):
     carwash_obj = get_carwash_obj(carwash_id)
 
     for price in carwash_obj.Price:
-        if price._id not in data.keys():
-            price.status = 'turn_off'
-        else:
+        if price._id in data.keys():
             price.status = 'active'
+        else:
+            price.status = 'turn_off'
 
     print('carwash_obj: ', carwash_obj.Price)
 
