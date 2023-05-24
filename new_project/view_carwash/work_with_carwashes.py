@@ -376,7 +376,7 @@ def change_price_status(request, carwash_id):
         'Price': json.loads(json.dumps(carwash_obj.Price, default=lambda x: x.__dict__)),
     }}
     print('set_fields: ', set_fields)
-    # database.col_carwashes.update_one(carwash, set_fields)
+    database.col_carwashes.update_one(carwash, set_fields)
     # обработка данных
     # формирование ответа
     response = {'status': 'success'}
