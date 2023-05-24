@@ -297,7 +297,7 @@ def update_carwash_obj(request, carwash_id):
 
     # update_cost_of_price(dict_of_form, carwash_id)
 
-    #print('UPD_PRICE:', json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)))
+    # print('UPD_PRICE:', json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)))
 
     old_carwash = {'_id': carwash_id}
     print('old_carwash: ', old_carwash)
@@ -360,9 +360,15 @@ def change_price_status(request, carwash_id):
     print('\n################################################################\n')
     arr_of_id_price = []
     carwash_obj = get_carwash_obj(carwash_id)
-    for i in data.keys():
-        for price in carwash_obj.Price:
-            pass
+
+    for price in carwash_obj.Price:
+        if price._id not in data.keys():
+            price.status = 'turn_off'
+        else:
+            price.status = 'active'
+
+    print('carwash_obj: ', carwash_obj)
+
 
     # carwash = {'_id': carwash_id}
     # print('carwash: ', carwash)
