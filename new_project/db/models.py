@@ -88,7 +88,6 @@ class BoxStatus(enum.IntEnum):
 
 
 class BoxStatusModel(enum.Enum):
-
     Ready = 'Готов к работе'
     Unavailable = 'Недоступен'
 
@@ -119,7 +118,7 @@ class CostIdSum:
 
 class Prices:
     def __init__(self, id, name, description, cost_id_sum, cost_type):
-        self.Id = id
+        self._id = id
         self.name = name
         self.description = description
         self.categoryPrice = cost_id_sum
@@ -127,7 +126,8 @@ class Prices:
 
 
 class PricesCarWash:
-    def __init__(self, category, sum):
+    def __init__(self, id, category, sum):
+        self._id = id
         self.categoryPrice = category
         self.sum = sum
 

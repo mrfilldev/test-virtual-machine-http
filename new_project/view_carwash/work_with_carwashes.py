@@ -6,7 +6,7 @@ from bson import json_util
 from flask import render_template, url_for, redirect, jsonify
 
 from ..db import database
-from ..db.models import Boxes, BoxStatus, PricesCarWash, Point, Types, Carwash, CategoryAuto
+from ..db.models import Boxes, BoxStatus, PricesCarWash, Point, Types, Carwash, CategoryAuto, Prices
 
 
 def create_boxes(amount_boxes: int):
@@ -39,18 +39,17 @@ def create_prices(request, dict_of_form):
             if request.form[j] != '':
                 prices.append(PricesCarWash(category=j.split('_')[2], sum=request.form[j]))
             elif request.form[j] == '':
-                for obj in range(len(prices_list)):
-                    if prices_list[obj]._id == j.split('_')[1]:
-                        for categoryPrice in prices_list[obj].categoryPrice:
-                            if categoryPrice.category == j.split('_')[2]:
-                                sum_default = categoryPrice.sum
+                for i in all_prices:
+                    data = json.loads(json_util.dumps(i))
+                    data = json.dumps(data, default=lambda x: x.__dict__)
+                    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+                    print(price_obj)
+                    if price_obj._id == j.split('_')[1]:
+                        for price in price_obj.categoryPrice:
+                            if price.category == j.split('_')[2]:
+                                sum_default = price.sum
                                 prices.append(PricesCarWash(category=j.split('_')[2], sum=sum_default))
-                                break
-                        prices_list[obj].categoryPrice = prices
-                        print('prices_list[obj].categoryPrice: ', prices_list[obj].categoryPrice)
-                        break
 
-    return prices
 
 
 def show_list_price():
