@@ -41,13 +41,9 @@ def create_prices(request, dict_of_form):
             elif request.form[j] == '':
                 for obj in range(len(prices_list)):
                     if prices_list[obj]._id == j.split('_')[1]:
-                        obj = obj
-                        print(obj)
-                        categories = prices_list[obj].categoryPrice
-                        print(categories)
-                        for category in categories:
-                            if category.category == j.split('_')[2]:
-                                sum_default = category.sum
+                        for categoryPrice in prices_list[obj].categoryPrice:
+                            if categoryPrice.category == j.split('_')[2]:
+                                sum_default = categoryPrice.sum
                                 prices.append(PricesCarWash(category=j.split('_')[2], sum=sum_default))
                                 break
                         break
