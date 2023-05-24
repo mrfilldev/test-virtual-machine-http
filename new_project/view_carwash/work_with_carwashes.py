@@ -60,14 +60,40 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
                             obj_of_existing_price.sum = price.sum
             setattr(price_obj, "status", 'turn_off')
             result_arr.append(price_obj)
-            return result_arr
+        return result_arr
     else:
         print('...update in process...\n')
         print('carwash_id:\n', carwash_id)
         carwash_obj = get_carwash_obj(carwash_id)
         print('carwash_obj:\n', carwash_obj)
-        all_prices = carwash_obj.Price
-        print('all_prices:\n', all_prices)
+
+        for j in dict_of_form:
+            if 'price' in j:
+                print(j.split('_'))
+                if request.form[j] != '':
+                    prices.append(PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=request.form[j]))
+                elif request.form[j] == '':
+                    for price_obj in carwash_obj.Price:
+                        print(price_obj)
+                        if price_obj._id == j.split('_')[1]:
+                            for price in price_obj.categoryPrice:
+                                if price.category == j.split('_')[2]:
+                                    sum_default = price.sum
+                                    prices.append(
+                                        PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
+                                    )
+
+        result_arr = []
+        for price_obj in carwash_obj.Price:
+            for price in prices:
+                if price_obj._id == price._id:
+                    for obj_of_existing_price in price_obj.categoryPrice:
+                        if obj_of_existing_price.category == price.category:
+                            obj_of_existing_price.sum = price.sum
+            setattr(price_obj, "status", 'turn_off')
+            result_arr.append(price_obj)
+        return result_arr
+
 
 
 
