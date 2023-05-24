@@ -298,13 +298,11 @@
 
                                 <td style="align-items: center;">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                               name="{{ price._id }}"
-                                               {% for exists_price in context.carwash.Price %}
-                                               {% if exists_price._id== price._id%}
-                                               checked
-                                               {% endif %}
-                                               {% endfor %}
+                                        <input class="form-check-input"
+                                               type="checkbox" role="switch" name="{{ price._id }}"
+                                               {% if price.status== 'turn_off' %}{% elif price.status == 'active' %}
+                                        checked
+                                        {% endif %}
                                         >
                                     </div>
                                 </td>
