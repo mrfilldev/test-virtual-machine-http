@@ -33,6 +33,34 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
             print(price_obj)
             prices_list.append(price_obj)
         print('prices_list:\n', prices_list)
+        for j in dict_of_form:
+            if 'price' in j:
+                print(j.split('_'))
+                if request.form[j] != '':
+                    prices.append(PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=request.form[j]))
+                elif request.form[j] == '':
+                    for i in all_prices:
+                        data = json.loads(json_util.dumps(i))
+                        data = json.dumps(data, default=lambda x: x.__dict__)
+                        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+                        print(price_obj)
+                        if price_obj._id == j.split('_')[1]:
+                            for price in price_obj.categoryPrice:
+                                if price.category == j.split('_')[2]:
+                                    sum_default = price.sum
+                                    prices.append(
+                                        PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
+                                    )
+        result_arr = []
+        for price_obj in prices_list:
+            for price in prices:
+                if price_obj._id == price._id:
+                    for obj_of_existing_price in price_obj.categoryPrice:
+                        if obj_of_existing_price.category == price.category:
+                            obj_of_existing_price.sum = price.sum
+            setattr(price_obj, "status", 'turn_off')
+            result_arr.append(price_obj)
+            return result_arr
     else:
         print('...update in process...\n')
         print('carwash_id:\n', carwash_id)
@@ -41,38 +69,8 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
         all_prices = carwash_obj.Price
         print('all_prices:\n', all_prices)
 
-    for j in dict_of_form:
-        if 'price' in j:
-            print(j.split('_'))
-            if request.form[j] != '':
-                prices.append(PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=request.form[j]))
-            elif request.form[j] == '':
-                for i in all_prices:
-                    data = json.loads(json_util.dumps(i))
-                    data = json.dumps(data, default=lambda x: x.__dict__)
-                    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-                    print(price_obj)
-                    if price_obj._id == j.split('_')[1]:
-                        for price in price_obj.categoryPrice:
-                            if price.category == j.split('_')[2]:
-                                sum_default = price.sum
-                                prices.append(
-                                    PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
-                                )
-    result_arr = []
-    for price_obj in prices_list:
-        for price in prices:
-            if price_obj._id == price._id:
-                for obj_of_existing_price in price_obj.categoryPrice:
-                    if obj_of_existing_price.category == price.category:
-                        obj_of_existing_price.sum = price.sum
-        print(price_obj)
-        if hasattr(price_obj, 'status'):
-            print('\nstatus is in\n')
-        else:
-            setattr(price_obj, "status", 'turn_off')
-        result_arr.append(price_obj)
-    return result_arr
+
+
 
 
 def show_list_price():
