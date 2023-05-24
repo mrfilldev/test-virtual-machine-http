@@ -370,11 +370,11 @@ def change_price_status(request, carwash_id):
     print('carwash_obj: ', carwash_obj.Price)
 
 
-    # carwash = {'_id': carwash_id}
-    # print('carwash: ', carwash)
-    # set_fields = {'$set': {
-    #     'Price': json.loads(json.dumps(prices_list, default=lambda x: x.__dict__)),
-    # }}
+    carwash = {'_id': carwash_id}
+    print('carwash: ', carwash)
+    set_fields = {'$set': {
+        'Price': json.loads(json.dumps(carwash_obj.Price, default=lambda x: x.__dict__)),
+    }}
     # database.col_carwashes.update_one(carwash, set_fields)
     # обработка данных
     # формирование ответа
