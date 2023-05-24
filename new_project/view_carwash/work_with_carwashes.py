@@ -51,6 +51,14 @@ def create_prices(request, dict_of_form):
                                 prices.append(
                                     PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
                                 )
+
+    for price_obj in prices_list:
+        for price in prices:
+            if price_obj._id == price._id:
+                for obj_of_existing_price in price_obj.categoryPrice:
+                    if obj_of_existing_price.category == price.category:
+                        obj_of_existing_price.sum = price.sum
+        print(price_obj)
     return prices
 
 

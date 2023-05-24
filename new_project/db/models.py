@@ -128,7 +128,7 @@ class Prices:
 class PricesCarWash:
     def __init__(self, id, category, sum):
         self._id = id
-        self.categoryPrice = category
+        self.category = category
         self.sum = sum
 
 
