@@ -367,7 +367,7 @@ def change_price_status(request, carwash_id):
         else:
             price.status = 'active'
 
-    print('carwash_obj: ', carwash_obj)
+    print('carwash_obj: ', carwash_obj.Price)
 
 
     # carwash = {'_id': carwash_id}
