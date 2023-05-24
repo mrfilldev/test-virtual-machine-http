@@ -59,6 +59,7 @@ def create_prices(request, dict_of_form):
                     if obj_of_existing_price.category == price.category:
                         obj_of_existing_price.sum = price.sum
         print(price_obj)
+        setattr(price_obj, "status", "active")
         result_arr.append(price_obj)
     return result_arr
 
