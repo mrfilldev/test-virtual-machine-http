@@ -359,23 +359,17 @@ def change_price_status(request, carwash_id):
     print(data, carwash_id)
     print('\n################################################################\n')
     arr_of_id_price = []
+    carwash_obj = get_carwash_obj(carwash_id)
     for i in data.keys():
-        arr_of_id_price.append(i)
-    price_objects = database.col_prices.find({'_id': {'$in': arr_of_id_price}})
-    prices_list = []
-    for i in price_objects:
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        prices_list.append(price_obj)
-    print(prices_list)
+        for price in carwash_obj.Price:
+            pass
 
-    carwash = {'_id': carwash_id}
-    print('carwash: ', carwash)
-    set_fields = {'$set': {
-        'Price': json.loads(json.dumps(prices_list, default=lambda x: x.__dict__)),
-    }}
-    database.col_carwashes.update_one(carwash, set_fields)
+    # carwash = {'_id': carwash_id}
+    # print('carwash: ', carwash)
+    # set_fields = {'$set': {
+    #     'Price': json.loads(json.dumps(prices_list, default=lambda x: x.__dict__)),
+    # }}
+    # database.col_carwashes.update_one(carwash, set_fields)
     # обработка данных
     # формирование ответа
     response = {'status': 'success'}
