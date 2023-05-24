@@ -68,7 +68,7 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
                         obj_of_existing_price.sum = price.sum
         print(price_obj)
         if hasattr(price_obj, 'status'):
-            pass
+            print('\nstatus is in\n')
         else:
             setattr(price_obj, "status", 'turn_off')
         result_arr.append(price_obj)
