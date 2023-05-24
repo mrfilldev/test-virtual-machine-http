@@ -34,7 +34,10 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
             prices_list.append(price_obj)
         print('prices_list:\n', prices_list)
     else:
+        print('...update in process...\n')
+        print('carwash_id:\n', carwash_id)
         carwash_obj = get_carwash_obj(carwash_id)
+        print('carwash_obj:\n', carwash_obj)
         all_prices = carwash_obj.Price
         print('all_prices:\n', all_prices)
 
