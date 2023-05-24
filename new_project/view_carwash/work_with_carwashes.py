@@ -51,7 +51,7 @@ def create_prices(request, dict_of_form):
                                 prices.append(
                                     PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
                                 )
-
+    result_arr = []
     for price_obj in prices_list:
         for price in prices:
             if price_obj._id == price._id:
@@ -59,7 +59,8 @@ def create_prices(request, dict_of_form):
                     if obj_of_existing_price.category == price.category:
                         obj_of_existing_price.sum = price.sum
         print(price_obj)
-    return prices
+        result_arr.append(price_obj)
+    return result_arr
 
 
 def show_list_price():
@@ -306,7 +307,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        # 'Price': json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)),
+        #'Price': json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
