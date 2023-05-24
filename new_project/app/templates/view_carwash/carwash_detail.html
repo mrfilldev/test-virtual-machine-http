@@ -301,7 +301,7 @@
                                         <input class="form-check-input"
                                                type="checkbox" role="switch" name="{{ price._id }}"
 
-                                               {% if price.status = 'active' %}
+                                               {% if price.status == 'active' %}
                                                checked
                                                {% endif %}
                                         >
