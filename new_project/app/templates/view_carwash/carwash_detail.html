@@ -212,7 +212,7 @@
                 <tbody>
 
                 {% for price in context.carwash.Price %}
-                {% if price.status == "active" %}
+                {% if price.status == 'active' %}
                 <tr>
                     <td style="width: 200px">
                         {{ price.name }}
