@@ -127,9 +127,9 @@ class Prices:
 
 
 class PricesCarWash:
-    def __init__(self, category, cost):
+    def __init__(self, category, sum):
         self.categoryPrice = category
-        self.cost = cost
+        self.sum = sum
 
 
 class Point:  # enum.Enum):
