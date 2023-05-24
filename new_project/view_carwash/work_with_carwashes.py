@@ -51,7 +51,7 @@ def create_prices(request, dict_of_form):
                                 prices.append(
                                     PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
                                 )
-    print('prices : ', prices)
+    return prices
 
 
 def show_list_price():
