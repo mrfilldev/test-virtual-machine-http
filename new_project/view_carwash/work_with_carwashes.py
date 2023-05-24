@@ -36,6 +36,7 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
     else:
         carwash_obj = get_carwash_obj(carwash_id)
         all_prices = carwash_obj.Price
+        print('all_prices:\n', all_prices)
 
 
     for j in dict_of_form:
