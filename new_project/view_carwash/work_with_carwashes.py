@@ -296,7 +296,7 @@ def update_carwash_obj(request, carwash_id):
 
     # update_cost_of_price(dict_of_form, carwash_id)
 
-    print('UPD_PRICE:', json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)))
+    #print('UPD_PRICE:', json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)))
 
     old_carwash = {'_id': carwash_id}
     print('old_carwash: ', old_carwash)
@@ -307,7 +307,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        #'Price': json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)),
+        'Price': json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
