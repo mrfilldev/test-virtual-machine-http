@@ -299,7 +299,12 @@
                                 <td style="align-items: center;">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input"
-                                               type="checkbox" role="switch" name="{{ price._id }}" checked>
+                                               type="checkbox" role="switch" name="{{ price._id }}"
+
+                                               {% if price.status == active %}
+                                               checked
+                                               {% endif %}
+                                        >
                                     </div>
                                 </td>
                             </tr>
