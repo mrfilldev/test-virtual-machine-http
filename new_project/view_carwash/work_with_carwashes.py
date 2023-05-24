@@ -369,7 +369,6 @@ def change_price_status(request, carwash_id):
 
     print('carwash_obj: ', carwash_obj.Price)
 
-
     carwash = {'_id': carwash_id}
     print('carwash: ', carwash)
     set_fields = {'$set': {
