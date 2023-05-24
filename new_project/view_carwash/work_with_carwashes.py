@@ -46,6 +46,8 @@ def create_prices(request, dict_of_form):
                                 sum_default = categoryPrice.sum
                                 prices.append(PricesCarWash(category=j.split('_')[2], sum=sum_default))
                                 break
+                        prices_list[obj].categoryPrice = prices
+                        print(prices_list[obj].categoryPrice)
                         break
 
     return prices
