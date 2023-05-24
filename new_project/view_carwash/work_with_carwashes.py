@@ -288,7 +288,7 @@ def update_carwash_obj(request, carwash_id):
 
     # update_cost_of_price(dict_of_form, carwash_id)
 
-    print('UPD_PRICE:', create_prices(request, dict_of_form))
+    print('UPD_PRICE:', json.loads(json.dumps(create_prices(request, dict_of_form), default=lambda x: x.__dict__)))
 
     old_carwash = {'_id': carwash_id}
     print('old_carwash: ', old_carwash)
