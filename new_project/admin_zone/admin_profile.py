@@ -93,6 +93,9 @@ def admin_price_detail(price_id):
 def admin_delete_price(price_id):
     return delete_price(price_id)
 
+@admin_bp.route('/carwashes_clear_prices')
+def carwashes_clear_prices():
+    return delete_prices_from_all_carwashes()
 @admin_bp.route('/button_fix')
 def button_fix():
     return delete_prices_from_all_carwashes()
