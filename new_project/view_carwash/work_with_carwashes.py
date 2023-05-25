@@ -87,12 +87,16 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
         result_arr = []
         for price_obj in carwash_obj.Price:
             print('true1')
-            print('true1')
             for price in prices:
+                print('true2')
                 if price_obj._id == price._id:
+                    print('true3')
                     for obj_of_existing_price in price_obj.categoryPrice:
+                        print('true4')
                         if obj_of_existing_price.category == price.category:
+                            print('true5')
                             obj_of_existing_price.sum = price.sum
+            print('true6')
             setattr(price_obj, "status", carwash_obj.Price.status)
             result_arr.append(price_obj)
         return result_arr
