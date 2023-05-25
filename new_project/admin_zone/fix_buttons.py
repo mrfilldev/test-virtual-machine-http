@@ -39,5 +39,4 @@ def back_carwashes_refresh_prices():
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('price_obj: ', price_obj)
 
-
     return redirect(url_for('admin_blueprint.admin_main'))
