@@ -29,6 +29,6 @@ def delete_prices_from_all_carwashes():
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('carwash_obj: ', carwash_obj)
         database.col_carwashes.update_one({'_id': carwash_obj._id}, {"$set": {
-            "Price": '',
+            "Price": [],
         }})
     return redirect(url_for('admin_blueprint.admin_main'))
