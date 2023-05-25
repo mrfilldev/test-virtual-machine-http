@@ -91,7 +91,7 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
                     for obj_of_existing_price in price_obj.categoryPrice:
                         if obj_of_existing_price.category == price.category:
                             obj_of_existing_price.sum = price.sum
-            setattr(price_obj, "status", 'turn_off')
+            setattr(price_obj, "status", carwash_obj.Price.status)
             result_arr.append(price_obj)
         return result_arr
 
