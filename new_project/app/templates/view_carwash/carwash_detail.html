@@ -305,7 +305,7 @@
 
                                                {% for obj_price in context.carwash.Price %}
                                                {% if obj_price._id == price._id %}
-                                               {% if price.status == 'active' %}
+                                               {% if obj_price.status == 'active' %}
                                                checked
                                                {% endif %}
                                                {% endif %}
