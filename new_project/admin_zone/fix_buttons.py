@@ -33,10 +33,13 @@ def back_carwashes_refresh_prices():
         }})
 
     prices = database.col_prices.find({})
+    prices_list = []
     for price in prices:
         data = json.loads(json_util.dumps(price))
         data = json.dumps(data, default=lambda x: x.__dict__)
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('price_obj: ', price_obj)
+        setattr(price_obj, "status", 'turn_off')
+        prices_list.append(price_obj)
 
     return redirect(url_for('admin_blueprint.admin_main'))
