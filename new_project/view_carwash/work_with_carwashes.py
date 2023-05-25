@@ -362,7 +362,7 @@ def update_carwash_obj(request, carwash_id):
 def back_carwash_detail(g, request, carwash_id):
     if request.method == 'POST':
         update_carwash_obj(request, carwash_id)
-        return redirect(url_for('view_carwash/carwash_detail.html'))
+        return redirect(url_for('carwash_blueprint.carwash_detail'))
     print(type(carwash_id))
     carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
     print(carwash_obj)
