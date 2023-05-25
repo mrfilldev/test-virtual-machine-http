@@ -83,7 +83,7 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
                                         PricesCarWash(id=j.split('_')[1], category=j.split('_')[2], sum=sum_default)
                                     )
         for i in prices:
-            print('price: ', i)
+            print('price: ', vars(i).items())
         result_arr = []
         for price_obj in carwash_obj.Price:
             print('true1')
