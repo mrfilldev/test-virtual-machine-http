@@ -395,7 +395,7 @@ def change_price_status(request, carwash_id):
     print('\n################################################################\n')
     arr_of_id_price = []
     carwash_obj = get_carwash_obj(carwash_id)
-    print('carwash_obj', carwash_obj)
+    print('carwash_obj: ', carwash_obj)
     for price in carwash_obj.Price:
         print('price: ', price)
         if price._id in data.keys():
@@ -403,7 +403,7 @@ def change_price_status(request, carwash_id):
         else:
             price.status = 'turn_off'
 
-    print('carwash_obj: ', carwash_obj.Price)
+    print('carwash_obj price: ', carwash_obj.Price)
 
     carwash = {'_id': carwash_id}
     print('carwash: ', carwash)
