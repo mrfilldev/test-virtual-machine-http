@@ -187,6 +187,7 @@
                             <div class="col-9">Прейскурант</div>
                             <div class="col-3">
                                 <div class="row">
+                                    {% if g.user_db.role != 'network_worker' %}
                                     <div class="col">
                                         <a href="{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}"
                                            style="width: 100px" class="btn-sm btn btn-outline-secondary">стр</a>
@@ -196,6 +197,7 @@
                                            style="width: 100px" class="btn-sm btn btn-outline-secondary">мод
                                         </a>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
