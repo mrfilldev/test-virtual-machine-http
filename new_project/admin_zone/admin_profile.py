@@ -4,7 +4,7 @@ from dateutil import parser
 from flask import render_template, request, Blueprint, session, g, url_for, redirect
 
 from .edit_data_in_db import list_all_cols_in_db
-from .fix_buttons import fix_network_id_in_orders, delete_prices_from_all_carwashes
+from .fix_buttons import fix_network_id_in_orders, back_carwashes_refresh_prices
 from .manage_networks import list_networks, network_detail, add_network
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
 from .manage_users import users_list_view, user_detail, delete_user
@@ -93,13 +93,9 @@ def admin_price_detail(price_id):
 def admin_delete_price(price_id):
     return delete_price(price_id)
 
-@admin_bp.route('/carwashes_clear_prices')
-def carwashes_clear_prices():
-    return delete_prices_from_all_carwashes()
-@admin_bp.route('/button_fix')
-def button_fix():
-    return delete_prices_from_all_carwashes()
-
+@admin_bp.route('/carwashes_refresh_prices')
+def carwashes_refresh_prices():
+    return back_carwashes_refresh_prices()
 
 ################################
 ################################
