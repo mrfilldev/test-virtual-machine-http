@@ -41,5 +41,5 @@ def back_carwashes_refresh_prices():
         print('price_obj: ', price_obj)
         setattr(price_obj, "status", 'turn_off')
         prices_list.append(price_obj)
-
+    print('prices_list: ', prices_list)
     return redirect(url_for('admin_blueprint.admin_main'))
