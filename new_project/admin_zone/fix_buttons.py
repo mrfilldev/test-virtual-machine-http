@@ -22,18 +22,9 @@ def fix_network_id_in_orders():
 
 
 def back_carwashes_refresh_prices():
-    carwashes = database.col_carwashes.find({})
-    for carwash in carwashes:
-        data = json.loads(json_util.dumps(carwash))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print('carwash_obj: ', carwash_obj)
-        database.col_carwashes.update_one({'_id': carwash_obj._id}, {"$set": {
-            "Price": [],
-        }})
+    prices_list = []
 
     prices = database.col_prices.find({})
-    prices_list = []
     for price in prices:
         data = json.loads(json_util.dumps(price))
         data = json.dumps(data, default=lambda x: x.__dict__)
@@ -42,4 +33,15 @@ def back_carwashes_refresh_prices():
         setattr(price_obj, "status", 'turn_off')
         prices_list.append(price_obj)
     print('prices_list: ', prices_list)
+
+    carwashes = database.col_carwashes.find({})
+    for carwash in carwashes:
+        data = json.loads(json_util.dumps(carwash))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('carwash_obj: ', carwash_obj)
+        database.col_carwashes.update_one({'_id': carwash_obj._id}, {"$set": {
+            "Price": prices_list,
+        }})
+
     return redirect(url_for('admin_blueprint.admin_main'))
