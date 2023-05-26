@@ -86,8 +86,8 @@ def edit_price(request, price_id):
             'name': form['name'],
             'description': form['description'],
             'categoryPrice': categoryPrice,
-            'costType': form['costType']
-
+            'costType': form['costType'],
+            'status': 'turn_off',
         }}
         new_price = database.col_prices.update_one(price_id, set_fields)
         print('UPDATE FIELDS: ', set_fields)
