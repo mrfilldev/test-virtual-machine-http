@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /test-server
+cd ~/test-server/
 source venv/bin/activate
 cd /test-server/test-virtual-machine-http/new_project
 export FLASK_RUN_HOST=127.0.0.1
