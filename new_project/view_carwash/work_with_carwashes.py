@@ -400,7 +400,6 @@ def get_price_obj(price_id):
     data = json.loads(json_util.dumps(price_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-
     return price_obj
 
 
@@ -422,7 +421,9 @@ def change_price_status(request, carwash_id):
 
     for price_id in data.keys():
         if price_id not in arr_of_id_price:
-            carwash_obj.Price.append(get_price_obj(price_id))
+            new_price = get_price_obj(price_id)
+            new_price.status = 'active'
+            carwash_obj.Price.append(new_price)
 
     print('carwash_obj price: ', carwash_obj.Price)
 
