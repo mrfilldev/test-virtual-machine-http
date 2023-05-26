@@ -217,10 +217,7 @@
                 {% if price.status == 'active' %}
                 <tr>
                     <td style="width: 200px">
-                        {{ price.name }}
-                        {{ price.status }}
-                    </td>
-                    <td>
+                        <b>{{ price.name }}</b>
                         {{ price.description }}
                     </td>
                     {% for i in price.categoryPrice %}
