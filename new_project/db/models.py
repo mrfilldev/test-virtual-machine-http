@@ -123,6 +123,7 @@ class Prices:
         self.description = description
         self.categoryPrice = cost_id_sum
         self.costType = cost_type
+        self.status = 'turn_off'
 
 
 class PricesCarWash:
