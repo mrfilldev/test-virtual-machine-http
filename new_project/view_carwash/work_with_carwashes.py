@@ -397,7 +397,7 @@ def back_carwash_detail(g, request, carwash_id):
 
 def get_price_obj(price_id):
     price_obj = database.col_prices.find_one({'_id': price_id})  # dict
-    data = json.loads(json_util.dumps(price_id))
+    data = json.loads(json_util.dumps(price_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     return price_obj
