@@ -395,6 +395,14 @@ def back_carwash_detail(g, request, carwash_id):
     return render_template("view_carwash/carwash_detail.html", context=context)
 
 
+def get_price_obj(price_id):
+    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
+    data = json.loads(json_util.dumps(price_id))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    return price_obj
+
+
 def change_price_status(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
@@ -409,6 +417,11 @@ def change_price_status(request, carwash_id):
             price.status = 'active'
         else:
             price.status = 'turn_off'
+        arr_of_id_price.append(price._id)
+
+    for price_id in data.keys():
+        if price_id not in arr_of_id_price:
+            carwash_obj.Price.append(get_price_obj(price_id))
 
     print('carwash_obj price: ', carwash_obj.Price)
 
