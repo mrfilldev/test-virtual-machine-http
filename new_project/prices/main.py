@@ -38,7 +38,7 @@ def list_sets_prices():
 
 @prices_bp.route('/new_set/', methods=['GET'])
 def new_set():
-    return set_detail()
+    return set_detail(request)
 
 
 @prices_bp.app_template_filter()
