@@ -41,7 +41,7 @@ def serializing_sets_collection(all_sets):
 
 
 def serializing_set(set):
-    data = json.loads(json_util.dumps(i))
+    data = json.loads(json_util.dumps(set))
     data = json.dumps(data, default=lambda x: x.__dict__)
     set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     set_obj.append(set_obj)
