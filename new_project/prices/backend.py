@@ -85,7 +85,7 @@ def set_create(request):
 
 def find_prices_with_set_id(set_id):
     prices_of_set = []
-    prices = database.col_prices.find_one({'set_id': set_id})  # dict
+    prices = database.col_prices.find({'set_id': set_id})  # dict
     for price in prices:
         data = json.loads(json_util.dumps(price))
         data = json.dumps(data, default=lambda x: x.__dict__)
