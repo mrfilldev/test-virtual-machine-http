@@ -82,23 +82,61 @@
 
                 </div>
                 <form id="postPricesForm">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-light">
-                            <tr>
-                                <th>Название</th>
-                                <th>Описание</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="3">Тариф Мойки</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width: 200px">
+                        Название:
+                    </td>
+                    <td>
+                        <input name="name" style="width: 100%" type="text" class="form-control"
+                               required placeholder="Как назовете?">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Описание:
+                    </td>
+                    <td>
+                        <input name="description" style="width: 100%" type="text" class="form-control"
+                               required placeholder="Что входит в мойку?">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th colspan="2" style="width: 200px">
+                        Стоимость:
+                    </th>
+                </tr>
+                {% for i in context['categories'] %}
+                <tr>
+                    <td>
+                        {{ i }}:
+                    </td>
+                    <td>
+                        <input name="{{ i }}" style="width: 150px" type="text" class="form-control" required placeholder="{{ i }}">
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td style="width: 200px">
+                        Тип стоимости:
+                    </td>
+                    <td>
+                        &nbsp;<select style="width: 100%" class="form-control" id="validationCustom04" name="costType">
+                        <option value=""> ...</option>
+                        <option value="Fix">Фиксированная</option>
+                        <option value="PerMinute">Поминутная</option>
+                    </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
                     <div class="row">
                         <div class="col"></div>
                         <div class="col"></div>
