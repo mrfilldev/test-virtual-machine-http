@@ -59,18 +59,10 @@
                     <div class="row">
                         <div class="col-2">
                             <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
-                                <legend>Тарифы</legend>
+                                <legend>Создать новый тариф</legend>
                             </div>
                         </div>
-                        <div class="col-8">
-                            <div class="row justify-content-center">
-                                <input style="width: 400px" class="form-control"
-                                       placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
-                                       aria-describedby="addon-wrapping">
-                                <button style="width: 80px" type="submit" class="btn btn-outline-secondary">Поиск
-                                </button>
-                            </div>
-                        </div>
+                        <div class="col-8"></div>
                         <div class="col-2">
                             <div class="row">
                                 <div class="col"></div>
@@ -94,36 +86,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for price in context.prices_list %}
                             <tr>
-                                <td>
-
-                                    {{ price.name }}
-
-                                </td>
-                                <td>
-                                    {{ price.description }}
-                                </td>
-
-                                <td style="align-items: center;">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input"
-                                               type="checkbox" role="switch" name="{{ price._id }}"
-
-                                               {% for obj_price in context.carwash.Price %}
-                                               {% if obj_price._id== price._id %}
-                                               {% if obj_price.status== 'active' %}
-                                        checked
-                                        {% endif %}
-                                        {% endif %}
-                                        {% endfor %}
-
-
-                                        >
-                                    </div>
-                                </td>
+                                <td></td>
+                                <td></td>
                             </tr>
-                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
