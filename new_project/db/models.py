@@ -17,6 +17,7 @@ class PriceOfSet:
         self.description = description
         self.categoryPrice = cost_id_sum
         self.costType = cost_type
+        self.status = 'active'
 
 
 class SetOfPrices:

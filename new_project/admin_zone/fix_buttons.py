@@ -47,8 +47,19 @@ def back_carwashes_refresh_prices():
     return redirect(url_for('admin_blueprint.admin_main'))
 
 
-def clear_sets():
-    from bson.objectid import ObjectId
+def remake_prices_to_set():
+    prices_list = []
+    prices = database.col_prices.find({})
+    for price in prices:
+        data = json.loads(json_util.dumps(price))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('price_obj: ', price_obj)
+        setattr(price_obj, "status", 'turn_off')
+        prices_list.append(price_obj)
+        database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
+            "set_id": '6265a8cb8aab49a6b9407256c1726441',
+        }})
+    print('prices_list: ', prices_list)
 
-    database.col_sets_of_prices.delete_one({'_id': ObjectId('6474c531578b8db9ff8f68cd')})
     return redirect(url_for('admin_blueprint.admin_main'))
