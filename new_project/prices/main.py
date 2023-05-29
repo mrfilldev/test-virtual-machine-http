@@ -42,5 +42,9 @@ def new_set():
 
 
 @prices_bp.app_template_filter()
-def smthn_about_price(value):
-    pass
+def smthing(smthing):
+    match smthing:
+        case 'Compact':
+            pass
+        case _:
+            pass
