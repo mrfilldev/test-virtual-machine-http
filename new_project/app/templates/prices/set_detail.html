@@ -11,7 +11,7 @@
             event.preventDefault();
             $.ajax({
                 type: 'POST',
-                url: "{{ url_for('carwash_blueprint.prices_status', carwash_id=context.carwash._id) }}",
+                url: "{{ url_for('prices_blueprint.new_price', set_id=context.set._id) }}",
                 data: $('#priceForm').serialize(),
                 success: function () {
                     $('#new_price_modal').modal('toggle');
