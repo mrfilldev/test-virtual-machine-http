@@ -56,7 +56,6 @@ def show_list_sets_prices():
         'prices': get_prices_obj_list(),
         'enum_list': list(CategoryAuto),
         'sets': sets_serialized,
-
     }
     return render_template('prices/list_sets_price.html', context=context)
 
