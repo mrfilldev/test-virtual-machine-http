@@ -2,6 +2,11 @@
 
 {% block body %}
 <script>
+
+
+    $(document).ready(function () {
+        create_new_price();
+    });
     function open_modal_window_prices_list() {
         $('#new_price_modal').modal('show');
     }
