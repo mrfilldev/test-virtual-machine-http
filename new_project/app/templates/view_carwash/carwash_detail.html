@@ -192,14 +192,11 @@
                                     <!--                                        <a href="{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}"-->
                                     <!--                                           style="width: 100px" class="btn-sm btn btn-outline-secondary">стр</a>-->
                                     <!--                                    </div>-->
-
                                     <div class="col"></div>
                                     <div class="col">
                                         <a onclick="open_modal_window_prices_list();"
                                            style="width: 120px" class="btn-sm btn btn-outline-secondary">Настройки</a>
                                     </div>
-
-
                                     {% endif %}
                                 </div>
                             </div>
@@ -207,7 +204,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th>Название</th>
+                    <th>Тариф</th>
                     {% for enum in context['enum_list'] %}
                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                     {% endfor %}
@@ -218,7 +215,7 @@
                 {% for price in context.carwash.Price %}
                 {% if price.status == 'active' %}
                 <tr>
-                    <td style="width: 200px">
+                    <td style="width: 350px">
                         <b>{{ price.name }}</b><br>
                         {{ price.description }}
                     </td>
@@ -226,7 +223,7 @@
                     <td>
                         {% set id_of_cell = price['_id'] %}
                         <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                               style="width: 100px" type="text"
+                               style="width: 70px" type="text"
                                class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
                     </td>
                     {% endfor %}
