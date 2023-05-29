@@ -94,11 +94,12 @@ def set_detail(request, set_id):
     return render_template('prices/set_detail.html', context=context)
 
 
-def create_price(request):
+def create_price(request, set_id):
     if request.method == 'POST':
         print('\n########################DATA####################################\n')
         data = request.form.to_dict()
         print(data)
+        print('set_id: ', set_id)
         print('\n################################################################\n')
 
         # for i in request.form:
