@@ -36,9 +36,9 @@ def list_sets_prices():
     return show_list_sets_prices()
 
 
-@prices_bp.route('/new_set/', methods=['GET'])
+@prices_bp.route('/new_set/', methods=['POST', 'GET'])
 def new_set():
-    return set_detail(request)
+    return set_detail(g, request)
 
 
 @prices_bp.app_template_filter()

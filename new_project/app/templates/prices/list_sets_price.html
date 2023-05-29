@@ -2,8 +2,25 @@
 
 {% block body %}
 <script>
+
+    $(document).ready(function () {
+        create_new_set();
+    });
     function open_modal_window() {
         $('#new_set_of_prices').modal('show');
+    }
+    function create_new_set() {
+        $('#create_set').click(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('carwash_blueprint.prices_status', carwash_id=context.carwash._id) }}",
+                data: $('#set_creation').serialize(),
+                success: function () {
+                    $('#new_set_of_prices').modal('toggle');
+                }
+            });
+        });
     }
 </script>
 
@@ -78,7 +95,7 @@
                     </div>
 
                 </div>
-                <form id="postPricesForm">
+                <form id="set_creation">
                     <table class="table table-bordered table-center align-middle">
                 <thead class="table-light">
                 <tr>
@@ -110,7 +127,7 @@
                         <div class="col"></div>
                         <div class="col"></div>
                         <div class="col text-end">
-                            <button id="prices_update" class="btn btn-outline-success">
+                            <button id="create_set" class="btn btn-outline-success">
                                 Создать
                             </button>
                         </div>

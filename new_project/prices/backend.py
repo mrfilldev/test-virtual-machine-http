@@ -36,13 +36,16 @@ def show_list_sets_prices():
     return render_template('prices/list_sets_price.html', context=context)
 
 
-def create_set():
-    pass
+def create_set(request):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print(data)
+    print('\n################################################################\n')
 
 
-def set_detail(request):
+def set_detail(g_flask_user, request):
     if request.method == 'POST':
-        create_set()
+        create_set(request)
     else:
         pass
     context = {
