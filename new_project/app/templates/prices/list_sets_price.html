@@ -54,18 +54,19 @@
         </tr>
         </thead>
         <tbody>
+        {% for set in context.sets %}
         <tr>
             <td>
-
+                {{ set.Name }}
             </td>
             <td>
-
+                {{ set.Description }}
             </td>
             <td>
-
+                {{ set.Prices }}
             </td>
         </tr>
-
+        {% endfor %}
         </tbody>
     </table>
 </div>
