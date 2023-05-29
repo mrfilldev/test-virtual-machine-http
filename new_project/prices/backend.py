@@ -6,7 +6,7 @@ from bson import json_util
 from flask import render_template, request, jsonify
 
 from ..db import database
-from ..db.models import CategoryAuto, SetOfPrices
+from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum
 
 
 def get_prices_obj_list():
@@ -102,6 +102,9 @@ def create_price(request, set_id):
         print('set_id: ', set_id)
         print('\n################################################################\n')
 
+        for i in request.form:
+            print(i, request.form[i])
+        form = request.form
         id = uuid.uuid4().hex
         name = form['name']
         categoryPrice = []
@@ -110,7 +113,8 @@ def create_price(request, set_id):
 
         for i in list(CategoryAuto):
             categoryPrice.append(CostIdSum(i.name, form[str(i.name)]))
-        new_price = Prices(id, name, description, categoryPrice, costType)
+
+        new_price = PriceOfSet(id, set_id, name, description, categoryPrice, costType)
 
         print(new_price.categoryPrice)
         for i in new_price.categoryPrice:
@@ -121,6 +125,7 @@ def create_price(request, set_id):
         # print(new_price)
         # print(type(new_price))
         # database.col_prices.insert_one(new_price)
+
 
     response = {'status': 'success'}
     return jsonify(response)

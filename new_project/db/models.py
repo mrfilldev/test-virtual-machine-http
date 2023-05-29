@@ -9,6 +9,16 @@ from ..db import database
 users = database.col_users
 
 
+class PriceOfSet:
+    def __init__(self, id, set_id, name, description, cost_id_sum, cost_type):
+        self._id = id
+        self.set_id = set_id
+        self.name = name
+        self.description = description
+        self.categoryPrice = cost_id_sum
+        self.costType = cost_type
+
+
 class SetOfPrices:
     def __init__(self, id: str, name: str, description: str, prices: list):
         self._id = id
@@ -127,17 +137,6 @@ class CostIdSum:
 class Prices:
     def __init__(self, id, name, description, cost_id_sum, cost_type):
         self._id = id
-        self.name = name
-        self.description = description
-        self.categoryPrice = cost_id_sum
-        self.costType = cost_type
-        self.status = 'turn_off'
-
-
-class PriceOfSet:
-    def __init__(self, id, set_id, name, description, cost_id_sum, cost_type):
-        self._id = id
-        self.set_id = set_id
         self.name = name
         self.description = description
         self.categoryPrice = cost_id_sum
