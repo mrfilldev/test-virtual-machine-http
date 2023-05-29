@@ -117,6 +117,7 @@ def create_price(request, set_id):
         new_price = PriceOfSet(id, set_id, name, description, categoryPrice, costType)
 
         print(new_price.categoryPrice)
+        print(new_price.set_id)
         for i in new_price.categoryPrice:
             print(f'{i.category} -> {i.sum}')
 
