@@ -102,30 +102,25 @@ def create_price(request, set_id):
         print('set_id: ', set_id)
         print('\n################################################################\n')
 
-        # for i in request.form:
-        #     print(i, request.form[i])
-        # form = request.form
-        # id = uuid.uuid4().hex
-        # name = form['name']
-        # categoryPrice = []
-        # description = form['description']
-        # costType = form['costType']
-        #
-        # for i in list(CategoryAuto):
-        #     categoryPrice.append(CostIdSum(i.name, form[str(i.name)]))
-        #
-        # new_price = Prices(id, name, description, categoryPrice, costType)
-        #
-        # print(new_price.categoryPrice)
-        # for i in new_price.categoryPrice:
-        #     print(f'{i.category} -> {i.sum}')
-        #
+        id = uuid.uuid4().hex
+        name = form['name']
+        categoryPrice = []
+        description = form['description']
+        costType = form['costType']
+
+        for i in list(CategoryAuto):
+            categoryPrice.append(CostIdSum(i.name, form[str(i.name)]))
+        new_price = Prices(id, name, description, categoryPrice, costType)
+
+        print(new_price.categoryPrice)
+        for i in new_price.categoryPrice:
+            print(f'{i.category} -> {i.sum}')
+
         # # запись в бд
         # new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
         # print(new_price)
         # print(type(new_price))
         # database.col_prices.insert_one(new_price)
-
 
     response = {'status': 'success'}
     return jsonify(response)

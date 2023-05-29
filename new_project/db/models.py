@@ -134,6 +134,17 @@ class Prices:
         self.status = 'turn_off'
 
 
+class PriceOfSet:
+    def __init__(self, id, set_id, name, description, cost_id_sum, cost_type):
+        self._id = id
+        self.set_id = set_id
+        self.name = name
+        self.description = description
+        self.categoryPrice = cost_id_sum
+        self.costType = cost_type
+        self.status = 'turn_off'
+
+
 class PricesCarWash:
     def __init__(self, id, category, sum):
         self._id = id
