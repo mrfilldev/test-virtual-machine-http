@@ -34,7 +34,7 @@ def back_carwashes_refresh_prices():
         prices_list.append(price_obj)
     print('prices_list: ', prices_list)
 
-    carwashes = database.col_carwashes.find({})
+    carwashes = database.col_carwashes.find({'network_id': '3a81c491fa9245dc9139049f9885ef57'})
     for carwash in carwashes:
         data = json.loads(json_util.dumps(carwash))
         data = json.dumps(data, default=lambda x: x.__dict__)
