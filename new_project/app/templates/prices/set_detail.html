@@ -65,30 +65,11 @@
                 </thead>
                 <tbody>
 
-                {% for base_price in context.prices_list %}
-                {% for price in context.carwash.Price %}
-
-                {% if price._id == base_price._id %}
-                {% if price.status == 'active' %}
                 <tr>
-                    <td style="width: 350px">
-                        <b>{{ base_price.name }}</b><br>
-                        {{ base_price.description }}
-                    </td>
-                    {% for i in price.categoryPrice %}
-                    <td>
-                        {% set id_of_cell = price['_id'] %}
-                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                               style="width: 100%; text-align: end" type="text"
-                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
-                    </td>
-                    {% endfor %}
+                    <td style="width: 350px"></td>
+                    <td></td>
                 </tr>
-                {% endif %}
-                {% endif %}
 
-                {% endfor %}
-                {% endfor %}
                 </tbody>
             </table>
             {% if g.user_db.role != 'network_worker' %}
