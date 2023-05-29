@@ -83,11 +83,25 @@ def set_create(request):
     return jsonify(response)
 
 
+def find_prices_with_set_id(set_id):
+    prices_of_set = []
+    prices = database.col_sets_of_prices.find_one({'set_id': set_id})  # dict
+    for price in prices:
+        data = json.loads(json_util.dumps(price))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        prices_of_set.append(price_obj)
+        print(price_obj, '\n')
+    return prices_of_set
+
+
 def set_detail(request, set_id):
     if request.method == 'POST':
         pass
     set_obj = serializing_set(set_id)
+    set_id_prices = find_prices_with_set_id(set_id)
     context = {
+        'set_prices': set_id_prices,
         'set': set_obj,
         'enum_list': list(CategoryAuto),
     }
