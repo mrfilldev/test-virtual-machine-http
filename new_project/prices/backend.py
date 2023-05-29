@@ -2,10 +2,10 @@ import json
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template, request
+from flask import render_template, request, jsonify
 
 from ..db import database
-from ..db.models import CategoryAuto
+from ..db.models import CategoryAuto, SetOfPrices
 
 
 def get_prices_obj_list():
@@ -28,10 +28,26 @@ def get_carwash_obj(carwash_id):
     return carwash_obj
 
 
+def serializing_sets_collection(all_sets):
+    sets_list = []
+    for i in all_sets:
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        sets_list.append(set_obj)
+        print(set_obj, '\n')
+    return sets_list
+
+
 def show_list_sets_prices():
+    all_sets = database.col_sets_of_prices.find({})
+    sets_serialized = serializing_sets_collection(all_sets)
+
     context = {
         'prices': get_prices_obj_list(),
-        'enum_list': list(CategoryAuto)
+        'enum_list': list(CategoryAuto),
+        'sets': sets_serialized,
+
     }
     return render_template('prices/list_sets_price.html', context=context)
 
@@ -42,10 +58,23 @@ def create_set(request):
     print(data)
     print('\n################################################################\n')
 
+    new_set = SetOfPrices(
+        name=request.form['name'],
+        description=request.form['description'],
+        prices=[]
+    )
+    print(new_set)
+    new_set = json.loads(json.dumps(new_set, default=lambda x: x.__dict__))
+    print(new_set)
+    database.col_sets_of_prices.insert_one(new_set)
 
-def set_detail(g_flask_user, request):
+    response = {'status': 'success'}
+    return jsonify(response)
+
+
+def set_detail(request):
     if request.method == 'POST':
-        create_set(request)
+        return create_set(request)
     else:
         pass
     context = {

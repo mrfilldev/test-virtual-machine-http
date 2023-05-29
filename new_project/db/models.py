@@ -9,6 +9,13 @@ from ..db import database
 users = database.col_users
 
 
+class SetOfPrices:
+    def __init__(self, name: str, description: str, prices: list):
+        self.Name = name
+        self.Description = description
+        self.Prices = prices
+
+
 class TestScheduleOrder:
     def __init__(self, cost: int, category: int, duration: int):
         self.Cost = cost

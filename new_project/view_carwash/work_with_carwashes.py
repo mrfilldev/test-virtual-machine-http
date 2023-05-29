@@ -209,7 +209,6 @@ def create_carwash_obj(request, g):
         new_carwash_dict = json.loads(new_carwash_json)  # , object_hook=lambda d: SimpleNamespace(**d))
         print('TYPE: ', type(new_carwash_dict))
         print('data: ', new_carwash_dict)
-        new_carwash_dict['_id'] = new_carwash_dict.pop('Id')
         new_carwash_dict['network_id'] = g.user_db['networks'][0]
 
         # network = g.user_db['networks'][0]
