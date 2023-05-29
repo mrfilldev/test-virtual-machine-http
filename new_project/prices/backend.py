@@ -51,7 +51,7 @@ def serializing_set(set):
 def show_list_sets_prices():
     all_sets = database.col_sets_of_prices.find({})
     sets_serialized = serializing_sets_collection(all_sets)
-
+    print(sets_serialized)
     context = {
         'prices': get_prices_obj_list(),
         'enum_list': list(CategoryAuto),
