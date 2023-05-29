@@ -1,4 +1,5 @@
 import json
+import uuid
 from types import SimpleNamespace
 
 from bson import json_util
