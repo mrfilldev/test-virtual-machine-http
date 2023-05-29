@@ -3,37 +3,7 @@
 {% block body %}
 <br>
 <div class="row justify-content-center">
-    <div class="col-2 text-center">
-        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-            {% if context.create_new== True %}
-            {% else %}
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
-                Расписание заказов
-            </a>
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=context.carwash._id) }}">
-                Панель состояния
-            </a>
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
-                Журнал заказов
-            </a>
-            <a class="btn btn-outline-secondary disabled"
-               href="#">
-                Отчет
-            </a>
-            <a class="btn btn-outline-secondary disabled"
-               href="#">
-                Статистика
-            </a>
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
-                Тарифные сетки
-            </a>
-            {% endif %}
-        </div>
-    </div>
+    <div class="col-2 text-center"></div>
     <div class="col-8">
         <form method=POST action="{{ url_for('carwash_blueprint.create_carwash') }}">
             <table class="table table-bordered table-center align-middle" id="table_prices">
