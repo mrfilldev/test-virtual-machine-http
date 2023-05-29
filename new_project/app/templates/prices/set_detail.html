@@ -60,6 +60,7 @@
                 {% for enum in context['enum_list'] %}
                 <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                 {% endfor %}
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -80,6 +81,10 @@
                 </td>
                 {% endfor %}
             </tr>
+            <tr>
+                <a onclick="" style="width: auto" class="btn-sm btn btn-outline-secondary">-</a>
+            </tr>
+
             {% endfor %}
             </tbody>
 
