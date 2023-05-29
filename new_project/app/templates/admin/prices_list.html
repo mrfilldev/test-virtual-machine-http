@@ -29,11 +29,10 @@
         <thead>
         <tr>
             <th scope="col">№</th>
-
-            <th scope="col">id</th>
             <th scope="col">Название</th>
             <th scope="col">Описание</th>
             <th scope="col">Тип стоимости</th>
+
 
         </tr>
         </thead>
@@ -44,10 +43,6 @@
             <th scope="row">
                 {{ context['count_prices'] - loop.index0 }}
             </th>
-
-            <td>
-                {{ price._id }}
-            </td>
 
             <td>
                 {{ price.name }}
