@@ -17,7 +17,6 @@ page_size = 10
 
 def list_orders(g_user_flask, page, carwash_id):
     if carwash_id == '':
-
         if 'networks' in g_user_flask.user_db:
             network = g_user_flask.user_db['networks'][0]
             print('network:', network)
@@ -30,6 +29,7 @@ def list_orders(g_user_flask, page, carwash_id):
             return abort(404)
     else:
         search = {'CarWashId': carwash_id}
+    print('carwash_id: ', carwash_id)
 
     skip = page_size * page
     # limit = page_size * p + page_size
