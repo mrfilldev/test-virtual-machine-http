@@ -188,14 +188,16 @@
                             <div class="col-3">
                                 <div class="row">
                                     {% if g.user_db.role != 'network_worker' %}
-<!--                                    <div class="col">-->
-<!--                                        <a href="{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}"-->
-<!--                                           style="width: 100px" class="btn-sm btn btn-outline-secondary">стр</a>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="col">-->
+                                    <!--                                        <a href="{{ url_for('prices_blueprint.prices_list_table', carwash_id=context.carwash._id) }}"-->
+                                    <!--                                           style="width: 100px" class="btn-sm btn btn-outline-secondary">стр</a>-->
+                                    <!--                                    </div>-->
                                     <div class="col">
-                                        <a class="center" onclick="open_modal_window_prices_list();"
-                                           style="width: 100px" class="btn-sm btn btn-outline-secondary">мод
-                                        </a>
+                                        <div class="justify-content-center">
+                                            <a onclick="open_modal_window_prices_list();"
+                                               style="width: 100px" class="btn-sm btn btn-outline-secondary">мод
+                                            </a>
+                                        </div>
                                     </div>
                                     {% endif %}
                                 </div>
@@ -302,12 +304,12 @@
                                                type="checkbox" role="switch" name="{{ price._id }}"
 
                                                {% for obj_price in context.carwash.Price %}
-                                               {% if obj_price._id == price._id %}
-                                               {% if obj_price.status == 'active' %}
-                                               checked
-                                               {% endif %}
-                                               {% endif %}
-                                               {% endfor %}
+                                               {% if obj_price._id== price._id %}
+                                               {% if obj_price.status== 'active' %}
+                                        checked
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
 
 
                                         >
@@ -332,8 +334,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 {% endblock %}
