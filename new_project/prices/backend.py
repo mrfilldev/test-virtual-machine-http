@@ -40,6 +40,15 @@ def serializing_sets_collection(all_sets):
     return sets_list
 
 
+def serializing_set(set):
+    data = json.loads(json_util.dumps(i))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    set_obj.append(set_obj)
+    print(set_obj, '\n')
+    return set_obj
+
+
 def show_list_sets_prices():
     all_sets = database.col_sets_of_prices.find({})
     sets_serialized = serializing_sets_collection(all_sets)
@@ -53,33 +62,35 @@ def show_list_sets_prices():
     return render_template('prices/list_sets_price.html', context=context)
 
 
-def create_set(request):
-    print('\n########################DATA####################################\n')
-    data = request.form.to_dict()
-    print(data)
-    print('\n################################################################\n')
+def set_create(request):
+    if request.method == 'POST':
+        print('\n########################DATA####################################\n')
+        data = request.form.to_dict()
+        print(data)
+        print('\n################################################################\n')
 
-    new_set = SetOfPrices(
-        id=uuid.uuid4().hex,
-        name=request.form['name'],
-        description=request.form['description'],
-        prices=[]
-    )
-    print(new_set)
-    new_set = json.loads(json.dumps(new_set, default=lambda x: x.__dict__))
-    print(new_set)
-    database.col_sets_of_prices.insert_one(new_set)
+        new_set = SetOfPrices(
+            id=uuid.uuid4().hex,
+            name=request.form['name'],
+            description=request.form['description'],
+            prices=[]
+        )
+        print(new_set)
+        new_set = json.loads(json.dumps(new_set, default=lambda x: x.__dict__))
+        print(new_set)
+        database.col_sets_of_prices.insert_one(new_set)
 
     response = {'status': 'success'}
     return jsonify(response)
 
 
-def set_detail(request):
+def set_detail(request, set_id):
     if request.method == 'POST':
-        return create_set(request)
-    else:
         pass
+    set = database.col_sets_of_prices.find({'_id': set_id})
+    set_obj = serializing_set(set)
     context = {
+        'set': set_obj,
         'enum_list': list(CategoryAuto),
     }
     return render_template('prices/set_detail.html', context=context)

@@ -55,7 +55,7 @@
         </thead>
         <tbody>
         {% for set in context.sets %}
-        <tr>
+        <tr class="tr-set" data-href="{{ url_for('', set_id=set._id) }}">
             <td>
                 {{ set.Name }}
             </td>

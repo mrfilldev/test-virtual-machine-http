@@ -11,7 +11,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 
 from flask_login import current_user
 
-from .backend import show_list_sets_prices, set_detail
+from .backend import show_list_sets_prices, set_create, set_detail
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -38,6 +38,11 @@ def list_sets_prices():
 
 @prices_bp.route('/new_set/', methods=['POST', 'GET'])
 def new_set():
+    return set_create(request)
+
+
+@prices_bp.route('/set_detail/', methods=['POST', 'GET'])
+def detail_set():
     return set_detail(request)
 
 
