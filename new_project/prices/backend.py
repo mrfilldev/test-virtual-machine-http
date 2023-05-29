@@ -59,6 +59,7 @@ def create_set(request):
     print('\n################################################################\n')
 
     new_set = SetOfPrices(
+        id=uuid.uuid4().hex,
         name=request.form['name'],
         description=request.form['description'],
         prices=[]

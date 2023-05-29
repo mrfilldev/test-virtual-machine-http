@@ -10,7 +10,8 @@ users = database.col_users
 
 
 class SetOfPrices:
-    def __init__(self, name: str, description: str, prices: list):
+    def __init__(self, id: str, name: str, description: str, prices: list):
+        self._id = id
         self.Name = name
         self.Description = description
         self.Prices = prices
