@@ -7,6 +7,7 @@
     $(document).ready(function () {
         create_new_price();
     });
+
     function open_modal_window_prices_list() {
         $('#new_price_modal').modal('show');
     }
@@ -62,15 +63,25 @@
             </tr>
             </thead>
             <tbody>
+            <tbody>
 
+            {% for price in context.set_prices %}
             <tr>
-                <td style="width: 350px"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td style="width: 350px">
+                    <b>{{ price.name }}</b><br>
+                    {{ price.description }}
+                </td>
+                {% for i in price.categoryPrice %}
+                <td>
+                    {% set id_of_cell = price['_id'] %}
+                    <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                           style="width: 100%; text-align: end" type="text"
+                           class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                </td>
+                {% endfor %}
             </tr>
+            {% endfor %}
+            </tbody>
 
             </tbody>
         </table>
@@ -145,7 +156,8 @@
                                 {{ enum.CategoryAutoToDispaly(enum) }}:
                             </td>
                             <td>
-                                <input style="width:100%; text-align: end" name="{{ enum.name }}" type="text" class="form-control" required
+                                <input style="width:100%; text-align: end" name="{{ enum.name }}" type="text"
+                                       class="form-control" required
                                        placeholder="₽">
                             </td>
                         </tr>
