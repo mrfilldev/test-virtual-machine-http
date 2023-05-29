@@ -5,10 +5,20 @@
 
     $(document).ready(function () {
         create_new_set();
+        tr_to_buttons();
     });
+
+    function tr_to_buttons() {
+        $('.tr-set').click(function () {
+            window.open($(this).data('href'), "_blank");
+            return false;
+        });
+    }
+
     function open_modal_window() {
         $('#new_set_of_prices').modal('show');
     }
+
     function create_new_set() {
         $('#create_set').click(function (event) {
             event.preventDefault();
@@ -98,32 +108,32 @@
                 </div>
                 <form id="set_creation">
                     <table class="table table-bordered table-center align-middle">
-                <thead class="table-light">
-                <tr>
-                    <th scope="col" colspan="3">Набор Тарифов</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td style="width: 200px">
-                        Название:
-                    </td>
-                    <td>
-                        <input name="name" style="width: 100%" type="text" class="form-control"
-                               required placeholder="Название набора тарифов">
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 200px">
-                        Описание:
-                    </td>
-                    <td>
-                        <input name="description" style="width: 100%" type="text" class="form-control"
-                               required placeholder="Описание набора тарифов">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" colspan="3">Набор Тарифов</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                Название:
+                            </td>
+                            <td>
+                                <input name="name" style="width: 100%" type="text" class="form-control"
+                                       required placeholder="Название набора тарифов">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Описание:
+                            </td>
+                            <td>
+                                <input name="description" style="width: 100%" type="text" class="form-control"
+                                       required placeholder="Описание набора тарифов">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                     <div class="row">
                         <div class="col"></div>
                         <div class="col"></div>
