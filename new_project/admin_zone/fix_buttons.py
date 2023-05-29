@@ -41,7 +41,7 @@ def back_carwashes_refresh_prices():
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('carwash_obj: ', carwash_obj)
         database.col_carwashes.update_one({'_id': carwash_obj._id}, {"$set": {
-            "Price": json.loads(json.dumps(prices_list, default=lambda x: x.__dict__)),
+            "Price": [],
         }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
