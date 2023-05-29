@@ -212,7 +212,10 @@
                 </thead>
                 <tbody>
 
+                {% for base_price in context.prices_list %}
                 {% for price in context.carwash.Price %}
+
+                {% if price._id == base_price._id %}
                 {% if price.status == 'active' %}
                 <tr>
                     <td style="width: 350px">
@@ -229,6 +232,9 @@
                     {% endfor %}
                 </tr>
                 {% endif %}
+                {% endif %}
+
+                {% endfor %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -302,8 +308,8 @@
                                                type="checkbox" role="switch" name="{{ price._id }}"
 
                                                {% for obj_price in context.carwash.Price %}
-                                               {% if obj_price._id == price._id %}
-                                               {% if obj_price.status == 'active' %}
+                                               {% if obj_price._id== price._id %}
+                                               {% if obj_price.status== 'active' %}
                                         checked
                                         {% endif %}
                                         {% endif %}
