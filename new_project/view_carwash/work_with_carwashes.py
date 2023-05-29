@@ -30,7 +30,13 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
             data = json.loads(json_util.dumps(i))
             data = json.dumps(data, default=lambda x: x.__dict__)
             price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+
             print(price_obj)
+            delattr(price_obj, 'costType')
+            delattr(price_obj, 'name')
+            delattr(price_obj, 'description')
+            print(price_obj)
+
             prices_list.append(price_obj)
         print('prices_list:\n', prices_list)
         for j in dict_of_form:
@@ -100,10 +106,6 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
             #setattr(price_obj, "status", carwash_obj.Price.status)
             result_arr.append(price_obj)
         return result_arr
-
-
-
-
 
 
 def show_list_price():
