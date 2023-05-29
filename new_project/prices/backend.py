@@ -28,17 +28,12 @@ def get_carwash_obj(carwash_id):
     return carwash_obj
 
 
-def show_prices_list(carwash_id):
+def show_list_sets_prices():
     context = {
-        'carwash': get_carwash_obj(carwash_id),
         'prices': get_prices_obj_list(),
         'enum_list': list(CategoryAuto)
     }
-    request_xhr_key = request.headers.get('X-Requested-With')
-    if request_xhr_key == 'XMLHttpRequest':
-        return render_template('prices/price_list_modal.html', context=context)
-    else:
-        return render_template('prices/price_list.html', context=context)
+    return render_template('prices/list_sets_price.html', context=context)
 
 
 def get_price_info(price_id):

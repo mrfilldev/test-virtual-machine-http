@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <legend>Прайс-лист доступных услуг</legend>
+            <legend>Наборы тарифов</legend>
         </div>
         <div class="col-6">
             <form method=POST action="#">
@@ -33,34 +33,19 @@
             <th>id</th>
             <th>Название</th>
             <th>Описание</th>
-            <th>Добавить в {{ context.carwash.Name }}</th>
-
         </tr>
         </thead>
         <tbody>
-
-        {% for price in context.prices %}
-
         <tr>
             <td>
-                {{ price._id }}
+                id
             </td>
             <td>
-                {{ price.name }}
+                name
             </td>
             <td>
-                {{ price.description }}
+                description
             </td>
-
-            <td class="align-content-center">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" name="status"
-                           id="flexSwitchCheckChecked"
-                           checked>
-                </div>
-            </td>
-
-
         </tr>
         {% endfor %}
         </tbody>
