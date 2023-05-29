@@ -41,9 +41,10 @@ def serializing_sets_collection(all_sets):
 
 
 def serializing_set(set):
-    data = json.loads(json_util.dumps(set))
+    set_obj = database.col_sets_of_prices.find_one({'_id': set})  # dict
+    data = json.loads(json_util.dumps(set_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
-    set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print(set_obj, '\n')
     return set_obj
 
@@ -85,8 +86,7 @@ def set_create(request):
 def set_detail(request, set_id):
     if request.method == 'POST':
         pass
-    set = database.col_sets_of_prices.find({'_id': set_id})
-    set_obj = serializing_set(set)
+    set_obj = serializing_set(set_id)
     context = {
         'set': set_obj,
         'enum_list': list(CategoryAuto),
