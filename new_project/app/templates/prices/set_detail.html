@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<div class="row justify-content-center">
+    <div class="col-2 text-center">
+        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            {% if context.create_new== True %}
+            {% else %}
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+                Расписание заказов
+            </a>
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=context.carwash._id) }}">
+                Панель состояния
+            </a>
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
+                Журнал заказов
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="#">
+                Отчет
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="#">
+                Статистика
+            </a>
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
+                Тарифные сетки
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-8">
+        <form method=POST action="{{ url_for('carwash_blueprint.create_carwash') }}">
+            <table class="table table-bordered table-center align-middle" id="table_prices">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="8">
+                        <div class="row">
+                            <div class="col-9">Прейскурант</div>
+                            <div class="col-3">
+                                <div class="row">
+                                    {% if g.user_db.role != 'network_worker' %}
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <a onclick="open_modal_window_prices_list();"
+                                           style="width: 120px" class="btn-sm btn btn-outline-secondary">Настройки</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Тариф</th>
+                    {% for enum in context['enum_list'] %}
+                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for base_price in context.prices_list %}
+                {% for price in context.carwash.Price %}
+
+                {% if price._id == base_price._id %}
+                {% if price.status == 'active' %}
+                <tr>
+                    <td style="width: 350px">
+                        <b>{{ base_price.name }}</b><br>
+                        {{ base_price.description }}
+                    </td>
+                    {% for i in price.categoryPrice %}
+                    <td>
+                        {% set id_of_cell = price['_id'] %}
+                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                               style="width: 100%; text-align: end" type="text"
+                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endif %}
+                {% endif %}
+
+                {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if g.user_db.role != 'network_worker' %}
+            <button style="width: auto" type="submit" class="btn btn-outline-success">Сохранить</button>
+            {% endif %}
+        </form>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+
+{% endblock %}
+

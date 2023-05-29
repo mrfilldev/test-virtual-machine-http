@@ -36,15 +36,16 @@ def show_list_sets_prices():
     return render_template('prices/list_sets_price.html', context=context)
 
 
-def get_price_info(price_id):
-    print('price_id', price_id)
-    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
-    data = json.loads(json_util.dumps(price_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    print('price_obj: ', price_obj)
+def create_set():
+    pass
+
+
+def set_detail(request):
+    if request.method == 'POST':
+        create_set()
+    else:
+        pass
     context = {
-            'price': price_obj,
         'enum_list': list(CategoryAuto),
     }
-    return render_template('view_carwash/carwash_detail_price.html', context=context)
+    return render_template('prices/set_detail.html', context=context)
