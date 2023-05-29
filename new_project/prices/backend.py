@@ -91,7 +91,8 @@ def find_prices_with_set_id(set_id):
         data = json.dumps(data, default=lambda x: x.__dict__)
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         prices_of_set.append(price_obj)
-        print(price_obj, '\n')
+
+    print(prices_of_set)
     return prices_of_set
 
 
