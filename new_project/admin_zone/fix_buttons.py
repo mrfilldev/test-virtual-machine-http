@@ -45,3 +45,8 @@ def back_carwashes_refresh_prices():
         }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def clear_sets():
+    database.col_sets_of_prices.delete_one({'_id': '6474c531578b8db9ff8f68cd'})
+    return redirect(url_for('admin_blueprint.admin_main'))
