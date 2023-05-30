@@ -89,9 +89,9 @@ def admin_price_detail(price_id):
     return edit_price(request, price_id)
 
 
-@admin_bp.route('/delete_price/<string:price_id>', methods=['POST', 'GET'])
-def admin_delete_price(price_id):
-    return delete_price(price_id)
+# @admin_bp.route('/delete_price/<string:price_id>', methods=['POST', 'GET'])
+# def admin_delete_price(price_id):
+#     return delete_price(price_id)
 
 
 @admin_bp.route('/clear_sets/', methods=['POST', 'GET'])
