@@ -83,7 +83,7 @@
                 {% endfor %}
                 <td>
                     <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-                        <a href="{{ url_for('prices_blueprint.price_detail', price_id=price._id) }}" style="width: 100%"
+                        <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}" style="width: 100%"
                            class="btn-sm btn btn-outline-warning">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil" viewBox="0 0 16 16">
