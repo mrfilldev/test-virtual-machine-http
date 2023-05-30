@@ -51,9 +51,8 @@ def new_price(set_id):
     return create_price(request, set_id)
 
 
-@prices_bp.route('/info_price/', methods=['POST', 'GET'])
-@prices_bp.route('/info_price/<string:price_id>', methods=['POST', 'GET'])
-def info_price(price_id=None):
+@prices_bp.route('/price_id/<string:price_id>', methods=['POST', 'GET'])
+def info_price(price_id):
     return get_info_about_price(price_id)
 
 
