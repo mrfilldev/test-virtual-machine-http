@@ -156,8 +156,10 @@ def get_price_obj(price_id):
 
 def get_info_about_price(price_id):
     request_xhr_key = request.headers.get('X-Requested-With')
+    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
+    print(price_obj)
     if request_xhr_key == 'XMLHttpRequest':
         context = {
-            'price': get_price_obj(price_id)
+            'price': price_obj
         }
         return context
