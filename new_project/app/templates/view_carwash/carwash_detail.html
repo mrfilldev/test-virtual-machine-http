@@ -130,7 +130,7 @@
                     </td>
                     <td>
                         <select style="width: 100%" class="form-select" name="costType">
-                            <option value="">...</option>
+                            <option disabled="disabled">(не указано)</option>
                             {% for set in context.set_of_prices %}
                             <option value="{{ set._id }}">{{ set.Name }}</option>
                             {% endfor %}
