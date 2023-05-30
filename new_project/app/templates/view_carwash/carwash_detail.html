@@ -129,14 +129,26 @@
                         Тарифный набор:
                     </td>
                     <td>
-                        <select style="width: auto" class="form-select" name="costType" required>
-                            <option disabled="disabled">(не указано)</option>
-                            {% for set in context.sets_of_prices %}
-                            <option value="{{ set._id }}">{{ set.Name }}</option>
-                            {% endfor %}
-                            <option selected value="{{ context.set_of_prices._id }}">{{ context.set_of_prices.Name }}</option>
-                        </select>
-                        <a href="{{ url_for('prices_blueprint.detail_set', set_id=context.set_of_prices._id) }}">{{ context.set_of_prices.Name }}</a>
+                        <table>
+                            <tr>
+                                <td>
+                                    <select style="width: 100%" class="form-select" name="costType" required>
+                                        <option disabled="disabled">(не указано)</option>
+                                        {% for set in context.sets_of_prices %}
+                                        <option value="{{ set._id }}">{{ set.Name }}</option>
+                                        {% endfor %}
+                                        <option selected value="{{ context.set_of_prices._id }}">{{
+                                            context.set_of_prices.Name }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('prices_blueprint.detail_set', set_id=context.set_of_prices._id) }}">
+                                        {{ context.set_of_prices.Name }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
                 <tr>
