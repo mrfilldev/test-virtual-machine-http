@@ -102,7 +102,12 @@ def update_set_of_prices(request, set_id):
     print('\n################################################################\n')
     set_obj = serializing_set(set_id)
     print('set_obj: ', set_obj)
-    print('...update in process...\n')
+    list_prices = find_prices_with_set_id(set_id)
+    for price in list_prices:
+        print(f'{price._id} -> {price.categoryPrice}')
+
+
+
 
 
 def set_detail(request, set_id):
