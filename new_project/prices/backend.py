@@ -96,7 +96,10 @@ def update_set_of_prices(request, set_id):
     dict_of_form = request.form.to_dict(flat=False)
     for k, v in dict_of_form.items():
         print(k, '-> ', *v, type(*v))
-
+        id = k.split('_')[1]
+        category = k.split('_')[2]
+        cost = v[0]
+        print(id, '->', category, '->', cost)
     print('\n################################################################\n')
 
     print('\n################################################################\n')
