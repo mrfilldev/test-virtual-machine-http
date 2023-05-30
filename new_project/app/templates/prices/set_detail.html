@@ -19,7 +19,7 @@
         var price = {{ price | tojson }}
         {% endif %}
         {% endfor %}
-        alert(id_price)
+        alert(id_price, price)
         $('#new_price_modal').modal('show');
 
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
