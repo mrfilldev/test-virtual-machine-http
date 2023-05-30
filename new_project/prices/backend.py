@@ -146,6 +146,14 @@ def create_price(request, set_id):
     return jsonify(response)
 
 
+def update_price(request, price_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print(data)
+    print('set_id: ', price_id)
+    print('\n################################################################\n')
+
+
 def get_price_obj(price_id):
     price_obj = database.col_prices.find_one({'_id': price_id})  # dict
     data = json.loads(json_util.dumps(price_obj))
@@ -155,7 +163,9 @@ def get_price_obj(price_id):
     return price_obj
 
 
-def price_detail(price_id):
+def price_detail(request, price_id):
+    if request.method == 'POST':
+        update_price(request, price_id)
     context = {
         'price': get_price_obj(price_id),
     }

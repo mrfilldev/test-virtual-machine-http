@@ -53,7 +53,7 @@ def new_price(set_id):
 
 @prices_bp.route('/show_price_detail/<string:price_id>', methods=['POST', 'GET'])
 def show_price_detail(price_id):
-    return price_detail(price_id)
+    return price_detail(request, price_id)
 
 
 @prices_bp.app_template_filter()
