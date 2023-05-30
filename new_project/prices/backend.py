@@ -92,20 +92,32 @@ def update_set_of_prices(request, set_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data)
+    print('\n################################################################\n')
+    set_obj = serializing_set(set_id)
+    print('set_obj: ', set_obj)
+    print('\n################################################################\n')
 
+    list_prices = find_prices_with_set_id(set_id)
     dict_of_form = request.form.to_dict(flat=False)
     for k, v in dict_of_form.items():
-        print(k, '-> ', *v, type(*v))
         id = k.split('_')[1]
         category = k.split('_')[2]
         cost = v[0]
         print(id, '->', category, '->', cost)
-    print('\n################################################################\n')
+        for price in list_prices:
+            if price._id == id:
+                for categoryPrice in price.categoryPrice:
+                    for obj in categoryPrice:
+                        if obj.category == category:
+                            if obj.cost == cost:
+                                print('Need to update')
 
-    print('\n################################################################\n')
-    set_obj = serializing_set(set_id)
-    print('set_obj: ', set_obj)
-    list_prices = find_prices_with_set_id(set_id)
+
+
+
+
+
+
 
 
 
