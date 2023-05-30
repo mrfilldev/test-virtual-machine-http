@@ -103,7 +103,6 @@ def update_set_of_prices(request, set_id):
         id = k.split('_')[1]
         category = k.split('_')[2]
         cost = v[0]
-        print(id, '->', category, '->', cost)
         for price in list_prices:
             if price._id == id:
                 for categoryPrice in price.categoryPrice:
