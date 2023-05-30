@@ -92,8 +92,13 @@ def update_set_of_prices(request, set_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data)
+
     dict_of_form = request.form.to_dict(flat=False)
-    print('dict_of_form: ', dict_of_form)
+    for k, v in dict_of_form.items():
+        print(k, '-> ', v)
+
+    print('\n################################################################\n')
+
     print('\n################################################################\n')
     set_obj = serializing_set(set_id)
     print('set_obj: ', set_obj)
