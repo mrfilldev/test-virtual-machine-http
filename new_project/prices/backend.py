@@ -99,6 +99,7 @@ def update_set_of_prices(request, set_id):
 
     list_prices = find_prices_with_set_id(set_id)
     dict_of_form = request.form.to_dict(flat=False)
+    set_prices_id_to_update = set()
     for k, v in dict_of_form.items():
         id = k.split('_')[1]
         category = k.split('_')[2]
@@ -110,6 +111,11 @@ def update_set_of_prices(request, set_id):
                         if categoryPrice.sum != cost:
                             print('Need to update')
                             print(id, '->', category, '->', cost)
+                            categoryPrice.sum = cost
+                            set_prices_id_to_update.add(id)
+
+    print(set_prices_id_to_update)
+
 
 
 
