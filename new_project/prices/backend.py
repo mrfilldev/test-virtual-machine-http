@@ -21,7 +21,6 @@ def get_prices_obj_list():
     return prices_list
 
 
-
 def serializing_sets_collection(all_sets):
     sets_list = []
     for i in all_sets:
@@ -99,7 +98,6 @@ def update_set_of_prices(request, set_id):
     set_obj = serializing_set(set_id)
     print('set_obj: ', set_obj)
     print('...update in process...\n')
-
 
 
 def set_detail(request, set_id):
