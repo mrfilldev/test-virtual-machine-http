@@ -151,6 +151,7 @@ def get_price_obj(price_id):
     data = json.loads(json_util.dumps(price_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print(price_obj)
     return price_obj
 
 
