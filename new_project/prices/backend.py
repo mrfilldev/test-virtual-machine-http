@@ -110,6 +110,7 @@ def update_set_of_prices(request, set_id):
                     if categoryPrice.category == category:
                         if categoryPrice.sum != cost:
                             print('Need to update')
+                            print(id, '->', category, '->', cost)
 
 
 
