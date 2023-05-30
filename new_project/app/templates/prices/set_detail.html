@@ -14,10 +14,9 @@
     }
 
     function open_modal_window_edit_price(info) {
-        open_modal_window_order_detail(null);
         alert(info)
-        $('#event-modal .modal-footer #create').show();
-        $('#event-modal .modal-footer #edit').hide();
+        $('#new_price_modal').modal('show');
+        $('#new_price_modal .modal-body #create_price').hide();
     }
 
     function open_modal_window_order_detail(info) {
