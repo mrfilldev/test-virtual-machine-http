@@ -71,8 +71,12 @@
                 </div>
                 <div class="col"></div>
                 <div class="col">
-                    <a href="{{ url_for('admin_blueprint.admin_delete_price', price_id=context['price']._id) }}"
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col">
+                        <a href="{{ url_for('admin_blueprint.admin_delete_price', price_id=context['price']._id) }}"
                        style="width: 110px" class="btn btn-outline-danger">Удалить</a>
+                    </div>
                 </div>
             </div>
         </form>
