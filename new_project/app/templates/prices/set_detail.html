@@ -13,13 +13,15 @@
         $('#new_price_modal .modal-body #edit_price').hide();
     }
 
-    function open_modal_window_edit_price(id_price) {
-        {% for price in context.set_prices %}
-        {% if price._id == id_price %}
-        var price = {{ price | tojson }}
-        {% endif %}
-        {% endfor %}
-        alert(id_price, price)
+    function get_info_about_price(id_price) {
+        alert(id_price)
+        $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
+            alert(data.toString())
+            open_modal_window_price_edit(data);
+        });
+    }
+    function open_modal_window_price_edit(data) {
+
         $('#new_price_modal').modal('show');
 
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
@@ -112,7 +114,7 @@
                 {% endfor %}
                 <td>
                     <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-                        <a id="{{price._id}}" onclick="open_modal_window_edit_price(this.id)" style="width: 100%"
+                        <a id="{{price._id}}" onclick="get_info_about_price(this.id)" style="width: 100%"
                            class="btn-sm btn btn-outline-warning">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil" viewBox="0 0 16 16">

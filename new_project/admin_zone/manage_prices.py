@@ -3,7 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import redirect, render_template, url_for
+from flask import redirect, render_template, url_for, request
 
 from ..db import database
 from ..db.models import CategoryAuto, CostIdSum, Prices
@@ -109,3 +109,20 @@ def delete_price(price_id):
     database.col_prices.delete_one({'_id': price_id})
     print('deleted price: ', price_id)
     return redirect(url_for('admin_blueprint.list_of_prices'))
+
+
+def get_price_obj(price_id):
+    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
+    data = json.loads(json_util.dumps(price_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    return price_obj
+
+
+def get_info_about_price(price_id):
+    request_xhr_key = request.headers.get('X-Requested-With')
+    if request_xhr_key == 'XMLHttpRequest':
+        context = {
+            'price': get_price_obj(price_id)
+        }
+        return context
