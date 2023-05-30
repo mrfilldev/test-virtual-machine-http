@@ -13,6 +13,7 @@
             <a class="nav-link" href="#" aria-disabled="true">Ручная отмена заказа</a>
             <a class="nav-link" href="{{ url_for('admin_blueprint.carwashes_refresh_prices') }}" aria-disabled="true">Price=[all_prices] для всех моек</a>
             <a class="nav-link" href="{{ url_for('admin_blueprint.admin_clear_sets') }}" aria-disabled="true">Присвоить всем прайсам один сет</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_prices_to_active') }}" aria-disabled="true">Все прайсы status=active</a>
 
         </div>
         {% endif %}

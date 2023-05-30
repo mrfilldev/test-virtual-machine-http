@@ -63,3 +63,19 @@ def remake_prices_to_set():
     print('prices_list: ', prices_list)
 
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def prices_to_active():
+
+    prices = database.col_prices.find({})
+    for price in prices:
+        data = json.loads(json_util.dumps(price))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('price_obj: ', price_obj)
+        database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
+            "status": 'active',
+        }})
+
+
+    return redirect(url_for('admin_blueprint.admin_main'))
