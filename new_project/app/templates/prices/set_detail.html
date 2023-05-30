@@ -8,8 +8,32 @@
         create_new_price();
     });
 
-    function open_modal_window_prices_list() {
+    function open_modal_window_price_create() {
         $('#new_price_modal').modal('show');
+        $('#new_price_modal .modal-body #edit_price').hide();
+    }
+
+    function open_modal_window_edit_order(info) {
+        open_modal_window_order_detail(null);
+        $('#event-modal .modal-footer #create').show();
+        $('#event-modal .modal-footer #edit').hide();
+    }
+
+    function open_modal_window_order_detail(info) {
+        $('#create_price').modal('show');
+        $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
+        $("[name='order_id']").val(info == null ? '' : info.event.extendedProps.order_id);
+        $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
+        $("[name='category']").val(info == null ? '' : info.event.extendedProps.category);
+        $("[name='car_brand']").val(info == null ? '' : info.event.extendedProps.car_brand);
+        $("[name='car_model']").val(info == null ? '' : info.event.extendedProps.car_model);
+        $("[name='date']").val(info == null ? '' : info.event.extendedProps.date_format);
+        $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
+        $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
+
+        $('#event-modal .modal-footer #create').hide();
+        $('#event-modal .modal-footer #edit').show();
+
     }
 
     function create_new_price() {
@@ -46,7 +70,7 @@
                                 {% if g.user_db.role != 'network_worker' %}
                                 <div class="col"></div>
                                 <div class="col">
-                                    <a onclick="open_modal_window_prices_list();"
+                                    <a onclick="open_modal_window_price_create();"
                                        style="width: 120px" class="btn-sm btn btn-outline-secondary">+</a>
                                 </div>
                                 {% endif %}
@@ -82,14 +106,14 @@
                 {% endfor %}
                 <td>
                     <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-                        <a onclick="edit_price({{ price._id }});" style="width: 100%"
+                        <a onclick="" style="width: 100%"
                            class="btn-sm btn btn-outline-warning">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
                         </a>
-                        <a onclick="delete_price({{ price._id }});" style="width: 100%"
+                        <a onclick="" style="width: 100%"
                            class="btn-sm btn btn-outline-danger">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-trash" viewBox="0 0 16 16">
@@ -205,6 +229,9 @@
                         <div class="col text-end">
                             <button id="create_price" class="btn btn-outline-success">
                                 Подтвердить
+                            </button>
+                            <button id="edit_price" name="edit_button" type="submit" class="btn btn-outline-warning">
+                                Редактировать
                             </button>
                         </div>
                     </div>
