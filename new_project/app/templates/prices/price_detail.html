@@ -43,7 +43,7 @@
                         {{ i['category'] }}
                     </td>
                     <td>
-                        <input name="{{ i['category'] }}" style="width: 100px" type="text" class="form-control" required
+                        <input name="{{ i['category'] }}" style="width: 100%" type="text" class="form-control" required
                                value="{{ i['sum'] }}">
                     </td>
                 </tr>
@@ -62,10 +62,10 @@
                 </tr>
                 </tbody>
             </table>
-            <button style="width: 100px" type="submit" class="btn btn-dark">Сохранить</button>
+            <button style="width: auto" type="submit" class="btn btn-dark">Сохранить</button>
         </form>
         <form method=POST action="{{ url_for('admin_blueprint.admin_delete_price', price_id=context['price']._id) }}">
-            <button style="width: 100px" type="submit" class="btn btn-dark">Удалить</button>
+            <button style="width: auto" type="submit" class="btn btn-dark">Удалить</button>
         </form>
     </div>
     <div class="col-2">
