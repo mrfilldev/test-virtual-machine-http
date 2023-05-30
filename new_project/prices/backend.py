@@ -107,10 +107,9 @@ def update_set_of_prices(request, set_id):
         for price in list_prices:
             if price._id == id:
                 for categoryPrice in price.categoryPrice:
-                    for obj in categoryPrice:
-                        if obj.category == category:
-                            if obj.cost == cost:
-                                print('Need to update')
+                    if categoryPrice.category == category:
+                        if categoryPrice.cost == cost:
+                            print('Need to update')
 
 
 
