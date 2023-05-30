@@ -15,7 +15,7 @@
 
     function get_info_about_price(id_price) {
         alert(id_price)
-        $.get("{{ url_for('prices_blueprint.info_price') }}", '/' + id_price, function (data) {
+        $.get("{{ url_for('prices_blueprint.info_price') }}" + id_price, function (data) {
             alert(data.toString())
             open_modal_window_price_edit(data);
         });
