@@ -353,7 +353,19 @@ def update_carwash_obj(request, carwash_id):
     print('UPDATE DATA: ', new_carwash)
 
 
-def get_set_by_id(set_id):
+def get_sets():
+    all_sets = database.col_sets_of_prices.find({})
+    sets_list = []
+    for i in all_sets:
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        sets_list.append(set_obj)
+        print(set_obj, '\n')
+    return sets_list
+
+
+def get_set_of_prices(set_id):
     set_obj = database.col_sets_of_prices.find_one({'_id': set_id})  # dict
     data = json.loads(json_util.dumps(set_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
@@ -394,7 +406,8 @@ def back_carwash_detail(g, request, carwash_id):
         'prices_list': prices_list,
         'count_prices': count_prices,
         'enum_list': enum_list,
-        'set_of_prices': get_set_by_id(carwash_obj.Price)
+        'set_of_prices': get_set_of_prices(carwash_obj.Price),
+        'sets_of_prices': get_sets(),
     }
     return render_template("view_carwash/carwash_detail.html", context=context)
 
