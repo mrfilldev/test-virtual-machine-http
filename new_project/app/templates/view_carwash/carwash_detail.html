@@ -126,6 +126,20 @@
                 </tr>
                 <tr>
                     <td style="width: 200px">
+                        Тарифный набор:
+                    </td>
+                    <td>
+                        <select style="width: 100%" class="form-select" name="costType">
+                            <option value="">...</option>
+                            {% for set in context.set_of_prices %}
+                            <option value="{{ set._id }}">{{ set.Name }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
                         Оказываемые услуги:
                     </td>
                     <td>
