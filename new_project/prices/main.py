@@ -11,7 +11,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 
 from flask_login import current_user
 
-from .backend import show_list_sets_prices, set_create, set_detail, create_price, get_info_about_price
+from .backend import show_list_sets_prices, set_create, set_detail, create_price, price_detail
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -52,8 +52,8 @@ def new_price(set_id):
 
 
 @prices_bp.route('/price_id/<string:price_id>', methods=['POST', 'GET'])
-def info_price(price_id):
-    return get_info_about_price(price_id)
+def show_price_detail(price_id):
+    return price_detail(price_id)
 
 
 @prices_bp.app_template_filter()
