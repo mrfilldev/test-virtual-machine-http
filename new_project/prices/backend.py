@@ -142,6 +142,22 @@ def create_price(request, set_id):
         print(type(new_price))
         database.col_prices.insert_one(new_price)
 
-
     response = {'status': 'success'}
     return jsonify(response)
+
+
+def get_price_obj(price_id):
+    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
+    data = json.loads(json_util.dumps(price_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    return price_obj
+
+
+def get_info_about_price(price_id):
+    request_xhr_key = request.headers.get('X-Requested-With')
+    if request_xhr_key == 'XMLHttpRequest':
+        context = {
+            'price': get_price_obj(price_id)
+        }
+        return context
