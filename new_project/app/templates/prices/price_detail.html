@@ -67,7 +67,7 @@
             </table>
             <div class="row">
                 <div class="col">
-                    <a href="{{ url_for('admin_blueprint.admin_delete_price', price_id=context['price']._id) }}"
+                    <a href="{{ url_for('prices_blueprint.delete_price', price_id=context.price._id) }}"
                        style="width: 110px" class="btn btn-outline-danger">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-trash3" viewBox="0 0 16 16">

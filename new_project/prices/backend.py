@@ -180,6 +180,16 @@ def update_price(request, price_id):
     print('UPDATE DATA: ', new_price)
 
 
+def hide_price(price_id):
+    price_id = {'_id': price_id}
+    set_fields = {'$set': {
+        'status': 'turn_off',
+    }}
+    new_price = database.col_prices.update_one(price_id, set_fields)
+    print('UPDATE FIELDS: ', set_fields)
+    print('UPDATE DATA: ', new_price)
+
+
 def get_price_obj(price_id):
     price_obj = database.col_prices.find_one({'_id': price_id})  # dict
     data = json.loads(json_util.dumps(price_obj))
