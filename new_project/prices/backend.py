@@ -136,11 +136,11 @@ def create_price(request, set_id):
         for i in new_price.categoryPrice:
             print(f'{i.category} -> {i.sum}')
 
-        # # запись в бд
-        # new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
-        # print(new_price)
-        # print(type(new_price))
-        # database.col_prices.insert_one(new_price)
+        # запись в бд
+        new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
+        print(new_price)
+        print(type(new_price))
+        database.col_prices.insert_one(new_price)
 
 
     response = {'status': 'success'}
