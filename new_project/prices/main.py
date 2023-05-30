@@ -52,7 +52,7 @@ def new_price(set_id):
 
 
 @prices_bp.route('/info_price/<string:price_id>', methods=['POST', 'GET'])
-def info_price(price_id=''):
+def info_price(price_id=None):
     return get_info_about_price(price_id)
 
 
