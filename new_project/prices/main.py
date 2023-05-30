@@ -57,9 +57,11 @@ def show_price_detail(price_id):
 
 
 @prices_bp.app_template_filter()
-def smthing(smthing):
-    match smthing:
-        case 'Compact':
-            pass
+def costType_to_russian(value):
+    match value:
+        case 'Fix':
+            return "Фиксированная"
+        case 'PerMinute':
+            return "Поминутная"
         case _:
             pass
