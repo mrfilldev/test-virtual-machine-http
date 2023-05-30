@@ -115,19 +115,14 @@ def update_set_of_prices(request, set_id):
                             set_prices_id_to_update.add(id)
 
     print(set_prices_id_to_update)
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for price_id in set_prices_id_to_update:
+        for price_obj in list_prices:
+            if price_obj._id == price_id:
+                print('price_obj: ', price_obj)
+                print(price_obj.categoryPrice)
+                # database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
+                #     "categoryPrice": price_obj.categoryPrice,
+                # }})
 
 
 def set_detail(request, set_id):
