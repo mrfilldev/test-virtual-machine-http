@@ -13,8 +13,8 @@
         $('#new_price_modal .modal-body #edit_price').hide();
     }
 
-    function open_modal_window_edit_price(info) {
-        alert(info)
+    function open_modal_window_edit_price(id_price) {
+        alert(id_price)
         $('#new_price_modal').modal('show');
         $('#new_price_modal .modal-body #create_price').hide();
     }
@@ -106,7 +106,7 @@
                 {% endfor %}
                 <td>
                     <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-                        <a id="{{price._id}}" onclick="open_modal_window_edit_price(info)" style="width: 100%"
+                        <a id="{{price._id}}" onclick="open_modal_window_edit_price(this.id)" style="width: 100%"
                            class="btn-sm btn btn-outline-warning">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil" viewBox="0 0 16 16">
