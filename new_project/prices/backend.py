@@ -6,7 +6,7 @@ from bson import json_util
 from flask import render_template, request, jsonify, redirect, url_for
 
 from ..db import database
-from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum
+from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum, PricesCarWash
 
 
 def get_prices_obj_list():
@@ -20,13 +20,6 @@ def get_prices_obj_list():
         prices_list.append(price_obj)
     return prices_list
 
-
-def get_carwash_obj(carwash_id):
-    carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
-    data = json.loads(json_util.dumps(carwash_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    return carwash_obj
 
 
 def serializing_sets_collection(all_sets):
@@ -96,9 +89,22 @@ def find_prices_with_set_id(set_id):
     return prices_of_set
 
 
+def update_set_of_prices(request, set_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print(data)
+    dict_of_form = request.form.to_dict(flat=False)
+    print('dict_of_form: ', dict_of_form)
+    print('\n################################################################\n')
+    set_obj = serializing_set(set_id)
+    print('set_obj: ', set_obj)
+    print('...update in process...\n')
+
+
+
 def set_detail(request, set_id):
     if request.method == 'POST':
-        pass
+        update_set_of_prices(request, set_id)
     set_obj = serializing_set(set_id)
     set_id_prices = find_prices_with_set_id(set_id)
     context = {

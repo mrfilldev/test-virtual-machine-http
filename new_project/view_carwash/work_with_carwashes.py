@@ -103,7 +103,7 @@ def create_prices(request, dict_of_form, update=False, carwash_id=None):
                             print('true5')
                             obj_of_existing_price.sum = price.sum
             print('true6')
-            #setattr(price_obj, "status", carwash_obj.Price.status)
+            # setattr(price_obj, "status", carwash_obj.Price.status)
             result_arr.append(price_obj)
         return result_arr
 
@@ -272,14 +272,6 @@ def pin_admin(carwash_id, login):
         database.col_users.update_one(user, set_fields)
 
 
-def get_carwash_obj(carwash_id):
-    carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
-    data = json.loads(json_util.dumps(carwash_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    return carwash_obj
-
-
 def update_cost_of_price(dict_of_form, carwash_id):
     # prices_67e40c84b5f4455ea17226a6704724cd_Compact ->  ['']
     # prices_67e40c84b5f4455ea17226a6704724cd_MiddleSize ->  ['']
@@ -351,7 +343,8 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        'Price': json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id), default=lambda x: x.__dict__)),
+        'Price': json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),
+                                       default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
@@ -405,6 +398,14 @@ def get_price_obj(price_id):
     delattr(price_obj, 'name')
     delattr(price_obj, 'description')
     return price_obj
+
+
+def get_carwash_obj(carwash_id):
+    carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
+    data = json.loads(json_util.dumps(carwash_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    return carwash_obj
 
 
 def change_price_status(request, carwash_id):
