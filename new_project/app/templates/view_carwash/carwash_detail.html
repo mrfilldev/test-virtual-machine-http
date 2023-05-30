@@ -134,7 +134,7 @@
                             {% for set in context.sets_of_prices %}
                             <option value="{{ set._id }}">{{ set.Name }}</option>
                             {% endfor %}
-                            <option value="{{ context.set_of_prices._id }}">{{ context.set_of_prices.Name }}</option>
+                            <option selected="selected" value="{{ context.set_of_prices._id }}">{{ context.set_of_prices.Name }}</option>
 
 
                         </select>
