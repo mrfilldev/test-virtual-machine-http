@@ -3,29 +3,25 @@
 {% block body %}
 <script>
 
-
     $(document).ready(function () {
         create_new_price();
     });
 
     function open_modal_window_price_create() {
         $('#new_price_modal').modal('show');
+        $('#new_price_modal .modal-body #create_price').show();
         $('#new_price_modal .modal-body #edit_price').hide();
     }
 
     function open_modal_window_edit_price(id_price) {
+        {% for price in context.set_prices %}
+        {% if price._id == id_price %}
+        var price = {{ price | tojson }}
+        {% endif %}
+        {% endfor %}
         alert(id_price)
         $('#new_price_modal').modal('show');
-        $('#new_price_modal .modal-body #create_price').hide();
-    }
 
-    function open_modal_window_delete_price(id_price) {
-        alert(id_price)
-        $('#price_delete').modal('show');
-    }
-
-    function open_modal_window_order_detail(info) {
-        $('#create_price').modal('show');
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
         $("[name='order_id']").val(info == null ? '' : info.event.extendedProps.order_id);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
@@ -36,10 +32,15 @@
         $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
         $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
 
-        $('#event-modal .modal-footer #create').hide();
-        $('#event-modal .modal-footer #edit').show();
-
+        $('#new_price_modal .modal-body #create_price').hide();
+        $('#new_price_modal .modal-body #edit_price').show();
     }
+
+    function open_modal_window_delete_price(id_price) {
+        alert(id_price)
+        $('#price_delete').modal('show');
+    }
+
 
     function create_new_price() {
         $('#create_price').click(function (event) {
