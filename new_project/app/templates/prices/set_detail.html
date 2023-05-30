@@ -21,8 +21,7 @@
 
     function open_modal_window_delete_price(id_price) {
         alert(id_price)
-        $('#delete_price_modal').modal('show');
-        $('#new_price_modal .modal-body #create_price').hide();
+        $('#price_delete').modal('show');
     }
 
     function open_modal_window_order_detail(info) {
@@ -247,7 +246,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal_delete" data-bs-backdrop="static"
+<div class="modal fade" id="price_delete" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
