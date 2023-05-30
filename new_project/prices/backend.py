@@ -150,8 +150,34 @@ def update_price(request, price_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data)
-    print('set_id: ', price_id)
+    print('price: ', price_id)
     print('\n################################################################\n')
+    for i in request.form:
+        print(i, request.form[i])
+    print('1')
+    form = request.form
+    price_id = {'_id': price_id}
+    print('2')
+    print('old_carwash: ', price_id)
+    categoryPrice = []
+    print(list(CategoryAuto))
+    for category in list(CategoryAuto):
+        print(category)
+        print(category.name)
+        print(form[str(category.name)])
+        categoryPrice.append(CostIdSum(category.name, form[str(category.name)]))
+    data = json.dumps(categoryPrice, default=lambda x: x.__dict__)
+    categoryPrice = json.loads(data)  # , object_hook=lambda d: SimpleNamespace(**d))
+    set_fields = {'$set': {
+        'name': form['name'],
+        'description': form['description'],
+        'categoryPrice': categoryPrice,
+        'costType': form['costType'],
+        'status': 'active',
+    }}
+    new_price = database.col_prices.update_one(price_id, set_fields)
+    print('UPDATE FIELDS: ', set_fields)
+    print('UPDATE DATA: ', new_price)
 
 
 def get_price_obj(price_id):
