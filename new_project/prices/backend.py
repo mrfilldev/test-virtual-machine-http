@@ -3,7 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, redirect, url_for
 
 from ..db import database
 from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum
@@ -181,6 +181,7 @@ def update_price(request, price_id):
 
 
 def hide_price(price_id):
+    price_obj = get_price_obj(price_id)
     price_id = {'_id': price_id}
     set_fields = {'$set': {
         'status': 'turn_off',
@@ -188,6 +189,7 @@ def hide_price(price_id):
     new_price = database.col_prices.update_one(price_id, set_fields)
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_price)
+    return redirect(url_for('prices_blueprint.detail_set', set_id=price_obj.set_id))
 
 
 def get_price_obj(price_id):
