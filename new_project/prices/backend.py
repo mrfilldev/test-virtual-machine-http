@@ -119,11 +119,10 @@ def update_set_of_prices(request, set_id):
         for price_obj in list_prices:
             if price_obj._id == price_id:
                 print('price_obj: ', price_obj)
-                print(price_obj.categoryPrice)
-                print(json.loads(json.dumps(price_obj.categoryPrice, default=lambda x: x.__dict__)),)
-                # database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
-                #     "categoryPrice": price_obj.categoryPrice,
-                # }})
+                print('price_obj.categoryPrice: ', price_obj.categoryPrice)
+                database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
+                    "categoryPrice": json.loads(json.dumps(price_obj.categoryPrice, default=lambda x: x.__dict__)),
+                }})
 
 
 def set_detail(request, set_id):
