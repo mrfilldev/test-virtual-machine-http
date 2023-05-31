@@ -265,7 +265,7 @@
                                         <select name="price" style="width: 200px" class="form-select" required>
                                             <option>(не указано)</option>
                                             {% for i in context.price_list %}
-                                            <option value="{{ i._id }}">{{ i.Name }}</option>
+                                            <option value="{{ i._id }}">{{ i.name }}</option>
                                             {% endfor %}
                                         </select>
                                     </td>
