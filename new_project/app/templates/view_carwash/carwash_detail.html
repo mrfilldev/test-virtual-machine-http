@@ -132,7 +132,7 @@
                         </a>
                     </td>
                     <td>
-                        <select style="width: 100%" class="form-select" name="costType" required>
+                        <select style="width: 80%" class="form-select" name="costType" required>
                             <option disabled="disabled">(не указано)</option>
                             {% for set in context.sets_of_prices %}
                             <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
@@ -140,6 +140,8 @@
                             </option>
                             {% endfor %}
                         </select>
+                        <a onclick="open_modal_window_prices_list();"
+                           style="width: 120px" class="btn-sm btn btn-outline-secondary">Настройки</a>
                     </td>
                 </tr>
                 <tr>
@@ -201,5 +203,94 @@
 
 </div>
 
+<div class="modal fade" id="prices_list_search" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
+     aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" id="fullscreen_prices_list">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
+                                <legend>Тарифы</legend>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row justify-content-center">
+                                <input style="width: 400px" class="form-control"
+                                       placeholder="Тарифы для {{ context.carwash.Name }}" name="search_field"
+                                       aria-describedby="addon-wrapping">
+                                <button style="width: 80px" type="submit" class="btn btn-outline-secondary">Поиск
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col"></div>
+                                <div class="col text-end">
+                                    <a type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <form id="postPricesForm">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                            <tr>
+                                <th>Название</th>
+                                <th>Описание</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for price in context.prices_list %}
+                            <tr>
+                                <td>
+
+                                    {{ price.name }}
+
+                                </td>
+                                <td>
+                                    {{ price.description }}
+                                </td>
+
+                                <td style="align-items: center;">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox" role="switch" name="{{ price._id }}"
+
+                                               {% for obj_price in context.carwash.Price %}
+                                               {% if obj_price._id== price._id %}
+                                               {% if obj_price.status== 'active' %}
+                                                checked
+                                                {% endif %}
+                                                {% endif %}
+                                                {% endfor %}
+                                        >
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col text-end">
+                            <button id="prices_update" class="btn btn-outline-success">
+                                Подтвердить
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
