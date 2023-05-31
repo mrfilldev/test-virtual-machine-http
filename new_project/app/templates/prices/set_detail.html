@@ -213,10 +213,8 @@
                                 <select style="width: 100%" class="form-select" name="priceType"
                                         required>
                                     {% for priceType in context.priceType %}
-                                    <option value="{{priceType.name}}"
-                                            {% if priceType.name== context.price.priceType %}
-                                            {% endif %}>
-
+                                    <option value="{{priceType.name}}">
+                                        {{priceType.priceTypeToDispaly(priceType.name)}}
                                     </option>
                                     {% endfor %}
                                 </select>
