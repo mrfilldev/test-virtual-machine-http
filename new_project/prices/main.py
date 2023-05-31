@@ -70,3 +70,8 @@ def costType_to_russian(value):
             return "Поминутная"
         case _:
             pass
+
+
+
+
+

@@ -6,7 +6,7 @@ from bson import json_util
 from flask import render_template, request, jsonify, redirect, url_for
 
 from ..db import database
-from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum, PricesCarWash
+from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum, PricesCarWash, priceType
 
 
 def get_prices_obj_list():
@@ -235,5 +235,6 @@ def price_detail(request, price_id):
         update_price(request, price_id)
     context = {
         'price': get_price_obj(price_id),
+        'priceType': list(priceType),
     }
     return render_template('prices/price_detail.html', context=context)

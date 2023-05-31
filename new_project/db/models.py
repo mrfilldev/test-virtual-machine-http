@@ -9,6 +9,32 @@ from ..db import database
 users = database.col_users
 
 
+class priceType(enum.IntEnum):
+    main_carwash = 10  # Тариф Мойки
+    additional_carwash = 20  # Дополнительная Услуга Мойки
+    main_detaling = 30  # Тариф Детейлинга
+    additional_detaling = 40  # Дополнительная услуга Детейлинга
+    main_wheelstation = 50  # Тариф Шиномонтажа
+    additional_wheelstation = 60  # Дополнительная услуга Шиномонтажа
+
+    def priceTypeToDispaly(self, value):
+        match value:
+            case 'main_carwash':
+                return "Тариф Мойки"
+            case 'additional_carwash':
+                return "Дополнительная Услуга Мойки"
+            case 'main_detaling':
+                return "Тариф Детейлинга"
+            case 'additional_detaling':
+                return "Дополнительная услуга Детейлинга"
+            case 'main_wheelstation':
+                return "Тариф Шиномонтажа"
+            case 'additional_wheelstation':
+                return "Дополнительная услуга Шиномонтажа"
+            case _:
+                return value
+
+
 class PriceOfSet:
     def __init__(self, id, set_id, name, description, cost_id_sum, cost_type):
         self._id = id
