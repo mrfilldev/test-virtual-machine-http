@@ -64,8 +64,6 @@
                href="{{ url_for('prices_blueprint.list_sets_prices') }}">
                 Наборы Тарифов
             </a>
-            <a onclick="open_modal_window_prices_list();"
-               class="btn-sm btn btn-outline-secondary">Детальное описание</a>
             {% endif %}
         </div>
     </div>
@@ -128,7 +126,8 @@
                 </tr>
                 <tr>
                     <td style="width: 200px">
-                        Тарифный набор:
+                        <a onclick="open_modal_window_prices_list();"
+                           class="btn-sm btn btn-outline-dark">Тарифный набор</a>
                         <a href="{{ url_for('prices_blueprint.detail_set', set_id=context.set_of_prices._id) }}">
                             {{ context.set_of_prices.Name }}
                         </a>
