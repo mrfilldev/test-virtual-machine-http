@@ -79,7 +79,7 @@ def prices_to_active():
     return redirect(url_for('admin_blueprint.admin_main'))
 
 
-def set_all_prices_attr_priceType():
+def set_all_prices_attr_price_types():
     prices = database.col_prices.find({})
     for price in prices:
         data = json.loads(json_util.dumps(price))
