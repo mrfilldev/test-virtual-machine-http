@@ -134,6 +134,8 @@ def set_detail(request, set_id):
         'set_prices': set_id_prices,
         'set': set_obj,
         'enum_list': list(CategoryAuto),
+        'priceType': list(priceType),
+
     }
     return render_template('prices/set_detail.html', context=context)
 

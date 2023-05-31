@@ -212,15 +212,13 @@
                             <td>
                                 <select style="width: 100%" class="form-select" name="priceType"
                                         required>
-                                    <option>...</option>
-                                    <option value="main_carwash">Тариф Мойки</option>
-                                    <option value="additional_carwash">Дополнительная Услуга Мойки</option>
+                                    {% for priceType in context.priceType %}
+                                    <option value="{{priceType.name}}"
+                                            {% if priceType.name== context.price.priceType %}
+                                            {% endif %}>
 
-                                    <option value="main_detaling">Тариф Детейлинга</option>
-                                    <option value="additional_detaling">Дополнительная Услуга Детейлинга</option>
-
-                                    <option value="main_wheelstation">Тариф Детейлинга</option>
-                                    <option value="additional_wheelstation">Дополнительная Услуга Детейлинга</option>
+                                    </option>
+                                    {% endfor %}
                                 </select>
                             </td>
                         </tr>
