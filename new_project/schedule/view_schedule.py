@@ -67,8 +67,10 @@ def get_boxes(carwash_obj):
             }
         )
     return resources
+
+
 def get_amount_boxes(carwash_obj):
-   return len(carwash_obj.Boxes)
+    return len(carwash_obj.Boxes)
 
 
 def get_carwash_obj(carwash_id):
@@ -78,6 +80,19 @@ def get_carwash_obj(carwash_id):
     carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print('carwash_obj: ', carwash_obj)
     return carwash_obj
+
+
+def get_price_list(set_id):
+    prices_of_set = []
+    prices = database.col_prices.find({'set_id': set_id})  # dict
+    for price in prices:
+        data = json.loads(json_util.dumps(price))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        prices_of_set.append(price_obj)
+
+    print(prices_of_set)
+    return prices_of_set
 
 
 def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
@@ -99,6 +114,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     if request_xhr_key == 'XMLHttpRequest':
         context = {
             'orders': events,
+            'price_list': get_price_list(carwash_obj.Price),
             'boxes': resources,
             'carwash_start_time': carwash_start_time,
             'carwash_end_time': carwash_end_time,
@@ -111,6 +127,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     context = {
         'calendar': {
             'orders': events,
+            'price_list': get_price_list(carwash_obj.Price),
             'boxes': resources,
             'carwash_start_time': carwash_start_time,
             'carwash_end_time': carwash_end_time,
