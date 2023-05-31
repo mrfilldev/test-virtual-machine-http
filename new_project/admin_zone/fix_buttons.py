@@ -66,7 +66,6 @@ def remake_prices_to_set():
 
 
 def prices_to_active():
-
     prices = database.col_prices.find({})
     for price in prices:
         data = json.loads(json_util.dumps(price))
@@ -77,5 +76,17 @@ def prices_to_active():
             "status": 'active',
         }})
 
+    return redirect(url_for('admin_blueprint.admin_main'))
 
+
+def set_all_prices_attr_priceType():
+    prices = database.col_prices.find({})
+    for price in prices:
+        data = json.loads(json_util.dumps(price))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('price_obj: ', price_obj)
+        database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
+            "priceType": 'main_carwash',
+        }})
     return redirect(url_for('admin_blueprint.admin_main'))
