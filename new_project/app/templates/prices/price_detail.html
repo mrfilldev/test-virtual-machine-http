@@ -72,12 +72,12 @@
                                 required>
 
                             {% for priceType in context.priceType %}
-                            <option value="{{priceType.name}}">
+                            <option value="{{priceType.name}}"
+                                    {% if priceType.name== context.price.priceType %}
+                                    selected
+                                    {% endif %}>
                                 {{priceType.priceTypeToDispaly(priceType.name)}}
 
-                                {% if priceType.name == context.price.priceType %}
-                                selected
-                                {% endif %}
 
                             </option>
                             {% endfor %}
