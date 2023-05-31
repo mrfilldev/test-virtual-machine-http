@@ -55,7 +55,6 @@
                     <td>
                         <select style="width: 100%" class="form-select" id="validationCustom04" name="costType"
                                 required>
-                            <option>...</option>
                             <option value="{{context.price.costType}}">{{context.price.costType |
                                 costType_to_russian}}
                             </option>
@@ -71,9 +70,7 @@
                     <td>
                         <select style="width: 100%" class="form-select" name="priceType"
                                 required>
-                            <option>...</option>
-                            <option value="{{context.price.costType}}">{{context.price.costType |
-                                costType_to_russian}}
+                            <option value="{{context.price.costType}}">{{context.price.priceType}}
                             </option>
                             <option value="main_carwash">Тариф Мойки</option>
                             <option value="additional_carwash">Дополнительная Услуга Мойки</option>
