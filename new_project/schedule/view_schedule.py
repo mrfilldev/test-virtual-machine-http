@@ -114,7 +114,6 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     if request_xhr_key == 'XMLHttpRequest':
         context = {
             'orders': events,
-            'price_list': get_price_list(carwash_obj.Price),
             'boxes': resources,
             'carwash_start_time': carwash_start_time,
             'carwash_end_time': carwash_end_time,
@@ -127,7 +126,6 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     context = {
         'calendar': {
             'orders': events,
-            'price_list': get_price_list(carwash_obj.Price),
             'boxes': resources,
             'carwash_start_time': carwash_start_time,
             'carwash_end_time': carwash_end_time,
@@ -135,6 +133,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
             'now_iso': now_iso,
             'scrollToTime': now_format
         },
+        'price_list': get_price_list(carwash_obj.Price),
         'carwash': carwash_obj,
         'category': Catergory,
         'box': get_amount_boxes(carwash_obj),
