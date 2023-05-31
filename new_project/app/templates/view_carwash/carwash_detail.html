@@ -132,26 +132,17 @@
                         </a>
                     </td>
                     <td>
-                        <table>
-                            <tbody style="width: 100%">
-                            <tr style="width: 100%">
-                                <td style="width: 50%">
-                                    <select style="width: 80%" class="form-select" name="costType" required>
-                                        <option disabled="disabled">(не указано)</option>
-                                        {% for set in context.sets_of_prices %}
-                                        <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
-                                                value="{{ set._id }}">{{ set.Name }}
-                                        </option>
-                                        {% endfor %}
-                                    </select>
-                                </td>
-                                <td style="width: 50%">
-                                    <a onclick="open_modal_window_prices_list();" style="width: 120px"
-                                       class="btn-sm btn btn-outline-secondary">Детальное описание</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <select style="width: 80%" class="form-select" name="costType" required>
+                            <option disabled="disabled">(не указано)</option>
+                            {% for set in context.sets_of_prices %}
+                            <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
+                                    value="{{ set._id }}">{{ set.Name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+
+                        <a onclick="open_modal_window_prices_list();" style="width: 120px"
+                           class="btn-sm btn btn-outline-secondary">Детальное описание</a>
                     </td>
                 </tr>
                 <tr>
