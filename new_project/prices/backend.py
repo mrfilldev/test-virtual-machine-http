@@ -154,11 +154,12 @@ def create_price(request, set_id):
         categoryPrice = []
         description = form['description']
         costType = form['costType']
+        priceType = form['priceType']
 
         for i in list(CategoryAuto):
             categoryPrice.append(CostIdSum(i.name, form[str(i.name)]))
 
-        new_price = PriceOfSet(id, set_id, name, description, categoryPrice, costType)
+        new_price = PriceOfSet(id, set_id, name, description, categoryPrice, costType, priceType)
 
         print(new_price.categoryPrice)
         print(new_price.set_id)
@@ -202,6 +203,7 @@ def update_price(request, price_id):
         'description': form['description'],
         'categoryPrice': categoryPrice,
         'costType': form['costType'],
+        'priceType': form['priceType'],
         'status': 'active',
     }}
     new_price = database.col_prices.update_one(price_id, set_fields)

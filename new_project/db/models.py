@@ -36,13 +36,14 @@ class priceType(enum.IntEnum):
 
 
 class PriceOfSet:
-    def __init__(self, id, set_id, name, description, cost_id_sum, cost_type):
+    def __init__(self, id, set_id, name, description, cost_id_sum, cost_type, price_type):
         self._id = id
         self.set_id = set_id
         self.name = name
         self.description = description
         self.categoryPrice = cost_id_sum
         self.costType = cost_type
+        self.priceType = price_type
         self.status = 'active'
 
 
