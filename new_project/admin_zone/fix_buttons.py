@@ -87,6 +87,6 @@ def set_all_prices_attr_price_types():
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('price_obj: ', price_obj)
         database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
-            "priceType": 'main_carwash',
+            "priceType": 'additional_detaling',  # 'main_carwash',
         }})
     return redirect(url_for('admin_blueprint.admin_main'))
