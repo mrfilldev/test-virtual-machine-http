@@ -84,7 +84,7 @@
                                 </tr>
                                 </thead>
                                 <tr>
-                                    <th>Тарифы Мойки</th>
+                                    <th>Тарифы</th>
                                     {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
@@ -128,16 +128,17 @@
                                 {% endfor %}
                                 </tbody>
                                 <tr>
-                                    <th>Услуги Мойки</th>
+                                    <th>Дополнительные Услуги</th>
                                     {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
                                 </tr>
-
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
+                                {% if price.priceType == 'additional_carwash' %}
+
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -167,6 +168,7 @@
                                     </td>
                                 </tr>
 
+                                {% endif %}
                                 {% endif %}
                                 {% endfor %}
                                 </tbody>
@@ -221,7 +223,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Тарифы Детейлинга</th>
+                                    <th>Тарифы</th>
                                     {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
@@ -231,6 +233,7 @@
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
+                                {% if price.status == 'main_detaling' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -261,19 +264,20 @@
                                 </tr>
 
                                 {% endif %}
+                                {% endif %}
                                 {% endfor %}
                                 </tbody>
                                 <tr>
-                                    <th>Услуги Детейлинга</th>
+                                    <th>Дополнительные Услуги</th>
                                     {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
                                 </tr>
-                                </thead>
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
+                                {% if price.status == 'additional_detaling' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -303,6 +307,7 @@
                                     </td>
                                 </tr>
 
+                                {% endif %}
                                 {% endif %}
                                 {% endfor %}
                                 </tbody>
@@ -357,17 +362,18 @@
                                         </div>
                                     </th>
                                 </tr>
+                                </thead>
                                 <tr>
-                                    <th>Тарифы Детейлинга</th>
+                                    <th>Тарифы</th>
                                     {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
                                 </tr>
-                                </thead>
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
+                                {% if price.status == 'main_wheelstation' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -398,19 +404,20 @@
                                 </tr>
 
                                 {% endif %}
+                                {% endif %}
                                 {% endfor %}
                                 </tbody>
                                 <tr>
-                                    <th>Услуги Детейлинга</th>
+                                    <th>Дополнительные Услуги</th>
                                     {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
                                 </tr>
-                                </thead>
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
+                                {% if price.status == 'additional_wheelstation' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -440,6 +447,7 @@
                                     </td>
                                 </tr>
 
+                                {% endif %}
                                 {% endif %}
                                 {% endfor %}
                                 </tbody>
