@@ -164,6 +164,7 @@ def list_carwashes(g):
     print('enum_type_list: ', enum_type_list)
 
     context = {
+        'sets_of_prices': get_sets(),
         'carwashes_list': carwashes_list,
         'count_carwashes': count_carwashes,
         'network_obj': network_obj,

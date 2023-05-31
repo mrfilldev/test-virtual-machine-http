@@ -45,6 +45,7 @@
 
             <th scope="col">Имя Мойки</th>
             <th scope="col">Адрес</th>
+            <th scope="col">Тариф</th>
             <th scope="col">Тип</th>
             <th scope="col">Мин. шаг суммы</th>
             <th scope="col">Мин. стоимость</th>
@@ -75,6 +76,13 @@
 
             <td>
                 {{ carwash.Address }}
+            </td>
+            <td>
+                {% for set in context.sets_of_prices %}
+                {% if set._id == carwash.Price %}
+                {{ set.Name }}
+                {% endif %}
+                {% endfor %}
             </td>
 
             <td>
