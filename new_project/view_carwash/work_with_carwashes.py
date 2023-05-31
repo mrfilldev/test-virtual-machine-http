@@ -197,7 +197,7 @@ def create_carwash_obj(request, g):
         enable: bool = True if request.form['status'] == 'enable' else False
         status = enable
         login_administrator = request.form['login_administrator']
-        prices = create_prices(request, dict_of_form)
+        prices = request.form['set_of_price'] #create_prices(request, dict_of_form)
         print(prices)
 
         new_carwash = Carwash(
@@ -211,21 +211,6 @@ def create_carwash_obj(request, g):
         print('TYPE: ', type(new_carwash_dict))
         print('data: ', new_carwash_dict)
         new_carwash_dict['network_id'] = g.user_db['networks'][0]
-
-        # network = g.user_db['networks'][0]
-        # print('network:', network)
-        # network = database.col_networks.find({'_id': network})
-        # data = json.loads(json_util.dumps(network))
-        # data = json.dumps(data, default=lambda x: x.__dict__)
-        # network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
-        # print('network_obj:', network_obj)
-        #
-        # print('network_obj.carwashes:', print(network_obj.carwashes))
-        # print(list(network_obj.carwashes).append(new_carwash_dict['_id']))
-        # set_fields = {'$set': {
-        #     'carwashes': [],
-        # }}
-        # database.col_networks.update_one({'_id': g.user_db['networks'][0]}, set_fields)
 
         database.col_carwashes.insert_one(new_carwash_dict)
         database.col_carwashes_admins.insert_one(
@@ -344,8 +329,7 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        'Price': json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),
-                                       default=lambda x: x.__dict__)),
+        'Price': request.form['set_of_price'], #json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)

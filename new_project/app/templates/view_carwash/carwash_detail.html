@@ -129,7 +129,7 @@
                         Тарифный набор
                     </td>
                     <td>
-                        <select style="width: 100%" class="form-select" name="costType" required>
+                        <select style="width: 100%" class="form-select" name="set_of_price" required>
                             <option disabled="disabled">(не указано)</option>
                             {% for set in context.sets_of_prices %}
                             <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
