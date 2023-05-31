@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         // form_submit;
@@ -265,63 +270,27 @@
                                     </td>
                                     <td>
                                         <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton"
-                                                    data-mdb-toggle="dropdown" aria-expanded="false">
-                                                Checkbox dropdown
+                                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                Dropdown button
                                             </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <ul class="dropdown-menu dropdown-menu-dark"
+                                                aria-labelledby="dropdownMenuButton2">
+                                                <li><a class="dropdown-item active" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                                                 <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                   id="Checkme1"/>
-                                                            <label class="form-check-label" for="Checkme1">Check
-                                                                me</label>
-                                                        </div>
-                                                    </a>
+                                                    <hr class="dropdown-divider">
                                                 </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                   id="Checkme2" checked/>
-                                                            <label class="form-check-label" for="Checkme2">Check
-                                                                me</label>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                   id="Checkme3"/>
-                                                            <label class="form-check-label" for="Checkme3">Check
-                                                                me</label>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider"/>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                   id="Checkme4" checked/>
-                                                            <label class="form-check-label" for="Checkme4">Check
-                                                                me</label>
-                                                        </div>
-                                                    </a>
-                                                </li>
+                                                <li><a class="dropdown-item" href="#">Separated link</a></li>
                                             </ul>
                                         </div>
-
                                         <ul class="dropdown-menu checkbox-menu allow-focus">
                                             {% for i in context.price_list %}
                                             <li>
                                                 <label>
-                                                    <input value="{{ i._id }}" type="checkbox"> {{ i.name }}
+                                                    <input value="{{ i._id }}" type="checkbox"/> {{ i.name }}
                                                 </label>
                                             </li>
                                             {% endfor %}
