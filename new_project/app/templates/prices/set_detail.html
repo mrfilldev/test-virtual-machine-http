@@ -81,7 +81,7 @@
                 <tbody>
                 {% for price in context.set_prices %}
                 {% if price.status == 'active' %}
-                {% if price.priceTyoe == 'main_carwash' %}
+                {% if price.priceType == 'main_carwash' %}
                 <tr>
                     <td style="width: 365px">
                         <b>{{ price.name }}</b><br>
