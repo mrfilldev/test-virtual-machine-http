@@ -233,7 +233,7 @@
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
-                                {% if price.status == 'main_detaling' %}
+                                {% if price.priceType == 'main_detaling' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -277,7 +277,7 @@
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
-                                {% if price.status == 'additional_detaling' %}
+                                {% if price.priceType == 'additional_detaling' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -373,7 +373,7 @@
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
-                                {% if price.status == 'main_wheelstation' %}
+                                {% if price.priceType == 'main_wheelstation' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
@@ -417,7 +417,7 @@
                                 <tbody>
                                 {% for price in context.set_prices %}
                                 {% if price.status == 'active' %}
-                                {% if price.status == 'additional_wheelstation' %}
+                                {% if price.priceType == 'additional_wheelstation' %}
                                 <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
