@@ -72,8 +72,8 @@
                                 required>
 
                             {% for priceType in context.priceType %}
-                            <option value="{{priceType.value}}">
-                                {{priceType.priceTypeToDispaly(priceType.value)}}
+                            <option value="{{priceType.name}}">
+                                {{priceType.priceTypeToDispaly(priceType.name)}}
                             </option>
                             {% endfor %}
 
