@@ -133,19 +133,20 @@
                     </td>
                     <td>
                         <div class="row">
-
-                            <select style="width: 80%" class="form-select" name="costType" required>
-                                <option disabled="disabled">(не указано)</option>
-                                {% for set in context.sets_of_prices %}
-                                <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
-                                        value="{{ set._id }}">{{ set.Name }}
-                                </option>
-                                {% endfor %}
-                            </select>
-
-                            <a onclick="open_modal_window_prices_list();"
-                               style="width: 20%" class="btn-sm btn btn-outline-secondary">Настройки</a>
-
+                            <div class="col">
+                                <select style="width: 80%" class="form-select" name="costType" required>
+                                    <option disabled="disabled">(не указано)</option>
+                                    {% for set in context.sets_of_prices %}
+                                    <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
+                                            value="{{ set._id }}">{{ set.Name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                                <a onclick="open_modal_window_prices_list();"
+                                   style="width: 120px" class="btn-sm btn btn-outline-secondary">Настройки</a>
+                            </div>
                         </div>
 
                     </td>
