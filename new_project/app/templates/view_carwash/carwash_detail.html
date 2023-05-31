@@ -132,16 +132,22 @@
                         </a>
                     </td>
                     <td>
-                        <select style="width: 80%" class="form-select" name="costType" required>
-                            <option disabled="disabled">(не указано)</option>
-                            {% for set in context.sets_of_prices %}
-                            <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
-                                    value="{{ set._id }}">{{ set.Name }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                        <a onclick="open_modal_window_prices_list();"
-                           style="width: 120px" class="btn-sm btn btn-outline-secondary">Настройки</a>
+                        <div class="row">
+
+                            <select style="width: 80%" class="form-select" name="costType" required>
+                                <option disabled="disabled">(не указано)</option>
+                                {% for set in context.sets_of_prices %}
+                                <option {% if set._id== context.set_of_prices._id %} selected {% endif %}
+                                        value="{{ set._id }}">{{ set.Name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+
+                            <a onclick="open_modal_window_prices_list();"
+                               style="width: 120px" class="btn-sm btn btn-outline-secondary">Настройки</a>
+
+                        </div>
+
                     </td>
                 </tr>
                 <tr>
@@ -266,10 +272,10 @@
                                                {% for obj_price in context.carwash.Price %}
                                                {% if obj_price._id== price._id %}
                                                {% if obj_price.status== 'active' %}
-                                                checked
-                                                {% endif %}
-                                                {% endif %}
-                                                {% endfor %}
+                                        checked
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
                                         >
                                     </div>
                                 </td>
