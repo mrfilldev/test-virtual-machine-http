@@ -248,7 +248,14 @@
                                     <td style="width: 200px">
                                         Бокс:
                                     </td>
+
                                     <td>
+                                        <select name="price" style="width: 200px" class="form-select" required>
+                                            <option>(не указано)</option>
+                                            {% for i in context.price_list %}
+                                            <option value="{{ i._id }}">{{ i.name }}</option>
+                                            {% endfor %}
+                                        </select>
                                         <select name="box" style="width: 200px" class="form-select" required>
                                             <option>(не указано)</option>
                                             {% for i in range(1, context['box']+1) %}
