@@ -43,7 +43,7 @@ def new_set():
 
 @prices_bp.route('/set_detail/<string:set_id>', methods=['POST', 'GET'])
 def detail_set(set_id):
-    return set_detail(request, set_id)
+    return set_detail(request, set_id, g)
 
 
 @prices_bp.route('/new_price/<string:set_id>', methods=['POST', 'GET'])
