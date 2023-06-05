@@ -90,3 +90,17 @@ def set_all_prices_attr_price_types():
             "priceType": 'main_carwash',
         }})
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def set_all_carwash_full_type():
+    carwashes = database.col_carwashes.find({})
+    for carwash in carwashes:
+        data = json.loads(json_util.dumps(carwash))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('carwash_obj: ', carwash_obj)
+        database.col_carwashes.update_one({'_id': carwash_obj._id}, {"$set": {
+            'IsCarwash': True,
+            'IsWheelStation': True,
+            'IsDetaling': True,
+        }})
