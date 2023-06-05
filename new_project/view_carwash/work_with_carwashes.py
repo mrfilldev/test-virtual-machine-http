@@ -311,10 +311,10 @@ def update_carwash_obj(request, carwash_id):
     dict_of_form = request.form.to_dict(flat=False)
     new_boxes_json = json.dumps(create_boxes(int(form['amount_boxes'])), default=lambda x: x.__dict__)
     new_boxes_list_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
-    enable = True if form['status'] else False
+    enable = True if 'status' in form else False
 
     is_hand_carwash = True if 'is_hand_carwash' in form else False
-    is_wheel_station = True if 'is_wheel_station'in form else False
+    is_wheel_station = True if 'is_wheel_station' in form else False
     is_detaling = True if 'is_detaling' in form else False
     print(is_hand_carwash)
     print(is_wheel_station)
