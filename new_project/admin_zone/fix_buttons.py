@@ -104,3 +104,5 @@ def set_all_carwash_full_type():
             'IsWheelStation': True,
             'IsDetaling': True,
         }})
+
+    return redirect(url_for('admin_blueprint.admin_main'))
