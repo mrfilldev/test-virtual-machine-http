@@ -335,9 +335,9 @@ def update_carwash_obj(request, carwash_id):
         'Price': request.form['set_of_price'],
         # json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
-        'IsCarwash': True,
-        'IsWheelStation': True,
-        'IsDetaling': True,
+        'IsCarwash': is_hand_carwash,
+        'IsWheelStation': is_wheel_station,
+        'IsDetaling': is_detaling,
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
     pin_admin(carwash_id, form['login_administrator'])
