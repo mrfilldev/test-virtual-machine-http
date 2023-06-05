@@ -15,7 +15,9 @@ queue_url = Sqs_params.queue_url
 page_size = 10
 
 
-def list_orders(g_user_flask, page, carwash_id):
+def list_orders(g_user_flask, page):
+    carwash_id = request.args.get('carwash_id')
+    print("carwash_id: ", carwash_id)
     if carwash_id == '':
         if 'networks' in g_user_flask.user_db:
             network = g_user_flask.user_db['networks'][0]
