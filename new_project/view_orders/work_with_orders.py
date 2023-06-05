@@ -16,7 +16,7 @@ page_size = 10
 
 
 def list_orders(g_user_flask):
-    page = request.args.get('p')
+    page = int(request.args.get('p'))
     page = 0 if page is None else page
     print('page: ', page)
     carwash_id = request.args.get('carwash_id')
