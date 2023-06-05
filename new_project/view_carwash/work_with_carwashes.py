@@ -197,7 +197,7 @@ def create_carwash_obj(request, g):
         enable: bool = True if request.form['status'] == 'enable' else False
         status = enable
         login_administrator = request.form['login_administrator']
-        prices = request.form['set_of_price'] #create_prices(request, dict_of_form)
+        prices = request.form['set_of_price']  # create_prices(request, dict_of_form)
         print(prices)
 
         new_carwash = Carwash(
@@ -311,13 +311,16 @@ def update_carwash_obj(request, carwash_id):
     dict_of_form = request.form.to_dict(flat=False)
     new_boxes_json = json.dumps(create_boxes(int(form['amount_boxes'])), default=lambda x: x.__dict__)
     new_boxes_list_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
-    if 'status' not in form:
-        enable: bool = False
-    else:
-        enable: bool = True
+    enable = True if form['status'] else False
+
+    is_hand_carwash = True if form['is_hand_carwash'] else False
+    is_wheel_station = True if form['is_wheel_station'] else False
+    is_detaling = True if form['is_detaling'] else False
+    print(is_hand_carwash)
+    print(is_wheel_station)
+    print(is_detaling)
 
     # update_cost_of_price(dict_of_form, carwash_id)
-
     # print('UPD_PRICE:', json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id), default=lambda x: x.__dict__)))
 
     old_carwash = {'_id': carwash_id}
@@ -329,11 +332,12 @@ def update_carwash_obj(request, carwash_id):
         'Location': {'lat': form['lat'], 'lon': form['lon']},
         'Type': Types.SelfService.name,
         'Boxes': new_boxes_list_of_dict,
-        'Price': request.form['set_of_price'], #json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),default=lambda x: x.__dict__)),
+        'Price': request.form['set_of_price'],
+        # json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),default=lambda x: x.__dict__)),
         'CarwashAdmin': form['login_administrator'],
-        'IsCarwash':  True,
+        'IsCarwash': True,
         'IsWheelStation': True,
-        'IsDetaling':  True,
+        'IsDetaling': True,
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
     pin_admin(carwash_id, form['login_administrator'])
