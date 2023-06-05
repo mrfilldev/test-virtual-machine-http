@@ -106,3 +106,18 @@ def set_all_carwash_full_type():
         }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def set_sets_of_prices_to_one_network():
+    sets = database.col_sets_of_prices.find({})
+
+    for set in sets:
+        data = json.loads(json_util.dumps(set))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('set_obj: ', set_obj)
+        database.col_carwashes.update_one({'_id': set_obj._id}, {"$set": {
+            'network': '3a81c491fa9245dc9139049f9885ef57'
+        }})
+
+    return redirect(url_for('admin_blueprint.admin_main'))

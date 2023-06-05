@@ -58,7 +58,7 @@ def show_list_sets_prices():
     return render_template('prices/list_sets_price.html', context=context)
 
 
-def set_create(request):
+def set_create(request, g_user_flask):
     if request.method == 'POST':
         print('\n########################DATA####################################\n')
         data = request.form.to_dict()
@@ -73,6 +73,7 @@ def set_create(request):
         )
         print(new_set)
         new_set = json.loads(json.dumps(new_set, default=lambda x: x.__dict__))
+        new_set['network'] = g_user_flask.user_db['networks'][0]
         print(new_set)
         database.col_sets_of_prices.insert_one(new_set)
 

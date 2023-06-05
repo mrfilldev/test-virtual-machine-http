@@ -38,7 +38,7 @@ def list_sets_prices():
 
 @prices_bp.route('/new_set/', methods=['POST', 'GET'])
 def new_set():
-    return set_create(request)
+    return set_create(request, g)
 
 
 @prices_bp.route('/set_detail/<string:set_id>', methods=['POST', 'GET'])
