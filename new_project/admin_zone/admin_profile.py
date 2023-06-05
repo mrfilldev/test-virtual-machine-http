@@ -114,8 +114,9 @@ def remake_prices_to_active():
 def remake_prices_price_types():
     return set_all_prices_attr_price_types()
 
-@admin_bp.route('/set_all_carwash_full_type')
-def set_all_carwash_full_type():
+
+@admin_bp.route('/remake_all_carwash_full_type')
+def remake_all_carwash_full_type():
     return set_all_carwash_full_type()
 
 
