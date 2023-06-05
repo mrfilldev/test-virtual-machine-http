@@ -313,9 +313,9 @@ def update_carwash_obj(request, carwash_id):
     new_boxes_list_of_dict = json.loads(new_boxes_json)  # , object_hook=lambda d: SimpleNamespace(**d))
     enable = True if form['status'] else False
 
-    is_hand_carwash = True if form['is_hand_carwash'] else False
-    is_wheel_station = True if form['is_wheel_station'] else False
-    is_detaling = True if form['is_detaling'] else False
+    is_hand_carwash = True if 'is_hand_carwash' in form else False
+    is_wheel_station = True if 'is_wheel_station'in form else False
+    is_detaling = True if 'is_detaling' in form else False
     print(is_hand_carwash)
     print(is_wheel_station)
     print(is_detaling)
