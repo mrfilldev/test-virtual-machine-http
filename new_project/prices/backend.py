@@ -1,5 +1,7 @@
 import json
 import uuid
+import time
+from datetime import datetime
 from types import SimpleNamespace
 
 from bson import json_util
@@ -7,6 +9,9 @@ from flask import render_template, request, jsonify, redirect, url_for
 
 from ..db import database
 from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum, PricesCarWash, priceType
+
+FORMAT = '%Y-%m-%dT%H:%M:%S%Z'
+
 
 
 def get_prices_obj_list():
@@ -88,7 +93,7 @@ def find_prices_with_set_id(set_id):
     return prices_of_set
 
 
-def update_set_of_prices(request, set_id):
+def update_set_of_prices(request, set_id, g_user_flask):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data)
@@ -122,12 +127,14 @@ def update_set_of_prices(request, set_id):
                 print('price_obj.categoryPrice: ', price_obj.categoryPrice)
                 database.col_prices.update_one({'_id': price_obj._id}, {"$set": {
                     "categoryPrice": json.loads(json.dumps(price_obj.categoryPrice, default=lambda x: x.__dict__)),
+                    'last_edit': make_last_edit_string(g_user_flask)
+
                 }})
 
 
-def set_detail(request, set_id):
+def set_detail(request, set_id, g_user_flask):
     if request.method == 'POST':
-        update_set_of_prices(request, set_id)
+        update_set_of_prices(request, set_id, g_user_flask)
     set_obj = serializing_set(set_id)
     set_id_prices = find_prices_with_set_id(set_id)
     context = {
@@ -140,7 +147,12 @@ def set_detail(request, set_id):
     return render_template('prices/set_detail.html', context=context)
 
 
-def create_price(request, set_id):
+def make_last_edit_string(g_user_flask):
+    result = time.strftime(FORMAT, time.localtime()) + ' ' + g_user_flask.user_db['_id']
+    return result
+
+
+def create_price(request, set_id, g_user_flask):
     if request.method == 'POST':
         print('\n########################DATA####################################\n')
         data = request.form.to_dict()
@@ -170,6 +182,7 @@ def create_price(request, set_id):
 
         # запись в бд
         new_price = eval(json.dumps(new_price, default=lambda x: x.__dict__))
+        new_price['last_edit'] = make_last_edit_string(g_user_flask)
         print(new_price)
         print(type(new_price))
         database.col_prices.insert_one(new_price)
@@ -178,7 +191,7 @@ def create_price(request, set_id):
     return jsonify(response)
 
 
-def update_price(request, price_id):
+def update_price(request, price_id, g_user_flask):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print(data)
@@ -207,17 +220,19 @@ def update_price(request, price_id):
         'costType': form['costType'],
         'priceType': form['priceType'],
         'status': 'active',
+        'last_edit': make_last_edit_string(g_user_flask)
     }}
     new_price = database.col_prices.update_one(price_id, set_fields)
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_price)
 
 
-def hide_price(price_id):
+def hide_price(price_id, g_user_flask):
     price_obj = get_price_obj(price_id)
     price_id = {'_id': price_id}
     set_fields = {'$set': {
         'status': 'turn_off',
+        'last_edit': make_last_edit_string(g_user_flask),
     }}
     new_price = database.col_prices.update_one(price_id, set_fields)
     print('UPDATE FIELDS: ', set_fields)
@@ -234,9 +249,9 @@ def get_price_obj(price_id):
     return price_obj
 
 
-def price_detail(request, price_id):
+def price_detail(request, price_id, g_user_flask):
     if request.method == 'POST':
-        update_price(request, price_id)
+        update_price(request, price_id, g_user_flask)
     context = {
         'price': get_price_obj(price_id),
         'priceType': list(priceType),

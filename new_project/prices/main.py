@@ -48,17 +48,17 @@ def detail_set(set_id):
 
 @prices_bp.route('/new_price/<string:set_id>', methods=['POST', 'GET'])
 def new_price(set_id):
-    return create_price(request, set_id)
+    return create_price(request, set_id, g)
 
 
 @prices_bp.route('/show_price_detail/<string:price_id>', methods=['POST', 'GET'])
 def show_price_detail(price_id):
-    return price_detail(request, price_id)
+    return price_detail(request, price_id, g)
 
 
 @prices_bp.route('/delete_price/<string:price_id>', methods=['POST', 'GET'])
 def delete_price(price_id):
-    return hide_price(price_id)
+    return hide_price(price_id, g)
 
 
 @prices_bp.app_template_filter()
