@@ -146,19 +146,25 @@
                     <td>
                         <div class="form-check-inline">
                             <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash"
-                                   autocomplete="off">
+                                   autocomplete="off"
+                            {% if context.carwash.IsCarwash == True %} checked {% endif %}
+                            >
                             <label class="btn btn-outline-secondary" for="hand_carwash">Ручная мойка</label><br>
                         </div>
                         <div class="form-check-inline">
 
                             <input name="is_wheel_station" type="checkbox" class="btn-check" id="wheel_station"
-                                   autocomplete="off">
+                                   autocomplete="off"
+                            {% if context.carwash.IsWheelStation == True %} checked {% endif %}
+                            >
                             <label class="btn btn-outline-secondary" for="wheel_station">Шиномонтаж</label><br>
                         </div>
                         <div class="form-check-inline">
 
                             <input name="is_detaling" type="checkbox" class="btn-check" id="detaling"
-                                   autocomplete="off">
+                                   autocomplete="off"
+                            {% if context.carwash.IsDetaling == True %} checked {% endif %}
+                            >
                             <label class="btn btn-outline-secondary" for="detaling">Детейлинг</label><br>
                         </div>
                     </td>
