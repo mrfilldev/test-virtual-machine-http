@@ -20,6 +20,7 @@ def list_orders(g_user_flask):
     page = 0 if page is None else int(page)
     print('page: ', page)
     carwash_id = request.args.get('carwash_id')
+    carwash_id = '' if carwash_id is None else carwash_id
     print("carwash_id: ", carwash_id)
     if carwash_id == '':
         if 'networks' in g_user_flask.user_db:
