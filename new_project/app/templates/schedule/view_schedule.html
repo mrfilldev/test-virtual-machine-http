@@ -326,7 +326,9 @@
 
             </div>
             <div class="modal-body">
-
+                {% for price in context.price_list %}
+                {{prcie}}
+                {% endfor %}
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
