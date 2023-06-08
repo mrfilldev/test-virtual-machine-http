@@ -339,7 +339,7 @@
                             <table class="table table-bordered table-center align-middle" id="table_prices_carwash">
                                 <tr>
                                     <th>Тарифы</th>
-                                    {% for enum in context.category %}
+                                    {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
@@ -383,7 +383,7 @@
                                 </tbody>
                                 <tr>
                                     <th>Дополнительные Услуги</th>
-                                    {% for enum in context.category %}
+                                    {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
@@ -443,7 +443,7 @@
                                 <thead class="table-light">
                                 <tr>
                                     <th>Тарифы</th>
-                                    {% for enum in context.category %}
+                                    {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
@@ -488,7 +488,7 @@
                                 </tbody>
                                 <tr>
                                     <th>Дополнительные Услуги</th>
-                                    {% for enum in context.category %}
+                                    {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
@@ -545,12 +545,9 @@
                         <div class="accordion-body">
                             <table class="table table-bordered table-center align-middle"
                                    id="table_prices_wheelstation">
-                                <thead class="table-light">
-
-                                </thead>
                                 <tr>
                                     <th>Тарифы</th>
-                                    {% for enum in context.category %}
+                                    {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>
@@ -594,7 +591,7 @@
                                 </tbody>
                                 <tr>
                                     <th>Дополнительные Услуги</th>
-                                    {% for enum in context.category %}
+                                    {% for enum in context['enum_list'] %}
                                     <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
                                     {% endfor %}
                                     <th></th>

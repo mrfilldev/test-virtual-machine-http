@@ -7,7 +7,7 @@ from bson import json_util
 from flask import render_template, jsonify, abort
 
 from new_project.db import database
-from new_project.db.models import TestScheduleOrder, Catergory
+from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto
 
 
 def datetime_range(start, end, delta):
@@ -135,6 +135,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
         },
         'set_prices': get_price_list(carwash_obj.Price),
         'carwash': carwash_obj,
+        'enum_list': list(CategoryAuto),
         'category': Catergory,
         'box': get_amount_boxes(carwash_obj),
 
