@@ -209,7 +209,13 @@
                             <label class="form-check-label" for="flexSwitchCheckChecked">Мойка активна</label>
                         </div>
                         {% else %}
-                        {% if context['carwash'].Enable == True %} Включено {% else %} Выключено {% endif %}
+                        {% if context['carwash'].Enable == True %}
+                        <input style="width: 100%; text-align: center" type="text"
+                               class="form-control" value="Включено">
+                        {% else %}
+                        <input style="width: 100%; text-align: center" type="text"
+                               class="form-control" value="Выключено">
+                        {% endif %}
                         {% endif %}
                     </td>
                 </tr>
