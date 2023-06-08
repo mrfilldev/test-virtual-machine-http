@@ -237,7 +237,6 @@
                                     <td>
                                         <select name="category" style="width: 200px" class="form-select" required>
                                             <option>(не указано)</option>
-
                                             {% for i in context['category'] %}
                                             <option value="{{i.name}}">{{ i.value }}</option>
                                             {% endfor %}
@@ -256,7 +255,6 @@
                                             <option value="{{ i }}">{{ i }}</option>
                                             {% endfor %}
                                         </select>
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -269,15 +267,6 @@
                                                     data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal
                                             </button>
                                         </div>
-                                        <ul class="dropdown-menu checkbox-menu allow-focus">
-                                            {% for i in context.price_list %}
-                                            <li>
-                                                <label>
-                                                    <input value="{{ i._id }}" type="checkbox"/> {{ i.name }}
-                                                </label>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
                                     </td>
                                 </tr>
                                 <tr>
