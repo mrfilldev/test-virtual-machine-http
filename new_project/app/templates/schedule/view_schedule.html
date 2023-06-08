@@ -326,318 +326,225 @@
 
             </div>
             <div class="modal-body">
-                  <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Мойка
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <table class="table table-bordered table-center align-middle" id="table_prices_carwash">
-                                <tr>
-                                    <th>Тарифы</th>
-                                    {% for enum in context['enum_list'] %}
-                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Мойка
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table table-bordered table-center align-middle" id="table_prices_carwash">
+                                    <tr>
+                                        <th>Тарифы</th>
+                                        {% for enum in context['enum_list'] %}
+                                        <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                        {% endfor %}
+                                        <th></th>
+                                    </tr>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'main_carwash' %}
+                                    <tr>
+                                        <td style="width: 365px">
+                                            <b>{{ price.name }}</b><br>
+                                            {{ price.description }}
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%; text-align: end" type="text"
+                                                   value="СРЕДСТВО ВЫБОРА">
+                                        </td>
+                                        <td>
+                                            ...
+                                        </td>
+                                    </tr>
+
+                                    {% endif %}
+                                    {% endif %}
                                     {% endfor %}
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'main_carwash' %}
-                                <tr>
+                                    </tbody>
+                                    <tr>
+                                        <th>Дополнительные Услуги</th>
+                                        {% for enum in context['enum_list'] %}
+                                        <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                        {% endfor %}
+                                        <th></th>
+                                    </tr>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'additional_carwash' %}
+
+                                    <tr>
+                                        <td style="width: 365px">
+                                            <b>{{ price.name }}</b><br>
+                                            {{ price.description }}
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%; text-align: end" type="text"
+                                                   value="СРЕДСТВО ВЫБОРА">
+                                        </td>
+                                        <td>
+                                            ...
+                                        </td>
+                                    </tr>
+
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Детейлинг
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table table-bordered table-center align-middle"
+                                       id="table_prices_detaling">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th>Тарифы</th>
+                                        {% for enum in context['enum_list'] %}
+                                        <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                        {% endfor %}
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'main_detaling' %}
+                                    <tr>
+                                        <td style="width: 365px">
+                                            <b>{{ price.name }}</b><br>
+                                            {{ price.description }}
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%; text-align: end" type="text"
+                                                   value="СРЕДСТВО ВЫБОРА">
+                                        </td>
+                                        <td>
+                                            ...
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                    <tr>
+                                        <th>Дополнительные Услуги</th>
+                                        {% for enum in context['enum_list'] %}
+                                        <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                        {% endfor %}
+                                        <th></th>
+                                    </tr>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'additional_detaling' %}
+                                    <tr>
+                                        <td style="width: 365px">
+                                            <b>{{ price.name }}</b><br>
+                                            {{ price.description }}
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%; text-align: end" type="text"
+                                                   value="СРЕДСТВО ВЫБОРА">
+                                        </td>
+                                        <td>
+                                            ...
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                                Шиномонтаж
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table table-bordered table-center align-middle"
+                                       id="table_prices_wheelstation">
+                                    <tr>
+                                        <th>Тарифы</th>
+                                        {% for enum in context['enum_list'] %}
+                                        <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                        {% endfor %}
+                                        <th></th>
+                                    </tr>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'main_wheelstation' %}
+                                    <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
                                         {{ price.description }}
                                     </td>
-                                    {% for i in price.categoryPrice %}
                                     <td>
-                                        {% set id_of_cell = price['_id'] %}
-                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                                               style="width: 100%; text-align: end" type="text"
-                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                        <input style="width: 100%; text-align: end" type="text" value="СРЕДСТВО ВЫБОРА">
                                     </td>
-                                    {% endfor %}
                                     <td>
-                                        <div class="btn-group-vertical" role="group"
-                                             aria-label="Вертикальная группа кнопок">
-                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
-                                               style="width: 100%"
-                                               class="btn-sm btn btn-outline-warning">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor"
-                                                     class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
+                                        ...
                                     </td>
                                 </tr>
 
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                                <tr>
-                                    <th>Дополнительные Услуги</th>
-                                    {% for enum in context['enum_list'] %}
-                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                    {% endif %}
+                                    {% endif %}
                                     {% endfor %}
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'additional_carwash' %}
-
-                                <tr>
+                                    </tbody>
+                                    <tr>
+                                        <th>Дополнительные Услуги</th>
+                                        {% for enum in context['enum_list'] %}
+                                        <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                        {% endfor %}
+                                        <th></th>
+                                    </tr>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'additional_wheelstation' %}
+                                    <tr>
                                     <td style="width: 365px">
                                         <b>{{ price.name }}</b><br>
                                         {{ price.description }}
                                     </td>
-                                    {% for i in price.categoryPrice %}
                                     <td>
-                                        {% set id_of_cell = price['_id'] %}
-                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                                               style="width: 100%; text-align: end" type="text"
-                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                        <input style="width: 100%; text-align: end" type="text" value="СРЕДСТВО ВЫБОРА">
                                     </td>
-                                    {% endfor %}
                                     <td>
-                                        <div class="btn-group-vertical" role="group"
-                                             aria-label="Вертикальная группа кнопок">
-                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
-                                               style="width: 100%"
-                                               class="btn-sm btn btn-outline-warning">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor"
-                                                     class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
+                                        ...
                                     </td>
                                 </tr>
 
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Детейлинг
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <table class="table table-bordered table-center align-middle" id="table_prices_detaling">
-                                <thead class="table-light">
-                                <tr>
-                                    <th>Тарифы</th>
-                                    {% for enum in context['enum_list'] %}
-                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
-                                    {% endfor %}
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'main_detaling' %}
-                                <tr>
-                                    <td style="width: 365px">
-                                        <b>{{ price.name }}</b><br>
-                                        {{ price.description }}
-                                    </td>
-                                    {% for i in price.categoryPrice %}
-                                    <td>
-                                        {% set id_of_cell = price['_id'] %}
-                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                                               style="width: 100%; text-align: end" type="text"
-                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
-                                    </td>
-                                    {% endfor %}
-                                    <td>
-                                        <div class="btn-group-vertical" role="group"
-                                             aria-label="Вертикальная группа кнопок">
-                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
-                                               style="width: 100%"
-                                               class="btn-sm btn btn-outline-warning">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor"
-                                                     class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                                <tr>
-                                    <th>Дополнительные Услуги</th>
-                                    {% for enum in context['enum_list'] %}
-                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
-                                    {% endfor %}
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'additional_detaling' %}
-                                <tr>
-                                    <td style="width: 365px">
-                                        <b>{{ price.name }}</b><br>
-                                        {{ price.description }}
-                                    </td>
-                                    {% for i in price.categoryPrice %}
-                                    <td>
-                                        {% set id_of_cell = price['_id'] %}
-                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                                               style="width: 100%; text-align: end" type="text"
-                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
-                                    </td>
-                                    {% endfor %}
-                                    <td>
-                                        <div class="btn-group-vertical" role="group"
-                                             aria-label="Вертикальная группа кнопок">
-                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
-                                               style="width: 100%"
-                                               class="btn-sm btn btn-outline-warning">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor"
-                                                     class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
-                            Шиномонтаж
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <table class="table table-bordered table-center align-middle"
-                                   id="table_prices_wheelstation">
-                                <tr>
-                                    <th>Тарифы</th>
-                                    {% for enum in context['enum_list'] %}
-                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
-                                    {% endfor %}
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'main_wheelstation' %}
-                                <tr>
-                                    <td style="width: 365px">
-                                        <b>{{ price.name }}</b><br>
-                                        {{ price.description }}
-                                    </td>
-                                    {% for i in price.categoryPrice %}
-                                    <td>
-                                        {% set id_of_cell = price['_id'] %}
-                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                                               style="width: 100%; text-align: end" type="text"
-                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
-                                    </td>
-                                    {% endfor %}
-                                    <td>
-                                        <div class="btn-group-vertical" role="group"
-                                             aria-label="Вертикальная группа кнопок">
-                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
-                                               style="width: 100%"
-                                               class="btn-sm btn btn-outline-warning">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor"
-                                                     class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                                <tr>
-                                    <th>Дополнительные Услуги</th>
-                                    {% for enum in context['enum_list'] %}
-                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
-                                    {% endfor %}
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'additional_wheelstation' %}
-                                <tr>
-                                    <td style="width: 365px">
-                                        <b>{{ price.name }}</b><br>
-                                        {{ price.description }}
-                                    </td>
-                                    {% for i in price.categoryPrice %}
-                                    <td>
-                                        {% set id_of_cell = price['_id'] %}
-                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                                               style="width: 100%; text-align: end" type="text"
-                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
-                                    </td>
-                                    {% endfor %}
-                                    <td>
-                                        <div class="btn-group-vertical" role="group"
-                                             aria-label="Вертикальная группа кнопок">
-                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
-                                               style="width: 100%"
-                                               class="btn-sm btn btn-outline-warning">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor"
-                                                     class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
@@ -647,7 +554,6 @@
         </div>
     </div>
 </div>
-
 
 
 {% endblock %}
