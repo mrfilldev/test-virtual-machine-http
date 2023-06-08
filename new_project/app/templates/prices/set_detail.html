@@ -36,7 +36,7 @@
 
         <form method=POST action="{{ url_for('prices_blueprint.detail_set', set_id=context.set._id) }}">
             <div class="accordion" id="accordionExample">
-                {% if context.carwash.IsCarwash == True %}
+
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -177,8 +177,7 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
-                {% if context.carwash.IsDetaling == True %}
+
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -318,8 +317,7 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
-                {% if context.carwash.IsWheelStation == True %}
+
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -460,7 +458,7 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
+
             </div>
 
             <br>
