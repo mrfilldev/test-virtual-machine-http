@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         // form_submit;
@@ -265,24 +270,9 @@
                                     </td>
                                     <td>
                                         <div class="dropdown" style="width: 200px">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton2" data-bs-toggle="dropdown"
-                                                    aria-expanded="false"  style="width: 200px">
-                                                набор услуг
+                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
+                                                    data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal
                                             </button>
-                                            <ul class="dropdown-menu form-select"
-                                                aria-labelledby="dropdownMenuButton2" style="width: 200px">
-                                                {% for i in context.price_list %}
-                                                <li>
-                                                    <label>
-                                                        <input value="{{ i._id }}" type="checkbox"/> {{ i.name }}
-                                                    </label>
-                                                </li>
-                                                {% endfor %}
-                                                <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                            </ul>
                                         </div>
                                         <ul class="dropdown-menu checkbox-menu allow-focus">
                                             {% for i in context.price_list %}
@@ -343,6 +333,25 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hide this modal and show the first with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+<a class="btn btn-primary" data-bs-toggle="modal" href="#event-modal" role="button">Open first modal</a>
+
 
 
 {% endblock %}
