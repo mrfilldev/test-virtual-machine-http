@@ -183,7 +183,7 @@
 
                 <tr>
                     <td style="width: 200px">
-                        Состояние Мойки:
+                        Взаимодействие с Я.Заправками:
                     </td>
                     <td>
                         {% if g.user_db.role != 'network_worker' %}
@@ -195,7 +195,7 @@
                             <label class="form-check-label" for="flexSwitchCheckChecked">Мойка активна</label>
                         </div>
                         {% else %}
-                        Мойка Активна
+                        {% if context['carwash'].Enable == True %} Включено {% else %} Выключено {% endif %}
                         {% endif %}
                     </td>
                 </tr>
