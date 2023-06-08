@@ -38,7 +38,7 @@
 <div class="row justify-content-center">
     <div class="col-2 text-center">
         <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-            {% if context.create_new== True %}
+            {% if context.create_new == True %}
             {% else %}
             <a class="btn btn-outline-secondary"
                href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
@@ -60,10 +60,12 @@
                href="#">
                 Статистика
             </a>
+            {% if g.user_db.role != 'network_worker' %}
             <a class="btn btn-outline-secondary"
                href="{{ url_for('prices_blueprint.list_sets_prices') }}">
                 Наборы Тарифов
             </a>
+            {% endif %}
             {% endif %}
         </div>
     </div>
@@ -124,11 +126,13 @@
                                value="{{ context['amount_boxes'] if context['carwash'] is not none else '' }}" required>
                     </td>
                 </tr>
+                {% if g.user_db.role != 'network_worker' %}
                 <tr>
                     <td style="width: 200px">
                         Тарифный набор:
                     </td>
                     <td>
+
                         <select style="width: 100%" class="form-select" name="set_of_price" required>
                             <option>(не указано)</option>
                             {% for set in context.sets_of_prices %}
@@ -139,6 +143,7 @@
                         </select>
                     </td>
                 </tr>
+                {% endif %}
                 <tr>
                     <td style="width: 200px">
                         Оказываемые услуги:
@@ -147,7 +152,7 @@
                         <div class="form-check-inline">
                             <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash"
                                    autocomplete="off"
-                            {% if context.carwash.IsCarwash == True %} checked {% endif %}
+                                   {% if context.carwash.IsCarwash== True %} checked {% endif %}
                             >
                             <label class="btn btn-outline-secondary" for="hand_carwash">Ручная мойка</label><br>
                         </div>
@@ -155,7 +160,7 @@
 
                             <input name="is_wheel_station" type="checkbox" class="btn-check" id="wheel_station"
                                    autocomplete="off"
-                            {% if context.carwash.IsWheelStation == True %} checked {% endif %}
+                                   {% if context.carwash.IsWheelStation== True %} checked {% endif %}
                             >
                             <label class="btn btn-outline-secondary" for="wheel_station">Шиномонтаж</label><br>
                         </div>
@@ -163,7 +168,7 @@
 
                             <input name="is_detaling" type="checkbox" class="btn-check" id="detaling"
                                    autocomplete="off"
-                            {% if context.carwash.IsDetaling == True %} checked {% endif %}
+                                   {% if context.carwash.IsDetaling== True %} checked {% endif %}
                             >
                             <label class="btn btn-outline-secondary" for="detaling">Детейлинг</label><br>
                         </div>
