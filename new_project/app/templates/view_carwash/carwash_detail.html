@@ -149,6 +149,7 @@
                         Оказываемые услуги:
                     </td>
                     <td>
+                        {% if g.user_db.role != 'network_worker' %}
                         <div class="form-check-inline">
                             <input name="is_hand_carwash" type="checkbox" class="btn-check" id="hand_carwash"
                                    autocomplete="off"
@@ -172,6 +173,11 @@
                             >
                             <label class="btn btn-outline-secondary" for="detaling">Детейлинг</label><br>
                         </div>
+                        {% else %}
+                        {% if context.carwash.IsCarwash== True %} Ручная Мойка {% endif %}&nbsp;
+                        {% if context.carwash.IsWheelStation== True %} Шиномонтаж {% endif %}&nbsp;
+                        {% if context.carwash.IsDetaling== True %} Детейлинг {% endif %}&nbsp;
+                        {% endif %}
                     </td>
                 </tr>
 
