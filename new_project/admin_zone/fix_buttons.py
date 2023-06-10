@@ -121,3 +121,15 @@ def set_sets_of_prices_to_one_network():
         }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def fix_box_number_value():
+    order = database.col_orders.find({"_id": "ff9f21d721d64231963f830b29eff141"})
+
+    data = json.loads(json_util.dumps(order))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print('order_obj: ', order_obj)
+    database.col_carwashes.update_one({'_id': order_obj._id}, {"$set": {
+        'BoxNumber': '1'
+    }})
