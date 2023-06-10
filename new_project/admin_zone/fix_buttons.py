@@ -131,7 +131,7 @@ def fix_box_number_value():
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     print('order_obj: ', order_obj)
     database.col_carwashes.update_one({'_id': order_obj._id}, {"$set": {
-        'BoxNumber': '1'
+        'BoxNumber': 1
     }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
