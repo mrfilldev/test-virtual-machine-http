@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         // form_submit;
@@ -174,211 +179,222 @@
             <form id="form">
                 <div class="modal-body">
                     <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="table-responsive">
-                                    <input type="hidden" name="order_id">
-                                    <table class="table table-hover table align-middle">
-                                        <tbody id="tbody_orders" class="table-hover">
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Гос.Номер:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" type="text" class="form-control"
-                                                       name="country_region_number"
-                                                       placeholder="А999АА799" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Имя клиента:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" type="text" class="form-control"
-                                                       name="order_user_name"
-                                                       placeholder="Имя" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Номер телефона:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" type="tel" class="form-control"
-                                                       name="phone_number"
-                                                       placeholder="Телефон" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Марка:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" type="text" class="form-control"
-                                                       name="car_brand"
-                                                       placeholder="Mitsubishi" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Модель:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" type="text" class="form-control"
-                                                       name="car_model"
-                                                       placeholder="Lancer" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Категория:
-                                            </td>
-                                            <td>
-                                                <select name="category" style="width: 200px" class="form-select"
-                                                        required>
-                                                    {% for i in context['category'] %}
-                                                    <option value="{{i.name}}">{{ i.value }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Бокс:
-                                            </td>
+                        <div class="table-responsive">
+                            <input type="hidden" name="order_id">
+                            <table class="table table-hover table align-middle">
+                                <tbody id="tbody_orders" class="table-hover">
+                                <tr>
+                                    <td style="width: 200px">
+                                        Гос.Номер:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="country_region_number"
+                                               placeholder="А999АА799" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Имя клиента:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="order_user_name"
+                                               placeholder="Имя" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Номер телефона:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" type="tel" class="form-control"
+                                               name="phone_number"
+                                               placeholder="Телефон" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Марка:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="car_brand"
+                                               placeholder="Mitsubishi" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Модель:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" type="text" class="form-control"
+                                               name="car_model"
+                                               placeholder="Lancer" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Категория:
+                                    </td>
+                                    <td>
+                                        <select name="category" style="width: 200px" class="form-select"
+                                                required>
+                                            {% for i in context['category'] %}
+                                            <option value="{{i.name}}">{{ i.value }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Бокс:
+                                    </td>
 
-                                            <td>
-                                                <select name="box" style="width: 200px" class="form-select" required>
-                                                    {% for i in range(1, context['box']+1) %}
-                                                    <option value="{{ i }}">{{ i }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Тариф:
-                                            </td>
-                                            <td>
-                                                <div class="dropdown" style="width: 200px">
-                                                    <button class="btn btn-primary"
-                                                            data-bs-target="#exampleModalToggle2"
-                                                            data-bs-toggle="modal" data-bs-dismiss="modal">Open second
-                                                        modal
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Дата:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" value="" class="form-control" placeholder=""
-                                                       type="date"
-                                                       name="date" aria-describedby="addon-wrapping" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Старт:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" value="" class="form-control"
-                                                       placeholder="00:00"
-                                                       type="time" name="time_start" aria-describedby="addon-wrapping"
-                                                       required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 200px">
-                                                Конец:
-                                            </td>
-                                            <td>
-                                                <input style="width: 200px" value="" class="form-control"
-                                                       placeholder="00:00"
-                                                       type="time" name="time_end" aria-describedby="addon-wrapping"
-                                                       required>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <table class="table table-responsive" id="table_prices_carwash">
-                                    <tr>
-                                        <th>Тарифы</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tbody>
-                                    {% for price in context.set_prices %}
-                                    {% if price.status == 'active' %}
-                                    {% if price.priceType == 'main_carwash' %}
-                                    <tr>
-                                        <td style="width: 365px">
-                                            <b>{{ price.name }}</b><br>
-                                            {{ price.description }}
-                                        </td>
-                                        <td>
-                                            <input style="width: 100%; text-align: end" type="text"
-                                                   value="СРЕДСТВО ВЫБОРА">
-                                        </td>
-                                        <td>
-                                            ...
-                                        </td>
-                                    </tr>
-
-                                    {% endif %}
-                                    {% endif %}
-                                    {% endfor %}
-                                    </tbody>
-                                    <tr>
-                                        <th>Дополнительные Услуги</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tbody>
-                                    {% for price in context.set_prices %}
-                                    {% if price.status == 'active' %}
-                                    {% if price.priceType == 'additional_carwash' %}
-
-                                    <tr>
-                                        <td style="width: 365px">
-                                            <b>{{ price.name }}</b><br>
-                                            {{ price.description }}
-                                        </td>
-                                        <td>
-                                            <input style="width: 100%; text-align: end" type="text"
-                                                   value="СРЕДСТВО ВЫБОРА">
-                                        </td>
-                                        <td>
-                                            ...
-                                        </td>
-                                    </tr>
-
-                                    {% endif %}
-                                    {% endif %}
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="row">
-                            <button id="create" name="create_button" type="submit" class="btn btn-outline-success">
-                                Создать
-                            </button>
-                            <button id="edit" name="edit_button" type="submit" class="btn btn-outline-warning">
-                                Редактировать
-                            </button>
+                                    <td>
+                                        <select name="box" style="width: 200px" class="form-select" required>
+                                            {% for i in range(1, context['box']+1) %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Тариф:
+                                    </td>
+                                    <td>
+                                        <div class="dropdown" style="width: 200px">
+                                            <button class="btn btn-primary"
+                                                    data-bs-target="#exampleModalToggle2"
+                                                    data-bs-toggle="modal" data-bs-dismiss="modal">Open second
+                                                modal
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Дата:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" value="" class="form-control" placeholder=""
+                                               type="date"
+                                               name="date" aria-describedby="addon-wrapping" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Старт:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" value="" class="form-control"
+                                               placeholder="00:00"
+                                               type="time" name="time_start" aria-describedby="addon-wrapping"
+                                               required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Конец:
+                                    </td>
+                                    <td>
+                                        <input style="width: 200px" value="" class="form-control"
+                                               placeholder="00:00"
+                                               type="time" name="time_end" aria-describedby="addon-wrapping"
+                                               required>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <button id="create" name="create_button" type="submit" class="btn btn-outline-success">Создать
+                        </button>
+                        <button id="edit" name="edit_button" type="submit" class="btn btn-outline-warning">
+                            Редактировать
+                        </button>
+                    </div>
+                </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            </div>
+            <div class="modal-body">
+                <table class="table table-responsive" id="table_prices_carwash">
+                    <tr>
+                        <th>Тарифы</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    {% for price in context.set_prices %}
+                    {% if price.status == 'active' %}
+                    {% if price.priceType == 'main_carwash' %}
+                    <tr>
+                        <td style="width: 365px">
+                            <b>{{ price.name }}</b><br>
+                            {{ price.description }}
+                        </td>
+                        <td>
+                            <input style="width: 100%; text-align: end" type="text"
+                                   value="СРЕДСТВО ВЫБОРА">
+                        </td>
+                        <td>
+                            ...
+                        </td>
+                    </tr>
+
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                    <tr>
+                        <th>Дополнительные Услуги</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    {% for price in context.set_prices %}
+                    {% if price.status == 'active' %}
+                    {% if price.priceType == 'additional_carwash' %}
+
+                    <tr>
+                        <td style="width: 365px">
+                            <b>{{ price.name }}</b><br>
+                            {{ price.description }}
+                        </td>
+                        <td>
+                            <input style="width: 100%; text-align: end" type="text"
+                                   value="СРЕДСТВО ВЫБОРА">
+                        </td>
+                        <td>
+                            ...
+                        </td>
+                    </tr>
+
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Back to first
+                </button>
+            </div>
         </div>
     </div>
 </div>
