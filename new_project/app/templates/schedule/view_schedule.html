@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         // form_submit;
@@ -306,65 +311,65 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <table class="table table-bordered table-center align-middle" id="table_prices_carwash">
-                                <tr>
-                                    <th>Тарифы</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'main_carwash' %}
-                                <tr>
-                                    <td style="width: 365px">
-                                        <b>{{ price.name }}</b><br>
-                                        {{ price.description }}
-                                    </td>
-                                    <td>
-                                        <input style="width: 100%; text-align: end" type="text"
-                                               value="СРЕДСТВО ВЫБОРА">
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
+                            <div class="col">
+                                <table class="table table-bordered table-center align-middle" id="table_prices_carwash">
+                                    <tr>
+                                        <th>Тарифы</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'main_carwash' %}
+                                    <tr>
+                                        <td style="width: 365px">
+                                            <b>{{ price.name }}</b><br>
+                                            {{ price.description }}
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%; text-align: end" type="text"
+                                                   value="СРЕДСТВО ВЫБОРА">
+                                        </td>
+                                        <td>
+                                            ...
+                                        </td>
+                                    </tr>
 
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                                <tr>
-                                    <th>Дополнительные Услуги</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tbody>
-                                {% for price in context.set_prices %}
-                                {% if price.status == 'active' %}
-                                {% if price.priceType == 'additional_carwash' %}
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                    <tr>
+                                        <th>Дополнительные Услуги</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tbody>
+                                    {% for price in context.set_prices %}
+                                    {% if price.status == 'active' %}
+                                    {% if price.priceType == 'additional_carwash' %}
 
-                                <tr>
-                                    <td style="width: 365px">
-                                        <b>{{ price.name }}</b><br>
-                                        {{ price.description }}
-                                    </td>
-                                    <td>
-                                        <input style="width: 100%; text-align: end" type="text"
-                                               value="СРЕДСТВО ВЫБОРА">
-                                    </td>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td style="width: 365px">
+                                            <b>{{ price.name }}</b><br>
+                                            {{ price.description }}
+                                        </td>
+                                        <td>
+                                            <input style="width: 100%; text-align: end" type="text"
+                                                   value="СРЕДСТВО ВЫБОРА">
+                                        </td>
+                                        <td>
+                                            ...
+                                        </td>
+                                    </tr>
 
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -377,6 +382,7 @@
                             </button>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>
