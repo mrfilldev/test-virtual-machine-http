@@ -130,7 +130,7 @@ def fix_box_number_value():
     data = json.dumps(data, default=lambda x: x.__dict__)
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     print('order_obj: ', order_obj)
-    database.col_carwashes.update_one({'_id': order_obj._id}, {"$set": {
+    database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
         'BoxNumber': 1
     }})
 
