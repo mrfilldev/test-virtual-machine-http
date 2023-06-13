@@ -247,6 +247,7 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
     print('price_list: ', price_list)
 
     context = {
+        'selected_category': selected_category,
         'set_prices': price_list,
         'priceType': list(priceType),
 
