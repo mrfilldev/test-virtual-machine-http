@@ -6,6 +6,50 @@
                 <div class="col"></div>
                 <div class="col">
                     <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
+
+                        <thead class="table-light">
+                                <tr>
+                                    <th scope="col" colspan="8">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                {{ context.set.Name }}
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    {% if g.user_db.role != 'network_worker' %}
+                                                    <div class="col"></div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col"></div>
+                                                            <div class="col"></div>
+                                                            <div class="col">
+                                                                <a onclick="open_modal_window_price_create();"
+                                                                   style="width: auto"
+                                                                   class="btn-sm btn btn-outline-secondary">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                         height="16"
+                                                                         fill="currentColor" class="bi bi-plus-lg"
+                                                                         viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd"
+                                                                              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <th>Тариф</th>
+                                    <th>Стоимость</th>
+
+                                </tr>
+                        </thead>
                         <tbody>
                         {% for price in context.set_prices %}
                         {% if price.status == 'active' %}
