@@ -144,8 +144,8 @@
         });
     }
 
-    $('#select_category').change(function() {
-        console.log($(this).val());
+    $('#select_category').on('change', function () {
+        alert(this.value);
     });
 </script>
 <br>
@@ -235,7 +235,8 @@
                                         Категория:
                                     </td>
                                     <td>
-                                        <select id="select_category" name="category" style="width: 200px" class="form-select"
+                                        <select id="select_category" name="category" style="width: 200px"
+                                                class="form-select"
                                                 required>
                                             {% for i in context['category'] %}
                                             <option value="{{i.name}}">{{ i.value }}</option>
