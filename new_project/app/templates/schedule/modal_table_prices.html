@@ -23,7 +23,7 @@
                 {% for price in context.set_prices %}
                 {% if price.status == 'active' %}
                 <tr>
-                    <td style="width: 365px">
+                    <td style="width: 365px;">
                         <b>{{ price.name }}</b><br>
                         {{ price.description }}
                     </td>
@@ -34,7 +34,7 @@
                         <input style="width: 100px; text-align: end" class="form-control" type="number" value="0"
                                data-price="{{ price.categoryPrice['sum'] }}">
                     </td>
-                    <td>
+                    <td  style="align-content: end">
                         <input style="width: 100px; text-align: end" class="form-control" value="0">
                     </td>
 
