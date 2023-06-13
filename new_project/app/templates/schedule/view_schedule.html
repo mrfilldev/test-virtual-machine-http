@@ -153,7 +153,7 @@
 
     function category_price_reload(selected_value) {
         $.get("{{ url_for('schedule_blueprint.category_price_reload', carwash_id=context.carwash._id) }}" + '&category=' + selected_value, function (data) {
-            $("#modal_table_prices").html(data);
+            $("#Modal2").html(data);
             alert(data);
         });
     }
@@ -175,7 +175,7 @@
 </div>
 <br>
 
-<div id="form">
+<form id="form">
     <div class="modal fade" id="event-modal" data-bs-backdrop="static"
          data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
