@@ -175,7 +175,7 @@
 </div>
 <br>
 
-<form id="form">
+<div id="form">
     <div class="modal fade" id="event-modal" data-bs-backdrop="static"
          data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -336,11 +336,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="Modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-         tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            {% include 'schedule/modal_table_prices.html' %}
-        </div>
+    <div class="modal fade" id="Modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        {% include 'schedule/modal_table_prices.html' %}
     </div>
 </form>
 
