@@ -11,7 +11,7 @@
         send_order();
         edit_order();
         render_calendar(context_calendar);
-        select_on_change(context_calendar.carwash_id);
+        select_on_change();
     });
 
     function render_calendar(model) {
@@ -144,12 +144,19 @@
         });
     }
 
-    function select_on_change(carwash_id) {
+    function select_on_change() {
         $('select[name="category"]').on('change', function () {
-            console.log(carwash_id);
             console.log(this.value);
+            category_price_reload(this.value);
         });
     }
+
+    function category_price_reload(selected_value) {
+        $.get("{{ url_for('schedule_blueprint.category_price_reload', carwash_id=context.carwash._id) }}" + '&category=' + selected_value, function (data) {
+            alert(data)
+        });
+    }
+
 </script>
 
 <br>
