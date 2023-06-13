@@ -233,4 +233,10 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
     category = request.args.get('category')
     carwash_id = request.args.get('carwash_id')
 
+    carwash_obj = get_carwash_obj(carwash_id)
+    print('carwash_obj: ', carwash_obj)
+
+    price_list = get_price_list(carwash_obj.Price)
+    print('price_list: ', price_list)
+
     return f"{category} {carwash_id}"
