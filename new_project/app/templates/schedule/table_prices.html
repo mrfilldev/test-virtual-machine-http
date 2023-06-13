@@ -1,8 +1,3 @@
-<tr>
-    <th>Тарифы</th>
-    <th></th>
-    <th></th>
-</tr>
 <tbody>
     {% for price in context.set_prices %}
     {% if price.status == 'active' %}
@@ -21,34 +16,6 @@
         </td>
         {% endfor %}
 
-    </tr>
-
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-</tbody>
-<tr>
-    <th>Дополнительные Услуги</th>
-    <th></th>
-    <th></th>
-</tr>
-<tbody>
-    {% for price in context.set_prices %}
-    {% if price.status == 'active' %}
-    {% if price.priceType == 'additional_carwash' %}
-
-    <tr>
-        <td style="width: 365px">
-            <b>{{ price.name }}</b><br>
-            {{ price.description }}
-        </td>
-        <td>
-            <input style="width: 100%; text-align: end" type="text"
-                   value="СРЕДСТВО ВЫБОРА">
-        </td>
-        <td>
-            ...
-        </td>
     </tr>
 
     {% endif %}
