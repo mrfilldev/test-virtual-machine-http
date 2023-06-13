@@ -74,7 +74,6 @@ def list_orders(g_user_flask):
             'count_orders': orders_count - skip,
             'carwashes': carwashes_names,
             'carwash_id': carwash_id
-
         }
         return render_template('orders/orders_table.html', context=context)
 

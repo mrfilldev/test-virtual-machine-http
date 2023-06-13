@@ -230,7 +230,7 @@ def edit_carwash_order(request, carwash_id):
 
 
 def get_costs_for_prices_by_carwash_id_and_category(request):
-    category = request.args.get('category')
+    selected_category = request.args.get('category')
     carwash_id = request.args.get('carwash_id')
 
     carwash_obj = get_carwash_obj(carwash_id)
@@ -239,4 +239,11 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
     price_list = get_price_list(carwash_obj.Price)
     print('price_list: ', price_list)
 
-    return f"{category} {carwash_id}"
+    for price_obj in price_list:
+        for obj in price_obj.categoryPrice:
+            if obj.category == selected_category:
+                price_obj.categoryPrice = obj
+
+    print('price_list: ', price_list)
+
+    return f"{selected_category} {carwash_id}"
