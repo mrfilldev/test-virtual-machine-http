@@ -1,8 +1,8 @@
 <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
         <div class="modal-header">
-            {% for category in context.CategoryAuto %}
-                {% if category.name == context.selected_category %}
+            {% for enum in context.CategoryAuto %}
+                {% if enum.name == context.selected_category %}
                     {{ enum.CategoryAutoToDispaly(enum) }}
                 {% endif %}
             {% endfor %}
