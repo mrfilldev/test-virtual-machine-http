@@ -19,7 +19,6 @@
                         <b>{{ price.name }}</b><br>
                         {{ price.description }}
                     </td>
-
                     <td>
                         {% set id_of_cell = price['_id'] %}
                         <input name="prices_{{ price['_id'] }}_{{ price.categoryPrice['category'] }}"
@@ -27,7 +26,6 @@
                                class="form-control" placeholder="{{ price.categoryPrice['sum'] }}"
                                value="{{ price.categoryPrice['sum'] }}">
                     </td>
-
                     <td>
                         <input style="width: 100px; text-align: end" class="form-control" type="number" value="3"
                                data-price="{{ price.categoryPrice['sum'] }}">
@@ -41,17 +39,18 @@
                 {% endfor %}
                 </tbody>
             </table>
-        </div>
-        <div class="row">
-            <div class="col"></div>
-            <div class="col"></div>
-            <legend>
-                <div class="col text-end">
-                    Итого: ......
-                </div>
-            </legend>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <legend>
+                    <div class="col text-end">
+                        Итого: ......
+                    </div>
+                </legend>
+            </div>
         </div>
     </div>
+
     <div class="modal-footer">
         <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
                 data-bs-dismiss="modal">Back to first
