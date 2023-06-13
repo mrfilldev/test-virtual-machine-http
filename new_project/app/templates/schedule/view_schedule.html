@@ -11,7 +11,7 @@
         send_order();
         edit_order();
         render_calendar(context_calendar);
-        select_on_change();
+        select_on_change(context_calendar.carwash_id);
     });
 
     function render_calendar(model) {
@@ -142,9 +142,9 @@
         });
     }
 
-    function select_on_change() {
+    function select_on_change(carwash_id) {
         $('select[name="category"]').on('change', function () {
-            alert(this.value, context.carwash._id );
+            alert(this.value, carwash_id );
         });
     }
 </script>
