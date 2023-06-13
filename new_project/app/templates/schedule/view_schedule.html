@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         send_order();
@@ -339,19 +344,7 @@
     <div class="modal fade" id="Modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
          tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-
-                </div>
-                <div id="modal_table_prices" class="modal-body">
-                    {% include 'schedule/modal_table_prices.html' %}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
-                            data-bs-dismiss="modal">Back to first
-                    </button>
-                </div>
-            </div>
+            {% include 'schedule/modal_table_prices.html' %}
         </div>
     </div>
 </form>
