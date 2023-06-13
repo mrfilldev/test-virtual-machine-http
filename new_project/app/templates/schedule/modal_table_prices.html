@@ -31,6 +31,13 @@
                                        class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
                             </td>
                             {% endfor %}
+                            <td>
+                                <div class="input-group">
+                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                    <input type="number" value="3" data-price="{{}}" class="form-control">
+                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                </div>
+                            </td>
                         </tr>
                         {% endif %}
                         {% endfor %}
