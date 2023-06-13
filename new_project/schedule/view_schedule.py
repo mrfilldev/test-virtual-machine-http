@@ -119,7 +119,8 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
             'carwash_end_time': carwash_end_time,
             'date_today': date_today,
             'now_iso': now_iso,
-            'scrollToTime': now_format
+            'scrollToTime': now_format,
+            'carwash_id': carwash_id,
         }
         return context
 
