@@ -1,0 +1,57 @@
+
+                        <th>Тарифы</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    {% for price in context.set_prices %}
+                    {% if price.status == 'active' %}
+                    {% if price.priceType == 'main_carwash' %}
+                    <tr>
+                        <td style="width: 365px">
+                            <b>{{ price.name }}</b><br>
+                            {{ price.description }}
+                        </td>
+                        {% for i in price.categoryPrice %}
+                        <td>
+                            {% set id_of_cell = price['_id'] %}
+                            <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                   style="width: 100%; text-align: end" type="text"
+                                   class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                        </td>
+                        {% endfor %}
+
+                    </tr>
+
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                    <tr>
+                        <th>Дополнительные Услуги</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    {% for price in context.set_prices %}
+                    {% if price.status == 'active' %}
+                    {% if price.priceType == 'additional_carwash' %}
+
+                    <tr>
+                        <td style="width: 365px">
+                            <b>{{ price.name }}</b><br>
+                            {{ price.description }}
+                        </td>
+                        <td>
+                            <input style="width: 100%; text-align: end" type="text"
+                                   value="СРЕДСТВО ВЫБОРА">
+                        </td>
+                        <td>
+                            ...
+                        </td>
+                    </tr>
+
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
