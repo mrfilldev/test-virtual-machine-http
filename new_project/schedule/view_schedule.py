@@ -246,4 +246,5 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
     print('price_list: ', price_list)
 
-    return f"{selected_category} {carwash_id}"
+    return f"{selected_category} {carwash_id}\n" \
+           f"price_list: {price_list}"
