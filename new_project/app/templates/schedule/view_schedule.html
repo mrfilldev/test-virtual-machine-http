@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         // form_submit;
@@ -342,13 +347,15 @@
                             <b>{{ price.name }}</b><br>
                             {{ price.description }}
                         </td>
+                        {% for i in price.categoryPrice %}
                         <td>
-                            <input style="width: 100%; text-align: end" type="text"
-                                   value="СРЕДСТВО ВЫБОРА">
+                            {% set id_of_cell = price['_id'] %}
+                            <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                   style="width: 100%; text-align: end" type="text"
+                                   class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
                         </td>
-                        <td>
-                            ...
-                        </td>
+                        {% endfor %}
+
                     </tr>
 
                     {% endif %}
