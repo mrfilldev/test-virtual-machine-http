@@ -154,7 +154,6 @@
     function category_price_reload(selected_value) {
         $.get("{{ url_for('schedule_blueprint.category_price_reload', carwash_id=context.carwash._id) }}" + '&category=' + selected_value, function (data) {
             $("#Modal2").html(data);
-            alert(data);
         });
     }
 
