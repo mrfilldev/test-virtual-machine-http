@@ -4,7 +4,7 @@
             <div class="modal-header">
                 {% for enum in context.CategoryAuto %}
                 {% if enum.name == context.selected_category %}
-                {{ enum.CategoryAutoToDispaly(enum) }}
+                Прейскурант для {{ enum.CategoryAutoToDispaly(enum) }}
                 {% endif %}
                 {% endfor %}
             </div>
