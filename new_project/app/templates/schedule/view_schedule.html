@@ -84,8 +84,8 @@
 
     function open_modal_window_create_order(info) {
         open_modal_window_order_detail(null);
-        $('#event-modal .modal-footer #create').show();
-        $('#event-modal .modal-footer #edit').hide();
+        $('#event-modal #create').show();
+        $('#event-modal #edit').hide();
     }
 
     function open_modal_window_order_detail(info) {
@@ -100,8 +100,8 @@
         $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
         $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
 
-        $('#event-modal .modal-footer #create').hide();
-        $('#event-modal .modal-footer #edit').show();
+        $('#event-modal #create').hide();
+        $('#event-modal #edit').show();
         // info.el.style.borderColor = 'black';
     }
 
