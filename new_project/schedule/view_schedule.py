@@ -227,3 +227,10 @@ def edit_carwash_order(request, carwash_id):
 
     response = {'status': 'success'}
     return jsonify(response)
+
+
+def get_costs_for_prices_by_carwash_id_and_category(request):
+    category = request.args.get('category')
+    carwash_id = request.args.get('carwash_id')
+
+    return f"{category} {carwash_id}"
