@@ -23,21 +23,22 @@
                                 <b>{{ price.name }}</b><br>
                                 {{ price.description }}
                             </td>
-                            {% for i in price.categoryPrice %}
+
                             <td>
                                 {% set id_of_cell = price['_id'] %}
-                                <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                <input name="prices_{{ price['_id'] }}_{{ price.categoryPrice['category'] }}"
                                        style="width: 100px; text-align: end" type="text"
-                                       class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                       class="form-control" placeholder="{{ price.categoryPrice['sum'] }}" value="{{ price.categoryPrice['sum'] }}">
                             </td>
-                            {% endfor %}
+
                             <td>
                                 <div class="input-group">
                                     <button class="btn btn-outline-secondary" type="button">+</button>
-                                    <input type="number" value="3" data-price="{{}}" class="form-control">
+                                    <input type="number" value="3" data-price="{{ price.categoryPrice['sum'] }}" class="form-control">
                                     <button class="btn btn-outline-secondary" type="button">-</button>
                                 </div>
                             </td>
+
                         </tr>
                         {% endif %}
                         {% endfor %}
