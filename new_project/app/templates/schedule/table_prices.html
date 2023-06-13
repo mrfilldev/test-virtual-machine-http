@@ -1,7 +1,6 @@
 <tbody>
     {% for price in context.set_prices %}
     {% if price.status == 'active' %}
-    {% if price.priceType == 'main_carwash' %}
     <tr>
         <td style="width: 365px">
             <b>{{ price.name }}</b><br>
@@ -15,10 +14,7 @@
                    class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
         </td>
         {% endfor %}
-
     </tr>
-
-    {% endif %}
     {% endif %}
     {% endfor %}
 </tbody>
