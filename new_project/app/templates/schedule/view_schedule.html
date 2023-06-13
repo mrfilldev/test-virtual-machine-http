@@ -145,7 +145,7 @@
     function select_on_change(carwash_id) {
         $('select[name="category"]').on('change', function () {
             console.log(carwash_id);
-            alert(this.value, toString(carwash_id));
+            console.log(this.value);
         });
     }
 </script>
