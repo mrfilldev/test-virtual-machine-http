@@ -11,9 +11,8 @@
         // form_submit;
         send_order();
         edit_order();
-        //check_button_clicked()
         render_calendar(context_calendar);
-        // reload();
+        select_on_change();
     });
 
     function render_calendar(model) {
@@ -144,9 +143,11 @@
         });
     }
 
-    $('select[name="category"]').on('change', function () {
-        alert(this.value);
-    });
+    function select_on_change() {
+        $('select[name="category"]').on('change', function () {
+            alert(this.value);
+        });
+    }
 </script>
 <br>
 <legend>
