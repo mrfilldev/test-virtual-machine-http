@@ -8,7 +8,6 @@
     var context_calendar = {{context.calendar | tojson}};
 
     $(document).ready(function () {
-        // form_submit;
         send_order();
         edit_order();
         render_calendar(context_calendar);
@@ -145,10 +144,11 @@
 
     function select_on_change() {
         $('select[name="category"]').on('change', function () {
-            alert(this.value);
+            alert(this.value, {{ context.carwash._id }});
         });
     }
 </script>
+
 <br>
 <legend>
     <div class="container">
