@@ -1,7 +1,11 @@
 <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
         <div class="modal-header">
-            {{ context.selected_category }}
+            {% for category in context.CategoryAuto %}
+                {% if category.name == context.selected_category %}
+                    {{ enum.CategoryAutoToDispaly(enum) }}
+                {% endif %}
+            {% endfor %}
         </div>
         <div id="modal_table_prices" class="modal-body">
             <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
