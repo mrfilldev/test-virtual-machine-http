@@ -7,7 +7,7 @@ from bson import json_util
 from flask import render_template, jsonify, abort
 
 from new_project.db import database
-from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto
+from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType
 
 
 def datetime_range(start, end, delta):
@@ -248,5 +248,7 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
     context = {
         'set_prices': price_list,
+        'priceType': list(priceType),
+
     }
     return render_template('schedule/modal_table_prices.html', context=context)

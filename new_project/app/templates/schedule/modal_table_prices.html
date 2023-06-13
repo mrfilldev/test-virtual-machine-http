@@ -1,22 +1,35 @@
-<table id="table_prices_carwash" class="table table-responsive table-center align-middle">
-    <tbody>
-    {% for price in context.set_prices %}
-    {% if price.status == 'active' %}
-    <tr>
-        <td style="width: 365px">
-            <b>{{ price.name }}</b><br>
-            {{ price.description }}
-        </td>
-        {% for i in price.categoryPrice %}
-        <td>
-            {% set id_of_cell = price['_id'] %}
-            <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
-                   style="width: 100%; text-align: end" type="text"
-                   class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
-        </td>
-        {% endfor %}
-    </tr>
-    {% endif %}
-    {% endfor %}
-    </tbody>
-</table>
+<div class="modal-content">
+    <div class="modal-header">
+
+    </div>
+    <div id="modal_table_prices" class="modal-body">
+        <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
+            <tbody>
+            {% for price in context.set_prices %}
+            {% if price.status == 'active' %}
+            <tr>
+                <td style="width: 365px">
+                    <b>{{ price.name }}</b><br>
+                    {{ price.description }}
+                </td>
+                {% for i in price.categoryPrice %}
+                <td>
+                    {% set id_of_cell = price['_id'] %}
+                    <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                           style="width: 100%; text-align: end" type="text"
+                           class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                </td>
+                {% endfor %}
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
+                data-bs-dismiss="modal">Back to first
+        </button>
+    </div>
+</div>
+</div>
