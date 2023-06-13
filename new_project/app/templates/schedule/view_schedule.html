@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         // form_submit;
@@ -259,13 +264,11 @@
                                         Тариф:
                                     </td>
                                     <td>
-                                        <div class="dropdown" style="width: 200px">
-                                            <button class="btn btn-primary"
-                                                    data-bs-target="#exampleModalToggle2"
-                                                    data-bs-toggle="modal" data-bs-dismiss="modal">Open second
-                                                modal
-                                            </button>
-                                        </div>
+                                        <button style="width: 200px" class="btn btn-outline-light"
+                                                data-bs-target="#exampleModalToggle2"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">Open second
+                                            modal
+                                        </button>
                                     </td>
                                 </tr>
                                 <tr>
