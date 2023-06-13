@@ -1,4 +1,5 @@
-<tbody>
+<table id="table_prices_carwash" class="table table-responsive table-center align-middle">
+    <tbody>
     {% for price in context.set_prices %}
     {% if price.status == 'active' %}
     <tr>
@@ -17,4 +18,5 @@
     </tr>
     {% endif %}
     {% endfor %}
-</tbody>
+    </tbody>
+</table>
