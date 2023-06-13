@@ -6,7 +6,6 @@
                 <div class="col"></div>
                 <div class="col">
                     <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
-
                         <tbody>
                         {% for price in context.set_prices %}
                         {% if price.status == 'active' %}
@@ -30,6 +29,14 @@
                     </table>
                 </div>
             </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col">
+                    Итого: ......
+                </div>
+            </div>
+
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
