@@ -2,52 +2,45 @@
     <div class="modal-content">
         <div class="modal-header"></div>
         <div id="modal_table_prices" class="modal-body">
-            <div class="row">
+            <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>Тариф</th>
+                    <th>Стоимость</th>
+                    <th>Кол-во</th>
+                    <th>Подытог</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for price in context.set_prices %}
+                {% if price.status == 'active' %}
+                <tr>
+                    <td style="width: 365px">
+                        <b>{{ price.name }}</b><br>
+                        {{ price.description }}
+                    </td>
 
-                <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
+                    <td>
+                        {% set id_of_cell = price['_id'] %}
+                        <input name="prices_{{ price['_id'] }}_{{ price.categoryPrice['category'] }}"
+                               style="width: 100px; text-align: end" type="text"
+                               class="form-control" placeholder="{{ price.categoryPrice['sum'] }}"
+                               value="{{ price.categoryPrice['sum'] }}">
+                    </td>
 
-                    <thead class="table-light">
-                    <tr>
-                        <th>Тариф</th>
-                        <th>Стоимость</th>
-                        <th>Кол-во</th>
-                        <th>Подытог</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for price in context.set_prices %}
-                    {% if price.status == 'active' %}
-                    <tr>
-                        <td style="width: 365px">
-                            <b>{{ price.name }}</b><br>
-                            {{ price.description }}
-                        </td>
+                    <td>
+                        <input style="width: 100px; text-align: end" class="form-control" type="number" value="3"
+                               data-price="{{ price.categoryPrice['sum'] }}">
+                    </td>
+                    <td>
 
-                        <td>
-                            {% set id_of_cell = price['_id'] %}
-                            <input name="prices_{{ price['_id'] }}_{{ price.categoryPrice['category'] }}"
-                                   style="width: 100px; text-align: end" type="text"
-                                   class="form-control" placeholder="{{ price.categoryPrice['sum'] }}"
-                                   value="{{ price.categoryPrice['sum'] }}">
-                        </td>
+                    </td>
 
-                        <td>
-                            <input style="width: 100px; text-align: end" class="form-control" type="number" value="3"
-                                   data-price="{{ price.categoryPrice['sum'] }}">
-                        </td>
-                        <td>
-                            <input name="prices_{{ price['_id'] }}_{{ price.categoryPrice['category'] }}"
-                                   style="width: 100px; text-align: end" type="text"
-                                   class="form-control" placeholder="{{ price.categoryPrice['sum'] }}"
-                                   value="{{ price.categoryPrice['sum'] }}">
-                        </td>
-
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
         <div class="row">
             <div class="col"></div>
@@ -58,13 +51,11 @@
                 </div>
             </legend>
         </div>
-
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
                 data-bs-dismiss="modal">Back to first
         </button>
     </div>
-
 </div>
 
