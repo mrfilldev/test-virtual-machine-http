@@ -38,7 +38,12 @@
                                 <button style="width: 25px" class="btn btn-outline-secondary" type="button">-</button>
                             </div>
                         </td>
-                        <td></td>
+                        <td>
+                             <input name="prices_{{ price['_id'] }}_{{ price.categoryPrice['category'] }}"
+                                   style="width: 100px; text-align: end" type="text"
+                                   class="form-control" placeholder="{{ price.categoryPrice['sum'] }}"
+                                   value="{{ price.categoryPrice['sum'] }}">
+                        </td>
 
                     </tr>
                     {% endif %}
