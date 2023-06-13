@@ -14,9 +14,9 @@
                 <thead class="table-light">
                 <tr>
                     <th>Тариф</th>
-                    <th style="text-align: end">Стоимость</th>
-                    <th style="text-align: end">Кол-во</th>
-                    <th style="text-align: end">Подытог</th>
+                    <th class="text-end">Стоимость</th>
+                    <th class="text-end">Кол-во</th>
+                    <th class="text-end">Подытог</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,14 +27,14 @@
                         <b>{{ price.name }}</b><br>
                         {{ price.description }}
                     </td>
-                    <td>
+                    <td class="text-end">
                         {{ price.categoryPrice['sum'] }}"
                     </td>
-                    <td>
+                    <td class="text-end">
                         <input style="width: 100px; text-align: end" class="form-control" type="number" value="0"
                                data-price="{{ price.categoryPrice['sum'] }}">
                     </td>
-                    <td  style="align-content: end">
+                    <td class="text-end">
                         <input style="width: 100px; text-align: end" class="form-control" value="0">
                     </td>
 
