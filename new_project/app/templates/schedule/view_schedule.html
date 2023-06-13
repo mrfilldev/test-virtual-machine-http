@@ -175,17 +175,17 @@
 </div>
 <br>
 
-<div class="modal fade" id="event-modal" data-bs-backdrop="static"
-     data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel2">Новая Запись</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Закрыть"></button>
-            </div>
-            <form id="form">
+<form id="form">
+    <div class="modal fade" id="event-modal" data-bs-backdrop="static"
+         data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel2">Новая Запись</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Закрыть"></button>
+                </div>
                 <div class="modal-body">
                     <div class="container">
                         <div class="table-responsive">
@@ -332,31 +332,30 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="Modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-     tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-
-            </div>
-            <div class="modal-body">
-                <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
-                   {% include 'schedule/table_prices.html' %}
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Back to first
-                </button>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="modal fade" id="Modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                </div>
+                <div class="modal-body">
+                    <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
+                        {% include 'schedule/table_prices.html' %}
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
+                            data-bs-dismiss="modal">Back to first
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 {% endblock %}
