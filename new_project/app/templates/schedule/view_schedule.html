@@ -144,7 +144,9 @@
         });
     }
 
-
+    $('#select-id').change(function() {
+        console.log($(this).val());
+    });
 </script>
 <br>
 <legend>
@@ -233,7 +235,7 @@
                                         Категория:
                                     </td>
                                     <td>
-                                        <select name="category" style="width: 200px" class="form-select"
+                                        <select id="select_category" name="category" style="width: 200px" class="form-select"
                                                 required>
                                             {% for i in context['category'] %}
                                             <option value="{{i.name}}">{{ i.value }}</option>
@@ -259,7 +261,7 @@
                                         Тариф:
                                     </td>
                                     <td>
-                                        <button style="width: 200px; border: #6c757d" class="btn btn-light"
+                                        <button style="width: 200px" class="btn btn-light"
                                                 data-bs-target="#exampleModalToggle2"
                                                 data-bs-toggle="modal" data-bs-dismiss="modal">Open second
                                             modal
