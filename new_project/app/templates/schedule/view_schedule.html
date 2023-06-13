@@ -144,7 +144,7 @@
 
     function select_on_change() {
         $('select[name="category"]').on('change', function () {
-            alert(this.value, {{ context.carwash._id }});
+            alert(this.value, context.carwash._id );
         });
     }
 </script>
