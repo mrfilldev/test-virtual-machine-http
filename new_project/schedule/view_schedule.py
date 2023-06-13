@@ -242,7 +242,7 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
     for price_obj in price_list:
         for obj in price_obj.categoryPrice:
             if obj.category == selected_category:
-                price_obj.categoryPrice = obj
+                price_obj.categoryPrice = list(obj)
 
     print('price_list: ', price_list)
 
