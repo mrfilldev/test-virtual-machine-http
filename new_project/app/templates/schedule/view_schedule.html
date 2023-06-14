@@ -5,7 +5,12 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         send_order();
@@ -157,7 +162,7 @@
         });
     }
 
-//     далее логика корзины
+    //     далее логика корзины
 
     function increment_input() {
         let totalCost = 0;
@@ -187,7 +192,7 @@
     <div class="modal fade" id="event-modal" data-bs-backdrop="static"
          data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel2">Новая Запись</h5>
@@ -258,6 +263,7 @@
                                         <select id="select_category" name="category" style="width: 200px"
                                                 class="form-select"
                                                 required>
+                                            <option></option>
                                             {% for i in context['category'] %}
                                             <option value="{{i.name}}">{{ i.value }}</option>
                                             {% endfor %}
