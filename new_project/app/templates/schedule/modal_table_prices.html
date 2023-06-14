@@ -35,13 +35,13 @@
                             <div class="input-group input-group-sm">
                                 <button type="button" class="btn btn-light">-</button>
                                 <input id="{{ price._id }}" type="number" class="form-control"
-                                       value="{{ context.basket[price._id] }}"
+                                       value="{{ context.basket[price._id].amount }}"
                                        disabled style="width: 75px">
                                 <button type="button" class="btn btn-light">+</button>
                             </div>
                         </td>
                         <td class="text-end">
-                            0 &#8381
+                            {{ context.basket[price._id].pre_total_price }} &#8381
                         </td>
                     </tr>
                     {% endif %}
