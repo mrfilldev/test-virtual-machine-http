@@ -10,44 +10,46 @@
             </div>
         </legend>
         <div id="modal_table_prices" class="modal-body">
-            <table id="table_prices_carwash" class="table table-responsive table-center align-middle">
-                <thead class="table-light">
-                <tr>
-                    <th>Тариф</th>
-                    <th class="text-end">Стоимость</th>
-                    <th>Кол-во</th>
-                    <th></th>
-                    <th class="text-end">Подытог</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for price in context.set_prices %}
-                {% if price.status == 'active' %}
-                <tr>
-                    <td style="width: 365px;">
-                        <b>{{ price.name }}</b><br>
-                        {{ price.description }}
-                    </td>
-                    <td class="text-end">
-                        {{ price.categoryPrice['sum'] }}
-                    </td>
-                    <td>
-                        <div class="input-group input-group-sm">
-                            <button type="button" class="btn btn-light">-</button>
-                            <input type="number" class="form-control" value="0" disabled style="width: 75px">
-                            <button type="button" class="btn btn-light">+</button>
-                        </div>
-                    </td>
-                    <td></td>
-                    <td class="text-end">
-                        0
-                    </td>
+            <div class="table-responsive">
+                <table id="table_prices_carwash" class="table table-center align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Тариф</th>
+                        <th class="text-end">Стоимость</th>
+                        <th>Кол-во</th>
+                        <th></th>
+                        <th class="text-end">Подытог</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for price in context.set_prices %}
+                    {% if price.status == 'active' %}
+                    <tr>
+                        <td style="width: 365px;">
+                            <b>{{ price.name }}</b><br>
+                            {{ price.description }}
+                        </td>
+                        <td class="text-end">
+                            {{ price.categoryPrice['sum'] }}
+                        </td>
+                        <td>
+                            <div class="input-group input-group-sm">
+                                <button type="button" class="btn btn-light">-</button>
+                                <input type="number" class="form-control" value="0" disabled style="width: 75px">
+                                <button type="button" class="btn btn-light">+</button>
+                            </div>
+                        </td>
+                        <td class="max-width"></td>
+                        <td class="text-end">
+                            0
+                        </td>
 
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             <div class="row">
                 <div class="col"></div>
                 <div class="col"></div>
