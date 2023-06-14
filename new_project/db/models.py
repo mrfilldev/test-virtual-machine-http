@@ -9,6 +9,12 @@ from ..db import database
 users = database.col_users
 
 
+class basketItem:
+    def __init__(self, amount: int, pre_total_price: int):
+        self.amount = amount
+        self.pre_total_price = pre_total_price
+
+
 class priceType(enum.IntEnum):
     main_carwash = 10  # Тариф Мойки
     additional_carwash = 20  # Дополнительная Услуга Мойки

@@ -7,7 +7,7 @@ from bson import json_util
 from flask import render_template, jsonify, abort
 
 from new_project.db import database
-from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType
+from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
 
 
 def datetime_range(start, end, delta):
@@ -235,7 +235,7 @@ def make_basket(price_list):
     basket_dict = {}
     count = 0
     for price in price_list:
-        basket_dict[price._id] = count
+        basket_dict[price._id] = basketItem(amount=count, pre_total_price=int(price.categoryPrice.sum) * count)
         count += 1
     return basket_dict
 
