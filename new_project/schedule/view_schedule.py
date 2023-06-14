@@ -271,6 +271,7 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
         'priceType': list(priceType),
         'basket': basket,
         'total_price': count_total_price(basket),
+        'box': get_amount_boxes(carwash_obj),
 
     }
     return render_template('schedule/modal_table_prices.html', context=context)
