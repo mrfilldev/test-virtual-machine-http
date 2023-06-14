@@ -229,6 +229,15 @@ def edit_carwash_order(request, carwash_id):
     return jsonify(response)
 
 
+def make_basket(price_list):
+    basket_dict = {}
+    count = 0
+    for price in price_list:
+        basket_dict[price._id] = count
+        count += 1
+    return basket_dict
+
+
 def get_costs_for_prices_by_carwash_id_and_category(request):
     selected_category = request.args.get('category')
     carwash_id = request.args.get('carwash_id')
@@ -251,6 +260,8 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
         'selected_category': selected_category,
         'CategoryAuto': list(CategoryAuto),
         'priceType': list(priceType),
+        'basket': make_basket(price_list),
+        'total_price': 0,
 
     }
     return render_template('schedule/modal_table_prices.html', context=context)
