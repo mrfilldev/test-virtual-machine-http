@@ -141,7 +141,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
         'enum_list': list(CategoryAuto),
         'category': Catergory,
         'box': get_amount_boxes(carwash_obj),
-        'basket': {}
+        'basket': None
 
     }
     return render_template('schedule/view_schedule.html', context=context)
