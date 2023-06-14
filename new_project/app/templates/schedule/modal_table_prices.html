@@ -10,6 +10,81 @@
             </div>
         </legend>
         <div id="modal_table_prices" class="modal-body">
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Гос.Номер:</label>
+                        <input style="width: 200px" type="text" class="form-control"
+                               name="country_region_number"
+                               placeholder="А999АА799" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Марка:</label>
+                        <input style="width: 200px" type="text" class="form-control"
+                               name="car_brand"
+                               placeholder="Mitsubishi" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Модель:</label>
+                        <input style="width: 200px" type="text" class="form-control"
+                               name="car_model"
+                               placeholder="Lancer" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Категория:</label>
+                        <select id="select_category" name="category" style="width: 200px"
+                                class="form-select"
+                                required>
+                            {% for i in context['category'] %}
+                            <option value="{{i.name}}">{{ i.value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Бокс:</label>
+                        <select name="box" style="width: 200px" class="form-select" required>
+                            {% for i in range(1, context['box']+1) %}
+                            <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Дата:</label>
+                        <input style="width: 200px" value="" class="form-control" placeholder=""
+                               type="date"
+                               name="date" aria-describedby="addon-wrapping" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Старт:</label>
+                        <input style="width: 200px" value="" class="form-control"
+                               placeholder="00:00"
+                               type="time" name="time_start" aria-describedby="addon-wrapping"
+                               required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <label>Конец:</label>
+                        <input style="width: 200px" value="" class="form-control"
+                               placeholder="00:00"
+                               type="time" name="time_end" aria-describedby="addon-wrapping"
+                               required>
+                    </div>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table id="table_prices_carwash" class="table table-center align-middle">
                     <thead class="table-light">
@@ -41,7 +116,8 @@
                             </div>
                         </td>
                         <td class="text-end">
-                            {% if context.basket is none %}{% else %}{{ context.basket[price._id].pre_total_price }}{% endif %} &#8381
+                            {% if context.basket is none %}{% else %}{{ context.basket[price._id].pre_total_price }}{%
+                            endif %} &#8381
                         </td>
                     </tr>
                     {% endif %}
