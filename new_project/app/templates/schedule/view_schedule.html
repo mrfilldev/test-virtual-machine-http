@@ -283,7 +283,136 @@
     </div>
 
     <div class="modal fade" id="Modal3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        {% include 'schedule/modal_table_prices.html' %}
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+        <legend>
+            <div class="modal-header">
+                {% for enum in context.CategoryAuto %}
+                {% if enum.name == context.selected_category %}
+                Прейскурант для {{ enum.CategoryAutoToDispaly(enum) }}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </legend>
+        <div id="modal_table_prices" class="modal-body">
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Гос.Номер:</span>
+                        <input type="text" class="form-control" name="country_region_number" style="width: 100px"
+                               placeholder="А999АА799" aria-label="А999АА799" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Транспорт:</span>
+                        <input style="width: 100px" type="text" class="form-control"
+                               name="car_brand"
+                               placeholder="Марка" required>
+                        <input style="width: 100px" type="text" class="form-control"
+                               name="car_model"
+                               placeholder="Модель" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Категория:</span>
+                        <select id="select_category" name="category"
+                                class="form-select"
+                                required>
+                            {% for i in context['category'] %}
+                            <option value="{{i.name}}">{{ i.value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Бокс:</span>
+                        <select name="box" style="width: 200px" class="form-select" required>
+                            {% for i in range(1, context['box']+1) %}
+                            <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Дата:</span>
+                        <input style="width: 100px" value="" class="form-control" placeholder=""
+                               type="date"
+                               name="date" aria-describedby="addon-wrapping" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Время:</span>
+                        <input style="width: 75px" value="" class="form-control"
+                               placeholder="Старт"
+                               type="time" name="time_start" aria-describedby="addon-wrapping"
+                               required>
+                        <input style="width: 75px" value="" class="form-control"
+                               placeholder="Конец"
+                               type="time" name="time_end" aria-describedby="addon-wrapping"
+                               required>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="table_prices_carwash" class="table table-center align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Тариф</th>
+                        <th class="text-end">Стоимость</th>
+                        <th style="width: 150px">Кол-во</th>
+                        <th class="text-end">Подытог</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for price in context.set_prices %}
+                    {% if price.status == 'active' %}
+                    <tr>
+                        <td style="width: 365px;">
+                            <b>{{ price.name }}</b><br>
+                            {{ price.description }}
+                        </td>
+                        <td class="text-end price">
+                            {{ price.categoryPrice['sum'] }} &#8381
+                        </td>
+                        <td class="count">
+                            <div class="input-group input-group-sm">
+                                <button type="button" class="btn btn-light">-</button>
+                                <input id="{{ price._id }}" type="number" class="form-control"
+                                       value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
+                                       disabled style="width: 75px">
+                                <button type="button" class="btn btn-light">+</button>
+                            </div>
+                        </td>
+                        <td class="text-end">
+                            {% if context.basket is none %}{% else %}{{ context.basket[price._id].pre_total_price }}{%
+                            endif %} &#8381
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total-price fw-bold text-end pr-2">Итого <span id="total-price">{{ context.total_price }}</span>
+                &#8381
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#Modal2" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">Back to first
+            </button>
+        </div>
+    </div>
+</div>
     </div>
 </form>
 
