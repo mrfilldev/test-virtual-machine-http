@@ -41,7 +41,7 @@
                             </div>
                         </td>
                         <td class="text-end">
-                            {{ context.basket[price._id].pre_total_price }} &#8381
+                            {% if context.basket is none %}{% else %}{{ context.basket[price._id].pre_total_price }}{% endif %} &#8381
                         </td>
                     </tr>
                     {% endif %}
