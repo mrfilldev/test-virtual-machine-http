@@ -84,8 +84,8 @@
 
     function open_modal_window_create_order(info) {
         open_modal_window_order_detail(null);
-        $('#Modal1 #create').show();
-        $('#Modal1 #edit').hide();
+        $('#Modal2 #create').show();
+        $('#Modal2 #edit').hide();
     }
 
     function open_modal_window_order_detail(info) {
@@ -100,8 +100,8 @@
         $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
         $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
 
-        $('#Modal1 #create').hide();
-        $('#Modal1 #edit').show();
+        $('#Modal2 #create').hide();
+        $('#Modal2 #edit').show();
         // info.el.style.borderColor = 'black';
     }
 
