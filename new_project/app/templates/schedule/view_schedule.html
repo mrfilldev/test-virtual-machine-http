@@ -157,6 +157,15 @@
         });
     }
 
+//     далее логика корзины
+
+    function increment_input() {
+        let totalCost = 0;
+        document.querySelectorAll('.basket_item').forEach((basketItem) => {
+            totalCost += $(basketItem).querySelector('.input')
+
+        });
+    }
 </script>
 
 <br>
