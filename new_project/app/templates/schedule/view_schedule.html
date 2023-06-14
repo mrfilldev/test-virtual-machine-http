@@ -84,8 +84,8 @@
 
     function open_modal_window_create_order(info) {
         open_modal_window_order_detail(null);
-        $('#Modal2 #create').show();
-        $('#Modal2 #edit').hide();
+        $('#Modal4 #create').show();
+        $('#Modal4 #edit').hide();
     }
 
     function open_modal_window_order_detail(info) {
@@ -100,8 +100,8 @@
         $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
         $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
 
-        $('#Modal2 #create').hide();
-        $('#Modal2 #edit').show();
+        $('#Modal4 #create').hide();
+        $('#Modal4 #edit').show();
         // info.el.style.borderColor = 'black';
     }
 
@@ -316,6 +316,43 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        {% include 'schedule/modal_table_prices.html' %}
+    </div>
+
+    <div class="modal fade" id="Modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <div class="row" style="width: 100%">
+                        <div class="col">
+                            <h5 class="modal-title">Новая Запись</h5>
+                        </div>
+                        <div class="col">
+                            <button type="button" style="width: 200px" class="btn btn-light"
+                                    data-bs-target="#Modal1"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Назад
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button type="button" style="width: 200px" class="btn btn-light"
+                                    data-bs-target="#Modal3"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Далее
+                            </button>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+
+                </div>
+                <div class="modal-body">
+                    <div class="container">
                         <div class="row">
                             <div class="col"></div>
                             <div class="col"></div>
@@ -336,10 +373,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="Modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        {% include 'schedule/modal_table_prices.html' %}
-    </div>
 
 </form>
+
 
 {% endblock %}
