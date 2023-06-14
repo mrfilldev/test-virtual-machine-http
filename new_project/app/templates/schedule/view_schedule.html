@@ -184,7 +184,8 @@
 <br>
 
 <form id="form">
-    <div class="modal fade" id="Modal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="Modal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -196,7 +197,7 @@
                         </button>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Закрыть"></button>
+                            aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container">
@@ -229,11 +230,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="Modal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="Modal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <div class="row" style="width: 100%">
                         <div class="col">
                             <h5 class="modal-title" id="staticBackdropLabel2">Новая Запись</h5>
@@ -252,7 +253,6 @@
                         </div>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
-
                 </div>
                 <div class="modal-body">
                     <div class="container">
@@ -262,22 +262,49 @@
                                 <tbody id="tbody_orders" class="table-hover">
                                 <tr>
                                     <td style="width: 200px">
-                                        Имя клиента:
+                                        Клиент
                                     </td>
                                     <td>
-                                        <input style="width: 200px" type="text" class="form-control"
-                                               name="order_user_name"
-                                               placeholder="Имя" required>
+                                        <div class="input-group input-group-sm">
+                                            <input style="width: 200px" type="text" class="form-control"
+                                                   name="order_user_name"
+                                                   placeholder="Имя" required>
+                                            <input style="width: 200px" type="tel" class="form-control"
+                                                   name="phone_number"
+                                                   placeholder="Телефон" required>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 200px">
-                                        Номер телефона:
+                                        Транспорт:
                                     </td>
                                     <td>
-                                        <input style="width: 200px" type="tel" class="form-control"
-                                               name="phone_number"
-                                               placeholder="Телефон" required>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Транспорт:</span>
+                                                    <input style="width: 100px" type="text" class="form-control"
+                                                           name="car_brand"
+                                                           placeholder="Марка" required>
+                                                    <input style="width: 100px" type="text" class="form-control"
+                                                           name="car_model"
+                                                           placeholder="Модель" required>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Категория:</span>
+                                                    <select id="select_category" name="category"
+                                                            class="form-select"
+                                                            required>
+                                                        {% for i in context['category'] %}
+                                                        <option value="{{i.name}}">{{ i.value }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -291,29 +318,7 @@
                                                placeholder="А999АА799" aria-label="А999АА799" required>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="input-group input-group-sm">
-                                        <span class="input-group-text">Транспорт:</span>
-                                        <input style="width: 100px" type="text" class="form-control"
-                                               name="car_brand"
-                                               placeholder="Марка" required>
-                                        <input style="width: 100px" type="text" class="form-control"
-                                               name="car_model"
-                                               placeholder="Модель" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group input-group-sm">
-                                        <span class="input-group-text">Категория:</span>
-                                        <select id="select_category" name="category"
-                                                class="form-select"
-                                                required>
-                                            {% for i in context['category'] %}
-                                            <option value="{{i.name}}">{{ i.value }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -322,11 +327,13 @@
         </div>
     </div>
 
-    <div class="modal fade" id="Modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="Modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         {% include 'schedule/modal_table_prices.html' %}
     </div>
 
-    <div class="modal fade" id="Modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="Modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
