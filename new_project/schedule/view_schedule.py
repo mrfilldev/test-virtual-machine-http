@@ -240,6 +240,13 @@ def make_basket(price_list):
     return basket_dict
 
 
+def count_total_price(basket):
+    total_price = 0
+    for basket_item in basket.values():
+        total_price += basket_item.pre_total_price
+    return total_price
+
+
 def get_costs_for_prices_by_carwash_id_and_category(request):
     selected_category = request.args.get('category')
     carwash_id = request.args.get('carwash_id')
@@ -257,13 +264,14 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
     print('price_list: ', price_list)
 
+    basket = make_basket(price_list)
     context = {
         'set_prices': price_list,
         'selected_category': selected_category,
         'CategoryAuto': list(CategoryAuto),
         'priceType': list(priceType),
-        'basket': make_basket(price_list),
-        'total_price': 0,
+        'basket': basket,
+        'total_price': count_total_price(basket),
 
     }
     return render_template('schedule/modal_table_prices.html', context=context)
