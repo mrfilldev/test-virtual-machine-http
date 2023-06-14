@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col">
                     <div class="input-group input-group-sm">
-                        <span>Бокс:</span>
+                        <span class="input-group-text">Бокс:</span>
                         <select name="box" style="width: 200px" class="form-select" required>
                             {% for i in range(1, context['box']+1) %}
                             <option value="{{ i }}">{{ i }}</option>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="col">
                     <div class="input-group input-group-sm">
-                        <span>Дата:</span>
+                        <span class="input-group-text">Дата:</span>
                         <input style="width: 200px" value="" class="form-control" placeholder=""
                                type="date"
                                name="date" aria-describedby="addon-wrapping" required>
@@ -64,18 +64,13 @@
                 </div>
                 <div class="col">
                     <div class="input-group input-group-sm">
-                        <span>Старт:</span>
+                        <span class="input-group-text">Время:</span>
                         <input style="width: 200px" value="" class="form-control"
-                               placeholder="00:00"
+                               placeholder="Старт"
                                type="time" name="time_start" aria-describedby="addon-wrapping"
                                required>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-group input-group-sm">
-                        <span>Конец:</span>
                         <input style="width: 200px" value="" class="form-control"
-                               placeholder="00:00"
+                               placeholder="Конец"
                                type="time" name="time_end" aria-describedby="addon-wrapping"
                                required>
                     </div>
