@@ -124,6 +124,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
         }
         return context
 
+    set_prices = get_price_list(carwash_obj.Price)
     context = {
         'calendar': {
             'orders': events,
@@ -135,11 +136,12 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
             'scrollToTime': now_format,
             'carwash_id': carwash_id,
         },
-        'set_prices': get_price_list(carwash_obj.Price),
+        'set_prices': set_prices,
         'carwash': carwash_obj,
         'enum_list': list(CategoryAuto),
         'category': Catergory,
         'box': get_amount_boxes(carwash_obj),
+        'basket': make_basket(set_prices)
 
     }
     return render_template('schedule/view_schedule.html', context=context)

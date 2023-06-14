@@ -35,8 +35,7 @@
                             <div class="input-group input-group-sm">
                                 <button type="button" class="btn btn-light">-</button>
                                 <input id="{{ price._id }}" type="number" class="form-control"
-                                       value="
-                                       {% if context.basket != None %}{{ context.basket[price._id] }}{% else %}0{% endif %}"
+                                       value="{{ context.basket[price._id] }}"
                                        disabled style="width: 75px">
                                 <button type="button" class="btn btn-light">+</button>
                             </div>
