@@ -35,7 +35,7 @@
                             <div class="input-group input-group-sm">
                                 <button type="button" class="btn btn-light">-</button>
                                 <input id="{{ price._id }}" type="number" class="form-control"
-                                       value="{{ context.basket[price._id].amount }}"
+                                       value="{% if context.basket is None %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
                                        disabled style="width: 75px">
                                 <button type="button" class="btn btn-light">+</button>
                             </div>
@@ -50,7 +50,9 @@
                 </table>
             </div>
 
-            <div class="total-price fw-bold text-end pr-2">Итого <span id="total-price">{{ context.total_price }}</span> &#8381</div>
+            <div class="total-price fw-bold text-end pr-2">Итого <span id="total-price">{{ context.total_price }}</span>
+                &#8381
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" data-bs-target="#event-modal" data-bs-toggle="modal"
