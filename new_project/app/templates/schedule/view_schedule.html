@@ -119,11 +119,10 @@
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-            $("#form").validate();
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-                data: $('#form').serialize(),
+                data: $('#user-form').serialize(),
                 success: function () {
                     $('#event-modal').modal('toggle');
                     reload();
@@ -139,7 +138,7 @@
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('schedule_blueprint.edit_order_carwash', carwash_id=context.carwash._id) }}",
-                data: $('#form').serialize(),
+                data: $('#user-form').serialize(),
                 success: function () {
                     $('#event-modal').modal('toggle');
                     reload();
