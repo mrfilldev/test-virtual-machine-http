@@ -117,33 +117,14 @@
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-            $("#form").validate({
-                rules: {
-                    order_user_name: "required",
-                    phone_number: {
-                        required: true,
-                        tel: true
-                    },
-
-                },
-                messages: {
-                    name: "Please enter your name",
-                    phone_number: {
-                        required: "Please enter your email",
-                        tel: "Please enter a valid email"
-                    },
-
-                },
-                submitHandler: function (form) {
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-                        data: $('#form').serialize(),
-                        success: function () {
-                            $('#event-modal').modal('toggle');
-                            reload();
-                        }
-                    });
+            $("#form").validate();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
+                data: $('#form').serialize(),
+                success: function () {
+                    $('#event-modal').modal('toggle');
+                    reload();
                 }
             });
         });
