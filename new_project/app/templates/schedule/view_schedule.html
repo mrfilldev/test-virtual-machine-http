@@ -85,8 +85,8 @@
 
     function open_modal_window_create_order(info) {
         open_modal_window_order_detail(null);
-        $('#Modal4 #create').show();
-        $('#Modal4 #edit').hide();
+        $('#Modal2 #create').show();
+        $('#Modal2 #edit').hide();
     }
 
     function open_modal_window_order_detail(info) {
@@ -101,8 +101,8 @@
         $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
         $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
 
-        $('#Modal4 #create').hide();
-        $('#Modal4 #edit').show();
+        $('#Modal2 #create').hide();
+        $('#Modal2 #edit').show();
         // info.el.style.borderColor = 'black';
     }
 
@@ -360,6 +360,22 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col"></div>
+                                <div class="col text-end">
+                                    <button style="width: auto" id="create" name="create_button" type="submit"
+                                            class="btn btn-outline-success">
+                                        Создать
+                                    </button>
+                                    <button style="width: auto" id="edit" name="edit_button" type="submit"
+                                            class="btn btn-outline-warning">
+                                        Редактировать
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -403,27 +419,7 @@
                 пусто
             </div>
             <div class="modal-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <button type="button" style="width: 200px" class="btn btn-light"
-                                    data-bs-target="#Modal3"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Назад
-                            </button>
-                        </div>
-                        <div class="col"></div>
-                        <div class="col text-end">
-                            <button style="width: auto" id="create" name="create_button" type="submit"
-                                    class="btn btn-outline-success">
-                                Создать
-                            </button>
-                            <button style="width: auto" id="edit" name="edit_button" type="submit"
-                                    class="btn btn-outline-warning">
-                                Редактировать
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
