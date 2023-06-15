@@ -14,6 +14,7 @@
         render_calendar(context_calendar);
         select_on_change();
         disable_to_modal_prices();
+        search_prices();
     });
 
     function render_calendar(model) {
@@ -180,6 +181,12 @@
         $('.btn-close').on("click", function () {
             alert("Закрыт")
             $('.to_modal_prices').prop("disabled", true);
+        });
+    }
+
+    function search_prices() {
+        $('input[name=search-prices]').change(function() {
+            console.log(this.value);
         });
     }
 
