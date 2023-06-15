@@ -117,7 +117,7 @@
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-            $("#myForm").validate({
+            $("#form").validate({
                 rules: {
                     order_user_name: "required",
                     phone_number: {
