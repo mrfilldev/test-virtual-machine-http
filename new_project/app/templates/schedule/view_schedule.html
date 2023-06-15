@@ -224,20 +224,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col text-start">
-                                </div>
-                                <div class="col"></div>
-                                <div class="col text-end">
-                                    <button type="button" style="width: 200px" class="btn btn-light"
-                                            data-bs-target="#Modal2"
-                                            data-bs-toggle="modal" data-bs-dismiss="modal">Далее
-                                    </button>
-                                </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col text-start">
+                            </div>
+                            <div class="col"></div>
+                            <div class="col text-end">
+                                <button type="button" style="width: 200px" class="btn btn-light"
+                                        data-bs-target="#Modal2"
+                                        data-bs-toggle="modal" data-bs-dismiss="modal">Далее
+                                </button>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -312,30 +312,74 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        Расстановка
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Бокс:</span>
+                                                    <select name="box" style="width: 200px" class="form-select"
+                                                            required>
+                                                        <option value="" disabled selected>...</option>
+                                                        {% for i in range(1, context['box']+1) %}
+                                                        <option value="{{ i }}">{{ i }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Дата:</span>
+                                                    <input style="width: 100px" value="" class="form-control"
+                                                           placeholder=""
+                                                           type="date"
+                                                           name="date" aria-describedby="addon-wrapping" required>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Время:</span>
+                                                    <input style="width: 75px" value="" class="form-control"
+                                                           placeholder="Старт"
+                                                           type="time" name="time_start"
+                                                           aria-describedby="addon-wrapping"
+                                                           required>
+                                                    <input style="width: 75px" value="" class="form-control"
+                                                           placeholder="Конец"
+                                                           type="time" name="time_end" aria-describedby="addon-wrapping"
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col text-start">
-                                    <button type="button" style="width: 200px" class="btn btn-light"
-                                            data-bs-target="#Modal1"
-                                            data-bs-toggle="modal" data-bs-dismiss="modal">Назад
-                                    </button>
-                                </div>
-                                <div class="col"></div>
-                                <div class="col text-end">
-                                    <button type="button" style="width: 200px" class="btn btn-light to_modal_prices"
-                                            data-bs-target="#Modal3"
-                                            data-bs-toggle="modal" data-bs-dismiss="modal" disabled>Далее
-                                    </button>
-                                </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col text-start">
+                                <button type="button" style="width: 200px" class="btn btn-light"
+                                        data-bs-target="#Modal1"
+                                        data-bs-toggle="modal" data-bs-dismiss="modal">Назад
+                                </button>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col text-end">
+                                <button type="button" style="width: 200px" class="btn btn-light to_modal_prices"
+                                        data-bs-target="#Modal3"
+                                        data-bs-toggle="modal" data-bs-dismiss="modal" disabled>Далее
+                                </button>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -361,8 +405,8 @@
                         <div class="row">
                             <div class="col">
                                 <button type="button" style="width: 200px" class="btn btn-light"
-                                    data-bs-target="#Modal3"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Назад
+                                        data-bs-target="#Modal3"
+                                        data-bs-toggle="modal" data-bs-dismiss="modal">Назад
                                 </button>
                             </div>
                             <div class="col"></div>

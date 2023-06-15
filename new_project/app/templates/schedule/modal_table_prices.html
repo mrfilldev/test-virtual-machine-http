@@ -15,41 +15,6 @@
         <div id="modal_table_prices" class="modal-body">
             <div class="row">
                 <div class="col">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-text">Бокс:</span>
-                        <select name="box" style="width: 200px" class="form-select" required>
-                            <option value="" disabled selected>...</option>
-                            {% for i in range(1, context['box']+1) %}
-                            <option value="{{ i }}">{{ i }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-text">Дата:</span>
-                        <input style="width: 100px" value="" class="form-control" placeholder=""
-                               type="date"
-                               name="date" aria-describedby="addon-wrapping" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-text">Время:</span>
-                        <input style="width: 75px" value="" class="form-control"
-                               placeholder="Старт"
-                               type="time" name="time_start" aria-describedby="addon-wrapping"
-                               required>
-                        <input style="width: 75px" value="" class="form-control"
-                               placeholder="Конец"
-                               type="time" name="time_end" aria-describedby="addon-wrapping"
-                               required>
-                    </div>
-                </div>
-            </div>
-            <br><br>
-            <div class="row">
-                <div class="col">
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
