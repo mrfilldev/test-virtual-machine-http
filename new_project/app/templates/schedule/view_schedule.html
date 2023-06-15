@@ -5,10 +5,15 @@
 
 
 <script>
-    var context_calendar = {{context.calendar | tojson}};
+    var context_calendar = {
+    {
+        context.calendar | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
-        send_order();
+        validate_order();
         edit_order();
         render_calendar(context_calendar);
         select_on_change();
@@ -113,20 +118,27 @@
         });
     }
 
-    function send_order() {
+    function validate_order() {
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-            $("#form").validate();
-            $.ajax({
-                type: 'POST',
-                url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-                data: $('#form').serialize(),
-                success: function () {
-                    $('#event-modal').modal('toggle');
-                    reload();
+            $("#form").validate({
+                submitHandler: function (form) {
+                    send_order();
                 }
             });
+        });
+    }
+
+    function send_order() {
+        $.ajax({
+            type: 'POST',
+            url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
+            data: $('#form').serialize(),
+            success: function () {
+                $('#event-modal').modal('toggle');
+                reload();
+            }
         });
     }
 
@@ -165,11 +177,11 @@
     }
 
     function disable_to_modal_prices() {
-            $('.btn-close').on("click", function () {
-                alert("Закрыт")
-                $('.to_modal_prices').prop("disabled", true);
-            });
-        }
+        $('.btn-close').on("click", function () {
+            alert("Закрыт")
+            $('.to_modal_prices').prop("disabled", true);
+        });
+    }
 
 </script>
 
@@ -252,7 +264,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <form id="form">
+                <form id="user-form">
                     <div class="container">
                         <div class="table-responsive">
                             <input type="hidden" name="order_id">
