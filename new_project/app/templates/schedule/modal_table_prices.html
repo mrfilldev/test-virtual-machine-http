@@ -46,6 +46,19 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </div>
+                <div class="col">
+                    <div class="total-price fw-bold text-end pr-2">Итого <span id="total-price">{{ context.total_price }}</span>
+                &#8381
+            </div>
+                </div>
+            </div>
+
+
+
             <br><br><br><br><br><br>
             <div class="table-responsive">
                 <table id="table_prices_carwash" class="table table-center align-middle">
@@ -89,9 +102,6 @@
                 </table>
             </div>
 
-            <div class="total-price fw-bold text-end pr-2">Итого <span id="total-price">{{ context.total_price }}</span>
-                &#8381
-            </div>
         </div>
         <div class="modal-footer">
             <div class="container">
