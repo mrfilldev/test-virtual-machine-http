@@ -2,9 +2,9 @@
     <div class="modal-content">
         <legend>
             <div class="modal-header">
-                {% for enum in context.CategoryAuto %}
                 {{ enum }}
                 {{ context.selected_category }}
+                {% for enum in context.CategoryAuto %}
                 {% if enum.name == context.selected_category %}
                 Прейскурант для {{ enum.CategoryAutoToDispaly(enum) }}
                 {% endif %}
