@@ -153,7 +153,11 @@
 
     function category_price_reload(selected_value) {
         $.get("{{ url_for('schedule_blueprint.category_price_reload', carwash_id=context.carwash._id) }}" + '&category=' + selected_value, function (data) {
-            $("#Modal3").html(data);
+            if (data === "")
+                $("#Modal3").html(data);
+                $('.to_modal_prices').prop("disabled", false);
+
+
         });
     }
 
@@ -324,9 +328,9 @@
                                 </div>
                                 <div class="col"></div>
                                 <div class="col text-end">
-                                    <button type="button" style="width: 200px" class="btn btn-light"
+                                    <button type="button" style="width: 200px" class="btn btn-light to_modal_prices"
                                             data-bs-target="#Modal3"
-                                            data-bs-toggle="modal" data-bs-dismiss="modal">Далее
+                                            data-bs-toggle="modal" data-bs-dismiss="modal" disabled>Далее
                                     </button>
                                 </div>
                             </div>
