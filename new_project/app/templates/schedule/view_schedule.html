@@ -161,15 +161,12 @@
         });
     }
 
-    //     далее логика корзины
-
-    function increment_input() {
-        let totalCost = 0;
-        document.querySelectorAll('.basket_item').forEach((basketItem) => {
-            totalCost += $(basketItem).querySelector('.input')
-
+    function disable_to_modal_prices() {
+        $('.btn-close').on("click", ".btn-close", function() {
+            $('.to_modal_prices').prop("disabled", true);
         });
     }
+
 </script>
 
 <br>
