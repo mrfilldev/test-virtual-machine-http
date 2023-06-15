@@ -291,7 +291,7 @@
                                                     <select id="select_category" name="category"
                                                             class="form-select" style="width: 50px"
                                                             required>
-                                                        <option>...</option>
+                                                        <option value="" disabled selected>...</option>
                                                         {% for i in context['category'] %}
                                                         <option value="{{i.name}}">{{ i.value }}</option>
                                                         {% endfor %}
