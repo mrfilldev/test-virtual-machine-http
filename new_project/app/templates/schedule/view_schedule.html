@@ -8,8 +8,7 @@
     var context_calendar = {{context.calendar | tojson}};
 
     $(document).ready(function () {
-        $("#user-form").validate();
-
+        validate_form();
         send_order();
         edit_order();
         render_calendar(context_calendar);
@@ -112,6 +111,16 @@
         $.get("{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}", function (data) {
             $('#calendar').empty();
             render_calendar(data);
+        });
+    }
+
+    function validate_form() {
+        $("#user-form").validate({
+            rules: {
+                order_user_name: {
+                    required: true
+                }
+            }
         });
     }
 
@@ -266,7 +275,7 @@
                                     <td>
                                         <div class="input-group input-group-sm">
                                             <input style="width: 200px" type="text" class="form-control"
-                                                   name="order_user_name"
+                                                   name="order_user_name" id="order_user_name"
                                                    placeholder="Имя" required>
                                             <input style="width: 200px" type="tel" class="form-control"
                                                    name="phone_number"
