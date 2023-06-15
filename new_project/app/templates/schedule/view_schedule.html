@@ -8,7 +8,9 @@
     var context_calendar = {{context.calendar | tojson}};
 
     $(document).ready(function () {
-        validate_order();
+        $("#basic-form").validate();
+
+        send_order();
         edit_order();
         render_calendar(context_calendar);
         select_on_change();
@@ -113,7 +115,7 @@
         });
     }
 
-    function validate_order() {
+    function send_order() {
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
