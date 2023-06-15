@@ -102,6 +102,8 @@
         $("[name='time_start']").val(info == null ? '' : info.event.extendedProps.start_format);
         $("[name='time_end']").val(info == null ? '' : info.event.extendedProps.end_format);
 
+        $('.to_modal_prices').prop("disabled", false);
+
         $('#Modal2 #create').hide();
         $('#Modal2 #edit').show();
         // info.el.style.borderColor = 'black';
