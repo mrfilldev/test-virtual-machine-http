@@ -187,70 +187,71 @@
 </div>
 <br>
 
-<form id="form">
-    <div class="modal fade" id="Modal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Новая Запись</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col text-center">
-                                <button type="button" style="width: 200px" class="btn btn-light"
-                                        data-bs-target="#Modal2"
-                                        data-bs-toggle="modal" data-bs-dismiss="modal">Клиент
-                                </button>
-                            </div>
-                            <div class="col text-center">
-                                <button type="button" style="width: 200px" class="btn btn-light to_modal_prices"
-                                        data-bs-target="#Modal3"
-                                        data-bs-toggle="modal" data-bs-dismiss="modal" disabled>
-                                    Список Услуг
-                                </button>
-                            </div>
-                            <div class="col text-center">
-                                <button type="button" style="width: 200px" class="btn btn-light"
-                                        data-bs-target="#Modal2"
-                                        data-bs-toggle="modal" data-bs-dismiss="modal" disabled>
-                                    Оплата
-                                </button>
-                            </div>
+
+<div class="modal fade" id="Modal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Новая Запись</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" style="width: 200px" class="btn btn-light"
+                                    data-bs-target="#Modal2"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Клиент
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" style="width: 200px" class="btn btn-light to_modal_prices"
+                                    data-bs-target="#Modal3"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal" disabled>
+                                Список Услуг
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" style="width: 200px" class="btn btn-light"
+                                    data-bs-target="#Modal2"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal" disabled>
+                                Оплата
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col text-start">
-                            </div>
-                            <div class="col"></div>
-                            <div class="col text-end">
-                                <button type="button" style="width: 200px" class="btn btn-light"
-                                        data-bs-target="#Modal2"
-                                        data-bs-toggle="modal" data-bs-dismiss="modal">Далее
-                                </button>
-                            </div>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-start">
+                        </div>
+                        <div class="col"></div>
+                        <div class="col text-end">
+                            <button type="button" style="width: 200px" class="btn btn-light"
+                                    data-bs-target="#Modal2"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Далее
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" id="Modal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Клиент</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
+<div class="modal fade" id="Modal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Клиент</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form">
                     <div class="container">
                         <div class="table-responsive">
                             <input type="hidden" name="order_id">
@@ -360,73 +361,74 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col text-start">
-                                <button type="button" style="width: 200px" class="btn btn-light"
-                                        data-bs-target="#Modal1"
-                                        data-bs-toggle="modal" data-bs-dismiss="modal">Назад
-                                </button>
-                            </div>
-                            <div class="col"></div>
-                            <div class="col text-end">
-                                <button type="button" style="width: 200px" class="btn btn-light to_modal_prices"
-                                        data-bs-target="#Modal3"
-                                        data-bs-toggle="modal" data-bs-dismiss="modal" disabled>Далее
-                                </button>
-                            </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-start">
+                            <button type="button" style="width: 200px" class="btn btn-light"
+                                    data-bs-target="#Modal1"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Назад
+                            </button>
+                        </div>
+                        <div class="col"></div>
+                        <div class="col text-end">
+                            <button type="button" style="width: 200px" class="btn btn-light to_modal_prices"
+                                    data-bs-target="#Modal3"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal" disabled>Далее
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" id="Modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        {% include 'schedule/modal_table_prices.html' %}
-    </div>
+<div class="modal fade" id="Modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    {% include 'schedule/modal_table_prices.html' %}
+</div>
 
-    <div class="modal fade" id="Modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Новая Запись</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    пусто
-                </div>
-                <div class="modal-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" style="width: 200px" class="btn btn-light"
-                                        data-bs-target="#Modal3"
-                                        data-bs-toggle="modal" data-bs-dismiss="modal">Назад
-                                </button>
-                            </div>
-                            <div class="col"></div>
-                            <div class="col text-end">
-                                <button style="width: auto" id="create" name="create_button" type="submit"
-                                        class="btn btn-outline-success">
-                                    Создать
-                                </button>
-                                <button style="width: auto" id="edit" name="edit_button" type="submit"
-                                        class="btn btn-outline-warning">
-                                    Редактировать
-                                </button>
-                            </div>
+<div class="modal fade" id="Modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Новая Запись</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                пусто
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" style="width: 200px" class="btn btn-light"
+                                    data-bs-target="#Modal3"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Назад
+                            </button>
+                        </div>
+                        <div class="col"></div>
+                        <div class="col text-end">
+                            <button style="width: auto" id="create" name="create_button" type="submit"
+                                    class="btn btn-outline-success">
+                                Создать
+                            </button>
+                            <button style="width: auto" id="edit" name="edit_button" type="submit"
+                                    class="btn btn-outline-warning">
+                                Редактировать
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>
+
 
 
 {% endblock %}
