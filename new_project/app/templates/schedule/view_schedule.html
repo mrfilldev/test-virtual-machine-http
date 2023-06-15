@@ -117,23 +117,16 @@
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
-            $("#form").validate({
-                submitHandler: function (form) {
-                    send_order();
+            $("#form").validate();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
+                data: $('#form').serialize(),
+                success: function () {
+                    $('#event-modal').modal('toggle');
+                    reload();
                 }
             });
-        });
-    }
-
-    function send_order() {
-        $.ajax({
-            type: 'POST',
-            url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-            data: $('#form').serialize(),
-            success: function () {
-                $('#event-modal').modal('toggle');
-                reload();
-            }
         });
     }
 
