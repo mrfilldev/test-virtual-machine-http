@@ -1,39 +1,30 @@
-<table id="table_prices_carwash" class="table table-center align-middle">
-    <thead class="table-light">
-    <tr>
-        <th>Тариф</th>
-        <th class="text-end">Стоимость</th>
-        <th style="width: 150px">Кол-во</th>
-        <th class="text-end">Подытог</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for price in context.set_prices %}
-    {% if price.status == 'active' %}
-    <tr>
-        <td style="width: 365px;">
-            <b>{{ price.name }}</b><br>
-            {{ price.description }}
-        </td>
-        <td class="text-end price">
-            {{ price.categoryPrice['sum'] }} &#8381
-        </td>
-        <td class="count">
-            <div class="input-group input-group-sm">
-                <button type="button" class="btn btn-light">-</button>
-                <input id="{{ price._id }}" type="number" class="form-control"
-                       value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
-                       disabled style="width: 75px">
-                <button type="button" class="btn btn-light">+</button>
-            </div>
-        </td>
-        <td class="text-end">
-            {% if context.basket is none %}{% else %}{{
-            context.basket[price._id].pre_total_price }}{%
-            endif %} &#8381
-        </td>
-    </tr>
-    {% endif %}
-    {% endfor %}
-    </tbody>
-</table>
+<tbody id="table_prices_carwash">
+{% for price in context.set_prices %}
+{% if price.status == 'active' %}
+<tr>
+    <td style="width: 365px;">
+        <b>{{ price.name }}</b><br>
+        {{ price.description }}
+    </td>
+    <td class="text-end price">
+        {{ price.categoryPrice['sum'] }} &#8381
+    </td>
+    <td class="count">
+        <div class="input-group input-group-sm">
+            <button type="button" class="btn btn-light">-</button>
+            <input id="{{ price._id }}" type="number" class="form-control"
+                   value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
+                   disabled style="width: 75px">
+            <button type="button" class="btn btn-light">+</button>
+        </div>
+    </td>
+    <td class="text-end">
+        {% if context.basket is none %}{% else %}{{
+        context.basket[price._id].pre_total_price }}{%
+        endif %} &#8381
+    </td>
+</tr>
+{% endif %}
+{% endfor %}
+</tbody>
+

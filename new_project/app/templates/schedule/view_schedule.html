@@ -12,7 +12,7 @@
         send_order();
         edit_order();
         render_calendar(context_calendar);
-        select_on_change();
+        // select_on_change();
         disable_to_modal_prices();
         search_prices();
 
@@ -394,7 +394,15 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <table id="table_prices_carwash" class="table table-center align-middle">
+                                <table class="table table-center align-middle">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th>Тариф</th>
+                                        <th class="text-end">Стоимость</th>
+                                        <th style="width: 150px">Кол-во</th>
+                                        <th class="text-end">Подытог</th>
+                                    </tr>
+                                    </thead>
                                     {% include 'schedule/table_prices.html' %}
                                 </table>
                             </div>
