@@ -136,7 +136,7 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
             'scrollToTime': now_format,
             'carwash_id': carwash_id,
         },
-        'set_prices': set_prices,
+        # 'set_prices': set_prices,
         'carwash': carwash_obj,
         'enum_list': list(CategoryAuto),
         'category': Catergory,
@@ -275,4 +275,3 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
     }
     return render_template('schedule/table_prices.html', context=context)
-
