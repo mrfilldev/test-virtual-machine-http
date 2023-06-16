@@ -162,7 +162,8 @@
     function select_on_change() {
         $('select[name="category"]').on('change', function () {
             console.log(this.value);
-            console.log($('#order_id'))
+            console.log($('#order_id').text())
+            console.log($('#order_id').value())
             category_price_reload(this.value);
         });
     }
