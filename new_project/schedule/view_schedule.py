@@ -283,7 +283,7 @@ def backend_search_prices(request, carwash_id):
     print(data, carwash_id)
     print('\n################################################################\n')
 
-    selected_category = request.args.get('category')
+    selected_category = request.form['category']
 
     print('selected_category: ', selected_category)
     print('carwash_id:', carwash_id)
