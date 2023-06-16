@@ -274,5 +274,5 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
         'box': get_amount_boxes(carwash_obj),
 
     }
-    return render_template('schedule/modal_table_prices.html', context=context)
+    return render_template('schedule/table_prices.html', context=context)
 

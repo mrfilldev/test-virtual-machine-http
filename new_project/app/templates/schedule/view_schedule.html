@@ -175,7 +175,7 @@
         $.get("{{ url_for('schedule_blueprint.category_price_reload', carwash_id=context.carwash._id) }}" + '&category=' + selected_value, function (data) {
             if (data === "")
                 alert(data);
-            $("#Modal3").html(data);
+            $("#table_prices_carwash").html(data);
             $('#to_modal_prices').prop('disabled', false);
         });
     }
@@ -412,6 +412,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col">
+                                <table id="table_prices_carwash" class="table table-center align-middle">
+                                    {% include 'schedule/table_prices.html' %}
+                                </table>
+                            </div>
+                            <div class="col"></div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -426,21 +434,19 @@
                         </div>
                         <div class="col"></div>
                         <div class="col text-end">
-                            <button style="width: auto" id="create" name="create_button" type="submit" class="btn btn-outline-success">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                                        </svg>
-                                    </button>
-                                    <button style="width: auto" id="edit" name="edit_button" type="submit" class="btn btn-outline-warning">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                                        </svg>
-                                    </button>
-                            <button id="to_modal_prices" type="button" style="width: 200px" class="btn btn-light"
-                                    data-bs-target="#Modal3"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal" disabled>Далее
+                            <button style="width: auto" id="create" name="create_button" type="submit"
+                                    class="btn btn-outline-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                                </svg>
+                            </button>
+                            <button style="width: auto" id="edit" name="edit_button" type="submit"
+                                    class="btn btn-outline-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -448,11 +454,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade" id="Modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    {% include 'schedule/modal_table_prices.html' %}
 </div>
 
 <div class="modal fade" id="Modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
