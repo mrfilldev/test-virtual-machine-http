@@ -78,6 +78,7 @@
 
                                 </td>
                             </tr>
+                            {% if context['user'].role == 'network_worker' %}
                             <tr>
                                 <td style="width: 200px">
                                     Закреплен за мойкой:
@@ -88,6 +89,7 @@
                                            value="{{ context.user.PinnedCarwashId }}">
                                 </td>
                             </tr>
+                            {% endif %}
                             {% if context['user'].networks is defined %}
                             <tr>
                                 <td style="width: 200px">
