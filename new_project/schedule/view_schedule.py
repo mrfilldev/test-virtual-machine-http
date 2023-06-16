@@ -307,4 +307,4 @@ def backend_search_prices(request, carwash_id):
     context = {
         'set_prices': res_of_search,
     }
-    return render_template('schedule/table_prices.html', context=context)
+    return render_template('schedule/table_of_results.html', context=context)
