@@ -275,6 +275,17 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
     return render_template('schedule/table_prices.html', context=context)
 
 
+def is_in_(search, price):
+    if search in price.name:
+        return True
+    if search in price.description:
+        return True
+    if search in str(price.name).lower():
+        return True
+    if search in str(price.name).upper():
+        return True
+
+
 def backend_search_prices(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
@@ -295,11 +306,8 @@ def backend_search_prices(request, carwash_id):
 
     res_of_search = []
     for price in price_list:
-        if search in price.name:
+        if is_in_(search, price):
             res_of_search.append(price)
-        else:
-            if search in price.description:
-                res_of_search.append(price)
 
 
     # формирование ответа
