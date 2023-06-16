@@ -281,7 +281,7 @@ def backend_search_prices(request, carwash_id):
     print(data, carwash_id)
     print('\n################################################################\n')
 
-    selected_category = request.form['category'] if request.form['category'] is not None else None
+    selected_category = request.form['category'] if 'category' in request.form else None
     search = request.form['search-field']
 
     print('selected_category: ', selected_category)
