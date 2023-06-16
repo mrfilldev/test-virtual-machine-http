@@ -9,6 +9,21 @@ from flask import render_template, jsonify, abort
 from new_project.db import database
 from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
 
+from transliterate.base import TranslitLanguagePack, registry
+from transliterate import get_available_language_codes, translit
+
+
+class KBDLanguagePack(TranslitLanguagePack):
+    language_code = "kbd"
+    language_name = "KeyBoard"
+    mapping = (
+        'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?qwertyuiop[]asdfghjkl;\'zxcvbnm,./',
+        'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,йцукенгшщзхъфывапролджэячсмитьбю.',
+    )
+
+
+registry.register(KBDLanguagePack)
+
 
 def datetime_range(start, end, delta):
     current = start
@@ -284,6 +299,10 @@ def is_in_(search, price):
         return True
     if search in str(price.name).upper():
         return True
+    if search in translit(price.name, language_code='kbd'):
+        return True
+    if search in translit(price.description, language_code='kbd'):
+        return True
 
 
 def backend_search_prices(request, carwash_id):
@@ -308,7 +327,6 @@ def backend_search_prices(request, carwash_id):
     for price in price_list:
         if is_in_(search, price):
             res_of_search.append(price)
-
 
     # формирование ответа
     # response = {'status': 'success'}
