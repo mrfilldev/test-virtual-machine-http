@@ -1,0 +1,12 @@
+<table>
+{% for price in context.set_prices %}
+{% if price.status == 'active' %}
+<tr>
+    <td style="width: 365px;">
+        <b>{{ price.name }}</b><br>
+        {{ price.description }}
+    </td>
+</tr>
+{% endif %}
+{% endfor %}
+</table>
