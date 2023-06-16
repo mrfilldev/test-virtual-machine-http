@@ -304,4 +304,7 @@ def backend_search_prices(request, carwash_id):
 
     # формирование ответа
     # response = {'status': 'success'}
-    return jsonify(res_of_search)
+    context = {
+        'set_prices': res_of_search,
+    }
+    return render_template('schedule/table_prices.html', context=context)
