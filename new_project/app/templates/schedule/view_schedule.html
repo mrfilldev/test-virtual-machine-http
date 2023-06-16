@@ -395,6 +395,14 @@
                         </div>
                         <div class="row">
                             <div class="col">
+                                <table id="table_prices_carwash" class="table table-center align-middle">
+                                    {% include 'schedule/table_prices.html' %}
+                                </table>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <div class="input-group">
                                     <input name="search-prices" type="text" class="form-control"
                                            placeholder="Поиск услуг"
@@ -411,14 +419,6 @@
                                     &#8381
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <table id="table_prices_carwash" class="table table-center align-middle">
-                                    {% include 'schedule/table_prices.html' %}
-                                </table>
-                            </div>
-                            <div class="col"></div>
                         </div>
                     </div>
                 </form>
