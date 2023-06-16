@@ -303,5 +303,5 @@ def backend_search_prices(request, carwash_id):
 
 
     # формирование ответа
-    response = {'status': 'success'}
-    return jsonify(response)
+    # response = {'status': 'success'}
+    return res_of_search
