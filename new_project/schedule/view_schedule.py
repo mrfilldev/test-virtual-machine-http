@@ -291,6 +291,7 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
 
 def is_in_(search, price):
+    print('kbd' in get_available_language_codes())
     if search in price.name:
         return True
     if search in price.description:
