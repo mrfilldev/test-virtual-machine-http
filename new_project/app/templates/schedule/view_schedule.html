@@ -186,7 +186,7 @@
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}");
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}",
                 data: $('#user-form').serialize(),
                 success: function () {

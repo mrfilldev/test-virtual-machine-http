@@ -278,4 +278,4 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
 
 def backend_search_prices(request, carwash_id):
-    pass
+    return "test"
