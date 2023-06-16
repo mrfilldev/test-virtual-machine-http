@@ -278,4 +278,8 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
 
 def backend_search_prices(request, carwash_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print(data, carwash_id)
+    print('\n################################################################\n')
     return "test"
