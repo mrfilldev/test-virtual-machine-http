@@ -282,4 +282,12 @@ def backend_search_prices(request, carwash_id):
     data = request.form.to_dict()
     print(data, carwash_id)
     print('\n################################################################\n')
-    return "test"
+
+    selected_category = request.args.get('category')
+
+    print('selected_category: ', selected_category)
+    print('carwash_id:', carwash_id)
+
+    # формирование ответа
+    response = {'status': 'success'}
+    return jsonify(response)
