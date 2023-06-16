@@ -186,12 +186,13 @@
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}");
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: "{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}",
                 data: $('#user-form').serialize(),
-                success: function () {
+                success: function (data) {
                     // $('#Modal2').modal('toggle');
                     reload();
+                    alert(data)
                 }
             });
         });

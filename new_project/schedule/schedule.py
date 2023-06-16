@@ -57,7 +57,7 @@ def category_price_reload():
     return get_costs_for_prices_by_carwash_id_and_category(request)
 
 
-@schedule_bp.route('/search_prices/<string:carwash_id>', methods=[''])
+@schedule_bp.route('/search_prices/<string:carwash_id>', methods=['POST'])
 def search_prices(carwash_id):
     return backend_search_prices(request, carwash_id)
 
