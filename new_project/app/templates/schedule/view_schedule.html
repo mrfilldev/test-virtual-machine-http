@@ -191,7 +191,7 @@
                 data: $('#user-form').serialize(),
                 success: function (data) {
                     // $('#Modal2').modal('toggle');
-                    alert(data)
+                    $("#table_prices_carwash").html(data);
                 }
             });
         });

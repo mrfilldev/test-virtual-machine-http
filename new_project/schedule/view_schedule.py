@@ -287,11 +287,20 @@ def backend_search_prices(request, carwash_id):
     print('selected_category: ', selected_category)
     print('search: ', search)
     print('carwash_id:', carwash_id)
-
     carwash_obj = get_carwash_obj(carwash_id)
-    price_list = get_price_list(carwash_obj.Price)
 
+    print('price_id: ', carwash_obj.Price)
+    price_list = get_price_list(carwash_obj.Price)
     print('price_list: ', price_list)
+
+    res_of_search = []
+    for price in price_list:
+        if search in price.name:
+            res_of_search.append(price)
+        else:
+            if search in price.description:
+                res_of_search.append(price)
+
 
     # формирование ответа
     response = {'status': 'success'}
