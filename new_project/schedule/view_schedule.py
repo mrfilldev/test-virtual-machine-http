@@ -90,8 +90,6 @@ def get_price_list(set_id):
         data = json.dumps(data, default=lambda x: x.__dict__)
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         prices_of_set.append(price_obj)
-
-    print(prices_of_set)
     return prices_of_set
 
 
