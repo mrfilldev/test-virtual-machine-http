@@ -275,3 +275,4 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
     }
     return render_template('schedule/modal_table_prices.html', context=context)
+
