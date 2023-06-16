@@ -9,20 +9,18 @@ from flask import render_template, jsonify, abort
 from new_project.db import database
 from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
 
-from transliterate.base import TranslitLanguagePack, registry
-from transliterate import get_available_language_codes, translit
+_eng_chars = u"~!@#$%^&qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:\"|ZXCVBNM<>?"
+_rus_chars = u"ё!\"№;%:?йцукенгшщзхъфывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"
+_to_rus = dict(zip(_eng_chars, _rus_chars))
+_to_eng = dict(zip(_rus_chars, _eng_chars))
 
 
-class KBDLanguagePack(TranslitLanguagePack):
-    language_code = "kbd"
-    language_name = "KeyBoard"
-    mapping = (
-        'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?qwertyuiop[]asdfghjkl;\'zxcvbnm,./',
-        'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,йцукенгшщзхъфывапролджэячсмитьбю.',
-    )
+def to_rus(s):
+    return u''.join([_to_rus.get(c, c) for c in s])
 
 
-registry.register(KBDLanguagePack)
+def to_eng(s):
+    return u''.join([_to_eng.get(c, c) for c in s])
 
 
 def datetime_range(start, end, delta):
@@ -291,7 +289,7 @@ def get_costs_for_prices_by_carwash_id_and_category(request):
 
 
 def is_in_(search, price):
-    print('kbd' in get_available_language_codes())
+    search = to_rus(search)
     if search in price.name:
         return True
     if search in price.description:
@@ -300,11 +298,15 @@ def is_in_(search, price):
         return True
     if search in str(price.name).upper():
         return True
-    if search in translit(price.name, language_code='kbd'):
+    search = to_eng(search)
+    if search in price.name:
         return True
-    if search in translit(price.description, language_code='kbd'):
+    if search in price.description:
         return True
-
+    if search in str(price.name).lower():
+        return True
+    if search in str(price.name).upper():
+        return True
 
 def backend_search_prices(request, carwash_id):
     print('\n########################DATA####################################\n')
