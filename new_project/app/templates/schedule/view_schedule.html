@@ -124,7 +124,7 @@
     }
 
     function validate_form() {
-        $("#order-form").validate({
+        $("#user-form").validate({
             rules: {
                 order_user_name: {
                     required: true
@@ -140,7 +140,7 @@
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
-                data: $('#order-form').serialize(),
+                data: $('#user-form').serialize(),
                 success: function () {
                     $('#Modal2').modal('toggle');
                     reload();
@@ -156,7 +156,7 @@
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('schedule_blueprint.edit_order_carwash', carwash_id=context.carwash._id) }}",
-                data: $('#order-form').serialize(),
+                data: $('#user-form').serialize(),
                 success: function () {
                     $('#Modal2').modal('toggle');
                     reload();
@@ -177,7 +177,7 @@
 
     function disable_to_modal_prices() {
         $('.btn-close').on("click", function () {
-            $("#order-form")[0].reset();
+            $("#user-form")[0].reset();
         });
     }
 
@@ -188,7 +188,7 @@
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}",
-                data: $('#order-form').serialize(),
+                data: $('#user-form').serialize(),
                 success: function (data) {
                     // $('#Modal2').modal('toggle');
                     alert(data)
