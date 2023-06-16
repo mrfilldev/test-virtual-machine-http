@@ -188,8 +188,7 @@
 
     function search_prices() {
         $('input[name=search-prices]').on('keyup', function(){
-            console.log(this.value);
-            console.log(select[name="category"]);
+            alert(this.value, $(select[name="category"]).value, $(input[name="order_id"]).value);
         });
     }
 
