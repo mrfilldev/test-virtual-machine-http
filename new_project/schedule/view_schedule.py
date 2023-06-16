@@ -290,6 +290,11 @@ def backend_search_prices(request, carwash_id):
     print('search: ', search)
     print('carwash_id:', carwash_id)
 
+    carwash_obj = get_carwash_obj(carwash_id)
+    price_list = get_price_list(carwash_obj.Price)
+
+    print('price_list: ', price_list)
+
     # формирование ответа
     response = {'status': 'success'}
     return jsonify(response)
