@@ -183,10 +183,9 @@
 
     function search_prices() {
         $('input[name=search-prices]').on('keyup', function(){
-            alert(this.value, $(select[name="category"]).value, $(input[name="order_id"]).value);
+            alert(this.value, $("#select_category").value, $("#order_id").value);
         });
     }
-
 
     function pre_registration() {
         $('#pre-reg').click(function (){
