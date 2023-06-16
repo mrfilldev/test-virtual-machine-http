@@ -182,7 +182,6 @@
 
     function disable_to_modal_prices() {
         $('.btn-close').on("click", function () {
-            alert("Закрыт")
             $('#to_modal_prices').prop("disabled", true);
         });
     }
@@ -199,6 +198,9 @@
     function pre_registration() {
         $('#pre-reg').click(function (){
             $('#Modal2').modal('toggle');
+            $('#to_modal_prices').hide();
+
+
         });
     }
 
