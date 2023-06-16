@@ -165,12 +165,6 @@
         });
     }
 
-    function select_on_change() {
-        $('select[name="category"]').on('change', function () {
-            category_price_reload(this.value);
-            $('.prices').show()
-        });
-    }
 
     function category_price_reload(selected_value) {
         $.get("{{ url_for('schedule_blueprint.category_price_reload', carwash_id=context.carwash._id) }}" + '&category=' + selected_value, function (data) {
@@ -207,6 +201,7 @@
             $('#Modal1').modal('toggle');
             $('#Modal2').modal('toggle');
             $('#create').show()
+            $('.prices').show()
         });
     }
     function old_client() {
