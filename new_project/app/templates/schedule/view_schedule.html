@@ -168,6 +168,7 @@
     function select_on_change() {
         $('select[name="category"]').on('change', function () {
             category_price_reload(this.value);
+            $('.prices').show()
         });
     }
 
@@ -206,7 +207,7 @@
             $('#Modal1').modal('toggle');
             $('#Modal2').modal('toggle');
             $('#create').show()
-            $('.prices').show()
+            select_on_change();
         });
     }
     function old_client() {
