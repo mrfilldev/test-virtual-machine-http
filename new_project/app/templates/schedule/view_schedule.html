@@ -182,9 +182,18 @@
     }
 
     function search_prices() {
-        $('input[name=search-prices]').on('keyup', function(){
-            alert(this.value)
-            alert($(select["category"]).value());
+        $('input[name=search-prices]').on('keyup', function(event) {
+            event.preventDefault();
+            console.log("{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}");
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}",
+                data: $('#user-form').serialize(),
+                success: function () {
+                    // $('#Modal2').modal('toggle');
+                    reload();
+                }
+            });
         });
     }
 
