@@ -77,11 +77,13 @@
 
             dateClick: function (info) {
                 console.log(info)
+                $('#Modal1').modal('show');
                 open_modal_window_create_order(info);
             },
 
             eventClick: function (info) {
                 console.log(info)
+                $('#Modal2').modal('show');
                 open_modal_window_order_detail(info);
             },
 
@@ -97,7 +99,6 @@
     }
 
     function open_modal_window_order_detail(info) {
-        $('#Modal1').modal('show');
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
         $("[name='order_id']").val(info == null ? '' : info.event.extendedProps.order_id);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
@@ -197,10 +198,9 @@
     // $('#myModal').modal('hide');
     function pre_registration() {
         $('#pre-reg').click(function (){
+            $('#Modal1').modal('toggle');
             $('#Modal2').modal('toggle');
             $('#to_modal_prices').hide();
-
-
         });
     }
 
