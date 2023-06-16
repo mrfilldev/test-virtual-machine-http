@@ -167,7 +167,6 @@
 
     function select_on_change() {
         $('select[name="category"]').on('change', function () {
-            console.log(this.value);
             category_price_reload(this.value);
         });
     }
@@ -177,7 +176,6 @@
             if (data === "")
                 alert(data);
             $("#Modal3").html(data);
-            $('#to_modal_prices').prop("disabled", false);
         });
     }
 
@@ -206,7 +204,9 @@
 
     function new_client() {
         $('#new-cli').click(function (){
+            $('#Modal1').modal('toggle');
             $('#Modal2').modal('toggle');
+            $('#to_modal_prices').show();
         });
     }
     function old_client() {
