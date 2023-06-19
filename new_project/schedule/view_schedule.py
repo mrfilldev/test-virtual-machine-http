@@ -342,13 +342,33 @@ def backend_search_prices(request, carwash_id):
     return render_template('schedule/table_of_results.html', context=context)
 
 
+def get_price(price_id):
+    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
+    data = json.loads(json_util.dumps(price_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('price_obj: ', price_obj)
+    return price_obj
+
+
 def backend_get_price_info(request, carwash_id, price_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
-    print(data, carwash_id, price_id)
+    print('data: ', data)
+    print('carwash_id: ', carwash_id)
+    print('price_id: ', price_id)
     print('\n################################################################\n')
 
-    # формирование ответа
-    response = {'status': 'success'}
-    return response
+    selected_category = request.form['category'] if 'category' in request.form else None
+    if selected_category is None:
+        return abort(404)
+    search = request.form['search-field']
 
+    print('selected_category: ', selected_category)
+    print('search: ', search)
+    price_obj = get_price(price_id)
+
+
+    # формирование ответа
+    #response = {'status': 'success'}
+    return price_obj
