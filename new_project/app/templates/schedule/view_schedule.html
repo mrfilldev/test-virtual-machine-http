@@ -219,10 +219,10 @@
     }
 
 
-    function add_price(id){
+    function add_price(){
         $.ajax({
             type: 'POST',
-            url: "{{ url_for('schedule_blueprint.get_price_info', carwash_id=context.carwash._id) }}" + '&price_id='+ id,
+            url: "{{ url_for('schedule_blueprint.get_price_info', carwash_id=context.carwash._id) }}",
             data: $('#user-form').serialize(),
             success: function (data) {
                 alert(data);
