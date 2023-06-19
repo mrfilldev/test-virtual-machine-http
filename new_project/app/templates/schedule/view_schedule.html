@@ -228,6 +228,7 @@
             data: $('#user-form').serialize(),
             success: function (data) {
                 $("#table_prices_carwash").append(data)
+                console.log(data)
                 var total = data.basket['total']
                 alert('Total', total)
             }
