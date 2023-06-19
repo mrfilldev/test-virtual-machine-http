@@ -241,6 +241,8 @@
             data: $('#user-form').serialize(),
             success: function (data) {
                 alert(data);
+                var total = data.basket['total']
+                alert('Total', total)
             }
         });
     }
