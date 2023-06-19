@@ -389,13 +389,17 @@ def calculate_prices(request, carwash_id, to_do):
     print('carwash_id: ', carwash_id)
     to_do_command = to_do.split('_')[0]
     print('to_do_command: ', to_do_command)
+    price_id = to_do.split('_')[1]
+    print('to_do_command: ', price_id)
     total = request.form['total-hidden']
     print('total: ', total)
     print('\n################################################################\n')
 
+    price_obj = get_price(price_id)
+    print('price_obj: ', price_obj)
     match to_do_command:
         case 'add':
-            pass
+            print('\n########################')
         case 'plus':
             pass
         case 'minus':
