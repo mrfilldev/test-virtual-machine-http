@@ -10,13 +10,14 @@
         {{ price.categoryPrice['sum'] }} &#8381
     </td>
     <td class="count">
-        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-            <button type="button" class="btn btn-light">-</button>
-            <input id="price_amount_{{ context.basket[price._id] }}" type="text" class="form-control"
+        <input id="price_amount_{{ context.basket[price._id] }}" type="text" class="form-control"
                    value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
                    style="width: 100px">
+        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            <button type="button" class="btn btn-light">-</button>
             <button type="button" class="btn btn-light">+</button>
         </div>
+
     </td>
     <td class="text-end">
         {% if context.basket is none %}{% else %}{{
