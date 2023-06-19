@@ -308,6 +308,7 @@ def is_in_(search, price):
     if search in str(price.name).upper():
         return True
 
+
 def backend_search_prices(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
@@ -337,3 +338,15 @@ def backend_search_prices(request, carwash_id):
         'set_prices': res_of_search,
     }
     return render_template('schedule/table_of_results.html', context=context)
+
+
+def backend_get_price_info(request, carwash_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print(data, carwash_id)
+    print('\n################################################################\n')
+
+    # формирование ответа
+    response = {'status': 'success'}
+    return response
+

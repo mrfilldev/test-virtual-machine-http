@@ -12,7 +12,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 from flask_login import current_user
 
 from .view_schedule import create_carwash_order, view_schedule_of_certain_carwash, edit_carwash_order, \
-    get_costs_for_prices_by_carwash_id_and_category, backend_search_prices
+    get_costs_for_prices_by_carwash_id_and_category, backend_search_prices, backend_get_price_info
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -60,6 +60,11 @@ def category_price_reload():
 @schedule_bp.route('/search_prices/<string:carwash_id>', methods=['POST'])
 def search_prices(carwash_id):
     return backend_search_prices(request, carwash_id)
+
+
+@schedule_bp.route('/get_price_info/<string:carwash_id>', methods=['POST'])
+def search_prices(carwash_id):
+    return backend_get_price_info(request, carwash_id)
 
 
 @schedule_bp.app_template_filter()
