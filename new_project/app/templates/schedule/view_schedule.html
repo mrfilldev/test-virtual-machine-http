@@ -242,8 +242,6 @@
             data: $('#user-form').serialize(),
             success: function (data) {
                 alert(data);
-                var total = data.basket['total']
-                alert('Total', total)
             }
         });
     }
@@ -446,7 +444,7 @@
 
                                 </div>
                                 <div class="col-4">
-                                    <div class="total-price fw-bold text-end pr-2">Итого <span id="total-price">{{ context.total_price }}</span>&#8381</div>
+                                    <div class="total-price fw-bold text-end pr-2">Итого <input type="text" class="form-control" id="total-price" value="0" disabled>&#8381</div>
                                 </div>
                             </div>
                         </div>
