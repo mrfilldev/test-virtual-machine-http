@@ -342,13 +342,10 @@ def backend_search_prices(request, carwash_id):
     return render_template('schedule/table_of_results.html', context=context)
 
 
-def backend_get_price_info(request, carwash_id):
+def backend_get_price_info(request, carwash_id, price_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
-    price_id = request.args.get('price_id')
-    print(request.args.to_dict())
-    print('price_id: ', price_id)
-    print(data, carwash_id)
+    print(data, carwash_id, price_id)
     print('\n################################################################\n')
 
     # формирование ответа
