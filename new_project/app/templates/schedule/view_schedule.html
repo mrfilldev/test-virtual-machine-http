@@ -19,7 +19,7 @@
         pre_registration();
         new_client();
         old_client();
-
+        add_price();
     });
 
     function render_calendar(model) {
@@ -218,6 +218,11 @@
             $('#Modal2').modal('toggle');
         });
     }
+
+
+    function add_price(id){
+        alert(id)
+    }
 </script>
 
 <br>
@@ -409,7 +414,9 @@
                                             <th class="text-end">Подытог</th>
                                         </tr>
                                         </thead>
+                                        <tbody id="table_prices_carwash">
                                         {% include 'schedule/table_prices.html' %}
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div class="col"></div>
