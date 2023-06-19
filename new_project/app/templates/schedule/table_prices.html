@@ -1,6 +1,6 @@
 {% for price in context.set_prices %}
 {% if price.status == 'active' %}
-<tr>
+<tr id="{{price._id}}">
     <td style="width: 365px;">
         <b>{{ price.name }}</b><br>
         {{ price.description }}
@@ -15,7 +15,7 @@
                    id="amount_{{ context.basket[price._id] }}"
                    value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
                    style="width: 75px; text-align: center">
-            <button type="button" class="btn btn-outline-secondary">+</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="delete_tr_by_id({{price._id}})">+</button>
         </div>
     </td>
     <td class="text-center">
