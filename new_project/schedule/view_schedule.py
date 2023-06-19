@@ -247,6 +247,8 @@ def make_basket(price_list, count=1, total=0):
     for price in price_list:
         basket_dict[price._id] = basketItem(amount=count, pre_total_price=int(price.categoryPrice.sum) * count)
         basket_dict['total'] += basket_dict[price._id].pre_total_price
+
+    print('basket_dict: ', basket_dict)
     return basket_dict
 
 
