@@ -70,7 +70,7 @@ def get_price_info(carwash_id, price_id):
 
 @schedule_bp.route('/calculate_order/<string:carwash_id>', methods=['POST'])
 @schedule_bp.route('/calculate_order/<string:carwash_id>&<string:to_do>', methods=['POST'])
-def get_price_info(carwash_id, to_do):
+def calculate_order(carwash_id, to_do):
     return calculate_prices(request, carwash_id, to_do)
 
 
