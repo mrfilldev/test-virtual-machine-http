@@ -12,14 +12,16 @@
     <td class="count">
         <div class="input-group input-group-sm">
             <button type="button" class="btn btn-light">-</button>
-            <input id="{{ price._id }}" type="number" class="form-control"
+            <input id="price_amount_{{ context.basket[price._id] }}" type="number" class="form-control"
                    value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
                    disabled style="width: 75px">
             <button type="button" class="btn btn-light">+</button>
         </div>
     </td>
     <td class="text-end">
-        &#8381
+        {% if context.basket is none %}{% else %}{{
+        context.basket[price._id].pre_total_price }}{%
+        endif %} &#8381
     </td>
 </tr>
 {% endif %}

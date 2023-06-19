@@ -367,10 +367,14 @@ def backend_get_price_info(request, carwash_id, price_id):
     print('selected_category: ', selected_category)
     print('search: ', search)
     price_obj = get_price(price_id)
+    for obj in price_obj.categoryPrice:
+        if obj.category == selected_category:
+            price_obj.categoryPrice = obj
 
+    basket = make_basket([price_obj])
 
-    # формирование ответа
-    #response = {'status': 'success'}
-
-    context = {'set_prices': [price_obj]}
+    context = {
+        'set_prices': [price_obj],
+        'basket': basket
+    }
     return render_template('schedule/table_prices.html', context=context)
