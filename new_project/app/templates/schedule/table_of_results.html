@@ -2,8 +2,7 @@
 {% for price in context.set_prices %}
 {% if price.status == 'active' %}
 <tr class="tr-search_result">
-    <td style="width: 365px;" onclick="add_price()">
-        <input type="hidden" name="price_{{price._id}}" id="order_id" value="{{price._id}}">
+    <td style="width: 365px;" id="{{price._id}}" onclick="add_price(this.id)">
         <b>{{ price.name }}</b><br>{{ price.description }}
     </td>
 </tr>
