@@ -345,7 +345,8 @@ def backend_search_prices(request, carwash_id):
 def backend_get_price_info(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
-
+    price_id = request.args.get('price_id')
+    print('price_id: ', price_id)
     print(data, carwash_id)
     print('\n################################################################\n')
 
