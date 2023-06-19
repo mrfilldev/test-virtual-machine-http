@@ -371,4 +371,6 @@ def backend_get_price_info(request, carwash_id, price_id):
 
     # формирование ответа
     #response = {'status': 'success'}
+
+    context = {'price_obj': price_obj}
     return price_obj
