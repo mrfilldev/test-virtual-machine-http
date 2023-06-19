@@ -64,8 +64,8 @@ def search_prices(carwash_id):
 
 @schedule_bp.route('/get_price_info/<string:carwash_id>', methods=['POST'])
 @schedule_bp.route('/get_price_info/<string:carwash_id>/<string:price_id>', methods=['POST'])
-def get_price_info(carwash_id, price_id):
-    return backend_get_price_info(request, carwash_id, price_id)
+def get_price_info(carwash_id):
+    return backend_get_price_info(request, carwash_id)
 
 
 @schedule_bp.app_template_filter()
