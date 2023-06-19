@@ -228,13 +228,21 @@
             data: $('#user-form').serialize(),
             success: function (data) {
                 $("#table_prices_carwash").append(data)
+                var total = data.basket['total']
+                alert('Total', total)
             }
         });
     }
 
     function calculate(id){
-
-        alert(id)
+        $.ajax({
+            type: 'POST',
+            url: "{{ url_for('schedule_blueprint.calculate_order', carwash_id=context.carwash._id) }}" + '&' + id.toString(),
+            data: $('#user-form').serialize(),
+            success: function (data) {
+                alert(data);
+            }
+        });
     }
 </script>
 

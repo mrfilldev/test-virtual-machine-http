@@ -242,11 +242,11 @@ def edit_carwash_order(request, carwash_id):
     return jsonify(response)
 
 
-def make_basket(price_list):
-    basket_dict = {}
-    count = 1
+def make_basket(price_list, count=1, total=0):
+    basket_dict = {'total': total}
     for price in price_list:
         basket_dict[price._id] = basketItem(amount=count, pre_total_price=int(price.categoryPrice.sum) * count)
+        basket_dict['total'] += basket_dict[price._id].pre_total_price
     return basket_dict
 
 
