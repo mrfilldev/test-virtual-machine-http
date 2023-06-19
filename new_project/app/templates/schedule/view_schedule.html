@@ -411,24 +411,8 @@
                         </div>
 
                         <div class="prices">
-                            <div class="row">
-                                <div class="col">
-                                    <table class="table table-center align-middle">
-                                        <thead class="table-light">
-                                        <tr>
-                                            <th>Тариф</th>
-                                            <th class="text-end">Стоимость</th>
-                                            <th style="width: 250px">Кол-во</th>
-                                            <th class="text-end">Подытог</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="table_prices_carwash">
-                                        {% include 'schedule/table_prices.html' %}
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <div class="col"></div>
+                            <div class="row" id="table_prices_carwash">
+                                {% include 'schedule/table_prices.html' %}
                             </div>
                         </div>
 
@@ -451,9 +435,6 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="total-price fw-bold text-end pr-2">Итого <span id="total-price">{{ context.total_price }}</span>
-                                &#8381
-                            </div>
                         </div>
                     </div>
 
