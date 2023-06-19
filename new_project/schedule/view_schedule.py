@@ -387,7 +387,25 @@ def calculate_prices(request, carwash_id, to_do):
     data = request.form.to_dict()
     print('data: ', data)
     print('carwash_id: ', carwash_id)
-    print('to_do: ', to_do)
+    to_do_command = to_do.split('_')[0]
+    print('to_do_command: ', to_do_command)
+    total = request.form['total-hidden']
+    print('total: ', total)
     print('\n################################################################\n')
+
+    match to_do_command:
+        case 'add':
+            pass
+        case 'plus':
+            pass
+        case 'minus':
+            pass
+        case _:
+            return abort(404)
+
+
+
+
+
     return {'status': 'success'}
 
