@@ -13,7 +13,7 @@
 
         <div class="input-group input-group-sm">
             <button type="button" class="btn btn-light">-</button>
-            <input id="price_amount_{{ context.basket[price._id] }}" type="number" class="form-control"
+            <input id="price_amount_{{ context.basket[price._id] }}" type="text" class="form-control"
                    value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
                    style="width: 100px">
             <button type="button" class="btn btn-light">+</button>
