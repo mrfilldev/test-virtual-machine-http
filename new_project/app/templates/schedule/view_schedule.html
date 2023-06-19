@@ -19,7 +19,6 @@
         pre_registration();
         new_client();
         old_client();
-        add_price();
     });
 
     function render_calendar(model) {
@@ -222,6 +221,14 @@
 
     function add_price(id){
         alert(id)
+        $.ajax({
+            type: 'POST',
+            url: "{{ url_for('schedule_blueprint.get_price_info', carwash_id=context.carwash._id) }}",
+            data: $('#user-form').serialize(),
+            success: function (data) {
+                alert(data);
+            }
+        });
     }
 </script>
 
