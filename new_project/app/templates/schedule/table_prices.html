@@ -12,7 +12,7 @@
     <td class="count">
         <div class="input-group">
             <button type="button" class="btn btn-outline-secondary">-</button>
-            <input type="text" class="form-control"
+            <input type="text"
                    id="price_amount_{{ context.basket[price._id] }}"
                    value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
                    style="width: 75px">
