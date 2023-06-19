@@ -15,7 +15,7 @@
             <input type="text" class="form-control"
                    id="price_amount_{{ context.basket[price._id] }}"
                    value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
-                   style="width: 100px">
+                   style="width: 75px">
             <button type="button" class="btn btn-outline-secondary">+</button>
         </div>
 
