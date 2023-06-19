@@ -383,4 +383,11 @@ def backend_get_price_info(request, carwash_id, price_id):
 
 
 def calculate_prices(request, carwash_id, to_do):
-    pass
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print('data: ', data)
+    print('carwash_id: ', carwash_id)
+    print('to_do: ', to_do)
+    print('\n################################################################\n')
+    return {'status': 'success'}
+
