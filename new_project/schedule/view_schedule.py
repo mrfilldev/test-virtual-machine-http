@@ -419,6 +419,8 @@ def calculate_prices(request, carwash_id, to_do):
         case _:
             return abort(404)
 
+    print(total)
+
     context = {
         'status': 'success',
         'total': total,
