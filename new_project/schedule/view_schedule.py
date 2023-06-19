@@ -383,6 +383,7 @@ def backend_get_price_info(request, carwash_id, price_id):
 
 
 def calculate_prices(request, carwash_id, to_do):
+    value = 0
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print('data: ', data)
@@ -391,19 +392,34 @@ def calculate_prices(request, carwash_id, to_do):
     print('to_do_command: ', to_do_command)
     price_id = to_do.split('_')[1]
     print('to_do_command: ', price_id)
-    total = request.form['total-hidden']
+    total = int(request.form['total-hidden'])
     print('total: ', total)
+    selected_category = request.form['category'] if 'category' in request.form else None
     print('\n################################################################\n')
 
     price_obj = get_price(price_id)
     print('price_obj: ', price_obj)
+
+    if selected_category is None:
+        return abort(404)
+
+    for obj in price_obj.categoryPrice:
+        if obj.category == selected_category:
+            value = obj.sum
+
     match to_do_command:
         case 'add':
-            print('\n########################')
+            total += value
+            return total
         case 'plus':
-            pass
+            total += value
+            return total
         case 'minus':
-            pass
+            total -= value
+            return total
+        case 'delete':
+            total -= value
+            return total
         case _:
             return abort(404)
 
