@@ -243,8 +243,8 @@
             success: function (data) {
                 alert(data);
                 alert(data.total);
-                $('#total-hidden').val(data.total);
-                $('#total-view').val(data.total);
+                $('input[name="total-hidden"]').val(data.total);
+                $('input[name="total-view"]').val(data.total);
             }
         });
     }
