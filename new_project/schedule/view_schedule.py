@@ -244,7 +244,7 @@ def edit_carwash_order(request, carwash_id):
 
 def make_basket(price_list):
     basket_dict = {}
-    count = 0
+    count = 1
     for price in price_list:
         basket_dict[price._id] = basketItem(amount=count, pre_total_price=int(price.categoryPrice.sum) * count)
     return basket_dict
