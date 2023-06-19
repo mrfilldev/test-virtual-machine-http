@@ -410,22 +410,18 @@ def calculate_prices(request, carwash_id, to_do):
     match to_do_command:
         case 'add':
             total += value
-            return total
         case 'plus':
             total += value
-            return total
         case 'minus':
             total -= value
-            return total
         case 'delete':
             total -= value
-            return total
         case _:
             return abort(404)
 
-
-
-
-
-    return {'status': 'success'}
+    context = {
+        'status': 'success',
+        'total': total,
+    }
+    return context
 

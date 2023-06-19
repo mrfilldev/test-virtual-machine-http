@@ -242,6 +242,7 @@
             data: $('#user-form').serialize(),
             success: function (data) {
                 alert(data);
+                $('#total-hidden').val(data.total)
             }
         });
     }
