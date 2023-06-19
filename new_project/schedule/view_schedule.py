@@ -378,3 +378,7 @@ def backend_get_price_info(request, carwash_id, price_id):
         'basket': basket
     }
     return render_template('schedule/table_prices.html', context=context)
+
+
+def calculate_prices(request, carwash_id, to_do):
+    pass
