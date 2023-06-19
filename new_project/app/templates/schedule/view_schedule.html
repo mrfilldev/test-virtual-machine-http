@@ -228,7 +228,8 @@
             data: $('#user-form').serialize(),
             success: function (data) {
                 $("#table_prices_carwash").append(data);
-                calculate("add_", id.toString);
+                var command = "add_"+ id.toString();
+                calculate(command)
             }
         });
     }
