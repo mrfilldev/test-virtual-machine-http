@@ -405,7 +405,7 @@ def calculate_prices(request, carwash_id, to_do):
 
     for obj in price_obj.categoryPrice:
         if obj.category == selected_category:
-            value = obj.sum
+            value = int(obj.sum)
 
     match to_do_command:
         case 'add':
