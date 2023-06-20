@@ -61,6 +61,9 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'category': '-' if order_obj.Category == '' else order_obj.Category,
             'car_brand': order_obj.CarBrand,
             'car_model': order_obj.CarModel,
+
+            'order_user_name': order_obj.order_user_name,
+            'phone_number': order_obj.phone_number,
         })
         print('start', order_obj.DateStart)
         print('end', order_obj.DateEnd)
