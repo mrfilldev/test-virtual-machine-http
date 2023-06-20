@@ -494,7 +494,7 @@ def backend_remove_price_from_order(request, carwash_id, price_id):
     print('carwash_id: ', carwash_id)
     print('price_id: ', price_id)
     print('\n################################################################\n')
-    set_prices=[]
+    set_prices = []
     for key, value in data.items():
         # amount_5de6e8b26bd04c53996bacbe363a5a1e
         if 'amount_' in key:
@@ -560,4 +560,35 @@ def backend_decrement_price_in_order(request, carwash_id, price_id):
     print('carwash_id: ', carwash_id)
     print('price_id: ', price_id)
     print('\n################################################################\n')
-    pass
+
+    set_prices = []
+    for key, value in data.items():
+        # amount_5de6e8b26bd04c53996bacbe363a5a1e
+        if 'amount_' in key:
+            if price_id.split('_')[1] == key.split('_')[1]:
+                price_obj = get_price(key.split('_')[1])
+                for obj in price_obj.categoryPrice:
+                    if obj.category == data['category']:
+                        price_obj.categoryPrice = obj
+                if int(data[key]) < 2:
+                    backend_remove_price_from_order(request, carwash_id, price_id)  # если кол-во меньше 2 - удалить
+                else:
+                    pretotal_price = int(price_obj.categoryPrice.sum) * (int(data[key]) - 1)
+                    setattr(price_obj, 'amount', int(data[key]) - 1)
+                    setattr(price_obj, 'pretotal_price', pretotal_price)
+                    print('pretotal_price: ', pretotal_price)
+                    set_prices.append(price_obj)
+            else:
+                price_obj = get_price(key.split('_')[1])
+                for obj in price_obj.categoryPrice:
+                    if obj.category == data['category']:
+                        price_obj.categoryPrice = obj
+                pretotal_price = int(price_obj.categoryPrice.sum) * int(data[key])
+                setattr(price_obj, 'amount', data[key])
+                setattr(price_obj, 'pretotal_price', pretotal_price)
+                print('pretotal_price: ', pretotal_price)
+                set_prices.append(price_obj)
+    context = {
+        'set_prices': set_prices
+    }
+    return render_template('schedule/table_prices.html', context=context)
