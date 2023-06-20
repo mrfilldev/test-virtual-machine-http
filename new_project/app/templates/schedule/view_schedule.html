@@ -237,7 +237,7 @@
     function calculate_total() {
         $.ajax({
             type: 'POST',
-            url: "{{ url_for('schedule_blueprint.add_price_to_order', carwash_id=context.carwash._id) }}",
+            url: "{{ url_for('schedule_blueprint.calculate_total', carwash_id=context.carwash._id) }}",
             data: $('#user-form').serialize(),
             success: function (data) {
                 $('input[name="total-hidden"]').val(data.total_basket);

@@ -451,7 +451,7 @@ def backend_add_price_to_order(request, carwash_id, price_id):
                 pass
         else:
             print('table empty')
-    # добавление в таблицу заказа тарифа
+    # добавление в таблицу заказа еще одного НОВОГО тарифа
     print(data, price_id)
     selected_category = data['category']
     price_obj = get_price(price_id)
@@ -459,6 +459,7 @@ def backend_add_price_to_order(request, carwash_id, price_id):
         if obj.category == selected_category:
             price_obj.categoryPrice = obj
     pretotal_price = price_obj.categoryPrice.sum
+    setattr(price_obj, 'amount', 1)
     print('pretotal_price: ', pretotal_price)
     arr_of_price = [price_obj]
 
@@ -467,3 +468,14 @@ def backend_add_price_to_order(request, carwash_id, price_id):
         'pretotal_price': pretotal_price,
     }
     return render_template('schedule/table_prices.html', context=context)
+
+
+def backend_calculate_total(request, carwash_id, price_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print('data: ', data)
+    print('carwash_id: ', carwash_id)
+    print('price_id: ', price_id)
+    print('\n################################################################\n')
+
+
