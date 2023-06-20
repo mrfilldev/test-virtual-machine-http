@@ -98,6 +98,8 @@
     }
 
     function open_modal_window_order_detail(info) {
+        $("[name='order_user_name']").val(info == null ? '' : info.event.extendedProps.order_user_name);
+        $("[name='phone_number']").val(info == null ? '' : info.event.extendedProps.phone_number);
         $("[name='country_region_number']").val(info == null ? '' : info.event.extendedProps.carNumber);
         $("[name='order_id']").val(info == null ? '' : info.event.extendedProps.order_id);
         $("[name='box']").val(info == null ? '' : info.event.extendedProps.box);
