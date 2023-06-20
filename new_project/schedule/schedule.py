@@ -90,9 +90,9 @@ def decrement_price_in_order(carwash_id, price_id):
 
 
 @schedule_bp.route('/get_order_basket/<string:carwash_id>', methods=['GET'])
-@schedule_bp.route('/get_order_basket/<string:carwash_id>&<string:price_id>', methods=['GET'])
-def get_order_basket(carwash_id, price_id):
-    return backend_get_order_basket(request, carwash_id, price_id)
+@schedule_bp.route('/get_order_basket/<string:carwash_id>&<string:order_id>', methods=['GET'])
+def get_order_basket(carwash_id, order_id):
+    return backend_get_order_basket(request, carwash_id, order_id)
 
 
 @schedule_bp.app_template_filter()

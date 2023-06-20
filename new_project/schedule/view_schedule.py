@@ -494,11 +494,28 @@ def backend_decrement_price_in_order(request, carwash_id, price_id):
     return render_template('schedule/table_prices.html', context=context)
 
 
-def backend_get_order_basket(request, carwash_id, price_id):
+def get_order(order_id):
+    order_obj = database.col_orders.find_one({'_id': order_id})  # dict
+    data = json.loads(json_util.dumps(order_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('order_obj: ', order_obj)
+    return order_obj
+
+
+def backend_get_order_basket(request, carwash_id, order_id):
     print('\n########################DATA####################################\n')
     print('carwash_id: ', carwash_id)
-    print('price_id: ', price_id)
+    print('order_id: ', order_id)
     print('\n################################################################\n')
+
+    set_prices = []
+    order_obj = get_order(order_id)
+
+    context = {
+        'set_prices': set_prices
+    }
+    return render_template('schedule/table_prices.html', context=context)
 
 
 
