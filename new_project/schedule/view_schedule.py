@@ -442,4 +442,4 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     print('price_id: ', price_id)
     print('\n################################################################\n')
 
-    pass
+    return {'status': 'success'}
