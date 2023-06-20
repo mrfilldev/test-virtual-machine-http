@@ -442,12 +442,9 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     print('price_id: ', price_id)
     print('\n################################################################\n')
 
-    for field in data.keys():
-        if field.startswith('amount_'):
-            print('table is not empty')
-        else:
-            print('table is empty')
-
-
+    if 'amount_' in data.keys():
+        print('table is not empty')
+    else:
+        print('table is empty')
 
     return {'status': 'success'}
