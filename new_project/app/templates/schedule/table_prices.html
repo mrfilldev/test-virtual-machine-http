@@ -24,9 +24,9 @@
                     onclick="decrement(this.id)">-
             </button>
             <input type="text" class="form-control"
-                   name="amount_{{price._id}}"
                    value="{{price.amount}}"
                    style="width: 75px; text-align: center">
+            <input hidden="hidden" name="amount_{{price._id}}" value="{{price.amount}}">
             <button type="button" class="btn btn-outline-secondary" id="plus_{{price._id}}"
                     onclick="increment(this.id)">+
             </button>
