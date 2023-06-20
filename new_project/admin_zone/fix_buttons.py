@@ -135,3 +135,19 @@ def fix_box_number_value():
     }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def fix_orders_fields():
+    all_orders = database.col_orders.find({})
+
+    for order in all_orders:
+        data = json.loads(json_util.dumps(order))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print('order_obj: ', order_obj)
+        database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+            "order_user_name": '',
+            "phone_number": '',
+            "order_basket": '',
+        }})
+    return redirect(url_for('admin_blueprint.admin_main'))
