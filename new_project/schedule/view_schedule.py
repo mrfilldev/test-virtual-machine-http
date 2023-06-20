@@ -460,12 +460,13 @@ def backend_add_price_to_order(request, carwash_id, price_id):
             price_obj.categoryPrice = obj
     pretotal_price = price_obj.categoryPrice.sum
     setattr(price_obj, 'amount', 1)
+    setattr(price_obj, 'pretotal_price', pretotal_price)
     print('pretotal_price: ', pretotal_price)
     arr_of_price = [price_obj]
 
     context = {
         'set_prices': arr_of_price,
-        'pretotal_price': pretotal_price,
+
     }
     return render_template('schedule/table_prices.html', context=context)
 
@@ -482,10 +483,11 @@ def backend_calculate_total(request, carwash_id):
             price_id = key.split("_")[1]
             print(f'Ценник - {price_id} -> {data[key]}шт.')
 
-            total += int(data[key]) * int(data['basecost_'+price_id])
+            total += int(data[key]) * int(data['basecost_' + price_id])
     return {'total': total}
 
 
+# --------------------------------
 def backend_remove_price_from_order(request, carwash_id, price_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
@@ -493,8 +495,25 @@ def backend_remove_price_from_order(request, carwash_id, price_id):
     print('carwash_id: ', carwash_id)
     print('price_id: ', price_id)
     print('\n################################################################\n')
-    pass
-
+    set_prices=[]
+    for key, value in data.items():
+        # amount_5de6e8b26bd04c53996bacbe363a5a1e
+        if 'amount_' in key:
+            if price_id.split('_')[1] == key.split('_')[1]:
+                pass
+            else:
+                price_obj = get_price(key.split('_')[1])
+                for obj in price_obj.categoryPrice:
+                    if obj.category == data['category']:
+                        price_obj.categoryPrice = obj
+                pretotal_price = int(price_obj.categoryPrice.sum) * int(data[key])
+                setattr(price_obj, 'amount', data[key])
+                setattr(price_obj, 'pretotal_price', pretotal_price)
+                print('pretotal_price: ', pretotal_price)
+                set_prices.append(price_obj)
+    context = {
+        'set_prices': set_prices
+    }
 
 def backend_increment_price_in_order(request, carwash_id, price_id):
     print('\n########################DATA####################################\n')
@@ -514,4 +533,3 @@ def backend_decrement_price_in_order(request, carwash_id, price_id):
     print('price_id: ', price_id)
     print('\n################################################################\n')
     pass
-
