@@ -445,7 +445,7 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     for key, value in data.items():
         if 'amount_' in key:
             print('table is not empty')
-            if price_id == data[key].split('_')[1]:
+            if price_id == key.split('_')[1]:
                 abort(404)
             else:
                 pass
