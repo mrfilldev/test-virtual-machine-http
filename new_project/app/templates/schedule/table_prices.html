@@ -23,7 +23,7 @@
             <button type="button" class="btn btn-outline-secondary" id="minus_{{price._id}}"
                     onclick="decrement(this.id)">-
             </button>
-            <input type="text" class="form-control"
+            <input disabled type="text" class="form-control"
                    value="{{price.amount}}"
                    style="width: 75px; text-align: center">
             <input hidden="hidden" name="amount_{{price._id}}" value="{{price.amount}}">
