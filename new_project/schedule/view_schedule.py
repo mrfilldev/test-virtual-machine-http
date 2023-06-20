@@ -475,7 +475,8 @@ def backend_calculate_total(request, carwash_id):
     data = request.form.to_dict()
     print('data: ', data)
     print('carwash_id: ', carwash_id)
-
     print('\n################################################################\n')
 
-
+    for key, value in data.items():
+        if 'amount_' in key:
+            print(f'Ценник - {key.split("_")[1]} -> {data[key]}шт.')
