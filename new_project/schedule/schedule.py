@@ -54,9 +54,9 @@ def edit_order_carwash(carwash_id):
     return edit_carwash_order(request, carwash_id)
 
 
-@schedule_bp.route('/category_price_reload/', methods=['GET'])
-def category_price_reload():
-    return get_costs_for_prices_by_carwash_id_and_category(request)
+# @schedule_bp.route('/category_price_reload/', methods=['GET'])
+# def category_price_reload():
+#     return get_costs_for_prices_by_carwash_id_and_category(request)
 
 
 @schedule_bp.route('/search_prices/<string:carwash_id>', methods=['POST'])

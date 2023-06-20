@@ -9,6 +9,10 @@ from ..db import database
 users = database.col_users
 
 
+class basketItem:
+    def __init__(self, amount: int, pre_total_price: int):
+        self.amount = amount
+        self.pre_total_price = pre_total_price
 
 
 class basketItem:
