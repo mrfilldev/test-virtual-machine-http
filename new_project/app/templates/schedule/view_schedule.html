@@ -250,7 +250,6 @@
     }
 
     function delete_price(id){
-        alert(id);
         $.ajax({
             type: 'POST',
             url: "{{ url_for('schedule_blueprint.remove_price_from_order', carwash_id=context.carwash._id) }}" + '&' + id.toString(),
@@ -263,7 +262,6 @@
     }
 
     function increment(id){
-        alert(id);
         $.ajax({
             type: 'POST',
             url: "{{ url_for('schedule_blueprint.increment_price_in_order', carwash_id=context.carwash._id) }}" + '&' + id.toString(),
@@ -275,7 +273,6 @@
         });
     }
     function decrement(id){
-        alert(id);
         $.ajax({
             type: 'POST',
             url: "{{ url_for('schedule_blueprint.decrement_price_in_order', carwash_id=context.carwash._id) }}" + '&' + id.toString(),
