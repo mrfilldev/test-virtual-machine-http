@@ -14,7 +14,7 @@ from flask_login import current_user
 from .view_schedule import create_carwash_order, view_schedule_of_certain_carwash, edit_carwash_order, \
     backend_search_prices, \
     backend_add_price_to_order, backend_calculate_total, backend_remove_price_from_order, \
-    backend_increment_price_in_order, backend_decrement_price_in_order
+    backend_increment_price_in_order, backend_decrement_price_in_order, backend_get_order_basket
 from ..configuration.config import Config
 from ..db import database
 from ..main import oauth_via_yandex
@@ -88,6 +88,11 @@ def increment_price_in_order(carwash_id, price_id):
 def decrement_price_in_order(carwash_id, price_id):
     return backend_decrement_price_in_order(request, carwash_id, price_id)
 
+
+@schedule_bp.route('/get_order_basket/<string:carwash_id>', methods=['POST'])
+@schedule_bp.route('/get_order_basket/<string:carwash_id>&<string:price_id>', methods=['POST'])
+def get_order_basket(carwash_id, price_id):
+    return backend_get_order_basket(request, carwash_id, price_id)
 
 
 @schedule_bp.app_template_filter()

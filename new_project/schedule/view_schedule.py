@@ -43,7 +43,6 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             'title': order_obj.CarNumber,
 
             'order_id': order_obj._id,
-
             'start': order_obj.DateStart.replace('Z', ''),
             'end': order_obj.DateEnd.replace('Z', ''),
             'date': order_obj.DateCreate,
@@ -493,3 +492,13 @@ def backend_decrement_price_in_order(request, carwash_id, price_id):
         'set_prices': set_prices
     }
     return render_template('schedule/table_prices.html', context=context)
+
+
+def backend_get_order_basket(request, carwash_id, price_id):
+    print('\n########################DATA####################################\n')
+    print('carwash_id: ', carwash_id)
+    print('price_id: ', price_id)
+    print('\n################################################################\n')
+
+
+
