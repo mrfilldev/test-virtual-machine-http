@@ -479,8 +479,10 @@ def backend_calculate_total(request, carwash_id):
     total = 0
     for key, value in data.items():
         if 'amount_' in key:
-            print(f'Ценник - {key.split("_")[1]} -> {data[key]}шт.')
+            price_id = key.split("_")[1]
+            print(f'Ценник - {price_id} -> {data[key]}шт.')
 
-            total += int(data[key])
+            total += int(data[key]) * int(data['basecost_'+price_id])
+
 
     return {'total': total}
