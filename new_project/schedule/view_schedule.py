@@ -483,6 +483,35 @@ def backend_calculate_total(request, carwash_id):
             print(f'Ценник - {price_id} -> {data[key]}шт.')
 
             total += int(data[key]) * int(data['basecost_'+price_id])
-
-
     return {'total': total}
+
+
+def backend_remove_price_from_order(request, carwash_id, price_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print('data: ', data)
+    print('carwash_id: ', carwash_id)
+    print('price_id: ', price_id)
+    print('\n################################################################\n')
+    pass
+
+
+def backend_increment_price_in_order(request, carwash_id, price_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print('data: ', data)
+    print('carwash_id: ', carwash_id)
+    print('price_id: ', price_id)
+    print('\n################################################################\n')
+    pass
+
+
+def backend_decrement_price_in_order(request, carwash_id, price_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print('data: ', data)
+    print('carwash_id: ', carwash_id)
+    print('price_id: ', price_id)
+    print('\n################################################################\n')
+    pass
+
