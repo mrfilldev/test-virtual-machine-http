@@ -228,28 +228,11 @@
             data: $('#user-form').serialize(),
             success: function (data) {
                 $("#table_prices_carwash").append(data);
-                var command = "add_"+ id.toString();
-                calculate(command)
+                // var command = "add_"+ id.toString();
+                // calculate(command)
             }
         });
     }
-
-    // function calculate(id){
-    //     alert(id)
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: "{{ url_for('schedule_blueprint.calculate_order', carwash_id=context.carwash._id) }}" + '&' + id.toString(),
-    //         data: $('#user-form').serialize(),
-    //         success: function (data) {
-    //             alert(data);
-    //             alert(data.total);
-    //             $('input[name="total-hidden"]').val(data.total);
-    //             $('input[name="total-view"]').val(data.total);
-    //
-    //         }
-    //     });
-    // }
-
 
 </script>
 
