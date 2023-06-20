@@ -184,7 +184,7 @@
     }
 
     function search_prices() {
-        $('input[name=search-field]').on('keyup', function(event) {
+        $('input[name=search-field]').on('click keyup', function(event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}");
             $.ajax({
@@ -192,7 +192,6 @@
                 url: "{{ url_for('schedule_blueprint.search_prices', carwash_id=context.carwash._id) }}",
                 data: $('#user-form').serialize(),
                 success: function (data) {
-                    // $('#Modal2').modal('toggle');
                     $("#search_field-result").html(data);
                 }
             });
