@@ -165,7 +165,8 @@ def get_order_basket_arr(data):
     basket_arr = []
     for key, value in data.items():
         if 'amount_' in key:
-            pass
+            price_id = key.split('_')[1]
+            basket_arr.append(basketItem(id=price_id, amount=int(data[key]), price=int(data['basecost_'+price_id])))
     return basket_arr
 
 
@@ -188,6 +189,7 @@ def create_carwash_order(request, carwash_id):
     car_model = request.form['car_model']
     category = request.form['category']
     order_basket = get_order_basket_arr(data)
+    print('order_basket: ', order_basket)
 
     contract_id = 'OWN'
     sum = 1000.0

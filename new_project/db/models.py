@@ -10,15 +10,10 @@ users = database.col_users
 
 
 class basketItem:
-    def __init__(self, amount: int, pre_total_price: int):
+    def __init__(self, id: str, amount: int, price: int):
+        self._id = id
         self.amount = amount
-        self.pre_total_price = pre_total_price
-
-
-class basketItem:
-    def __init__(self, amount: int, pre_total_price: int):
-        self.amount = amount
-        self.pre_total_price = pre_total_price
+        self.price = price
 
 
 class priceType(enum.IntEnum):
