@@ -14,6 +14,8 @@
         {{ price.description }}
     </td>
     <td class="text-end price">
+        <input hidden="hidden" name="basecost_{{price._id}}"
+               value="{{price.categoryPrice['sum']}}">
         {{ price.categoryPrice['sum'] }} &#8381
     </td>
     <td class="count">
