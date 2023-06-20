@@ -458,7 +458,7 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     for obj in price_obj.categoryPrice:
         if obj.category == selected_category:
             price_obj.categoryPrice = obj
-    total_basket = price_obj.CategoryPrice.sum
+    total_basket = price_obj.categoryPrice.sum
     print('total_basket: ', total_basket)
     arr_of_price = [price_obj]
 
