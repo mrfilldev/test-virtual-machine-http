@@ -230,6 +230,7 @@
                 $("#table_prices_carwash").append(data);
                 // var command = "add_"+ id.toString();
                 // calculate(command)
+                alert(data.context)
                 $('input[name="total-hidden"]').val(data.total_basket);
                 $('input[name="total-view"]').val(data.total_basket);
             }
