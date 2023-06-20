@@ -161,6 +161,14 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
     return render_template('schedule/view_schedule.html', context=context)
 
 
+def get_order_basket_arr(data):
+    basket_arr = []
+    for key, value in data.items():
+        if 'amount_' in key:
+            pass
+    return basket_arr
+
+
 def create_carwash_order(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
@@ -179,6 +187,7 @@ def create_carwash_order(request, carwash_id):
     car_brand = request.form['car_brand']
     car_model = request.form['car_model']
     category = request.form['category']
+    order_basket = get_order_basket_arr(data)
 
     contract_id = 'OWN'
     sum = 1000.0
@@ -391,56 +400,7 @@ def backend_get_price_info(request, carwash_id, price_id):
     return render_template('schedule/table_prices.html', context=context)
 
 
-def calculate_prices(request, carwash_id, to_do):
-    print('\n########################DATA####################################\n')
-    data = request.form.to_dict()
-    print('data: ', data)
-    print('carwash_id: ', carwash_id)
-    to_do_command = to_do.split('_')[0]
-    print('to_do_command: ', to_do_command)
-    price_id = to_do.split('_')[1]
-    print('price_id: ', price_id)
-    total = int(request.form['total-hidden'])
-    print('total: ', total)
-    selected_category = request.form['category'] if 'category' in request.form else None
-    print('\n################################################################\n')
 
-    price_obj = get_price(price_id)
-    print('price_obj: ', price_obj)
-
-    if selected_category is None:
-        return abort(404)
-
-    for obj in price_obj.categoryPrice:
-        if obj.category == selected_category:
-            value = int(obj.sum)
-
-    match to_do_command:
-        case 'add':
-            total += value
-            operation = 1
-        case 'plus':
-            total += value
-            operation = 1
-        case 'minus':
-            total -= value
-            operation = -1
-        case 'delete':
-            total -= value
-            operation = 0
-        case _:
-            return abort(404)
-
-    input_id += price_id
-    print(total)
-
-    context = {
-        'status': 'success',
-        'total': total,
-        'input_id': input_id,
-        'operation': operation,
-    }
-    return context
 
 
 def backend_add_price_to_order(request, carwash_id, price_id):

@@ -12,7 +12,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 from flask_login import current_user
 
 from .view_schedule import create_carwash_order, view_schedule_of_certain_carwash, edit_carwash_order, \
-    get_costs_for_prices_by_carwash_id_and_category, backend_search_prices, backend_get_price_info, calculate_prices, \
+    get_costs_for_prices_by_carwash_id_and_category, backend_search_prices, \
     backend_add_price_to_order, backend_calculate_total, backend_remove_price_from_order, \
     backend_increment_price_in_order, backend_decrement_price_in_order
 from ..configuration.config import Config
