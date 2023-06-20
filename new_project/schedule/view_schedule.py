@@ -482,4 +482,4 @@ def backend_calculate_total(request, carwash_id):
             print(f'Ценник - {key.split("_")[1]} -> {data[key]}шт.')
             total += int(data[key])
 
-    return total
+    return {'total': total}
