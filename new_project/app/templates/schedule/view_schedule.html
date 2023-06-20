@@ -243,19 +243,14 @@
             success: function (data) {
                 alert(data);
                 alert(data.total);
-                var input_id = data.input_id;
                 $('input[name="total-hidden"]').val(data.total);
                 $('input[name="total-view"]').val(data.total);
-                if (data.operation === 1)
-                    $('#',input_id).value++;
-                if (data.operation === -1)
-                    $('#',input_id).value--;
-                if (data.operation === 0)
-                    $('#',input_id).val(0);
 
             }
         });
     }
+
+    function increment()
 </script>
 
 <br>

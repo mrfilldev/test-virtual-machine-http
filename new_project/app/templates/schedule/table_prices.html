@@ -12,8 +12,8 @@
         <div class="input-group input-group-sm">
             <button type="button" class="btn btn-outline-secondary" id="minus_{{price._id}}" onclick="calculate(this.id)">-</button>
             <input type="text" class="form-control"
-                   id="amount_{{ context.basket[price._id] }}"
-                   value="{% if context.basket is none %}{% else %}{{ context.basket[price._id].amount }}{% endif %}"
+                   name="amount_{{price._id}}"
+                   value="0"
                    style="width: 75px; text-align: center">
             <button type="button" class="btn btn-outline-secondary" id="plus_{{price._id}}" onclick="calculate(this.id)">+</button>
         </div>
