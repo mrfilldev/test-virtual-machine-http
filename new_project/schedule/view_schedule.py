@@ -445,10 +445,13 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     for key, value in data.items():
         if 'amount_' in key:
             print('table is not empty')
-            return abort(404)  # уже существует
+            if price_id == data[key]:
+                abort(404)
+            else:
+                pass
         else:
             print('table empty')
-    # добавление в пустую таблицу заказа тарифа
+    # добавление в таблицу заказа тарифа
     print(data, price_id)
     selected_category = data['category']
     price_obj = get_price(price_id)
