@@ -112,7 +112,8 @@
 
         $.ajax({
             type: 'GET',
-            url: "{{ url_for('schedule_blueprint.get_order_basket', carwash_id=context.carwash._id) }}" + (info == null ? '' : '&' + info.event.extendedProps.order_id.toString()),
+            url: "{{ url_for('schedule_blueprint.get_order_basket', carwash_id=context.carwash._id) }}",
+            data: $('#user-form').serialize(),
             success: function (data) {
                 $("#table_prices_carwash").append(data);
                 calculate_total();
