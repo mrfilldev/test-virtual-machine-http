@@ -418,31 +418,26 @@
 
                         <div class="prices">
                             <div class="row">
-                                <div class="col-10">
-                                    <table class="table table-center align-middle">
-                                        <thead class="table-light">
-                                        <tr>
-                                            <th>Тариф</th>
-                                            <th class="text-end">Стоимость</th>
-                                            <th style="width: 230px">Кол-во</th>
-                                            <th class="text-center"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="table_prices_carwash">
-                                        {% include 'schedule/table_prices.html' %}
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <div class="col-2">
-                                    <div class="input-group input-group-sm" style="font-weight: bold">
+                                <table class="table table-center align-middle">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th>Тариф</th>
+                                        <th class="text-end">Стоимость</th>
+                                        <th style="width: 230px">Кол-во</th>
+                                        <th class="text-center">Стоимость</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table_prices_carwash">
+                                    {% include 'schedule/table_prices.html' %}
+                                    <td>
                                         <span class="input-group-text">Итого &#8381:</span>
                                         <input style="width: 100px" type="text" class="form-control"
                                                name="total-view" placeholder="0" disabled>
                                         <input style="width: 100px" type="text" class="form-control"
                                                name="total-hidden" value="0" hidden="hidden">
-                                    </div>
-                                </div>
+                                    </td>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
