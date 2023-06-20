@@ -224,7 +224,7 @@
         $('input[name=search-field]').val('');
         $.ajax({
             type: 'POST',
-            url: "{{ url_for('schedule_blueprint.get_price_info', carwash_id=context.carwash._id) }}" + '&' + id.toString(),
+            url: "{{ url_for('schedule_blueprint.add_price_to_order', carwash_id=context.carwash._id) }}" + '&' + id.toString(),
             data: $('#user-form').serialize(),
             success: function (data) {
                 $("#table_prices_carwash").append(data);

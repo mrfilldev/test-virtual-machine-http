@@ -62,16 +62,24 @@ def search_prices(carwash_id):
     return backend_search_prices(request, carwash_id)
 
 
-@schedule_bp.route('/get_price_info/<string:carwash_id>', methods=['POST'])
-@schedule_bp.route('/get_price_info/<string:carwash_id>&<string:price_id>', methods=['POST'])
-def get_price_info(carwash_id, price_id):
-    return backend_get_price_info(request, carwash_id, price_id)
+# @schedule_bp.route('/get_price_info/<string:carwash_id>', methods=['POST'])
+# @schedule_bp.route('/get_price_info/<string:carwash_id>&<string:price_id>', methods=['POST'])
+# def get_price_info(carwash_id, price_id):
+#     return backend_get_price_info(request, carwash_id, price_id)
 
 
-@schedule_bp.route('/calculate_order/<string:carwash_id>', methods=['POST'])
-@schedule_bp.route('/calculate_order/<string:carwash_id>&<string:to_do>', methods=['POST'])
-def calculate_order(carwash_id, to_do):
-    return calculate_prices(request, carwash_id, to_do)
+# @schedule_bp.route('/calculate_order/<string:carwash_id>', methods=['POST'])
+# @schedule_bp.route('/calculate_order/<string:carwash_id>&<string:to_do>', methods=['POST'])
+# def calculate_order(carwash_id, to_do):
+#     return calculate_prices(request, carwash_id, to_do)
+
+
+@schedule_bp.route('/add_price_to_order/<string:carwash_id>', methods=['POST'])
+@schedule_bp.route('/add_price_to_order/<string:carwash_id>&<string:price_id>', methods=['POST'])
+def add_price_to_order(carwash_id, price_id):
+    return backend_add_price_to_order(request, carwash_id, price_id)
+
+
 
 
 @schedule_bp.app_template_filter()

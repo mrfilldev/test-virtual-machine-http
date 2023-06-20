@@ -433,3 +433,13 @@ def calculate_prices(request, carwash_id, to_do):
     }
     return context
 
+
+def backend_add_price_to_order(request, carwash_id, price_id):
+    print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print('data: ', data)
+    print('carwash_id: ', carwash_id)
+    print('price_id: ', price_id)
+    print('\n################################################################\n')
+
+    pass
