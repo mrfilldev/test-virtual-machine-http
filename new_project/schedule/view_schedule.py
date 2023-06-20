@@ -260,52 +260,11 @@ def edit_carwash_order(request, carwash_id):
     return jsonify(response)
 
 
-def make_basket(price_list, count=1, total=0):
-    basket_dict = {'total': total}
-    for price in price_list:
-        basket_dict[price._id] = basketItem(amount=count, pre_total_price=int(price.categoryPrice.sum) * count)
-        basket_dict['total'] += basket_dict[price._id].pre_total_price
-
-    print('basket_dict: ', basket_dict)
-    return basket_dict
-
-
 def count_total_price(basket):
     total_price = 0
     for basket_item in basket.values():
         total_price += basket_item.pre_total_price
     return total_price
-
-
-def get_costs_for_prices_by_carwash_id_and_category(request):
-    selected_category = request.args.get('category')
-    carwash_id = request.args.get('carwash_id')
-
-    carwash_obj = get_carwash_obj(carwash_id)
-    print('carwash_obj: ', carwash_obj)
-
-    price_list = get_price_list(carwash_obj.Price)
-    print('price_list: ', price_list)
-
-    for price_obj in price_list:
-        for obj in price_obj.categoryPrice:
-            if obj.category == selected_category:
-                price_obj.categoryPrice = obj
-
-    print('price_list: ', price_list)
-
-    basket = make_basket(price_list)
-    context = {
-        'set_prices': price_list,
-        'selected_category': selected_category,
-        'CategoryAuto': list(CategoryAuto),
-        'priceType': list(priceType),
-        'basket': basket,
-        'total_price': count_total_price(basket),
-        'box': get_amount_boxes(carwash_obj),
-
-    }
-    return render_template('schedule/table_prices.html', context=context)
 
 
 def is_in_(search, price):
@@ -369,38 +328,6 @@ def get_price(price_id):
     price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print('price_obj: ', price_obj)
     return price_obj
-
-
-def backend_get_price_info(request, carwash_id, price_id):
-    print('\n########################DATA####################################\n')
-    data = request.form.to_dict()
-    print('data: ', data)
-    print('carwash_id: ', carwash_id)
-    print('price_id: ', price_id)
-    print('\n################################################################\n')
-
-    selected_category = request.form['category'] if 'category' in request.form else None
-    if selected_category is None:
-        return abort(404)
-    search = request.form['search-field']
-
-    print('selected_category: ', selected_category)
-    print('search: ', search)
-    price_obj = get_price(price_id)
-    for obj in price_obj.categoryPrice:
-        if obj.category == selected_category:
-            price_obj.categoryPrice = obj
-
-    basket = make_basket([price_obj])
-
-    context = {
-        'set_prices': [price_obj],
-        'basket': basket
-    }
-    return render_template('schedule/table_prices.html', context=context)
-
-
-
 
 
 def backend_add_price_to_order(request, carwash_id, price_id):

@@ -12,7 +12,7 @@ from flask import Blueprint, request, Response, render_template, g, session, red
 from flask_login import current_user
 
 from .view_schedule import create_carwash_order, view_schedule_of_certain_carwash, edit_carwash_order, \
-    get_costs_for_prices_by_carwash_id_and_category, backend_search_prices, \
+    backend_search_prices, \
     backend_add_price_to_order, backend_calculate_total, backend_remove_price_from_order, \
     backend_increment_price_in_order, backend_decrement_price_in_order
 from ..configuration.config import Config
@@ -53,10 +53,6 @@ def create_order_carwash(carwash_id):
 def edit_order_carwash(carwash_id):
     return edit_carwash_order(request, carwash_id)
 
-
-# @schedule_bp.route('/category_price_reload/', methods=['GET'])
-# def category_price_reload():
-#     return get_costs_for_prices_by_carwash_id_and_category(request)
 
 
 @schedule_bp.route('/search_prices/<string:carwash_id>', methods=['POST'])
