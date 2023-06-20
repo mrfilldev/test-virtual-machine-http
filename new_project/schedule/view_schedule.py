@@ -511,12 +511,15 @@ def backend_get_order_basket(request, carwash_id):
     print('\n################################################################\n')
 
     set_prices = []
-    #order_obj = get_order(order_id)
-    # for price in order_obj.order_basket:
-    #     price_obj = get_price(price._id)
-        # for obj in price_obj.categoryPrice:
-        #     if obj.category == selected_category:
-        #         price_obj.categoryPrice = obj
+    order_obj = get_order(data['order_id'])
+    for price in order_obj.order_basket:
+        price_obj = get_price(price._id)
+        for obj in price_obj.categoryPrice:
+            if obj.category == data['category']:
+                price_obj.categoryPrice = obj
+        #pretotal_price = int(price_obj.categoryPrice.sum)
+        #setattr(price_obj, 'amount', 1)
+        #setattr(price_obj, 'pretotal_price', pretotal_price)
 
     context = {
         'set_prices': set_prices
