@@ -153,8 +153,8 @@
                 url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
                 data: $('#user-form').serialize(),
                 success: function () {
-                    $('#Modal2').modal('toggle');
                     disable_to_modal_prices();
+                    $('#Modal2').modal('toggle');
                     reload();
                 }
             });
@@ -170,8 +170,8 @@
                 url: "{{ url_for('schedule_blueprint.edit_order_carwash', carwash_id=context.carwash._id) }}",
                 data: $('#user-form').serialize(),
                 success: function () {
-                    $('#Modal2').modal('toggle');
                     disable_to_modal_prices();
+                    $('#Modal2').modal('toggle');
                     reload();
                 }
             });
