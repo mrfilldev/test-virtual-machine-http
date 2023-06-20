@@ -190,7 +190,8 @@ def create_carwash_order(request, carwash_id):
     category = request.form['category']
     order_basket = get_order_basket_arr(data)
     print('order_basket: ', order_basket)
-    print('order_basket: ', json.dumps(order_basket, default=lambda x: x.__dict__))
+    print('order_basket: ', json.loads(json.dumps(order_basket, default=lambda x: x.__dict__)))
+
 
     contract_id = 'OWN'
     sum = 1000.0
