@@ -503,14 +503,15 @@ def get_order(order_id):
     return order_obj
 
 
-def backend_get_order_basket(request, carwash_id, order_id):
+def backend_get_order_basket(request, carwash_id):
     print('\n########################DATA####################################\n')
+    data = request.form.to_dict()
+    print('data: ', data)
     print('carwash_id: ', carwash_id)
-    print('order_id: ', order_id)
     print('\n################################################################\n')
 
     set_prices = []
-    order_obj = get_order(order_id)
+    #order_obj = get_order(order_id)
     for price in order_obj.order_basket:
         price_obj = get_price(price._id)
         # for obj in price_obj.categoryPrice:
