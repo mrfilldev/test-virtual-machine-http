@@ -240,8 +240,8 @@
             url: "{{ url_for('schedule_blueprint.calculate_total', carwash_id=context.carwash._id) }}",
             data: $('#user-form').serialize(),
             success: function (data) {
-                $('input[name="total-hidden"]').val(data.total_basket);
-                $('input[name="total-view"]').val(data.total_basket);
+                $('input[name="total-hidden"]').val(data.total);
+                $('input[name="total-view"]').val(data.total);
             }
         });
     }
