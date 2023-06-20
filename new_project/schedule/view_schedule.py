@@ -167,6 +167,8 @@ def create_carwash_order(request, carwash_id):
     carwash_obj = get_carwash_obj(carwash_id)
 
     order_id = uuid.uuid4().hex
+    order_user_name = data['order_user_name']
+    phone_number = data['phone_number']
     carwash_id = carwash_id
     network_id = carwash_obj.network_id
     box = request.form['box']
@@ -187,6 +189,8 @@ def create_carwash_order(request, carwash_id):
 
     order = {
         '_id': order_id,
+        'order_user_name': order_user_name,
+        'phone_number': phone_number,
         'CarWashId': carwash_id,
         'BoxNumber': box,
         'CarNumber': country_region_number,
