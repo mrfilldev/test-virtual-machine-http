@@ -177,6 +177,9 @@
     function disable_to_modal_prices() {
         $('.btn-close').on("click", function () {
             $("#user-form")[0].reset();
+            $("#table_prices_carwash tr").remove();
+            $('input[name="total-hidden"]').val('0');
+            $('input[name="total-view"]').val('0');
         });
     }
 
