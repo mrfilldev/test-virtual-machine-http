@@ -466,7 +466,6 @@ def backend_add_price_to_order(request, carwash_id, price_id):
 
     context = {
         'set_prices': arr_of_price,
-
     }
     return render_template('schedule/table_prices.html', context=context)
 
@@ -514,6 +513,7 @@ def backend_remove_price_from_order(request, carwash_id, price_id):
     context = {
         'set_prices': set_prices
     }
+    return render_template('schedule/table_prices.html', context=context)
 
 def backend_increment_price_in_order(request, carwash_id, price_id):
     print('\n########################DATA####################################\n')
