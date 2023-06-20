@@ -434,10 +434,6 @@ def calculate_prices(request, carwash_id, to_do):
     return context
 
 
-
-
-
-
 def backend_add_price_to_order(request, carwash_id, price_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
@@ -449,6 +445,7 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     for key, value in data.items():
         if 'amount_' in key:
             print('table is not empty')
+            return abort(404)  # уже существует
         else:
             print('table empty')
     # добавление в пустую таблицу заказа тарифа
@@ -458,13 +455,12 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     for obj in price_obj.categoryPrice:
         if obj.category == selected_category:
             price_obj.categoryPrice = obj
-    total_basket = price_obj.categoryPrice.sum
-    print('total_basket: ', total_basket)
+    pretotal_price = price_obj.categoryPrice.sum
+    print('pretotal_price: ', pretotal_price)
     arr_of_price = [price_obj]
 
     context = {
         'set_prices': arr_of_price,
-        'total_basket': total_basket,
+        'pretotal_price': pretotal_price,
     }
-
     return render_template('schedule/table_prices.html', context=context)
