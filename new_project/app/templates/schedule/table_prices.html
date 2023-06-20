@@ -18,20 +18,33 @@
     </td>
     <td class="count">
         <div class="input-group input-group-sm">
-            <button type="button" class="btn btn-outline-secondary" id="minus_{{price._id}}" onclick="calculate(this.id)">-</button>
+            <button type="button" class="btn btn-outline-secondary" id="minus_{{price._id}}"
+                    onclick="calculate(this.id)">-
+            </button>
             <input type="text" class="form-control"
                    name="amount_{{price._id}}"
                    value="0"
                    style="width: 75px; text-align: center">
-            <button type="button" class="btn btn-outline-secondary" id="plus_{{price._id}}" onclick="calculate(this.id)">+</button>
+            <button type="button" class="btn btn-outline-secondary" id="plus_{{price._id}}"
+                    onclick="calculate(this.id)">+
+            </button>
         </div>
     </td>
     <td>
 
     </td>
-
 </tr>
 {% endif %}
 {% endfor %}
-
+<tr>
+    <td>
+        <div class="input-group input-group-sm">
+            <span class="input-group-text">Итого &#8381:</span>
+            <input style="width: 100px" type="text" class="form-control"
+                   name="total-view" placeholder="0" disabled>
+            <input style="width: 100px" type="text" class="form-control"
+                   name="total-hidden" value="0" hidden="hidden">
+        </div>
+    </td>
+</tr>
 
