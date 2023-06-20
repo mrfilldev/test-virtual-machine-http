@@ -226,6 +226,8 @@ def edit_carwash_order(request, carwash_id):
     id_order = {'_id': request.form['order_id']}
     print('id_order: ', request.form['order_id'])
     set_fields = {'$set': {
+        'order_user_name': data['order_user_name'],
+        'phone_number': data['phone_number'],
         'BoxNumber': request.form['box'],
         'CarNumber': request.form['country_region_number'],
         'CarModel': request.form['car_model'],
