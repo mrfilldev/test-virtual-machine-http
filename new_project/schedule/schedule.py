@@ -82,8 +82,8 @@ def add_price_to_order(carwash_id, price_id):
 
 
 @schedule_bp.route('/calculate_total/<string:carwash_id>', methods=['POST'])
-def calculate_total(carwash_id, price_id):
-    return backend_calculate_total(request, carwash_id, price_id)
+def calculate_total(carwash_id):
+    return backend_calculate_total(request, carwash_id)
 
 
 

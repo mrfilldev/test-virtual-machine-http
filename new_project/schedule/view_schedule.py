@@ -470,12 +470,12 @@ def backend_add_price_to_order(request, carwash_id, price_id):
     return render_template('schedule/table_prices.html', context=context)
 
 
-def backend_calculate_total(request, carwash_id, price_id):
+def backend_calculate_total(request, carwash_id):
     print('\n########################DATA####################################\n')
     data = request.form.to_dict()
     print('data: ', data)
     print('carwash_id: ', carwash_id)
-    print('price_id: ', price_id)
+
     print('\n################################################################\n')
 
 
