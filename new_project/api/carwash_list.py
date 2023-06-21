@@ -23,7 +23,7 @@ def format_any_obj_id_to_Id(obj):
 
 def format_price_field(carwash_obj):
     print('carwash_obj.Price: ', carwash_obj.Price)
-    if carwash_obj.Price is '(не указано)':
+    if carwash_obj.Price == '(не указано)':
         carwash_obj.Price = []
     return carwash_obj
 
