@@ -19,7 +19,7 @@ def carwash_list_main():
 
         print('carwash_obj:\n')
         for attr, val in carwash_obj.__dict__.items():
-            print(f'attr:\n{attr}', f'val:{val}')
+            print(f'attr:    {attr}', f'val :    {val}')
         print('\n\n')
         array_of_carwashes.append(carwash_obj)
 
