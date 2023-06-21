@@ -48,12 +48,14 @@ def carwash_list_main():
     all_prices = db_prices.find({})
 
     array_of_prices = []
+    print('\n PRICES \n')
     for price in all_prices:
         data = json.loads(json_util.dumps(price))
         data = json.dumps(data, default=lambda x: x.__dict__)
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print(price_obj, '\n')
         array_of_prices.append(price_obj)
-
+    print('\n PRICES \n')
     array_of_carwashes = []
     print('\n#########')
     for carwash in all_carwashes:
