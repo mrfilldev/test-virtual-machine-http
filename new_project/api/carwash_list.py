@@ -64,7 +64,7 @@ def carwash_list_main():
         carwash_obj = format_everything(carwash_obj, array_of_prices)
 
         for attr, val in carwash_obj.__dict__.items():
-            print(f'attr:    {attr}\nval :    {val}\n')
+            print(f'{attr}:    {val}\n')
         array_of_carwashes.append(carwash_obj)
         print('\n\n\n\n\n')
     print('\n#########')
