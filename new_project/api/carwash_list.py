@@ -7,6 +7,7 @@ from ..db import database
 
 db_carwashes = database.col_carwashes
 db_prices = database.col_prices
+db_sets_of_prices = database.col_sets_of_prices
 
 
 def format_any_obj_id_to_Id(obj):
@@ -21,40 +22,56 @@ def format_any_obj_id_to_Id(obj):
     return obj
 
 
-def format_price_field(carwash_obj, array_of_prices):
+def format_price_field(carwash_obj, dict_of_prices_set):
     print('carwash_obj.Price: ', carwash_obj.Price)
     if carwash_obj.Price == '(не указано)':
         carwash_obj.Price = []
     else:
-        for price in array_of_prices:
-            if carwash_obj.Price == price._id:
-                carwash_obj.Price = price
+        for key, value in dict_of_prices_set:
+            if carwash_obj.Price == key:
+                carwash_obj.Price = value
                 break
     return carwash_obj
 
 
-def format_everything(carwash_obj, array_of_prices):
+def format_everything(carwash_obj, dict_of_prices_set):
     carwash_obj = format_any_obj_id_to_Id(carwash_obj)
     print('carwash_obj changed _id to Id: \n', carwash_obj)
 
-    carwash_obj = format_price_field(carwash_obj, array_of_prices)
+    carwash_obj = format_price_field(carwash_obj, dict_of_prices_set)
     print('carwash_obj formatted .Price: \n', carwash_obj)
 
     return carwash_obj
 
 
-def carwash_list_main():
-    all_carwashes = db_carwashes.find({})
-    all_prices = db_prices.find({})
-
-    array_of_prices = []
-    print('\n PRICES \n')
+def make_dict_of_set_with_prices(all_sets, all_prices):
+    dict_of_set_with_prices = {}
+    arr_all_sets = []
+    for prices_set in all_sets:
+        data = json.loads(json_util.dumps(prices_set))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        prices_set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        arr_all_sets.append(prices_set_obj)
+    arr_all_prices = []
     for price in all_prices:
         data = json.loads(json_util.dumps(price))
         data = json.dumps(data, default=lambda x: x.__dict__)
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print(price_obj, '\n')
-        array_of_prices.append(price_obj)
+        arr_all_prices.append(price_obj)
+
+    print('arr_all_sets: ', arr_all_sets)
+    print('arr_all_prices: ', arr_all_prices)
+
+    return dict_of_set_with_prices
+
+
+def carwash_list_main():
+    all_carwashes = db_carwashes.find({})
+    all_prices = db_prices.find({})
+    all_sets = db_sets_of_prices.find({})
+
+    dict_of_prices_set = make_dict_of_set_with_prices(all_sets, all_prices)
+
     print('\n PRICES \n')
     array_of_carwashes = []
     print('\n#########')
@@ -64,7 +81,7 @@ def carwash_list_main():
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('carwash_obj stock: \n', carwash_obj)
 
-        carwash_obj = format_everything(carwash_obj, array_of_prices)
+        carwash_obj = format_everything(carwash_obj, dict_of_prices_set)
 
         for attr, val in carwash_obj.__dict__.items():
             print(f'{attr}:    {val}\n')
