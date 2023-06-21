@@ -22,7 +22,7 @@ def format_carwash(all_carwashes):
         # print('AFTER: ', obj['Price'])
         array_of_carwashes.append(obj)
 
-    return
+    return array_of_carwashes
 
 
 def carwash_list_main():
