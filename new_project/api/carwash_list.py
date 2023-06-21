@@ -20,8 +20,8 @@ def format_carwash(all_carwashes):
         # метод получения всех требуемых данных:
         # print('BEFORE: ', obj['Price'])
         # obj['Price'] = make_price_corrrect_4_tanker(obj['Price'])
-        print('AFTER: ', obj['Price'])
-        array_of_carwashes.append(obj)
+        print('AFTER: ', obj)
+        #array_of_carwashes.append(obj)
 
     return array_of_carwashes
 
