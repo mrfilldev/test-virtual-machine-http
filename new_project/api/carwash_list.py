@@ -21,6 +21,20 @@ def format_any_obj_id_to_Id(obj):
     return obj
 
 
+def format_price_field(carwash_obj):
+    print('carwash_obj.Price: ', carwash_obj.Price)
+    return carwash_obj
+
+
+def format_everything(carwash_obj):
+    carwash_obj = format_any_obj_id_to_Id(carwash_obj)
+    print('carwash_obj changed _id to Id: \n', carwash_obj)
+
+    carwash_obj = format_price_field(carwash_obj)
+
+    return carwash_obj
+
+
 def carwash_list_main():
     all_carwashes = db_carwashes.find({})
     array_of_carwashes = []
@@ -31,8 +45,7 @@ def carwash_list_main():
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('carwash_obj stock: \n', carwash_obj)
 
-        carwash_obj = format_any_obj_id_to_Id(carwash_obj)
-        print('carwash_obj changed _id to Id: \n', carwash_obj)
+        carwash_obj = format_everything(carwash_obj)
 
         for attr, val in carwash_obj.__dict__.items():
             print(f'attr:    {attr}\nval :    {val}\n')
