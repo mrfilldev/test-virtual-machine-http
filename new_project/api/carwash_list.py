@@ -21,18 +21,22 @@ def format_any_obj_id_to_Id(obj):
     return obj
 
 
-def format_price_field(carwash_obj):
+def format_price_field(carwash_obj, array_of_prices):
     print('carwash_obj.Price: ', carwash_obj.Price)
     if carwash_obj.Price == '(не указано)':
         carwash_obj.Price = []
+    else:
+        for price in array_of_prices:
+            if carwash_obj.Price == price._id:
+                carwash_obj.Price = price
     return carwash_obj
 
 
-def format_everything(carwash_obj):
+def format_everything(carwash_obj, array_of_prices):
     carwash_obj = format_any_obj_id_to_Id(carwash_obj)
     print('carwash_obj changed _id to Id: \n', carwash_obj)
 
-    carwash_obj = format_price_field(carwash_obj)
+    carwash_obj = format_price_field(carwash_obj, array_of_prices)
     print('carwash_obj formatted .Price: \n', carwash_obj)
 
     return carwash_obj
@@ -40,6 +44,15 @@ def format_everything(carwash_obj):
 
 def carwash_list_main():
     all_carwashes = db_carwashes.find({})
+    all_prices = db_prices.find({})
+
+    array_of_prices = []
+    for price in all_prices:
+        data = json.loads(json_util.dumps(price))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        array_of_prices.append(price_obj)
+
     array_of_carwashes = []
     print('\n#########')
     for carwash in all_carwashes:
@@ -48,7 +61,7 @@ def carwash_list_main():
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('carwash_obj stock: \n', carwash_obj)
 
-        carwash_obj = format_everything(carwash_obj)
+        carwash_obj = format_everything(carwash_obj, array_of_prices)
 
         for attr, val in carwash_obj.__dict__.items():
             print(f'attr:    {attr}\nval :    {val}\n')
