@@ -35,7 +35,7 @@ def carwash_list_main():
         print('carwash_obj changed _id to Id: \n', carwash_obj)
 
         for attr, val in carwash_obj.__dict__.items():
-            print(f'attr:    {attr}     val :    {val}\n')
+            print(f'attr:    {attr}\nval :    {val}\n')
         array_of_carwashes.append(carwash_obj)
         print('\n\n\n\n\n')
     print('\n#########')
