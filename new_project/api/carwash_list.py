@@ -27,8 +27,10 @@ def rename_attributes_of_prices(price_obj):
     price_obj = rename_attributes(price_obj, 'costType', 'CostType')
     delattr(price_obj, 'set_id')
     delattr(price_obj, 'priceType')
-    delattr(price_obj, 'last_edit')
-
+    try:
+        delattr(price_obj, 'last_edit')
+    except AttributeError:
+        pass
     print(price_obj)
     return price_obj
 
