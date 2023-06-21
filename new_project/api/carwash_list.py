@@ -9,17 +9,16 @@ db_carwashes = database.col_carwashes
 db_prices = database.col_prices
 
 
-def format_carwash(all_carwashes):
-    array_of_carwashes = []
-    for obj in all_carwashes:
-        print(obj)
-        if '_id' in obj:
-            obj['Id'] = obj.pop('_id')
-        print('corrected_id: ', obj.Id, '\n')
+def format_carwash(carwash_obj):
+    print(carwash_obj)
+    setattr(carwash_obj, 'Id', carwash_obj._id)
+    delattr(carwash_obj, '_id')
 
-        #array_of_carwashes.append(obj)
+    print('corrected_id: ', carwash_obj, '\n')
 
-    return array_of_carwashes
+    #array_of_carwashes.append(obj)
+
+    return None
 
 
 def carwash_list_main():
