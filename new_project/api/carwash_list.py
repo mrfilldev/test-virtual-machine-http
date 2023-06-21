@@ -9,16 +9,16 @@ db_carwashes = database.col_carwashes
 db_prices = database.col_prices
 
 
-def format_carwash(carwash_obj):
-    print(carwash_obj)
-    setattr(carwash_obj, 'Id', carwash_obj._id)
-    delattr(carwash_obj, '_id')
-
-    print('corrected_id: ', carwash_obj, '\n')
-
-    #array_of_carwashes.append(obj)
-
-    return carwash_obj
+def format_any_obj_id_to_Id(obj):
+    '''
+    Format:
+    форматирование _id объекта бд
+    для API yan-tanker
+    '''
+    print(obj)
+    setattr(obj, 'Id', obj._id)
+    delattr(obj, '_id')
+    return obj
 
 
 def carwash_list_main():
@@ -29,11 +29,13 @@ def carwash_list_main():
         data = json.loads(json_util.dumps(carwash))
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print('carwash_obj: ', carwash_obj)
-        carwash_obj = format_carwash(carwash_obj)
-        print('carwash_obj: ', carwash_obj)
+        print('carwash_obj stock: \n', carwash_obj)
+
+        carwash_obj = format_any_obj_id_to_Id(carwash_obj)
+        print('carwash_obj changed _id to Id: \n', carwash_obj)
+
         for attr, val in carwash_obj.__dict__.items():
-            print(f'attr:    {attr}', f'\nval :    {val}\n')
+            print(f'attr:    {attr}     val :    {val}\n')
         array_of_carwashes.append(carwash_obj)
         print('\n\n\n\n\n')
     print('\n#########')
