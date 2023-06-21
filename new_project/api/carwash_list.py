@@ -29,6 +29,7 @@ def format_price_field(carwash_obj, array_of_prices):
         for price in array_of_prices:
             if carwash_obj.Price == price._id:
                 carwash_obj.Price = price
+                break
     return carwash_obj
 
 
