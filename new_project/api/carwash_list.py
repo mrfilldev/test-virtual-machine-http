@@ -25,7 +25,11 @@ def rename_attributes_of_prices(price_obj):
         print('categoryPrice: ', categoryPrice)
     price_obj = rename_attributes(price_obj, 'status', 'Status')
     price_obj = rename_attributes(price_obj, 'costType', 'CostType')
+    delattr(price_obj, 'set_id')
+    delattr(price_obj, 'priceType')
+    delattr(price_obj, 'last_edit')
 
+    print(price_obj)
     return price_obj
 
 
