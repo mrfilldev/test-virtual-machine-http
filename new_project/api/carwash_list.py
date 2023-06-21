@@ -20,9 +20,9 @@ def rename_attributes_of_prices(price_obj):
     price_obj = rename_attributes(price_obj, 'description', 'Description')
     price_obj = rename_attributes(price_obj, 'categoryPrice', 'CategoryList')
     for categoryPrice in price_obj.CategoryList:
-        print('categoryPrice: ', categoryPrice)
         categoryPrice = rename_attributes(categoryPrice, 'category', 'Category')
         categoryPrice = rename_attributes(categoryPrice, 'sum', 'Cost')
+        print('categoryPrice: ', categoryPrice)
 
     return price_obj
 
