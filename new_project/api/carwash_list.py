@@ -35,8 +35,6 @@ def rename_attributes_of_prices(price_obj):
     return price_obj
 
 
-
-
 def format_any_obj_id_to_Id(obj):
     '''
     Format:
@@ -118,6 +116,7 @@ def carwash_list_main():
         print('\n\n\n\n\n')
     print('\n#########')
     print('array_of_carwashes: ', array_of_carwashes)
+    return json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
 
 # def carwash_list_main():
 #     all_carwashes = db_carwashes.find({})
