@@ -9,8 +9,25 @@ db_carwashes = database.col_carwashes
 db_prices = database.col_prices
 
 
+def format_carwash(all_carwashes):
+    array_of_carwashes = []
+    for obj in all_carwashes:
+        print(obj)
+        if '_id' in obj:
+            obj['Id'] = obj.pop('_id')
+
+        print('BEFORE: ', obj['Price'])
+        # метод получения всех требуемых данных:
+        # obj['Price'] = make_price_corrrect_4_tanker(obj['Price'])
+        # print('AFTER: ', obj['Price'])
+        array_of_carwashes.append(obj)
+
+    return
+
+
 def carwash_list_main():
     all_carwashes = db_carwashes.find({})
+    all_carwashes = format_carwash(all_carwashes)
     array_of_carwashes = []
     for carwash in all_carwashes:
         data = json.loads(json_util.dumps(carwash))
