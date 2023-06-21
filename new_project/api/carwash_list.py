@@ -57,7 +57,9 @@ def make_dict_of_set_with_prices(all_sets):
             data = json.loads(json_util.dumps(price))
             data = json.dumps(data, default=lambda x: x.__dict__)
             price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+            price_obj = format_any_obj_id_to_Id(price_obj)
             arr_all_prices.append(price_obj)
+
         dict_of_set_with_prices[prices_set_obj._id] = arr_all_prices
         print('dict_of_set_with_prices: ', dict_of_set_with_prices)
 
