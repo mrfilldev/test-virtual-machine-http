@@ -15,12 +15,8 @@ def format_carwash(all_carwashes):
         print(obj)
         if '_id' in obj:
             obj['Id'] = obj.pop('_id')
+        print('corrected_id: ', obj.Id, '\n')
 
-        print('BEFORE: ', obj)
-        # метод получения всех требуемых данных:
-        # print('BEFORE: ', obj['Price'])
-        # obj['Price'] = make_price_corrrect_4_tanker(obj['Price'])
-        print('AFTER: ', obj)
         #array_of_carwashes.append(obj)
 
     return array_of_carwashes
