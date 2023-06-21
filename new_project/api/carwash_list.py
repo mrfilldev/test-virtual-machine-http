@@ -24,19 +24,19 @@ def format_carwash(all_carwashes):
 
 def carwash_list_main():
     all_carwashes = db_carwashes.find({})
-    all_carwashes = format_carwash(all_carwashes)
     array_of_carwashes = []
+    print('\n#########')
     for carwash in all_carwashes:
         data = json.loads(json_util.dumps(carwash))
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-
+        print('carwash_obj: ', carwash_obj)
+        carwash_obj = format_carwash(carwash_obj)
         print('carwash_obj: ', carwash_obj)
         for attr, val in carwash_obj.__dict__.items():
             print(f'attr:    {attr}', f'\nval :    {val}\n')
-        print('\n\n')
         array_of_carwashes.append(carwash_obj)
-
+        print('\n\n\n\n\n')
     print('\n#########')
     print('array_of_carwashes: ', array_of_carwashes)
 
