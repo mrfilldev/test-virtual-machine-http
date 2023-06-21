@@ -17,7 +17,7 @@ def carwash_list_main():
         data = json.dumps(data, default=lambda x: x.__dict__)
         carwash_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
 
-        print('carwash_obj:\n')
+        print('carwash_obj: ', carwash_obj)
         for attr, val in carwash_obj.__dict__.items():
             print(f'attr:    {attr}', f'\nval :    {val}\n')
         print('\n\n')
