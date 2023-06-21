@@ -18,7 +18,7 @@ def format_carwash(carwash_obj):
 
     #array_of_carwashes.append(obj)
 
-    return None
+    return carwash_obj
 
 
 def carwash_list_main():
