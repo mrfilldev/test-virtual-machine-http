@@ -212,6 +212,7 @@ def create_carwash_obj(request, g):
         print('data: ', new_carwash_dict)
         new_carwash_dict['network_id'] = g.user_db['networks'][0]
 
+        print(new_carwash_dict)
         database.col_carwashes.insert_one(new_carwash_dict)
         database.col_carwashes_admins.insert_one(
             {
@@ -462,6 +463,6 @@ def change_price_status(request, carwash_id):
 
 
 def carwash_delete(carwash_id):
-    database.col_carwashes.delete_one({'_id': carwash_id})
+    database.col_carwashes.delete_one({'Id': carwash_id})
     print('deleted carwash_id:', carwash_id)
     return redirect(url_for('carwash_blueprint.carwashes_list'))

@@ -199,7 +199,7 @@ class Point:  # enum.Enum):
 class Carwash:
     def __init__(self, id, enable, name, address, Location: Point,
                  Type, stepCost, limitMinCost, Boxes, Price, CarwashAdmin):
-        self.Id = id
+        self._id = id
         self.Enable = enable
         self.Name = name
         self.Address = address
