@@ -27,7 +27,7 @@ def format_price_field(carwash_obj, dict_of_prices_set):
     if carwash_obj.Price == '(не указано)':
         carwash_obj.Price = []
     else:
-        for key, value in dict_of_prices_set:
+        for key, value in dict_of_prices_set.items():
             if carwash_obj.Price == key:
                 carwash_obj.Price = value
                 break
