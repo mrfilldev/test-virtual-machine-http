@@ -10,6 +10,11 @@ db_prices = database.col_prices
 db_sets_of_prices = database.col_sets_of_prices
 
 
+def rename_attributes_of_prices(obj, old_name, new_name):
+    obj.__dict__[new_name] = obj.__dict__.pop(old_name)
+    return obj
+
+
 def format_any_obj_id_to_Id(obj):
     '''
     Format:
@@ -58,6 +63,7 @@ def make_dict_of_set_with_prices(all_sets):
             data = json.dumps(data, default=lambda x: x.__dict__)
             price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
             price_obj = format_any_obj_id_to_Id(price_obj)
+            price_obj = rename_attributes_of_prices(price_obj, 'name', 'Name')
             arr_all_prices.append(price_obj)
 
         dict_of_set_with_prices[prices_set_obj._id] = arr_all_prices
