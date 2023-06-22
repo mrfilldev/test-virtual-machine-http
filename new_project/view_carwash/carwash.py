@@ -40,7 +40,7 @@ def load_user():
 
 @carwash_bp.errorhandler(500)
 def page_not_found(e):
-    return render_template("error_page/500.html"), 404
+    return render_template("error_page/500.html"), 500
 
 
 @carwash_bp.route('/carwash_list', methods=['POST', 'GET'])
