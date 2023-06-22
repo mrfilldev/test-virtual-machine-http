@@ -31,12 +31,6 @@ def load_user():
     print('g.user_db: :', g.user_db)
 
 
-@profile_bp.app_errorhandler(500)
-def handle_500(err):
-    print('err: ', err)
-    return render_template('error_page/500.html'), err
-
-
 @profile_bp.route('/profile')
 def profile():
     # return 'Хотите стать клиентом - свяжитесь с нами'

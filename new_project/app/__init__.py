@@ -18,14 +18,13 @@ from ..prices.main import prices_bp
 app = Flask(__name__,
             static_url_path='',
             static_folder='static',
-            template_folder='templates'
+            template_folder='templates',
             )
 app.CSRF_ENABLED = True
 app.DEBUG = False
 
 bootstrap = Bootstrap(app)
-# login = LoginManager()
-# login.init_app(app)
+
 app.register_blueprint(api_bp)
 app.register_blueprint(admin_bp)
 app.register_blueprint(main_bp)
@@ -38,6 +37,7 @@ app.register_blueprint(box_panel_bp)
 app.register_blueprint(prices_bp)
 
 app.config['SECRET_KEY'] = Config.SECRET_KEY
+
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'

@@ -38,6 +38,11 @@ def load_user():
     print('g.user_db: :', g.user_db)
 
 
+@carwash_bp.errorhandler(500)
+def page_not_found():
+    return render_template("error_page/500.html"), 404
+
+
 @carwash_bp.route('/carwash_list', methods=['POST', 'GET'])
 def carwashes_list():
     return list_carwashes(g)
