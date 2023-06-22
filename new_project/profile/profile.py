@@ -64,3 +64,16 @@ def profile_worker():
 def profile_admin():
     # return 'Вы admin'
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+@profile_bp.app_template_filter()
+def format_role_user(value):
+    match value:
+        case 'admin':
+            return 'Администратор Мойдекс'
+        case 'carwash_owner':
+            return 'Владелец Сети'
+        case 'carwash_worker':
+            return 'Сотрудник мойки'
+        case _:
+            return value
