@@ -38,19 +38,16 @@
 <div class="row justify-content-center">
     <div class="col-2 text-center">
         <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-            {% if context.create_new == True %}
-            {% else %}
+            <a class="btn btn-outline-secondary disabled"
+               href="{{ url_for('order_blueprint.orders_list') }}">
+                        Заказы </a>
             <a class="btn btn-outline-secondary"
-               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
-                Расписание заказов
+               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
+                Наборы Тарифов
             </a>
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=context.carwash._id) }}">
+            <a class="btn btn-outline-secondary disabled"
+               href="#">
                 Панель состояния
-            </a>
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
-                Журнал заказов
             </a>
             <a class="btn btn-outline-secondary disabled"
                href="#">
@@ -61,10 +58,6 @@
                 Статистика
             </a>
             {% if g.user_db.role != 'network_worker' %}
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
-                Наборы Тарифов
-            </a>
             {% endif %}
             {% endif %}
         </div>

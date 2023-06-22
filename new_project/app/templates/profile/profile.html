@@ -6,8 +6,28 @@
 <div class="row justify-content-center">
     <div class="col-2 text-center">
         {% if g.user_db.role == 'network_owner' %}
+        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+                Расписание заказов
+            </a>
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
+                Списки Услуг
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="#">
+                Отчет
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="#">
+                Статистика
+            </a>
+        </div>
 
         {% elif g.user_db.role == 'network_worker' %}
+
+        {% elif g.user_db.role == 'admin' %}
 
         {% endif %}
     </div>
