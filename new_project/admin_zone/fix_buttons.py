@@ -160,7 +160,7 @@ def fix_sets():
     data = json.dumps(data, default=lambda x: x.__dict__)
     set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     print('order_obj: ', set_obj)
-    database.col_orders.update_one({'_id': set_obj._id}, {"$set": {
+    database.col_sets_of_prices.update_one({'_id': set_obj._id}, {"$set": {
         "network": '3a81c491fa9245dc9139049f9885ef57',
     }})
 
@@ -170,7 +170,7 @@ def fix_sets():
     data = json.dumps(data, default=lambda x: x.__dict__)
     set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
     print('order_obj: ', set_obj)
-    database.col_orders.update_one({'_id': set_obj._id}, {"$set": {
+    database.col_sets_of_prices.update_one({'_id': set_obj._id}, {"$set": {
         "network": '3a81c491fa9245dc9139049f9885ef57',
     }})
     return redirect(url_for('admin_blueprint.admin_main'))
