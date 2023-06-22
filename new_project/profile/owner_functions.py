@@ -38,7 +38,7 @@ def render_profile_owner(g):
     carwash_analys_dict = get_carwash_analys(carwashes)
 
     context = {}
-    return render_template('profile/profile_worker.html', context=context)
+    return render_template('profile/profile_owner.html', context=context)
 
 #
 # network = g.user_db['networks'][0]
