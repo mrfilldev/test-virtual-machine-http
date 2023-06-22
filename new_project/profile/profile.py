@@ -57,7 +57,7 @@ def profile_owner():
 @profile_bp.route('/profile_worker')
 def profile_worker():
     # return 'Вы сотрудник мойки'
-    return render_template('profile/profile_worker.html')
+    return render_template('profile/profile.html')
 
 
 @profile_bp.route('/admin')
