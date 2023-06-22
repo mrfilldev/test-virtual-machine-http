@@ -46,7 +46,7 @@ def serializing_set(set):
     return set_obj
 
 
-def show_list_sets_prices():
+def show_list_sets_prices(g_user_flask):
     all_sets = database.col_sets_of_prices.find({})
     sets_serialized = serializing_sets_collection(all_sets)
     print(sets_serialized)
@@ -78,7 +78,7 @@ def set_create(request, g_user_flask):
         database.col_sets_of_prices.insert_one(new_set)
 
     response = {'status': 'success'}
-    return jsonify(response)
+    return show_list_sets_prices(g_user_flask)
 
 
 def find_prices_with_set_id(set_id):

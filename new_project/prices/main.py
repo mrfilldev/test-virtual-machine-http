@@ -33,7 +33,7 @@ def load_user():
 
 @prices_bp.route('/list_sets_prices/', methods=['GET'])
 def list_sets_prices():
-    return show_list_sets_prices()
+    return show_list_sets_prices(g)
 
 
 @prices_bp.route('/new_set/', methods=['POST', 'GET'])
