@@ -49,6 +49,7 @@ def serializing_set(set):
 def show_list_sets_prices(g_user_flask):
     if 'networks' in g_user_flask.user_db:
         network = g_user_flask.user_db['networks'][0]
+        print('network: ', network)
         all_sets = database.col_sets_of_prices.find({'network': network})
     else:
         all_sets = database.col_sets_of_prices.find({})
