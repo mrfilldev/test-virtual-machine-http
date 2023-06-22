@@ -463,7 +463,12 @@ def change_price_status(request, carwash_id):
     return jsonify(response)
 
 
-def carwash_delete(carwash_id):
-    database.col_carwashes.delete_one({'_id': carwash_id})
-    print('deleted carwash_id:', carwash_id)
+def carwash_delete(carwash_id, g_user_info):
+    # database.col_carwashes.delete_one({'_id': carwash_id})
+    # print('deleted carwash_id:', carwash_id)
+    if g_user_info.user_db['role'] == 'admin' or g_user_info.user_db['role'] == 'network_owner':
+        set_fields = {'$set': {
+            "hidden", True
+        }}
+        database.col_carwashes.update_one({'_id': carwash_id}, set_fields)
     return redirect(url_for('carwash_blueprint.carwashes_list'))

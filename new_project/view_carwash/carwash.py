@@ -54,7 +54,7 @@ def prices_status(carwash_id):
 
 @carwash_bp.route('/delete_carwash/<string:carwash_id>', methods=['POST', 'GET'])
 def delete_carwash(carwash_id):
-    return carwash_delete(carwash_id)
+    return carwash_delete(carwash_id, g)
 
 
 @carwash_bp.app_template_filter()
