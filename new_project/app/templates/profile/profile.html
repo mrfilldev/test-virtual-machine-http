@@ -30,7 +30,7 @@
                         Имя:
                     </td>
                     <td>
-                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                        <input style="width: 350px" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_db.display_name }}">
                     </td>
                 </tr>
@@ -39,7 +39,7 @@
                         Логин:
                     </td>
                     <td>
-                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                        <input style="width: 350px" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_inf.login }}">
                     </td>
                 </tr>
@@ -48,7 +48,7 @@
                         Логин:
                     </td>
                     <td>
-                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                        <input style="width: 350px" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_inf.login }}">
                     </td>
                 </tr>
@@ -57,7 +57,7 @@
                         ИНН:
                     </td>
                     <td>
-                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                        <input style="width: 350px" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_db.inn }}">
                     </td>
                 </tr>
@@ -77,8 +77,8 @@
                         {{ i }}
                     </td>
                     <td>
-                        <input name="lon" style="width: 350px" type="text" class="form-control"
-                               required placeholder="longitude" value="{{ g.user_inf[i] }}">
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_inf[i] }}">
                     </td>
                 </tr>
                 {% endfor %}
@@ -88,7 +88,7 @@
                         {{ i }}
                     </td>
                     <td>
-                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                        <input style="width: 350px" type="text" class="form-control"
                                required placeholder="longitude" value="{{ g.user_db[i] }}">
                     </td>
                 </tr>
