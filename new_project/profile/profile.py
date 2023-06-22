@@ -17,12 +17,24 @@ profile_bp = Blueprint(
 
 @profile_bp.before_request
 def load_user():
+    if 'ya-token' in session:
+        resp = oauth_via_yandex.get_code(request)
+        for key in dict(session):
+            print(key, ":", session[key])
+        session['ya-token'] = resp['access_token']
+        print('ya-token has been inserted')
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     g.user_inf = user_inf
     print('g.user_inf: ', g.user_inf)
     user = database.col_users.find_one({'_id': user_inf['id']})
     g.user_db = user
     print('g.user_db: :', g.user_db)
+
+
+@profile_bp.app_errorhandler(500)
+def handle_500(err):
+    print('err: ', err)
+    return render_template('error_page/500.html'), err
 
 
 @profile_bp.route('/profile')
