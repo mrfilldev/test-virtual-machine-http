@@ -135,6 +135,10 @@ def remake_fix_box_number_value():
 def remake_fix_orders_fields():
     return fix_orders_fields()
 
+@admin_bp.route('/remake_fix_sets')
+def remake_fix_sets():
+    return fix_sets()
+
 
 ################################
 ################################

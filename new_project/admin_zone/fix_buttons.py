@@ -151,3 +151,26 @@ def fix_orders_fields():
             "order_basket": '',
         }})
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def fix_sets():
+    set_6265a8cb8aab49a6b9407256c1726441 = database.col_sets_of_prices.find_one(
+        {'_id': '6265a8cb8aab49a6b9407256c1726441'})
+    data = json.loads(json_util.dumps(set_6265a8cb8aab49a6b9407256c1726441))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print('order_obj: ', set_obj)
+    database.col_orders.update_one({'_id': set_obj._id}, {"$set": {
+        "network": '3a81c491fa9245dc9139049f9885ef57',
+    }})
+
+    set_e0df3de573e2421a9220ed952dc04808 = database.col_sets_of_prices.find_one(
+        {'_id': 'e0df3de573e2421a9220ed952dc04808'})
+    data = json.loads(json_util.dumps(set_e0df3de573e2421a9220ed952dc04808))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    set_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print('order_obj: ', set_obj)
+    database.col_orders.update_one({'_id': set_obj._id}, {"$set": {
+        "network": '3a81c491fa9245dc9139049f9885ef57',
+    }})
+    return redirect(url_for('admin_blueprint.admin_main'))
