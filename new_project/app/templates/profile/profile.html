@@ -15,65 +15,50 @@
         {% if g.user_db.role == 'network_owner' %}
 
         <main class="container-sm">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">Мойка</th>
-                    <th scope="col">Состояние</th>
-                    <th scope="col">Заказы за месяц:</th>
-                    <th scope="col">Сумма за месяц</th>
-                    <th scope="col">Сумма за сегодня</th>
-                    <th scope="col">Заказы за сегодня:</th>
-                </tr>
-                </thead>
-                <tbody class=".table-hover">
-
-                <tr class="tr-order" data-href="#">
-                    <th scope="row">
-                        ...
-                    </th>
-                    <td>
-                        ...
-                    </td>
-                    <td>
-                        ...
-                    </td>
-                    <td>
-                        ...
-                    </td>
-                    <td>
-                        ...
-                    </td>
-                    <td>
-                        ...
-                    </td>
-                    <td>
-                        ...
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-
-            Ваши данные: <br><br>
+            <br><br>
 
             <table class="table table-bordered table-center">
                 <thead class="table-light">
                 <tr>
-                    <th scope="col" colspan="2">g.user_db</th>
+                    <th scope="col" colspan="2">Личные данные:</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for i in g.user_db %}
                 <tr>
                     <td style="width: 200px">
-                        {{ i }}
+                        Имя:
                     </td>
                     <td>
                         <input name="lon" style="width: 350px" type="text" class="form-control"
-                               required placeholder="longitude" value="{{ g.user_db[i] }}">
+                               required placeholder="longitude" value="{{ g.user_db.display_name }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Логин:
+                    </td>
+                    <td>
+                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                               required placeholder="longitude" value="{{ g.user_inf.login }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Логин:
+                    </td>
+                    <td>
+                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                               required placeholder="longitude" value="{{ g.user_inf.login }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        ИНН:
+                    </td>
+                    <td>
+                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                               required placeholder="longitude" value="{{ g.user_db.inn }}">
                     </td>
                 </tr>
                 {% endfor %}
