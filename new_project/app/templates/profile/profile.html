@@ -24,7 +24,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in g.user_db %}
+
                 <tr>
                     <td style="width: 200px">
                         Имя:
@@ -61,10 +61,9 @@
                                required placeholder="longitude" value="{{ g.user_db.inn }}">
                     </td>
                 </tr>
-                {% endfor %}
                 </tbody>
             </table>
-
+            <br><br><br>
             <table class="table table-bordered table-center">
                 <thead class="table-light">
                 <tr>
@@ -80,6 +79,17 @@
                     <td>
                         <input name="lon" style="width: 350px" type="text" class="form-control"
                                required placeholder="longitude" value="{{ g.user_inf[i] }}">
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for i in g.user_db %}
+                <tr>
+                    <td style="width: 200px">
+                        {{ i }}
+                    </td>
+                    <td>
+                        <input name="lon" style="width: 350px" type="text" class="form-control"
+                               required placeholder="longitude" value="{{ g.user_db[i] }}">
                     </td>
                 </tr>
                 {% endfor %}
