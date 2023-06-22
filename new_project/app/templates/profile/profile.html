@@ -8,8 +8,8 @@
         {% if g.user_db.role == 'network_owner' %}
         <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
             <a class="btn btn-outline-secondary"
-               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
-                Расписание заказов
+               href="{{ url_for('order_blueprint.orders_list') }}">
+                Заказы
             </a>
             <a class="btn btn-outline-secondary"
                href="{{ url_for('prices_blueprint.list_sets_prices') }}">
