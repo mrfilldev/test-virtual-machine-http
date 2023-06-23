@@ -16,7 +16,7 @@
     <td>
         {{ order.Status | format_status_order}}
     </td>
-    {% if order.contract_id == 'OWN' %}
+    {% if order.ContractId == 'OWN' %}
         <td class="text-end">{{ order.order_basket | count_cost_bascket }}&#8381</td>
         <td></td>
         <td></td>
