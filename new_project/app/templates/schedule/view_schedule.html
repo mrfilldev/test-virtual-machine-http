@@ -148,6 +148,12 @@
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
+            $('#errmsg').text("");
+
+            if()
+                $('#errmsg').text("");
+                return;
+
             $.ajax({
                 type: 'POST',
                 url: "{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}",
@@ -156,6 +162,9 @@
                     $("#table_prices_carwash tr").remove();
                     $('#Modal2').modal('toggle');
                     reload();
+                },
+                error: function (jqXHR, textStatus) {
+                    $('#errmsg').text(textStatus);
                 }
             });
         });
@@ -527,6 +536,7 @@
                         </div>
                         <div class="col"></div>
                         <div class="col text-end">
+                            <div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
                             <button style="width: auto" id="create" name="create_button" type="submit"
                                     class="btn btn-outline-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
