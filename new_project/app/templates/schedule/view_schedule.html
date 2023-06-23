@@ -165,7 +165,9 @@
                     reload();
                 },
                 error: function (jqXHR, textStatus) {
-                    error_alerting('Nice, you triggered this alert message!', 'danger')
+                    error = JSON.parse(response.responseText)
+                    error_alerting(error.message, 'danger')
+                    error_alerting(textStatus, 'danger')
                 },
             });
         });

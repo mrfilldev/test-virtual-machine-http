@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, date
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template, jsonify, abort
+from flask import render_template, jsonify, abort, Response
 
 from new_project.db import database
 from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
@@ -165,7 +165,7 @@ def get_order_basket_arr(data):
     for key, value in data.items():
         if 'amount_' in key:
             price_id = key.split('_')[1]
-            basket_arr.append(basketItem(id=price_id, amount=int(data[key]), price=int(data['basecost_'+price_id])))
+            basket_arr.append(basketItem(id=price_id, amount=int(data[key]), price=int(data['basecost_' + price_id])))
     return basket_arr
 
 
@@ -192,13 +192,13 @@ def create_carwash_order(request, carwash_id):
         # print('order_basket: ', order_basket)
         # print('order_basket: ', json.loads(json.dumps(order_basket, default=lambda x: x.__dict__)))
 
-
         contract_id = 'OWN'
         Status = 'LocalOrder'
         date_created = datetime.now().isoformat()
         date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
                                        "%Y-%m-%d %H:%M").isoformat()
-        date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M").isoformat()
+        date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'],
+                                     "%Y-%m-%d %H:%M").isoformat()
 
         order = {
             '_id': order_id,
@@ -225,13 +225,10 @@ def create_carwash_order(request, carwash_id):
         database.col_orders.insert_one(order)
 
         # формирование ответа
-        response = {'status': 'success'}
+        response = jsonify(success=True)
     except Exception:
-        message = "заполните все необходимые поля"
-        response = {
-            'status': 'error',
-            'message': message,
-        }
+        error_message = json.dumps({'message': "Заполните все необходимые поля!"})
+        return abort(Response(error_message, 400))
     return jsonify(response)
 
 
@@ -529,6 +526,3 @@ def backend_get_order_basket(request, carwash_id):
         'set_prices': set_prices
     }
     return render_template('schedule/table_prices.html', context=context)
-
-
-
