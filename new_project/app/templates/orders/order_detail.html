@@ -25,20 +25,12 @@
         <div class="col-2">
             <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
                 {% if context['order'].Status == 'OrderCreated' %}
-                    <button style="width: auto" type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу
-                    </button>
-                    <button style="width: auto" type="submit" class="btn btn-outline-secondary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal_cancel" id="to_decline">Отменить заказ
-                    </button>
+                    <button  type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу</button>
+                    <button  type="button" class="btn btn-outline-secondary" id="to_decline">Отменить заказ</button>
                 {% elif context['order'].Status == 'Accepted' %}
-                    <button style="width: auto" type="submit" class="btn btn-outline-secondary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal_complete" id="to_complete">Подтвердить выполнение
-                    </button>
+                    <button type="button" class="btn btn-outline-secondary" id="to_complete">Подтвердить выполнение</button>
                 {% endif %}
             </div>
-
         </div>
         <div class="col-10">
             <main class="container-sm">
