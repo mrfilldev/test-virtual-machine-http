@@ -227,7 +227,7 @@ def create_carwash_order(request, carwash_id):
         # формирование ответа
         response = jsonify(success=True)
     except Exception:
-        error_message = json.dumps({'message': "Заполните все необходимые поля!"})
+        error_message = "Заполните все необходимые поля!"
         return abort(Response(error_message, 400))
     return jsonify(response)
 
