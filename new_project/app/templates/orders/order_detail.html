@@ -3,20 +3,26 @@
 {% block body %}
 <script>
     $(document).ready(function () {
-     buttons();
+        accept();
+        decline();
+        complete();
     });
-
-    function buttons() {
-        $('#to_accept').click(function (){
+    function accept() {
+        $('#to_accept').click(function () {
             $('#modal_accept').modal('show');
         });
-        $('#to_decline').click(function (){
+    }
+    function decline() {
+        $('#to_decline').click(function () {
             $('#modal_cancel').modal('show');
         });
+    }
+    function complete() {
         $('#to_complete').click(function (){
             $('#modal_complete').modal('show');
         });
     }
+
 </script>
 
 <br>
