@@ -71,9 +71,9 @@ def count_cost_bascket(bascket):
 def format_ContractId(value):
     match value:
         case 'OWN':
-            return "Локальный заказ"
+            return "Собственный заказ"
         case 'YARU':
-            return "Сторонний заказ"
+            return "Внешний заказ"
         case _:
             return value
 
