@@ -151,6 +151,7 @@
     }
 
     function send_order() {
+        $("#liveAlertPlaceholder").innerHTML = "";
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
@@ -196,6 +197,7 @@
             $('input[name="total-view"]').val('0');
             $('#search_field-result').empty();
             $('input[name=search-field]').val('');
+            $("#liveAlertPlaceholder").innerHTML = "";
         });
     }
 
