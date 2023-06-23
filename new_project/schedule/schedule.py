@@ -26,12 +26,6 @@ schedule_bp = Blueprint(
 
 @schedule_bp.before_request
 def load_user():
-    if 'ya-token' in session:
-        resp = oauth_via_yandex.get_code(request)
-        for key in dict(session):
-            print(key, ":", session[key])
-        session['ya-token'] = resp['access_token']
-        print('ya-token has been inserted')
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
     g.user_inf = user_inf
     print('g.user_inf: ', g.user_inf)
