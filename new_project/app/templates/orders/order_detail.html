@@ -117,7 +117,7 @@
         </div>
     </div>
 </div>
-{% endblock %}
+
 
 
 <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
@@ -144,7 +144,6 @@
                 <a class="btn btn-outline-danger"
                    href="{{ url_for('order_blueprint.order_cancel', order_id=context.order._id) }}">Отменить
                 </a>
-
             </div>
         </div>
     </div>
@@ -208,3 +207,5 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
