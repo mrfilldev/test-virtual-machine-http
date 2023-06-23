@@ -125,10 +125,6 @@
                                        value="{{ context['order'].Sum | format_space_numbers }}&#8381">
                             </td>
                             {% endif %}
-                            <td>
-                                Адрес: <input style="width: 100%" width="20%" type="text" class="form-control"
-                                       value="{{ context.carwash.Address }}">
-                            </td>
                         </tr>
                         {% if context['order'].ContractId == 'OWN' %}{% else %}
                         <tr>
