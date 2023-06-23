@@ -228,7 +228,10 @@ def create_carwash_order(request, carwash_id):
         response = {'status': 'success'}
     except Exception:
         message = "заполните все необходимые поля"
-        response = {'message': message, 'status': 'error'}
+        response = {
+            'status': 'error',
+            'message': message,
+        }
     return jsonify(response)
 
 
@@ -509,7 +512,6 @@ def backend_get_order_basket(request, carwash_id):
     print('data: ', data)
     print('carwash_id: ', carwash_id)
     print('\n################################################################\n')
-
     set_prices = []
     order_obj = get_order(data['order_id'])
     if order_obj is None:
@@ -523,7 +525,6 @@ def backend_get_order_basket(request, carwash_id):
         setattr(price_obj, 'amount', price.amount)
         setattr(price_obj, 'pretotal_price', pretotal_price)
         set_prices.append(price_obj)
-
     context = {
         'set_prices': set_prices
     }
