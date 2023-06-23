@@ -105,10 +105,31 @@
                             <td style="width: 200px">
                                 Сумма заказа:
                             </td>
+                            {% if order.ContractId == 'OWN' %}
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
+                                       value="{{ order.order_basket | count_cost_bascket }}&#8381">
                             </td>
+                            {% else %}
+                            <td>
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{'%0.2f'| format(order.Sum|float)}}&#8381">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Сумма списания:</td>
+                            <td class="text-end">
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{'%0.2f'| format(order.SumCompleted|float)}}&#8381">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Выплачено партнеру:</td>
+                            <td class="text-end">
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381">
+                            </td>
+                            {% endif %}
                         </tr>
                         </tbody>
                     </table>
@@ -117,7 +138,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
