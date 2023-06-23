@@ -165,8 +165,6 @@
                     reload();
                 },
                 error: function (jqXHR, textStatus) {
-                    error = JSON.parse(response.responseText)
-                    error_alerting(error.message, 'danger')
                     error_alerting(textStatus, 'danger')
                 },
             });
