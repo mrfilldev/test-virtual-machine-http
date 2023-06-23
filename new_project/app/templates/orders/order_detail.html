@@ -5,11 +5,23 @@
 <div class="container">
     <div class="row">
         <div class="col-2">
-            Ссылки:
-
-            <ul>
-                <li>ссылки</li>
-            </ul>
+            <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+                {% if context['order'].Status == 'OrderCreated' %}
+                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal_accept">Принять в работу
+                    </button>
+                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal_cancel">Отменить заказ
+                    </button>
+                {% elif context['order'].Status == 'Accepted' %}
+                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal_complete">Подтвердить выполнение
+                    </button>
+                {% endif %}
+            </div>
 
         </div>
         <div class="col-10">
@@ -31,7 +43,7 @@
                                 <input style="width: 100%" width="20%" type="text" class="form-control"
                                        value="{{ context.carwash.Address }}">
                             </td>
-                            <td rowspan="5">
+                            <td rowspan="6">
                                 {% if context.carwash == None %}
                                 <img src="https://static-maps.yandex.ru/1.x/?ll=37.620070,55.753630&spn=0.1,0.1&l=map&size=500,450">
                                 {% else %}
@@ -77,88 +89,78 @@
                                 <input style="width: 100%" type="text" class="form-control"
                                        value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
                             </td>
-                            <td class="align-right">
-                                {% if context['order'].Status == 'OrderCreated' %}
-                                <div class="container align-right">
-                                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modal_accept">Принять в работу
-                                    </button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modal_cancel">Отменить заказ
-                                    </button>
-                                </div>
-                                <!-- Модальное окно -->
-                                <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
-                                     data-bs-keyboard="false" tabindex="-1"
-                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel3">Отмена заказа
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Закрыть"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Прежде чем отменить заказ:<br>
-                                                УБЕДИТЕСЬ В СВОЕМ ДЕЙСТВИИ
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                    Закрыть
-                                                </button>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
-                                                <a class="btn btn-outline-danger"
-                                                   href="{{ url_for('order_blueprint.order_cancel', order_id=context.order._id) }}">Отменить
-                                                </a>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Модальное окно -->
-                                <div class="modal fade" id="modal_accept" data-bs-backdrop="static"
-                                     data-bs-keyboard="false" tabindex="-1"
-                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Прием в работу
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Закрыть"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Прежде чем подтвердить заказ:<br>
-                                                УБЕДИТЕСЬ В ВЕРНОСТИ КАТЕГОРИИ АВТО
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                    Закрыть
-                                                </button>
+<div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel3">Отмена заказа
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                Прежде чем отменить заказ:<br>
+                УБЕДИТЕСЬ В СВОЕМ ДЕЙСТВИИ
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Закрыть
+                </button>
 
-                                                <a class="btn btn-outline-success"
-                                                   href="{{ url_for('order_blueprint.order_accept', order_id=context.order._id) }}">Принять
-                                                </a>
+                <a class="btn btn-outline-danger"
+                   href="{{ url_for('order_blueprint.order_cancel', order_id=context.order._id) }}">Отменить
+                </a>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% elif context['order'].Status == 'Accepted' %}
-                                <div class="container align-right">
-                                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modal_complete">Подтвердить выполнение
-                                    </button>
-                                </div>
-                                <!-- Модальное окно -->
-                                <div class="modal fade" id="modal_complete" data-bs-backdrop="static"
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Модальное окно -->
+<div class="modal fade" id="modal_accept" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Прием в работу
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                Прежде чем подтвердить заказ:<br>
+                УБЕДИТЕСЬ В ВЕРНОСТИ КАТЕГОРИИ АВТО
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Закрыть
+                </button>
+
+                <a class="btn btn-outline-success"
+                   href="{{ url_for('order_blueprint.order_accept', order_id=context.order._id) }}">Принять
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_complete" data-bs-backdrop="static"
                                      data-bs-keyboard="false" tabindex="-1"
                                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -179,24 +181,10 @@
                                                 </button>
 
                                                 <a href="{{ url_for('order_blueprint.order_complete', order_id=context.order._id) }}"
-                                                        class="btn btn-outline-success">Заказ выполнен
+                                                   class="btn btn-outline-success">Заказ выполнен
                                                 </a>
 
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-
-
+                            </div>
