@@ -63,12 +63,6 @@
                                 <input style="width: 100%" type="text" class="form-control"
                                        value="{{ context['order'].ContractId | format_ContractId }}">
                             </td>
-                            <td>
-                                Адрес: {{ context.carwash.Address }}
-                            </td>
-                            <td>
-                                Бокс: {{ context['order'].BoxNumber }}
-                            </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">
@@ -81,11 +75,10 @@
                         </tr>
                         <tr>
                             <td style="width: 200px">
-                                Источник заказа:
+
                             </td>
                             <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].ContractId | format_ContractId }}">
+
                             </td>
                             <td rowspan="6" colspan="2">
                                 {% if context.carwash == None %}
