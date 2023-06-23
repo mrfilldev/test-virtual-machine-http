@@ -72,7 +72,7 @@ def format_ContractId(value):
     match value:
         case 'OWN':
             return "Локальный заказ"
-        case 'PerMinute':
+        case 'YARU':
             return "Сторонний заказ"
         case _:
             return value
