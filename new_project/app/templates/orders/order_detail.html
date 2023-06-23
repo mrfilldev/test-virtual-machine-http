@@ -1,24 +1,40 @@
 {% extends "base.html" %}
 
 {% block body %}
+<script>
+    $(document).ready(function () {
+     buttons();
+    });
+
+    function buttons() {
+        $('#to_accept').click(function (){
+            $('#modal_accept').modal('toggle');
+        });
+        $('#to_decline').click(function (){
+            $('#modal_cancel').modal('toggle');
+        });
+        $('#to_complete').click(function (){
+            $('#modal_complete').modal('toggle');
+        });
+    }
+</script>
+
 <br>
 <div class="container">
     <div class="row">
         <div class="col-2">
             <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
                 {% if context['order'].Status == 'OrderCreated' %}
-                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal_accept">Принять в работу
+                    <button style="width: auto" type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу
                     </button>
-                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
+                    <button style="width: auto" type="submit" class="btn btn-outline-secondary"
                             data-bs-toggle="modal"
-                            data-bs-target="#modal_cancel">Отменить заказ
+                            data-bs-target="#modal_cancel" id="to_decline">Отменить заказ
                     </button>
                 {% elif context['order'].Status == 'Accepted' %}
-                    <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
+                    <button style="width: auto" type="submit" class="btn btn-outline-secondary"
                             data-bs-toggle="modal"
-                            data-bs-target="#modal_complete">Подтвердить выполнение
+                            data-bs-target="#modal_complete" id="to_complete">Подтвердить выполнение
                     </button>
                 {% endif %}
             </div>
