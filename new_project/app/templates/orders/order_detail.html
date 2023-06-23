@@ -108,26 +108,26 @@
                             {% if context['order'].ContractId == 'OWN' %}
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].order_basket | count_cost_bascket }}&#8381">
+                                       value="{{ (context['order'].order_basket | count_cost_bascket) | format_space_numbers  }}&#8381">
                             </td>
                             {% else %}
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['order'].Sum|float)}}&#8381">
+                                       value="{{ context['order'].Sum | format_space_numbers )}}&#8381">
                             </td>
                         </tr>
                         <tr>
                             <td>Сумма списания:</td>
                             <td class="text-end">
                                 <input style="width: 100%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['order'].SumCompleted|float)}}&#8381">
+                                       value="{{ context['order'].SumCompleted | format_space_numbers }}&#8381">
                             </td>
                         </tr>
                         <tr>
                             <td>Выплачено партнеру:</td>
                             <td class="text-end">
                                 <input style="width: 100%" type="text" class="form-control"
-                                       value="{{'%0.2f'| format(context['order'].SumPaidStationCompleted|float)}}&#8381">
+                                       value="{{ context['order'].SumPaidStationCompleted | format_space_numbers }}&#8381">
                             </td>
                             {% endif %}
                         </tr>
