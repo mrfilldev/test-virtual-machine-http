@@ -23,7 +23,7 @@
         <td class="text-end">{{ order.order_basket | count_cost_bascket }}&#8381</td>
     {% else %}
         <td class="text-end">
-            {{'%0.2f'| (format(order.Sum|float)|format_space_numbers)}}&#8381
+            {{'%0.2f'| format(order.Sum|float)|format_space_numbers }}&#8381
         </td>
     {% endif %}
 </tr>
