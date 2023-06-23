@@ -82,6 +82,10 @@
                                 <input style="width: 100%" width="20%" type="text" class="form-control"
                                        value="{{ context.carwash.Address }}">
                             </td>
+                            <td>
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{ context['order'].BoxNumber }}">
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">
@@ -90,10 +94,6 @@
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
                                        value="{{ context['order'].ContractId | format_ContractId }}">
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].BoxNumber }}">
                             </td>
                         </tr>
                         <tr>
