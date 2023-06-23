@@ -165,7 +165,7 @@
                     reload();
                 },
                 error: function (jqXHR, textStatus) {
-                    error_alerting(textStatus.message, 'danger')
+                    error_alerting(textStatus.code, 'danger')
                 },
             });
         });
