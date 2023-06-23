@@ -151,7 +151,7 @@
     }
 
     function send_order() {
-        $("#liveAlertPlaceholder").innerHTML = "";
+        $("#liveAlertPlaceholder").html("");
         $('#create').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.create_order_carwash', carwash_id=context.carwash._id) }}");
@@ -173,6 +173,7 @@
     }
 
     function edit_order() {
+        $("#liveAlertPlaceholder").html("");
         $('#edit').click(function (event) {
             event.preventDefault();
             console.log("{{ url_for('schedule_blueprint.edit_order_carwash', carwash_id=context.carwash._id) }}");
@@ -184,7 +185,10 @@
                     $("#table_prices_carwash tr").remove();
                     $('#Modal2').modal('toggle');
                     reload();
-                }
+                },
+                error: function (jqXHR) {
+                    error_alerting(jqXHR.responseText, 'danger')
+                },
             });
         });
     }
@@ -197,7 +201,7 @@
             $('input[name="total-view"]').val('0');
             $('#search_field-result').empty();
             $('input[name=search-field]').val('');
-            $("#liveAlertPlaceholder").innerHTML = "";
+            $("#liveAlertPlaceholder").html("");
         });
     }
 
