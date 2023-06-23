@@ -80,4 +80,5 @@ def format_ContractId(value):
 
 @order_bp.app_template_filter()
 def format_space_numbers(value):
-    return '{:,}'.format(value).replace(',', ' ')
+    ans = '{0:,}'.format(value).replace(',', ' ')
+    return ans
