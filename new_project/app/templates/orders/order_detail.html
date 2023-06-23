@@ -7,19 +7,25 @@
         decline();
         complete();
     });
+
     function accept() {
         $('#to_accept').click(function () {
             $('#modal_accept').modal('show');
+            console.log('accept');
         });
     }
+
     function decline() {
         $('#to_decline').click(function () {
             $('#modal_cancel').modal('show');
+            console.log('cancel');
         });
     }
+
     function complete() {
-        $('#to_complete').click(function (){
+        $('#to_complete').click(function () {
             $('#modal_complete').modal('show');
+            console.log('complete');
         });
     }
 
@@ -31,10 +37,10 @@
         <div class="col-2">
             <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
                 {% if context['order'].Status == 'OrderCreated' %}
-                    <button  type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу</button>
-                    <button  type="button" class="btn btn-outline-secondary" id="to_decline">Отменить заказ</button>
+                <button type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу</button>
+                <button type="button" class="btn btn-outline-secondary" id="to_decline">Отменить заказ</button>
                 {% elif context['order'].Status == 'Accepted' %}
-                    <button type="button" class="btn btn-outline-secondary" id="to_complete">Подтвердить выполнение</button>
+                <button type="button" class="btn btn-outline-secondary" id="to_complete">Подтвердить выполнение</button>
                 {% endif %}
             </div>
         </div>
@@ -175,30 +181,30 @@
 </div>
 
 <div class="modal fade" id="modal_complete" data-bs-backdrop="static"
-                                     data-bs-keyboard="false" tabindex="-1"
-                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel2">Подтвердить выполнение
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Закрыть"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ДАЛЕЕ ЗАКАЗ СЧИТАЕТСЯ ВЫПОЛНЕННЫМ
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                    Закрыть
-                                                </button>
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel2">Подтвердить выполнение
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                ДАЛЕЕ ЗАКАЗ СЧИТАЕТСЯ ВЫПОЛНЕННЫМ
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Закрыть
+                </button>
 
-                                                <a href="{{ url_for('order_blueprint.order_complete', order_id=context.order._id) }}"
-                                                   class="btn btn-outline-success">Заказ выполнен
-                                                </a>
+                <a href="{{ url_for('order_blueprint.order_complete', order_id=context.order._id) }}"
+                   class="btn btn-outline-success">Заказ выполнен
+                </a>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
+            </div>
+        </div>
+    </div>
+</div>
