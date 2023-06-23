@@ -57,3 +57,9 @@ def order_complete(order_id):
 def order_cancel(order_id):
     cancel_order(order_id)
     return redirect(url_for('order_blueprint.orders_list'))
+
+
+@order_bp.app_template_filter()
+def count_cost_bascket(value):
+    print(value)
+    return value

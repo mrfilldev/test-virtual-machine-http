@@ -16,16 +16,21 @@
     <td>
         {{ order.Status | format_status_order}}
     </td>
+    {% if order.contract_id == 'OWN' %}
+        <td class="text-end">{{ order.order_basket | count_cost_bascket }}&#8381</td>
+        <td></td>
+        <td></td>
+    {% else %}
+        <td class="text-end">
+            {{'%0.2f'| format(order.Sum|float)}}&#8381
 
-    <td class="text-end">
-        {{'%0.2f'| format(order.Sum|float)}}&#8381
-
-    </td>
-    <td class="text-end">
-        {{'%0.2f'| format(order.SumCompleted|float)}}&#8381
-    </td>
-    <td class="text-end">
-        {{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381
-    </td>
+        </td>
+        <td class="text-end">
+            {{'%0.2f'| format(order.SumCompleted|float)}}&#8381
+        </td>
+        <td class="text-end">
+            {{'%0.2f'| format(order.SumPaidStationCompleted|float)}}&#8381
+        </td>
+    {% endif %}
 </tr>
 {% endfor %}
