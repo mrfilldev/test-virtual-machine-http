@@ -64,18 +64,10 @@
                                        value="{{ context['order'].ContractId | format_ContractId }}">
                             </td>
                             <td>
-                                Адрес:
+                                Адрес: {{ context.carwash.Address }}
                             </td>
                             <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context.carwash.Address }}">
-                            </td>
-                            <td>
-                                Бокс:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].BoxNumber }}">
+                                Бокс: {{ context['order'].BoxNumber }}
                             </td>
                         </tr>
                         <tr>
