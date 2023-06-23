@@ -175,58 +175,60 @@ def create_carwash_order(request, carwash_id):
     print(data, carwash_id)
     print('\n################################################################\n')
     # обработка данных
-    carwash_obj = get_carwash_obj(carwash_id)
+    try:
+        carwash_obj = get_carwash_obj(carwash_id)
 
-    order_id = uuid.uuid4().hex
-    order_user_name = data['order_user_name']
-    phone_number = data['phone_number']
-    carwash_id = carwash_id
-    network_id = carwash_obj.network_id
-    box = request.form['box']
-    country_region_number = request.form['country_region_number']
-    car_brand = request.form['car_brand']
-    car_model = request.form['car_model']
-    category = request.form['category']
-    order_basket = json.loads(json.dumps(get_order_basket_arr(data), default=lambda x: x.__dict__))
-    # print('order_basket: ', order_basket)
-    # print('order_basket: ', json.loads(json.dumps(order_basket, default=lambda x: x.__dict__)))
+        order_id = uuid.uuid4().hex
+        order_user_name = data['order_user_name']
+        phone_number = data['phone_number']
+        carwash_id = carwash_id
+        network_id = carwash_obj.network_id
+        box = request.form['box']
+        country_region_number = request.form['country_region_number']
+        car_brand = request.form['car_brand']
+        car_model = request.form['car_model']
+        category = request.form['category']
+        order_basket = json.loads(json.dumps(get_order_basket_arr(data), default=lambda x: x.__dict__))
+        # print('order_basket: ', order_basket)
+        # print('order_basket: ', json.loads(json.dumps(order_basket, default=lambda x: x.__dict__)))
 
 
-    contract_id = 'OWN'
-    Status = 'LocalOrder'
-    date_created = datetime.now().isoformat()
-    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
-                                   "%Y-%m-%d %H:%M").isoformat()
-    date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M").isoformat()
+        contract_id = 'OWN'
+        Status = 'LocalOrder'
+        date_created = datetime.now().isoformat()
+        date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
+                                       "%Y-%m-%d %H:%M").isoformat()
+        date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'], "%Y-%m-%d %H:%M").isoformat()
 
-    order = {
-        '_id': order_id,
-        'order_basket': order_basket,
-        'order_user_name': order_user_name,
-        'phone_number': phone_number,
-        'CarWashId': carwash_id,
-        'BoxNumber': box,
-        'CarNumber': country_region_number,
-        'CarModel': car_model,
-        'CarBrand': car_brand,
-        'Category': category,
-        'ContractId': contract_id,
-        'Sum': sum,
-        'Status': Status,
-        'DateCreate': date_created,
-        'DateStart': date_start,
-        'DateEnd': date_end,
-        'SumCompleted': sum_completed,
-        'SumPaidStationCompleted': sum_paid_station_completed,
-        'network_id': network_id,
-    }
+        order = {
+            '_id': order_id,
+            'order_basket': order_basket,
+            'order_user_name': order_user_name,
+            'phone_number': phone_number,
+            'CarWashId': carwash_id,
+            'BoxNumber': box,
+            'CarNumber': country_region_number,
+            'CarModel': car_model,
+            'CarBrand': car_brand,
+            'Category': category,
+            'ContractId': contract_id,
+            'Sum': sum,
+            'Status': Status,
+            'DateCreate': date_created,
+            'DateStart': date_start,
+            'DateEnd': date_end,
+            'network_id': network_id,
+        }
 
-    print('Writing into DB')
-    print(order)
-    database.col_orders.insert_one(order)
+        print('Writing into DB')
+        print(order)
+        database.col_orders.insert_one(order)
 
-    # формирование ответа
-    response = {'status': 'success'}
+        # формирование ответа
+        response = {'status': 'success'}
+    except Exception as e:
+        message = "заполните все необходимые поля"
+        response = {'message': message, 'status': 'error'}
     return jsonify(response)
 
 
