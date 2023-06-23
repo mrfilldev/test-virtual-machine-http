@@ -226,7 +226,7 @@ def create_carwash_order(request, carwash_id):
 
         # формирование ответа
         response = {'status': 'success'}
-    except Exception as e:
+    except Exception:
         message = "заполните все необходимые поля"
         response = {'message': message, 'status': 'error'}
     return jsonify(response)
