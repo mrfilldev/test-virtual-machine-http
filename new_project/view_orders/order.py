@@ -80,7 +80,7 @@ def format_ContractId(value):
 
 @order_bp.app_template_filter()
 def format_space_numbers(value):
-    ans = '{0:,}'.format(value).replace(',', ' ')
+    ans = '{0:,}'.format(value).replace(',', ' ') + '0'
     print('ans: ', ans, type(ans))
 
     return ans
