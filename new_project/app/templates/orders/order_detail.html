@@ -51,7 +51,7 @@
                     <table class="table table-bordered table-center align-middle">
                         <thead class="table-light">
                         <tr>
-                            <th scope="col" colspan="4">Заказ</th>
+                            <th scope="col" colspan="6">Заказ</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -67,20 +67,20 @@
                                 Адрес:
                             </td>
                             <td>
-                                Бокс:
+                                <input style="width: 100%" width="20%" type="text" class="form-control"
+                                       value="{{ context.carwash.Address }}">
                             </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
+                            <td>
                                 Бокс:
                             </td>
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
                                        value="{{ context['order'].BoxNumber }}">
                             </td>
-                            <td>
-                                <input style="width: 100%" width="20%" type="text" class="form-control"
-                                       value="{{ context.carwash.Address }}">
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Бокс:
                             </td>
                             <td>
                                 <input style="width: 100%" type="text" class="form-control"
