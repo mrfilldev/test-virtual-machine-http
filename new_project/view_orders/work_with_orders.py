@@ -12,7 +12,7 @@ from ..configuration.config import Sqs_params
 client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
-page_size = 10
+page_size = 25
 
 
 def list_orders(g_user_flask):
