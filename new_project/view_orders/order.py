@@ -60,6 +60,8 @@ def order_cancel(order_id):
 
 
 @order_bp.app_template_filter()
-def count_cost_bascket(value):
-    print(value)
-    return value
+def count_cost_bascket(bascket):
+    total_cost = 0
+    for obj in bascket:
+        total_cost += obj.amount * obj.price
+    return float(total_cost)
