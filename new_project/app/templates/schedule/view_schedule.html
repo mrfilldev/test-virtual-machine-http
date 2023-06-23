@@ -164,8 +164,8 @@
                     $('#Modal2').modal('toggle');
                     reload();
                 },
-                error: function (jqXHR, textStatus) {
-                    error_alerting(textStatus.responseText, 'danger')
+                error: function (jqXHR) {
+                    error_alerting(jqXHR.responseText, 'danger')
                 },
             });
         });
