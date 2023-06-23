@@ -51,7 +51,7 @@
                     <table class="table table-bordered table-center align-middle">
                         <thead class="table-light">
                         <tr>
-                            <th scope="col" colspan="6">Заказ</th>
+                            <th scope="col" colspan="6">Заказ  CarNumber='', CarBrand='', CarModel='', DateStart='', DateEnd='', Category='Compact', order_basket='', order_user_name='', phone_number='')</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -116,9 +116,6 @@
                                        value="{{ context['order'].Sum | format_space_numbers }}&#8381">
                             </td>
                             {% endif %}
-                            <td>
-                                 CarNumber='', CarBrand='', CarModel='', DateStart='', DateEnd='', Category='Compact', order_basket='', order_user_name='', phone_number='')
-                            </td>
                         </tr>
                         {% if context['order'].ContractId == 'OWN' %}{% else %}
                         <tr>
