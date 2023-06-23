@@ -193,10 +193,7 @@ def create_carwash_order(request, carwash_id):
 
 
     contract_id = 'OWN'
-    sum = 1000.0
-    sum_completed = 1000.0
-    sum_paid_station_completed = 1000.0
-    Status = 'OrderCreated'
+    Status = 'LocalOrder'
     date_created = datetime.now().isoformat()
     date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
                                    "%Y-%m-%d %H:%M").isoformat()
