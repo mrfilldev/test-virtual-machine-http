@@ -65,3 +65,15 @@ def count_cost_bascket(bascket):
     for obj in bascket:
         total_cost += obj.amount * obj.price
     return float(total_cost)
+
+
+@order_bp.app_template_filter()
+def format_ContractId(value):
+    match value:
+        case 'OWN':
+            return "Локальный заказ"
+        case 'PerMinute':
+            return "Сторонний заказ"
+        case _:
+            return value
+
