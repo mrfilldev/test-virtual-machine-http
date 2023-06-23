@@ -58,11 +58,11 @@
                         <tbody>
                         <tr>
                             <td style="width: 200px">
-                                Адрес:
+                                Источник заказа:
                             </td>
                             <td>
-                                <input style="width: 80%" width="20%" type="text" class="form-control"
-                                       value="{{ context.carwash.Address }}">
+                                <input style="width: 100%" type="text" class="form-control"
+                                       value="{{ context['order'].ContractId | format_ContractId }}">
                             </td>
                             <td>
                                 <input style="width: 100%" width="20%" type="text" class="form-control"
