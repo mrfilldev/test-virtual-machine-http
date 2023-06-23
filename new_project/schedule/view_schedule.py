@@ -512,6 +512,8 @@ def backend_get_order_basket(request, carwash_id):
 
     set_prices = []
     order_obj = get_order(data['order_id'])
+    if order_obj is None:
+        return None
     for price in order_obj.order_basket:
         price_obj = get_price(price._id)
         for obj in price_obj.categoryPrice:
