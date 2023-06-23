@@ -77,3 +77,7 @@ def format_ContractId(value):
         case _:
             return value
 
+
+@order_bp.app_template_filter()
+def format_space_numbers(value):
+    return '{:,}'.format(value).replace(',', ' ')
