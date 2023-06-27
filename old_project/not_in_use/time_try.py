@@ -86,8 +86,6 @@ print(dt_utcnow)
 date_start_iso = datetime.strptime("2023-06-27" + ' ' + "14:05", "%Y-%m-%d %H:%M").isoformat()
 print(date_start_iso, type(date_start_iso))
 
-
-
 print("\n################################\n")
 date_start = datetime.strptime("2023-06-27" + 'T' + "14:05", "%Y-%m-%dT%H:%M")
 print(type(date_start), date_start)
@@ -104,7 +102,7 @@ YARU:  DateCreate='2023-06-27T12:22:26.809Z'
 print("\n################################\n")
 test_own = parser.parse("2023-06-23T12:54:03.722884Z")
 test_yaru = parser.parse("2023-06-27T12:22:26.809Z")
-utc_now = parser.parse(datetime.utcnow().isoformat()+"Z")
+utc_now = parser.parse(datetime.utcnow().isoformat() + "Z")
 print(type(utc_now), utc_now, utc_now.strftime('%H:%M'))
 print(type(test_own), test_own, test_own.strftime('%H:%M'))
 print(type(test_yaru), test_yaru, test_yaru.strftime('%H:%M'))
@@ -119,4 +117,20 @@ print("\n################################\n")
 time_value = parser.parse("2023-06-27T12:31:31.968705") + timedelta(hours=3)
 print(time_value.isoformat())
 
+print("\n################################\n")
+
+
+def convert_string_to_utc(value, timezone=3):
+    time_value = parser.parse(value) - timedelta(hours=timezone)
+    return time_value.isoformat()
+
+def convert_string_to_timezone(value, timezone=3):
+    time_value = parser.parse(value) + timedelta(hours=timezone)
+    return time_value.isoformat()
+
+
+date_start = datetime.strptime("2023-06-27" + 'T' + "18:12", "%Y-%m-%dT%H:%M")
+print(type(date_start), date_start)
+date_start = convert_string_to_utc(date_start.isoformat()) + "+03:00"
+print(type(date_start), date_start)
 

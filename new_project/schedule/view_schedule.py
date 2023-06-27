@@ -37,6 +37,11 @@ def convert_string_to_timezone(value, timezone=3):
     return time_value.isoformat()
 
 
+def convert_string_to_utc(value, timezone=3):
+    time_value = parser.parse(value) - timedelta(hours=timezone)
+    return time_value.isoformat()
+
+
 def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
     orders = database.col_orders.find({'CarWashId': carwash_id})
     events_list = []
@@ -213,10 +218,10 @@ def create_carwash_order(request, carwash_id):
     contract_id = 'OWN'
     Status = 'LocalOrder'
     date_created = datetime.utcnow().isoformat() + "Z"
-    date_start = datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
-                                   "%Y-%m-%dT%H:%M").isoformat() + "+03:00"
-    date_end = datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
-                                 "%Y-%m-%dT%H:%M").isoformat() + "+03:00"
+    date_start = convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
+                                                         "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
+    date_end = convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+                                                       "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
 
     order = {
         '_id': order_id,
