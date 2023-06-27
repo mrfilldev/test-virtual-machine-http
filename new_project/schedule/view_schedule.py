@@ -187,7 +187,7 @@ def create_carwash_order(request, carwash_id):
         car_brand = request.form['car_brand']
         car_model = request.form['car_model']
         category = request.form['category']
-        sum = request.form['total-hidden']
+        sum_of_basket = request.form['total-hidden']
     except Exception:
         error_message = "Заполните все необходимые поля!"
         return abort(Response(error_message, 400))
@@ -215,7 +215,7 @@ def create_carwash_order(request, carwash_id):
         'CarBrand': car_brand,
         'Category': category,
         'ContractId': contract_id,
-        'Sum': sum,
+        'Sum': sum_of_basket,
         'Status': Status,
         'DateCreate': date_created,
         'DateStart': date_start,
