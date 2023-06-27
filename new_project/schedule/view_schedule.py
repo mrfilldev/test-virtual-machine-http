@@ -54,7 +54,6 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj:', order_obj)
         if order_obj.ContractId == "YARU":
-            pass
             events_list.append({
                 'title': order_obj.ContractId,
                 'order_id': order_obj._id,
