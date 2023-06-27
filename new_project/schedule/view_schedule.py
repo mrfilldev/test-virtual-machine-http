@@ -228,9 +228,9 @@ def create_carwash_order(request, carwash_id):
     database.col_orders.insert_one(order)
 
     # формирование ответа
-    response = jsonify(success=True)
 
-    return jsonify(response)
+
+    return jsonify(success=True)
 
 
 def edit_carwash_order(request, carwash_id):
