@@ -148,24 +148,21 @@ def list_db():
 
 @admin_bp.app_template_filter()
 def format_datetime(value):
-    # variant = value.strftime('%Y-%m-%d')
-    # print(variant)
     if isinstance(value, date):
         value = (value + timedelta(hours=3)).strftime('%d.%m.%Y')
     else:
         value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y %H:%M:%S")
     return value
 
-    # if isinstance(value, date):
-    #     value = value.strftime('%d.%m.%Y')
-    # else:
-    #     value = parser.parse(value)
-    #     value = value.strftime("%d.%m.%Y %H:%M:%S")
-    # return value
 
-
-
-
+@admin_bp.app_template_filter()
+def format_datetime_to_dmy(value):
+    if isinstance(value, date):
+        value = (value + timedelta(hours=3)).strftime('%d.%m.%Y')
+        print('usefull')
+    else:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y")
+    return value
 
 
 @admin_bp.app_template_filter()
