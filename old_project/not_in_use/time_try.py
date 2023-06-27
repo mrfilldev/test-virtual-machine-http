@@ -1,4 +1,5 @@
 import time
+from time import gmtime
 from datetime import datetime, timedelta, date
 from dateutil import parser
 
@@ -71,6 +72,40 @@ print(value)
 format = '%Y-%m-%dT%H:%M:%S%Z'
 date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
 print(date_now)
-print(time.strftime(format, time.localtime()) + ' ' + " flv dfivjfv" )
+print(time.strftime(format, time.localtime()) + ' ' + " flv dfivjfv")
 print(time.localtime())
+print("попытка изменения тайм зоны")
+print("2023-06-27 14:05")
+print("2023-06-27 16:05")
+
+date_created = datetime.now().isoformat()
+print(date_created)
+
+dt_utcnow = datetime.utcnow().isoformat()
+print(dt_utcnow)
+date_start_iso = datetime.strptime("2023-06-27" + ' ' + "14:05", "%Y-%m-%d %H:%M").isoformat()
+print(date_start_iso, type(date_start_iso))
+
+
+
+print("\n################################\n")
+date_start = datetime.strptime("2023-06-27" + 'T' + "14:05", "%Y-%m-%dT%H:%M")
+print(type(date_start), date_start)
+
+own = parser.parse("2023-06-27T12:22:26+03:00")
+print(type(own), own)
+yaru = parser.parse("2023-06-27T12:22:26.809Z")
+print(type(yaru), yaru)
+
+'''
+OWN:   DateCreate='2023-06-23T12:54:03.722884', DateStart='2023-06-23T12:53:00', DateEnd='2023-06-23T13:53:00'
+YARU:  DateCreate='2023-06-27T12:22:26.809Z'
+'''
+test_own = parser.parse("2023-06-23T12:54:03.722884")
+test_yaru = parser.parse("2023-06-27T12:22:26.809Z")
+
+print(type(test_own), test_own)
+print(type(test_yaru), test_yaru)
+
+print(datetime.utcnow().isoformat()+"Z")
 

@@ -90,8 +90,8 @@ async def make_mongo_id(order):
 
 async def write_into_db(order):
     print('Writing into DB')
+    print('order:', order)
     res = Py_mongo_db.col_orders.insert_one(order)
-
     print('WRITED ORDER: ', res)
     print('ORDER_ID:', res.inserted_id)
     print('Объекты в коллекции', Py_mongo_db.col_orders.find())

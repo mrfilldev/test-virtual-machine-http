@@ -39,6 +39,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj:', order_obj)
         if order_obj.ContractId == "YARU":
+            pass
             events_list.append({
                 'title': order_obj.ContractId,
                 'order_id': order_obj._id,
@@ -204,11 +205,11 @@ def create_carwash_order(request, carwash_id):
 
     contract_id = 'OWN'
     Status = 'LocalOrder'
-    date_created = datetime.now().isoformat()
-    date_start = datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
-                                   "%Y-%m-%d %H:%M").isoformat()
-    date_end = datetime.strptime(request.form['date'] + ' ' + request.form['time_end'],
-                                 "%Y-%m-%d %H:%M").isoformat()
+    date_created = datetime.utcnow().isoformat() + "Z"
+    date_start = datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
+                                   "%Y-%m-%dT%H:%M").isoformat()+"+03:00"
+    date_end = datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+                                 "%Y-%m-%dT%H:%M").isoformat()+"+03:00"
 
     order = {
         '_id': order_id,
@@ -257,10 +258,10 @@ def edit_carwash_order(request, carwash_id):
         'CarBrand': request.form['car_brand'],
         'Category': request.form['category'],
         'ContractId': 'OWN',
-        'DateStart': datetime.strptime(request.form['date'] + ' ' + request.form['time_start'],
-                                       "%Y-%m-%d %H:%M").isoformat(),
-        'DateEnd': datetime.strptime(request.form['date'] + ' ' + request.form['time_end'],
-                                     "%Y-%m-%d %H:%M").isoformat(),
+        'DateStart': datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
+                                       "%Y-%m-%dT%H:%M").isoformat()+"+03:00",
+        'DateEnd': datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+                                     "%Y-%m-%dT%H:%M").isoformat()+"+03:00",
     }}
     new_order = database.col_orders.update_one(id_order, set_fields)
     print(" #####  EDITING  #####")
