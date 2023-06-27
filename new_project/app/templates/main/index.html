@@ -5,9 +5,7 @@
 <br>
 <div class="container">
     <div class="row justify-content-center">
-
         <form id="myform" method=POST action="{{ url_for('main_blueprint.oauth') }}">
-
             <label>Имя:</label> &nbsp;
             <input style="width: 260px" type="text" class="form-control" name="name"
                    placeholder="Иван">
@@ -22,7 +20,6 @@
                    placeholder="+7(999)666-99-66"
                    pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
                    minlength="18" maxlength="18">
-            <br>
             <br>
             <a onclick="document.getElementById('myform').submit()">
                 <!--кнопка яндекс авторизации-->
@@ -61,8 +58,6 @@
                           fill="white"></path>
                 </svg>
             </a>
-            <br>
-            <br>
         </form>
 
     </div>
