@@ -153,7 +153,7 @@ def format_datetime(value):
     if isinstance(value, date):
         value = (value + timedelta(hours=3)).strftime('%d.%m.%Y')
     else:
-        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%YT%H:%M:%S")
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y %H:%M:%S")
     return value
 
     # if isinstance(value, date):
