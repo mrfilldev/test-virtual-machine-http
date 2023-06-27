@@ -38,35 +38,42 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj:', order_obj)
-        events_list.append({
-
-            'title': order_obj.CarNumber,
-
-            'order_id': order_obj._id,
-            'start': order_obj.DateStart.replace('Z', ''),
-            'end': order_obj.DateEnd.replace('Z', ''),
-            'date': order_obj.DateCreate,
-
-            'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
-                (order_obj.DateStart.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
-            'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
-                (order_obj.DateEnd.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
-            'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
-                (order_obj.DateCreate.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M").strftime('%Y-%m-%d'),
-
-            'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
-            'box': order_obj.BoxNumber,
-            'carNumber': order_obj.CarNumber,
-            'category': '-' if order_obj.Category == '' else order_obj.Category,
-            'car_brand': order_obj.CarBrand,
-            'car_model': order_obj.CarModel,
-
-            'order_user_name': order_obj.order_user_name,
-            'phone_number': order_obj.phone_number,
-        })
-        print('start', order_obj.DateStart)
-        print('end', order_obj.DateEnd)
-        print('date', order_obj.DateCreate)
+        if order_obj.ContractId == "YARU":
+            events_list.append({
+                'title': order_obj.ContractId,
+                'order_id': order_obj._id,
+                'start': order_obj.DateStart.replace('Z', ''),
+                'date': order_obj.DateCreate,
+                'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
+                    (order_obj.DateStart.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+                'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
+                'box': order_obj.BoxNumber,
+            })
+        else:
+            events_list.append({
+                'title': order_obj.CarNumber,
+                'order_id': order_obj._id,
+                'start': order_obj.DateStart.replace('Z', ''),
+                'end': order_obj.DateEnd.replace('Z', ''),
+                'date': order_obj.DateCreate,
+                'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
+                    (order_obj.DateStart.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+                'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
+                    (order_obj.DateEnd.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+                'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
+                    (order_obj.DateCreate.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M").strftime('%Y-%m-%d'),
+                'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
+                'box': order_obj.BoxNumber,
+                'carNumber': order_obj.CarNumber,
+                'category': '-' if order_obj.Category == '' else order_obj.Category,
+                'car_brand': order_obj.CarBrand,
+                'car_model': order_obj.CarModel,
+                'order_user_name': order_obj.order_user_name,
+                'phone_number': order_obj.phone_number,
+            })
+            print('start', order_obj.DateStart)
+            print('end', order_obj.DateEnd)
+            print('date', order_obj.DateCreate)
 
     print(events_list)
     return events_list
