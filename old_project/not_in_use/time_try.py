@@ -101,11 +101,16 @@ print(type(yaru), yaru)
 OWN:   DateCreate='2023-06-23T12:54:03.722884', DateStart='2023-06-23T12:53:00', DateEnd='2023-06-23T13:53:00'
 YARU:  DateCreate='2023-06-27T12:22:26.809Z'
 '''
-test_own = parser.parse("2023-06-23T12:54:03.722884")
+test_own = parser.parse("2023-06-23T12:54:03.722884Z")
 test_yaru = parser.parse("2023-06-27T12:22:26.809Z")
-
+utc_now = parser.parse(datetime.utcnow().isoformat()+"Z")
+print(type(utc_now), utc_now)
 print(type(test_own), test_own)
 print(type(test_yaru), test_yaru)
+print("\n################################\n")
+print(utc_now.strftime('%H:%M'))
+print(test_own.strftime('%H:%M'))
+print(test_yaru.strftime('%H:%M'))
 
-print(datetime.utcnow().isoformat()+"Z")
+
 

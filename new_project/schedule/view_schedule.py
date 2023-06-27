@@ -1,6 +1,8 @@
 import json
 import uuid
 from datetime import datetime, timedelta, date
+from dateutil import parser
+
 from types import SimpleNamespace
 
 from bson import json_util
@@ -43,10 +45,10 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             events_list.append({
                 'title': order_obj.ContractId,
                 'order_id': order_obj._id,
-                'start': order_obj.DateCreate.replace('Z', ''),
+                'start': order_obj.DateCreate,  # .replace('Z', ''),
                 'date': order_obj.DateCreate,
-                'start_format': '' if order_obj.DateCreate == '' else datetime.strptime(
-                    ((order_obj.DateCreate.replace('Z', '')).split('.')[0]), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
+                'start_format': '' if order_obj.DateCreate == '' else parser.parse(order_obj.DateCreate).strftime(
+                    '%H:%M'),
                 'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
                 'box': order_obj.BoxNumber,
             })
@@ -54,15 +56,14 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             events_list.append({
                 'title': order_obj.CarNumber,
                 'order_id': order_obj._id,
-                'start': order_obj.DateStart.replace('Z', ''),
-                'end': order_obj.DateEnd.replace('Z', ''),
+                'start': order_obj.DateStart,  # .replace('Z', ''),
+                'end': order_obj.DateEnd,  # .replace('Z', ''),
                 'date': order_obj.DateCreate,
-                'start_format': '' if order_obj.DateStart == '' else datetime.strptime(
-                    (order_obj.DateStart.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
-                'end_format': '' if order_obj.DateEnd == '' else datetime.strptime(
-                    (order_obj.DateEnd.replace('Z', '')), "%Y-%m-%dT%H:%M:%S").strftime('%H:%M'),
-                'date_format': '' if order_obj.DateCreate == '' else datetime.strptime(
-                    (order_obj.DateCreate.replace('Z', '')).rpartition(':')[0], "%Y-%m-%dT%H:%M").strftime('%Y-%m-%d'),
+                'start_format': '' if order_obj.DateStart == '' else parser.parse(order_obj.DateStart).strftime(
+                    '%H:%M'),
+                'end_format': '' if order_obj.DateEnd == '' else parser.parse(order_obj.DateEnd).strftime('%H:%M'),
+                'date_format': '' if order_obj.DateCreate == '' else parser.parse(order_obj.DateCreate).strftime(
+                    '%Y-%m-%d'),
                 'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
                 'box': order_obj.BoxNumber,
                 'carNumber': order_obj.CarNumber,
@@ -207,9 +208,9 @@ def create_carwash_order(request, carwash_id):
     Status = 'LocalOrder'
     date_created = datetime.utcnow().isoformat() + "Z"
     date_start = datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
-                                   "%Y-%m-%dT%H:%M").isoformat()+"+03:00"
+                                   "%Y-%m-%dT%H:%M").isoformat() + "+03:00"
     date_end = datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
-                                 "%Y-%m-%dT%H:%M").isoformat()+"+03:00"
+                                 "%Y-%m-%dT%H:%M").isoformat() + "+03:00"
 
     order = {
         '_id': order_id,
@@ -259,9 +260,9 @@ def edit_carwash_order(request, carwash_id):
         'Category': request.form['category'],
         'ContractId': 'OWN',
         'DateStart': datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
-                                       "%Y-%m-%dT%H:%M").isoformat()+"+03:00",
+                                       "%Y-%m-%dT%H:%M").isoformat() + "+03:00",
         'DateEnd': datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
-                                     "%Y-%m-%dT%H:%M").isoformat()+"+03:00",
+                                     "%Y-%m-%dT%H:%M").isoformat() + "+03:00",
     }}
     new_order = database.col_orders.update_one(id_order, set_fields)
     print(" #####  EDITING  #####")
