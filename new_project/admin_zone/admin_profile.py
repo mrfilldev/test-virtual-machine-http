@@ -1,5 +1,4 @@
-
-from datetime import timedelta
+from datetime import timedelta, date
 from dateutil import parser
 from flask import render_template, request, Blueprint, session, g, url_for, redirect
 
@@ -151,9 +150,11 @@ def list_db():
 def format_datetime(value):
     # variant = value.strftime('%Y-%m-%d')
     # print(variant)
-
-    time_value = parser.parse(value) + timedelta(hours=3)
-    return time_value.strftime("%d.%m.%YT%H:%M:%S")
+    if isinstance(value, date):
+        value = (value + timedelta(hours=3)).strftime('%d.%m.%Y')
+    else:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%YT%H:%M:%S")
+    return value
 
     # if isinstance(value, date):
     #     value = value.strftime('%d.%m.%Y')
