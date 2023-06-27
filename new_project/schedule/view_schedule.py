@@ -270,10 +270,11 @@ def edit_carwash_order(request, carwash_id):
         'CarBrand': request.form['car_brand'],
         'Category': request.form['category'],
         'ContractId': 'OWN',
-        'DateStart': datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
-                                       "%Y-%m-%dT%H:%M").isoformat() + "+03:00",
-        'DateEnd': datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
-                                     "%Y-%m-%dT%H:%M").isoformat() + "+03:00",
+        'DateStart': convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
+                                                             "%Y-%m-%dT%H:%M").isoformat()) + "+03:00",
+        'DateEnd': convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+                                                           "%Y-%m-%dT%H:%M").isoformat()) + "+03:00",
+
     }}
     new_order = database.col_orders.update_one(id_order, set_fields)
     print(" #####  EDITING  #####")
