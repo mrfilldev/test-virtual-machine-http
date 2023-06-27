@@ -12,20 +12,10 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-2">
-            <img src="http://thecode.local/wp-content/uploads/2019/06/cat1.jpg">
-        </div>
-        <div class="col-8">
-            <img src="http://thecode.local/wp-content/uploads/2019/06/cat2.jpg">
-        </div>
-        <div class="col-2">
-            <img src="http://thecode.local/wp-content/uploads/2019/06/anton-kraev-1166716-unsplash.jpg">
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
+        <img src="http://thecode.local/wp-content/uploads/2019/06/cat1.jpg">
+      </div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-8 col-xl-8">
         <form id="myform" method=POST action="{{ url_for('main_blueprint.oauth') }}">
             <label>Имя:</label> &nbsp;
             <input style="width: 260px" type="text" class="form-control" name="name"
@@ -81,6 +71,10 @@
             </a>
         </form>
       </div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
+        <img src="http://thecode.local/wp-content/uploads/2019/06/anton-kraev-1166716-unsplash.jpg">
+      </div>
+
     </div>
 </div>
 {% endblock %}
