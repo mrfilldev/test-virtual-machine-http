@@ -34,10 +34,11 @@ def datetime_range(start, end, delta):
 
 def convert_string_to_timezone(value, timezone=3):
     # time_value = parser.parse(value) + timedelta(hours=timezone)
+    # return time_value.isoformat()
     time_value = value
-    print(value + " -> ", time_value.isoformat())
+    print(value + " -> ", time_value)
 
-    return time_value.isoformat()
+    return time_value
 
 
 def convert_string_to_utc(value, timezone=3):
