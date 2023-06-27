@@ -228,8 +228,6 @@ def create_carwash_order(request, carwash_id):
     database.col_orders.insert_one(order)
 
     # формирование ответа
-
-
     return jsonify(success=True)
 
 
