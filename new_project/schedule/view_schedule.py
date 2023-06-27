@@ -57,10 +57,10 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             events_list.append({
                 'title': order_obj.ContractId,
                 'order_id': order_obj._id,
-                'start': convert_string_to_timezone(order_obj.DateCreate),  # + timedelta(hours=3)
-                'date': convert_string_to_timezone(order_obj.DateCreate),
+                'start': order_obj.DateCreate,  # + timedelta(hours=3)
+                'date': order_obj.DateCreate,
                 'start_format': '' if order_obj.DateCreate == '' else parser.parse(
-                    convert_string_to_timezone(order_obj.DateCreate)).strftime('%H:%M'),
+                    order_obj.DateCreate).strftime('%H:%M'),
                 'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
                 'box': order_obj.BoxNumber,
             })
