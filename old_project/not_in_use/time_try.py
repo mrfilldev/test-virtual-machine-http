@@ -101,16 +101,22 @@ print(type(yaru), yaru)
 OWN:   DateCreate='2023-06-23T12:54:03.722884', DateStart='2023-06-23T12:53:00', DateEnd='2023-06-23T13:53:00'
 YARU:  DateCreate='2023-06-27T12:22:26.809Z'
 '''
+print("\n################################\n")
 test_own = parser.parse("2023-06-23T12:54:03.722884Z")
 test_yaru = parser.parse("2023-06-27T12:22:26.809Z")
 utc_now = parser.parse(datetime.utcnow().isoformat()+"Z")
-print(type(utc_now), utc_now)
-print(type(test_own), test_own)
-print(type(test_yaru), test_yaru)
+print(type(utc_now), utc_now, utc_now.strftime('%H:%M'))
+print(type(test_own), test_own, test_own.strftime('%H:%M'))
+print(type(test_yaru), test_yaru, test_yaru.strftime('%H:%M'))
 print("\n################################\n")
-print(utc_now.strftime('%H:%M'))
-print(test_own.strftime('%H:%M'))
-print(test_yaru.strftime('%H:%M'))
 
+test_string = parser.parse("2023-06-27T12:31:31.968705")
+print(type(test_string), test_string, test_string.strftime('%H:%M'))
+test_string = parser.parse("2023-06-27T12:31:31.968705") + timedelta(hours=3)
+print(type(test_string), test_string, test_string.strftime('%H:%M'))
+print("\n################################\n")
+
+time_value = parser.parse("2023-06-27T12:31:31.968705") + timedelta(hours=3)
+print(time_value.isoformat())
 
 

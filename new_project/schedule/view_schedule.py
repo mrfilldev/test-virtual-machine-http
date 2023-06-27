@@ -32,6 +32,11 @@ def datetime_range(start, end, delta):
         current += delta
 
 
+def convert_string_to_timezone(value, timezone=3):
+    time_value = parser.parse(value) + timedelta(hours=timezone)
+    return time_value.isoformat()
+
+
 def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
     orders = database.col_orders.find({'CarWashId': carwash_id})
     events_list = []
@@ -45,10 +50,10 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             events_list.append({
                 'title': order_obj.ContractId,
                 'order_id': order_obj._id,
-                'start': order_obj.DateCreate,  # .replace('Z', ''),
-                'date': order_obj.DateCreate,
-                'start_format': '' if order_obj.DateCreate == '' else parser.parse(order_obj.DateCreate).strftime(
-                    '%H:%M'),
+                'start': convert_string_to_timezone(order_obj.DateCreate),  # + timedelta(hours=3)
+                'date': convert_string_to_timezone(order_obj.DateCreate),
+                'start_format': '' if order_obj.DateCreate == '' else parser.parse(
+                    convert_string_to_timezone(order_obj.DateCreate)).strftime('%H:%M'),
                 'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
                 'box': order_obj.BoxNumber,
             })
@@ -56,14 +61,15 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             events_list.append({
                 'title': order_obj.CarNumber,
                 'order_id': order_obj._id,
-                'start': order_obj.DateStart,  # .replace('Z', ''),
-                'end': order_obj.DateEnd,  # .replace('Z', ''),
-                'date': order_obj.DateCreate,
-                'start_format': '' if order_obj.DateStart == '' else parser.parse(order_obj.DateStart).strftime(
-                    '%H:%M'),
-                'end_format': '' if order_obj.DateEnd == '' else parser.parse(order_obj.DateEnd).strftime('%H:%M'),
-                'date_format': '' if order_obj.DateCreate == '' else parser.parse(order_obj.DateCreate).strftime(
-                    '%Y-%m-%d'),
+                'start': convert_string_to_timezone(order_obj.DateStart),
+                'end': convert_string_to_timezone(order_obj.DateEnd),
+                'date': convert_string_to_timezone(order_obj.DateCreate),
+                'start_format': '' if order_obj.DateStart == '' else parser.parse(
+                    convert_string_to_timezone(order_obj.DateStart)).strftime('%H:%M'),
+                'end_format': '' if order_obj.DateEnd == '' else parser.parse(
+                    convert_string_to_timezone(order_obj.DateEnd)).strftime('%H:%M'),
+                'date_format': '' if order_obj.DateCreate == '' else parser.parse(
+                    convert_string_to_timezone(order_obj.DateCreate)).strftime('%Y-%m-%d'),
                 'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
                 'box': order_obj.BoxNumber,
                 'carNumber': order_obj.CarNumber,
@@ -77,7 +83,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
             print('end', order_obj.DateEnd)
             print('date', order_obj.DateCreate)
 
-    print(events_list)
+    print('events_list: ', events_list)
     return events_list
 
 
