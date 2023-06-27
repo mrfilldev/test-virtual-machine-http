@@ -1,5 +1,5 @@
-from datetime import date
 
+from datetime import timedelta
 from dateutil import parser
 from flask import render_template, request, Blueprint, session, g, url_for, redirect
 
@@ -152,7 +152,7 @@ def format_datetime(value):
     # variant = value.strftime('%Y-%m-%d')
     # print(variant)
 
-    time_value = parser.parse(value) + timedelta(hours=timezone)
+    time_value = parser.parse(value) + timedelta(hours=3)
     return time_value.strftime("%d.%m.%YT%H:%M:%S")
 
     # if isinstance(value, date):
