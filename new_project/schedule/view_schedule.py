@@ -239,6 +239,7 @@ def edit_carwash_order(request, carwash_id):
 
     id_order = {'_id': request.form['order_id']}
     print('id_order: ', request.form['order_id'])
+    print('TIME_PARAMS: \n', request.form['date'] + ' ' + request.form['time_start'] + ' ' + request.form['time_end'])
     set_fields = {'$set': {
         'order_basket': json.loads(json.dumps(get_order_basket_arr(data), default=lambda x: x.__dict__)),
         'order_user_name': data['order_user_name'],
