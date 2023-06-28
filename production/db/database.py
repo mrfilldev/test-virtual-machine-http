@@ -9,11 +9,11 @@ url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.for
         'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
     ]),
     rs='rs01',
-    auth_src='test_database')
+    auth_src='production_db')
 client = pymongo.MongoClient(
     url,
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
-db_test = client['test_database']
+db_test = client['production_db']
 
 col_orders = db_test["test_orders"]
 col_owners = db_test["test_owners"]
