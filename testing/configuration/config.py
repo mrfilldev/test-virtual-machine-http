@@ -3,7 +3,7 @@ import os
 import boto3
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv()  # TESTING
 
 
 class Config(object):
@@ -18,8 +18,8 @@ class Config(object):
     BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
     # yandex oauth
-    YAN_CLIENT_ID = os.environ.get('YAN_CLIENT_ID')
-    YAN_CLIENT_SECRET = os.environ.get('YAN_CLIENT_SECRET')
+    YAN_CLIENT_ID = os.environ.get('TESTING_YAN_CLIENT_ID')
+    YAN_CLIENT_SECRET = os.environ.get('TESTING_YAN_CLIENT_SECRET')
 
 
 class Sqs_params:
