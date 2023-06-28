@@ -35,7 +35,7 @@ def oauth():
 
         url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
                    f'&client_id={Config.YAN_CLIENT_ID}' \
-                   f'&redirect_uri=http://test-tanker-carwash.ru/main'
+                   f'&redirect_uri=http://moidex.ru/main'
         print('url_to_redirrect:', url)
         return redirect(url)
     else:
