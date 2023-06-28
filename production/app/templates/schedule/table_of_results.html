@@ -1,0 +1,11 @@
+<table class="table table-hover table align-middle">
+{% for price in context.set_prices %}
+{% if price.status == 'active' %}
+<tr class="tr-search_result">
+    <td style="width: 365px;" id="{{price._id}}" onclick="add_price(this.id)">
+        <b>{{ price.name }}</b><br>{{ price.description }}
+    </td>
+</tr>
+{% endif %}
+{% endfor %}
+</table>

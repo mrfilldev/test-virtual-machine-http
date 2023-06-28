@@ -1,0 +1,590 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<script>
+
+    $(document).ready(function () {
+        create_new_price();
+    });
+
+    function open_modal_window_price_create() {
+        $('#new_price_modal').modal('show');
+        $('#new_price_modal .modal-body #create_price').show();
+        $('#new_price_modal .modal-body #edit_price').hide();
+    }
+
+    function create_new_price() {
+        $('#create_price').click(function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('prices_blueprint.new_price', set_id=context.set._id) }}",
+                data: $('#priceForm').serialize(),
+                success: function () {
+                    $('#new_price_modal').modal('toggle');
+                }
+            });
+        });
+    }
+
+</script>
+
+<br>
+<div class="row justify-content-center">
+    <div class="col-2 text-center"></div>
+    <div class="col-8">
+
+        <form method=POST action="{{ url_for('prices_blueprint.detail_set', set_id=context.set._id) }}">
+            <div class="accordion" id="accordionExample">
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Мойка
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table table-bordered table-center align-middle" id="table_prices_carwash">
+                                <thead class="table-light">
+                                <tr>
+                                    <th scope="col" colspan="8">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                {{ context.set.Name }}
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    {% if g.user_db.role != 'network_worker' %}
+                                                    <div class="col"></div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col"></div>
+                                                            <div class="col"></div>
+                                                            <div class="col">
+                                                                <a onclick="open_modal_window_price_create();"
+                                                                   style="width: auto"
+                                                                   class="btn-sm btn btn-outline-secondary">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                         height="16"
+                                                                         fill="currentColor" class="bi bi-plus-lg"
+                                                                         viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd"
+                                                                              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <th>Тарифы</th>
+                                    {% for enum in context['enum_list'] %}
+                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                    {% endfor %}
+                                    <th></th>
+                                </tr>
+                                <tbody>
+                                {% for price in context.set_prices %}
+                                {% if price.status == 'active' %}
+                                {% if price.priceType == 'main_carwash' %}
+                                <tr>
+                                    <td style="width: 365px">
+                                        <b>{{ price.name }}</b><br>
+                                        {{ price.description }}
+                                    </td>
+                                    {% for i in price.categoryPrice %}
+                                    <td>
+                                        {% set id_of_cell = price['_id'] %}
+                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                               style="width: 100%; text-align: end" type="text"
+                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                    </td>
+                                    {% endfor %}
+                                    <td>
+                                        <div class="btn-group-vertical" role="group"
+                                             aria-label="Вертикальная группа кнопок">
+                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
+                                               style="width: 100%"
+                                               class="btn-sm btn btn-outline-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                <tr>
+                                    <th>Дополнительные Услуги</th>
+                                    {% for enum in context['enum_list'] %}
+                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                    {% endfor %}
+                                    <th></th>
+                                </tr>
+                                <tbody>
+                                {% for price in context.set_prices %}
+                                {% if price.status == 'active' %}
+                                {% if price.priceType == 'additional_carwash' %}
+
+                                <tr>
+                                    <td style="width: 365px">
+                                        <b>{{ price.name }}</b><br>
+                                        {{ price.description }}
+                                    </td>
+                                    {% for i in price.categoryPrice %}
+                                    <td>
+                                        {% set id_of_cell = price['_id'] %}
+                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                               style="width: 100%; text-align: end" type="text"
+                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                    </td>
+                                    {% endfor %}
+                                    <td>
+                                        <div class="btn-group-vertical" role="group"
+                                             aria-label="Вертикальная группа кнопок">
+                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
+                                               style="width: 100%"
+                                               class="btn-sm btn btn-outline-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Детейлинг
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table table-bordered table-center align-middle" id="table_prices_detaling">
+                                <thead class="table-light">
+                                <tr>
+                                    <th scope="col" colspan="8">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                {{ context.set.Name }}
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    {% if g.user_db.role != 'network_worker' %}
+                                                    <div class="col"></div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col"></div>
+                                                            <div class="col"></div>
+                                                            <div class="col">
+                                                                <a onclick="open_modal_window_price_create();"
+                                                                   style="width: auto"
+                                                                   class="btn-sm btn btn-outline-secondary">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                         height="16"
+                                                                         fill="currentColor" class="bi bi-plus-lg"
+                                                                         viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd"
+                                                                              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Тарифы</th>
+                                    {% for enum in context['enum_list'] %}
+                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                    {% endfor %}
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for price in context.set_prices %}
+                                {% if price.status == 'active' %}
+                                {% if price.priceType == 'main_detaling' %}
+                                <tr>
+                                    <td style="width: 365px">
+                                        <b>{{ price.name }}</b><br>
+                                        {{ price.description }}
+                                    </td>
+                                    {% for i in price.categoryPrice %}
+                                    <td>
+                                        {% set id_of_cell = price['_id'] %}
+                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                               style="width: 100%; text-align: end" type="text"
+                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                    </td>
+                                    {% endfor %}
+                                    <td>
+                                        <div class="btn-group-vertical" role="group"
+                                             aria-label="Вертикальная группа кнопок">
+                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
+                                               style="width: 100%"
+                                               class="btn-sm btn btn-outline-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                <tr>
+                                    <th>Дополнительные Услуги</th>
+                                    {% for enum in context['enum_list'] %}
+                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                    {% endfor %}
+                                    <th></th>
+                                </tr>
+                                <tbody>
+                                {% for price in context.set_prices %}
+                                {% if price.status == 'active' %}
+                                {% if price.priceType == 'additional_detaling' %}
+                                <tr>
+                                    <td style="width: 365px">
+                                        <b>{{ price.name }}</b><br>
+                                        {{ price.description }}
+                                    </td>
+                                    {% for i in price.categoryPrice %}
+                                    <td>
+                                        {% set id_of_cell = price['_id'] %}
+                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                               style="width: 100%; text-align: end" type="text"
+                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                    </td>
+                                    {% endfor %}
+                                    <td>
+                                        <div class="btn-group-vertical" role="group"
+                                             aria-label="Вертикальная группа кнопок">
+                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
+                                               style="width: 100%"
+                                               class="btn-sm btn btn-outline-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                            Шиномонтаж
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table table-bordered table-center align-middle"
+                                   id="table_prices_wheelstation">
+                                <thead class="table-light">
+                                <tr>
+                                    <th scope="col" colspan="8">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                {{ context.set.Name }}
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    {% if g.user_db.role != 'network_worker' %}
+                                                    <div class="col"></div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col"></div>
+                                                            <div class="col"></div>
+                                                            <div class="col">
+                                                                <a onclick="open_modal_window_price_create();"
+                                                                   style="width: auto"
+                                                                   class="btn-sm btn btn-outline-secondary">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                         height="16"
+                                                                         fill="currentColor" class="bi bi-plus-lg"
+                                                                         viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd"
+                                                                              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <th>Тарифы</th>
+                                    {% for enum in context['enum_list'] %}
+                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                    {% endfor %}
+                                    <th></th>
+                                </tr>
+                                <tbody>
+                                {% for price in context.set_prices %}
+                                {% if price.status == 'active' %}
+                                {% if price.priceType == 'main_wheelstation' %}
+                                <tr>
+                                    <td style="width: 365px">
+                                        <b>{{ price.name }}</b><br>
+                                        {{ price.description }}
+                                    </td>
+                                    {% for i in price.categoryPrice %}
+                                    <td>
+                                        {% set id_of_cell = price['_id'] %}
+                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                               style="width: 100%; text-align: end" type="text"
+                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                    </td>
+                                    {% endfor %}
+                                    <td>
+                                        <div class="btn-group-vertical" role="group"
+                                             aria-label="Вертикальная группа кнопок">
+                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
+                                               style="width: 100%"
+                                               class="btn-sm btn btn-outline-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                <tr>
+                                    <th>Дополнительные Услуги</th>
+                                    {% for enum in context['enum_list'] %}
+                                    <th>{{ enum.CategoryAutoToDispaly(enum) }}</th>
+                                    {% endfor %}
+                                    <th></th>
+                                </tr>
+                                <tbody>
+                                {% for price in context.set_prices %}
+                                {% if price.status == 'active' %}
+                                {% if price.priceType == 'additional_wheelstation' %}
+                                <tr>
+                                    <td style="width: 365px">
+                                        <b>{{ price.name }}</b><br>
+                                        {{ price.description }}
+                                    </td>
+                                    {% for i in price.categoryPrice %}
+                                    <td>
+                                        {% set id_of_cell = price['_id'] %}
+                                        <input name="prices_{{ price['_id'] }}_{{ i['category'] }}"
+                                               style="width: 100%; text-align: end" type="text"
+                                               class="form-control" placeholder="{{ i['sum'] }}" value="{{ i['sum'] }}">
+                                    </td>
+                                    {% endfor %}
+                                    <td>
+                                        <div class="btn-group-vertical" role="group"
+                                             aria-label="Вертикальная группа кнопок">
+                                            <a href="{{ url_for('prices_blueprint.show_price_detail', price_id=price._id) }}"
+                                               style="width: 100%"
+                                               class="btn-sm btn btn-outline-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            {% if g.user_db.role != 'network_worker' %}
+            <button style="width: auto" type="submit" class="btn btn-outline-success">Сохранить</button>
+            {% endif %}
+        </form>
+
+    </div>
+    <div class="col-2"></div>
+</div>
+
+<div class="modal fade" id="new_price_modal" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
+     aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" id="fullscreen_prices_list">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="modal-title fs-4" id="exampleModalFullscreenLabel">
+                                <legend>Создать новый тариф</legend>
+                            </div>
+                        </div>
+                        <div class="col-8"></div>
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col"></div>
+                                <div class="col text-end">
+                                    <a type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form id="priceForm">
+                    <table class="table table-bordered table-center align-middle">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" colspan="3">Тариф Мойки</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                Название:
+                            </td>
+                            <td>
+                                <input name="name" style="width: 100%" type="text" class="form-control"
+                                       required placeholder="Как назовете?">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Описание:
+                            </td>
+                            <td>
+                                <input name="description" style="width: 100%" type="text" class="form-control"
+                                       required placeholder="Что входит в мойку?">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="2" style="width: 200px">
+                                Стоимость:
+                            </th>
+                        </tr>
+                        {% for enum in context.enum_list %}
+                        <tr>
+                            <td>
+                                {{ enum.CategoryAutoToDispaly(enum) }}:
+                            </td>
+                            <td>
+                                <input style="width:100%; text-align: end" name="{{ enum.name }}" type="text"
+                                       class="form-control" required
+                                       placeholder="₽">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td style="width: 200px">
+                                Тип стоимости:
+                            </td>
+                            <td>
+                                <select style="width: 100%" class="form-select" id="validationCustom04"
+                                        name="costType">
+                                    <option value="Fix">Фиксированная</option>
+                                    <option value="PerMinute">Поминутная</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Тип:
+                            </td>
+                            <td>
+                                <select style="width: 100%" class="form-select" name="priceType"
+                                        required>
+                                    {% for priceType in context.priceType %}
+                                    <option value="{{priceType.name}}">
+                                        {{priceType.priceTypeToDispaly(priceType.name)}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col text-end">
+                            <button id="create_price" class="btn btn-outline-success">
+                                Подтвердить
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+{% endblock %}
+

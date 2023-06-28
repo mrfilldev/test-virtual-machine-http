@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br>
+
+<div class="row justify-content-center">
+    <div class="col-2 text-center">
+        {% if g.user_db.role == 'admin' %}
+        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            <a class="nav-link" href="{{ url_for('admin_blueprint.admin_add_network') }}" aria-disabled="true">Добавить
+                Сеть</a>
+            <a class="nav-link" href="url_for('admin_add_user')" aria-disabled="true">+ пользователь</a>
+            <a class="nav-link" href="#" aria-disabled="true">Ручная отмена заказа</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.carwashes_refresh_prices') }}" aria-disabled="true">Price=[all_prices] для всех моек</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.admin_clear_sets') }}" aria-disabled="true">Присвоить всем прайсам один сет</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_prices_to_active') }}" aria-disabled="true">Все прайсы status=active</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_prices_price_types') }}" aria-disabled="true">Все прайсы priceType=main_carwash</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_all_carwash_full_type') }}" aria-disabled="true">Все точки полный набор типов</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_set_sets_of_prices_to_one_network') }}" aria-disabled="true">Все тарифные наборы одному человеку</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_fix_box_number_value') }}" aria-disabled="true">Поправить конкретный прайс</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_fix_orders_fields') }}" aria-disabled="true">Добавить недостающие поля в заказы</a>
+            <a class="nav-link" href="{{ url_for('admin_blueprint.remake_fix_sets') }}" aria-disabled="true">Поправить недостающие network в set_of_prices</a>
+
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-8">
+        {% if g.user_db.role == 'admin' %}
+        <main class="container-sm">
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-center">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col" colspan="3">
+                            {{ g.user_inf.display_name }}#{{ g.user_inf.id }}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 200px">
+                            Логин:
+                        </td>
+                        <td style="width: 80%">
+                            {{ g.user_inf.login }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
+                            Статус:
+                        </td>
+                        <td>
+                            {{ g.user_db.role }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px">
+                            Дата регистрации:
+                        </td>
+                        <td>
+                            {{ g.user_db.date_registered | format_datetime }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        {% endif %}
+    </div>
+    <div class="col-2">
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+                        <a class="btn btn-outline-secondary"
+                           href="{{ url_for('main_blueprint.logout') }}">
+                            Выйти
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

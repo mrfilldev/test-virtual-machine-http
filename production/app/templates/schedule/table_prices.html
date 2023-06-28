@@ -1,0 +1,42 @@
+{% for price in context.set_prices %}
+{% if price.status == 'active' %}
+<tr id="{{price._id}}">
+    <td class="text-center">
+        <button type="button" class="btn btn-outline-danger" id="delete_{{price._id}}" onclick="delete_price(this.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
+                 viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </td>
+    <td style="width: 365px;">
+        <b>{{ price.name }}</b><br>
+        {{ price.description }}
+    </td>
+    <td class="text-end price">
+        <input hidden="hidden" name="basecost_{{price._id}}"
+               value="{{price.categoryPrice['sum']}}">
+        {{ price.categoryPrice['sum'] }} &#8381
+    </td>
+    <td class="count">
+        <div class="input-group input-group-sm">
+            <button type="button" class="btn btn-outline-secondary" id="minus_{{price._id}}"
+                    onclick="decrement(this.id)">-
+            </button>
+            <input disabled type="text" class="form-control"
+                   value="{{price.amount}}"
+                   style="width: 75px; text-align: center">
+            <input hidden="hidden" name="amount_{{price._id}}" value="{{price.amount}}">
+            <button type="button" class="btn btn-outline-secondary" id="plus_{{price._id}}"
+                    onclick="increment(this.id)">+
+            </button>
+        </div>
+    </td>
+    <td class="text-center">
+        {{ price.pretotal_price }} &#8381
+    </td>
+</tr>
+{% endif %}
+{% endfor %}
+
+

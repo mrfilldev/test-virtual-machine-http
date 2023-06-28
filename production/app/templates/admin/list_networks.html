@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<br>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.tr-user').click(function () {
+            window.location = $(this).data('href');
+            return false;
+        });
+    });
+</script>
+<div class="table-responsive">
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">id</th>
+            <th scope="col">Название</th>
+            <th scope="col">Мойки</th>
+        </tr>
+        </thead>
+        <tbody class=".table-hover">
+        {% for network in context['network_list'] %}
+
+        <tr class="tr-user" data-href="{{ url_for('admin_blueprint.admin_network_detail', network_id=network._id) }}">
+            <th scope="row">
+                {{ context['count_networks'] - loop.index0 }}
+            </th>
+
+            <td>
+                {{ network._id }}
+            </td>
+
+            <td>
+                {{ network.network_name }}
+            </td>
+            <td>
+                {{ network.carwashes }}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

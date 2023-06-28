@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+<br>
+<div class="row justify-content-center">
+    <div class="col-2 text-center">
+        {% if g.user_db.role == 'network_owner' %}
+        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('order_blueprint.orders_list') }}">
+                Заказы
+            </a>
+            <a class="btn btn-outline-secondary"
+               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
+                Списки Услуг
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="#">
+                Отчет
+            </a>
+            <a class="btn btn-outline-secondary disabled"
+               href="#">
+                Статистика
+            </a>
+        </div>
+
+        {% elif g.user_db.role == 'network_worker' %}
+
+        {% elif g.user_db.role == 'admin' %}
+
+        {% endif %}
+    </div>
+    <div class="col-8">
+        <main class="container-sm">
+            {% if g.user_db.role == 'network_owner' %}
+
+            {% elif g.user_db.role == 'network_worker' %}
+
+            {% elif g.user_db.role == 'admin' %}
+
+            {% endif %}
+            <table class="table table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="2">Личные данные:</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td style="width: 200px">
+                        Имя:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.name }} {{ g.user_db.surname }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Логин:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_inf.login }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Статус:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.role | format_role_user }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        ИНН:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.inn }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Контактный телефон:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.number }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Дата регистрации:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.date_registered | format_datetime }}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </main>
+    </div>
+    <div class="col-2">
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+                        <a class="btn btn-outline-secondary"
+                           href="{{ url_for('main_blueprint.logout') }}">
+                            Выйти
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

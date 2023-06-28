@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <meta name="theme-color" content="#ffffff">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><span style="color:#284C7E">Мой</span><span style="color:#000000">декс</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav">
+                {% if g.user_db.role == 'admin' %}
+                <div class="dropdown">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           data-bs-toggle="dropdown">
+                            Словари админки
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_networks_list') }}">Сети</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{{ url_for('admin_blueprint.list_of_prices') }}">Тарифы</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  url_for('monitoring_blueprint.monitoring') }}" aria-disabled="true">
+                        Мониторинг </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}" aria-disabled="true">
+                        Мойки </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}" aria-disabled="true">
+                        Заказы </a>
+                </li>
+                {% endif %}
+                {% if g.user_db.role == 'network_owner' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}" aria-disabled="true">
+                        Мойки </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}" aria-disabled="true">
+                        Заказы </a>
+                </li>
+                {% endif %}
+                {% if g.user_db.role == 'network_worker' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  url_for('carwash_blueprint.carwash_detail', carwash_id=g.user_db.PinnedCarwashId) }}" aria-disabled="true">
+                        Мойка </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}" aria-disabled="true">
+                        Заказы </a>
+                </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+        {% if g.user_db.role == 'admin' %}
+        {{ g.user_db.role }} {{ g.user_inf['real_name'] }}
+        {% elif g.user_db.role == 'network_owner' %}
+        Владелец cети: {{ g.user_inf['real_name'] }}
+        {% elif g.user_db.role == 'network_worker' %}
+        Администратор мойки
+        {% endif %}
+        {% if g.user_inf['is_avatar_empty'] == False %}
+        &nbsp;<a class="navbar-brand" href="/">
+        <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
+             class="d-inline-block align-text-top" height="50" width="50" href="">
+    </a>
+        {% endif %}
+    </div>
+</nav>
