@@ -32,81 +32,78 @@
             {% endif %}
         </div>
         <div class="col-12 col-sm-12 col-md-4 col-lg-8 col-xl-8">
-            <main class="container-sm">
-                {% if g.user_db.role == 'network_owner' %}
+            {% if g.user_db.role == 'network_owner' %}
 
-                {% elif g.user_db.role == 'network_worker' %}
+            {% elif g.user_db.role == 'network_worker' %}
 
-                {% elif g.user_db.role == 'admin' %}
+            {% elif g.user_db.role == 'admin' %}
 
-                {% endif %}
-                <table class="table table-center align-middle">
-                    <thead class="table-light">
-                    <tr>
-                        <th scope="col" colspan="2">Личные данные:</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            {% endif %}
+            <table class="table table-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="2">Личные данные:</th>
+                </tr>
+                </thead>
+                <tbody>
 
-                    <tr>
-                        <td style="width: 200px">
-                            Имя:
-                        </td>
-                        <td>
-                            <input style="width: 350px" type="text" class="form-control"
-                                   required placeholder="" value="{{ g.user_db.name }} {{ g.user_db.surname }}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 200px">
-                            Логин:
-                        </td>
-                        <td>
-                            <input style="width: 350px" type="text" class="form-control"
-                                   required placeholder="" value="{{ g.user_inf.login }}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 200px">
-                            Статус:
-                        </td>
-                        <td>
-                            <input style="width: 350px" type="text" class="form-control"
-                                   required placeholder="" value="{{ g.user_db.role | format_role_user }}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 200px">
-                            ИНН:
-                        </td>
-                        <td>
-                            <input style="width: 350px" type="text" class="form-control"
-                                   required placeholder="" value="{{ g.user_db.inn }}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 200px">
-                            Контактный телефон:
-                        </td>
-                        <td>
-                            <input style="width: 350px" type="text" class="form-control"
-                                   required placeholder="" value="{{ g.user_db.number }}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 200px">
-                            Дата регистрации:
-                        </td>
-                        <td>
-                            <input style="width: 350px" type="text" class="form-control"
-                                   required placeholder=""
-                                   value="{{ g.user_db.date_registered | format_datetime }}">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            </main>
+                <tr>
+                    <td style="width: 200px">
+                        Имя:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.name }} {{ g.user_db.surname }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Логин:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_inf.login }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Статус:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.role | format_role_user }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        ИНН:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.inn }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Контактный телефон:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder="" value="{{ g.user_db.number }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
+                        Дата регистрации:
+                    </td>
+                    <td>
+                        <input style="width: 350px" type="text" class="form-control"
+                               required placeholder=""
+                               value="{{ g.user_db.date_registered | format_datetime }}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
             <div class="container">
