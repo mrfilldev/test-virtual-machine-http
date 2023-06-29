@@ -213,6 +213,14 @@ def format_any_obj_id_to_Id(obj):
     return obj
 
 
+def rename_attributes(obj, old_name, new_name):
+    obj.__dict__[new_name] = obj.__dict__.pop(old_name)
+    return obj
+
+
+
+
+
 def carwash_list_main(CARWASH='7810324c8fea4af8bc3c3d6776cfc494'):
     carwash_obj = get_carwash_obj(CARWASH)
     price_set_obj = get_set_of_prices(carwash_obj.Price)
@@ -222,5 +230,11 @@ def carwash_list_main(CARWASH='7810324c8fea4af8bc3c3d6776cfc494'):
     prices_of_set = find_prices_with_set_id(price_set_obj._id)
     prices_of_set = remake_id(prices_of_set)
     carwash_obj.Price = prices_of_set
+    carwash_obj.Type = "Contactless"
+    delattr(carwash_obj, "network_id")
+    delattr(carwash_obj, "IsCarwash")
+    delattr(carwash_obj, "IsDetaling")
+    delattr(carwash_obj, "IsWheelStation")
+    delattr(carwash_obj, "CarwashAdmin")
     print("prices_of_set: ", json.dumps(carwash_obj, default=lambda x: x.__dict__))
     return json.dumps(carwash_obj, default=lambda x: x.__dict__)
