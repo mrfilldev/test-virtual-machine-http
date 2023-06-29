@@ -8,7 +8,7 @@ load_dotenv()
 # pymongo
 url = os.environ.get('PYMONGO_TEST_URL')
 tlsCAFile = os.environ.get('tlsCAFile')
-client = pymongo.MongoClient(url, tlsCAFile)
+client = pymongo.MongoClient(url, tlsCAFile=tlsCAFile)
 db_test = client['test_database']
 
 col_orders = db_test["test_orders"]
