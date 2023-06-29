@@ -138,7 +138,7 @@ def get_all_prices():
 
 
 def list_carwashes(g):
-    if 'networks' in g.user_db:
+    if g.user_db['role'] != 'admin':
         network = g.user_db['networks'][0]
         all_carwashes = database.col_carwashes.find({'network_id': network})
         print('network:', network)
@@ -147,11 +147,11 @@ def list_carwashes(g):
         data = json.dumps(data, default=lambda x: x.__dict__)
         network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
-    elif g.user_db['role'] == 'admin':
+
+    else:
         all_carwashes = database.col_carwashes.find({})
         network_obj = None
-    else:
-        return abort(500)
+
     carwashes_list = []
     count_carwashes = 0
 
