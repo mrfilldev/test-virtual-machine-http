@@ -175,6 +175,8 @@ def remake_id(prices_of_set):
     prices_arr = []
     for price in prices_of_set:
         print('\nprice: ', price)
+        for category in price.categoryPrice:
+            print("Id: ", price._id + "_" + category.category)
     return prices_arr
 
 
