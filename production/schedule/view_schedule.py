@@ -8,8 +8,8 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import render_template, jsonify, abort, Response
 
-from testing.db import database
-from testing.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
+from ..db import database
+from ..db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
 
 _eng_chars = u"~!@#$%^&qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:\"|ZXCVBNM<>?"
 _rus_chars = u"ё!\"№;%:?йцукенгшщзхъфывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"
