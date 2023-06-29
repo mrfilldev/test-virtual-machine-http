@@ -11,3 +11,4 @@ old_project/not_in_use/rubbish.py
 
 __pycache__
 *.pyc
+**/__pycache__/
