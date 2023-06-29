@@ -34,6 +34,8 @@ def datetime_range(start, end, delta):
 
 def convert_string_to_timezone(value, timezone=3):
     print('value: ', value)
+    if value == '' or value == None:
+        return ''
     time_value = parser.parse(value) + timedelta(hours=timezone)
     return time_value.isoformat()
     # time_value = value
