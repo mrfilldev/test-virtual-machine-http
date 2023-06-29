@@ -45,7 +45,8 @@ def oauth():
 @main_bp.route('/')
 def index():
     if 'ya-token' in session:
-        return redirect(url_for('main_blueprint.main'))
+        for key in list(session.keys()):
+            session.pop(key)
     else:
         return render_template('main/index.html')
 
