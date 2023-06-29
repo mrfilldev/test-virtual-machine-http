@@ -5,7 +5,8 @@ from ..configuration.config import Config
 
 
 # pymongo
-url = Config.PYMONGO_URL
+url = Config.PYMONGO_URL_DEV
+#url = Config.PYMONGO_URL_PROD
 tlsCAFile = Config.tlsCAFile
 client = pymongo.MongoClient(url, tlsCAFile=tlsCAFile)
 db_test = client['test_database']
