@@ -183,7 +183,7 @@ class TestPrice:
 
 def remake_id(prices_of_set):
     prices_arr = []
-    for i in range(5):
+    for i in range(1, 5, 1):
         for price in prices_of_set:
             print('\nprice: ', price)
             chetchik = 1
