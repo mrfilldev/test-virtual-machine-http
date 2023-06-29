@@ -174,11 +174,11 @@ def get_carwash_obj(carwash_id):
 
 
 class TestPrice:
-    def __init__(self, id, description, cost_id_sum, cost_type):
-        self.id = id
-        self.description = description
-        self.categoryPrice = cost_id_sum
-        self.costType = cost_type
+    def __init__(self, id, description, cost, cost_type):
+        self.Id = id
+        self.Description = description
+        self.Cost = cost
+        self.CostType = cost_type
 
 
 def remake_id(prices_of_set):
@@ -193,7 +193,7 @@ def remake_id(prices_of_set):
             new_price = TestPrice(
                 id=price._id + "_" + category.category,
                 description=price.name + " -> " + category.category,
-                cost_id_sum=category.sum,
+                cost=category.sum,
                 cost_type=price.costType
             )
 
