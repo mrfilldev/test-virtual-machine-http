@@ -159,7 +159,7 @@ def find_prices_with_set_id(set_id):
         price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         prices_of_set.append(price_obj)
 
-    print(prices_of_set)
+    print("prices_of_set: ", prices_of_set)
     return prices_of_set
 
 
@@ -177,5 +177,4 @@ def carwash_list_main(PRICE='6265a8cb8aab49a6b9407256c1726441', CARWASH='7810324
     print("carwash_obj :", carwash_obj)
     print("price_set_obj :", price_set_obj)
     prices_of_set = find_prices_with_set_id(price_set_obj._id)
-    print("prices_of_set: ", prices_of_set)
 
