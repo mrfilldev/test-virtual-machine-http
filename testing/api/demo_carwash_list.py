@@ -199,7 +199,7 @@ def remake_id(prices_of_set):
             )
             prices_arr.append(new_price)
             chetchik += 1
-        chetchik = 1
+
     return prices_arr
 
 
