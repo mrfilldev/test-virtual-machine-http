@@ -185,9 +185,10 @@ def remake_id(prices_of_set):
     prices_arr = []
     for price in prices_of_set:
         print('\nprice: ', price)
+        chetchik = 1
         for category in price.categoryPrice:
             print("Id: ", price._id + "_" + category.category)
-            print("Description: ", price.name + " -> " + category.category)
+            print("Description: ", "Категория " + str(chetchik) + " " + price.name)
             print("Cost: ", category.sum)
             print("CostType: ", price.costType)
             new_price = TestPrice(
@@ -196,9 +197,9 @@ def remake_id(prices_of_set):
                 cost=category.sum,
                 cost_type=price.costType
             )
-
             prices_arr.append(new_price)
-
+            chetchik += 1
+        chetchik = 1
     return prices_arr
 
 
