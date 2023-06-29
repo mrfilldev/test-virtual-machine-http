@@ -171,10 +171,17 @@ def get_carwash_obj(carwash_id):
     return carwash_obj
 
 
+def remake_id(prices_of_set):
+    prices_arr = []
+    for price in prices_of_set:
+        print('\nprice: ', price)
+    return prices_arr
+
+
 def carwash_list_main(PRICE='6265a8cb8aab49a6b9407256c1726441', CARWASH='7810324c8fea4af8bc3c3d6776cfc494'):
     carwash_obj = get_carwash_obj(CARWASH)
     price_set_obj = get_set_of_prices(carwash_obj.Price)
     print("\ncarwash_obj :", carwash_obj)
     print("\nprice_set_obj :", price_set_obj)
     prices_of_set = find_prices_with_set_id(price_set_obj._id)
-
+    prices_of_set = remake_id(prices_of_set)
