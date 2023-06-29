@@ -7,14 +7,15 @@ from ..configuration.config import Config
 url = Config.PYMONGO_URL
 tlsCAFile = Config.tlsCAFile
 client = pymongo.MongoClient(url, tlsCAFile=tlsCAFile)
-db_test = client['test_database']
+db_production = client['test_database']
 
-col_orders = db_test["test_orders"]
-col_owners = db_test["test_owners"]
-col_carwashes_admins = db_test["test_carwashes_admins"]
-col_carwashes = db_test["test_carwashes"]
-col_prices = db_test["test_prices"]
-col_sets_of_prices = db_test["sets_of_prices"]
-col_companies = db_test["test_companies"]
-col_networks = db_test["test_networks"]
-col_users = db_test["test_users"]
+col_orders = db_production["testing_orders"]
+col_owners = db_production["testing_owners"]
+col_carwashes_admins = db_production["testing_carwashes_admins"]
+col_carwashes = db_production["testing_carwashes"]
+col_prices = db_production["testing_prices"]
+col_sets_of_prices = db_production["sets_of_prices"]
+col_companies = db_production["testing_companies"]
+col_networks = db_production["testing_networks"]
+col_users = db_production["testing_users"]
+

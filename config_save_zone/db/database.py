@@ -9,18 +9,18 @@ url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.for
         'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
     ]),
     rs='rs01',
-    auth_src='production_db')
+    auth_src='test_database')
 client = pymongo.MongoClient(
     url,
     tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
-db_production = client['production_db']
+db_production = client['test_database']
 
-col_orders = db_production["production_orders"]
-col_owners = db_production["production_owners"]
-col_carwashes_admins = db_production["production_carwashes_admins"]
-col_carwashes = db_production["production_carwashes"]
-col_prices = db_production["production_prices"]
-col_sets_of_prices = db_production["production_sets_of_prices"]
-col_companies = db_production["production_companies"]
-col_networks = db_production["production_networks"]
-col_users = db_production["production_users"]
+col_orders = db_production["testing_orders"]
+col_owners = db_production["testing_owners"]
+col_carwashes_admins = db_production["testing_carwashes_admins"]
+col_carwashes = db_production["testing_carwashes"]
+col_prices = db_production["testing_prices"]
+col_sets_of_prices = db_production["sets_of_prices"]
+col_companies = db_production["testing_companies"]
+col_networks = db_production["testing_networks"]
+col_users = db_production["testing_users"]
