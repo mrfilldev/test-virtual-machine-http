@@ -210,4 +210,4 @@ def carwash_list_main(PRICE='6265a8cb8aab49a6b9407256c1726441', CARWASH='7810324
     prices_of_set = find_prices_with_set_id(price_set_obj._id)
     prices_of_set = remake_id(prices_of_set)
     print("prices_of_set: ", json.dumps(prices_of_set, default=lambda x: x.__dict__))
-    return prices_of_set
+    return json.dumps(prices_of_set, default=lambda x: x.__dict__)
