@@ -2,7 +2,8 @@ import os
 import traceback
 from flask import Blueprint, request, Response
 from . import ping
-from .carwash_list import carwash_list_main
+#from .carwash_list import carwash_list_main
+from .demo_carwash_list import carwash_list_main
 from . import create_order
 from ..configuration.config import Config
 
