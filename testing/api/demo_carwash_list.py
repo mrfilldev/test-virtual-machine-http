@@ -189,7 +189,7 @@ def remake_id(prices_of_set):
         for category in price.categoryPrice:
             new_price = TestPrice(
                 id=price._id + "_" + category.category,
-                description="Категория " + str(chetchik) + ":" + "\\\n" + price.name,
+                description="Категория " + str(chetchik) + ":" + "\\\\n" + price.name,
                 cost=category.sum,
                 cost_type=price.costType
             )
