@@ -218,10 +218,9 @@ def rename_attributes(obj, old_name, new_name):
     return obj
 
 
-
-
-
 def carwash_list_main(CARWASH='7810324c8fea4af8bc3c3d6776cfc494'):
+    array_of_carwashes = []
+
     carwash_obj = get_carwash_obj(CARWASH)
     price_set_obj = get_set_of_prices(carwash_obj.Price)
     carwash_obj = format_any_obj_id_to_Id(carwash_obj)
@@ -236,5 +235,6 @@ def carwash_list_main(CARWASH='7810324c8fea4af8bc3c3d6776cfc494'):
     delattr(carwash_obj, "IsDetaling")
     delattr(carwash_obj, "IsWheelStation")
     delattr(carwash_obj, "CarwashAdmin")
-    print("prices_of_set: ", json.dumps([carwash_obj], default=lambda x: x.__dict__))
-    return json.dumps(carwash_obj, default=lambda x: x.__dict__)
+
+    array_of_carwashes.append(carwash_obj)
+    return json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
