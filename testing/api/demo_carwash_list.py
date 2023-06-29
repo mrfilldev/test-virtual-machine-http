@@ -150,6 +150,19 @@ def get_price_obj(price_id):
     return price_obj
 
 
+def find_prices_with_set_id(set_id):
+    prices_of_set = []
+    prices = database.col_prices.find({'set_id': set_id})  # dict
+    for price in prices:
+        data = json.loads(json_util.dumps(price))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        prices_of_set.append(price_obj)
+
+    print(prices_of_set)
+    return prices_of_set
+
+
 def get_carwash_obj(carwash_id):
     carwash_obj = database.col_carwashes.find_one({'_id': carwash_id})  # dict
     data = json.loads(json_util.dumps(carwash_obj))
@@ -163,4 +176,6 @@ def carwash_list_main(PRICE='6265a8cb8aab49a6b9407256c1726441', CARWASH='7810324
     price_set_obj = get_set_of_prices(carwash_obj.Price)
     print("carwash_obj :", carwash_obj)
     print("price_set_obj :", price_set_obj)
+    prices_of_set = find_prices_with_set_id(price_set_obj._id)
+    print("prices_of_set: ", prices_of_set)
 
