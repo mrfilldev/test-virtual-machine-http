@@ -43,7 +43,6 @@ def format_any_obj_id_to_Id(obj):
     форматирование _id объекта бд
     для API yan-tanker
     '''
-    print(obj)
     setattr(obj, 'Id', obj._id)
     delattr(obj, '_id')
     return obj
@@ -97,7 +96,6 @@ def make_dict_of_set_with_prices(all_sets):
 
         arr_all_prices = demo_remake_prices(arr_all_prices)
         dict_of_set_with_prices[prices_set_obj._id] = arr_all_prices
-        print('dict_of_set_with_prices: ', dict_of_set_with_prices)
 
     return dict_of_set_with_prices
 
