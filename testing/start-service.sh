@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /home/mrfilldev/test-server/
 source venv/bin/activate
-cd /home/mrfilldev/test-server/test-virtual-machine-http/new_project
+cd /home/mrfilldev/test-server/test-virtual-machine-http/testing
 export FLASK_RUN_HOST=127.0.0.1
 
 # DEV = 9999
