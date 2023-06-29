@@ -8,6 +8,8 @@ from ..db import database
 db_carwashes = database.col_carwashes
 db_prices = database.col_prices
 db_sets_of_prices = database.col_sets_of_prices
+
+
 #
 #
 # def rename_attributes(obj, old_name, new_name):
@@ -171,6 +173,14 @@ def get_carwash_obj(carwash_id):
     return carwash_obj
 
 
+class TestPrice:
+    def __init__(self, id, description, cost_id_sum, cost_type):
+        self.Id = id
+        self.description = description
+        self.categoryPrice = cost_id_sum
+        self.costType = cost_type
+
+
 def remake_id(prices_of_set):
     prices_arr = []
     for price in prices_of_set:
@@ -180,6 +190,14 @@ def remake_id(prices_of_set):
             print("description: ", price.name + " -> " + category.category)
             print("cost: ", category.sum)
             print("costType: ", price.costType)
+            new_price = TestPrice(
+                id=price._id + "_" + category.category,
+                description=price.name + " -> " + category.category,
+                cost_id_sum=category.sum,
+                cost_type=price.costType
+            )
+            prices_arr.append(new_price)
+
     return prices_arr
 
 
@@ -190,3 +208,4 @@ def carwash_list_main(PRICE='6265a8cb8aab49a6b9407256c1726441', CARWASH='7810324
     print("\nprice_set_obj :", price_set_obj)
     prices_of_set = find_prices_with_set_id(price_set_obj._id)
     prices_of_set = remake_id(prices_of_set)
+    print("prices_of_set: ", prices_of_set)
