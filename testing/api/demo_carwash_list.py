@@ -73,7 +73,7 @@ def format_everything(carwash_obj, dict_of_prices_set):
 def demo_remake_prices(price_obj):
     print("\nprice_obj: \n", price_obj)
 
-    pass
+    return price_obj
 
 
 def make_dict_of_set_with_prices(all_sets):
