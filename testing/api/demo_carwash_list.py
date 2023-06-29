@@ -70,10 +70,11 @@ def format_everything(carwash_obj, dict_of_prices_set):
     return carwash_obj
 
 
-def demo_remake_prices(price_obj):
-    print("\nprice_obj: \n", price_obj)
+def demo_remake_prices(arr_all_prices):
+    print("\narr_all_prices: \n\n\n", arr_all_prices)
 
-    return price_obj
+    print("\n\n\n\n")
+    return arr_all_prices
 
 
 def make_dict_of_set_with_prices(all_sets):
@@ -91,9 +92,9 @@ def make_dict_of_set_with_prices(all_sets):
             price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
             price_obj = format_any_obj_id_to_Id(price_obj)
             price_obj = rename_attributes_of_prices(price_obj)
-            price_obj = demo_remake_prices(price_obj)
             arr_all_prices.append(price_obj)
 
+        arr_all_prices = demo_remake_prices(arr_all_prices)
         dict_of_set_with_prices[prices_set_obj._id] = arr_all_prices
         print('dict_of_set_with_prices: ', dict_of_set_with_prices)
 
