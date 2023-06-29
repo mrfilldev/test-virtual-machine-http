@@ -160,7 +160,7 @@ def get_carwash_obj(carwash_id):
 
 def carwash_list_main(PRICE='6265a8cb8aab49a6b9407256c1726441', CARWASH='7810324c8fea4af8bc3c3d6776cfc494'):
     carwash_obj = get_carwash_obj(CARWASH)
-    price_set_obj = get_set_of_prices(PRICE)
+    price_set_obj = get_set_of_prices(carwash_obj.Price)
     print("carwash_obj :", carwash_obj)
     print("price_set_obj :", price_set_obj)
 
