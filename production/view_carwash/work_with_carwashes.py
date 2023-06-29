@@ -3,7 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 from bson import json_util
-from flask import render_template, url_for, redirect, jsonify
+from flask import render_template, url_for, redirect, jsonify, abort
 
 from ..db import database
 from ..db.models import Boxes, BoxStatus, PricesCarWash, Point, Types, Carwash, CategoryAuto, Prices
@@ -147,9 +147,11 @@ def list_carwashes(g):
         data = json.dumps(data, default=lambda x: x.__dict__)
         network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
-    else:
+    elif g.user_db['role'] == 'admin':
         all_carwashes = database.col_carwashes.find({})
         network_obj = None
+    else:
+        return abort(500)
     carwashes_list = []
     count_carwashes = 0
 
