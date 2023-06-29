@@ -175,7 +175,7 @@ def get_carwash_obj(carwash_id):
 
 class TestPrice:
     def __init__(self, id, description, cost_id_sum, cost_type):
-        self.Id = id
+        self.id = id
         self.description = description
         self.categoryPrice = cost_id_sum
         self.costType = cost_type
