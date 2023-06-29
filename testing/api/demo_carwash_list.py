@@ -193,7 +193,7 @@ def remake_id(prices_of_set):
             print("CostType: ", price.costType)
             new_price = TestPrice(
                 id=price._id + "_" + category.category,
-                description="Категория " + str(chetchik) + " " + price.name,
+                description="Категория " + str(chetchik) + ", " + price.name,
                 cost=category.sum,
                 cost_type=price.costType
             )
