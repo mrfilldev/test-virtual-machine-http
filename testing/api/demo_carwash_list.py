@@ -109,11 +109,13 @@ def carwash_list_main():
         print('carwash_obj stock: \n', carwash_obj)
 
         carwash_obj = format_everything(carwash_obj, dict_of_prices_set)
-
-        for attr, val in carwash_obj.__dict__.items():
-            print(f'{attr}:    {val}\n')
-        array_of_carwashes.append(carwash_obj)
-        print('\n\n\n\n\n')
+        if carwash_obj._id == '7810324c8fea4af8bc3c3d6776cfc494':
+            for attr, val in carwash_obj.__dict__.items():
+                print(f'{attr}:    {val}\n')
+            array_of_carwashes.append(carwash_obj)
+            print('\n\n\n\n\n')
+        else:
+            pass
     print('\n#########')
     print('array_of_carwashes: ', array_of_carwashes)
     return json.dumps(array_of_carwashes, default=lambda x: x.__dict__)
