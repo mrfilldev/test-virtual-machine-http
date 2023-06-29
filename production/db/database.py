@@ -7,8 +7,6 @@ from ..configuration.config import Config
 url = Config.PYMONGO_URL
 tlsCAFile = Config.tlsCAFile
 client = pymongo.MongoClient(url, tlsCAFile=tlsCAFile)
-
-
 db_production = client['production_db']
 
 col_orders = db_production["production_orders"]
