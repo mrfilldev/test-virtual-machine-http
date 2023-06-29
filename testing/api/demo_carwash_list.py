@@ -236,5 +236,5 @@ def carwash_list_main(CARWASH='7810324c8fea4af8bc3c3d6776cfc494'):
     delattr(carwash_obj, "IsDetaling")
     delattr(carwash_obj, "IsWheelStation")
     delattr(carwash_obj, "CarwashAdmin")
-    print("prices_of_set: ", json.dumps(carwash_obj, default=lambda x: x.__dict__))
+    print("prices_of_set: ", json.dumps([carwash_obj], default=lambda x: x.__dict__))
     return json.dumps(carwash_obj, default=lambda x: x.__dict__)
