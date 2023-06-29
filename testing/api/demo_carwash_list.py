@@ -32,6 +32,7 @@ def rename_attributes_of_prices(price_obj):
     except AttributeError:
         pass
     print(price_obj)
+    print("\n\n")
 
     return price_obj
 
