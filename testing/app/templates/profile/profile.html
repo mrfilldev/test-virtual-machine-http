@@ -25,13 +25,13 @@
                     Статистика
                 </a>
             </div>
-            <br>
             {% elif g.user_db.role == 'network_worker' %}
 
             {% elif g.user_db.role == 'admin' %}
 
             {% endif %}
         </div>
+        <br>
         <div class="col-12 col-sm-12 col-md-4 col-lg-8 col-xl-8">
             {% if g.user_db.role == 'network_owner' %}
 
