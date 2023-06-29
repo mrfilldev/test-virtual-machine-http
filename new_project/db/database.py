@@ -1,13 +1,12 @@
 import pymongo
 import os
 
-from dotenv import load_dotenv
+from ..configuration.config import Config
 
-load_dotenv()
 
 # pymongo
-url = os.environ.get('PYMONGO_TEST_URL')
-tlsCAFile = os.environ.get('tlsCAFile')
+url = Config.PYMONGO_URL
+tlsCAFile = Config.tlsCAFile
 client = pymongo.MongoClient(url, tlsCAFile=tlsCAFile)
 db_test = client['test_database']
 

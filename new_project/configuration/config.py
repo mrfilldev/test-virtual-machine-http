@@ -7,6 +7,9 @@ load_dotenv()
 
 
 class Config(object):
+    PYMONGO_URL = os.environ.get('PYMONGO_TEST_URL')
+    tlsCAFile = os.environ.get('tlsCAFile')
+
     URL_DEV = os.environ.get('URL_DEV')
     API_KEY = os.environ.get('API_KEY')
 
