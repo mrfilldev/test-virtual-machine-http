@@ -8,8 +8,8 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import render_template, jsonify, abort, Response
 
-from new_project.db import database
-from new_project.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
+from testing.db import database
+from testing.db.models import TestScheduleOrder, Catergory, CategoryAuto, priceType, basketItem
 
 _eng_chars = u"~!@#$%^&qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:\"|ZXCVBNM<>?"
 _rus_chars = u"ё!\"№;%:?йцукенгшщзхъфывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"
@@ -33,6 +33,9 @@ def datetime_range(start, end, delta):
 
 
 def convert_string_to_timezone(value, timezone=3):
+    print('value: ', value)
+    if value == '' or value == None:
+        return ''
     time_value = parser.parse(value) + timedelta(hours=timezone)
     return time_value.isoformat()
     # time_value = value

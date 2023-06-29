@@ -3,7 +3,7 @@ from datetime import datetime
 
 from ..db import database
 
-# from new_project.app import login
+# from testing.app import login
 
 
 users = database.col_users

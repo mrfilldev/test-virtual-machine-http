@@ -4,8 +4,8 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import render_template
 
-from new_project.db import database
-from new_project.db.models import BoxStatusModel
+from testing.db import database
+from testing.db.models import BoxStatusModel
 
 
 def get_carwash_obj(carwash_id):

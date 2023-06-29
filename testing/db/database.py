@@ -1,18 +1,12 @@
-from urllib.parse import quote_plus as quote
 import pymongo
+import os
+
+from ..configuration.config import Config
 
 # pymongo
-url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
-    user=quote('user1'),
-    pw=quote('mrfilldev040202'),
-    hosts=','.join([
-        'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'
-    ]),
-    rs='rs01',
-    auth_src='test_database')
-client = pymongo.MongoClient(
-    url,
-    tlsCAFile='/home/mrfilldev/.mongodb/root.crt')
+url = Config.PYMONGO_URL
+tlsCAFile = Config.tlsCAFile
+client = pymongo.MongoClient(url, tlsCAFile=tlsCAFile)
 db_test = client['test_database']
 
 col_orders = db_test["test_orders"]

@@ -7,6 +7,10 @@ load_dotenv()
 
 
 class Config(object):
+    PYMONGO_URL = os.environ.get('PYMONGO_TEST_URL')
+    PYMONGO_URL = os.environ.get('PYMONGO_PRODUCTION_URL')
+    tlsCAFile = os.environ.get('tlsCAFile')
+
     URL_DEV = os.environ.get('URL_DEV')
     API_KEY = os.environ.get('API_KEY')
 
@@ -18,8 +22,8 @@ class Config(object):
     BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
     # yandex oauth
-    YAN_CLIENT_ID = os.environ.get('PRODUCTION_YAN_CLIENT_ID')
-    YAN_CLIENT_SECRET = os.environ.get('PRODUCTION_YAN_CLIENT_SECRET')
+    YAN_CLIENT_ID = os.environ.get('STABLE_YAN_CLIENT_ID')
+    YAN_CLIENT_SECRET = os.environ.get('STABLE_YAN_CLIENT_SECRET')
 
 
 class Sqs_params:
