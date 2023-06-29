@@ -32,6 +32,7 @@ def rename_attributes_of_prices(price_obj):
     except AttributeError:
         pass
     print(price_obj)
+
     return price_obj
 
 
@@ -69,6 +70,12 @@ def format_everything(carwash_obj, dict_of_prices_set):
     return carwash_obj
 
 
+def demo_remake_prices(price_obj):
+    print("\nprice_obj: \n", price_obj)
+
+    pass
+
+
 def make_dict_of_set_with_prices(all_sets):
     dict_of_set_with_prices = {}
 
@@ -84,7 +91,7 @@ def make_dict_of_set_with_prices(all_sets):
             price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
             price_obj = format_any_obj_id_to_Id(price_obj)
             price_obj = rename_attributes_of_prices(price_obj)
-
+            price_obj = demo_remake_prices(price_obj)
             arr_all_prices.append(price_obj)
 
         dict_of_set_with_prices[prices_set_obj._id] = arr_all_prices
