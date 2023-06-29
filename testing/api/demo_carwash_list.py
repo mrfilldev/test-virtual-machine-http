@@ -183,18 +183,19 @@ class TestPrice:
 
 def remake_id(prices_of_set):
     prices_arr = []
-    for price in prices_of_set:
-        print('\nprice: ', price)
-        chetchik = 1
-        for category in price.categoryPrice:
-            new_price = TestPrice(
-                id=price._id + "_" + category.category,
-                description="Категория " + str(chetchik) + ":" + "\\n" + price.name,
-                cost=category.sum,
-                cost_type=price.costType
-            )
-            prices_arr.append(new_price)
-            chetchik += 1
+    for i in range(5):
+        for price in prices_of_set:
+            print('\nprice: ', price)
+            chetchik = 1
+            for category in price.categoryPrice:
+                new_price = TestPrice(
+                    id=price._id + "_" + price.categoryPrice[i].category,
+                    description="Категория " + str(chetchik) + ":" + "\\n" + price.name,
+                    cost=category.sum,
+                    cost_type=price.costType
+                )
+                prices_arr.append(new_price)
+                chetchik += 1
 
     return prices_arr
 
