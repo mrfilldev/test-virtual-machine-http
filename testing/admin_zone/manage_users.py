@@ -60,7 +60,16 @@ def user_detail(request, user_id):
         old_user = {'_id': str(user_id)}
         new_user = database.col_users.update_one(old_user, set_command)
         print('new_user', new_user)
-
+        context = {
+            'user': user_obj,
+            'UserRole': UserRole,
+            'networks': empty_arr,
+        }
+        return render_template(
+            'admin/user_detail.html',
+            context=context
+        )
+    else:
         user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
         print(user_obj)
 
