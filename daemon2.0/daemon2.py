@@ -89,6 +89,14 @@ async def make_mongo_id(order):
     return order
 
 
+async def auto_compliting_order_in_box_4(order):
+    data = json.loads(json_util.dumps(order))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print('order_obj:', order_obj)
+
+
+
 async def write_into_db(order):
     print('Writing into DB')
     print('order:', order)
@@ -96,6 +104,7 @@ async def write_into_db(order):
     print('WRITED ORDER: ', res)
     print('ORDER_ID:', res.inserted_id)
     print('Объекты в коллекции', Py_mongo_db.col_orders.find())
+    await auto_compliting_order_in_box_4(order)
 
 
 async def update_order(order):
@@ -153,8 +162,8 @@ async def set_busy_status_box(order):
         "Boxes": carwash_obj.Boxes,
     }}
     print(set_command)
-    #upd_order = Py_mongo_db.col_carwashes.update_one(carwash, set_command)
-    #print('updated order: ', upd_order)
+    # upd_order = Py_mongo_db.col_carwashes.update_one(carwash, set_command)
+    # print('updated order: ', upd_order)
 
 
 async def main_func():
