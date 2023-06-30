@@ -61,7 +61,7 @@ def user_detail(request, user_id):
             'networks': empty_arr,
         }
         print('context: ', context)
-        return redirect(url_for('admin_blueprint.admin_user_detail'))
+        return redirect(url_for('admin_blueprint.admin_user_detail', user_id=user_obj._id))
 
     else:
         user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
