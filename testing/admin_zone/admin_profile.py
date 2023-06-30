@@ -18,7 +18,7 @@ admin_bp = Blueprint(
 
 
 @admin_bp.before_request
-def load_user()
+def load_user():
     try:
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
         g.user_inf = user_inf
