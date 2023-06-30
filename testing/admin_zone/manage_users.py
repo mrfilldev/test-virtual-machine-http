@@ -49,22 +49,22 @@ def user_detail(request, user_id):
         if 'network' in request.form['network']:
             empty_arr.append(request.form['network'])
             print('empty_arr: ', empty_arr)
-
         set_command = {
             "$set": {
                 "role": request.form['role'],
                 "networks": empty_arr,
-
             }
         }
         old_user = {'_id': str(user_obj._id)}
-        new_user = database.col_users.update_one(old_user, set_command)
-        print('new_user', new_user)
+        print('old_user: ', old_user)
+        print('set_command: ', set_command)
+        database.col_users.update_one(old_user, set_command)
         context = {
             'user': user_obj,
             'UserRole': UserRole,
             'networks': empty_arr,
         }
+        print('context: ', context)
         return render_template(
             'admin/user_detail.html',
             context=context
