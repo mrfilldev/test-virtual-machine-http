@@ -52,7 +52,7 @@
                         Имя:
                     </td>
                     <td>
-                        <input style="width: auto" type="text" class="form-control"
+                        <input style="width: 100%" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_db.name }} {{ g.user_db.surname }}">
                     </td>
                 </tr>
@@ -61,7 +61,7 @@
                         Логин:
                     </td>
                     <td>
-                        <input style="width: auto" type="text" class="form-control"
+                        <input style="width: 100%" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_inf.login }}">
                     </td>
                 </tr>
@@ -70,7 +70,7 @@
                         Статус:
                     </td>
                     <td>
-                        <input style="width: auto" type="text" class="form-control"
+                        <input style="width: 100%" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_db.role | format_role_user }}">
                     </td>
                 </tr>
@@ -79,7 +79,7 @@
                         ИНН:
                     </td>
                     <td>
-                        <input style="width: auto" type="text" class="form-control"
+                        <input style="width: 100%" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_db.inn }}">
                     </td>
                 </tr>
@@ -88,7 +88,7 @@
                         Контактный телефон:
                     </td>
                     <td>
-                        <input style="width: auto" type="text" class="form-control"
+                        <input style="width: 100%" type="text" class="form-control"
                                required placeholder="" value="{{ g.user_db.number }}">
                     </td>
                 </tr>
@@ -97,7 +97,7 @@
                         Дата регистрации:
                     </td>
                     <td>
-                        <input style="width: auto" type="text" class="form-control"
+                        <input style="width: 100%" type="text" class="form-control"
                                required placeholder=""
                                value="{{ g.user_db.date_registered | format_datetime_to_dmy }}">
                     </td>
