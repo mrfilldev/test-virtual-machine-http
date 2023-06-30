@@ -9,7 +9,7 @@ from types import SimpleNamespace
 from bson import json_util
 
 from web_params.params import Py_mongo_db, Sqs_params
-from ..configuration.config import Config
+# from ..configuration.config import Config
 
 import requests
 
@@ -19,8 +19,8 @@ load_dotenv()
 
 db_carwashes = Py_mongo_db.col_carwashes
 
-URL_DEV = Config.URL_DEV#'http://app.tst.tanker.yandex.net'
-API_KEY = Config.API_KEY#'7tllmnubn49ghu5qrep97'
+URL_DEV = 'http://app.tst.tanker.yandex.net'
+API_KEY = '7tllmnubn49ghu5qrep97'
 
 dict_reason = {
     'Completed': 'Выполнено успешно',
