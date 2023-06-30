@@ -57,7 +57,7 @@ def user_detail(request, user_id):
 
             }
         }
-        old_user = {'_id': str(user_id)}
+        old_user = {'_id': str(user_obj._id)}
         new_user = database.col_users.update_one(old_user, set_command)
         print('new_user', new_user)
         context = {
