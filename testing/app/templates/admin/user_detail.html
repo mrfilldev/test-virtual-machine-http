@@ -1,22 +1,43 @@
 {% extends "base.html" %}
 
 {% block body %}
+
+<script>
+    $(document).ready(function () {
+        updating();
+        deleting();
+        reload();
+    });
+
+
+
+    function updating() {
+        $('#to_update').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('admin_blueprint.admin_user_detail', user_id=context['user']._id) }}",
+                data: $('#user-info').serialize(),
+                success: function (data) {
+                    console.log('updated', data)
+                }
+            });
+        });
+    }
+    function deleting() {
+        $('#to_delete').click(function () {
+            console.log('Deleting')
+        });
+    }
+</script>
+
 <br>
-<form method=POST action="{{ url_for('admin_blueprint.admin_user_detail', user_id=context['user']._id) }}">
+<form id="user-info">
     <div class="container">
         <div class="row">
             <div class="col-2">
 
-                <button style="width: 130px" type="submit" class="btn btn-outline-secondary"
-                        href="{{ url_for('admin_blueprint.admin_user_detail', user_id=context['user']._id) }}">
-                    Сохранить
-                </button>
-
-
-                <button type="button" style="width: 130px" class="btn btn-outline-danger" disabled="true"
-                   href="{{ url_for('admin_blueprint.admin_delete_user', user_id=context['user']._id) }}">
-                    Удалить
-                </button>
+                <button style="width: 130px" type="button" class="btn btn-outline-secondary" id="to_update">Сохранить</button>
+                <button type="button" style="width: 130px" class="btn btn-outline-danger" id="to_delete">Удалить</button>
 
             </div>
             <div class="col-10">
@@ -61,7 +82,8 @@
 
                                         {% for i in context.UserRole %}
                                         <option value="{{i.name}}" {% if context.
-                                        user.role == i.name %} selected {% endif %}>{{ i.value }}</option>
+                                                user.role== i.name %} selected {% endif %}>{{ i.value }}
+                                        </option>
                                         {% endfor %}
                                     </select>
                                     </label>
@@ -100,10 +122,12 @@
                                         <option disabled="disabled">(не указано)</option>
 
                                         {% for i in context.networks %}
-                                        <option value="{{i._id}}" {% if i._id == context.user.networks[0] %} selected="selected"
-                                        {% endif %}>{{ i.network_name }}</option>
+                                        <option value="{{i._id}}" {% if i._id== context.user.networks[0] %}
+                                                selected="selected"
+                                                {% endif %}>{{ i.network_name }}
+                                        </option>
                                         {% endfor %}
-                                        </select>
+                                    </select>
                                     </select>
                                 </td>
                             </tr>
