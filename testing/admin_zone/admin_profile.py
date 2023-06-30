@@ -1,6 +1,6 @@
 from datetime import timedelta, date
 from dateutil import parser
-from flask import render_template, request, Blueprint, session, g, url_for, redirect
+from flask import render_template, request, Blueprint, session, g, url_for, redirect, abort
 
 from .edit_data_in_db import list_all_cols_in_db
 from .fix_buttons import fix_network_id_in_orders, back_carwashes_refresh_prices, remake_prices_to_set, \
@@ -18,13 +18,17 @@ admin_bp = Blueprint(
 
 
 @admin_bp.before_request
-def load_user():
-    user_inf = oauth_via_yandex.get_user(session['ya-token'])
-    g.user_inf = user_inf
-    print('g.user_inf: ', g.user_inf)
-    user = database.col_users.find_one({'_id': user_inf['id']})
-    g.user_db = user
-    print('g.user_db: :', g.user_db)
+def load_user()
+    try:
+        user_inf = oauth_via_yandex.get_user(session['ya-token'])
+        g.user_inf = user_inf
+        print('g.user_inf: ', g.user_inf)
+        user = database.col_users.find_one({'_id': user_inf['id']})
+        g.user_db = user
+        print('g.user_db: :', g.user_db)
+    except Exception as e:
+        print("Exception: %s" % str(e))
+        return abort(500)
 
 
 @admin_bp.route('/admin')
