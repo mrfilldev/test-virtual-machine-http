@@ -17,9 +17,6 @@
                 type: 'POST',
                 url: "{{ url_for('admin_blueprint.admin_user_detail', user_id=context['user']._id) }}",
                 data: $('#user-info').serialize(),
-                success: function (data) {
-                    console.log('updated', data)
-                }
             });
         });
     }
