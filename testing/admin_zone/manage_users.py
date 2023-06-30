@@ -46,19 +46,15 @@ def user_detail(request, user_id):
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
         print('user_obj: ', user_obj)
         empty_arr = []
-        if 'network' in request.form['network']:
-            empty_arr.append(request.form['network'])
-            print('empty_arr: ', empty_arr)
-        set_command = {
-            "$set": {
-                "role": request.form['role'],
-                "networks": empty_arr,
-            }
-        }
-        old_user = {'_id': str(user_obj._id)}
-        print('old_user: ', old_user)
-        print('set_command: ', set_command)
-        database.col_users.update_one(old_user, set_command)
+        empty_arr.append(request.form['network'])
+        print('empty_arr: ', empty_arr)
+
+        set_fields = {'$set': {
+            "role": request.form['role'],
+            "networks": empty_arr,
+        }}
+        database.col_users.update_one({'_id': user_obj._id}, set_fields)
+
         context = {
             'user': user_obj,
             'UserRole': UserRole,
