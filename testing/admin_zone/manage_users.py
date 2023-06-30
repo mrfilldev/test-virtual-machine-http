@@ -61,37 +61,38 @@ def user_detail(request, user_id):
             'networks': empty_arr,
         }
         print('context: ', context)
-        return redirect(url_for('admin_blueprint.admin_user_detail', user_id=user_obj._id))
+        # return redirect(url_for('admin_blueprint.admin_user_detail', user_id=user_obj._id))
 
-    else:
-        user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
-        print(user_obj)
 
-        data = json.loads(json_util.dumps(user_obj))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-        print(user_obj)
 
-        for i in UserRole:
-            print(i.name, i.value)
+    user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
+    print(user_obj)
 
-        network_obj = database.col_networks.find({})  # dict
-        print(network_obj)
+    data = json.loads(json_util.dumps(user_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print(user_obj)
 
-        data = json.loads(json_util.dumps(network_obj))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-        print(network_obj)
+    for i in UserRole:
+        print(i.name, i.value)
 
-        context = {
-            'user': user_obj,
-            'UserRole': UserRole,
-            'networks': network_obj,
-        }
-        return render_template(
-            'admin/user_detail.html',
-            context=context
-        )
+    network_obj = database.col_networks.find({})  # dict
+    print(network_obj)
+
+    data = json.loads(json_util.dumps(network_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print(network_obj)
+
+    context = {
+        'user': user_obj,
+        'UserRole': UserRole,
+        'networks': network_obj,
+    }
+    return render_template(
+        'admin/user_detail.html',
+        context=context
+    )
 
 
 def add_user(request):
