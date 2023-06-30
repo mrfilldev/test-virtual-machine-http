@@ -31,6 +31,11 @@ def load_user():
         return abort(500)
 
 
+@admin_bp.errorhandler(500)
+def page_not_found(e):
+    return render_template("error_page/500.html"), 500
+
+
 @admin_bp.route('/admin')
 def admin_main():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
