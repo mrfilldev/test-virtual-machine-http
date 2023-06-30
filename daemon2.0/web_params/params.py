@@ -9,6 +9,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+
+
+
 class Py_mongo_db:
     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
         user=quote('user1'),
