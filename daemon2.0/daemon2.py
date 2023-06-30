@@ -96,7 +96,6 @@ async def auto_compliting_order_in_box_4(order):
     print('order_obj:', order_obj)
 
 
-
 async def write_into_db(order):
     print('Writing into DB')
     print('order:', order)
