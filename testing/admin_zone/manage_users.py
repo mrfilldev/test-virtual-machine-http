@@ -44,11 +44,11 @@ def user_detail(request, user_id):
         data = json.loads(json_util.dumps(user_obj))
         data = json.dumps(data, default=lambda x: x.__dict__)
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-        print(user_obj)
+        print('user_obj: ', user_obj)
         empty_arr = []
         if 'network' in request.form['network']:
             empty_arr.append(request.form['network'])
-            print('empty_arr', empty_arr)
+            print('empty_arr: ', empty_arr)
 
         set_command = {
             "$set": {
@@ -61,34 +61,34 @@ def user_detail(request, user_id):
         new_user = database.col_users.update_one(old_user, set_command)
         print('new_user', new_user)
 
-    user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
-    print(user_obj)
+        user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
+        print(user_obj)
 
-    data = json.loads(json_util.dumps(user_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    print(user_obj)
+        data = json.loads(json_util.dumps(user_obj))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        print(user_obj)
 
-    for i in UserRole:
-        print(i.name, i.value)
+        for i in UserRole:
+            print(i.name, i.value)
 
-    network_obj = database.col_networks.find({})  # dict
-    print(network_obj)
+        network_obj = database.col_networks.find({})  # dict
+        print(network_obj)
 
-    data = json.loads(json_util.dumps(network_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-    print(network_obj)
+        data = json.loads(json_util.dumps(network_obj))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+        print(network_obj)
 
-    context = {
-        'user': user_obj,
-        'UserRole': UserRole,
-        'networks': network_obj,
-    }
-    return render_template(
-        'admin/user_detail.html',
-        context=context
-    )
+        context = {
+            'user': user_obj,
+            'UserRole': UserRole,
+            'networks': network_obj,
+        }
+        return render_template(
+            'admin/user_detail.html',
+            context=context
+        )
 
 
 def add_user(request):
