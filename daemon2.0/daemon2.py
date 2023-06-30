@@ -9,7 +9,7 @@ from types import SimpleNamespace
 from bson import json_util
 
 from web_params.params import Py_mongo_db, Sqs_params
-from .configuration.config import Config
+from ..configuration.config import Config
 
 import requests
 
