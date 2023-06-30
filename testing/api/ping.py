@@ -20,6 +20,10 @@ def carwash_check(box_number):
         status = 200
         print('status_reply', status)
         return status
+    elif box_number == '4':
+        status = 200
+        print('status_reply', status)
+        return status
     else:
         status = 404
         print('status_reply', status)
