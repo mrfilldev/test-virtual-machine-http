@@ -69,7 +69,7 @@ def main():
             print('session["owner_info"]: ', session['owner_info'])
             # if network is not None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
-            date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
+            date_now = datetime.utcnow().isoformat() + "Z"
             print(date_now)
             id_network = uuid.uuid4().hex
             database.col_networks.insert_one(
