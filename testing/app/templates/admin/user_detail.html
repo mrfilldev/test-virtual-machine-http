@@ -90,6 +90,7 @@
                                 </td>
                             </tr>
                             {% endif %}
+                            {% if context['user'].networks is defined %}
                             <tr>
                                 <td style="width: 200px">
                                     Cеть:
@@ -106,6 +107,7 @@
                                     </select>
                                 </td>
                             </tr>
+                            {% endif %}
                             </tbody>
                         </table>
 
