@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+<legend>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col text-end">Отчет:</div>
+        </div>
+    </div>
+</legend>
+<br>
+<div class="container">
+    {{ context.role }}
+    <br>
+    {{ context.text }}
+    <br>
+</div>
+<br>
+{% endblock %}
