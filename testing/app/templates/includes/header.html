@@ -58,7 +58,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-disabled="true" href="{{ url_for('prices_blueprint.list_sets_prices') }}"> Тарифы</a>
-
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{  url_for('statistics_blueprint.statistics') }}" aria-disabled="true">Бухгалтерия</a>
                 </li>
                 {% endif %}
                 {% if g.user_db.role == 'network_worker' %}
