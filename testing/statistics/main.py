@@ -29,6 +29,6 @@ def load_user():
     print('g.user_db: :', g.user_db)
 
 
-@statistics_bp.route('/monitoring_carwash/', methods=['POST', 'GET'])
+@statistics_bp.route('/statistics/', methods=['POST', 'GET'])
 def statistics():
     return get_statistics(g)
