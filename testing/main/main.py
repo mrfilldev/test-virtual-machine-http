@@ -75,7 +75,8 @@ def main():
             database.col_networks.insert_one(
                 {
                     '_id': id_network,
-                    'network_name': session['owner_info']['network_name'],
+                    'network_name': f"user_id: {user_inf['id']}" if session['owner_info']['network_name'] == "" else
+                    session['owner_info']['network_name'],
                     'carwashes': [],
                 }
             )
