@@ -15,7 +15,7 @@ from ..db import database
 from ..main import oauth_via_yandex
 
 statistics_bp = Blueprint(
-    'monitoring_blueprint', __name__,
+    'statistics_blueprint', __name__,
 )
 
 
