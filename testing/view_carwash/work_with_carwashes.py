@@ -349,9 +349,11 @@ def update_carwash_obj(request, carwash_id):
     print('UPDATE DATA: ', new_carwash)
 
 
+
 def get_sets(carwash_obj=None):
     if carwash_obj is not None:
-        all_sets = database.col_sets_of_prices.find({"network_id": carwash_obj.network_id})
+        # all_sets = database.col_sets_of_prices.find({"network_id": carwash_obj.network_id})
+        all_sets = database.col_sets_of_prices.find({})
     else:
         all_sets = database.col_sets_of_prices.find({})
     sets_list = []

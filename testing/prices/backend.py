@@ -13,7 +13,6 @@ from ..db.models import CategoryAuto, SetOfPrices, PriceOfSet, CostIdSum, Prices
 FORMAT = '%Y-%m-%dT%H:%M:%S%Z'
 
 
-
 def get_prices_obj_list():
     prices = database.col_prices.find({})
     prices_list = []
