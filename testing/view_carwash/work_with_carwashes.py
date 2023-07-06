@@ -147,7 +147,6 @@ def list_carwashes(g):
         data = json.dumps(data, default=lambda x: x.__dict__)
         network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
-
     else:
         all_carwashes = database.col_carwashes.find({})
         network_obj = None
