@@ -22,7 +22,7 @@ def generate_dict_of_networks(g_user_flask):
     for i in all_carwashes:
         carwash_obj_list.append(deserialize_mongo_doc(i))
 
-    if 'networks' not in g_user_flask.user_db:
+    if g_user_flask.user_db['role'] != 'admin':
         network_list = database.col_networks.find({})
         for i in network_list:
             network_obj_list.append(deserialize_mongo_doc(i))
