@@ -187,5 +187,7 @@ def format_status_order(value):
             return 'Заказ не актуален'
         case 'SystemAggregator_Error':
             return 'Заказ не выполнен'
+        case 'LocalOrder':
+            return 'Заказ контролируется администратором'
         case _:
             return value
