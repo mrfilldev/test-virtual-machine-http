@@ -145,174 +145,170 @@
     {% else %}
     <div class="row">
         <div class="col-2"></div>
-        <div class="col-10">
-            <main class="container-sm">
-                <div class="container">
-                    <div class="table-responsive">
-                        <table class="table table-hover table align-middle">
-                            <tbody id="tbody_orders" class="table-hover">
-                            <tr>
-                                <td style="width: 200px">
-                                    Данные клиента:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input style="width: 200px" type="text" class="form-control"
-                                               name="order_user_name" value="{{ context.order.order_user_name }}"
-                                               placeholder="Имя" required>
-                                        <input style="width: 200px" type="tel" class="form-control"
-                                               name="phone_number" value="{{ context.order.phone_number }}"
-                                               placeholder="Телефон" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Транспорт:
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-text">Название:</span>
-                                                <input style="width: 50px" type="text" class="form-control"
-                                                       name="car_brand" value="{{ context.order.CarBrand }}"
-                                                       placeholder="Марка" required>
-                                                <input style="width: 50px" type="text" class="form-control"
-                                                       name="car_model" value="{{ context.order.CarModel }}"
-                                                       placeholder="Модель" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-text">Категория:</span>
-                                                <input type="text" class="form-control" name="country_region_number"
-                                                       style="width: 100px" value="{{ context.order.Category }}"
-                                                       placeholder="А999АА799" aria-label="А999АА799" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-text">Гос.Номер:</span>
-                                                <input type="text" class="form-control" name="country_region_number"
-                                                       style="width: 100px" value="{{ context.order.CarNumber }}"
-                                                       placeholder="А999АА799" aria-label="А999АА799" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Расстановка:
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-text">Бокс:</span>
-                                                <input type="text" class="form-control"
-                                                       value="{{ context.order.BoxNumber }}">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-text">Дата:</span>
-                                                <input style="width: 100px"
-                                                       value="{{ context.order.DateStart | format_datetime_to_dmy }}"
-                                                       class="form-control"
-                                                       placeholder=""
-                                                       type="text"
-                                                       name="date" aria-describedby="addon-wrapping" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-text">Время:</span>
-                                                <input style="width: 100px"
-                                                       value="{{ context.order.DateStart | format_datetime_to_HMS }}"
-                                                       class="form-control"
-                                                       placeholder=""
-                                                       type="text"
-                                                       name="date" aria-describedby="addon-wrapping" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="prices">
-                        <div class="row">
-                            <table class="table table-center align-middle">
-                                <thead class="table-light">
-                                <tr>
+        <main class="col-10">
 
-                                    <th>Тариф:</th>
-                                    <th class="text-end">Стоимость:</th>
-                                    <th style="width: 230px">Кол-во:</th>
-                                    <th class="text-center">Итог:</th>
-                                </tr>
-                                </thead>
-                                <tbody id="table_prices_carwash">
-                                {% for price in context.basket %}
-                                {% if price.status == 'active' %}
-                                <tr id="{{price._id}}">
-                                    <td style="width: 365px;">
-                                        <b>{{ price.name }}</b><br>
-                                        {{ price.description }}
-                                    </td>
-                                    <td class="text-end price">
-                                        <input hidden="hidden" name="basecost_{{price._id}}"
-                                               value="{{price.categoryPrice['sum']}}">
-                                        {{ price.categoryPrice['sum'] }} &#8381
-                                    </td>
-                                    <td class="count">
+            <div class="container">
+                <div class="table-responsive">
+                    <table class="table table-hover table align-middle">
+                        <tbody id="tbody_orders" class="table-hover">
+                        <tr>
+                            <td style="width: 200px">
+                                Данные клиента:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input style="width: 200px" type="text" class="form-control"
+                                           name="order_user_name" value="{{ context.order.order_user_name }}"
+                                           placeholder="Имя" required>
+                                    <input style="width: 200px" type="tel" class="form-control"
+                                           name="phone_number" value="{{ context.order.phone_number }}"
+                                           placeholder="Телефон" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Транспорт:
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
                                         <div class="input-group input-group-sm">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                    id="minus_{{price._id}}"
-                                                    onclick="decrement(this.id)">-
-                                            </button>
-                                            <input disabled type="text" class="form-control"
-                                                   value="{{price.amount}}"
-                                                   style="width: 75px; text-align: center">
-                                            <input hidden="hidden" name="amount_{{price._id}}" value="{{price.amount}}">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                    id="plus_{{price._id}}"
-                                                    onclick="increment(this.id)">+
-                                            </button>
+                                            <span class="input-group-text">Название:</span>
+                                            <input style="width: 50px" type="text" class="form-control"
+                                                   name="car_brand" value="{{ context.order.CarBrand }}"
+                                                   placeholder="Марка" required>
+                                            <input style="width: 50px" type="text" class="form-control"
+                                                   name="car_model" value="{{ context.order.CarModel }}"
+                                                   placeholder="Модель" required>
                                         </div>
-                                    </td>
-                                    <td class="text-center">
-                                        {{ price.pretotal_price }} &#8381
-                                    </td>
-                                </tr>
-                                {% endif %}
-                                {% endfor %}
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text">Категория:</span>
+                                            <input type="text" class="form-control" name="country_region_number"
+                                                   style="width: 100px" value="{{ context.order.Category }}"
+                                                   placeholder="А999АА799" aria-label="А999АА799" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text">Гос.Номер:</span>
+                                            <input type="text" class="form-control" name="country_region_number"
+                                                   style="width: 100px" value="{{ context.order.CarNumber }}"
+                                                   placeholder="А999АА799" aria-label="А999АА799" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Расстановка:
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text">Бокс:</span>
+                                            <input type="text" class="form-control"
+                                                   value="{{ context.order.BoxNumber }}">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text">Дата:</span>
+                                            <input style="width: 100px"
+                                                   value="{{ context.order.DateStart | format_datetime_to_dmy }}"
+                                                   class="form-control"
+                                                   placeholder=""
+                                                   type="text"
+                                                   name="date" aria-describedby="addon-wrapping" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text">Время:</span>
+                                            <input style="width: 100px"
+                                                   value="{{ context.order.DateStart | format_datetime_to_HMS }}"
+                                                   class="form-control"
+                                                   placeholder=""
+                                                   type="text"
+                                                   name="date" aria-describedby="addon-wrapping" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-center align-middle">
+                        <thead class="table-light">
+                        <tr>
+
+                            <th>Тариф:</th>
+                            <th class="text-end">Стоимость:</th>
+                            <th style="width: 230px">Кол-во:</th>
+                            <th class="text-center">Итог:</th>
+                        </tr>
+                        </thead>
+                        <tbody id="table_prices_carwash">
+                        {% for price in context.basket %}
+                        {% if price.status == 'active' %}
+                        <tr id="{{price._id}}">
+                            <td style="width: 365px;">
+                                <b>{{ price.name }}</b><br>
+                                {{ price.description }}
+                            </td>
+                            <td class="text-end price">
+                                <input hidden="hidden" name="basecost_{{price._id}}"
+                                       value="{{price.categoryPrice['sum']}}">
+                                {{ price.categoryPrice['sum'] }} &#8381
+                            </td>
+                            <td class="count">
+                                <div class="input-group input-group-sm">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                            id="minus_{{price._id}}"
+                                            onclick="decrement(this.id)">-
+                                    </button>
+                                    <input disabled type="text" class="form-control"
+                                           value="{{price.amount}}"
+                                           style="width: 75px; text-align: center">
+                                    <input hidden="hidden" name="amount_{{price._id}}" value="{{price.amount}}">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                            id="plus_{{price._id}}"
+                                            onclick="increment(this.id)">+
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                {{ price.pretotal_price }} &#8381
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
 
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8"></div>
-                        <div class="col-4">
-                            <div class="input-group" style="font-weight: bold">
-                                <span class="input-group-text">Итого &#8381:</span>
-                                <input style="width: 100px" type="text" class="form-control"
-                                       name="total-view" placeholder="0" value="{{ context.order.Sum }}" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="liveAlertPlaceholder"></div>
+                        </tbody>
+                    </table>
                 </div>
-            </main>
+            </div>
+        </main>
+    </div>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4">
+            <div class="input-group" style="font-weight: bold">
+                <span class="input-group-text">Итого &#8381:</span>
+                <input style="width: 100px" type="text" class="form-control"
+                       name="total-view" placeholder="0" value="{{ context.order.Sum }}" disabled>
+            </div>
         </div>
     </div>
-    {% endif %}
+
 </div>
+{% endif %}
+
 
 <!-- Модальное окно -->
 <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
