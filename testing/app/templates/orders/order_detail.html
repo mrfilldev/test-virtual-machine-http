@@ -55,7 +55,12 @@
             <div class="container">
                 <div class="table-responsive">
                     <table class="table table-center align-middle">
-                        <tbody id="tbody_orders" class="table-hover">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Клиент:</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td style="width: 200px">
                                 Данные клиента:
@@ -150,14 +155,13 @@
                     <table class="table table-center align-middle">
                         <thead class="table-light">
                         <tr>
-
                             <th>Тариф:</th>
                             <th class="text-end">Стоимость:</th>
                             <th style="width: 230px">Кол-во:</th>
                             <th class="text-center">Итог:</th>
                         </tr>
                         </thead>
-                        <tbody id="table_prices_carwash">
+                        <tbody>
                         {% for price in context.basket %}
                         {% if price.status == 'active' %}
                         <tr id="{{price._id}}">
