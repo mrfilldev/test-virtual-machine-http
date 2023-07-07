@@ -292,7 +292,7 @@
                             <th>Оказанные услуги:</th>
                             <th class="text-end">Стоимость:</th>
                             <th class="text-center">Кол-во:</th>
-                            <th class="text-center">Итог: {{ context.order.Sum }} &#8381:</th>
+                            <th class="text-end">Итог: {{ context.order.Sum }} &#8381:</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -311,7 +311,7 @@
                             <td class="text-center">
                                     {{price.amount}}
                             </td>
-                            <td class="text-center">
+                            <td class="text-end">
                                 {{ price.pretotal_price }} &#8381
                             </td>
                         </tr>
