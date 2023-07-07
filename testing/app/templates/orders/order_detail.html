@@ -190,6 +190,68 @@
                     <table class="table table-center align-middle">
                         <thead class="table-light">
                         <tr>
+                            <th>Оказанные услуги:</th>
+                            <th class="text-end">Стоимость:</th>
+                            <th class="text-center">Кол-во:</th>
+                            <th class="text-end">Итог: {{ context.order.Sum }} &#8381:</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for price in context.basket %}
+                        {% if price.status == 'active' %}
+                        <tr id="{{price._id}}">
+                            <td style="width: 365px;">
+                                <b>{{ price.name }}</b><br>
+                                {{ price.description }}
+                            </td>
+                            <td class="text-end price">
+                                <input hidden="hidden" name="basecost_{{price._id}}"
+                                       value="{{price.categoryPrice['sum']}}">
+                                {{ price.categoryPrice['sum'] }} &#8381
+                            </td>
+                            <td class="text-center">
+                                {{price.amount}}
+                            </td>
+                            <td class="text-end">
+                                {{ price.pretotal_price }} &#8381
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<div class="container">
+
+    <div class="row">
+        {% if g.user_db.role != 'admin' %}
+        <div class="col-2">
+            <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+                {% if context['order'].Status == 'OrderCreated' %}
+                <button type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу</button>
+                <button type="button" class="btn btn-outline-secondary" id="to_decline">Отменить заказ</button>
+                {% elif context['order'].Status == 'Accepted' %}
+                <button type="button" class="btn btn-outline-secondary" id="to_complete">Подтвердить выполнение</button>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="col-2"></div>
+        {% endif %}
+
+        <main class="col-10">
+            <div class="container">
+                <div class="table-responsive">
+
+                    <table class="table table-center align-middle">
+                        <thead class="table-light">
+                        <tr>
                             <th>Клиент:</th>
                             <th></th>
                         </tr>
