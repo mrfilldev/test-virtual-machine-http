@@ -53,143 +53,140 @@
         <main class="col-10">
             <div class="container">
                 <div class="table-responsive">
-                    <div class="row">
-                        <table class="table table-center align-middle">
-                            <thead class="table-light">
-                            <tr>
-                                <th>Клиент</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td style="width: 200px">
-                                    Имя:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input style="width: 200px" type="text" class="form-control"
-                                               name="order_user_name" value="{{ context.order.order_user_name }}"
-                                               placeholder="Имя" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Телефон:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input style="width: 200px" type="tel" class="form-control"
-                                               name="phone_number" value="{{ context.order.phone_number }}"
-                                               placeholder="Телефон" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="table table-center align-middle">
-                            <thead class="table-light">
-                            <tr>
-                                <th>Транспорт</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td style="width: 200px">
-                                    Название:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input style="width: 50px" type="text" class="form-control"
-                                               name="car_brand" value="{{ context.order.CarBrand }}"
-                                               placeholder="Марка" required>
-                                        <input style="width: 50px" type="text" class="form-control"
-                                               name="car_model" value="{{ context.order.CarModel }}"
-                                               placeholder="Модель" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Гос. Номер:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" name="country_region_number"
-                                               style="width: 100px" value="{{ context.order.CarNumber }}"
-                                               placeholder="А999АА799" aria-label="А999АА799" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Категория:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" name="country_region_number"
-                                               style="width: 100px" value="{{ context.order.Category }}"
-                                               placeholder="А999АА799" aria-label="А999АА799" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="table table-center align-middle">
-                            <thead class="table-light">
-                            <tr>
-                                <th>Расстановка</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td style="width: 200px">
-                                    Дата:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input style="width: 100px"
-                                               value="{{ context.order.DateStart | format_datetime_to_dmy }}"
-                                               class="form-control"
-                                               placeholder=""
-                                               type="text"
-                                               name="date" aria-describedby="addon-wrapping" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Время:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input style="width: 100px"
-                                               value="{{ context.order.DateStart | format_datetime_to_HMS }}"
-                                               class="form-control"
-                                               placeholder=""
-                                               type="text"
-                                               name="date" aria-describedby="addon-wrapping" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px">
-                                    Бокс:
-                                </td>
-                                <td>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control"
-                                               value="{{ context.order.BoxNumber }}">
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+                    <table class="table table-center align-middle">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Клиент</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                Имя:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input style="width: 200px" type="text" class="form-control"
+                                           name="order_user_name" value="{{ context.order.order_user_name }}"
+                                           placeholder="Имя" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Телефон:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input style="width: 200px" type="tel" class="form-control"
+                                           name="phone_number" value="{{ context.order.phone_number }}"
+                                           placeholder="Телефон" required>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-center align-middle">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Транспорт</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                Название:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input style="width: 50px" type="text" class="form-control"
+                                           name="car_brand" value="{{ context.order.CarBrand }}"
+                                           placeholder="Марка" required>
+                                    <input style="width: 50px" type="text" class="form-control"
+                                           name="car_model" value="{{ context.order.CarModel }}"
+                                           placeholder="Модель" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Гос. Номер:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" name="country_region_number"
+                                           style="width: 100px" value="{{ context.order.CarNumber }}"
+                                           placeholder="А999АА799" aria-label="А999АА799" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Категория:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" name="country_region_number"
+                                           style="width: 100px" value="{{ context.order.Category }}"
+                                           placeholder="А999АА799" aria-label="А999АА799" required>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-center align-middle">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Расстановка</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 200px">
+                                Дата:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input style="width: 100px"
+                                           value="{{ context.order.DateStart | format_datetime_to_dmy }}"
+                                           class="form-control"
+                                           placeholder=""
+                                           type="text"
+                                           name="date" aria-describedby="addon-wrapping" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Время:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input style="width: 100px"
+                                           value="{{ context.order.DateStart | format_datetime_to_HMS }}"
+                                           class="form-control"
+                                           placeholder=""
+                                           type="text"
+                                           name="date" aria-describedby="addon-wrapping" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px">
+                                Бокс:
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control"
+                                           value="{{ context.order.BoxNumber }}">
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                     <table class="table table-center align-middle">
                         <thead class="table-light">
                         <tr>
