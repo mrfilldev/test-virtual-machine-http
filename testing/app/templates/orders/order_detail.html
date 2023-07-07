@@ -156,10 +156,10 @@
                                     <td>
                                         <div class="input-group input-group-sm">
                                             <input style="width: 200px" type="text" class="form-control"
-                                                   name="order_user_name" id="order_user_name"
+                                                   name="order_user_name" value="{{ context.order.order_user_name }}"
                                                    placeholder="Имя" required>
                                             <input style="width: 200px" type="tel" class="form-control"
-                                                   name="phone_number"
+                                                   name="phone_number" value="{{ context.order.phone_number }}"
                                                    placeholder="Телефон" required>
                                         </div>
                                     </td>
@@ -174,31 +174,26 @@
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Название:</span>
                                                     <input style="width: 50px" type="text" class="form-control"
-                                                           name="car_brand"
+                                                           name="car_brand" value="{{ context.order.CarBrand }}"
                                                            placeholder="Марка" required>
                                                     <input style="width: 50px" type="text" class="form-control"
-                                                           name="car_model"
+                                                           name="car_model" value="{{ context.order.CarModel }}"
                                                            placeholder="Модель" required>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Категория:</span>
-                                                    <select id="select_category" name="category"
-                                                            class="form-select" style="width: 50px"
-                                                            required>
-                                                        <option value="" disabled selected>...</option>
-                                                        {% for i in context['category'] %}
-                                                        <option value="{{i.name}}">{{ i.value }}</option>
-                                                        {% endfor %}
-                                                    </select>
+                                                    <input type="text" class="form-control" name="country_region_number"
+                                                           style="width: 100px" value="{{ context.order.Category }}"
+                                                           placeholder="А999АА799" aria-label="А999АА799" required>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Гос.Номер:</span>
                                                     <input type="text" class="form-control" name="country_region_number"
-                                                           style="width: 100px"
+                                                           style="width: 100px" value="{{ context.order.CarNumber }}"
                                                            placeholder="А999АА799" aria-label="А999АА799" required>
                                                 </div>
                                             </div>
@@ -214,13 +209,13 @@
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Бокс:</span>
-                                                    <input type="text" class="form-control" value="{{ context.order.BoxNumber}}">
+                                                    <input type="text" class="form-control" value="{{ context.order.BoxNumber }}">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Дата:</span>
-                                                    <input style="width: 100px" value="" class="form-control"
+                                                    <input style="width: 100px" value="{{ context.order.DateEnd }}" class="form-control"
                                                            placeholder=""
                                                            type="date"
                                                            name="date" aria-describedby="addon-wrapping" required>
@@ -229,12 +224,12 @@
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Время:</span>
-                                                    <input style="width: 75px" value="" class="form-control"
+                                                    <input style="width: 75px" value="{{ context.order.DateStart }}" class="form-control"
                                                            placeholder="Старт"
                                                            type="time" name="time_start"
                                                            aria-describedby="addon-wrapping"
                                                            required>
-                                                    <input style="width: 75px" value="" class="form-control"
+                                                    <input style="width: 75px" value="{{ context.order.DateEnd }}" class="form-control"
                                                            placeholder="Конец"
                                                            type="time" name="time_end" aria-describedby="addon-wrapping"
                                                            required>
