@@ -296,16 +296,17 @@
         </main>
     </div>
     <div class="row">
-        <div class="col-8"></div>
-        <div class="col-4">
-            <div class="input-group" style="font-weight: bold">
-                <span class="input-group-text">Итого &#8381:</span>
-                <input style="width: 100px" type="text" class="form-control"
-                       name="total-view" placeholder="0" value="{{ context.order.Sum }}" disabled>
+        <div class="container">
+            <div class="col-8"></div>
+            <div class="col-4">
+                <div class="input-group" style="font-weight: bold">
+                    <span class="input-group-text">Итого &#8381:</span>
+                    <input style="width: 100px" type="text" class="form-control"
+                           name="total-view" placeholder="0" value="{{ context.order.Sum }}" disabled>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
 {% endif %}
 
