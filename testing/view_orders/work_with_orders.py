@@ -23,16 +23,16 @@ def list_orders(g_user_flask):
     carwash_id = '' if carwash_id is None else carwash_id
     print("carwash_id: ", carwash_id)
     if carwash_id == '':
-        if 'networks' in g_user_flask.user_db:
-            network = g_user_flask.user_db['networks'][0]
-            print('network:', network)
+        if g_user_flask.user_db['role'] != 'admin':
+            if 'networks' in g_user_flask.user_db:
+                network = g_user_flask.user_db['networks'][0]
+                print('network:', network)
 
-            search = {'network_id': network}
+                search = {'network_id': network}
+            else:
+                return abort(404)
         elif g_user_flask.user_db['role'] == 'admin':
-
             search = {}
-        else:
-            return abort(404)
     else:
         search = {'CarWashId': carwash_id}
     print('carwash_id: ', carwash_id)
