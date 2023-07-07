@@ -191,3 +191,29 @@ def format_status_order(value):
             return 'Заказ контролируется администратором'
         case _:
             return value
+
+
+@admin_bp.app_template_filter()
+def format_ContractId(value):
+    match value:
+        case 'OWN':
+            return "Собственный заказ"
+        case 'YARU':
+            return "Внешний заказ"
+        case _:
+            return value
+
+
+@admin_bp.app_template_filter()
+def count_cost_bascket(bascket):
+    total_cost = 0
+    for obj in bascket:
+        total_cost += obj.amount * obj.price
+    return float(total_cost)
+
+
+@admin_bp.app_template_filter()
+def format_space_numbers(value):
+    ans = '{0:,}'.format(value).replace(',', ' ') + '0'
+    print('ans: ', ans, type(ans))
+    return ans
