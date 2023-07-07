@@ -151,7 +151,7 @@
                                 <tbody id="tbody_orders" class="table-hover">
                                 <tr>
                                     <td style="width: 200px">
-                                        Данные клиента
+                                        Данные клиента:
                                     </td>
                                     <td>
                                         <div class="input-group input-group-sm">
@@ -202,7 +202,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        Расстановка
+                                        Расстановка:
                                     </td>
                                     <td>
                                         <div class="row">
@@ -215,24 +215,10 @@
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Дата:</span>
-                                                    <input style="width: 100px" value="{{ context.order.DateEnd }}" class="form-control"
+                                                    <input style="width: 100px" value="{{ context.order.DateEnd | format_datetime}}" class="form-control"
                                                            placeholder=""
                                                            type="date"
                                                            name="date" aria-describedby="addon-wrapping" required>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="input-group input-group-sm">
-                                                    <span class="input-group-text">Время:</span>
-                                                    <input style="width: 75px" value="{{ context.order.DateStart }}" class="form-control"
-                                                           placeholder="Старт"
-                                                           type="time" name="time_start"
-                                                           aria-describedby="addon-wrapping"
-                                                           required>
-                                                    <input style="width: 75px" value="{{ context.order.DateEnd }}" class="form-control"
-                                                           placeholder="Конец"
-                                                           type="time" name="time_end" aria-describedby="addon-wrapping"
-                                                           required>
                                                 </div>
                                             </div>
                                         </div>
