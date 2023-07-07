@@ -215,7 +215,7 @@
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Дата:</span>
-                                                    <input style="width: 100px" value="{{ context.order.DateCreate | format_datetime_to_dmy }}" class="form-control"
+                                                    <input style="width: 100px" value="{{ context.order.DateStart | format_datetime_to_dmy }}" class="form-control"
                                                            placeholder=""
                                                            type="text"
                                                            name="date" aria-describedby="addon-wrapping" required>
@@ -224,7 +224,7 @@
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Время:</span>
-                                                    <input style="width: 100px" value="{{ context.order.DateCreate | format_datetime_to_HMS }}" class="form-control"
+                                                    <input style="width: 100px" value="{{ context.order.DateStart | format_datetime_to_HMS }}" class="form-control"
                                                            placeholder=""
                                                            type="text"
                                                            name="date" aria-describedby="addon-wrapping" required>
