@@ -256,7 +256,7 @@
                                 </tr>
                                 </thead>
                                 <tbody id="table_prices_carwash">
-                                {% for price in context.set_prices %}
+                                {% for price in context.basket %}
                                 {% if price.status == 'active' %}
                                 <tr id="{{price._id}}">
                                     <td class="text-center">
