@@ -33,8 +33,9 @@
 
 <br>
 <div class="container">
-    {% if g.user_db.role != 'admin' %}
+
     <div class="row">
+        {% if g.user_db.role != 'admin' %}
         <div class="col-2">
             <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
                 {% if context['order'].Status == 'OrderCreated' %}
@@ -45,106 +46,10 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-10">
-            <main class="container-sm">
-                <div class="table-responsive">
-
-                    <table class="table table-bordered table-center align-middle">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col" colspan="6">Заказ CarNumber='', CarBrand='', CarModel='', DateStart='',
-                                DateEnd='', Category='Compact', order_basket='', order_user_name='', phone_number='')
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="width: 200px">
-                                Источник:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].ContractId | format_ContractId }}">
-                            </td>
-                            <td rowspan="6" colspan="2">
-                                {% if context.carwash == None %}
-                                <img src="https://static-maps.yandex.ru/1.x/?ll=37.620070,55.753630&spn=0.1,0.1&l=map&size=500,450">
-                                {% else %}
-                                <img src="https://static-maps.yandex.ru/1.x/?l=map&z=17&size=590,310&pt={{ context.carwash.Location.lon |float }},{{ context.carwash.Location.lat |float  }},org">
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Бокс:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].BoxNumber }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Дата создания:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].DateCreate | format_datetime }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Статус заказа:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].Status | format_status_order }}">
-                            </td>
-                        </tr>
-                        <tr class="table-light">
-                            <th scope="col" colspan="2">Оплата</th>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Сумма заказа:
-                            </td>
-                            {% if context['order'].ContractId == 'OWN' %}
-                            <td>
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ (context['order'].order_basket | count_cost_bascket) | format_space_numbers  }}&#8381">
-                            </td>
-                            {% else %}
-                            <td>
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ context['order'].Sum | format_space_numbers }}&#8381">
-                            </td>
-                            {% endif %}
-                        </tr>
-                        {% if context['order'].ContractId == 'OWN' %}{% else %}
-                        <tr>
-                            <td>Сумма списания:</td>
-                            <td class="text-end">
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ context['order'].SumCompleted | format_space_numbers }}&#8381">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Выплачено партнеру:</td>
-                            <td class="text-end">
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ context['order'].SumPaidStationCompleted | format_space_numbers }}&#8381">
-                            </td>
-                            {% endif %}
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
-    </div>
-    {% else %}
-    <div class="row">
+        {% else %}
         <div class="col-2"></div>
+        {% endif %}
+
         <main class="col-10">
 
             <div class="container">
@@ -308,7 +213,6 @@
         </div>
     </div>
 </div>
-{% endif %}
 
 
 <!-- Модальное окно -->
