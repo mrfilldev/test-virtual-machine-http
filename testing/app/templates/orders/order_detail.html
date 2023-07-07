@@ -292,7 +292,7 @@
                             <th>Оказанные услуги:</th>
                             <th class="text-end">Стоимость:</th>
                             <th style="width: 230px">Кол-во:</th>
-                            <th class="text-center">Итог:</th>
+                            <th class="text-center">Итог: {{ context.order.Sum }} &#8381:</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -337,18 +337,6 @@
                 </div>
             </div>
         </main>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-8"></div>
-            <div class="col-4">
-                <div class="input-group" style="font-weight: bold">
-                    <span class="input-group-text">Итого &#8381:</span>
-                    <input style="width: 100px; text-align: end" type="text" class="form-control"
-                           name="total-view" placeholder="0" value="{{ context.order.Sum }}" disabled>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
