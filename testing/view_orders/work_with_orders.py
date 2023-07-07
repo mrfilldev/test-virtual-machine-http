@@ -91,6 +91,32 @@ def list_orders(g_user_flask):
     )
 
 
+def get_price(price_id):
+    price_obj = database.col_prices.find_one({'_id': price_id})  # dict
+    data = json.loads(json_util.dumps(price_obj))
+    data = json.dumps(data, default=lambda x: x.__dict__)
+    price_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    print('price_obj: ', price_obj)
+    return price_obj
+
+
+def get_basket_objs(order_obj):
+    basket = []
+
+    if order_obj is None:
+        return {}
+    for price in order_obj.order_basket:
+        price_obj = get_price(price._id)
+        for obj in price_obj.categoryPrice:
+            if obj.category == order_obj.Category:
+                price_obj.categoryPrice = obj
+        pretotal_price = int(price.amount) * int(price.price)
+        setattr(price_obj, 'amount', price.amount)
+        setattr(price_obj, 'pretotal_price', pretotal_price)
+        basket.append(price_obj)
+    return basket
+
+
 def owner_order_detail(order_id):
     order_obj = database.col_orders.find_one({'_id': order_id})  # dict
     data = json.loads(json_util.dumps(order_obj))
@@ -98,10 +124,11 @@ def owner_order_detail(order_id):
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print('order_obj: \n', order_obj)
     carwash = get_carwash_obj(order_obj)
-
+    basket = get_basket_objs(order_obj)
     context = {
         'order': order_obj,
-        'carwash': carwash
+        'carwash': carwash,
+        'basket': basket
     }
     return render_template(
         'orders/order_detail.html',
