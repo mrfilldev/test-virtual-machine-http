@@ -171,6 +171,12 @@ def format_datetime_to_dmy(value):
 
 
 @admin_bp.app_template_filter()
+def format_datetime_to_HMS(value):
+    value = (parser.parse(value) + timedelta(hours=3)).strftime("%H:%M:%S")
+    return value
+
+
+@admin_bp.app_template_filter()
 def format_status_order(value):
     match value:
         case 'OrderCreated':
