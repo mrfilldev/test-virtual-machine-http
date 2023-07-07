@@ -33,6 +33,7 @@
 
 <br>
 <div class="container">
+    {% if g.user_db.role != 'admin' %}
     <div class="row">
         <div class="col-2">
             <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
@@ -139,9 +140,170 @@
             </main>
         </div>
     </div>
+    {% else %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-10">
+            <main class="container-sm">
+                 <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-hover table align-middle">
+                                <tbody id="tbody_orders" class="table-hover">
+                                <tr>
+                                    <td style="width: 200px">
+                                        Данные клиента
+                                    </td>
+                                    <td>
+                                        <div class="input-group input-group-sm">
+                                            <input style="width: 200px" type="text" class="form-control"
+                                                   name="order_user_name" id="order_user_name"
+                                                   placeholder="Имя" required>
+                                            <input style="width: 200px" type="tel" class="form-control"
+                                                   name="phone_number"
+                                                   placeholder="Телефон" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px">
+                                        Транспорт:
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Название:</span>
+                                                    <input style="width: 50px" type="text" class="form-control"
+                                                           name="car_brand"
+                                                           placeholder="Марка" required>
+                                                    <input style="width: 50px" type="text" class="form-control"
+                                                           name="car_model"
+                                                           placeholder="Модель" required>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Категория:</span>
+                                                    <select id="select_category" name="category"
+                                                            class="form-select" style="width: 50px"
+                                                            required>
+                                                        <option value="" disabled selected>...</option>
+                                                        {% for i in context['category'] %}
+                                                        <option value="{{i.name}}">{{ i.value }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Гос.Номер:</span>
+                                                    <input type="text" class="form-control" name="country_region_number"
+                                                           style="width: 100px"
+                                                           placeholder="А999АА799" aria-label="А999АА799" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Расстановка
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Бокс:</span>
+                                                    <select name="box" style="width: 200px" class="form-select"
+                                                            required>
+                                                        <option value="" disabled selected>...</option>
+                                                        {% for i in range(1, context['box']+1) %}
+                                                        <option value="{{ i }}">{{ i }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Дата:</span>
+                                                    <input style="width: 100px" value="" class="form-control"
+                                                           placeholder=""
+                                                           type="date"
+                                                           name="date" aria-describedby="addon-wrapping" required>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Время:</span>
+                                                    <input style="width: 75px" value="" class="form-control"
+                                                           placeholder="Старт"
+                                                           type="time" name="time_start"
+                                                           aria-describedby="addon-wrapping"
+                                                           required>
+                                                    <input style="width: 75px" value="" class="form-control"
+                                                           placeholder="Конец"
+                                                           type="time" name="time_end" aria-describedby="addon-wrapping"
+                                                           required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="prices">
+                            <div class="row">
+                                <table class="table table-center align-middle">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Тариф:</th>
+                                        <th class="text-end">Стоимость:</th>
+                                        <th style="width: 230px">Кол-во:</th>
+                                        <th class="text-center">Итог:</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table_prices_carwash">
+                                    {% include 'schedule/table_prices.html' %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="input-group">
+                                <input  name="search-field" type="text" class="form-control"
+                                       placeholder="Поиск услуг"
+                                       aria-label="Input group example" aria-describedby="basic-addon1" autocomplete="off">
+                                <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg></span>
+                            </div>
+                            <div id="search_field-result">
+                                <div class="table-responsive">
+                                    {% include 'schedule/table_of_results.html' %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group" style="font-weight: bold">
+                                <span class="input-group-text">Итого &#8381:</span>
+                                <input style="width: 100px" type="text" class="form-control"
+                                       name="total-view" placeholder="0" disabled>
+                            </div>
+                            <input style="width: 100px" type="text" class="form-control"
+                                   name="total-hidden" value="0" hidden="hidden">
+                        </div>
+                    </div>
+
+                    <div id="liveAlertPlaceholder"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    {% endif %}
 </div>
 
-
+<!-- Модальное окно -->
 <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -169,8 +331,8 @@
             </div>
         </div>
     </div>
+
 </div>
-<!-- Модальное окно -->
 <div class="modal fade" id="modal_accept" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -200,7 +362,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="modal_complete" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
