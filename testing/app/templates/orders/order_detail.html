@@ -214,13 +214,7 @@
                                             <div class="col">
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Бокс:</span>
-                                                    <select name="box" style="width: 200px" class="form-select"
-                                                            required>
-                                                        <option value="" disabled selected>...</option>
-                                                        {% for i in range(1, context['box']+1) %}
-                                                        <option value="{{ i }}">{{ i }}</option>
-                                                        {% endfor %}
-                                                    </select>
+                                                    <input type="text" class="form-control" value="{{ context.order.BoxNumber}}">
                                                 </div>
                                             </div>
                                             <div class="col">
