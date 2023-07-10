@@ -4,23 +4,13 @@
 {% block body %}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
 <script>
-    var context_chart = {{context.chart | tojson}};
+
 
     $(document).ready(function () {
-        validate_form();
-        send_order();
-        edit_order();
-        render_calendar(context_calendar);
-        // select_on_change();
-        disable_to_modal_prices();
-        search_prices();
-
-        pre_registration();
-        new_client();
-        old_client();
+        render_chart();
     });
 
-    function render_calendar(model) {
+    function render_chart() {
         // bar chart data
         var barData = {
             labels: [
