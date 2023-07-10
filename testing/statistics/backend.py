@@ -51,9 +51,10 @@ def try_group_date():
     message = "################################ \n"
     pipline_date = [{
         "$group": {
-            "_id": {"$dayOfYear": "DateCreate"},
-            "amount": {"$sum": 1}}}
-    ]
+            "_id": {"$dayOfYear": 'DateCreate'},
+            "amount": {"$sum": 1}
+        }
+    }]
     result = database.col_orders.aggregate(pipline_date)
     # Выводим результаты
     amount_of_orders = 0
