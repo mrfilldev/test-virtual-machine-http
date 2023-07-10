@@ -49,7 +49,7 @@ def try_shit():
 
 def try_group_date():
     message = "################################ \n"
-    pipline_date = [{
+    pipline_year = [{
         "$group": {
             "_id": {
                 "year": {
@@ -74,10 +74,10 @@ def try_group_date():
         message += f"""\n{doc['_id']} -> {doc['amount']} шт.\n"""
         message += '\n'
         amount_of_orders += int(doc['amount'])
-        message += str(amount_of_orders)
-        message += '\n'
-        message += "################################"
-        print(message)
+    message += str(amount_of_orders)
+    message += '\n'
+    message += "################################"
+    print(message)
 
 
 def get_statistics(g_user_flask):
