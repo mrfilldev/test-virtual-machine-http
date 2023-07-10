@@ -51,7 +51,17 @@ def try_group_date():
     message = "################################ \n"
     pipline_date = [{
         "$group": {
-            "_id": {"$dayOfYear": '$DateCreate'},
+            "_id": {
+                "year": {
+                    "$substr": ["$CreatedDate", 0, 4]
+                },
+                "month": {
+                    "$substr": ["$CreatedDate", 5, 2]
+                },
+                "day": {
+                    "$substr": ["$CreatedDate", 8, 2]
+                }
+            },
             "amount": {"$sum": 1}
         }
     }]
@@ -60,10 +70,10 @@ def try_group_date():
     amount_of_orders = 0
     for doc in result:
         print(doc)
-        # message += f"{doc['CarWashId']}:\n"
-        message += f"""\n{doc['_id']} -> {doc['amount']} шт.\n"""
-        message += '\n'
-        amount_of_orders += int(doc['amount'])
+    # message += f"{doc['CarWashId']}:\n"
+    message += f"""\n{doc['_id']} -> {doc['amount']} шт.\n"""
+    message += '\n'
+    amount_of_orders += int(doc['amount'])
     message += str(amount_of_orders)
     message += '\n'
     message += "################################"
