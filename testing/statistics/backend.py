@@ -53,13 +53,13 @@ def try_group_date():
         "$group": {
             "_id": {
                 "year": {
-                    "$substr": ["DateCreate", 0, 4]
+                    "$substr": ["$DateCreate", 0, 4]
                 },
                 "month": {
-                    "$substr": ["DateCreate", 5, 2]
+                    "$substr": ["$DateCreate", 5, 2]
                 },
                 "day": {
-                    "$substr": ["DateCreate", 8, 2]
+                    "$substr": ["$DateCreate", 8, 2]
                 }
             },
             "amount": {"$sum": 1}
