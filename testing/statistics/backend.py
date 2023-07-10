@@ -31,7 +31,7 @@ def try_shit():
             "count": {"$sum": 1}
         }
     }]
-    result = database.col_orders.aggregate(pipeline)
+    result = database.col_orders.aggregate(pipeline_by_status)
     # Выводим результаты
     message += "Сводка статусов заказов за все время:\n"
     amount_of_orders = 0
