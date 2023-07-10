@@ -4,7 +4,7 @@
 {% block body %}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
 <script>
-
+    var context_chart = {{context | tojson}};
 
     $(document).ready(function () {
         render_chart();
@@ -13,11 +13,7 @@
     function render_chart() {
         // bar chart data
         var barData = {
-            labels: [
-                {% for item in labels %}
-                    "{{ item }}",
-                {% endfor %}
-            ],
+            labels: context_chart.labels,
             datasets : [{
                 fillColor: "rgba(151,187,205,0.2)",
                 strokeColor: "rgba(151,187,205,1)",
@@ -26,7 +22,7 @@
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
                 bezierCurve: false,
-                data: [{% for item in values %}{{item}},{% endfor %}]
+                data:  context_chart.values,
             }]
         }
 
