@@ -49,7 +49,7 @@ def try_shit():
 
 def try_group_date():
     message = "################################ \n"
-    pipline_year = [{
+    pipline_date = [{
         "$group": {
             "_id": {
                 "year": {
