@@ -60,7 +60,7 @@ def try_group_date():
     for doc in result:
         print(doc)
         # message += f"{doc['CarWashId']}:\n"
-        message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
+        message += f"""\n{doc['_id']} -> {doc['amount']} шт.\n"""
         message += '\n'
         amount_of_orders += int(doc['count'])
     message += str(amount_of_orders)
