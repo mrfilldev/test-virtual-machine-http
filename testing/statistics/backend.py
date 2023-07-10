@@ -44,8 +44,8 @@ def try_shit():
         # message += f"{doc['CarWashId']}:\n"
         message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
         message += '\n'
-        amount_of_orders += doc['count']
-    message += amount_of_orders
+        amount_of_orders += int(doc['count'])
+    message += str(amount_of_orders)
     message += '\n'
     message += "################################"
     print(message)
