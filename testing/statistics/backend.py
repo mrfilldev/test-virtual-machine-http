@@ -33,7 +33,6 @@ def try_shit():
         {"$group": {"_id": "$Status",
                     # "CarWashId": "$CarWashId",
                     "total": {"$sum": "$Sum"},
-                    "date": {"_id": "$DateCreate"},
                     "count": {"$sum": 1}}}
     ]
     result = database.col_orders.aggregate(pipeline)
