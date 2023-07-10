@@ -206,6 +206,24 @@ def format_status_order(value):
 
 
 @admin_bp.app_template_filter()
+def format_category_car(value):
+    match value:
+        case 'Compact':
+            return 'Кат.1'
+        case 'MiddleSize':
+            return 'Кат.2'
+        case 'Crossover':
+            return 'Кат.3'
+        case 'OffRoad':
+            return 'Кат.4'
+        case 'MicroBus':
+            return 'Кат.5'
+        case _:
+            return value
+
+
+
+@admin_bp.app_template_filter()
 def format_ContractId(value):
     match value:
         case 'OWN':

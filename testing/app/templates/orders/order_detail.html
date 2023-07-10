@@ -98,7 +98,7 @@
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text">Категория:</span>
                                             <input type="text" class="form-control" name="country_region_number"
-                                                   style="width: 100px" value="{{ context.order.Category }}"
+                                                   style="width: 100px" value="{{ context.order.Category | format_category_car}}"
                                                    placeholder="А999АА799" aria-label="А999АА799" disabled>
                                         </div>
                                     </div>
