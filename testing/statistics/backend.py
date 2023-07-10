@@ -51,20 +51,26 @@ def try_group_date():
     message = "################################ \n"
     pipline_date = [{
         "$group": {
-            "_id": {
-                "year": {
-                    "$substr": ["$CreatedDate", 0, 4]
-                },
-                "month": {
-                    "$substr": ["$CreatedDate", 5, 2]
-                },
-                "day": {
-                    "$substr": ["$CreatedDate", 8, 2]
-                }
-            },
+            "_id": {'format': "%Y-%m-%d", 'date': "DateCreate"},
             "amount": {"$sum": 1}
         }
     }]
+    # pipline_date = [{
+    #     "$group": {
+    #         "_id": {
+    #             "year": {
+    #                 "$substr": ["$CreatedDate", 0, 4]
+    #             },
+    #             "month": {
+    #                 "$substr": ["$CreatedDate", 5, 2]
+    #             },
+    #             "day": {
+    #                 "$substr": ["$CreatedDate", 8, 2]
+    #             }
+    #         },
+    #         "amount": {"$sum": 1}
+    #     }
+    # }]
     result = database.col_orders.aggregate(pipline_date)
     # Выводим результаты
     amount_of_orders = 0
