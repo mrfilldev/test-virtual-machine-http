@@ -141,14 +141,14 @@
                                         <div class="input-group input-group-sm">
                                             {% if context.order.ContractId == "OWN" %}
                                             <span class="input-group-text">Старт:</span>
-                                            <input style="width: 100px"
+                                            <input style="width: 60px"
                                             value="{{ context.order.DateStart | format_datetime_to_HMS }}"
                                             class="form-control"
                                             placeholder=""
                                             type="text"
                                             name="date" aria-describedby="addon-wrapping" disabled>
                                             <span class="input-group-text">Конец:</span>
-                                            <input style="width: 100px"
+                                            <input style="width: 60px"
                                             value="{{ context.order.DateEnd | format_datetime_to_HMS }}"
                                             class="form-control"
                                             placeholder=""
