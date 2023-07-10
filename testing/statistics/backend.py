@@ -33,6 +33,7 @@ def try_shit():
         {"$group": {"_id": "$Status",
                     # "CarWashId": "$CarWashId",
                     "total": {"$sum": "$Sum"},
+                    "date": {"_id": "$DateCreate"},
                     "count": {"$sum": 1}}}
     ]
     result = database.col_orders.aggregate(pipeline)
@@ -51,7 +52,26 @@ def try_shit():
     print(message)
 
 
-    # print("################################")
+def get_statistics(g_user_flask):
+    try_shit()
+
+    context = {
+        'max': 20,
+        'labels': labels,
+        'values': values,
+        'title': 'Все заказы за весь период',
+        'chart': {
+
+        }
+    }
+    return render_template(
+        'statistics/show_statistics.html',
+        context=context
+    )
+
+
+
+# print("################################")
     # start_time = str(datetime.now())
     # print(start_time)
     # message += "\n За последние 15 минут: \n"
@@ -91,22 +111,3 @@ def try_shit():
     #     message += str(doc)
     #     message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
     #     amount_of_orders += doc['count']
-
-
-
-def get_statistics(g_user_flask):
-    try_shit()
-
-    context = {
-        'max': 20,
-        'labels': labels,
-        'values': values,
-        'title': 'Все заказы за весь период',
-        'chart': {
-
-        }
-    }
-    return render_template(
-        'statistics/show_statistics.html',
-        context=context
-    )
