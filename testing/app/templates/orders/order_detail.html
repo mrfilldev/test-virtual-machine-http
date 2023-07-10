@@ -140,12 +140,13 @@
                                     <div class="col">
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text">Время:</span>
-                                            <input style="width: 100px"
-                                                   value="{{ context.order.DateCreate | format_datetime_to_HMS }}"
-                                                   class="form-control"
-                                                   placeholder=""
-                                                   type="text"
-                                                   name="date" aria-describedby="addon-wrapping" disabled>
+                                            <input style="width: 100px" {{ if context.order.ContractId== "OWN" }}
+                                            value="{{ context.order.DateStart | format_datetime_to_HMS }}" {{else}}
+                                            value="{{ context.order.DateCreate | format_datetime_to_HMS }}" {{ endif }}
+                                            class="form-control"
+                                            placeholder=""
+                                            type="text"
+                                            name="date" aria-describedby="addon-wrapping" disabled>
                                         </div>
                                     </div>
                                 </div>
