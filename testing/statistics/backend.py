@@ -76,21 +76,27 @@ def try_shit():
     message += '\n ПОЛУЧАЕМЫЙ ОБЪЕКТ АГГРЕГАЦИИ: \n'
     for doc in result:
         print(doc)
-
         message += str(doc)
         message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
     message += '\n'
     message += "################################"
     print("################################")
+    print(message)
 
 
 def get_statistics(g_user_flask):
     try_shit()
 
+    context = {
+        'max': 20,
+        'labels': labels,
+        'values': values,
+        'title': 'Все заказы за весь период',
+        'chart': {
+
+        }
+    }
     return render_template(
         'statistics/show_statistics.html',
-        title='Все заказы за весь период',
-        max=17000,
-        labels=labels,
-        values=values
+        context=context
     )
