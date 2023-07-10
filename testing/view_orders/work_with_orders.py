@@ -124,7 +124,11 @@ def owner_order_detail(order_id):
     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print('order_obj: \n', order_obj)
     carwash = get_carwash_obj(order_obj)
-    basket = get_basket_objs(order_obj)
+    if order_obj.ContractId == 'YARU':
+        basket = None
+    else:
+        basket = get_basket_objs(order_obj)
+
     context = {
         'order': order_obj,
         'carwash': carwash,
