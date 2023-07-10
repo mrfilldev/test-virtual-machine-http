@@ -36,25 +36,36 @@ def try_shit():
                     "count": {"$sum": 1}}}
     ]
     result = database.col_orders.aggregate(pipeline)
-
     # Выводим результаты
     message += "Сводка статусов заказов за все время:\n"
+    amount_of_orders = 0
     for doc in result:
         print(doc)
         # message += f"{doc['CarWashId']}:\n"
         message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
         message += '\n'
-    print("################################")
+        amount_of_orders += doc['count']
+    message += amount_of_orders
+    message += '\n'
     message += "################################"
-    start_time = str(datetime.now())
-    print(start_time)
-    message += "\n За последние 15 минут: \n"
-    now = datetime.now()
-    interval = now - timedelta(minutes=15)
-    print(interval)
+    print(message)
+
+
+    # print("################################")
+    # start_time = str(datetime.now())
+    # print(start_time)
+    # message += "\n За последние 15 минут: \n"
+    # now = datetime.now()
+    # interval = now - timedelta(minutes=15)
+    # print(interval)
     # агрегация заказов за последние 15 минут
-    start_time = datetime.utcnow() - timedelta(minutes=15)
-    print(start_time)
+    # start_time = datetime.utcnow() - timedelta(minutes=15)
+    # print(start_time)
+    # message += '\n'
+    # message += "################################"
+    #
+    # print("################################")
+    # print(message)
     # выполнить агрегацию
     query = {
         'DateCreate': {'$gt': start_time.isoformat()}
@@ -73,15 +84,14 @@ def try_shit():
             }
         }
     ]
-    message += '\n ПОЛУЧАЕМЫЙ ОБЪЕКТ АГГРЕГАЦИИ: \n'
-    for doc in result:
-        print(doc)
-        message += str(doc)
-        message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
-    message += '\n'
-    message += "################################"
-    print("################################")
-    print(message)
+    # message += '\n ПОЛУЧАЕМЫЙ ОБЪЕКТ АГГРЕГАЦИИ: \n'
+    # amount_of_orders = 0
+    # for doc in result:
+    #     print(doc)
+    #     message += str(doc)
+    #     message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
+    #     amount_of_orders += doc['count']
+
 
 
 def get_statistics(g_user_flask):
