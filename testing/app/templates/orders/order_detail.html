@@ -129,7 +129,7 @@
                                     <div class="col">
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text">Дата:</span>
-                                            <input style="width: 100px"
+                                            <input style="width: 1px"
                                                    value="{{ context.order.DateCreate | format_datetime_to_dmy }}"
                                                    class="form-control"
                                                    placeholder=""
@@ -140,14 +140,14 @@
                                     <div class="col">
                                         <div class="input-group input-group-sm">
                                             {% if context.order.ContractId == "OWN" %}
-                                            <span class="input-group-text">Время начала:</span>
+                                            <span class="input-group-text">Старт:</span>
                                             <input style="width: 100px"
                                             value="{{ context.order.DateStart | format_datetime_to_HMS }}"
                                             class="form-control"
                                             placeholder=""
                                             type="text"
                                             name="date" aria-describedby="addon-wrapping" disabled>
-                                            <span class="input-group-text">Время окончания:</span>
+                                            <span class="input-group-text">Конец:</span>
                                             <input style="width: 100px"
                                             value="{{ context.order.DateEnd | format_datetime_to_HMS }}"
                                             class="form-control"
