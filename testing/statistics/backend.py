@@ -67,23 +67,23 @@ def try_shit():
     # print("################################")
     # print(message)
     # выполнить агрегацию
-    query = {
-        'DateCreate': {'$gt': start_time.isoformat()}
-    }
-    pipeline = [
-        {
-            '$match': {
-                'DateCreate': {'$gt': start_time.isoformat()}
-            }
-        },
-        {
-            '$group': {
-                '_id': '$Status',
-                'count': {'$sum': 1},
-                "total": {"$sum": "$Sum"},
-            }
-        }
-    ]
+    # query = {
+    #     'DateCreate': {'$gt': start_time.isoformat()}
+    # }
+    # pipeline = [
+    #     {
+    #         '$match': {
+    #             'DateCreate': {'$gt': start_time.isoformat()}
+    #         }
+    #     },
+    #     {
+    #         '$group': {
+    #             '_id': '$Status',
+    #             'count': {'$sum': 1},
+    #             "total": {"$sum": "$Sum"},
+    #         }
+    #     }
+    # ]
     # message += '\n ПОЛУЧАЕМЫЙ ОБЪЕКТ АГГРЕГАЦИИ: \n'
     # amount_of_orders = 0
     # for doc in result:
