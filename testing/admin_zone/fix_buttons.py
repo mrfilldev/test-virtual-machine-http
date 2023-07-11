@@ -197,6 +197,7 @@ def fix_date_orders():
     all_orders = database.col_orders.find({})
 
     for order in all_orders:
+        print(order)
         data = json.loads(json_util.dumps(order))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
