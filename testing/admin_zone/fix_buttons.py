@@ -200,7 +200,7 @@ def fix_date_orders():
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
-            print(order_obj.DateCreate, type(order_obj.DateCreate), parse(order_obj.DateCreate), "WORK" if order_obj.DateCreate[-6:] == "+00:00" else "No")
+            print(order_obj.DateCreate, type(order_obj.DateCreate), parse(order_obj.DateCreate), "No" if order_obj.DateCreate[-6:] == "+00:00" else "Work")
 
             # if order_obj.DateCreate[-6:] == "+00:00":
             #     print(WORK)
