@@ -77,11 +77,11 @@ def try_group_date():
     message += str(amount_of_orders)
     message += '\n'
     message += "################################"
-    print(message)
+    return message
 
 
 def get_statistics(g_user_flask):
-    try_shit()
+    result_of_research = try_shit()
     print('групировка по дате: \n')
     try_group_date()
     context = {
@@ -89,9 +89,8 @@ def get_statistics(g_user_flask):
         'labels': labels,
         'values': values,
         'title': 'Все заказы за весь период',
-        'chart': {
-
-        }
+        'result_of_research': result_of_research,
+        'chart': {}
     }
     return render_template(
         'statistics/show_statistics.html',
