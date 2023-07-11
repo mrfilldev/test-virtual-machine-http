@@ -198,13 +198,10 @@ def fix_date_orders():
 
     for order in all_orders:
         print(order)
-        data = json.loads(json_util.dumps(order))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
-            print(order_obj.DateCreate, type(order_obj.DateCreate))
-            print(order_obj.DateStart, type(order_obj.DateStart))
-            print(order_obj.DateEnd, type(order_obj.DateEnd))
+            print(order.DateCreate, type(order.DateCreate))
+            print(order.DateStart, type(order.DateStart))
+            print(order.DateEnd, type(order.DateEnd))
         except Exception as e:
             pass
         # d = parse(order_obj.DateCreate)
