@@ -1,7 +1,7 @@
 import time
 import traceback
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
 from flask import Blueprint, request, session, redirect, url_for, render_template, g
 from flask_login import login_required
@@ -88,26 +88,12 @@ def main():
                     'number': session['owner_info']['phone_number'],
                     'name': session['owner_info']['name'],
                     'surname': session['owner_info']['surname'],
-                    'date_registered': str(date_now),
+                    'date_registered': datetime.now(timezone.utc),
                     'role': 'network_owner',
                     'networks': [id_network]
                 }
             )
             print(f'user {user_inf["login"]} has been inserted')
-            # else:
-            #     format = '%Y-%m-%dT%H:%M:%S%Z'
-            #     date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
-            #     print(date_now)
-            #     database.col_users.insert_one(
-            #         {
-            #             '_id': user_inf['id'],
-            #             'email': user_inf['default_email'],
-            #             'login': user_inf['login'],
-            #             'number': user_inf['default_phone']['number'],
-            #             'date_registered': str(date_now),
-            #         }
-            #     )
-            #     print(f'user {user_inf["login"]} has been inserted')
 
         return redirect(url_for('profile_blueprint.profile'))
     except Exception as e:

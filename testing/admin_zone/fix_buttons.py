@@ -174,3 +174,16 @@ def fix_sets():
         "network": '3a81c491fa9245dc9139049f9885ef57',
     }})
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def fix_date_users():
+    all_users = database.col_users.find({})
+
+    for user in all_users:
+        data = json.loads(json_util.dumps(user))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        print(user_obj)
+        # database.col_sets_of_prices.update_one({'_id': set_obj._id}, {"$set": {
+        #     "network": '3a81c491fa9245dc9139049f9885ef57',
+        # }})
