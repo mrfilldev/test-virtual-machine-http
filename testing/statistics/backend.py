@@ -81,9 +81,9 @@ def try_group_date():
 
 
 def get_statistics(g_user_flask):
-    result_of_research = try_shit()
+    try_shit()
     print('групировка по дате: \n')
-    try_group_date()
+    result_of_research = try_group_date()
     context = {
         'max': 20,
         'labels': labels,
