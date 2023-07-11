@@ -5,7 +5,7 @@ from flask import render_template, request, Blueprint, session, g, url_for, redi
 from .edit_data_in_db import list_all_cols_in_db
 from .fix_buttons import fix_network_id_in_orders, back_carwashes_refresh_prices, remake_prices_to_set, \
     prices_to_active, set_all_prices_attr_price_types, set_all_carwash_full_type, set_sets_of_prices_to_one_network, \
-    fix_box_number_value, fix_orders_fields, fix_sets
+    fix_box_number_value, fix_orders_fields, fix_sets, fix_date_users
 from .manage_networks import list_networks, network_detail, add_network
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
 from .manage_users import users_list_view, user_detail, delete_user
@@ -144,6 +144,11 @@ def remake_fix_sets():
     return fix_sets()
 
 
+@admin_bp.route('/remake_fix_date')
+def remake_fix_date():
+    return fix_date_users()
+
+
 ################################
 ################################
 ################################
@@ -220,7 +225,6 @@ def format_category_car(value):
             return 'Кат.5'
         case _:
             return value
-
 
 
 @admin_bp.app_template_filter()
