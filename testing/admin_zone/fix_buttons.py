@@ -201,10 +201,10 @@ def fix_date_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
             print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
-            if order_obj.DateEnd != "":
-                print(order_obj.DateEnd)
-                if order_obj.DateEnd[-6:] == "+03:00":
-                    print("WORK")
+            # if order_obj.DateEnd != "":
+            #     # print(order_obj.DateEnd)
+            #     if order_obj.DateEnd[-6:] == "+03:00":
+            #         print("WORK")
                     # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
                     #     "DateEnd": order_obj.DateEnd.removesuffix("+03:00")+"+00:00",
                     # }})
