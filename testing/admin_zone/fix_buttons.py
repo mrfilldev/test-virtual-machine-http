@@ -201,11 +201,11 @@ def fix_date_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
             print(order_obj.DateCreate, type(order_obj.DateCreate))
-            local = pytz.timezone("Europe/Moscow")
-            local_dt = local.localize(order_obj.DateCreate, is_dst=None)
-            utc_dt = local_dt.astimezone(pytz.utc)
-            print(utc_dt)
-        except pytz.exceptions.NonExistentTimeError as e:
+            # local = pytz.timezone("Europe/Moscow")
+            # local_dt = local.localize(order_obj.DateCreate, is_dst=None)
+            # utc_dt = local_dt.astimezone(pytz.utc)
+            # print(utc_dt)
+        except AttributeError as e:
             print("NonExistentTimeError")
 
         # print(order_obj.DateStart, parse(order_obj.DateStart), type(parse(order_obj.DateStart)),
