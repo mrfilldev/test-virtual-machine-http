@@ -6,19 +6,19 @@
 <div class="row justify-content-center">
     <div class="col-2 text-center">
         {% if g.user_db.role == 'admin' %}
-        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.admin_add_network') }}">Добавить Сеть</a>
-            <a class="btn-outline-secondary" href="url_for('admin_add_user')">+ пользователь</a>
-            <a class="btn-outline-secondary" href="#">Ручная отмена заказа</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.carwashes_refresh_prices') }}">Price=[all_prices] для всех моек</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.admin_clear_sets') }}">Присвоить всем прайсам один сет</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_prices_to_active') }}">Все прайсы status=active</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_prices_price_types') }}">Все прайсы priceType=main_carwash</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_all_carwash_full_type') }}">Все точки полный набор типов</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_set_sets_of_prices_to_one_network') }}">Все тарифные наборы одному человеку</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_box_number_value') }}">Поправить конкретный прайс</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_orders_fields') }}">Добавить недостающие поля в заказы</a>
-            <a class="btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_sets') }}">Поправить недостающие network в set_of_prices</a>
+        <div class="btn btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.admin_add_network') }}">Добавить Сеть</a>
+            <a class="btn btn-outline-secondary" href="url_for('admin_add_user')">+ пользователь</a>
+            <a class="btn btn-outline-secondary" href="#">Ручная отмена заказа</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.carwashes_refresh_prices') }}">Price=[all_prices] для всех моек</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.admin_clear_sets') }}">Присвоить всем прайсам один сет</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_prices_to_active') }}">Все прайсы status=active</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_prices_price_types') }}">Все прайсы priceType=main_carwash</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_all_carwash_full_type') }}">Все точки полный набор типов</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_set_sets_of_prices_to_one_network') }}">Все тарифные наборы одному человеку</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_box_number_value') }}">Поправить конкретный прайс</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_orders_fields') }}">Добавить недостающие поля в заказы</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_sets') }}">Поправить недостающие network в set_of_prices</a>
         </div>
         {% endif %}
     </div>
