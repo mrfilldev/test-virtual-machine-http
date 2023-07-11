@@ -203,7 +203,8 @@ def fix_date_orders():
             print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
             if order_obj.DateStart != "":
                 print(order_obj.DateStart)
-                # if order_obj.DateStart[-6:] == "+03:00":
+                if order_obj.DateStart[-6:] == "+03:00":
+                    print("WORK")
                 #     database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
                 #         "DateStart": order_obj.DateStart.removesuffix(),
                 #     }})
