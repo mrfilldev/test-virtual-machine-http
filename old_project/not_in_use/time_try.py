@@ -135,6 +135,7 @@
 #     print(type(date_start), date_start)
 #     date_start = convert_string_to_utc(date_start.isoformat()) + "+03:00"
 #     print(type(date_start), date_start)
+from dateutil.parser import parse
 
 
 def print_utc_time():
@@ -142,5 +143,17 @@ def print_utc_time():
     print(datetime.now(timezone.utc))
 
 
-print_utc_time()
+def local_to_utc_time():
+    import pytz, datetime
+
+    local = pytz.timezone("Europe/Moscow")
+    naive = datetime.datetime.strptime('2023-06-27T13:31:00', "%Y-%m-%dT%H:%M:%S")
+    local_dt = local.localize(naive, is_dst=None)
+    utc_dt = local_dt.astimezone(pytz.utc)
+    print(utc_dt, type(utc_dt))
+    utc_dt_formatted = utc_dt.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    print(utc_dt_formatted, type(utc_dt_formatted), type(parse(utc_dt_formatted).isoformat()))
+
+
+local_to_utc_time()
 

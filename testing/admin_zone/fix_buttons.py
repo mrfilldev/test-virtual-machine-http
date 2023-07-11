@@ -1,6 +1,7 @@
 import json
 from types import SimpleNamespace
 
+import pytz
 from bson import json_util
 from dateutil.parser import parse
 from flask import url_for, redirect
@@ -199,9 +200,18 @@ def fix_date_orders():
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
-            print(order_obj.DateCreate, parse(order_obj.DateCreate), type(parse(order_obj.DateCreate)), parse(order_obj.DateCreate).isoformat())
-            print(order_obj.DateStart, parse(order_obj.DateStart), type(parse(order_obj.DateStart)), parse(order_obj.DateStart).isoformat())
-            print(order_obj.DateEnd, parse(order_obj.DateEnd), type(parse(order_obj.DateEnd)), parse(order_obj.DateEnd).isoformat())
+            print(order_obj.DateCreate, type(order_obj.DateCreate))
+            local = pytz.timezone("Europe/Moscow")
+            local_dt = local.localize(order_obj.DateCreate, is_dst=None)
+            utc_dt = local_dt.astimezone(pytz.utc)
+            print(utc_dt)
+
+
+            # print(order_obj.DateStart, parse(order_obj.DateStart), type(parse(order_obj.DateStart)),
+            #       parse(order_obj.DateStart).isoformat())
+            # print(order_obj.DateEnd, parse(order_obj.DateEnd), type(parse(order_obj.DateEnd)),
+            #       parse(order_obj.DateEnd).isoformat())
+
             # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
             #     "DateEnd": parse(order_obj.DateEnd).isoformat(),
             # }})
