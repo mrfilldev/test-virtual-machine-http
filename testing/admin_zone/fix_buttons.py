@@ -200,12 +200,9 @@ def fix_date_orders():
         data = json.loads(json_util.dumps(order))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        try:
-            print(order_obj.DateCreate, type(order_obj.DateCreate))
-            d = datetime.strptime(order_obj.DateCreate, "%Y-%m-%dT%H:%M:%S.%fZ")
-            print(d, type(d))
 
-        except Exception as e:
-            pass
+        print(order_obj.DateCreate, type(order_obj.DateCreate))
+        d = datetime.strptime(order_obj.DateCreate, "%Y-%m-%dT%H:%M:%S.%fZ")
+        print(d, type(d))
 
     return redirect(url_for('admin_blueprint.admin_main'))
