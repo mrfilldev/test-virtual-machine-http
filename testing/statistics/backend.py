@@ -106,8 +106,8 @@ def get_statistics(g_user_flask):
     research_by_status = group_by_status()
     context = {
         'max': 20,
-        'labels':  json.dumps(research_by_status.keys(), default=lambda x: x.__dict__),
-        'values': json.dumps(research_by_status.values(), default=lambda x: x.__dict__),
+        'labels':  json.dumps(research_by_status, default=lambda x: x.__dict__),
+        'values': json.dumps(research_by_status, default=lambda x: x.__dict__),
         'title': 'Все заказы за весь период',
         'research_by_status': research_by_status,
         'research_by_date': research_by_date,
