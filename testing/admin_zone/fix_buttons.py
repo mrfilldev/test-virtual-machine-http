@@ -200,8 +200,11 @@ def fix_date_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
             print(order_obj.DateCreate, parse(order_obj.DateCreate), type(parse(order_obj.DateCreate)), parse(order_obj.DateCreate).isoformat())
-            print(order_obj.DateStart, parse(order_obj.DateStart), type(parse(order_obj.DateStart)), parse(order_obj.DateStart).isoformat())
-            print(order_obj.DateEnd, parse(order_obj.DateEnd), type(parse(order_obj.DateEnd)), parse(order_obj.DateEnd).isoformat())
+            # print(order_obj.DateStart, parse(order_obj.DateStart), type(parse(order_obj.DateStart)), parse(order_obj.DateStart).isoformat())
+            # print(order_obj.DateEnd, parse(order_obj.DateEnd), type(parse(order_obj.DateEnd)), parse(order_obj.DateEnd).isoformat())
+            database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                "DateCreate": parse(order_obj.DateCreate).isoformat(),
+            }})
         except Exception as e:
             pass
     return redirect(url_for('admin_blueprint.admin_main'))
