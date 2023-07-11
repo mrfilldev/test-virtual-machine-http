@@ -204,6 +204,8 @@ def fix_date_orders():
 
             if order_obj.DateCreate[-6:] == "+00:00":
                 print('WORK')
+                order_obj.DateCreate.removesuffix("+00:00")
+            else:
                 database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
                     "DateCreate": order_obj.DateCreate + '+00:00',
                 }})
