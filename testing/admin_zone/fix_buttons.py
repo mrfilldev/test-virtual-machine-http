@@ -202,7 +202,7 @@ def fix_date_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
 
         print(order_obj.DateCreate, type(order_obj.DateCreate))
-        d = datetime.strptime(order_obj.DateCreate, "%Y-%m-%dT%H:%M:%S.%fZ")
+        d = parse(order_obj.DateCreate)
         print(d, type(d))
 
     return redirect(url_for('admin_blueprint.admin_main'))
