@@ -202,6 +202,8 @@ def fix_date_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
 
         print(order_obj.DateCreate, type(order_obj.DateCreate))
+        print(order_obj.DateStart, type(order_obj.DateStart))
+        print(order_obj.DateEnd, type(order_obj.DateEnd))
         # d = parse(order_obj.DateCreate)
         # print(d, type(d))
         # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
