@@ -199,9 +199,9 @@ def fix_date_orders():
     for order in all_orders:
         print(order)
         try:
-            print(order.DateCreate, type(order.DateCreate))
-            print(order.DateStart, type(order.DateStart))
-            print(order.DateEnd, type(order.DateEnd))
+            print(order['DateCreate'], type(order['DateCreate']))
+            print(order['DateStart'], type(order['DateStart']))
+            print(order['DateEnd'], type(order['DateEnd']))
         except Exception as e:
             pass
         # d = parse(order_obj.DateCreate)
