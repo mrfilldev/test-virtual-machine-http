@@ -205,9 +205,9 @@ def fix_date_orders():
                 print(order_obj.DateEnd)
                 if order_obj.DateEnd[-6:] == "+03:00":
                     print("WORK")
-                    database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-                        "DateEnd": order_obj.DateEnd.removesuffix("+03:00")+"+00:00",
-                    }})
+                    # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                    #     "DateEnd": order_obj.DateEnd.removesuffix("+03:00")+"+00:00",
+                    # }})
                 # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
                 #     "DateStart": order_obj.DateStart + "+00:00",
                 # }})
