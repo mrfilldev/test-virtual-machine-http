@@ -184,9 +184,8 @@ def fix_date_users():
         data = json.loads(json_util.dumps(user))
         data = json.dumps(data, default=lambda x: x.__dict__)
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)), parse(user_obj.date_registered).isoformat())
-
-        # database.col_sets_of_prices.update_one({'_id': set_obj._id}, {"$set": {
-        #     "network": '3a81c491fa9245dc9139049f9885ef57',
-        # }})
+        # print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)), parse(user_obj.date_registered).isoformat())
+        database.col_users.update_one({'_id': user_obj._id}, {"$set": {
+            "date_registered": parse(user_obj.date_registered).isoformat(),
+        }})
     return redirect(url_for('admin_blueprint.admin_main'))
