@@ -5,9 +5,12 @@ from ..db import database
 from datetime import datetime, timedelta
 
 labels = [
-    'JAN', 'FEB', 'MAR', 'APR',
-    'MAY', 'JUN', 'JUL', 'AUG',
-    'SEP', 'OCT', 'NOV', 'DEC'
+    'Заказ создан',
+    'Заказ выполнен',
+    'Заказ отменен мойкой',
+    'Заказ отменен пользователем',
+    'Заказ не актуален',
+    'Заказ не выполнен'
 ]
 
 values = [
@@ -22,8 +25,25 @@ colors = [
     "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
 
 
+def translate_statuses(category):
+    match category:
+        case 'OrderCreated':
+            return 'Заказ создан'
+        case 'Completed':
+            return 'Заказ выполнен'
+        case 'CarWashCanceled':
+            return 'Заказ отменен мойкой'
+        case 'UserCanceled':
+            return 'Заказ отменен пользователем'
+        case 'Expire':
+            return 'Заказ не актуален'
+        case 'SystemAggregator_Error':
+            return 'Заказ не выполнен'
+        case _:
+            return category
+
+
 def group_by_status():
-    message = "################################ \n"
     pipeline_by_status = [{
         "$group": {
             "_id": "$Status",
@@ -32,20 +52,15 @@ def group_by_status():
         }
     }]
     result = database.col_orders.aggregate(pipeline_by_status)
-    # Выводим результаты
-    message += "Сводка статусов заказов за все время:\n"
     amount_of_orders = 0
+    status_dictionary = {}  # словарь результата поиска статус:кол-во
+    # status_dictionary = {}  # словарь результата поиска статус:объем средств
     for doc in result:
-        print(doc)
-        # message += f"{doc['CarWashId']}:\n"
-        message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
-        message += '\n'
+        status_dictionary[doc['_id']] = doc['count']
         amount_of_orders += int(doc['count'])
-    message += str(amount_of_orders)
-    message += '\n'
-    message += "################################"
-    print(message)
-    return message
+    status_dictionary['amount'] += str(amount_of_orders)
+    print(status_dictionary)
+    return status_dictionary
 
 
 def group_by_date():
