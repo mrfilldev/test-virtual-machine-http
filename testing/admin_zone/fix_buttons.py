@@ -202,7 +202,7 @@ def fix_date_orders():
         try:
             print(order_obj.DateCreate, type(order_obj.DateCreate), parse(order_obj.DateCreate), "No" if order_obj.DateCreate[-6:] == "+00:00" else "Work")
 
-            if order_obj.DateCreate[-6:] == "+00:00+00:00":
+            if order_obj.DateCreate[-12:] == "+00:00+00:00":
 
                 print('WORK', order_obj.DateCreate.removesuffix("+00:00"))
             # else:
