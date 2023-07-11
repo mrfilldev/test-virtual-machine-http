@@ -187,3 +187,4 @@ def fix_date_users():
         # database.col_sets_of_prices.update_one({'_id': set_obj._id}, {"$set": {
         #     "network": '3a81c491fa9245dc9139049f9885ef57',
         # }})
+    return redirect(url_for('admin_blueprint.admin_main'))
