@@ -203,22 +203,17 @@ def fix_date_orders():
             if order_obj.DateEnd != "":
                 print(order_obj.DateEnd, type(order_obj.DateEnd), parse(order_obj.DateEnd))
 
-                # if order_obj.DateStart[-12:] == "+03:00+00:00":
-                #     # print('its fine')
-                #     database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-                #         "DateStart": order_obj.DateStart.removesuffix("+00:00"),
-                #     }})
-                # else:
-                #     database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-                #         "DateStart": order_obj.DateStart + '+00:00',
-                #     }})
+                if order_obj.DateEnd[-6:] == "+03:00":
+                    print('its fine')
+                else:
+                    database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                        "DateEnd": order_obj.DateEnd + '+00:00',
+                    }})
 
                 # print('WORK', order_obj.DateCreate.removesuffix("+00:00"))
                 # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
                 #     "DateCreate": order_obj.DateCreate.removesuffix("+00:00"),
                 # }})
-
-
 
             # local = pytz.timezone("Europe/Moscow")
             # local_dt = local.localize(order_obj.DateCreate, is_dst=None)
@@ -236,6 +231,5 @@ def fix_date_orders():
         # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
         #     "DateEnd": parse(order_obj.DateEnd).isoformat(),
         # }})
-
 
     return redirect(url_for('admin_blueprint.admin_main'))
