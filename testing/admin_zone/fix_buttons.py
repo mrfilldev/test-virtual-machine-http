@@ -206,7 +206,7 @@ def fix_date_orders():
             # utc_dt = local_dt.astimezone(pytz.utc)
             # print(utc_dt)
         except AttributeError as e:
-            print("NonExistentTimeError")
+            print("NonExistentTimeError", e)
 
         # print(order_obj.DateStart, parse(order_obj.DateStart), type(parse(order_obj.DateStart)),
         #       parse(order_obj.DateStart).isoformat())
