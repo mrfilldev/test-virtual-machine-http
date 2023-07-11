@@ -4,7 +4,12 @@
 {% block body %}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
 <script>
-    var context_chart = {{context | tojson}};
+    var context_chart = {
+    {
+        context | tojson
+    }
+    }
+    ;
 
     $(document).ready(function () {
         render_chart();
@@ -14,7 +19,7 @@
         // bar chart data
         var barData = {
             labels: context_chart.labels,
-            datasets : [{
+            datasets: [{
                 fillColor: "rgba(151,187,205,0.2)",
                 strokeColor: "rgba(151,187,205,1)",
                 pointColor: "rgba(151,187,205,1)",
@@ -22,7 +27,7 @@
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
                 bezierCurve: false,
-                data:  context_chart.values,
+                data: context_chart.values,
             }]
         }
 
@@ -71,10 +76,11 @@
     <h1>{{ title }}</h1>
     <canvas id="chart" style="width: 100%; height: 40%"></canvas>
     <br>
-    <div class="row">
-        <div class="col">{{ context.research_by_status }}</div>
-        <div class="col"></div>
-        <div class="col">{{ context.research_by_date }}</div>
+    <div>
+        {{ context.research_by_status }}
+    </div>
+    <div>
+        {{ context.research_by_date }}
     </div>
 </div>
 

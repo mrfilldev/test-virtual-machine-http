@@ -22,7 +22,7 @@ colors = [
     "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
 
 
-def try_shit():
+def group_by_status():
     message = "################################ \n"
     pipeline_by_status = [{
         "$group": {
@@ -48,7 +48,7 @@ def try_shit():
     return message
 
 
-def try_group_date():
+def group_by_date():
     message = "################################ \n"
     pipline_date = [{
         "$group": {
