@@ -167,29 +167,45 @@ def list_db():
 
 @admin_bp.app_template_filter()
 def format_datetime(value):
-    if isinstance(value, date):
-        value = (value + timedelta(hours=3)).strftime('%d.%m.%Y')
-    else:
-        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y %H:%M:%S")
-    return value
+    try:
+        if isinstance(value, date):
+            value = (value + timedelta(hours=3)).strftime('%d.%m.%Y')
+        else:
+            value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y %H:%M:%S")
+        return value
+    except Exception as e:
+        print(e)
+        return value
 
 
 @admin_bp.app_template_filter()
 def format_datetime_to_dmy(value):
-    value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y")
-    return value
+    try:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y")
+        return value
+    except Exception as e:
+        print(e)
+        return value
 
 
 @admin_bp.app_template_filter()
 def format_datetime_to_HMS(value):
-    value = (parser.parse(value) + timedelta(hours=3)).strftime("%H:%M:%S")
-    return value
+    try:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%H:%M:%S")
+        return value
+    except Exception as e:
+        print(e)
+        return value
 
 
 @admin_bp.app_template_filter()
 def format_datetime_to_HM(value):
-    value = (parser.parse(value) + timedelta(hours=3)).strftime("%H:%M")
-    return value
+    try:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%H:%M")
+        return value
+    except Exception as e:
+        print(e)
+        return value
 
 
 @admin_bp.app_template_filter()
