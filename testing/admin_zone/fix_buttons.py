@@ -2,6 +2,7 @@ import json
 from types import SimpleNamespace
 
 from bson import json_util
+from dateutil.parser import parse
 from flask import url_for, redirect
 
 from ..db import database
@@ -184,6 +185,7 @@ def fix_date_users():
         data = json.dumps(data, default=lambda x: x.__dict__)
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print(user_obj.date_registered)
+        print(parse(user_obj.date_registered))
         # database.col_sets_of_prices.update_one({'_id': set_obj._id}, {"$set": {
         #     "network": '3a81c491fa9245dc9139049f9885ef57',
         # }})
