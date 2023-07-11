@@ -4,12 +4,7 @@
 {% block body %}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
 <script>
-    var context_chart = {
-    {
-        context | tojson
-    }
-    }
-    ;
+    var context_chart = {{context | tojson}};
 
     $(document).ready(function () {
         render_chart();
