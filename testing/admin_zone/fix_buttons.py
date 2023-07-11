@@ -204,8 +204,8 @@ def fix_date_orders():
         print(order_obj.DateCreate, type(order_obj.DateCreate))
         d = parse(order_obj.DateCreate)
         print(d, type(d))
-        database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-            "DateCreate": parse(order_obj.DateCreate),
-        }})
+        # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+        #     "DateCreate": parse(order_obj.DateCreate),
+        # }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
