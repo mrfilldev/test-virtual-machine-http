@@ -72,7 +72,7 @@
     <canvas id="chart" style="width: 100%; height: 40%"></canvas>
     <br>
     <div>
-        {% for key, value in context.research_by_status %}
+        {% for key, value in context.research_by_status.items() %}
             {{ key }}: {{ value}}
         {% endfor %}
     </div>
