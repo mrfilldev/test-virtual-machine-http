@@ -5,6 +5,7 @@ from ..db import database
 from datetime import datetime, timedelta
 
 labels = [
+    '',
     'Заказ создан',
     'Заказ выполнен',
     'Заказ отменен мойкой',
