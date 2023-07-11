@@ -200,18 +200,20 @@ def fix_date_orders():
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
-            print(order_obj.DateCreate, type(order_obj.DateCreate), parse(order_obj.DateCreate), "No" if order_obj.DateCreate[-6:] == "+00:00" else "Work")
+            print(order_obj.DateStart, type(order_obj.DateStart), parse(order_obj.DateStart))
 
-            if order_obj.DateCreate[-12:] == "+00:00+00:00":
+            if order_obj.DateStart[-6:] == "+00:00":
+                print('its fine')
+            else:
+                database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                    "DateStart": order_obj.DateStart + '+00:00',
+                }})
 
-                print('WORK', order_obj.DateCreate.removesuffix("+00:00"))
+                # print('WORK', order_obj.DateCreate.removesuffix("+00:00"))
                 # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
                 #     "DateCreate": order_obj.DateCreate.removesuffix("+00:00"),
                 # }})
-            # else:
-            #     database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-            #         "DateCreate": order_obj.DateCreate + '+00:00',
-            #     }})
+
 
 
             # local = pytz.timezone("Europe/Moscow")
