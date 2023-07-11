@@ -202,8 +202,12 @@ def fix_date_orders():
         try:
             print(order_obj.DateCreate, type(order_obj.DateCreate), parse(order_obj.DateCreate), "No" if order_obj.DateCreate[-6:] == "+00:00" else "Work")
 
-            # if order_obj.DateCreate[-6:] == "+00:00":
-            #     print(WORK)
+            if order_obj.DateCreate[-6:] == "+00:00":
+                print('WORK')
+                database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                    "DateCreate": order_obj.DateCreate + '+00:00',
+                }})
+
 
             # local = pytz.timezone("Europe/Moscow")
             # local_dt = local.localize(order_obj.DateCreate, is_dst=None)
