@@ -205,12 +205,12 @@ def fix_date_orders():
                 print(order_obj.DateStart)
                 if order_obj.DateStart[-6:] == "+03:00":
                     print("WORK")
-                    database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-                        "DateStart": order_obj.DateStart.removesuffix("+03:00"),
-                    }})
-                    database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-                        "DateStart": order_obj.DateStart + "+00:00",
-                    }})
+                    # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                    #     "DateStart": order_obj.DateStart.removesuffix("+03:00"),
+                    # }})
+                    # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                    #     "DateStart": order_obj.DateStart + "+00:00",
+                    # }})
             # print(order_obj.DateCreate, type(order_obj.DateCreate), parse(order_obj.DateCreate))
             # print(order_obj.DateStart, type(order_obj.DateStart), parse(order_obj.DateStart))
             # print(order_obj.DateEnd, type(order_obj.DateEnd), parse(order_obj.DateEnd))
