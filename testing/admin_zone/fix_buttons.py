@@ -201,6 +201,7 @@ def fix_date_orders():
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         try:
             print(order_obj.DateCreate, type(order_obj.DateCreate), parse(order_obj.DateCreate))
+            print(order_obj.DateCreate[-9:])
             # local = pytz.timezone("Europe/Moscow")
             # local_dt = local.localize(order_obj.DateCreate, is_dst=None)
             # utc_dt = local_dt.astimezone(pytz.utc)

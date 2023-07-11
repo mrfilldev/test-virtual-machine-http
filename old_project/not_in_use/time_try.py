@@ -153,6 +153,8 @@ def local_to_utc_time():
     print(utc_dt, type(utc_dt))
     utc_dt_formatted = utc_dt.strftime("%Y-%m-%dT%H:%M:%S+00:00")
     print(utc_dt_formatted, type(utc_dt_formatted), type(parse(utc_dt_formatted).isoformat()))
+    utc_dt_formatted_to_time = datetime.datetime.strptime(utc_dt_formatted, "%Y-%m-%dT%H:%M:%S+00:00")
+    print(utc_dt_formatted_to_time, type(utc_dt_formatted_to_time))
 
 
 local_to_utc_time()
