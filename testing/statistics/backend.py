@@ -101,12 +101,11 @@ def group_by_date():
 
 def get_statistics(g_user_flask):
     research_by_date = group_by_date()
-    print('групировка по дате: \n')
     research_by_status = group_by_status()
     context = {
         'max': 20,
-        'labels': labels,
-        'values': values,
+        'labels': research_by_status.keys(),
+        'values': research_by_status.values(),
         'title': 'Все заказы за весь период',
         'research_by_status': research_by_status,
         'research_by_date': research_by_date,
