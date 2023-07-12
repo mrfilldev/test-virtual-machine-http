@@ -217,7 +217,9 @@ def fix_date_orders():
             print('\ntest_obj: ', test_obj)
             # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
             # object.
-            order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+            data = json.loads(json_util.dumps(order))
+            data = json.dumps(data, default=lambda x: x.__dict__)
+            order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d), default=default)
             print('\norder_obj: ', order_obj)
             print('\n')
 
