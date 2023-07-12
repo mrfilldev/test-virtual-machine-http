@@ -213,7 +213,7 @@ def fix_date_orders():
         try:
             print('\norder: ', order)
             # Serialize ``obj`` to a JSON formatted ``str``.
-            test_obj = json.dumps(order, default=default)
+            test_obj = json.dumps(order, default=default, object_hook=lambda d: SimpleNamespace(**d))
             print('\ntest_obj: ', test_obj)
             # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
             # object.
