@@ -209,7 +209,7 @@ def fix_date_orders():
         try:
             # print(type(order['DateCreate']))
             # print(order['DateCreate'])
-            test_obj = json.dumps(order, default=default)
+            test_obj = json.dumps(order, object_hook=lambda d: SimpleNamespace(**d), default=default)
             print('test_obj: ', test_obj)
             order_obj = json.loads(order, object_hook=lambda d: SimpleNamespace(**d), default=default)
             print('order_obj: ', order_obj)
