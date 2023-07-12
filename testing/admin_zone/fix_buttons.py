@@ -219,7 +219,7 @@ def fix_date_orders():
             # object.
             test_obj = json.dumps(test_obj, default=default)
 
-            order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d), default=default)
+            order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
             print('\norder_obj: ', order_obj)
             print('\n')
 
