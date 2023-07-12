@@ -207,16 +207,17 @@ def fix_date_orders():
 
     order = all_orders[0]
     try:
-        print('\norder: ', order)
-        # Serialize ``obj`` to a JSON formatted ``str``.
-        test_obj = json.dumps(order, default=default)
-        print('\ntest_obj: ', test_obj)
-        # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
-        # object.
-        order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-        print('\norder_obj: ', order_obj)
-        print('\n')
-
+        # print('\norder: ', order)
+        # # Serialize ``obj`` to a JSON formatted ``str``.
+        # test_obj = json.dumps(order, default=default)
+        # print('\ntest_obj: ', test_obj)
+        # # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
+        # # object.
+        # order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+        # print('\norder_obj: ', order_obj)
+        # print('\n')
+        order_obj = SimpleNamespace(**order)
+        print(order_obj)
     except Exception as e:
         print(e)
 
