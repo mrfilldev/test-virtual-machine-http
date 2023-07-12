@@ -225,7 +225,7 @@ def fix_date_orders():
             #
             # order_obj = SimpleNamespace(**order)
             # print('order_obj: ', order_obj)
-
+            print('\nbson.encode(order): ', bson.encode(order))
             options = CodecOptions(document_class=collections.OrderedDict)
             decoded_doc = bson.decode(bson.encode(order), codec_options=options)
             print('\ndecoded_doc: ', decoded_doc, type(decoded_doc))
