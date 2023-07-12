@@ -193,9 +193,29 @@ def fix_date_users():
     return redirect(url_for('admin_blueprint.admin_main'))
 
 
+import datetime
+import json
+
+
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
+
+
 def fix_date_orders():
     all_orders = database.col_orders.find({})
 
+    for order in all_orders:
+        try:
+            print(type(order['DateCreate']))
+            print(order['DateCreate'])
+            json.dumps(order, default=default)
+        except Exception as e:
+            print(e)
+
+    return redirect(url_for('admin_blueprint.admin_main'))
+
+    #
     # for order in all_orders:
     #     data = json.loads(json_util.dumps(order))
     #     data = json.dumps(data, default=lambda x: x.__dict__)
@@ -205,19 +225,3 @@ def fix_date_orders():
     #         print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
     #     except Exception as e:
     #         pass
-    for order in all_orders:
-            try:
-                print(type(order['DateCreate']))
-                print(order['DateCreate'])
-            except Exception as e:
-                pass
-
-    return redirect(url_for('admin_blueprint.admin_main'))
-
-#
-#         print(order_obj.DateCreate, type(order_obj.DateCreate))
-#         d = parse(order_obj.DateCreate)
-#         print(d, type(d))
-#         database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-#             "date_registered": parse(order_obj.date_registered).isoformat(),
-#         }})
