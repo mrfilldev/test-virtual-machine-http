@@ -216,8 +216,9 @@ def fix_date_orders():
         # order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
         # print('\norder_obj: ', order_obj)
         # print('\n')
+        print('order: ', order)
         order_obj = SimpleNamespace(**order)
-        print(order_obj)
+        print('order_obj: ', order_obj)
     except Exception as e:
         print(e)
 
