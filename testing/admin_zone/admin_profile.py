@@ -261,10 +261,14 @@ def format_ContractId(value):
 
 @admin_bp.app_template_filter()
 def count_cost_bascket(bascket):
-    total_cost = 0
-    for obj in bascket:
-        total_cost += obj.amount * obj.price
-    return float(total_cost)
+    try:
+        total_cost = 0
+        for obj in bascket:
+            total_cost += obj.amount * obj.price
+        return float(total_cost)
+    except Exception as e:
+        print(e)
+        return bascket
 
 
 @admin_bp.app_template_filter()
