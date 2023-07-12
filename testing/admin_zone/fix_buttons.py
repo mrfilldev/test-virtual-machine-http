@@ -203,6 +203,10 @@ def default(obj):
 
 
 def fix_date_orders():
+    from bson.codec_options import CodecOptions
+    import bson
+    import collections
+
     all_orders = database.col_orders.find({})
 
     for order in all_orders:
@@ -216,9 +220,15 @@ def fix_date_orders():
             # order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
             # print('\norder_obj: ', order_obj)
             # print('\n')
-            print('order: ', order)
-            order_obj = SimpleNamespace(**order)
-            print('order_obj: ', order_obj)
+
+            # print('order: ', order)
+            #
+            # order_obj = SimpleNamespace(**order)
+            # print('order_obj: ', order_obj)
+
+            options = CodecOptions(document_class=collections.OrderedDict)
+            decoded_doc = bson.decode(order, codec_options=options)
+            print('\ndecoded_doc: ', decoded_doc, type(decoded_doc))
         except Exception as e:
             print(e)
 
