@@ -1,3 +1,4 @@
+import datetime
 import json
 from datetime import date
 from types import SimpleNamespace
@@ -13,6 +14,10 @@ client = Sqs_params.client
 queue_url = Sqs_params.queue_url
 
 page_size = 25
+
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
 
 
 def list_orders(g_user_flask):
@@ -49,9 +54,12 @@ def list_orders(g_user_flask):
     orders_list = []
     distinctCarwashId = []
     for i in orders:
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        # data = json.loads(json_util.dumps(i))
+        # data = json.dumps(data, default=lambda x: x.__dict__)
+        # order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        test_obj = json.dumps(i, default=default)
+        order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+        print('\norder_obj: ', order_obj)
         print('order_obj:', order_obj)
         orders_list.append(order_obj)
 
