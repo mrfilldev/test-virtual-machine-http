@@ -207,13 +207,14 @@ def fix_date_orders():
 
     for order in all_orders:
         try:
-            print(type(order['DateCreate']))
-            print(order['DateCreate'])
+            # print(type(order['DateCreate']))
+            # print(order['DateCreate'])
             test_obj = json.dumps(order, default=default)
             print('test_obj: ', test_obj)
-            print('type(test_obj): ', type(test_obj))
-            print('type(test_obj.DateCreate): ', type(test_obj.DateCreate))
-            print('type(test_obj["DateCreate"]): ', type(test_obj['DateCreate']))
+            order_obj = json.loads(order, object_hook=lambda d: SimpleNamespace(**d), default=default)
+            print('order_obj: ', order_obj)
+            # print('type(test_obj.DateCreate): ', type(test_obj.DateCreate))
+            # print('type(test_obj["DateCreate"]): ', type(test_obj['DateCreate']))
         except Exception as e:
             print(e)
 
@@ -223,7 +224,7 @@ def fix_date_orders():
     # for order in all_orders:
     #     data = json.loads(json_util.dumps(order))
     #     data = json.dumps(data, default=lambda x: x.__dict__)
-    #     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    #     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d), default=default)
     #     try:
     #         print(type(order_obj.DateCreate), type(order_obj.DateCreate), type(order_obj.DateCreate))
     #         print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
