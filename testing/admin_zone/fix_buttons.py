@@ -211,25 +211,25 @@ def fix_date_orders():
 
     for order in all_orders:
         try:
-            # print('\norder: ', order)
-            # # Serialize ``obj`` to a JSON formatted ``str``.
-            # test_obj = json.dumps(order, default=default)
-            # print('\ntest_obj: ', test_obj)
-            # # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
-            # # object.
-            # order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-            # print('\norder_obj: ', order_obj)
-            # print('\n')
+            print('\norder: ', order)
+            # Serialize ``obj`` to a JSON formatted ``str``.
+            test_obj = json.dumps(order, default=default)
+            print('\ntest_obj: ', test_obj)
+            # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
+            # object.
+            order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+            print('\norder_obj: ', order_obj)
+            print('\n')
 
             # print('order: ', order)
             #
             # order_obj = SimpleNamespace(**order)
             # print('order_obj: ', order_obj)
-            print('\nbson.encode(order): ', bson.encode(order))
-            print('\nbson.decode(data): ', bson.decode(order))
-            options = CodecOptions(SimpleNamespace)
-            decoded_doc = bson.decode(bson.encode(order), codec_options=options)
-            print('\ndecoded_doc: ', decoded_doc, type(decoded_doc))
+            # print('\nbson.encode(order): ', bson.encode(order))
+            # print('\nbson.decode(data): ', bson.decode(order))
+            # options = CodecOptions(document_class=collections.Simple)
+            # decoded_doc = bson.decode(bson.encode(order), codec_options=options)
+            # print('\ndecoded_doc: ', decoded_doc, type(decoded_doc))
         except Exception as e:
             print(e)
 
