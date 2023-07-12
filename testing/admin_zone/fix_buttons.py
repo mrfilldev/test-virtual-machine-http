@@ -203,14 +203,6 @@ def fix_date_orders():
         try:
             print(type(order_obj.DateCreate), type(order_obj.DateCreate), type(order_obj.DateCreate))
             print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
-            d_DateStart = parse(order_obj.DateStart)
-            print(d_DateStart, type(d_DateStart))
-            d_DateEnd = parse(order_obj.DateEnd)
-            print(d_DateEnd, type(d_DateEnd))
-            database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-                        "DateStart": d_DateStart,
-                        "DateEnd": d_DateEnd,
-                    }})
         except Exception as e:
             pass
 
