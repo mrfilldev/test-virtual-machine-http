@@ -199,7 +199,7 @@ import json
 
 def default(obj):
     if isinstance(obj, (datetime.date, datetime.datetime)):
-        return obj
+        return obj.isoformat()
 
 
 def fix_date_orders():
