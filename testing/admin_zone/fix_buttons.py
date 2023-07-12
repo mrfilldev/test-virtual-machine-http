@@ -205,7 +205,7 @@ def fix_date_orders():
             d = parse(order['DateStart'])
             print(d, type(d))
             database.col_orders.update_one({'_id': order._id}, {"$set": {
-                "DateStart": parse(order.DateStart),
+                "DateStart": parse(order['DateStart']),
             }})
         except Exception as e:
             pass
