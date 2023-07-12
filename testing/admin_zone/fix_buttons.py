@@ -196,15 +196,21 @@ def fix_date_users():
 def fix_date_orders():
     all_orders = database.col_orders.find({})
 
+    # for order in all_orders:
+    #     data = json.loads(json_util.dumps(order))
+    #     data = json.dumps(data, default=lambda x: x.__dict__)
+    #     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    #     try:
+    #         print(type(order_obj.DateCreate), type(order_obj.DateCreate), type(order_obj.DateCreate))
+    #         print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
+    #     except Exception as e:
+    #         pass
     for order in all_orders:
-        data = json.loads(json_util.dumps(order))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        try:
-            print(type(order_obj.DateCreate), type(order_obj.DateCreate), type(order_obj.DateCreate))
-            print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
-        except Exception as e:
-            pass
+            try:
+                print(type(order['DateCreate']))
+                print(order['DateCreate'])
+            except Exception as e:
+                pass
 
     return redirect(url_for('admin_blueprint.admin_main'))
 
