@@ -49,7 +49,9 @@ def list_orders(g_user_flask):
     orders_list = []
     distinctCarwashId = []
     for i in orders:
-        order_obj = SimpleNamespace(**i)
+        data = json.loads(json_util.dumps(i))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         print('order_obj:', order_obj)
         orders_list.append(order_obj)
 
