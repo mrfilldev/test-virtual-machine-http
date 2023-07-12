@@ -200,14 +200,20 @@ def fix_date_orders():
         data = json.loads(json_util.dumps(order))
         data = json.dumps(data, default=lambda x: x.__dict__)
         order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        try:
+            print(type(order_obj.DateCreate), type(order_obj.DateCreate), type(order_obj.DateCreate))
+            print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
 
-        print(order_obj.DateCreate, type(order_obj.DateCreate))
-        print(order_obj.DateStart, type(order_obj.DateStart))
-        print(order_obj.DateEnd, type(order_obj.DateEnd))
-        # d = parse(order_obj.DateCreate)
-        # print(d, type(d))
-        # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-        #     "DateCreate": parse(order_obj.DateCreate),
-        # }})
+
+        except Exception as e:
+            pass
 
     return redirect(url_for('admin_blueprint.admin_main'))
+
+#
+# print(order_obj.DateCreate, type(order_obj.DateCreate))
+#         d = parse(order_obj.DateCreate)
+#         print(d, type(d))
+#         database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+#             "date_registered": parse(order_obj.date_registered).isoformat(),
+#         }})
