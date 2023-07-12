@@ -209,7 +209,10 @@ def fix_date_orders():
         try:
             print(type(order['DateCreate']))
             print(order['DateCreate'])
-            print(json.dumps(order, default=default))
+            test_obj = json.dumps(order, default=default)
+            print(type(test_obj))
+            # print(type(test_obj))
+            # print(type(test_obj['DateCreate']))
         except Exception as e:
             print(e)
 
