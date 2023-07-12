@@ -181,7 +181,7 @@ def format_datetime(value):
 @admin_bp.app_template_filter()
 def format_datetime_to_dmy(value):
     try:
-        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y")
+        value = (parser.parse(value.date) + timedelta(hours=3)).strftime("%d.%m.%Y")
         return value
     except Exception as e:
         print(e)
