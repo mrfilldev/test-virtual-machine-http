@@ -205,14 +205,17 @@ def default(obj):
 def fix_date_orders():
     all_orders = database.col_orders.find({})
 
-    order = all_orders[0]
+    order = all_orders[-1]
     try:
-
         print('\norder: ', order)
+        # Serialize ``obj`` to a JSON formatted ``str``.
         test_obj = json.dumps(order, default=default)
         print('\ntest_obj: ', test_obj)
+        # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
+        # object.
         order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
         print('\norder_obj: ', order_obj)
+        print('\n')
 
     except Exception as e:
         print(e)
