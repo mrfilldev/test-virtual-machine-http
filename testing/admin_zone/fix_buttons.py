@@ -207,20 +207,22 @@ def fix_date_orders():
 
     order = all_orders[0]
     try:
-        # print(type(order['DateCreate']))
-        # print(order['DateCreate'])
-        print('order: ', order)
+
+        print('\norder: ', order)
         test_obj = json.dumps(order, default=default)
-        print('test_obj: ', test_obj)
+        print('\ntest_obj: ', test_obj)
         order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-        print('order_obj: ', order_obj)
-        # print('type(test_obj.DateCreate): ', type(test_obj.DateCreate))
-        # print('type(test_obj["DateCreate"]): ', type(test_obj['DateCreate']))
+        print('\norder_obj: ', order_obj)
+
     except Exception as e:
         print(e)
 
     return redirect(url_for('admin_blueprint.admin_main'))
 
+    # print(type(order['DateCreate']))
+    # print(order['DateCreate'])
+    # print('type(test_obj.DateCreate): ', type(test_obj.DateCreate))
+    # print('type(test_obj["DateCreate"]): ', type(test_obj['DateCreate']))
     #
     # for order in all_orders:
     #     data = json.loads(json_util.dumps(order))
