@@ -227,7 +227,7 @@ def fix_date_orders():
             # print('order_obj: ', order_obj)
 
             options = CodecOptions(document_class=collections.OrderedDict)
-            decoded_doc = bson.decode(order, codec_options=options)
+            decoded_doc = bson.decode(bson.encode(order), codec_options=options)
             print('\ndecoded_doc: ', decoded_doc, type(decoded_doc))
         except Exception as e:
             print(e)
