@@ -199,15 +199,16 @@ def fix_date_orders():
     for order in all_orders:
         print(order)
         try:
-            print(order['DateCreate'], type(order['DateCreate']))
+            # print(order['DateCreate'], type(order['DateCreate']))
             print(order['DateStart'], type(order['DateStart']))
-            print(order['DateEnd'], type(order['DateEnd']))
+            # print(order['DateEnd'], type(order['DateEnd']))
+            d = parse(order['DateStart'])
+            print(d, type(d))
+            database.col_orders.update_one({'_id': order._id}, {"$set": {
+                "DateStart": parse(order.DateStart),
+            }})
         except Exception as e:
             pass
-        # d = parse(order_obj.DateCreate)
-        # print(d, type(d))
-        # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
-        #     "DateCreate": parse(order_obj.DateCreate),
-        # }})
+
 
     return redirect(url_for('admin_blueprint.admin_main'))
