@@ -197,18 +197,17 @@ def fix_date_orders():
     all_orders = database.col_orders.find({})
 
     for order in all_orders:
-        print(order)
-        try:
-            # print(order['DateCreate'], type(order['DateCreate']))
-            print(order['DateStart'], type(order['DateStart']))
-            # print(order['DateEnd'], type(order['DateEnd']))
-            d = parse(order['DateStart'])
-            # print(d, type(d))
-            # database.col_orders.update_one({'_id': order._id}, {"$set": {
-            #     "DateStart": parse(order['DateStart']),
-            # }})
-        except Exception as e:
-            pass
+        data = json.loads(json_util.dumps(order))
+        data = json.dumps(data, default=lambda x: x.__dict__)
+        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
 
+        print(order_obj.DateCreate, type(order_obj.DateCreate))
+        print(order_obj.DateStart, type(order_obj.DateStart))
+        print(order_obj.DateEnd, type(order_obj.DateEnd))
+        # d = parse(order_obj.DateCreate)
+        # print(d, type(d))
+        # database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+        #     "DateCreate": parse(order_obj.DateCreate),
+        # }})
 
     return redirect(url_for('admin_blueprint.admin_main'))
