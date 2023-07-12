@@ -205,7 +205,7 @@ def default(obj):
 def fix_date_orders():
     all_orders = database.col_orders.find({})
 
-    order = all_orders[-1:]
+    order = all_orders[160]
     try:
         print('\norder: ', order)
         # Serialize ``obj`` to a JSON formatted ``str``.
