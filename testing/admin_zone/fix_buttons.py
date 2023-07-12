@@ -213,13 +213,10 @@ def fix_date_orders():
         try:
             print('\norder: ', order)
             # Serialize ``obj`` to a JSON formatted ``str``.
-            test_obj = json.loads(json_util.dumps(order, default=default))
+            test_obj = json.dumps(order, default=default)
             print('\ntest_obj: ', test_obj)
             # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
             # object.
-            # test_obj = json.dumps(test_obj, default=default)
-            test_obj = json.dumps(test_obj, default=default)
-
             order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
             print('\norder_obj: ', order_obj)
             print('\n')
@@ -228,11 +225,10 @@ def fix_date_orders():
             #
             # order_obj = SimpleNamespace(**order)
             # print('order_obj: ', order_obj)
-            # print('\nbson.encode(order): ', bson.encode(order))
-            # print('\nbson.decode(data): ', bson.decode(order))
-            # options = CodecOptions(document_class=collections.Simple)
-            # decoded_doc = bson.decode(bson.encode(order), codec_options=options)
-            # print('\ndecoded_doc: ', decoded_doc, type(decoded_doc))
+
+            # options = CodecOptions(document_class=collections.OrderedDict)
+            # decoded_doc = bson.decode(order, codec_options=options)
+            # print('\ndecoded_doc: ', decoded_doc, dec)
         except Exception as e:
             print(e)
 
