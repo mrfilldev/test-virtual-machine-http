@@ -205,19 +205,19 @@ def default(obj):
 def fix_date_orders():
     all_orders = database.col_orders.find({})
 
-    for order in all_orders:
-        try:
-            # print(type(order['DateCreate']))
-            # print(order['DateCreate'])
-            print('order: ', order)
-            test_obj = json.dumps(order, default=default)
-            print('test_obj: ', test_obj)
-            order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-            print('order_obj: ', order_obj)
-            # print('type(test_obj.DateCreate): ', type(test_obj.DateCreate))
-            # print('type(test_obj["DateCreate"]): ', type(test_obj['DateCreate']))
-        except Exception as e:
-            print(e)
+    order = all_orders[0]
+    try:
+        # print(type(order['DateCreate']))
+        # print(order['DateCreate'])
+        print('order: ', order)
+        test_obj = json.dumps(order, default=default)
+        print('test_obj: ', test_obj)
+        order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+        print('order_obj: ', order_obj)
+        # print('type(test_obj.DateCreate): ', type(test_obj.DateCreate))
+        # print('type(test_obj["DateCreate"]): ', type(test_obj['DateCreate']))
+    except Exception as e:
+        print(e)
 
     return redirect(url_for('admin_blueprint.admin_main'))
 
