@@ -203,10 +203,10 @@ def fix_date_orders():
             print(order['DateStart'], type(order['DateStart']))
             # print(order['DateEnd'], type(order['DateEnd']))
             d = parse(order['DateStart'])
-            print(d, type(d))
-            database.col_orders.update_one({'_id': order._id}, {"$set": {
-                "DateStart": parse(order['DateStart']),
-            }})
+            # print(d, type(d))
+            # database.col_orders.update_one({'_id': order._id}, {"$set": {
+            #     "DateStart": parse(order['DateStart']),
+            # }})
         except Exception as e:
             pass
 
