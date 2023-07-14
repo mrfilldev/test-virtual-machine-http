@@ -9,6 +9,14 @@ from ..db import database
 from ..db.models import User, UserRole
 from ..main import oauth_via_yandex
 
+import datetime
+import json
+
+
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
+
 
 def users_list_view():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
@@ -19,6 +27,11 @@ def users_list_view():
         data = json.loads(json_util.dumps(i))
         data = json.dumps(data, default=lambda x: x.__dict__)
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+
+        test_obj = json.dumps(i, default=default)
+        order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+        print('\norder_obj: ', order_obj, '\n')
+
         print(user_obj)
         users_list.append(user_obj)
     print(users_list)
@@ -62,8 +75,6 @@ def user_detail(request, user_id):
         }
         print('context: ', context)
         # return redirect(url_for('admin_blueprint.admin_user_detail', user_id=user_obj._id))
-
-
 
     user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
     print(user_obj)
