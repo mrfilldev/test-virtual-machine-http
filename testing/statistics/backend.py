@@ -60,7 +60,7 @@ def group_by_status():
     for doc in result:
         status_dictionary[doc['_id']] = doc['count']
         amount_of_orders += int(doc['count'])
-    status_dictionary['amount'] = amount_of_orders
+
     for k, v in status_dictionary.items():
         print(f'{k}:{v}\n')
     return status_dictionary
