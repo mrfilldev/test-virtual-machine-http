@@ -225,6 +225,10 @@ def fix_date_orders():
             print('\norder_obj: ', order_obj)
             print('\n')
 
+            
+            database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                "DateCreate": parse(order_obj.DateCreate),
+            }})
             # print('order: ', order)
             #
             # order_obj = SimpleNamespace(**order)
