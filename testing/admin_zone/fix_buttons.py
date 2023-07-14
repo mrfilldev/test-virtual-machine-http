@@ -183,13 +183,19 @@ def fix_date_users():
     all_users = database.col_users.find({})
 
     for user in all_users:
-        data = json.loads(json_util.dumps(user))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        # print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)), parse(user_obj.date_registered).isoformat())
-        database.col_users.update_one({'_id': user_obj._id}, {"$set": {
-            "date_registered": parse(user_obj.date_registered).isoformat(),
-        }})
+        print('\nuser: ', user)
+        # Serialize ``obj`` to a JSON formatted ``str``.
+        test_obj = json.dumps(user, default=default)
+        print('\ntest_obj: ', test_obj)
+        # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
+        # object.
+        user_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+        print('\norder_obj: ', user_obj)
+        print('\n')
+        #
+        # database.col_users.update_one({'_id': user_obj._id}, {"$set": {
+        #     "date_registered": parse(user_obj.date_registered).isoformat(),
+        # }})
     return redirect(url_for('admin_blueprint.admin_main'))
 
 
