@@ -228,11 +228,12 @@ def create_carwash_order(request, carwash_id):
 
     contract_id = 'OWN'
     Status = 'LocalOrder'
-    date_created = datetime.utcnow().isoformat() + "Z"
-    date_start = convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
-                                                         "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
-    date_end = convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
-                                                       "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
+    date_created = datetime.datetime.utcnow().isoformat() + "Z"
+    date_start = convert_string_to_utc(
+        datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
+                                   "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
+    date_end = convert_string_to_utc(datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+                                                                "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
 
     order = {
         '_id': order_id,
