@@ -147,11 +147,11 @@ def view_schedule_of_certain_carwash(request, carwash_id, g_user_flask):
 
     carwash_start_time = '08:00:00'
     carwash_end_time = '23:00:00'
-    date_today = datetime.today().strftime('%Y-%m-%d')
+    date_today = datetime.datetime.today().strftime('%Y-%m-%d')
 
-    now_iso = datetime.now().isoformat()
+    now_iso = datetime.datetime.now().isoformat()
 
-    now_format = (datetime.now() - timedelta(hours=1.5)).strftime('%H:%M:%S')
+    now_format = (datetime.datetime.now() - timedelta(hours=1.5)).strftime('%H:%M:%S')
     print('now_format: ', now_format)
 
     request_xhr_key = request.headers.get('X-Requested-With')
