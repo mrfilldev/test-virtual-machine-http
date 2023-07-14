@@ -61,27 +61,6 @@
                 <div class="col-12 col-sm-12 col-md-4 col-lg-8 col-xl-8"></div>
                 <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
 
-                    <form id="myform" method=POST action="{{ url_for('main_blueprint.oauth') }}">
-                        <label>Имя:</label> &nbsp;
-                        <input style="width: 260px" type="text" class="form-control" name="name"
-                               placeholder="Иван">
-                        <label>Фамилия:</label> &nbsp;
-                        <input style="width: 260px" type="text" class="form-control" name="surname"
-                               placeholder="Иванов">
-                        <label>Название компании:</label> &nbsp;
-                        <input style="width: 260px" type="text" class="form-control" name="network_name"
-                               placeholder="ООО-моемВСЕподряд">
-                        <label>Контактный телефон:</label> &nbsp;
-                        <input style="width: 260px" type="tel" class="form-control" name="phone_number"
-                               placeholder="+7(999)666-99-66"
-                               pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
-                               minlength="18" maxlength="18">
-                        <br>
-                        <a onclick="document.getElementById('myform').submit()">
-                            <!--кнопка яндекс авторизации-->
-
-                        </a>
-                    </form>
                 </div>
             </div>
         </div>
