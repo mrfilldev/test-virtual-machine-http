@@ -59,8 +59,8 @@ def list_orders(g_user_flask):
         # order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         test_obj = json.dumps(i, default=default)
         order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-        print('\norder_obj: ', order_obj)
-        print('order_obj:', order_obj)
+        print('\norder_obj: ', order_obj, '\n')
+
         orders_list.append(order_obj)
 
         if order_obj.CarWashId not in distinctCarwashId:
