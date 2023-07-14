@@ -131,7 +131,6 @@ def owner_order_detail(order_id):
     order_obj = json.dumps(order_obj, default=default)
     order_obj = json.loads(order_obj, object_hook=lambda d: SimpleNamespace(**d))
     print('\norder_obj: ', order_obj, '\n')
-    print('order_obj: \n', order_obj)
     carwash = get_carwash_obj(order_obj)
     if order_obj.ContractId == 'YARU':
         basket = None

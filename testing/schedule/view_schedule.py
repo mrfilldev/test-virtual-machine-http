@@ -2,6 +2,8 @@ import json
 import uuid
 from datetime import datetime, timedelta, date
 from dateutil import parser
+import datetime
+import json
 
 from types import SimpleNamespace
 
@@ -15,6 +17,11 @@ _eng_chars = u"~!@#$%^&qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:\"
 _rus_chars = u"ё!\"№;%:?йцукенгшщзхъфывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"
 _to_rus = dict(zip(_eng_chars, _rus_chars))
 _to_eng = dict(zip(_rus_chars, _eng_chars))
+
+
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
 
 
 def to_rus(s):
@@ -33,7 +40,7 @@ def datetime_range(start, end, delta):
 
 
 def convert_string_to_timezone(value, timezone=3):
-    print('value: ', value)
+    print('value: ', value, str(value))
     if value == '' or value == None:
         return ''
     time_value = parser.parse(value + timedelta(hours=timezone))
@@ -52,17 +59,17 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
     orders = database.col_orders.find({'CarWashId': carwash_id})
     events_list = []
     for i in orders:
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-        print('order_obj:', order_obj)
+        order_obj = json.dumps(i, default=default)
+        order_obj = json.loads(order_obj, object_hook=lambda d: SimpleNamespace(**d))
+        print('\norder_obj: ', order_obj, '\n')
         if order_obj.ContractId == "YARU":
             events_list.append({
                 'title': order_obj.ContractId,
                 'order_id': order_obj._id,
                 'start': order_obj.DateCreate,  # + timedelta(hours=3)
                 'date': order_obj.DateCreate,
-                'start_format': '' if order_obj.DateCreate == '' else parser.parse(convert_string_to_timezone(order_obj.DateCreate)).strftime('%H:%M'),
+                'start_format': '' if order_obj.DateCreate == '' else parser.parse(
+                    convert_string_to_timezone(order_obj.DateCreate)).strftime('%H:%M'),
                 'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
                 'box': order_obj.BoxNumber,
             })
