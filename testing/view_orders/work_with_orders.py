@@ -47,7 +47,7 @@ def list_orders(g_user_flask):
     # print('limit:', limit)
     print('skip:', skip)
     orders_count = database.col_orders.count_documents(search)  # skip=skip)
-    sort = [("DateCreate", pymongo.ASCENDING)]
+    sort = [("DateCreate", pymongo.DESCENDING)]
     print('orders_count:', orders_count)
     orders = database.col_orders.find(search).sort(sort).skip(skip).limit(page_size)
 

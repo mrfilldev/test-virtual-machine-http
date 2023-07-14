@@ -51,8 +51,8 @@ def convert_string_to_timezone(value, timezone=3):
 
 def convert_string_to_utc(value, timezone=3):
     time_value = parser.parse(value) - timedelta(hours=timezone)
-    print(value + " -> ", time_value.isoformat())
-    return time_value.isoformat()
+    print(value + " -> ", time_value)
+    return time_value
 
 
 def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
@@ -228,12 +228,13 @@ def create_carwash_order(request, carwash_id):
 
     contract_id = 'OWN'
     Status = 'LocalOrder'
-    date_created = datetime.datetime.utcnow().isoformat() + "Z"
+    date_created = datetime.datetime.utcnow()
     date_start = convert_string_to_utc(
         datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
-                                   "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
-    date_end = convert_string_to_utc(datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
-                                                                "%Y-%m-%dT%H:%M").isoformat()) + "+03:00"
+                                   "%Y-%m-%dT%H:%M"))
+    date_end = convert_string_to_utc(
+        datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+                                   "%Y-%m-%dT%H:%M"))
 
     order = {
         '_id': order_id,
@@ -282,10 +283,12 @@ def edit_carwash_order(request, carwash_id):
         'CarBrand': request.form['car_brand'],
         'Category': request.form['category'],
         'ContractId': 'OWN',
-        'DateStart': convert_string_to_utc(datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
-                                                             "%Y-%m-%dT%H:%M").isoformat()) + "+03:00",
-        'DateEnd': convert_string_to_utc(datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
-                                                           "%Y-%m-%dT%H:%M").isoformat()) + "+03:00",
+        'DateStart': convert_string_to_utc(
+            datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
+                                       "%Y-%m-%dT%H:%M")),
+        'DateEnd': convert_string_to_utc(
+            datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+                                       "%Y-%m-%dT%H:%M")),
 
     }}
     new_order = database.col_orders.update_one(id_order, set_fields)
