@@ -72,15 +72,7 @@ def group_by_date():
     pipline_date = [{
         "$group": {
             "_id": {
-                "year": {
-                    "$substr": ["$DateCreate", 0, 4]
-                },
-                "month": {
-                    "$substr": ["$DateCreate", 5, 2]
-                },
-                "day": {
-                    "$substr": ["$DateCreate", 8, 2]
-                }
+                "dayOfYear": "$DateCreate"
             },
             "amount": {"$sum": 1}
         }
