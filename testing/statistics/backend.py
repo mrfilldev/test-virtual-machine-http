@@ -93,8 +93,10 @@ def group_by_date():
 
 
 def get_statistics(g_user_flask):
-    research_by_date = group_by_date()
+    # research_by_date = group_by_date()
     research_by_status = group_by_status()
+    statuses = research_by_status.keys()
+    print('statuses: ', statuses)
     context = {
         'max': 20,
         'labels':  labels,
