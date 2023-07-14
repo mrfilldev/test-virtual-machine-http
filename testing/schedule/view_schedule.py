@@ -43,8 +43,9 @@ def convert_string_to_timezone(value, timezone=3):
     print('value: ', value, type(value))
     if value == '' or value == None:
         return ''
-    time_value = parser.parse(value) + timedelta(hours=timezone)
-    return time_value.isoformat()
+    if isinstance(value, (datetime.date, datetime.datetime)):
+        time_value = value + timedelta(hours=timezone)
+    return time_value
     # time_value = value
     # print(value + " -> ", time_value)
 
