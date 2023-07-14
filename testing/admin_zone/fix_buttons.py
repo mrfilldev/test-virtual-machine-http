@@ -183,17 +183,14 @@ def fix_date_users():
     all_users = database.col_users.find({})
     for user in all_users:
         try:
-            print('\nuser: ', user)
+            # print('\nuser: ', user)
             test_obj = json.dumps(user, default=default)
-            print('\ntest_obj: ', test_obj)
+            # print('\ntest_obj: ', test_obj)
             user_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-            print('\nuser_obj: ', user_obj)
-            print('\n')
+            # print('\nuser_obj: ', user_obj)
+            # print('\n')
 
-            if "+00:00" in user_obj.date_registered:
-                print('true')
-                user_obj.date_registered.removesuffix("+00:00")
-                print(user_obj.date_registered)
+            print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)))
         except Exception as e:
             print(e)
 
