@@ -1,7 +1,8 @@
 import json
 from datetime import datetime
 from types import SimpleNamespace
-
+import datetime
+import json
 import pytz
 from bson import json_util
 from dateutil.parser import parse
@@ -191,24 +192,18 @@ def fix_date_users():
             # print('\n')
 
             print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)))
+            database.col_users.update_one({'_id': user_obj._id}, {"$set": {
+                "date_registered": parse(user_obj.date_registered),
+            }})
         except Exception as e:
             print(e)
 
-        #
-        # database.col_users.update_one({'_id': user_obj._id}, {"$set": {
-        #     "date_registered": parse(user_obj.date_registered).isoformat(),
-        # }})
     return redirect(url_for('admin_blueprint.admin_main'))
-
-
-import datetime
-import json
 
 
 def default(obj):
     if isinstance(obj, (datetime.date, datetime.datetime)):
         return obj.isoformat()
-
 
 
 def fix_date_orders():
@@ -257,7 +252,3 @@ def fix_date_orders():
     #         print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
     #     except Exception as e:
     #         pass
-
-
-
-
