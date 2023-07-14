@@ -184,16 +184,14 @@ def fix_date_users():
     for user in all_users:
         try:
             print('\nuser: ', user)
-            # Serialize ``obj`` to a JSON formatted ``str``.
             test_obj = json.dumps(user, default=default)
             print('\ntest_obj: ', test_obj)
-            # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
-            # object.
             user_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
             print('\nuser_obj: ', user_obj)
             print('\n')
 
             if "+00:00" in user_obj.date_registered:
+                print('true')
                 user_obj.date_registered.removesuffix("+00:00")
         except Exception as e:
             print(e)
