@@ -168,6 +168,7 @@ def list_db():
 @admin_bp.app_template_filter()
 def format_datetime(value):
     try:
+        print('value: %s' % value, type(value))
         value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y %H:%M:%S")
         return value
     except Exception as e:
