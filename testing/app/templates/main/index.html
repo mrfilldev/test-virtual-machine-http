@@ -20,33 +20,8 @@
                 the
                 text, and add your own fullscreen background photo to make it your own.</p>
             <p class="lead">
-                <a onclick="document.getElementById('myform').submit()"
-                   class="btn btn-lg btn-secondary fw-bold border-white bg-white text-black">Войти</a>
-            </p>
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2"></div>
-                <div class="col-12 col-sm-12 col-md-4 col-lg-8 col-xl-8"></div>
-                <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
-                    <h3>Вход и регистрация</h3>
-                    <form id="myform" method=POST action="{{ url_for('main_blueprint.oauth') }}">
-                        <label>Имя:</label> &nbsp;
-                        <input style="width: 260px" type="text" class="form-control" name="name"
-                               placeholder="Иван">
-                        <label>Фамилия:</label> &nbsp;
-                        <input style="width: 260px" type="text" class="form-control" name="surname"
-                               placeholder="Иванов">
-                        <label>Название компании:</label> &nbsp;
-                        <input style="width: 260px" type="text" class="form-control" name="network_name"
-                               placeholder="ООО-моемВСЕподряд">
-                        <label>Контактный телефон:</label> &nbsp;
-                        <input style="width: 260px" type="tel" class="form-control" name="phone_number"
-                               placeholder="+7(999)666-99-66"
-                               pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
-                               minlength="18" maxlength="18">
-                        <br>
-                        <a onclick="document.getElementById('myform').submit()">
-                            <!--кнопка яндекс авторизации-->
-                            <svg width="260" height="56" viewBox="0 0 260 56" fill="none"
+                <a onclick="document.getElementById('myform').submit()">
+                    <svg width="260" height="56" viewBox="0 0 260 56" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 24C0 12.6863 0 7.02944 3.51472 3.51472C7.02944 0 12.6863 0 24 0H236C247.314 0 252.971 0 256.485 3.51472C260 7.02944 260 12.6863 260 24V32C260 43.3137 260 48.9706 256.485 52.4853C252.971 56 247.314 56 236 56H24C12.6863 56 7.02944 56 3.51472 52.4853C0 48.9706 0 43.3137 0 32V24Z"
                                       fill="black"></path>
@@ -81,6 +56,32 @@
                                 <path d="M205.615 21.528H209.487C210.298 21.528 211.05 21.6187 211.743 21.8C212.447 21.9813 213.055 22.28 213.567 22.696C214.09 23.112 214.495 23.6613 214.783 24.344C215.082 25.0267 215.231 25.8693 215.231 26.872C215.231 27.8853 215.082 28.776 214.783 29.544C214.495 30.3013 214.084 30.936 213.551 31.448C213.028 31.96 212.404 32.3493 211.679 32.616C210.964 32.872 210.18 33 209.327 33H205.615V21.528ZM207.551 23.208V31.336H209.391C209.956 31.336 210.468 31.2507 210.927 31.08C211.396 30.9093 211.796 30.648 212.127 30.296C212.468 29.944 212.73 29.496 212.911 28.952C213.103 28.3973 213.199 27.7413 213.199 26.984C213.199 26.2373 213.108 25.624 212.927 25.144C212.746 24.6533 212.49 24.264 212.159 23.976C211.839 23.688 211.455 23.4907 211.007 23.384C210.559 23.2667 210.074 23.208 209.551 23.208H207.551Z"
                                       fill="white"></path>
                             </svg>
+                </a>
+            </p>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2"></div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-8 col-xl-8"></div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
+
+                    <form id="myform" method=POST action="{{ url_for('main_blueprint.oauth') }}">
+                        <label>Имя:</label> &nbsp;
+                        <input style="width: 260px" type="text" class="form-control" name="name"
+                               placeholder="Иван">
+                        <label>Фамилия:</label> &nbsp;
+                        <input style="width: 260px" type="text" class="form-control" name="surname"
+                               placeholder="Иванов">
+                        <label>Название компании:</label> &nbsp;
+                        <input style="width: 260px" type="text" class="form-control" name="network_name"
+                               placeholder="ООО-моемВСЕподряд">
+                        <label>Контактный телефон:</label> &nbsp;
+                        <input style="width: 260px" type="tel" class="form-control" name="phone_number"
+                               placeholder="+7(999)666-99-66"
+                               pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
+                               minlength="18" maxlength="18">
+                        <br>
+                        <a onclick="document.getElementById('myform').submit()">
+                            <!--кнопка яндекс авторизации-->
+
                         </a>
                     </form>
                 </div>
