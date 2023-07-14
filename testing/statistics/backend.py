@@ -103,7 +103,7 @@ def get_statistics(g_user_flask):
         'values': json.dumps(research_by_status, default=lambda x: x.__dict__),
         'title': 'Все заказы за весь период',
         'research_by_status': research_by_status,
-        'research_by_date': research_by_date,
+        'research_by_date': statuses,
         'chart': {}
     }
     return render_template(
