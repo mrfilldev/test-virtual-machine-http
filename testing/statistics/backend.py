@@ -31,10 +31,12 @@ def translate_statuses(category):
     match category:
         case 'OrderCreated':
             return 'Заказ создан'
-        case 'LocalOrder':
-            return 'Локальный заказ'
         case 'Completed':
             return 'Заказ выполнен'
+        case 'Accepted':
+            return 'Заказ принят'
+        case 'LocalOrder':
+            return 'Локальный заказ'
         case 'StationCanceled':
             return 'Заказ отменен мойкой'
         case 'UserCanceled':
