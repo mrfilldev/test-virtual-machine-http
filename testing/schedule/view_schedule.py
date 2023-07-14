@@ -40,7 +40,7 @@ def datetime_range(start, end, delta):
 
 
 def convert_string_to_timezone(value, timezone=3):
-    print('value: ', value, str(value))
+    print('value: ', value, type(value))
     if value == '' or value == None:
         return ''
     time_value = parser.parse(value) + timedelta(hours=timezone)
@@ -50,7 +50,7 @@ def convert_string_to_timezone(value, timezone=3):
 
 
 def convert_string_to_utc(value, timezone=3):
-    print('value: ', value, str(value))
+    print('value: ', value, type(value))
     time_value = parser.parse(value) - timedelta(hours=timezone)
     print(value + " -> ", time_value)
     return time_value
