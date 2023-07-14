@@ -43,18 +43,20 @@ def convert_string_to_timezone(value, timezone=3):
     print('value: ', value, type(value))
     if value == '' or value == None:
         return ''
-    if isinstance(value, (datetime.date, datetime.datetime)):
-        time_value = value + timedelta(hours=timezone)
-    return time_value
+    time_value = parser.parse(value) + timedelta(hours=timezone)
+    return time_value.isoformat()
     # time_value = value
     # print(value + " -> ", time_value)
 
 
 def convert_string_to_utc(value, timezone=3):
     print('value: ', value, type(value))
-    time_value = parser.parse(value) - timedelta(hours=timezone)
-    print(value + " -> ", time_value)
-    return time_value
+    if isinstance(value, (datetime.date, datetime.datetime)):
+        time_value = parser.parse(value) - timedelta(hours=timezone)
+        print(value, " -> ", time_value)
+        return time_value
+    else:
+        return TypeError
 
 
 def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
