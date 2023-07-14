@@ -36,7 +36,7 @@ def convert_string_to_timezone(value, timezone=3):
     print('value: ', value)
     if value == '' or value == None:
         return ''
-    time_value = parser.parse(value) + timedelta(hours=timezone)
+    time_value = parser.parse(value + timedelta(hours=timezone))
     return time_value.isoformat()
     # time_value = value
     # print(value + " -> ", time_value)
@@ -62,8 +62,7 @@ def get_orders(carwash_id):  # 7810324c8fea4af8bc3c3d6776cfc494
                 'order_id': order_obj._id,
                 'start': order_obj.DateCreate,  # + timedelta(hours=3)
                 'date': order_obj.DateCreate,
-                'start_format': '' if order_obj.DateCreate == '' else parser.parse(
-                    convert_string_to_timezone(order_obj.DateCreate)).strftime('%H:%M'),
+                'start_format': '' if order_obj.DateCreate == '' else parser.parse(convert_string_to_timezone(order_obj.DateCreate)).strftime('%H:%M'),
                 'resourceId': (chr(ord('`') + int(order_obj.BoxNumber))),
                 'box': order_obj.BoxNumber,
             })

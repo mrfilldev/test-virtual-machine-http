@@ -137,7 +137,6 @@ def owner_order_detail(order_id):
         basket = None
     else:
         basket = get_basket_objs(order_obj)
-
     context = {
         'order': order_obj,
         'carwash': carwash,
