@@ -282,9 +282,9 @@ def edit_carwash_order(request, carwash_id):
         'CarBrand': request.form['car_brand'],
         'Category': request.form['category'],
         'ContractId': 'OWN',
-        'DateStart': convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
+        'DateStart': convert_string_to_utc(datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_start'],
                                                              "%Y-%m-%dT%H:%M").isoformat()) + "+03:00",
-        'DateEnd': convert_string_to_utc(datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
+        'DateEnd': convert_string_to_utc(datetime.datetime.strptime(request.form['date'] + 'T' + request.form['time_end'],
                                                            "%Y-%m-%dT%H:%M").isoformat()) + "+03:00",
 
     }}
