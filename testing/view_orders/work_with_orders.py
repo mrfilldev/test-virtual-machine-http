@@ -15,6 +15,7 @@ queue_url = Sqs_params.queue_url
 
 page_size = 25
 
+
 def default(obj):
     if isinstance(obj, (datetime.date, datetime.datetime)):
         return obj.isoformat()
@@ -127,9 +128,9 @@ def get_basket_objs(order_obj):
 
 def owner_order_detail(order_id):
     order_obj = database.col_orders.find_one({'_id': order_id})  # dict
-    data = json.loads(json_util.dumps(order_obj))
-    data = json.dumps(data, default=lambda x: x.__dict__)
-    order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
+    order_obj = json.dumps(order_obj, default=default)
+    order_obj = json.loads(order_obj, object_hook=lambda d: SimpleNamespace(**d))
+    print('\norder_obj: ', order_obj, '\n')
     print('order_obj: \n', order_obj)
     carwash = get_carwash_obj(order_obj)
     if order_obj.ContractId == 'YARU':
