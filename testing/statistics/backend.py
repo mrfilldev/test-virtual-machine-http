@@ -92,15 +92,33 @@ def group_by_date():
     return message
 
 
+def rus_arr_statuses(dictionary):
+    arr = []
+    for k, v in dictionary.items():
+        print(f'{k}:{v}\n')
+        arr.append(translate_statuses(k))
+    return arr
+
+
+def int_arr_values(dictionary):
+    arr = []
+    for k, v in dictionary.items():
+        print(f'{k}:{v}\n')
+        arr.append(int(v))
+    return arr
+
+
 def get_statistics(g_user_flask):
     # research_by_date = group_by_date()
     research_by_status = group_by_status()
-    statuses = research_by_status.keys()
+    statuses = rus_arr_statuses(research_by_status)
     print('statuses: ', statuses)
+    values = int_arr_values(research_by_status)
+    print('values: ', values)
     context = {
         'max': 20,
-        'labels':  labels,
-        'values': json.dumps(research_by_status, default=lambda x: x.__dict__),
+        'labels': statuses,
+        'values': values,
         'title': 'Все заказы за весь период',
         'research_by_status': research_by_status,
         'research_by_date': statuses,
