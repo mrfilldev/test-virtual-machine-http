@@ -7,7 +7,6 @@ from ..db import database
 from datetime import datetime, timedelta
 
 labels = [
-    '',
     'Заказ создан',
     'Заказ выполнен',
     'Заказ отменен мойкой',
@@ -98,7 +97,7 @@ def get_statistics(g_user_flask):
     research_by_status = group_by_status()
     context = {
         'max': 20,
-        'labels':  json.dumps(research_by_status, default=lambda x: x.__dict__),
+        'labels':  labels,
         'values': json.dumps(research_by_status, default=lambda x: x.__dict__),
         'title': 'Все заказы за весь период',
         'research_by_status': research_by_status,
