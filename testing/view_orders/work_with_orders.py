@@ -33,7 +33,6 @@ def list_orders(g_user_flask):
             if 'networks' in g_user_flask.user_db:
                 network = g_user_flask.user_db['networks'][0]
                 print('network:', network)
-
                 search = {'network_id': network}
             else:
                 return abort(404)
@@ -48,7 +47,7 @@ def list_orders(g_user_flask):
     # print('limit:', limit)
     print('skip:', skip)
     orders_count = database.col_orders.count_documents(search)  # skip=skip)
-    sort = [("DateCreate", pymongo.DESCENDING)]
+    sort = [("DateCreate", pymongo.ASCENDING)]
     print('orders_count:', orders_count)
     orders = database.col_orders.find(search).sort(sort).skip(skip).limit(page_size)
 
