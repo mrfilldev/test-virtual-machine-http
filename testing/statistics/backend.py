@@ -115,8 +115,9 @@ def get_statistics(g_user_flask):
     print('statuses: ', statuses)
     values = int_arr_values(research_by_status)
     print('values: ', values)
+
     context = {
-        'max': 20,
+        'max': max(values),
         'labels': statuses,
         'values': values,
         'title': 'Все заказы за весь период',

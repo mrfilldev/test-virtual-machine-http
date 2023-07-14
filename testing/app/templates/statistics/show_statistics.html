@@ -40,7 +40,7 @@
         var mychart = document.getElementById("chart").getContext("2d");
 
         steps = 5
-        max = 20
+        max = context_chart.max
         // draw bar chart
         var LineChartDemo = new Chart(mychart).Line(barData, {
             scaleOverride: true,
