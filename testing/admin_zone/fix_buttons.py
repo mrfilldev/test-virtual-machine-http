@@ -193,6 +193,7 @@ def fix_date_users():
             if "+00:00" in user_obj.date_registered:
                 print('true')
                 user_obj.date_registered.removesuffix("+00:00")
+                print(user_obj.date_registered)
         except Exception as e:
             print(e)
 
