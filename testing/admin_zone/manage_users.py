@@ -24,13 +24,9 @@ def users_list_view():
     users_list = []
     count_users = 0
     for count_users, i in enumerate(list(all_users)[::-1], 1):
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
-
-        test_obj = json.dumps(i, default=default)
-        order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-        print('\norder_obj: ', order_obj, '\n')
+        user_obj = json.dumps(i, default=default)
+        user_obj = json.loads(user_obj, object_hook=lambda d: SimpleNamespace(**d))
+        print('\nuser_obj: ', user_obj, '\n')
 
         print(user_obj)
         users_list.append(user_obj)
