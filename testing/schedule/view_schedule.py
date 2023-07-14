@@ -52,7 +52,7 @@ def convert_string_to_timezone(value, timezone=3):
 def convert_string_to_utc(value, timezone=3):
     print('value: ', value, type(value))
     if isinstance(value, (datetime.date, datetime.datetime)):
-        time_value = parser.parse(value) - timedelta(hours=timezone)
+        time_value = value - timedelta(hours=timezone)
         print(value, " -> ", time_value)
         return time_value
     else:
