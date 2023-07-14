@@ -8,8 +8,8 @@
         {% if g.user_db.role == 'admin' %}
         <div class="btn btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
             <a class="btn btn-outline-secondary disabled" href="{{ url_for('admin_blueprint.admin_add_network') }}">Добавить Сеть</a>
-            <a class="btn btn-outline-secondary disabled" href="{{ url_for('admin_blueprint.remake_fix_date') }}">Пользователи даты</a>
-            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_date_orders') }}">Заказы даты</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('admin_blueprint.remake_fix_date') }}">Пользователи даты</a>
+            <a class="btn btn-outline-secondary disabled" href="{{ url_for('admin_blueprint.remake_fix_date_orders') }}">Заказы даты</a>
 
         </div>
         {% endif %}
