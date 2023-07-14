@@ -22,24 +22,19 @@ main_bp = Blueprint(
 @main_bp.route('/oauth', methods=['POST', 'GET'])
 def oauth():
     print(Config.YAN_CLIENT_ID)
-    if request.method == 'POST':
-        form = request.form
-        for key in form:
-            print('form key ', form[key])
-        session['owner_info'] = {
-            'name': form["name"],
-            'surname': form["surname"],
-            'phone_number': form["phone_number"],
-            'network_name': form["network_name"]
-        }
 
-        url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
-                   f'&client_id={Config.YAN_CLIENT_ID}' \
-                   f'&redirect_uri=http://tst.moidex.ru/main'
-        print('url_to_redirrect:', url)
-        return redirect(url)
-    else:
-        return redirect('/')
+    session['owner_info'] = {
+        'name': "",
+        'surname': "",
+        'phone_number': "",
+        'network_name': ""
+    }
+    url: str = f'https://oauth.yandex.ru/authorize?response_type=code' \
+               f'&client_id={Config.YAN_CLIENT_ID}' \
+               f'&redirect_uri=http://tst.moidex.ru/main'
+    print('url_to_redirrect:', url)
+    return redirect(url)
+
 
 
 @main_bp.route('/')
