@@ -188,13 +188,13 @@ def fix_date_users():
             test_obj = json.dumps(user, default=default)
             # print('\ntest_obj: ', test_obj)
             user_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-            # print('\nuser_obj: ', user_obj)
-            # print('\n')
+            print('\nuser_obj: ', user_obj)
+            print('\n')
 
-            print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)))
-            database.col_users.update_one({'_id': user_obj._id}, {"$set": {
-                "date_registered": parse(user_obj.date_registered),
-            }})
+            # print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)))
+            # database.col_users.update_one({'_id': user_obj._id}, {"$set": {
+            #     "date_registered": parse(user_obj.date_registered),
+            # }})
         except Exception as e:
             print(e)
 
