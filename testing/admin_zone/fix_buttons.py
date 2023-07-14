@@ -190,7 +190,7 @@ def fix_date_users():
         # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
         # object.
         user_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
-        print('\norder_obj: ', user_obj)
+        print('\nuser_obj: ', user_obj)
         print('\n')
         #
         # database.col_users.update_one({'_id': user_obj._id}, {"$set": {
