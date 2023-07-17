@@ -22,15 +22,20 @@
 
         const chart = new Chart(ctx, {
             type: 'bar',
-            data: {
-                labels: colorLabels,
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2],
-                    borderWidth: 1,
-                    backgroundColor: colorLabels
-                }]
-            },
+            datasets: [
+                {
+                    label: 'Dataset 1',
+                    data: context_chart.values,
+                    borderColor: Utils.CHART_COLORS.red,
+                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+                },
+                {
+                    label: 'Dataset 2',
+                    data: context_chart.values,
+                    borderColor: Utils.CHART_COLORS.blue,
+                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+                }
+            ],
             options: {
                 scales: {
                     yAxes: [{
