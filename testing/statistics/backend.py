@@ -162,6 +162,7 @@ def testingo_of_chats_res():
     result = list(database.col_orders.aggregate(pipeline))
 
     for doc in result:
+        print(doc)
         year_month = datetime(doc['_id']['year'], doc['_id']['month'], 1).strftime('%Y-%m')
         count = doc['count']
         print(f'{year_month}: {count}')
