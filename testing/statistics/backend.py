@@ -189,7 +189,7 @@ def testingo_of_chats_res(network_id_to_search):
         month = item['month']
         count = item['count']
         # date = datetime(year, month, 1).strftime('%b %Y').capitalize()
-        result_dict_pretty_format[f'{months[month]}'] = count
+        result_dict_pretty_format[f'{months[month-1]}'] = count
         print(f'{year} {months[month - 1]}: {count} событий')
     print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result_dict_pretty_format
