@@ -16,26 +16,28 @@
     });
 
     function render_chart() {
+        var datasets: [
+            {
+                label: 'Dataset 1',
+                data: context_chart.values,
+                borderColor: Utils.CHART_COLORS.red,
+                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+            },
+            {
+                label: 'Dataset 2',
+                data: context_chart.values,
+                borderColor: Utils.CHART_COLORS.blue,
+                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+            }
+        ]
+
         const ctx = document.getElementById('barChart').getContext('2d');
 
         const colorLabels = ['red', 'green', 'blue', 'yellow', 'orange']
 
         const chart = new Chart(ctx, {
             type: 'bar',
-            datasets: [
-                {
-                    label: 'Dataset 1',
-                    data: context_chart.values,
-                    borderColor: Utils.CHART_COLORS.red,
-                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-                },
-                {
-                    label: 'Dataset 2',
-                    data: context_chart.values,
-                    borderColor: Utils.CHART_COLORS.blue,
-                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-                }
-            ],
+            data: datasets,
             options: {
                 scales: {
                     yAxes: [{
