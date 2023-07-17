@@ -7,8 +7,9 @@ from ..db import database
 from datetime import datetime, timedelta
 import pymorphy2
 import locale
+import calendar
 
-# morph = pymorphy2.MorphAnalyzer()
+morph = pymorphy2.MorphAnalyzer()
 
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
@@ -190,5 +191,8 @@ def testingo_of_chats_res():
         print(datetime(year, month, 1).strftime("%B"))
         print(f'{date}: {count} событий')
         result_dict_pretty_format[f'{date}'] = count
+
+    for name in calendar.month_name:
+        print(morph.parse(name)[0].normal_form.capitalize())
     print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result
