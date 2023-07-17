@@ -7,10 +7,7 @@ from ..db import database
 from datetime import datetime, timedelta
 
 import locale
-locale.setlocale(
-    category=locale.LC_ALL,
-    locale="Russian"  # Note: do not use "de_DE" as it doesn't work
-)
+locale.setlocale(locale.LC_ALL, '')
 
 
 labels = [
