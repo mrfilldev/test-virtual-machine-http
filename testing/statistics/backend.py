@@ -181,7 +181,7 @@ def testingo_of_chats_res():
         year = item['year']
         month = item['month']
         count = item['count']
-        date = datetime(year, month, 1).strftime('%B %Y').capitalize()
+        date = datetime(year, month, 1).strftime('%b %Y').capitalize()
         # print('month: ', months[month - 1])
 
         print(f'{date}: {count} событий')
