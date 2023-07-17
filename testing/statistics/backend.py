@@ -139,19 +139,14 @@ def get_statistics(g_user_flask):
 
 
 def testingo_of_chats_res():
-    start_date = datetime(2022, 1, 1)
-    end_date = datetime(2023, 12, 31)
+    # start_date = datetime(2022, 1, 1)
+    # end_date = datetime(2023, 12, 31)
     pipeline = [
-        {
-            '$match': {
-                'date': {'$gte': start_date, '$lte': end_date}
-            }
-        },
         {
             '$group': {
                 '_id': {
-                    'year': {'$year': '$date'},
-                    'month': {'$month': '$date'},
+                    'year': {'$year': '$DateStart'},
+                    'month': {'$month': '$DateStart'},
                 },
                 'count': {'$sum': 1}
             }
