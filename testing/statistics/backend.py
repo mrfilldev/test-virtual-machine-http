@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 import locale
 
-locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+# locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
 
 
@@ -128,7 +128,7 @@ def get_statistics(g_user_flask):
     print('#######################\n')
     print('#######################\n')
     print(testingo_of_chats_res(), '\n')
-    print(locale.LC_ALL)
+    print(locale.getlocale)
 
     context = {
         'max': max(values),
