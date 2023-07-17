@@ -119,6 +119,9 @@ def get_statistics(g_user_flask):
     print('statuses: ', statuses)
     values = int_arr_values(research_by_status)
     print('values: ', values)
+    print('#######################\n')
+    print('#######################\n')
+    print(testingo_of_chats_res(), '\n')
 
     context = {
         'max': max(values),
@@ -133,6 +136,40 @@ def get_statistics(g_user_flask):
         'statistics/show_statistics.html',
         context=context
     )
+
+
+def testingo_of_chats_res():
+    start_date = datetime(2022, 1, 1)
+    end_date = datetime(2023, 12, 31)
+    pipeline = [
+        {
+            '$match': {
+                'date': {'$gte': start_date, '$lte': end_date}
+            }
+        },
+        {
+            '$group': {
+                '_id': {
+                    'year': {'$year': '$date'},
+                    'month': {'$month': '$date'},
+                },
+                'count': {'$sum': 1}
+            }
+        },
+        {
+            '$sort': {
+                '_id.year': 1,
+                '_id.month': 1
+            }
+        }
+    ]
+
+    result = list(database.col_orders.aggregate(pipeline))
+
+    for doc in result:
+        year_month = datetime(doc['_id']['year'], doc['_id']['month'], 1).strftime('%Y-%m')
+        count = doc['count']
+        print(f'{year_month}: {count}')
 
 # print("################################")
 # start_time = str(datetime.now())
