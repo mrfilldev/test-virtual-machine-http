@@ -3,6 +3,8 @@
 
 {% block body %}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
     var context_chart = {{context | tojson}};
 
@@ -10,16 +12,14 @@
         render_chart();
     });
 
-
     function render_chart() {
         var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-
+        const data = new Chart(ctx, {
             type: context_chart.type,
             data: {
                 labels: context_chart.labels, // Массив меток для оси X
                 datasets: [{
-                    label: 'Название датасета', // Название датасета
+                    label: context_chart.title, // Название датасета
                     data: context_chart.values, // Массив значений для оси Y
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -43,8 +43,6 @@
                 }
             }
         });
-
-
     }
 
 
@@ -60,7 +58,7 @@
 </legend>
 <div class="container">
     <h1>{{ title }}</h1>
-    <canvas id="myChart" style="width: 100%; height: 40%"></canvas>
+    <canvas id="myChart " style="width: 100%; height: 40%"></canvas>
     <br>
     <div>
         {% for obj in context.research_by_status %}
