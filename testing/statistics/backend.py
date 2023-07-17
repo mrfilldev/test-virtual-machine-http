@@ -24,7 +24,7 @@ values = [
     4349.29, 6458.30, 9907, 16297
 ]
 
-colors = [
+months = [
     "Январь", "Февраль", "Март", "Апрель",
     "Май", "Июнь", "Июль", "Август",
     "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
@@ -181,7 +181,7 @@ def testingo_of_chats_res():
         month = item['month']
         count = item['count']
         date = datetime(year, month, 1).strftime('%B %Y').capitalize()
-        print('month: ', month)
+        print('month: ', months[month-1])
         print(datetime(year, month, 1).strftime("%B"))
         print(f'{date}: {count} событий')
         result_dict_pretty_format[f'{date}'] = count
