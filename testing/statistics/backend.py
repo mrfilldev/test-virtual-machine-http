@@ -169,6 +169,7 @@ def testingo_of_chats_res():
     # Выполнение агрегации и получение результата
     result = list(database.col_orders.aggregate(pipeline))
 
+    result_dict_pretty_format = {}
     # Вывод результатов
     for item in result:
         year = item['year']
@@ -176,4 +177,6 @@ def testingo_of_chats_res():
         count = item['count']
         date = datetime(year, month, 1).strftime('%B %Y')
         print(f'{date}: {count} событий')
+        result_dict_pretty_format[f'{date}'] = count
+    print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result
