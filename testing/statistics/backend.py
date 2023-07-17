@@ -8,6 +8,9 @@ from datetime import datetime, timedelta
 
 import locale
 
+from dateutil import parser
+from dateutil.relativedelta import relativedelta
+
 # locale.setlocale(locale.LC_ALL, 'ru_RU')
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
@@ -184,7 +187,7 @@ def testingo_of_chats_res():
         year = item['year']
         month = item['month']
         count = item['count']
-        date = datetime(year, month, 1).strftime('%B %Y').capitalize()
+        date = parser.parse(datetime(year, month, 1).strftime('%B %Y').capitalize()).strftime('%B %Y')
         print(f'{date}: {count} событий')
         result_dict_pretty_format[f'{date}'] = count
     print('result_dict_pretty_format: ', result_dict_pretty_format)
