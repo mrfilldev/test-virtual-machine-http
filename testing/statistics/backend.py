@@ -6,9 +6,9 @@ from flask import Flask, Markup, render_template
 from ..db import database
 from datetime import datetime, timedelta
 import pymorphy2
-
-morph = pymorphy2.MorphAnalyzer()
 import locale
+
+# morph = pymorphy2.MorphAnalyzer()
 
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
@@ -185,7 +185,8 @@ def testingo_of_chats_res():
         year = item['year']
         month = item['month']
         count = item['count']
-        date = morph.parse(datetime(year, month, 1).strftime('%B %Y'))[0].normal_form.capitalize()
+        date = datetime(year, month, 1).strftime('%B %Y').capitalize()
+        print(datetime(year, month).strftime("%B"))
         print(f'{date}: {count} событий')
         result_dict_pretty_format[f'{date}'] = count
     print('result_dict_pretty_format: ', result_dict_pretty_format)
