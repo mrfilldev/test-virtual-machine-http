@@ -139,72 +139,41 @@ def get_statistics(g_user_flask):
 
 
 def testingo_of_chats_res():
-    # start_date = datetime(2022, 1, 1)
-    # end_date = datetime(2023, 12, 31)
+    # Формирование агрегационного запроса
     pipeline = [
         {
             '$group': {
                 '_id': {
-                    'year': {'$year': '$DateStart'},
-                    'month': {'$month': '$DateStart'},
+                    'year': {'$year': '$DateCreate'},
+                    'month': {'$month': '$DateCreate'}
                 },
                 'count': {'$sum': 1}
             }
         },
-        # {
-        #     '$sort': {
-        #         '_id.year': 1,
-        #         '_id.month': 1
-        #     }
-        # }
+        {
+            '$project': {
+                '_id': 0,
+                'year': '$_id.year',
+                'month': '$_id.month',
+                'count': 1
+            }
+        },
+        {
+            '$sort': {
+                'year': 1,
+                'month': 1
+            }
+        }
     ]
 
+    # Выполнение агрегации и получение результата
     result = list(database.col_orders.aggregate(pipeline))
 
-    for doc in result:
-        year = doc['_id']['year']
-        month = doc['_id']['month']
-        count = doc['count']
-        print('year: ', year)
-        print('month: ', month)
-        print('count: ', count)
-# print("################################")
-# start_time = str(datetime.now())
-# print(start_time)
-# message += "\n За последние 15 минут: \n"
-# now = datetime.now()
-# interval = now - timedelta(minutes=15)
-# print(interval)
-# агрегация заказов за последние 15 минут
-# start_time = datetime.utcnow() - timedelta(minutes=15)
-# print(start_time)
-# message += '\n'
-# message += "################################"
-#
-# print("################################")
-# print(message)
-# выполнить агрегацию
-# query = {
-#     'DateCreate': {'$gt': start_time.isoformat()}
-# }
-# pipeline = [
-#     {
-#         '$match': {
-#             'DateCreate': {'$gt': start_time.isoformat()}
-#         }
-#     },
-#     {
-#         '$group': {
-#             '_id': '$Status',
-#             'count': {'$sum': 1},
-#             "total": {"$sum": "$Sum"},
-#         }
-#     }
-# ]
-# message += '\n ПОЛУЧАЕМЫЙ ОБЪЕКТ АГГРЕГАЦИИ: \n'
-# amount_of_orders = 0
-# for doc in result:
-#     print(doc)
-#     message += str(doc)
-#     message += f"""\n{doc['_id']} -> {doc['count']} шт. = {doc['total']} руб.\n"""
-#     amount_of_orders += doc['count']
+    # Вывод результатов
+    for item in result:
+        year = item['year']
+        month = item['month']
+        count = item['count']
+        date = datetime(year, month, 1).strftime('%B %Y')
+        print(f'{date}: {count} событий')
+
