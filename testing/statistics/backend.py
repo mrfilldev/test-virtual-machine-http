@@ -126,8 +126,10 @@ def get_statistics(g_user_flask):
     print('values: ', values)
     print('#######################\n')
     print('#######################\n')
-    print(testingo_of_chats_res(), '\n')
     print(locale.getlocale())
+    print(testingo_of_chats_res(), '\n')
+    dict_amount_months = testingo_of_chats_res()
+    print(list(dict_amount_months.keys()))
 
     context = {
         'max': max(values),
@@ -181,8 +183,8 @@ def testingo_of_chats_res():
         year = item['year']
         month = item['month']
         count = item['count']
-        date = datetime(year, month, 1).strftime('%b %Y').capitalize()
+        # date = datetime(year, month, 1).strftime('%b %Y').capitalize()
         result_dict_pretty_format[f'{months[month]}'] = count
         print(f'{year} {months[month - 1]}: {count} событий')
     print('result_dict_pretty_format: ', result_dict_pretty_format)
-    return result
+    return result_dict_pretty_format
