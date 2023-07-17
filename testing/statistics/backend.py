@@ -130,11 +130,12 @@ def get_statistics(g_user_flask):
     print(testingo_of_chats_res(), '\n')
     dict_amount_months = testingo_of_chats_res()
     print(list(dict_amount_months.keys()))
+    print(list(dict_amount_months.values()))
 
     context = {
         'max': max(values),
-        'labels': statuses,
-        'values': values,
+        'labels': list(dict_amount_months.keys()),
+        'values': list(dict_amount_months.values()),
         'title': 'Все заказы за весь период',
         'research_by_status': research_by_status,
         'research_by_date': statuses,
