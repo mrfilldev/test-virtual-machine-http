@@ -14,26 +14,28 @@
     });
 
     function render_chart() {
-        new Chart(document.getElementById('myChart'), {
-            type: context_chart.type,
+        const ctx = document.getElementById('barChart').getContext('2d');
+
+        const colorLabels = ['red', 'green', 'blue', 'yellow', 'orange']
+
+        const chart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: context_chart.labels, // Массив меток для оси X
+                labels: colorLabels,
                 datasets: [{
-                    label: context_chart.title, // Название датасета
-                    data: context_chart.values, // Массив значений для оси Y
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ], // Цвета фона столбцов
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2],
+                    borderWidth: 1,
+                    backgroundColor: colorLabels
                 }]
             },
             options: {
-                responsive: true,
                 scales: {
-                    y: {
-                        beginAtZero: true // Начало оси Y с 0
-                    }
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
                 }
             }
         });
@@ -51,7 +53,7 @@
 </legend>
 <div class="container">
     <h1>{{ title }}</h1>
-    <canvas id="myChart " style="width: 100%; height: 40%"></canvas>
+    <canvas id="barChart" style="width: 100%; height: 40%"></canvas>
     <br>
     <div>
         {% for obj in context.research_by_status %}
