@@ -185,7 +185,7 @@ def testingo_of_chats_res():
         # print('month: ', months[month - 1])
 
         print(f'{date}: {count} событий')
-        result_dict_pretty_format[f'{date}'] = count
+        result_dict_pretty_format[f'{months[month]}'] = count
         print(russian_month(month))
     print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result
