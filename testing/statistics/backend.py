@@ -6,6 +6,11 @@ from flask import Flask, Markup, render_template
 from ..db import database
 from datetime import datetime, timedelta
 
+import locale
+locale.setlocale(locale.LC_TIME, 'ru')
+
+
+
 labels = [
     'Заказ создан',
     'Заказ выполнен',
