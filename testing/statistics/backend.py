@@ -182,8 +182,7 @@ def testingo_of_chats_res():
         month = item['month']
         count = item['count']
         date = datetime(year, month, 1).strftime('%b %Y').capitalize()
-        print('month: ', months[month - 1])
         result_dict_pretty_format[f'{months[month]}'] = count
-        print(f'{date}: {count} событий')
+        print(f'{year, months[month - 1]}: {count} событий')
     print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result
