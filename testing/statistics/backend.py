@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 import locale
 
-# locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+locale.setlocale(locale.LC_ALL, 'ru_RU')
 
 
 
