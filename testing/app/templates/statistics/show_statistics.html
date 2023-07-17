@@ -10,50 +10,40 @@
         render_chart();
     });
 
+
     function render_chart() {
-        // bar chart data
-        var barData = {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+
             type: context_chart.type,
-            labels: context_chart.labels,
-            datasets: [{
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                bezierCurve: false,
-                data: context_chart.values,
-            }]
-        }
-
-        Chart.defaults.global.animationSteps = 50;
-        Chart.defaults.global.tooltipYPadding = 16;
-        Chart.defaults.global.tooltipCornerRadius = 0;
-        Chart.defaults.global.tooltipTitleFontStyle = "normal";
-        Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
-        Chart.defaults.global.animationEasing = "easeOutBounce";
-        Chart.defaults.global.responsive = false;
-        Chart.defaults.global.scaleLineColor = "black";
-        Chart.defaults.global.scaleFontSize = 16;
-
-        // get bar chart canvas
-        var mychart = document.getElementById("chart").getContext("2d");
-
-        steps = 5
-        max = context_chart.max
-        // draw bar chart
-        var LineChartDemo = new Chart(mychart).Line(barData, {
-            scaleOverride: true,
-            scaleSteps: steps,
-            scaleStepWidth: Math.ceil(max / steps),
-            scaleStartValue: 0,
-            scaleShowVerticalLines: true,
-            scaleShowGridLines: true,
-            barShowStroke: true,
-            scaleShowLabels: true,
-            bezierCurve: false,
+            data: {
+                labels: context_chart.labels, // Массив меток для оси X
+                datasets: [{
+                    label: 'Название датасета', // Название датасета
+                    data: context_chart.values, // Массив значений для оси Y
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ], // Цвета фона столбцов
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ], // Цвета границ столбцов
+                    borderWidth: 1 // Ширина границ столбцов
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true // Начало оси Y с 0
+                    }
+                }
+            }
         });
+
 
     }
 
@@ -74,7 +64,7 @@
     <br>
     <div>
         {% for obj in context.research_by_status %}
-            {{ obj }}: {{ context.research_by_status[obj] }}
+        {{ obj }}: {{ context.research_by_status[obj] }}
         {% endfor %}
     </div>
     <div>
