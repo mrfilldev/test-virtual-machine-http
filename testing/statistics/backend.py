@@ -117,37 +117,6 @@ def int_arr_values(dictionary):
     return arr
 
 
-def get_statistics(g_user_flask):
-    # research_by_date = group_by_date()
-    research_by_status = group_by_status()
-    statuses = rus_arr_statuses(research_by_status)
-    print('statuses: ', statuses)
-    values = int_arr_values(research_by_status)
-    print('values: ', values)
-    print('#######################\n')
-    print('#######################\n')
-    print(locale.getlocale())
-    print(testingo_of_chats_res(g_user_flask.user_db['networks'][0]), '\n')
-    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
-    print(list(dict_amount_months.keys()))
-    print(list(dict_amount_months.values()))
-
-    context = {
-        'max': max(values),
-        'labels': list(dict_amount_months.keys()),
-        'values': list(dict_amount_months.values()),
-        'title': 'Все заказы за весь период',
-        'research_by_status': research_by_status,
-        'research_by_date': statuses,
-        'chart': {},
-        'type': 'bar',
-    }
-    return render_template(
-        'statistics/show_statistics.html',
-        context=context
-    )
-
-
 def testingo_of_chats_res(network_id_to_search):
     pipeline = [
         {
@@ -190,7 +159,38 @@ def testingo_of_chats_res(network_id_to_search):
         month = item['month']
         count = item['count']
         # date = datetime(year, month, 1).strftime('%b %Y').capitalize()
-        result_dict_pretty_format[f'{months[month-1]}'] = count
+        result_dict_pretty_format[f'{months[month - 1]}'] = count
         print(f'{year} {months[month - 1]}: {count} событий')
     print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result_dict_pretty_format
+
+
+def get_statistics(g_user_flask):
+    # research_by_date = group_by_date()
+    research_by_status = group_by_status()
+    statuses = rus_arr_statuses(research_by_status)
+    print('statuses: ', statuses)
+    values = int_arr_values(research_by_status)
+    print('values: ', values)
+    print('#######################\n')
+    print('#######################\n')
+    print(locale.getlocale())
+    print(testingo_of_chats_res(g_user_flask.user_db['networks'][0]), '\n')
+    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
+    print(list(dict_amount_months.keys()))
+    print(list(dict_amount_months.values()))
+
+    context = {
+        'max': max(values),
+        'labels': list(dict_amount_months.keys()),
+        'values': list(dict_amount_months.values()),
+        'title': 'Все заказы за весь период',
+        'research_by_status': research_by_status,
+        'research_by_date': statuses,
+        'chart': {},
+        'type': 'bar',
+    }
+    return render_template(
+        'statistics/show_statistics.html',
+        context=context
+    )
