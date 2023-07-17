@@ -151,12 +151,12 @@ def testingo_of_chats_res():
                 'count': {'$sum': 1}
             }
         },
-        {
-            '$sort': {
-                '_id.year': 1,
-                '_id.month': 1
-            }
-        }
+        # {
+        #     '$sort': {
+        #         '_id.year': 1,
+        #         '_id.month': 1
+        #     }
+        # }
     ]
 
     result = list(database.col_orders.aggregate(pipeline))
