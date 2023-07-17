@@ -139,7 +139,8 @@ def get_statistics(g_user_flask):
         'title': 'Все заказы за весь период',
         'research_by_status': research_by_status,
         'research_by_date': statuses,
-        'chart': {}
+        'chart': {},
+        'type': 'bar',
     }
     return render_template(
         'statistics/show_statistics.html',
