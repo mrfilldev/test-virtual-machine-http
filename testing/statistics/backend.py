@@ -128,7 +128,7 @@ def get_statistics(g_user_flask):
     print('#######################\n')
     print('#######################\n')
     print(testingo_of_chats_res(), '\n')
-    print(locale.getlocale)
+    print(locale.getlocale())
 
     context = {
         'max': max(values),
