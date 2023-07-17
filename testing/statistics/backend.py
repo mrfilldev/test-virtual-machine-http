@@ -162,9 +162,12 @@ def testingo_of_chats_res():
     result = list(database.col_orders.aggregate(pipeline))
 
     for doc in result:
-        year_month = f"{doc['_id']['year']}-{doc['_id']['month']:02d}"
+        year = doc['_id']['year']
+        month = doc['_id']['month']
         count = doc['count']
-        print(f'{year_month}: {count}')
+        print('year: ', year)
+        print('month: ', month)
+        print('count: ', count)
 # print("################################")
 # start_time = str(datetime.now())
 # print(start_time)
