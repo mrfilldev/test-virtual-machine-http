@@ -127,8 +127,8 @@ def get_statistics(g_user_flask):
     print('#######################\n')
     print('#######################\n')
     print(locale.getlocale())
-    print(testingo_of_chats_res(g_user_flask.user_db.network[0]), '\n')
-    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db.network[0])
+    print(testingo_of_chats_res(g_user_flask.user_db['networks'][0]), '\n')
+    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
     print(list(dict_amount_months.keys()))
     print(list(dict_amount_months.values()))
 
