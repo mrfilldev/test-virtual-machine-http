@@ -127,8 +127,8 @@ def get_statistics(g_user_flask):
     print('#######################\n')
     print('#######################\n')
     print(locale.getlocale())
-    print(testingo_of_chats_res(), '\n')
-    dict_amount_months = testingo_of_chats_res()
+    print(testingo_of_chats_res(g_user_flask.user_db.network[0]), '\n')
+    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db.network[0])
     print(list(dict_amount_months.keys()))
     print(list(dict_amount_months.values()))
 
@@ -147,9 +147,13 @@ def get_statistics(g_user_flask):
     )
 
 
-def testingo_of_chats_res():
-    # Формирование агрегационного запроса
+def testingo_of_chats_res(network_id_to_search):
     pipeline = [
+        {
+            '$match': {
+                'network_id': {'$eq': network_id_to_search}
+            }
+        },
         {
             '$group': {
                 '_id': {
