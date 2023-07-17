@@ -5,16 +5,9 @@ from flask import render_template
 from flask import Flask, Markup, render_template
 from ..db import database
 from datetime import datetime, timedelta
-import pymorphy2
 import locale
-import calendar
-
-morph = pymorphy2.MorphAnalyzer()
 
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
-
-
-
 
 labels = [
     'Заказ создан',
@@ -32,9 +25,10 @@ values = [
 ]
 
 colors = [
-    "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
-    "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
-    "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
+    "Январь", "Февраль", "Март", "Апрель",
+    "Май", "Июнь", "Июль", "Август",
+    "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+]
 
 
 def translate_statuses(category):
@@ -192,7 +186,5 @@ def testingo_of_chats_res():
         print(f'{date}: {count} событий')
         result_dict_pretty_format[f'{date}'] = count
 
-    for name in calendar.month_name:
-        print(morph.parse(name)[0].normal_form.capitalize())
     print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result
