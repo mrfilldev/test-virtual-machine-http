@@ -159,9 +159,9 @@
         {% endif %}
 
         {% if g.user_db.role == 'admin' %}
-        <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_networks_list') }}">Сети</a>
-        <a class="dropdown-item" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
-        <a class="dropdown-item" href="{{ url_for('admin_blueprint.list_of_prices') }}">Тарифы</a>
+        <a class="nav-link" href="{{ url_for('admin_blueprint.admin_networks_list') }}">Сети</a>
+        <a class="nav-link" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
+        <a class="nav-link" href="{{ url_for('admin_blueprint.list_of_prices') }}">Тарифы</a>
         <a class="nav-link" href="{{  url_for('monitoring_blueprint.monitoring') }}">Мониторинг</a>
         {% endif %}
 
