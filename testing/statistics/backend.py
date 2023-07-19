@@ -196,6 +196,7 @@ def get_statistics(g_user_flask):
     p.vbar(x=list(dict_amount_months.keys()), top=list(dict_amount_months.values()), width=0.5)
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
+    p.toolbar_location = None
 
     # Get Chart Components
     script, div = components(p)
