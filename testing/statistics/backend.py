@@ -124,7 +124,7 @@ def int_arr_values(dictionary):
 
 
 def amount_orders_per_months(g_user_flask):
-    if g_user_flask['role'] is 'network_owner':
+    if g_user_flask.user_db['role'] is 'network_owner':
         network_id = g_user_flask.user_db['networks'][0]
         print('network_id: ', network_id)
         pipeline = [
@@ -157,7 +157,7 @@ def amount_orders_per_months(g_user_flask):
                 }
             }
         ]
-    elif g_user_flask['role'] is 'admin':
+    elif g_user_flask.user_db['role'] is 'admin':
         pipeline = [
             {
                 '$group': {
