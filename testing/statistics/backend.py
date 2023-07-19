@@ -10,6 +10,8 @@ import locale
 # Importing required functions
 from flask import Flask, render_template
 from bokeh.embed import components
+from bokeh.plotting import figure
+
 
 
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
