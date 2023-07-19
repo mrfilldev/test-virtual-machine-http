@@ -201,7 +201,7 @@ def get_statistics(g_user_flask):
 
     # Return the components to the HTML template
     return render_template(
-        template_name_or_list='charts.html',
+        'statistics/show_statistics.html',
         script=script,
         div=div,
     )
