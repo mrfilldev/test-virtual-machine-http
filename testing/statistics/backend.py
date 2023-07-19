@@ -7,6 +7,10 @@ from flask import Flask, Markup, render_template
 from ..db import database
 from datetime import datetime, timedelta
 import locale
+# Importing required functions
+from flask import Flask, render_template
+from bokeh.embed import components
+
 
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
@@ -166,31 +170,67 @@ def testingo_of_chats_res(network_id_to_search):
 
 
 def get_statistics(g_user_flask):
-    # research_by_date = group_by_date()
-    research_by_status = group_by_status()
-    statuses = rus_arr_statuses(research_by_status)
-    print('statuses: ', statuses)
-    values = int_arr_values(research_by_status)
-    print('values: ', values)
-    print('#######################\n')
-    print('#######################\n')
-    print(locale.getlocale())
-    print(testingo_of_chats_res(g_user_flask.user_db['networks'][0]), '\n')
-    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
-    print(list(dict_amount_months.keys()))
-    print(list(dict_amount_months.values()))
+    # Defining Chart Data
+    language = [
+        'Python', 'Java', 'JavaScript', 'C#', 'PHP', 'C/C++',
+        'R', 'Objective-C', 'Swift', 'TypeScript', 'Matlab',
+        'Kotlin', 'Go', 'Ruby', 'VBA'
+    ]
+    popularity = [
+        31.56, 16.4, 8.38, 6.5, 5.85, 5.8, 4.08, 2.79, 2.35,
+        1.92, 1.65, 1.61, 1.44, 1.22, 1.16
+    ]
 
-    context = {
-        'max': max(values),
-        'labels': list(dict_amount_months.keys()),
-        'values': list(dict_amount_months.values()),
-        'title': 'Все заказы за весь период',
-        'research_by_status': research_by_status,
-        'research_by_date': statuses,
-        'chart': {},
-        'type': 'bar',
-    }
-    return render_template(
-        'statistics/show_statistics.html',
-        context=context
+    # Creating Plot Figure
+    p = figure(
+        x_range=language,
+        height=400,
+        title="Popularity of Programming Languages",
+        sizing_mode="stretch_width"
     )
+
+    # Defining Plot to be a Vertical Bar Plot
+    p.vbar(x=language, top=popularity, width=0.5)
+    p.xgrid.grid_line_color = None
+    p.y_range.start = 0
+
+    # Get Chart Components
+    script, div = components(p)
+
+    # Return the components to the HTML template
+    return render_template(
+        template_name_or_list='charts.html',
+        script=script,
+        div=div,
+    )
+
+
+# def get_statistics(g_user_flask):
+#     # research_by_date = group_by_date()
+#     research_by_status = group_by_status()
+#     statuses = rus_arr_statuses(research_by_status)
+#     print('statuses: ', statuses)
+#     values = int_arr_values(research_by_status)
+#     print('values: ', values)
+#     print('#######################\n')
+#     print('#######################\n')
+#     print(locale.getlocale())
+#     print(testingo_of_chats_res(g_user_flask.user_db['networks'][0]), '\n')
+#     dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
+#     print(list(dict_amount_months.keys()))
+#     print(list(dict_amount_months.values()))
+#
+#     context = {
+#         'max': max(values),
+#         'labels': list(dict_amount_months.keys()),
+#         'values': list(dict_amount_months.values()),
+#         'title': 'Все заказы за весь период',
+#         'research_by_status': research_by_status,
+#         'research_by_date': statuses,
+#         'chart': {},
+#         'type': 'bar',
+#     }
+#     return render_template(
+#         'statistics/show_statistics.html',
+#         context=context
+#     )

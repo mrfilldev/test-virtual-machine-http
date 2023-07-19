@@ -3,59 +3,21 @@
 
 {% block body %}
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
 
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.1.min.js"></script>
 
+<head>
+    <title>Bokeh Charts</title>
+</head>
 
+<body>
+    <h1>Render and Return Plot to View in Flask</h1>
+    {{ div | safe }}
+    {{ script | safe }}
+</body>
 
-<script>
-    var context_chart = {{context | tojson}};
+</html>
 
-    $(document).ready(function () {
-        render_chart();
-    });
-
-    function render_chart() {
-        const DATA_COUNT = 7;
-        const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
-
-        const labels = Utils.months({count: 7});
-        const data = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Dataset 1',
-                    data: Utils.numbers(NUMBER_CFG),
-                    borderColor: Utils.CHART_COLORS.red,
-                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-                },
-                {
-                    label: 'Dataset 2',
-                    data: Utils.numbers(NUMBER_CFG),
-                    borderColor: Utils.CHART_COLORS.blue,
-                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-                }
-            ]
-        };
-
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Bar Chart'
-                    }
-                }
-            },
-        };
-    }
-</script>
 
 <legend>
     <div class="container">
