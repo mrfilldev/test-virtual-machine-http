@@ -206,6 +206,7 @@ def get_statistics(g_user_flask):
         'script': script,
         'div': div,
     }
+    print(context)
     return render_template('statistics/show_statistics.html', context=context)
 
 
