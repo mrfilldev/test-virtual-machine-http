@@ -182,15 +182,15 @@ def get_statistics(g_user_flask):
         31.56, 16.4, 8.38, 6.5, 5.85, 5.8, 4.08, 2.79, 2.35,
         1.92, 1.65, 1.61, 1.44, 1.22, 1.16
     ]
+    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
 
     # Creating Plot Figure
     p = figure(
-        x_range=language,
+        x_range=list(dict_amount_months.keys()),
         height=400,
         title="Popularity of Programming Languages",
         sizing_mode="stretch_width"
     )
-    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
 
     # Defining Plot to be a Vertical Bar Plot
     p.vbar(x=list(dict_amount_months.keys()), top=list(dict_amount_months.values()), width=0.5)
