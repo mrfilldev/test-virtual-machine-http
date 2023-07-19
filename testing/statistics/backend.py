@@ -123,7 +123,8 @@ def int_arr_values(dictionary):
     return arr
 
 
-def testingo_of_chats_res(network_id_to_search):
+def amount_orders_per_months(network_id_to_search):
+    print('network_id_to_search: ', network_id_to_search)
     pipeline = [
         {
             '$match': {
@@ -154,10 +155,8 @@ def testingo_of_chats_res(network_id_to_search):
             }
         }
     ]
-
     # Выполнение агрегации и получение результата
     result = list(database.col_orders.aggregate(pipeline))
-
     result_dict_pretty_format = {}
     # Вывод результатов
     for item in result:
@@ -167,7 +166,6 @@ def testingo_of_chats_res(network_id_to_search):
         # date = datetime(year, month, 1).strftime('%b %Y').capitalize()
         result_dict_pretty_format[f'{months[month - 1]}'] = count
         print(f'{year} {months[month - 1]}: {count} событий')
-    print('result_dict_pretty_format: ', result_dict_pretty_format)
     return result_dict_pretty_format
 
 
@@ -182,7 +180,8 @@ def get_statistics(g_user_flask):
         31.56, 16.4, 8.38, 6.5, 5.85, 5.8, 4.08, 2.79, 2.35,
         1.92, 1.65, 1.61, 1.44, 1.22, 1.16
     ]
-    dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
+
+    dict_amount_months = amount_orders_per_months(g_user_flask.user_db['networks'][0])
 
     # Creating Plot Figure
     p = figure(
