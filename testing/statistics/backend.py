@@ -193,7 +193,7 @@ def get_statistics(g_user_flask):
     dict_amount_months = testingo_of_chats_res(g_user_flask.user_db['networks'][0])
 
     # Defining Plot to be a Vertical Bar Plot
-    p.vbar(x=list(dict_amount_months.values()), top=list(dict_amount_months.keys()), width=0.5)
+    p.vbar(x=list(dict_amount_months.keys()), top=list(dict_amount_months.values()), width=0.5)
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
 
