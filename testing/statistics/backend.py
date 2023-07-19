@@ -11,6 +11,8 @@ import locale
 from flask import Flask, render_template
 from bokeh.embed import components
 from bokeh.plotting import figure
+from bokeh.models import BoxZoomTool, PanTool, ResetTool
+
 
 
 
