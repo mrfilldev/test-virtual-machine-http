@@ -188,7 +188,7 @@ def get_statistics(g_user_flask):
     p = figure(
         x_range=list(dict_amount_months.keys()),
         height=400,
-        title="Popularity of Programming Languages",
+        title="Кол-во заказов за месяцы",
         sizing_mode="stretch_width"
     )
 
