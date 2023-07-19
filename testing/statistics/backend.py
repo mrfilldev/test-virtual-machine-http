@@ -1,7 +1,7 @@
 import calendar
 import json
 
-from flask import render_template
+from flask import render_template, abort
 
 from flask import Flask, Markup, render_template
 from ..db import database
@@ -123,38 +123,68 @@ def int_arr_values(dictionary):
     return arr
 
 
-def amount_orders_per_months(network_id_to_search):
-    print('network_id_to_search: ', network_id_to_search)
-    pipeline = [
-        {
-            '$match': {
-                'network_id': {'$eq': network_id_to_search}
+def amount_orders_per_months(g_user_flask):
+    if g_user_flask['role'] is 'network_owner':
+        network_id = g_user_flask.user_db['networks'][0]
+        print('network_id: ', network_id)
+        pipeline = [
+            {
+                '$match': {
+                    'network_id': {'$eq': network_id}
+                }
+            },
+            {
+                '$group': {
+                    '_id': {
+                        'year': {'$year': '$DateCreate'},
+                        'month': {'$month': '$DateCreate'}
+                    },
+                    'count': {'$sum': 1}
+                }
+            },
+            {
+                '$project': {
+                    '_id': 0,
+                    'year': '$_id.year',
+                    'month': '$_id.month',
+                    'count': 1
+                }
+            },
+            {
+                '$sort': {
+                    'year': 1,
+                    'month': 1
+                }
             }
-        },
-        {
-            '$group': {
-                '_id': {
-                    'year': {'$year': '$DateCreate'},
-                    'month': {'$month': '$DateCreate'}
-                },
-                'count': {'$sum': 1}
+        ]
+    elif g_user_flask['role'] is 'admin':
+        pipeline = [
+            {
+                '$group': {
+                    '_id': {
+                        'year': {'$year': '$DateCreate'},
+                        'month': {'$month': '$DateCreate'}
+                    },
+                    'count': {'$sum': 1}
+                }
+            },
+            {
+                '$project': {
+                    '_id': 0,
+                    'year': '$_id.year',
+                    'month': '$_id.month',
+                    'count': 1
+                }
+            },
+            {
+                '$sort': {
+                    'year': 1,
+                    'month': 1
+                }
             }
-        },
-        {
-            '$project': {
-                '_id': 0,
-                'year': '$_id.year',
-                'month': '$_id.month',
-                'count': 1
-            }
-        },
-        {
-            '$sort': {
-                'year': 1,
-                'month': 1
-            }
-        }
-    ]
+        ]
+    else:
+        return abort(404)
     # Выполнение агрегации и получение результата
     result = list(database.col_orders.aggregate(pipeline))
     result_dict_pretty_format = {}
@@ -181,7 +211,7 @@ def get_statistics(g_user_flask):
         1.92, 1.65, 1.61, 1.44, 1.22, 1.16
     ]
 
-    dict_amount_months = amount_orders_per_months(g_user_flask.user_db['networks'][0])
+    dict_amount_months = amount_orders_per_months(g_user_flask)
 
     # Creating Plot Figure
     p = figure(
