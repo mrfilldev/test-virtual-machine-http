@@ -217,7 +217,7 @@ def get_statistics(g_user_flask):
     p = figure(
         x_range=list(dict_amount_months.keys()),
         height=400,
-        title="Кол-во заказов за месяцы",
+        title="Кол-во заказов",
         sizing_mode="stretch_width"
     )
 
