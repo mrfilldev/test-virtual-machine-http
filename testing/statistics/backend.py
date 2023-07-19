@@ -200,11 +200,11 @@ def get_statistics(g_user_flask):
     script, div = components(p)
 
     # Return the components to the HTML template
-    return render_template(
-        'statistics/show_statistics.html',
-        script=script,
-        div=div,
-    )
+    context = {
+        'script': script,
+        'div': div,
+    }
+    return render_template('statistics/show_statistics.html', context=context)
 
 
 # def get_statistics(g_user_flask):
