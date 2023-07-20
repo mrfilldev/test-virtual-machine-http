@@ -14,8 +14,6 @@ from bokeh.plotting import figure
 from bokeh.models import BoxZoomTool, PanTool, ResetTool
 
 
-
-
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
 labels = [
