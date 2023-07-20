@@ -34,6 +34,6 @@ def statistics():
     return get_statistics(g)
 
 
-@statistics_bp.route('/test_html/', methods=['POST', 'GET'])
+@statistics_bp.route('/test/', methods=['POST', 'GET'])
 def test():
     return render_template('testing/test_header.html')
