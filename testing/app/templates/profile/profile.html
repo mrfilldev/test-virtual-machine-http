@@ -3,7 +3,20 @@
 
 {% block body %}
 <br>
-<div class="col-sm-2"></div>
+<div class="col-sm-2">
+    <a class="navbar-brand" href="/">
+        <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
+             class="d-inline-block align-text-top" height="50" width="50" href="">
+    </a>
+    {% if g.user_db.role == 'admin' %}
+    {{ g.user_db.role }} {{ g.user_inf['real_name'] }}
+    {% elif g.user_db.role == 'network_owner' %}
+    Владелец cети: {{ g.user_inf['real_name'] }}
+    {% elif g.user_db.role == 'network_worker' %}
+    Администратор мойки
+    {% endif %}
+    {% if g.user_inf['is_avatar_empty'] == False %}
+</div>
 <div class="col-sm-8 main">
     {% if g.user_db.role == 'network_owner' %}
     <div class="input-group input-group-sm">
