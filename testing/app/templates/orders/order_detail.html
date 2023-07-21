@@ -186,15 +186,13 @@
                     {{ price.description }}
                 </td>
                 <td class="text-end price">
-                    <input hidden="hidden" name="basecost_{{price._id}}"
-                           value="{{price.categoryPrice['sum']}}">
                     {{ price.categoryPrice['sum'] }} &#8381
                 </td>
                 <td class="text-center">
                     {{price.amount}}
                 </td>
                 <td class="text-end">
-                    <input class="input-group-sm" type="text" disabled value=" {{ price.pretotal_price }} &#8381">
+                    {{ price.pretotal_price }} &#8381"
                 </td>
             </tr>
             {% endif %}
