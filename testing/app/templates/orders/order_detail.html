@@ -32,28 +32,19 @@
 </script>
 
 <br>
-<div class="container">
 
-    <div class="row">
-        {% if g.user_db.role != 'admin' %}
-        <div class="col-2">
-            <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-                {% if context['order'].Status == 'OrderCreated' %}
-                <button type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу</button>
-                <button type="button" class="btn btn-outline-secondary" id="to_decline">Отменить заказ</button>
-                {% elif context['order'].Status == 'Accepted' %}
-                <button type="button" class="btn btn-outline-secondary" id="to_complete">Подтвердить выполнение</button>
-                {% endif %}
-            </div>
-        </div>
-        {% else %}
-        <div class="col-2"></div>
+<div class="col-sm-2"></div>
+<div class="col-sm-8 main">
+    <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+        {% if context['order'].Status == 'OrderCreated' %}
+        <button type="button" class="btn btn-outline-success" id="to_accept">Принять в работу</button>
+        <button type="button" class="btn btn-outline-danger" id="to_decline">Отменить заказ</button>
+        {% elif context['order'].Status == 'Accepted' %}
+        <button type="button" class="btn btn-outline-success" id="to_complete">Подтвердить выполнение</button>
         {% endif %}
+    </div>
 
-        <main class="col-10">
-            <div class="container">
-                <div class="table-responsive">
-
+    <div class="table-responsive">
                     <table class="table table-center align-middle">
                         <thead class="table-light">
                         <tr>
@@ -98,7 +89,8 @@
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-text">Категория:</span>
                                             <input type="text" class="form-control" name="country_region_number"
-                                                   style="width: 100px" value="{{ context.order.Category | format_category_car}}"
+                                                   style="width: 100px"
+                                                   value="{{ context.order.Category | format_category_car}}"
                                                    placeholder="А999АА799" aria-label="А999АА799" disabled>
                                         </div>
                                     </div>
@@ -211,11 +203,10 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </main>
-    </div>
+
 </div>
-<br>
+<div class="col-sm-2"></div>
+
 <!-- Модальное окно -->
 <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
