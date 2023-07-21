@@ -53,7 +53,7 @@
                         <a class="nav-link" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
                     </li>
                     {% endif %}
-                    {% if g.user_db.role == 'network_owner' %}
+                    {% if g.user_db.role == 'network_worker' %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{  url_for('carwash_blueprint.carwash_detail', carwash_id=g.user_db.PinnedCarwashId) }}">Мойка </a>
