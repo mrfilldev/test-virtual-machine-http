@@ -9,9 +9,10 @@
             <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
                  class="d-inline-block align-text-top" height="50" width="50" href="">
         </a>
+    <br>
     {% endif %}
     {% if g.user_db.role == 'admin' %}
-    {{ g.user_db.role }} {{ g.user_inf['real_name'] }}
+    Роль: {{ g.user_db.role }}<br>{{ g.user_inf['real_name'] }}
     {% elif g.user_db.role == 'network_owner' %}
     Владелец cети: {{ g.user_inf['real_name'] }}
     {% elif g.user_db.role == 'network_worker' %}
