@@ -9,6 +9,14 @@ from ..db import database
 from ..db.models import User, UserRole
 from ..main import oauth_via_yandex
 
+import datetime
+import json
+
+
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
+
 
 def users_list_view():
     user_inf = oauth_via_yandex.get_user(session['ya-token'])
@@ -16,9 +24,10 @@ def users_list_view():
     users_list = []
     count_users = 0
     for count_users, i in enumerate(list(all_users)[::-1], 1):
-        data = json.loads(json_util.dumps(i))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        user_obj = json.dumps(i, default=default)
+        user_obj = json.loads(user_obj, object_hook=lambda d: SimpleNamespace(**d))
+        print('\nuser_obj: ', user_obj, '\n')
+
         print(user_obj)
         users_list.append(user_obj)
     print(users_list)
@@ -44,20 +53,24 @@ def user_detail(request, user_id):
         data = json.loads(json_util.dumps(user_obj))
         data = json.dumps(data, default=lambda x: x.__dict__)
         user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
-        print(user_obj)
+        print('user_obj: ', user_obj)
         empty_arr = []
         empty_arr.append(request.form['network'])
-        print('empty_arr', empty_arr)
-        set_command = {
-            "$set": {
-                "role": request.form['role'],
-                "networks": empty_arr,
+        print('empty_arr: ', empty_arr)
 
-            }
+        set_fields = {'$set': {
+            "role": request.form['role'],
+            "networks": empty_arr,
+        }}
+        database.col_users.update_one({'_id': user_obj._id}, set_fields)
+
+        context = {
+            'user': user_obj,
+            'UserRole': UserRole,
+            'networks': empty_arr,
         }
-        old_user = {'_id': str(user_id)}
-        new_user = database.col_users.update_one(old_user, set_command)
-        print('new_user', new_user)
+        print('context: ', context)
+        # return redirect(url_for('admin_blueprint.admin_user_detail', user_id=user_obj._id))
 
     user_obj = database.col_users.find_one({'_id': str(user_id)})  # dict
     print(user_obj)
@@ -71,8 +84,6 @@ def user_detail(request, user_id):
         print(i.name, i.value)
 
     network_obj = database.col_networks.find({})  # dict
-    print(network_obj)
-
     data = json.loads(json_util.dumps(network_obj))
     data = json.dumps(data, default=lambda x: x.__dict__)
     network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace

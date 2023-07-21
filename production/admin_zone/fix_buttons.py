@@ -1,7 +1,11 @@
 import json
+from datetime import datetime
 from types import SimpleNamespace
-
+import datetime
+import json
+import pytz
 from bson import json_util
+from dateutil.parser import parse
 from flask import url_for, redirect
 
 from ..db import database
@@ -174,3 +178,81 @@ def fix_sets():
         "network": '3a81c491fa9245dc9139049f9885ef57',
     }})
     return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def fix_date_users():
+    all_users = database.col_users.find({})
+    for user in all_users:
+        try:
+            print('\nuser: ', user)
+            test_obj = json.dumps(user, default=default)
+            # print('\ntest_obj: ', test_obj)
+            user_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+            print('\nuser_obj: ', user_obj)
+            print('\n')
+
+            # print(user_obj.date_registered, parse(user_obj.date_registered), type(parse(user_obj.date_registered)))
+            # database.col_users.update_one({'_id': user_obj._id}, {"$set": {
+            #     "date_registered": parse(user_obj.date_registered),
+            # }})
+        except Exception as e:
+            print(e)
+
+    return redirect(url_for('admin_blueprint.admin_main'))
+
+
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
+
+
+def fix_date_orders():
+    from bson.codec_options import CodecOptions
+    import bson
+    import collections
+
+    all_orders = database.col_orders.find({})
+
+    for order in all_orders:
+        try:
+            print('\norder: ', order)
+            # Serialize ``obj`` to a JSON formatted ``str``.
+            test_obj = json.dumps(order, default=default)
+            print('\ntest_obj: ', test_obj)
+            # Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance containing a JSON document) to a Python
+            # object.
+            order_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
+            print('\norder_obj: ', order_obj)
+            print('\n')
+
+            
+            database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
+                "DateCreate": parse(order_obj.DateCreate),
+            }})
+            # print('order: ', order)
+            #
+            # order_obj = SimpleNamespace(**order)
+            # print('order_obj: ', order_obj)
+
+            # options = CodecOptions(document_class=collections.OrderedDict)
+            # decoded_doc = bson.decode(order, codec_options=options)
+            # print('\ndecoded_doc: ', decoded_doc, dec)
+        except Exception as e:
+            print(e)
+
+    return redirect(url_for('admin_blueprint.admin_main'))
+
+    # print(type(order['DateCreate']))
+    # print(order['DateCreate'])
+    # print('type(test_obj.DateCreate): ', type(test_obj.DateCreate))
+    # print('type(test_obj["DateCreate"]): ', type(test_obj['DateCreate']))
+    #
+    # for order in all_orders:
+    #     data = json.loads(json_util.dumps(order))
+    #     data = json.dumps(data, default=lambda x: x.__dict__)
+    #     order_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d), default=default)
+    #     try:
+    #         print(type(order_obj.DateCreate), type(order_obj.DateCreate), type(order_obj.DateCreate))
+    #         print(order_obj.DateCreate, order_obj.DateStart, order_obj.DateEnd)
+    #     except Exception as e:
+    #         pass

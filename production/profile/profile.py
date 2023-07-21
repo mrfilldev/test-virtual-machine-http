@@ -32,12 +32,7 @@ def profile():
     print(g.user_inf)
 
     if 'role' in g.user_db:
-        if g.user_db['role'] == 'admin':
-            return redirect(url_for('profile_blueprint.profile_admin'))
-        elif g.user_db['role'] == 'network_owner':
-            return redirect(url_for('profile_blueprint.profile_owner'))
-        elif g.user_db['role'] == 'network_worker':
-            return redirect(url_for('profile_blueprint.profile_worker'))
+        return render_template('profile/profile.html')
     return profile_future_client()
 
 

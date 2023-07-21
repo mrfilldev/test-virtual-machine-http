@@ -4,7 +4,7 @@
         {{ context['count_orders'] - loop.index0 }}
     </th>
     <td>
-        {{ order.DateCreate | format_datetime_to_dmy }}
+        {{ order['DateCreate'] | format_datetime_to_dmy }}
     </td>
     <td>
         {% for i in context['carwashes'] %}

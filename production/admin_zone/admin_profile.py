@@ -1,11 +1,11 @@
 from datetime import timedelta, date
 from dateutil import parser
-from flask import render_template, request, Blueprint, session, g, url_for, redirect
+from flask import render_template, request, Blueprint, session, g, url_for, redirect, abort
 
 from .edit_data_in_db import list_all_cols_in_db
 from .fix_buttons import fix_network_id_in_orders, back_carwashes_refresh_prices, remake_prices_to_set, \
     prices_to_active, set_all_prices_attr_price_types, set_all_carwash_full_type, set_sets_of_prices_to_one_network, \
-    fix_box_number_value, fix_orders_fields, fix_sets
+    fix_box_number_value, fix_orders_fields, fix_sets, fix_date_users, fix_date_orders
 from .manage_networks import list_networks, network_detail, add_network
 from .manage_prices import show_list_price, create_price, edit_price, delete_price
 from .manage_users import users_list_view, user_detail, delete_user
@@ -19,12 +19,21 @@ admin_bp = Blueprint(
 
 @admin_bp.before_request
 def load_user():
-    user_inf = oauth_via_yandex.get_user(session['ya-token'])
-    g.user_inf = user_inf
-    print('g.user_inf: ', g.user_inf)
-    user = database.col_users.find_one({'_id': user_inf['id']})
-    g.user_db = user
-    print('g.user_db: :', g.user_db)
+    try:
+        user_inf = oauth_via_yandex.get_user(session['ya-token'])
+        g.user_inf = user_inf
+        print('g.user_inf: ', g.user_inf)
+        user = database.col_users.find_one({'_id': user_inf['id']})
+        g.user_db = user
+        print('g.user_db: :', g.user_db)
+    except Exception as e:
+        print("Exception: %s" % str(e))
+        return abort(500)
+
+
+@admin_bp.errorhandler(500)
+def page_not_found(e):
+    return render_template("error_page/500.html"), 500
 
 
 @admin_bp.route('/admin')
@@ -135,6 +144,16 @@ def remake_fix_sets():
     return fix_sets()
 
 
+@admin_bp.route('/remake_fix_date')
+def remake_fix_date():
+    return fix_date_users()
+
+
+@admin_bp.route('/remake_fix_date_orders')
+def remake_fix_date_orders():
+    return fix_date_orders()
+
+
 ################################
 ################################
 ################################
@@ -148,17 +167,43 @@ def list_db():
 
 @admin_bp.app_template_filter()
 def format_datetime(value):
-    if isinstance(value, date):
-        value = (value + timedelta(hours=3)).strftime('%d.%m.%Y')
-    else:
+    try:
+        print('value: %s' % value, type(value))
         value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y %H:%M:%S")
-    return value
+        return value
+    except Exception as e:
+        print(e)
+        return value
 
 
 @admin_bp.app_template_filter()
 def format_datetime_to_dmy(value):
-    value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y")
-    return value
+    try:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%d.%m.%Y")
+        return value
+    except Exception as e:
+        print(e)
+        return value
+
+
+@admin_bp.app_template_filter()
+def format_datetime_to_HMS(value):
+    try:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%H:%M:%S")
+        return value
+    except Exception as e:
+        print(e)
+        return value
+
+
+@admin_bp.app_template_filter()
+def format_datetime_to_HM(value):
+    try:
+        value = (parser.parse(value) + timedelta(hours=3)).strftime("%H:%M")
+        return value
+    except Exception as e:
+        print(e)
+        return value
 
 
 @admin_bp.app_template_filter()
@@ -178,5 +223,58 @@ def format_status_order(value):
             return 'Заказ не актуален'
         case 'SystemAggregator_Error':
             return 'Заказ не выполнен'
+        case 'LocalOrder':
+            return 'Заказ контролируется администратором'
         case _:
             return value
+
+
+@admin_bp.app_template_filter()
+def format_category_car(value):
+    match value:
+        case 'Compact':
+            return 'Кат.1'
+        case 'MiddleSize':
+            return 'Кат.2'
+        case 'Crossover':
+            return 'Кат.3'
+        case 'OffRoad':
+            return 'Кат.4'
+        case 'MicroBus':
+            return 'Кат.5'
+        case _:
+            return value
+
+
+@admin_bp.app_template_filter()
+def format_ContractId(value):
+    match value:
+        case 'OWN':
+            return "Собственный заказ"
+        case 'YARU':
+            return "Внешний заказ"
+        case _:
+            return value
+
+
+@admin_bp.app_template_filter()
+def count_cost_bascket(bascket):
+    try:
+        total_cost = 0
+        for obj in bascket:
+            total_cost += obj.amount * obj.price
+        return float(total_cost)
+    except Exception as e:
+        print(e)
+        return bascket
+
+
+@admin_bp.app_template_filter()
+def format_space_numbers(value):
+    try:
+        ans = '{0:,}'.format(value).replace(',', ' ') + '0'
+        print('ans: ', ans, type(ans))
+        return ans
+    except Exception as e:
+        print(e)
+        return value

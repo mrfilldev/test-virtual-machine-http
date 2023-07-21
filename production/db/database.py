@@ -7,6 +7,7 @@ from ..configuration.config import Config
 url = Config.PYMONGO_URL
 tlsCAFile = Config.tlsCAFile
 client = pymongo.MongoClient(url, tlsCAFile=tlsCAFile)
+
 db_production = client['production_db']
 
 col_orders = db_production["production_orders"]
@@ -18,4 +19,3 @@ col_sets_of_prices = db_production["production_sets_of_prices"]
 col_companies = db_production["production_companies"]
 col_networks = db_production["production_networks"]
 col_users = db_production["production_users"]
-

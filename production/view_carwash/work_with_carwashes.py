@@ -147,7 +147,6 @@ def list_carwashes(g):
         data = json.dumps(data, default=lambda x: x.__dict__)
         network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
         print('network_obj:', network_obj)
-
     else:
         all_carwashes = database.col_carwashes.find({})
         network_obj = None
@@ -349,8 +348,11 @@ def update_carwash_obj(request, carwash_id):
     print('UPDATE DATA: ', new_carwash)
 
 
-def get_sets():
-    all_sets = database.col_sets_of_prices.find({})
+def get_sets(carwash_obj=None):
+    if carwash_obj is not None:
+        all_sets = database.col_sets_of_prices.find({"network": carwash_obj.network_id})
+    else:
+        all_sets = database.col_sets_of_prices.find({})
     sets_list = []
     for i in all_sets:
         data = json.loads(json_util.dumps(i))
@@ -403,7 +405,7 @@ def back_carwash_detail(g, request, carwash_id):
         'count_prices': count_prices,
         'enum_list': enum_list,
         'set_of_prices': get_set_of_prices(carwash_obj.Price),
-        'sets_of_prices': get_sets(),
+        'sets_of_prices': get_sets(carwash_obj),
     }
     return render_template("view_carwash/carwash_detail.html", context=context)
 

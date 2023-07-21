@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.1.min.js"></script>
+
+<head>
+    <title>Bokeh Charts</title>
+</head>
+
+<legend>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col text-end">Отчет:</div>
+        </div>
+    </div>
+</legend>
+<div class="container">
+    <h1>{{ title }}</h1>
+    {{ context.div | safe }}
+    {{ context.script | safe }}
+    <br>
+    <div>
+        {% for obj in context.research_by_status %}
+        {{ obj }}: {{ context.research_by_status[obj] }}
+        {% endfor %}
+    </div>
+    <div>
+        {{ context.research_by_date }}
+    </div>
+</div>
+
+
+{% endblock %}

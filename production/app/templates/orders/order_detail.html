@@ -30,118 +30,179 @@
     }
 
 </script>
+<div class="col-sm-2"></div>
+<div class="col-sm-8 main">
+    <div class="input-group input-group-sm">
+        {% if context['order'].Status == 'OrderCreated' %}
+        <button type="button" class="btn btn-outline-danger input-group-text" id="to_decline">Отменить заказ</button>
+        <button type="button" class="btn btn-outline-success input-group-text" id="to_accept">Принять в работу</button>
+        {% elif context['order'].Status == 'Accepted' %}
+        <button type="button" class="btn btn-outline-success input-group-text" id="to_complete">Подтвердить выполнение
+        </button>
+        {% endif %}
+    </div>
+    <br>
+    <div class="table-responsive">
+        <table class="table table-center align-middle">
+            <thead class="table-light">
+            <tr>
+                <th>{{context.order.ContractId | format_ContractId}}:</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="width: 200px">
+                    Данные клиента:
+                </td>
+                <td>
+                    <div class="input-group input-group-sm">
+                        <input style="width: 200px" type="text" class="form-control"
+                               name="order_user_name" value="{{ context.order.order_user_name }}"
+                               placeholder="Имя" disabled>
+                        <input style="width: 200px" type="tel" class="form-control"
+                               name="phone_number" value="{{ context.order.phone_number }}"
+                               placeholder="Телефон" disabled>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px">
+                    Транспорт:
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">Название:</span>
+                                <input style="width: 50px" type="text" class="form-control"
+                                       name="car_brand" value="{{ context.order.CarBrand }}"
+                                       placeholder="Марка" disabled>
+                                <input style="width: 50px" type="text" class="form-control"
+                                       name="car_model" value="{{ context.order.CarModel }}"
+                                       placeholder="Модель" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">Категория:</span>
+                                <input type="text" class="form-control" name="country_region_number"
+                                       style="width: 100px"
+                                       value="{{ context.order.Category | format_category_car}}"
+                                       placeholder="А999АА799" aria-label="А999АА799" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">Гос.Номер:</span>
+                                <input type="text" class="form-control" name="country_region_number"
+                                       style="width: 100px" value="{{ context.order.CarNumber }}"
+                                       placeholder="А999АА799" aria-label="А999АА799" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Расстановка:
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">Бокс:</span>
+                                <input type="text" class="form-control"
+                                       value="{{ context.order.BoxNumber }}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">Дата:</span>
+                                <input style="width: 1px"
+                                       value="{{ context.order.DateCreate | format_datetime_to_dmy }}"
+                                       class="form-control"
+                                       placeholder=""
+                                       type="text"
+                                       name="date" aria-describedby="addon-wrapping" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group input-group-sm">
+                                {% if context.order.ContractId == "OWN" %}
+                                <span class="input-group-text">Старт:</span>
+                                <input style="width: 60px"
+                                       value="{{ context.order.DateStart | format_datetime_to_HM }}"
+                                       class="form-control"
+                                       placeholder=""
+                                       type="text"
+                                       name="date" aria-describedby="addon-wrapping" disabled>
+                            </div>
+                            <div class="input-group input-group-sm">
 
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-2">
-            <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-                {% if context['order'].Status == 'OrderCreated' %}
-                <button type="button" class="btn btn-outline-secondary" id="to_accept">Принять в работу</button>
-                <button type="button" class="btn btn-outline-secondary" id="to_decline">Отменить заказ</button>
-                {% elif context['order'].Status == 'Accepted' %}
-                <button type="button" class="btn btn-outline-secondary" id="to_complete">Подтвердить выполнение</button>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-10">
-            <main class="container-sm">
-                <div class="table-responsive">
-
-                    <table class="table table-bordered table-center align-middle">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col" colspan="6">Заказ  CarNumber='', CarBrand='', CarModel='', DateStart='', DateEnd='', Category='Compact', order_basket='', order_user_name='', phone_number='')</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="width: 200px">
-                                Источник:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].ContractId | format_ContractId }}">
-                            </td>
-                            <td rowspan="6" colspan="2">
-                                {% if context.carwash == None %}
-                                <img src="https://static-maps.yandex.ru/1.x/?ll=37.620070,55.753630&spn=0.1,0.1&l=map&size=500,450">
+                                <span class="input-group-text">Конец:</span>
+                                <input style="width: 60px"
+                                       value="{{ context.order.DateEnd | format_datetime_to_HM }}"
+                                       class="form-control"
+                                       placeholder=""
+                                       type="text"
+                                       name="date" aria-describedby="addon-wrapping" disabled>
                                 {% else %}
-                                <img src="https://static-maps.yandex.ru/1.x/?l=map&z=17&size=590,310&pt={{ context.carwash.Location.lon |float }},{{ context.carwash.Location.lat |float  }},org">
+                                <span class="input-group-text">Время создания:</span>
+                                <input style="width: 100px"
+                                       value="{{ context.order.DateCreate | format_datetime_to_HM }}"
+                                       class="form-control"
+                                       placeholder=""
+                                       type="text"
+                                       name="date" aria-describedby="addon-wrapping" disabled>
                                 {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Бокс:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].BoxNumber }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Дата создания:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].DateCreate | format_datetime }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Статус заказа:
-                            </td>
-                            <td>
-                                <input style="width: 100%" type="text" class="form-control"
-                                       value="{{ context['order'].Status | format_status_order }}">
-                            </td>
-                        </tr>
-                        <tr class="table-light">
-                            <th scope="col" colspan="2">Оплата</th>
-                        </tr>
-                        <tr>
-                            <td style="width: 200px">
-                                Сумма заказа:
-                            </td>
-                            {% if context['order'].ContractId == 'OWN' %}
-                            <td>
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ (context['order'].order_basket | count_cost_bascket) | format_space_numbers  }}&#8381">
-                            </td>
-                            {% else %}
-                            <td>
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ context['order'].Sum | format_space_numbers }}&#8381">
-                            </td>
-                            {% endif %}
-                        </tr>
-                        {% if context['order'].ContractId == 'OWN' %}{% else %}
-                        <tr>
-                            <td>Сумма списания:</td>
-                            <td class="text-end">
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ context['order'].SumCompleted | format_space_numbers }}&#8381">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Выплачено партнеру:</td>
-                            <td class="text-end">
-                                <input style="width: 100%; text-align: end" type="text" class="form-control"
-                                       value="{{ context['order'].SumPaidStationCompleted | format_space_numbers }}&#8381">
-                            </td>
-                            {% endif %}
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-center align-middle">
+            <thead class="table-light">
+            <tr>
+                <th>Оказанные услуги:</th>
+                <th class="text-sm-end">Стоимость:</th>
+                <th class="text-sm-center">Кол-во:</th>
+                <th class="text-sm-end">Итог: {{ context.order.Sum }} &#8381:</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if context.basket is none %}
+            {% else %}
+            {% for price in context.basket %}
+            {% if price.status == 'active' %}
+            <tr id="{{price._id}}">
+                <td style="width: auto">
+                    <b>{{ price.name }}</b><br>
+                    {{ price.description }}
+                </td>
+                <td class="text-sm-end price">
+                    {{ price.categoryPrice['sum'] }} &#8381
+                </td>
+                <td class="text-sm-center">
+                    {{price.amount}}
+                </td>
+                <td class="text-sm-end">
+                    {{ price.pretotal_price }} &#8381
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+            </tbody>
+        </table>
     </div>
 </div>
+<div class="col-sm-2"></div>
 
-
+<!-- Модальное окно -->
 <div class="modal fade" id="modal_cancel" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -169,8 +230,8 @@
             </div>
         </div>
     </div>
+
 </div>
-<!-- Модальное окно -->
 <div class="modal fade" id="modal_accept" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -200,7 +261,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="modal_complete" data-bs-backdrop="static"
      data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -34,49 +34,50 @@
 
 
 </script>
-<br>
-<div class="row justify-content-center">
-    <div class="col-2 text-center">
-        <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-            {% if context.create_new == True %}
-            {% else %}
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
-                Расписание заказов
-            </a>
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=context.carwash._id) }}">
-                Панель состояния
-            </a>
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
-                Журнал заказов
-            </a>
-            <a class="btn btn-outline-secondary disabled"
-               href="#">
-                Отчет
-            </a>
-            <a class="btn btn-outline-secondary disabled"
-               href="#">
-                Статистика
-            </a>
-            {% if g.user_db.role != 'network_worker' %}
-            <a class="btn btn-outline-secondary"
-               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
-                Наборы Тарифов
-            </a>
-            {% endif %}
-            {% endif %}
-        </div>
-    </div>
-    <div class="col-8">
-        <form method=POST
-              {% if context.create_new== True %}
-              action="{{ url_for('carwash_blueprint.create_carwash') }}"
-              {% else %}
-              action="{{ url_for('carwash_blueprint.carwash_detail', carwash_id=context['carwash']._id) }}"
-              {% endif %}>
 
+<div class="col-sm-2"></div>
+<div class="col-sm-8 main">
+
+    <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+        {% if context.create_new == True %}
+        {% else %}
+        <a class="btn btn-outline-secondary"
+           href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+            Расписание заказов
+        </a>
+        <a class="btn btn-outline-secondary"
+           href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=context.carwash._id) }}">
+            Панель состояния
+        </a>
+        <a class="btn btn-outline-secondary"
+           href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
+            Журнал заказов
+        </a>
+        <a class="btn btn-outline-secondary disabled"
+           href="#">
+            Отчет
+        </a>
+        <a class="btn btn-outline-secondary disabled"
+           href="#">
+            Статистика
+        </a>
+        {% if g.user_db.role != 'network_worker' %}
+        <a class="btn btn-outline-secondary"
+           href="{{ url_for('prices_blueprint.list_sets_prices') }}">
+            Наборы Тарифов
+        </a>
+        {% endif %}
+        {% endif %}
+    </div>
+
+
+    <form method=POST
+          {% if context.create_new== True %}
+          action="{{ url_for('carwash_blueprint.create_carwash') }}"
+          {% else %}
+          action="{{ url_for('carwash_blueprint.carwash_detail', carwash_id=context['carwash']._id) }}"
+          {% endif %}>
+        <div class="table-responsive">
             <table class="table table-bordered table-center align-middle">
                 <thead class="table-light">
                 <tr>
@@ -230,15 +231,14 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
 
-            {% if g.user_db.role != 'network_worker' %}
-            <button style="width: auto" type="submit" class="btn btn-outline-success">Сохранить</button>
-            {% endif %}
-        </form>
-    </div>
-    <div class="col-2"></div>
-
+        {% if g.user_db.role != 'network_worker' %}
+        <button style="width: auto" type="submit" class="btn btn-outline-success">Сохранить</button>
+        {% endif %}
+    </form>
 </div>
+<div class="col-sm-2"></div>
 
 <div class="modal fade" id="prices_list_search" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
      aria-hidden="true" style="display: none;">
