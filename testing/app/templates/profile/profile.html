@@ -44,6 +44,34 @@
 
         <a class="btn btn-outline-secondary input-group-text"
            href="{{ url_for('order_blueprint.orders_list', carwash_id=g.user_db.PinnedCarwashId) }}">Заказы</a>
+
+<!--        -->
+        <a class="btn btn-outline-secondary"
+           href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+            Расписание заказов
+        </a>
+        <a class="btn btn-outline-secondary"
+           href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=context.carwash._id) }}">
+            Панель состояния
+        </a>
+        <a class="btn btn-outline-secondary"
+           href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
+            Журнал заказов
+        </a>
+        <a class="btn btn-outline-secondary disabled"
+           href="#">
+            Отчет
+        </a>
+        <a class="btn btn-outline-secondary disabled"
+           href="#">
+            Статистика
+        </a>
+        {% endif %}
+
+    </div>
+
+<!--        -->
+
         {% elif g.user_db.role == 'admin' %}
 
         {% endif %}
