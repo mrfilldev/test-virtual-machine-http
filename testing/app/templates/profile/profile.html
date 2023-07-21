@@ -20,8 +20,8 @@
     {% endif %}
 </div>
 <div class="col-sm-8 main">
-    {% if g.user_db.role == 'network_owner' %}
     <div class="input-group input-group-sm">
+    {% if g.user_db.role == 'network_owner' %}
         <a class="btn btn-outline-secondary input-group-text"
            href="{{ url_for('order_blueprint.orders_list') }}">
             Заказы
