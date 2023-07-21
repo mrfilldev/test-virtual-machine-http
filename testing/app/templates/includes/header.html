@@ -77,9 +77,7 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-outline-secondary" href="{{ url_for('main_blueprint.logout') }}">Выйти</a>
-                    </li>
+
                 </ul>
                 <form class="d-flex mt-3" role="search">
                     <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" disabled>
@@ -98,6 +96,11 @@
                      class="d-inline-block align-text-top" height="50" width="50" href="">
             </a>
                 {% endif %}
+            </div>
+            <div class="offcanvas-bottom">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-outline-secondary" href="{{ url_for('main_blueprint.logout') }}">Выйти</a>
+                </li>
             </div>
         </div>
     </div>
