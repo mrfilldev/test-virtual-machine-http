@@ -5,10 +5,10 @@
 <br>
 <div class="col-sm-2">
     {% if g.user_inf['is_avatar_empty'] == False %}
-        <a class="navbar-brand" href="/">
-            <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
-                 class="d-inline-block align-text-top" height="100" width="100" href="">
-        </a>
+    <a class="navbar-brand" href="/">
+        <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
+             class="d-inline-block align-text-top" height="100" width="100" href="">
+    </a>
     <br>
     {% endif %}
     {% if g.user_db.role == 'admin' %}
@@ -38,20 +38,17 @@
            href="#">
             Статистика
         </a>
+        {% elif g.user_db.role == 'network_worker' %}
+        <a class="btn btn-outline-secondary input-group-text"
+           href="{{  url_for('carwash_blueprint.carwash_detail', carwash_id=g.user_db.PinnedCarwashId) }}">Мойка</a>
+
+        <a class="btn btn-outline-secondary input-group-text"
+           href="{{ url_for('order_blueprint.orders_list', carwash_id=g.user_db.PinnedCarwashId) }}">Заказы</a>
+        {% elif g.user_db.role == 'admin' %}
+
+        {% endif %}
     </div>
-    {% elif g.user_db.role == 'network_worker' %}
 
-    {% elif g.user_db.role == 'admin' %}
-
-    {% endif %}
-
-    {% if g.user_db.role == 'network_owner' %}
-
-    {% elif g.user_db.role == 'network_worker' %}
-
-    {% elif g.user_db.role == 'admin' %}
-
-    {% endif %}
     <table class="table table-center align-middle">
         <thead class="table-light">
         <tr>
