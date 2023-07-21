@@ -181,7 +181,7 @@
             {% for price in context.basket %}
             {% if price.status == 'active' %}
             <tr id="{{price._id}}">
-                <td style="width: 365px;">
+                <td style="width: auto">
                     <b>{{ price.name }}</b><br>
                     {{ price.description }}
                 </td>
