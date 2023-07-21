@@ -306,20 +306,15 @@
 
 </script>
 <br>
-<legend>
-    <div class="container">
-        <div class="row">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col text-end">Мойка: {{ context.carwash.Name }}</div>
-        </div>
-    </div>
-</legend>
-<div class="container">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+    <legend>
+        Мойка: {{ context.carwash.Name }}
+    </legend>
     <div id='calendar'></div>
 </div>
+<div class="col-sm-2"></div>
 <br>
-
 
 <div class="modal fade" id="Modal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -566,7 +561,6 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="Modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -584,6 +578,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}
