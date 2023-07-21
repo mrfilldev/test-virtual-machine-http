@@ -47,15 +47,15 @@
 
 <!--        -->
         <a class="btn btn-outline-secondary"
-           href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
+           href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=g.user_db.PinnedCarwashId) }}">
             Расписание заказов
         </a>
         <a class="btn btn-outline-secondary"
-           href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=context.carwash._id) }}">
+           href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=g.user_db.PinnedCarwashId) }}">
             Панель состояния
         </a>
         <a class="btn btn-outline-secondary"
-           href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
+           href="{{ url_for('order_blueprint.orders_list', carwash_id=g.user_db.PinnedCarwashId) }}">
             Журнал заказов
         </a>
         <a class="btn btn-outline-secondary disabled"
