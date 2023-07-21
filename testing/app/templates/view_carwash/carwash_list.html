@@ -21,17 +21,16 @@
                        class="form-control"
                        placeholder="Поиск"
                        name="search_field">
-                <select style="width: 150px" class="form-select" id="validationCustom04" name="status"></select>
+                <select style="width: 150px"
+                        class="form-select" id="validationCustom04" name="status">
+                    <option value="" selected>Все</option>
+                </select>
                 <button style="width: 80px" type="submit" class="btn btn-outline-secondary input-group-text">Найти
                 </button>
             </div>
-
-            <div class="row justify-content-start">
-                <button style="width: 80px" type="submit" class="btn btn-outline-secondary">Найти</button>
-            </div>
         </form>
 
-        <a class="btn btn-outline-secondary" href="{{ url_for('carwash_blueprint.create_carwash') }}">+</a>
+        <a class="btn btn-outline-secondary" href="{{ url_for('carwash_blueprint.create_carwash') }}">+ новая мойка</a>
     </div>
 
     <div class="table-responsive">
