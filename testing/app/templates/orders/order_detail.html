@@ -35,15 +35,15 @@
 
 <div class="col-sm-2"></div>
 <div class="col-sm-8 main">
-    <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+    <div class="input-group input-group-sm">
         {% if context['order'].Status == 'OrderCreated' %}
-        <button type="button" class="btn btn-outline-success" id="to_accept">Принять в работу</button>
-        <button type="button" class="btn btn-outline-danger" id="to_decline">Отменить заказ</button>
+        <button type="button" class="btn btn-outline-danger input-group-text" id="to_decline">Отменить заказ</button>
+        <button type="button" class="btn btn-outline-success input-group-text" id="to_accept">Принять в работу</button>
         {% elif context['order'].Status == 'Accepted' %}
-        <button type="button" class="btn btn-outline-success" id="to_complete">Подтвердить выполнение</button>
+        <button type="button" class="btn btn-outline-success input-group-text" id="to_complete">Подтвердить выполнение</button>
         {% endif %}
     </div>
-
+    <br>
     <div class="table-responsive">
                     <table class="table table-center align-middle">
                         <thead class="table-light">
@@ -203,7 +203,6 @@
                         </tbody>
                     </table>
                 </div>
-
 </div>
 <div class="col-sm-2"></div>
 
