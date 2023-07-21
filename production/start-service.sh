@@ -5,7 +5,7 @@ cd /home/mrfilldev/test-server/test-virtual-machine-http/testing
 export FLASK_RUN_HOST=127.0.0.1
 
 # DEV = 9999
-export FLASK_RUN_PORT=9999
+export FLASK_RUN_PORT=6666
 
 # PROD = 6666
 #export FLASK_RUN_PORT=6666
