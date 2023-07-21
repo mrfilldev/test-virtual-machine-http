@@ -2,6 +2,11 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><span style="color:#0a53be ">Мой</span><span
                 style="color: #bacbe6">декс</span></a>
+
+        <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}">Мойки</a>
+
+        <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}">Заказы</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbarDark"
                 aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation">
