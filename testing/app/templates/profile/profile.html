@@ -8,11 +8,11 @@
         <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2 col-xxl-2">
             {% if g.user_db.role == 'network_owner' %}
             <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
-                <a class="btn btn-outline-secondary"
+                <a class="btn btn-outline-secondary input-group-text"
                    href="{{ url_for('order_blueprint.orders_list') }}">
                     Заказы
                 </a>
-                <a class="btn btn-outline-secondary"
+                <a class="btn btn-outline-secondary input-group input-group-sm"
                    href="{{ url_for('prices_blueprint.list_sets_prices') }}">
                     Списки Услуг
                 </a>
