@@ -6,20 +6,20 @@
 <div class="col-sm-2"></div>
 <div class="col-sm-8 main">
     {% if g.user_db.role == 'network_owner' %}
-    <div class="btn-group-vertical" role="group" aria-label="Вертикальная группа кнопок">
+    <div class="input-group input-group-sm">
         <a class="btn btn-outline-secondary input-group-text"
            href="{{ url_for('order_blueprint.orders_list') }}">
             Заказы
         </a>
-        <a class="btn btn-outline-secondary input-group input-group-sm"
+        <a class="btn btn-outline-secondary input-group input-group-text"
            href="{{ url_for('prices_blueprint.list_sets_prices') }}">
             Списки Услуг
         </a>
-        <a class="btn btn-outline-secondary disabled"
+        <a class="btn btn-outline-secondary input-group-text disabled"
            href="#">
             Отчет
         </a>
-        <a class="btn btn-outline-secondary disabled"
+        <a class="btn btn-outline-secondary input-group-text disabled"
            href="#">
             Статистика
         </a>
