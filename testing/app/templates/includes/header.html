@@ -1,99 +1,103 @@
-<nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/"><span style="color:#0a53be ">Мой</span><span
-                style="color: #bacbe6">декс</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark"
-                aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><span style="color:#0a53be ">Мой</span><span
+                    style="color: #bacbe6">декс</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbarDark"
+                    aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbarDark"
-             aria-labelledby="offcanvasNavbarDarkLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Навигация</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Профиль</a>
-                    </li>
-                    {% if g.user_db.role == 'network_owner' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}">Мойки</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}">Заказы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('prices_blueprint.list_sets_prices') }}">Наборы Тарифов</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{  url_for('statistics_blueprint.statistics') }}">Статистика</a>
-                    </li>
-                    {% endif %}
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbarDark"
+                 aria-labelledby="offcanvasNavbarDarkLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Навигация</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Профиль</a>
+                        </li>
+                        {% if g.user_db.role == 'network_owner' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}">Мойки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('order_blueprint.orders_list') }}">Заказы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('prices_blueprint.list_sets_prices') }}">Наборы
+                                Тарифов</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{  url_for('statistics_blueprint.statistics') }}">Статистика</a>
+                        </li>
+                        {% endif %}
+                        {% if g.user_db.role == 'admin' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}">Мойки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin_blueprint.admin_networks_list') }}">Сети</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin_blueprint.list_of_prices') }}">Тарифы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{  url_for('monitoring_blueprint.monitoring') }}">Мониторинг</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
+                        </li>
+                        {% endif %}
+                        {% if g.user_db.role == 'network_worker' %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{  url_for('carwash_blueprint.carwash_detail', carwash_id=g.user_db.PinnedCarwashId) }}">Мойка </a>
+                        </li>
+                        {% endif %}
+                        <!--                        -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" disabled>
+                        <button class="btn btn-outline-success" type="submit" disabled></button>
+                    </form>
                     {% if g.user_db.role == 'admin' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{  url_for('carwash_blueprint.carwashes_list') }}">Мойки</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('admin_blueprint.admin_networks_list') }}">Сети</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('admin_blueprint.list_of_prices') }}">Тарифы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{  url_for('monitoring_blueprint.monitoring') }}">Мониторинг</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('admin_blueprint.admin_users') }}">Пользователи</a>
-                    </li>
+                    {{ g.user_db.role }} {{ g.user_inf['real_name'] }}
+                    {% elif g.user_db.role == 'network_owner' %}
+                    Владелец cети: {{ g.user_inf['real_name'] }}
+                    {% elif g.user_db.role == 'network_worker' %}
+                    Администратор мойки
                     {% endif %}
-                    {% if g.user_db.role == 'network_worker' %}
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{  url_for('carwash_blueprint.carwash_detail', carwash_id=g.user_db.PinnedCarwashId) }}">Мойка </a>
-                    </li>
+                    {% if g.user_inf['is_avatar_empty'] == False %}
+                    &nbsp;<a class="navbar-brand" href="/">
+                    <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
+                         class="d-inline-block align-text-top" height="50" width="50" href="">
+                </a>
                     {% endif %}
-                    <!--                        -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" disabled>
-                    <button class="btn btn-outline-success" type="submit" disabled></button>
-                </form>
-                {% if g.user_db.role == 'admin' %}
-                {{ g.user_db.role }} {{ g.user_inf['real_name'] }}
-                {% elif g.user_db.role == 'network_owner' %}
-                Владелец cети: {{ g.user_inf['real_name'] }}
-                {% elif g.user_db.role == 'network_worker' %}
-                Администратор мойки
-                {% endif %}
-                {% if g.user_inf['is_avatar_empty'] == False %}
-                &nbsp;<a class="navbar-brand" href="/">
-                <img src="https://avatars.yandex.net/get-yapic/{{ g.user_inf['default_avatar_id'] }}/islands-retina-50"
-                     class="d-inline-block align-text-top" height="50" width="50" href="">
-            </a>
-                {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
