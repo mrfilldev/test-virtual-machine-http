@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a class="navbar-brand" href="/"><span style="color:#0a53be ">Мой</span><span
-                style="color: #bacbe6">декс</span></a>
+                    style="color: #bacbe6">декс</span></a>
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
                     <a class="nav-link text-white" href="{{ url_for('order_blueprint.orders_list') }}">
@@ -81,28 +81,7 @@
                            href="{{ url_for('order_blueprint.orders_list', carwash_id=g.user_db.PinnedCarwashId) }}">Заказы</a>
                     </li>
                     {% endif %}
-                    <!--                        -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-
-                        </ul>
-                    </li>
-
                 </ul>
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" disabled>
-                    <button class="btn btn-outline-success" type="submit" disabled></button>
-                </form>
             </div>
             <div class="offcanvas-footer">
                 <div class="container-fluid">
