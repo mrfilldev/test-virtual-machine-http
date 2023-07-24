@@ -40,6 +40,7 @@
 
     <div class="input-group input-group-sm" role="group" aria-label="Вертикальная группа кнопок">
         {% if context.create_new == True %}
+
         {% else %}
         <a class="btn btn-outline-secondary input-group-text"
            href="{{ url_for('schedule_blueprint.schedule_certain_carwash', carwash_id=context.carwash._id) }}">
@@ -61,15 +62,15 @@
            href="#">
             Статистика
         </a>
-        {% if g.user_db.role != 'network_worker' %}
-        <a class="btn btn-outline-secondary input-group-text"
-           href="{{ url_for('prices_blueprint.list_sets_prices') }}">
-            Наборы Тарифов
-        </a>
+            {% if g.user_db.role != 'network_worker' %}
+            <a class="btn btn-outline-secondary input-group-text"
+               href="{{ url_for('prices_blueprint.list_sets_prices') }}">
+                Наборы Тарифов
+            </a>
+            {% endif %}
         {% endif %}
-        {% endif %}
-        <br>
     </div>
+    <br>
 
 
     <form method=POST
