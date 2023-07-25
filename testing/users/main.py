@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from bson import json_util
 from flask import Blueprint, request, Response, render_template, g, session, redirect, url_for
 
-from .backend import list_workers
+from .backend import list_workers, user_detail
 from ..configuration.config import Config
 
 from flask_login import current_user
@@ -38,3 +38,8 @@ def page_not_found(e):
 @users_bp.route('/users_list', methods=['POST', 'GET'])
 def users_list():
     return list_workers(g)
+
+
+@users_bp.route('/user/<string:user_id>', methods=['POST', 'GET'])
+def user(user_id):
+    return user_detail(g, user_id)
