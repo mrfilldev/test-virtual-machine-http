@@ -13,13 +13,10 @@
                 type: 'POST',
                 url: "{{ url_for('users_blueprint.user', user_id=context['user']._id) }}",
                 data: $('#user-info').serialize(),
+                success: function () {
+                    location.reload();
+                },
             });
-        });
-    }
-    function reload() {
-        $.ajax({
-            type: 'GET',
-            url: "{{ url_for('users_blueprint.user', user_id=context['user']._id) }}",
         });
     }
 </script>
