@@ -5,7 +5,6 @@
 <script>
     $(document).ready(function () {
         updating();
-        deleting();
         reload();
     });
 
@@ -18,16 +17,12 @@
             });
         });
     }
-
-    function deleting() {
-        $('#to_delete').click(function () {
-            console.log('Deleting')
-        });
-    }
 </script>
 
 <br>
-<div class="col-sm-2"></div>
+<div class="col-sm-2">
+    <button onclick="updating()" type="button" class="btn btn-sm btn-outline-success">Сохранить</button>
+</div>
 <div class="col-sm-8 main">
     <div class="table-responsive">
         <form id="user-info">
