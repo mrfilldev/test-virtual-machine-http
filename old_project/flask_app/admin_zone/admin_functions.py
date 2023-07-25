@@ -34,7 +34,7 @@ def check_root(session):
     if user['access_level'] == 'admin':
         return 'admin'
     else:
-        return 'user'
+        return 'users'
 
 
 def admin_main(request, session):
@@ -46,7 +46,7 @@ def admin_main(request, session):
 
     status = 'admin'
     context = {
-        'user': user_inf,
+        'users': user_inf,
         'inf_list': inf_list,
         'status': status
 
@@ -75,7 +75,7 @@ def test_view(session):
         inf_list.append(f"{k} -> {user_inf[k]} \n")
     print(user_inf)
     context = {
-        'user': user_inf,
+        'users': user_inf,
         'inf_list': inf_list,
         'users_list': users_list,
         'count_users': count_users,

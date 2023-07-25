@@ -55,7 +55,7 @@
             Журнал заказов
         </a>
         <a class="btn btn-outline-secondary input-group-text "
-           href="#">
+           href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
             Сотрудники
         </a>
         <a class="btn btn-outline-secondary input-group-text disabled"

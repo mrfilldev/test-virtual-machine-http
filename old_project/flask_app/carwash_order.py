@@ -202,7 +202,7 @@ def main(request):
         send_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
 
     elif order.Status == Status.UserCanceled.name:
-        print("Order canceling by user...")
+        print("Order canceling by users...")
         update_order(order)
 
     elif order.Status == Status.StationCanceled.name:

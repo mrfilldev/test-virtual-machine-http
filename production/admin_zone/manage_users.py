@@ -36,7 +36,7 @@ def users_list_view():
         inf_list.append(f"{k} -> {user_inf[k]} \n")
     print(user_inf)
     context = {
-        'user': user_inf,
+        'users': user_inf,
         'inf_list': inf_list,
         'users_list': users_list,
         'count_users': count_users,
@@ -65,7 +65,7 @@ def user_detail(request, user_id):
         database.col_users.update_one({'_id': user_obj._id}, set_fields)
 
         context = {
-            'user': user_obj,
+            'users': user_obj,
             'UserRole': UserRole,
             'networks': empty_arr,
         }
@@ -90,7 +90,7 @@ def user_detail(request, user_id):
     print(network_obj)
 
     context = {
-        'user': user_obj,
+        'users': user_obj,
         'UserRole': UserRole,
         'networks': network_obj,
     }

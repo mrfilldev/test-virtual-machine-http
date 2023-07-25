@@ -254,7 +254,7 @@ def pin_admin(carwash_id, login):
         pass
     else:
         user = {'_id': user_obj._id}
-        print('user-admin._id: ', user)
+        print('users-admin._id: ', user)
         set_fields = {'$set': {
             'PinnedCarwashId': carwash_id,
         }}

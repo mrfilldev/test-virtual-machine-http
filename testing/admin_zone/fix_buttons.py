@@ -184,7 +184,7 @@ def fix_date_users():
     all_users = database.col_users.find({})
     for user in all_users:
         try:
-            print('\nuser: ', user)
+            print('\nusers: ', user)
             test_obj = json.dumps(user, default=default)
             # print('\ntest_obj: ', test_obj)
             user_obj = json.loads(test_obj, object_hook=lambda d: SimpleNamespace(**d))
@@ -225,7 +225,7 @@ def fix_date_orders():
             print('\norder_obj: ', order_obj)
             print('\n')
 
-            
+
             database.col_orders.update_one({'_id': order_obj._id}, {"$set": {
                 "DateCreate": parse(order_obj.DateCreate),
             }})

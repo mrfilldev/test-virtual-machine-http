@@ -300,9 +300,9 @@ class UserRole(enum.Enum):
 
     # @login.user_loader
     # def load_user(self):
-    #     user = oauth_via_yandex.get_user(session['ya-token'])
+    #     users = oauth_via_yandex.get_user(session['ya-token'])
     #
-    #     u = users.find_one({"login": user['login']})
+    #     u = users.find_one({"login": users['login']})
     #
     #     if not u:
     #         return None

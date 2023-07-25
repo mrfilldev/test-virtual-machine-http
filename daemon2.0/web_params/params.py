@@ -39,8 +39,8 @@ class Py_mongo_db:
 
 # class Py_mongo_db:
 #     # pymongo
-#     url = 'mongodb://{user}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
-#         user=quote('user1'),
+#     url = 'mongodb://{users}:{pw}@{hosts}/?replicaSet={rs}&authSource={auth_src}'.format(
+#         users=quote('user1'),
 #         pw=quote('mrfilldev040202'),
 #         hosts=','.join([
 #             'rc1a-f0wss58juko3mx2p.mdb.yandexcloud.net:27018'

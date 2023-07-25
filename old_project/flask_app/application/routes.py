@@ -182,7 +182,7 @@ def user_detail(user_id):
     user_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))  # SimpleNamespace
     print(user_obj)
     context = {
-        'user': user_obj,
+        'users': user_obj,
     }
     return render_template(
         'admin_zone/../templates/admin_zone/user_detail.html',
@@ -252,7 +252,7 @@ def main():
         user_inf = oauth_via_yandex.get_user(session['ya-token'])
         print('user_inf: ', user_inf)
         user = Config.col_users.find_one({'_id': user_inf['id']})
-        print('user: ', user)
+        print('users: ', user)
         if user is None:
             format = '%Y-%m-%dT%H:%M:%S%Z'
             date_now = datetime.strptime(time.strftime(format, time.localtime()), format)
@@ -268,7 +268,7 @@ def main():
                     'inn': '',
                 }
             )
-            print(f'user {user_inf["login"]} has been inserted')
+            print(f'users {user_inf["login"]} has been inserted')
 
         return redirect(url_for('profile'))
     except Exception as e:
@@ -426,7 +426,7 @@ def profile():
 
     context = {
         'status': status,
-        'user': user,
+        'users': user,
         'user_yan_inf': user_yan_inf,
     }
     return render_template('profile/../templates/profile/profile.html', context=context)

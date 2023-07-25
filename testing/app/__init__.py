@@ -15,6 +15,7 @@ from ..schedule.schedule import schedule_bp
 from ..box_panel.main import box_panel_bp
 from ..prices.main import prices_bp
 from ..statistics.main import statistics_bp
+from ..users.main import users_bp
 
 app = Flask(__name__,
             static_url_path='',
@@ -37,6 +38,7 @@ app.register_blueprint(schedule_bp)
 app.register_blueprint(box_panel_bp)
 app.register_blueprint(prices_bp)
 app.register_blueprint(statistics_bp)
+app.register_blueprint(users_bp)
 
 app.config['SECRET_KEY'] = Config.SECRET_KEY
 
