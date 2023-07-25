@@ -198,14 +198,12 @@ def create_carwash_obj(request, g):
         enable = True if 'status' in request.form else False
         #  enable: bool = True if request.form['status'] == 'enable' else False
         status = enable
-        login_administrator = request.form['login_administrator']
         prices = request.form['set_of_price']  # create_prices(request, dict_of_form)
         print(prices)
 
         new_carwash = Carwash(
             id, status, name_carwash, address_carwash, location_carwash, types,
-            stepCost, limitMinCost, boxes, prices, login_administrator
-        )
+            stepCost, limitMinCost, boxes, prices)
         new_carwash_json = json.dumps(new_carwash, default=lambda x: x.__dict__)
         print('TYPE: ', type(new_carwash_json))
         print('data: ', new_carwash_json)
@@ -216,13 +214,6 @@ def create_carwash_obj(request, g):
 
         print(new_carwash_dict)
         database.col_carwashes.insert_one(new_carwash_dict)
-        database.col_carwashes_admins.insert_one(
-            {
-                '_id': new_carwash_dict['_id'],
-                'login': login_administrator,
-                'access_level': 'carwash_admin',
-            }
-        )
         return redirect(url_for('carwash_blueprint.carwashes_list'))
     all_prices = database.col_prices.find({})
     prices_list = []
@@ -337,7 +328,6 @@ def update_carwash_obj(request, carwash_id):
         'Boxes': new_boxes_list_of_dict,
         'Price': request.form['set_of_price'],
         # json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),default=lambda x: x.__dict__)),
-        'CarwashAdmin': form['login_administrator'],
         'IsCarwash': is_hand_carwash,
         'IsWheelStation': is_wheel_station,
         'IsDetaling': is_detaling,

@@ -198,7 +198,7 @@ class Point:  # enum.Enum):
 
 class Carwash:
     def __init__(self, id, enable, name, address, Location: Point,
-                 Type, stepCost, limitMinCost, Boxes, Price, CarwashAdmin):
+                 Type, stepCost, limitMinCost, Boxes, Price):
         self._id = id
         self.Enable = enable
         self.Name = name
@@ -209,7 +209,6 @@ class Carwash:
         self.LimitMinCost = limitMinCost
         self.Boxes = Boxes
         self.Price = Price
-        self.CarwashAdmin = CarwashAdmin
 
 
 class NetworkCarwashAmountStatus:
