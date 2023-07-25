@@ -45,7 +45,7 @@ def user_detail(g_user_flask, user_id):
         context = {}
         print('context: ', context)
 
-    print("\ng_user_flask.user_db['networks'][0]: ", g_user_flask.user_db['networks'][0], '\n')
+    print("\ng_user_flask: ", g_user_flask, '\n')
 
     context = {
         'user': user_obj,
