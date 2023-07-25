@@ -17,7 +17,7 @@ def default(obj):
 
 
 def list_workers():
-    all_users = database.col_prices.find({})
+    all_users = database.col_users.find({})
     user_list = []
     for i in all_users:
         user_obj = json.dumps(i, default=default)
