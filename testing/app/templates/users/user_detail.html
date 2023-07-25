@@ -68,7 +68,7 @@
                         {% for carwash in context.carwashes %}
                             <div class="col-sm">
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-text">{{ carwash.Name }}</span>
+                                    <span class="input-group-text input-group-sm">{{ carwash.Name }}</span>
                                     <input class="form-check-input" type="checkbox" value="{{ carwash._id }}" {% if
                                        carwash._id== context.user.PinnedCarwashId %}checked{% endif %}>
                                 </div>
