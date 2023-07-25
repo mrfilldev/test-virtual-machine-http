@@ -71,8 +71,6 @@
         {% endif %}
     </div>
     <br>
-
-
     <form method=POST
           {% if context.create_new== True %}
           action="{{ url_for('carwash_blueprint.create_carwash') }}"
@@ -184,11 +182,6 @@
                                        class="form-control" value="Мойка"> {% endif %}
                             </div>
                             <div class="col">
-                                {% if context.carwash.IsWheelStation== True %}
-                                <input style="width: 100%; text-align: center" type="text"
-                                       class="form-control" value="Шиномонтаж"> {% endif %}
-                            </div>
-                            <div class="col">
                                 {% if context.carwash.IsDetaling== True %}
                                 <input style="width: 100%; text-align: center" type="text"
                                        class="form-control" value="Детейлинг"> {% endif %}
@@ -220,15 +213,6 @@
                                class="form-control" value="Выключено">
                         {% endif %}
                         {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 200px">
-                        Администратор Мойки:
-                    </td>
-                    <td>
-                        <input class="form-control" type="text" name="login_administrator"
-                               value="{{ context.carwash.CarwashAdmin if context['carwash'] is not none else '' }}">
                     </td>
                 </tr>
                 </tbody>
