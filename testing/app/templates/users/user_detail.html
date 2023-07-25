@@ -67,9 +67,9 @@
                         <div class="row">
                             {% for carwash in context.carwashes %}
 
-                                {{ carwash.Name }}
                                 <input class="check" type="checkbox" value="{{ carwash._id }}" {% if
                                        carwash._id== context.user.PinnedCarwashId %}checked{% endif %}>
+                                <label>{{ carwash.Name }}</label>
 
                             {% endfor %}
                         </div>
