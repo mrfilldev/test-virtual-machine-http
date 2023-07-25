@@ -69,8 +69,11 @@
                             <div class="col-sm">
                                 <div class="input-group">
                                     <span class="input-group-text">{{ carwash.Name }}</span>
-                                    <input class="form-check-input" type="checkbox" value="{{ carwash._id }}" {% if
-                                       carwash._id== context.user.PinnedCarwashId %}checked{% endif %}>
+                                    <div class="input-group-text">
+                                        <input class="check" type="checkbox" value="{{ carwash._id }}" {% if
+                                               carwash._id == context.user.PinnedCarwashId %}checked{% endif %}>
+                                    </div>
+
                                 </div>
                             </div>
                         {% endfor %}
