@@ -81,7 +81,7 @@ def test_view(session):
         'count_users': count_users,
     }
     return render_template(
-        'admin_zone/../templates/admin_zone/test.html',
+        'admin_zone/../templates/admin_zone/users.html',
         context=context
     )
 

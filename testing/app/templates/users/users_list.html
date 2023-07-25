@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block body %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.tr-user').click(function () {
+            window.location = $(this).data('href');
+            return false;
+        });
+    });
+</script>
+<div class="col-sm-2"></div>
+<div class="col-sm-8 main">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">ник</th>
+                <th scope="col">id</th>
+                <th scope="col">роль</th>
+                <th scope="col">дата</th>
+            </tr>
+            </thead>
+            <tbody class=".table-hover">
+            {% for user in context['users_list'] %}
+
+            <tr class="tr-user" data-href="{{ url_for('admin_blueprint.admin_user_detail', user_id=user._id) }}">
+                <th scope="row">
+                    {{ context['count_users'] - loop.index0 }}
+                </th>
+                <td>
+                    {{ user.login }}
+                </td>
+                <td>
+                    {{ user._id }}
+                </td>
+                <td>
+                    {{ user.role }}
+                </td>
+                <td>
+                    {{ user.date_registered | format_datetime }}
+                </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-sm-2"></div>
+{% endblock %}

@@ -42,7 +42,7 @@ def users_list_view():
         'count_users': count_users,
     }
     return render_template(
-        'admin/test.html',
+        'admin/users.html',
         context=context
     )
 

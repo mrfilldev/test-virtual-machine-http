@@ -41,10 +41,7 @@ def users_list_view():
         'users_list': users_list,
         'count_users': count_users,
     }
-    return render_template(
-        'admin/test.html',
-        context=context
-    )
+    return render_template('admin/users.html', context=context)
 
 
 def user_detail(request, user_id):
