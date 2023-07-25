@@ -42,8 +42,18 @@ def user_detail(g_user_flask, user_id):
     user_obj = get_obj(user)
     print('\nuser_obj: ', user_obj, '\n')
     if request.method == 'POST':
+        form = request.form
+        print('\n################################################################\n')
+        dict_of_form = request.form.to_dict(flat=False)
+        print(dict_of_form)
+        print('################################################################\n')
+        for k, v in dict_of_form.items():
+            print(k, '-> ', v)
+        print('\n################################################################\n')
+
         context = {}
         print('context: ', context)
+        return redirect(url_for('users_blueprint.users_list'))
 
     all_carwashes = database.col_carwashes.find({'network_id': g_user_flask.user_db['networks'][0]})
     carwashes = []
@@ -55,7 +65,6 @@ def user_detail(g_user_flask, user_id):
     context = {
         'user': user_obj,
         'carwashes': carwashes,
-
     }
 
     return render_template('users/user_detail.html', context=context)
