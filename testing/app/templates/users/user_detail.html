@@ -16,6 +16,12 @@
             });
         });
     }
+    function reload() {
+        $.ajax({
+            type: 'GET',
+            url: "{{ url_for('users_blueprint.user', user_id=context['user']._id) }}",
+        });
+    }
 </script>
 
 <br>
