@@ -54,6 +54,10 @@
            href="{{ url_for('order_blueprint.orders_list', carwash_id=context.carwash._id) }}">
             Журнал заказов
         </a>
+        <a class="btn btn-outline-secondary input-group-text "
+           href="#">
+            Сотрудники
+        </a>
         <a class="btn btn-outline-secondary input-group-text disabled"
            href="#">
             Отчет
@@ -61,10 +65,6 @@
         <a class="btn btn-outline-secondary input-group-text disabled"
            href="#">
             Статистика
-        </a>
-        <a class="btn btn-outline-secondary input-group-text disabled"
-           href="#">
-            Сотрудники
         </a>
             {% if g.user_db.role != 'network_worker' %}
             <a class="btn btn-outline-secondary input-group-text"
