@@ -28,4 +28,5 @@ def list_workers():
     context = {
         'user_list': user_list,
     }
-    return render_template()
+    return render_template('users/users_list', context=context)
+
