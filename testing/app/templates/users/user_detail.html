@@ -50,34 +50,6 @@
                 </tr>
                 <tr>
                     <td style="width: 200px">
-                        id:
-                    </td>
-                    <td>
-                        <input name="id" style="width: 350px" type="text" class="form-control"
-                               required placeholder="id" value="{{ context['user']._id }}">
-
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 200px">
-                        уровень доступа:
-                    </td>
-                    <td>
-                        <select style="width: 350px" class="form-select"
-                                name="role">
-                            <option disabled="disabled">(не указано)</option>
-
-                            {% for i in context.UserRole %}
-                            <option value="{{i.name}}" {% if context.
-                                    user.role== i.name %} selected {% endif %}>{{ i.value }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 200px">
                         дата регистрации:
                     </td>
                     <td>
@@ -93,9 +65,17 @@
                         Закреплен за мойкой:
                     </td>
                     <td>
-                        <input name="pinned_carwash" style="width: 350px" type="text" class="form-control"
-                               required placeholder="мойка"
-                               value="{{ context.user.PinnedCarwashId }}">
+                        <select style="width: 350px" class="form-select" name="network">
+                            <option disabled="disabled">(не указано)</option>
+
+                            {% for carwash in context.carwashes %}
+                            <option value="{{carwash._id}}" {% if carwash._id == context.user.PinnedCarwashId %}
+                                    selected="selected"
+                                    {% endif %}>{{ carwash.Name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        </select>
                     </td>
                 </tr>
                 {% endif %}
