@@ -62,6 +62,10 @@
            href="#">
             Статистика
         </a>
+        <a class="btn btn-outline-secondary input-group-text disabled"
+           href="#">
+            Сотрудники
+        </a>
             {% if g.user_db.role != 'network_worker' %}
             <a class="btn btn-outline-secondary input-group-text"
                href="{{ url_for('prices_blueprint.list_sets_prices') }}">
