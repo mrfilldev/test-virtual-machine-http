@@ -54,6 +54,8 @@ def user_detail(g_user_flask, user_id):
     print('carwashes: ', carwashes)
     context = {
         'user': user_obj,
+        'carwashes': carwashes,
+
     }
 
     return render_template('users/user_detail.html', context=context)
