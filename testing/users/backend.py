@@ -23,7 +23,7 @@ def list_workers():
         user_obj = json.dumps(i, default=default)
         user_obj = json.loads(user_obj, object_hook=lambda d: SimpleNamespace(**d))
         user_list.append(user_obj)
-        print('\norder_obj: ', user_obj, '\n')
+        print('\nuser_obj: ', user_obj, '\n')
     print(user_list)
     context = {
         'user_list': user_list,
