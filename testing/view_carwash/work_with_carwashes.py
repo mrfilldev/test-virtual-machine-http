@@ -333,7 +333,6 @@ def update_carwash_obj(request, carwash_id):
         'IsDetaling': is_detaling,
     }}
     new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
-    pin_admin(carwash_id, form['login_administrator'])
     print('UPDATE FIELDS: ', set_fields)
     print('UPDATE DATA: ', new_carwash)
 
