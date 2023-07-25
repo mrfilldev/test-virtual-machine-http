@@ -64,17 +64,7 @@
                         Закреплен за мойкой:
                     </td>
                     <td>
-                        <select style="width: 350px" class="form-select" name="network">
-                            <option disabled="disabled">(не указано)</option>
-
-                            {% for carwash in context.carwashes %}
-                            <option value="{{carwash._id}}" {% if carwash._id == context.user.PinnedCarwashId %}
-                                    selected="selected"
-                                    {% endif %}>{{ carwash.Name }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                        </select>
+                        {{ context.user.PinnedCarwashId }}
                     </td>
                 </tr>
                 <tr>
