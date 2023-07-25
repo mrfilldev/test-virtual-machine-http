@@ -36,5 +36,5 @@ def page_not_found(e):
 
 
 @users_bp.route('/users_list', methods=['POST', 'GET'])
-def carwashes_list():
+def users_list():
     return list_workers()
