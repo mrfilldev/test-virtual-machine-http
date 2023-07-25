@@ -45,8 +45,13 @@ def user_detail(g_user_flask, user_id):
         context = {}
         print('context: ', context)
 
-    print("\ng_user_flask: ", g_user_flask, '\n')
+    all_carwashes = database.col_carwashes.find({'network_id': g_user_flask.user_db['networks'][0]})
+    carwashes = []
+    for carwash in all_carwashes:
+        carwash_obj = get_obj(carwash)
+        carwashes.append(carwash_obj)
 
+    print('carwashes: ', carwashes)
     context = {
         'user': user_obj,
     }
