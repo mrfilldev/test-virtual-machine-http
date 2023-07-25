@@ -46,7 +46,7 @@ def user_detail(g, user_id):
         print('context: ', context)
 
     context = {
-        'users': user_obj,
+        'user': user_obj,
     }
 
     return render_template('users/user_detail.html', context=context)
