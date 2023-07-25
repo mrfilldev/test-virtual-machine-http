@@ -25,12 +25,9 @@
             </tr>
             </thead>
             <tbody class=".table-hover">
-            {% for user in context['users_list'] %}
+            {% for user in context.user_list %}
 
             <tr class="tr-user" data-href="{{ url_for('admin_blueprint.admin_user_detail', user_id=user._id) }}">
-                <th scope="row">
-                    {{ context['count_users'] - loop.index0 }}
-                </th>
                 <td>
                     {{ user.login }}
                 </td>
