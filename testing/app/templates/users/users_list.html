@@ -27,7 +27,7 @@
             <tbody class=".table-hover">
             {% for user in context.user_list %}
 
-            <tr class="tr-user" data-href="{{ url_for('users_blueprint.worker_detail', user_id=user._id) }}">
+            <tr class="tr-user" data-href="{{ url_for('users_blueprint.user', user_id=user._id) }}">
                 <td>
                     -
                 </td>
