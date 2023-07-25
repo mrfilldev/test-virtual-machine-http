@@ -65,15 +65,15 @@
                     </td>
                     <td>
                         {% for carwash in context.carwashes %}
-                            {% if carwash._id == context.user.PinnedCarwashId %}
-                                <div class="input-group mb-3">
-                                    <div class="input-group-text">
-                                        <input class="form-check-input mt-0" type="checkbox" value="True"
-                                               aria-label="Checkbox for following text input">
-                                    </div>
-                                    <input type="text" class="form-control" value="{{ carwash.Name }}">
-                                </div>
-                            {% endif %}
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="checkbox" value="{{ carwash._id }}" {% if
+                                       carwash._id== context.user.PinnedCarwashId %}checked{% endif %}>
+                            </div>
+                            <input type="text" class="form-control" value="{{ carwash.Name }}">
+                        </div>
+
                         {% endfor %}
                     </td>
                 </tr>
