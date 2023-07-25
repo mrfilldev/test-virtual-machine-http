@@ -42,7 +42,6 @@ def user_detail(g_user_flask, user_id):
     user_obj = get_obj(user)
     print('\nuser_obj: ', user_obj, '\n')
     if request.method == 'POST':
-        form = request.form
         print('\n################################################################\n')
         dict_of_form = request.form.to_dict(flat=False)
         print(dict_of_form)

@@ -47,22 +47,11 @@
                 </tr>
                 <tr>
                     <td style="width: 200px">
-                        дата регистрации:
-                    </td>
-                    <td>
-                        <input name="lon" style="width: 350px" type="text" class="form-control"
-                               required placeholder="longitude"
-                               value="{{ context['user'].date_registered | format_datetime }}">
-
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 200px">
                         Закреплен за мойкой:
                     </td>
                     <td>
                             {% for carwash in context.carwashes %}
-                                <input class="check" type="checkbox" value="{{ carwash._id }}" {% if
+                                <input class="check" type="checkbox" name="{{ carwash._id }}" {% if
                                        carwash._id== context.user.PinnedCarwashId %}checked{% endif %}>
                                 <label>{{ carwash.Name }}</label>&nbsp;&nbsp;&nbsp;
                             {% endfor %}
