@@ -46,11 +46,17 @@ def send_mail():
 def list_workers(g_user_flask):
     all_users = database.col_users.find({})
     workers_list = []
-    for i in all_users:
-        user_obj = get_obj(i)
-        if user_obj.role == 'network_worker' and user_obj.networks[0] == g_user_flask.user_db['networks'][0]:
+    if g_user_flask.user_db['role'] == 'admin':
+        for i in all_users:
+            user_obj = get_obj(i)
+            if user_obj.role == 'network_worker' and user_obj.networks[0] == g_user_flask.user_db['networks'][0]:
+                workers_list.append(user_obj)
+            print('\nuser_obj: ', user_obj, '\n')
+    else:
+        for i in all_users:
+            user_obj = get_obj(i)
             workers_list.append(user_obj)
-        print('\nuser_obj: ', user_obj, '\n')
+            print('\nuser_obj: ', user_obj, '\n')
     print(workers_list)
     context = {
         'user_list': workers_list,
