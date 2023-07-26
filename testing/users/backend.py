@@ -51,7 +51,7 @@ def list_workers(g_user_flask):
             user_obj = get_obj(i)
             if user_obj.role == 'network_worker' and user_obj.networks[0] == g_user_flask.user_db['networks'][0]:
                 workers_list.append(user_obj)
-            print('\nuser_obj: ', user_obj, '\n')
+            print('user_obj: ', user_obj, '\n')
     else:
         return redirect(url_for('admin_blueprint.admin_users'))
     print(workers_list)
