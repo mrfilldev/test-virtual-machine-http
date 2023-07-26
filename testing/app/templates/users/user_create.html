@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<script>
+    $(document).ready(function () {
+        updating();
+    });
+
+    function updating() {
+        $('#to_update').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('users_blueprint.add_user') }}",
+                data: $('#user-info').serialize(),
+                success: function () {
+                    location.reload();
+                },
+            });
+        });
+    }
+</script>
+
+<br>
+<div class="col-sm-2">
+    <button id='to_update' type="button" class="btn btn-sm btn-outline-success">Добавить</button>
+</div>
+<div class="col-sm-8 main">
+    <div class="table-responsive">
+        <form id="user-info">
+            <table class="table table-bordered table-center">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col" colspan="3">Новый сотрудник</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width: 200px">
+                        Логин:
+                    </td>
+                    <td>
+                        <input type="email" name="email" placeholder="example@yandex.ru">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="col-sm-2"></div>
+{% endblock %}
