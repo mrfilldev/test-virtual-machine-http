@@ -117,7 +117,7 @@ def add_carwash_worker(g_user_flask):
     if request.method == 'POST':
         print('\n################################################################\n')
         dict_of_form = request.form.to_dict(flat=False)
-        print(dict_of_form)
+        print('dict_of_form: ', dict_of_form)
         print('################################################################\n')
         try:
             send_mail()
