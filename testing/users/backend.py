@@ -94,4 +94,4 @@ def add_carwash_worker(g_user_flask):
 
 
     context = {}
-    return render_template('users/user_detail.html', context=context)
+    return render_template('users/user_create.html', context=context)
