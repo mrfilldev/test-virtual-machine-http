@@ -87,7 +87,7 @@ def user_detail(request, user_id):
     print(network_obj)
 
     context = {
-        'users': user_obj,
+        'user': user_obj,
         'UserRole': UserRole,
         'networks': network_obj,
     }
