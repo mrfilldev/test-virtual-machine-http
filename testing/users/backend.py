@@ -54,9 +54,10 @@ def user_detail(g_user_flask, user_id):
             print('user: ', user)
             set_fields = {'$set': {
                 'PinnedCarwashId': request.form['PinnedCarwashId'],
-                'network': request.form['name'],
             }}
-            new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
+            print(set_fields)
+            update = database.col_users.update_one(user, set_fields)
+            print(update)
         except Exception as e:
             print("Error updating : ", e)
 
