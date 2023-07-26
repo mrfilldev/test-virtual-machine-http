@@ -53,7 +53,7 @@ def list_workers(g_user_flask):
                 workers_list.append(user_obj)
             print('\nuser_obj: ', user_obj, '\n')
     else:
-        return redirect(url_for('admin_blueprints.users'))
+        return redirect(url_for('admin_blueprint.admin_users'))
     print(workers_list)
     context = {
         'user_list': workers_list,
