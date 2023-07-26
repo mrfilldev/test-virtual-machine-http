@@ -40,7 +40,7 @@
         </a>
         {% elif g.user_db.role == 'network_worker' %}
         <a class="btn btn-outline-secondary input-group-text"
-           href="{{  url_for('carwash_blueprint.carwash_detail', carwash_id=g.user_db.PinnedCarwashId) }}">Мойка</a>
+           href="{{  url_for('carwash_blueprint.carwashes_list') }}">Мойка</a>
         <a class="btn btn-outline-secondary input-group-text"
            href="{{ url_for('order_blueprint.orders_list', carwash_id=g.user_db.PinnedCarwashId) }}">Заказы</a>
         <a class="btn btn-outline-secondary"
