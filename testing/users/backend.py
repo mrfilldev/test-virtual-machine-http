@@ -59,11 +59,18 @@ def user_detail(g_user_flask, user_id):
     for carwash in all_carwashes:
         carwash_obj = get_obj(carwash)
         carwashes.append(carwash_obj)
-
     print('carwashes: ', carwashes)
+
+    all_networks = database.col_networks.find({})
+    networks = []
+    for network in all_networks:
+        network_obj = get_obj(network)
+        networks.append(network_obj)
+
     context = {
         'user': user_obj,
         'carwashes': carwashes,
+        'networks': networks,
     }
 
     return render_template('users/user_detail.html', context=context)
