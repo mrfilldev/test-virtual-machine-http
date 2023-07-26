@@ -119,8 +119,14 @@ def add_carwash_worker(g_user_flask):
         dict_of_form = request.form.to_dict(flat=False)
         print('dict_of_form: ', dict_of_form)
         print('################################################################\n')
+        message = 'Вас назначили сотрудником сети, для авторизации проследуйте по следующей ссылке:\n' \
+                  'https://tst.moidex.ru/\n\n'
         try:
-            send_mail()
+            send_mail(
+                dest_email=dict_of_form['email'],
+                text=message,
+                subject='Уведомление Мойдекс'
+            )
         except Exception as e:
             print('error: ', e)
     context = {}
