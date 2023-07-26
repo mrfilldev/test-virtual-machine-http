@@ -66,6 +66,8 @@ def user_detail(g_user_flask, user_id):
                 'IsDetaling': is_detaling,
             }}
             new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
+        except Exception as e:
+            print("Error updating")
 
         context = {}
         print('context: ', context)
