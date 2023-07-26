@@ -11,10 +11,13 @@
         });
     });
 </script>
-<div class="col-sm-2">
-    <a href="#" class="btn btn-sm btn-outline-secondary">+ Добавить сотрудника</a>
-</div>
-<div class="col-sm-8 main">
+<div class="col-sm-12 main">
+    <div class="input-group input-group-sm">
+        <a class="btn btn-outline-secondary input-group-text" href="{{ url_for('order_blueprint.orders_list') }}">
+            + Добавить сотрудника</a>
+    </div>
+
+
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -49,5 +52,4 @@
         </table>
     </div>
 </div>
-<div class="col-sm-2"></div>
 {% endblock %}
