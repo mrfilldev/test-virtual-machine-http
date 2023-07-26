@@ -64,7 +64,7 @@ def list_workers(g_user_flask):
 def user_detail(g_user_flask, user_id):
     user = database.col_users.find_one({'_id': str(user_id)})  # dict
     user_obj = get_obj(user)
-    print('\nuser_obj: ', user_obj, '\n')
+    print('user_obj: ', user_obj, '\n')
     if request.method == 'POST':
         print('\n################################################################\n')
         dict_of_form = request.form.to_dict(flat=False)
