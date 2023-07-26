@@ -46,7 +46,7 @@ def send_mail():
 def list_workers(g_user_flask):
     all_users = database.col_users.find({})
     workers_list = []
-    if g_user_flask.user_db['role'] == 'admin':
+    if g_user_flask.user_db['role'] != 'admin':
         for i in all_users:
             user_obj = get_obj(i)
             if user_obj.role == 'network_worker' and user_obj.networks[0] == g_user_flask.user_db['networks'][0]:
