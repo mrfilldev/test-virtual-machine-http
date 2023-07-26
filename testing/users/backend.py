@@ -1,7 +1,7 @@
 import json
 import uuid
 import datetime
-
+import smtplib
 from types import SimpleNamespace
 
 from bson import json_util
@@ -20,6 +20,29 @@ def get_obj(obj):
     obj = json.dumps(obj, default=default)
     obj = json.loads(obj, object_hook=lambda d: SimpleNamespace(**d))
     return obj
+
+
+def send_mail():
+    # SERVER = "localhost"
+
+    email = "moidex.work@yandex.ru"
+    password = "moidex&tanker"
+    dest_email = "fvdjump.vf.vf@gmail.com"
+    subject = "TEST"
+    email_text = "TEST SEND MESSAGE"
+
+    message = 'From: {}\nTo: {}\nSubject: {}\n\n{}'.format(email,
+                                                           dest_email,
+                                                           subject,
+                                                           email_text)
+
+    server = smtplib.SMTP_SSL('smtp.yandex.com')
+    server.set_debuglevel(1)
+    server.ehlo(email)
+    server.login(email, password)
+    server.auth_plain()
+    server.sendmail(email, dest_email, message)
+    server.quit()
 
 
 def list_workers(g_user_flask):
@@ -90,8 +113,6 @@ def user_detail(g_user_flask, user_id):
 
 
 def add_carwash_worker(g_user_flask):
-
-
 
     context = {}
     return render_template('users/user_create.html', context=context)
