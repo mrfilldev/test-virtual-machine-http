@@ -46,10 +46,19 @@
                 </tr>
                 <tr>
                     <td style="width: 200px">
+                        email:
+                    </td>
+                    <td>
+                        <span style="width: 350px" type="text" class="form-control">{{ context['user'].email }}</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 200px">
                         Cеть:
                     </td>
                     <td>
-                        <select style="width: 350px" class="form-select" name="network">
+                        <select style="width: 350px" class="form-select" name="network" disabled>
                             <option disabled="disabled">(не указано)</option>
 
                             {% for i in context.networks %}
