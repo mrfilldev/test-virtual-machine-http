@@ -54,16 +54,7 @@ def user_detail(g_user_flask, user_id):
             print('user: ', user)
             set_fields = {'$set': {
                 'PinnedCarwashId': request.form['PinnedCarwashId'],
-                'network': form['name'],
-                'Address': form['address'],
-                'Location': {'lat': form['lat'], 'lon': form['lon']},
-                'Type': Types.SelfService.name,
-                'Boxes': new_boxes_list_of_dict,
-                'Price': request.form['set_of_price'],
-                # json.loads(json.dumps(create_prices(request, dict_of_form, update=True, carwash_id=carwash_id),default=lambda x: x.__dict__)),
-                'IsCarwash': is_hand_carwash,
-                'IsWheelStation': is_wheel_station,
-                'IsDetaling': is_detaling,
+                'network': request.form['name'],
             }}
             new_carwash = database.col_carwashes.update_one(old_carwash, set_fields)
         except Exception as e:
