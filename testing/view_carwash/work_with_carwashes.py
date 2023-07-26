@@ -4,10 +4,20 @@ from types import SimpleNamespace
 
 from bson import json_util
 from flask import render_template, url_for, redirect, jsonify, abort
-
+import datetime
 from ..db import database
 from ..db.models import Boxes, BoxStatus, PricesCarWash, Point, Types, Carwash, CategoryAuto, Prices
 
+
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
+
+
+def get_obj(obj):
+    obj = json.dumps(obj, default=default)
+    obj = json.loads(obj, object_hook=lambda d: SimpleNamespace(**d))
+    return obj
 
 def create_boxes(amount_boxes: int):
     group_of_boxes = []
@@ -139,14 +149,28 @@ def get_all_prices():
 
 def list_carwashes(g):
     if g.user_db['role'] != 'admin':
-        network = g.user_db['networks'][0]
-        all_carwashes = database.col_carwashes.find({'network_id': network})
-        print('network:', network)
-        network = database.col_networks.find({'_id': network})
-        data = json.loads(json_util.dumps(network))
-        data = json.dumps(data, default=lambda x: x.__dict__)
-        network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
-        print('network_obj:', network_obj)
+        if g.user_db['role'] == 'network_worker':
+            network = g.user_db['networks'][0]
+            print('network:', network)
+            all_carwashes = database.col_carwashes.find({'_id': {'$in': g.user_db['PinnedCarwashId']}})
+            network = database.col_networks.find({'_id': network})
+            data = json.loads(json_util.dumps(network))
+            data = json.dumps(data, default=lambda x: x.__dict__)
+            network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+            print('network_obj:', network_obj)
+        elif g.user_db['role'] == 'network_owner':
+            network = g.user_db['networks'][0]
+            print('network:', network)
+            all_carwashes = database.col_carwashes.find({'network_id': network})
+            network = database.col_networks.find({'_id': network})
+            data = json.loads(json_util.dumps(network))
+            data = json.dumps(data, default=lambda x: x.__dict__)
+            network_obj = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))[0]  # SimpleNamespace
+            print('network_obj:', network_obj)
+        else:
+            all_carwashes = None
+            network_obj = None
+            abort(404)
     else:
         all_carwashes = database.col_carwashes.find({})
         network_obj = None
