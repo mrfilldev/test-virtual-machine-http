@@ -106,13 +106,16 @@ def user_detail(g_user_flask, user_id):
         'carwashes': carwashes,
         'networks': networks,
     }
-
     return render_template('users/user_detail.html', context=context)
 
 
 def add_carwash_worker(g_user_flask):
     print('test')
     if request.method == 'POST':
+        print('\n################################################################\n')
+        dict_of_form = request.form.to_dict(flat=False)
+        print(dict_of_form)
+        print('################################################################\n')
         try:
             send_mail()
         except Exception as e:
