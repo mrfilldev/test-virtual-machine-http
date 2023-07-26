@@ -24,7 +24,7 @@ def get_obj(obj):
 
 def send_mail():
     email = "moidex.work@yandex.ru"
-    password = "moidex&tanker"
+    password = "jlgovnsgsqlcfzkz"
     dest_email = "fvdjump.vf.vf@gmail.com"
     subject = "TEST"
     email_text = "TEST SEND MESSAGE"
