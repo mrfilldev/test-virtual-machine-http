@@ -15,7 +15,7 @@
         $('#to_update').click(function () {
             $.ajax({
                 type: 'POST',
-                url: "{{ url_for('admin_blueprint.admin_user_detail', user_id=context['user']._id) }}",
+                url: "{{ url_for('admin_blueprint.admin_user_detail', user_id=context['users']._id) }}",
                 data: $('#user-info').serialize(),
             });
         });
