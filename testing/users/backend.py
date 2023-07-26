@@ -53,10 +53,10 @@ def user_detail(g_user_flask, user_id):
             user = {'_id': user_id}
             print('user: ', user)
 
-            print('request.form["PinnedCarwashId"]: ', request.form['PinnedCarwashId'])
+            print('request.form["PinnedCarwashId"]: ', request.form['PinnedCarwashId'][1])
 
             set_fields = {'$set': {
-                'PinnedCarwashId': request.form['PinnedCarwashId'][1],
+                'PinnedCarwashId': request.form['PinnedCarwashId'],
             }}
             print(set_fields)
             update = database.col_users.update_one(user, set_fields)
