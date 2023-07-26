@@ -22,12 +22,12 @@ def get_obj(obj):
     return obj
 
 
-def send_mail():
+def send_mail(dest_email, text, subject):
     email = "moidex.work@yandex.ru"
     password = "jlgovnsgsqlcfzkz"
-    dest_email = "fvdjump.vf.vf@gmail.com"
-    subject = "TEST"
-    email_text = "TEST SEND MESSAGE"
+    dest_email = dest_email
+    subject = subject
+    email_text = text + "\n\nМойдекс\n"
 
     message = 'From: {}\nTo: {}\nSubject: {}\n\n{}'.format(email,
                                                            dest_email,
