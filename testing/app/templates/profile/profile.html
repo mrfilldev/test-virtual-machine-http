@@ -43,10 +43,6 @@
            href="{{  url_for('carwash_blueprint.carwashes_list') }}">Мойки</a>
         <a class="btn btn-outline-secondary input-group-text"
            href="{{ url_for('order_blueprint.orders_list', carwash_id=g.user_db.PinnedCarwashId) }}">Заказы</a>
-        <a class="btn btn-outline-secondary"
-           href="{{ url_for('box_panel_blueprint.box_panel', carwash_id=g.user_db.PinnedCarwashId) }}">
-            Панель состояния
-        </a>
         <a class="btn btn-outline-secondary disabled"
            href="#">
             Отчет
