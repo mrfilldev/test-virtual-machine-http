@@ -23,8 +23,6 @@ def get_obj(obj):
 
 
 def send_mail():
-    # SERVER = "localhost"
-
     email = "moidex.work@yandex.ru"
     password = "moidex&tanker"
     dest_email = "fvdjump.vf.vf@gmail.com"
@@ -113,6 +111,10 @@ def user_detail(g_user_flask, user_id):
 
 
 def add_carwash_worker(g_user_flask):
-
+    print('test')
+    try:
+        send_mail()
+    except Exception as e:
+        print('error: ', e)
     context = {}
     return render_template('users/user_create.html', context=context)
