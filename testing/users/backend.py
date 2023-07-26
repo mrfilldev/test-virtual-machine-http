@@ -53,7 +53,7 @@ def user_detail(g_user_flask, user_id):
             user = {'_id': user_id}
             print('user: ', user)
 
-            print('request.form["PinnedCarwashId"]: ', request.form['PinnedCarwashId'][1])
+            print('dict_of_form["PinnedCarwashId"]: ', dict_of_form['PinnedCarwashId'][1])
 
             set_fields = {'$set': {
                 'PinnedCarwashId': request.form['PinnedCarwashId'],
