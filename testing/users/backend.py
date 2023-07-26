@@ -65,7 +65,8 @@ def user_detail(g_user_flask, user_id):
     networks = []
     for network in all_networks:
         network_obj = get_obj(network)
-        networks.append(network_obj)
+        if network_obj._id in g_user_flask.user_db['networks']:
+            networks.append(network_obj)
 
     context = {
         'user': user_obj,
