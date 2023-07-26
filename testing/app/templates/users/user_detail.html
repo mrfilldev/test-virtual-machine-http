@@ -50,14 +50,12 @@
                         Закреплен за мойкой:
                     </td>
                     <td>
-                            {% for i in range(100) %}
-
                             {% for carwash in context.carwashes %}
-                                <input class="check" type="checkbox" name="{{ carwash._id }}" {% if
+                                <input class="check" type="checkbox" name="PinnedCarwashId" {% if
                                        carwash._id== context.user.PinnedCarwashId %}checked{% endif %}>
                                 <label>{{ carwash.Name }}</label>&nbsp;&nbsp;&nbsp;
                             {% endfor %}
-                            {% endfor %}
+
                     </td>
                 </tr>
                 <tr>
