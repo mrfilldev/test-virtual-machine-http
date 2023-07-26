@@ -50,9 +50,11 @@
                     </td>
                     <td>
                             {% for carwash in context.carwashes %}
+                        <div class="row">
                                 <input class="check" type="checkbox" name="PinnedCarwashId" value="{{ carwash._id }}" {% if
                                        carwash._id== context.user.PinnedCarwashId %}checked{% endif %}>
                                 <label>{{ carwash.Name }}</label>&nbsp;&nbsp;&nbsp;
+                        </div>
                             {% endfor %}
 
                     </td>
