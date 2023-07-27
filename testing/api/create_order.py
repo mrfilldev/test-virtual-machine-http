@@ -140,7 +140,6 @@ def make_order(data):
 
 
 def send_new_order_sqs(order):
-    print('order to sqs: ', order.display)
     dict_to_sqs = {}
     dict_to_sqs['order'] = order
     dict_to_sqs['task'] = 'createOrder'
@@ -184,10 +183,10 @@ def main(request):
     print("REQUEST.DATA: ", request.data)
     data = to_camel_case(request)
     order = make_order(data)
-
+    print("ORDER: ", json.dumps(order, default=default))
     match order.Status:
         case Status.OrderCreated.name:
-            send_new_order_sqs(json.dumps(order, default=default))
+            send_new_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
         case Status.UserCanceled.name:
             print("SQS <- Status.UserCanceled")
             # update_order(order)
