@@ -61,15 +61,15 @@ class Order:
     def display_info(self):
         details = f"""
 # Новый Заказ: #
-            Id: {self.Id} 
-            DateTime: {self.DateCreate}  
-            BoxNumber: {self.BoxNumber}
-            CarWashId: {self.CarWashId} 
-            ContractId: {self.ContractId} 
-            Status: {self.Status} 
-            Sum: {self.Sum}
-            SumCompleted: {self.SumCompleted} 
-            SumPaidStationCompleted: {self.SumPaidStationCompleted}
+            Id: {self.Id} {type(self.Id)}
+            DateTime: {self.DateCreate} {type(self.DateCreate)}
+            BoxNumber: {self.BoxNumber} {type(self.BoxNumber)}
+            CarWashId: {self.CarWashId} {type(self.CarWashId)}
+            ContractId: {self.ContractId} {type(self.ContractId)}
+            Status: {self.Status} {type(self.Status)}
+            Sum: {self.Sum} {type(self.Sum)}
+            SumCompleted: {self.SumCompleted} {type(self.SumCompleted)}
+            SumPaidStationCompleted: {self.SumPaidStationCompleted} {type(self.SumPaidStationCompleted)}
 # Конец заказа #\n"""
         print(details)
 
