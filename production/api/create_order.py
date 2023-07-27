@@ -85,8 +85,8 @@ class OrderCanceled:
         self.ContractId = ContractId
         self.Sum = Sum
         self.Status = Status
-        self.DateCreate = DateCreate
-        self.DateEnd = DateEnd
+        self.DateCreate = parse(DateCreate)
+        self.DateEnd = parse(DateEnd)
         self.Reason = Reason
 
     def display_info(self):
