@@ -103,7 +103,12 @@ async def write_into_db(order):
 
     print("'order['DateCreate']: '", order['DateCreate'], type(order['DateCreate']))
     print("'order['DateCreate']: '", parse(order['DateCreate']), type(parse(order['DateCreate'])))
-
+    if order['Status'] == 'OrderCreated':
+        order['DateCreate'] = parse(order['DateCreate'])
+    else:
+        order['DateCreate'] = parse(order['DateCreate'])
+        order['DateEnd'] = parse(order['DateEnd'])
+    print(order)
     # res = Py_mongo_db.col_orders.insert_one(order)
     # print('WRITED ORDER: ', res)
     # print('ORDER_ID:', res.inserted_id)
@@ -127,14 +132,14 @@ async def update_order_status(order, status):
     }}
     upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
     print('updated order: ', upd_order)
-    await  set_busy_status_box(order)
+    await set_busy_status_box(order)
 
 
 async def update_order_canceled(order, status):
     old_order = {'_id': order['_id']}
     set_command = {"$set": {
         "Status": status,
-        "DateEnd": order['DateEnd'],
+        "DateEnd": parse(order['DateEnd']),
         "Reason": order['Reason'],
     }}
 
