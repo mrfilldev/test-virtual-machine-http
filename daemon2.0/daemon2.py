@@ -99,21 +99,18 @@ async def auto_compliting_order_in_box_4(order):
 
 async def write_into_db(order):
     print('Writing into DB')
-    print('order:', order)
-
-    print("'order['DateCreate']: '", order['DateCreate'], type(order['DateCreate']))
-    print("'order['DateCreate']: '", parse(order['DateCreate']), type(parse(order['DateCreate'])))
+    print('order date str:', order)
     if order['Status'] == 'OrderCreated':
         order['DateCreate'] = parse(order['DateCreate'])
     else:
         order['DateCreate'] = parse(order['DateCreate'])
         order['DateEnd'] = parse(order['DateEnd'])
-    print(order)
-    # res = Py_mongo_db.col_orders.insert_one(order)
-    # print('WRITED ORDER: ', res)
-    # print('ORDER_ID:', res.inserted_id)
-    # print('Объекты в коллекции', Py_mongo_db.col_orders.find())
-    # await auto_compliting_order_in_box_4(order)
+    print('order date datetime:', order)
+    res = Py_mongo_db.col_orders.insert_one(order)
+    print('WRITED ORDER: ', res)
+    print('ORDER_ID:', res.inserted_id)
+    print('Объекты в коллекции', Py_mongo_db.col_orders.find())
+    await auto_compliting_order_in_box_4(order)
 
 
 async def update_order(order):
