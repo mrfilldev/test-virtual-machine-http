@@ -39,7 +39,7 @@ def send_mail(dest_email, text, subject):
     server.ehlo(email)
     server.login(email, password)
     server.auth_plain()
-    server.sendmail(email, dest_email, message)
+    server.sendmail(email, dest_email, message.encode('utf-8'))
     server.quit()
 
 
