@@ -7,6 +7,7 @@ from datetime import datetime as dt
 from types import SimpleNamespace
 
 from bson import json_util
+from dateutil.parser import parse
 
 from web_params.params import Py_mongo_db, Sqs_params
 # from ..configuration.config import Config
@@ -101,6 +102,7 @@ async def write_into_db(order):
     print('order:', order)
 
     print("'order['DateCreate']: '", order['DateCreate'], type(order['DateCreate']))
+    print("'order['DateCreate']: '", parse(order['DateCreate']), type(parse(order['DateCreate'])))
 
     # res = Py_mongo_db.col_orders.insert_one(order)
     # print('WRITED ORDER: ', res)
