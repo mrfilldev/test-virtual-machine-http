@@ -142,7 +142,7 @@ async def update_order_canceled(order, status):
         "DateEnd": parse(order['DateEnd']),
         "Reason": order['Reason'],
     }}
-
+    print(set_command)
     upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
     print('updated order: ', upd_order)
 
