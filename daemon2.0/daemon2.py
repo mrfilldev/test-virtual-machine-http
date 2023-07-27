@@ -100,7 +100,7 @@ async def write_into_db(order):
     print('Writing into DB')
     print('order:', order)
 
-    print("'order['DateCreate']: '", order['DateCreate'], str(order['DateCreate']))
+    print("'order['DateCreate']: '", order['DateCreate'], type(order['DateCreate']))
 
     # res = Py_mongo_db.col_orders.insert_one(order)
     # print('WRITED ORDER: ', res)
