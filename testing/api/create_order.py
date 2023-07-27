@@ -140,6 +140,7 @@ def make_order(data):
 
 
 def send_new_order_sqs(order):
+    print('order to sqs: ', order.display)
     dict_to_sqs = {}
     dict_to_sqs['order'] = order
     dict_to_sqs['task'] = 'createOrder'
