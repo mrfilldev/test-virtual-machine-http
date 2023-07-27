@@ -221,7 +221,7 @@ async def main_func():
                         print('CreateOrder')
                         order = await make_mongo_id(eval(message['order']))
                         print(f'order: {type(order)} \n', order)
-                        await write_into_db(order)
+                        #await write_into_db(order)
 
                     case "cancelOrder":
                         print('CancelOrder')
