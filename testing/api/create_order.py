@@ -1,3 +1,4 @@
+import datetime
 import enum
 import json
 import sys
@@ -44,7 +45,7 @@ class Services:
 
 
 class Order:
-    def __init__(self, id: str, date_create_date_time: str, car_wash_id,
+    def __init__(self, id: str, date_create_date_time: datetime.datetime, car_wash_id,
                  box_number: str, status, sum: float, sum_completed: float,
                  contract_id: str, sum_paid_station_completed: float):
         self.Id = id
@@ -53,7 +54,7 @@ class Order:
         self.ContractId = contract_id
         self.Sum = sum
         self.Status = Status[str(status)]
-        self.DateCreate = parse(date_create_date_time)
+        self.DateCreate = date_create_date_time
         self.SumCompleted = sum_completed
         self.SumPaidStationCompleted = sum_paid_station_completed
 
@@ -76,7 +77,7 @@ class Order:
 class OrderCanceled:
     def __init__(self, CarWashId, BoxNumber,
                  Id, ContractId, Sum, Status,
-                 DateCreate, DateEnd,
+                 DateCreate: datetime.datetime, DateEnd: datetime.datetime,
                  Reason):
         self.Id = Id
         self.CarWashId = CarWashId
@@ -112,16 +113,16 @@ def make_order(data):
             # data.Services, не удалять: наличие этого параметра зависит от того,
             # какой тип заказа; при fix -# отсутствует
             new_order = Order(
-                data.Id, data.DateCreate, data.CarWashId, data.BoxNumber, data.Status, data.Sum,
+                data.Id, parse(data.DateCreate), data.CarWashId, data.BoxNumber, data.Status, data.Sum,
                 data.SumCompleted, data.ContractId, data.SumPaidStationCompleted
             )
             new_order.display_info()
         case Status.Completed.name:
-                new_order = Order(
-                    data.Id, data.DateCreate, data.CarWashId, data.BoxNumber, data.Status, data.Sum,
-                    data.SumCompleted, data.ContractId, data.SumPaidStationCompleted
-                )
-                new_order.display_info()
+            new_order = Order(
+                data.Id, parse(data.DateCreate), data.CarWashId, data.BoxNumber, data.Status, data.Sum,
+                data.SumCompleted, data.ContractId, data.SumPaidStationCompleted
+            )
+            new_order.display_info()
         case _:
             new_order = OrderCanceled(
                 data.CarWashId,
@@ -130,8 +131,8 @@ def make_order(data):
                 data.ContractId,
                 data.Sum,
                 data.Status,
-                data.DateCreate,
-                data.DateEnd,
+                parse(data.DateCreate),
+                parse(data.DateEnd),
                 data.Reason
             )
             new_order.display_info()
