@@ -2,6 +2,8 @@ import enum
 import json
 import sys
 from types import SimpleNamespace
+from dateutil.parser import parse
+
 
 sys.path.append('..')
 from ..configuration.config import Sqs_params
@@ -52,7 +54,7 @@ class Order:
         self.ContractId = contract_id
         self.Sum = sum
         self.Status = Status[str(status)]
-        self.DateCreate = date_create_date_time
+        self.DateCreate = parse(date_create_date_time)
         self.SumCompleted = sum_completed
         self.SumPaidStationCompleted = sum_paid_station_completed
 
