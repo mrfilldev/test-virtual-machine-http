@@ -99,11 +99,14 @@ async def auto_compliting_order_in_box_4(order):
 async def write_into_db(order):
     print('Writing into DB')
     print('order:', order)
-    res = Py_mongo_db.col_orders.insert_one(order)
-    print('WRITED ORDER: ', res)
-    print('ORDER_ID:', res.inserted_id)
-    print('Объекты в коллекции', Py_mongo_db.col_orders.find())
-    await auto_compliting_order_in_box_4(order)
+
+    print("'order['DateCreate']: '", order['DateCreate'])
+
+    # res = Py_mongo_db.col_orders.insert_one(order)
+    # print('WRITED ORDER: ', res)
+    # print('ORDER_ID:', res.inserted_id)
+    # print('Объекты в коллекции', Py_mongo_db.col_orders.find())
+    # await auto_compliting_order_in_box_4(order)
 
 
 async def update_order(order):
@@ -221,7 +224,7 @@ async def main_func():
                         print('CreateOrder')
                         order = await make_mongo_id(eval(message['order']))
                         print(f'order: {type(order)} \n', order)
-                        #await write_into_db(order)
+                        await write_into_db(order)
 
                     case "cancelOrder":
                         print('CancelOrder')
