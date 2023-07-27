@@ -173,6 +173,11 @@ def check_the_status(request):
     return result
 
 
+def default(obj):
+    if isinstance(obj, (datetime.date, datetime.datetime)):
+        return obj.isoformat()
+
+
 def main(request):
     print("REQUEST: ", request)
     print("REQUEST.DATA: ", request.data)
@@ -181,7 +186,7 @@ def main(request):
 
     match order.Status:
         case Status.OrderCreated.name:
-            send_new_order_sqs(json.dumps(order, default=lambda x: x.__dict__))
+            send_new_order_sqs(json.dumps(order, default=default))
         case Status.UserCanceled.name:
             print("SQS <- Status.UserCanceled")
             # update_order(order)
