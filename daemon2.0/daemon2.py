@@ -120,7 +120,10 @@ async def update_order(order):
     old_order = {'_id': order['_id']}
     set_command = {"$set": {
         "Status": order['Status'],
+        "DateEnd": parse(order['DateEnd']),
+        "Reason": order['Reason'],
     }}
+    print(set_command)
     upd_order = Py_mongo_db.col_orders.update_one(old_order, set_command)
     print('updated order: ', upd_order)
 
